@@ -118,8 +118,6 @@ def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
 
     parts = [
         f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
-        '<break time="350ms"/>',
-        f'<prosody rate="{rate}">{_escape(entry.get("pronunciation", ""))}</prosody>',
     ]
     if settings.include_chinese_in_audio:
         parts.extend(

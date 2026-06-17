@@ -17,6 +17,27 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertEqual(per_word["1"], "audio/2026-06-17/001_impedance.mp3")
         self.assertEqual(combined, "audio/2026-06-17_daily_vocabulary.mp3")
 
+    def test_entry_ssml_skips_pronunciation_but_keeps_meanings_and_examples(self):
+        entry = {
+            "word": "impedance",
+            "pronunciation": "DO_NOT_READ_THIS_PRONUNCIATION",
+            "chinese_meaning": "READ_CHINESE_MEANING",
+            "example_1_en": "Read English example one.",
+            "example_1_zh": "READ_CHINESE_TRANSLATION_ONE",
+            "example_2_en": "Read English example two.",
+            "example_2_zh": "READ_CHINESE_TRANSLATION_TWO",
+        }
+
+        ssml = _entry_ssml(entry, Settings(generate_audio=False))
+
+        self.assertIn("impedance", ssml)
+        self.assertNotIn("DO_NOT_READ_THIS_PRONUNCIATION", ssml)
+        self.assertIn("READ_CHINESE_MEANING", ssml)
+        self.assertIn("Read English example one.", ssml)
+        self.assertIn("READ_CHINESE_TRANSLATION_ONE", ssml)
+        self.assertIn("Read English example two.", ssml)
+        self.assertIn("READ_CHINESE_TRANSLATION_TWO", ssml)
+
     def test_entry_ssml_wraps_breaks_inside_voice_node(self):
         entry = {
             "word": "impedance",
