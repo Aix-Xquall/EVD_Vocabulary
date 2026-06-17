@@ -2,253 +2,33 @@
 
 航太 / 航電 / EMC 工程英文每日學習稿
 
-## 1. bridge excitation
+## 1. EMC
 
-**Pronunciation:** /brɪdʒ ˌek.saɪˈteɪ.ʃən/
-
-**Chinese meaning:** 橋式激勵
-
-**Category:** DAQ / Sensors
-
-**Difficulty:** 4
-
-**Example 1**
-
-Strain gauges often require bridge excitation.
-
-應變規通常需要橋式激勵。
-
-**Example 2**
-
-Bridge excitation return should be carefully controlled.
-
-橋式激勵回流應謹慎控制。
-
-## 2. enclosure
-
-**Pronunciation:** /ɪnˈkloʊ.ʒɚ/
-
-**Chinese meaning:** 外殼；機箱
-
-**Category:** Avionics System
-
-**Difficulty:** 3
-
-**Example 1**
-
-Each subsystem enclosure should be bonded to the reference network.
-
-每個子系統外殼都應搭接到參考網路。
-
-**Example 2**
-
-A floating enclosure may increase radiated emissions.
-
-浮接外殼可能增加輻射發射。
-
-## 3. appendices
-
-**Pronunciation:** /əˈpen.dɪ.siːz/
-
-**Chinese meaning:** 附錄，複數
-
-**Category:** Documentation
-
-**Difficulty:** 3
-
-**Example 1**
-
-The appendices include checklists and procedures.
-
-附錄包含檢查表與程序。
-
-**Example 2**
-
-The appendices provide supporting data for the EMC report.
-
-附錄提供 EMC 報告的佐證資料。
-
-## 4. EtherCAN
-
-**Pronunciation:** /ˈiː.θɚ kæn/
-
-**Chinese meaning:** EtherCAN 通訊
-
-**Category:** Communication
-
-**Difficulty:** 3
-
-**Example 1**
-
-EtherCAN may be used for inter-subsystem communication.
-
-EtherCAN 可用於子系統間通訊。
-
-**Example 2**
-
-EtherCAN shielding should follow the overall bonding strategy.
-
-EtherCAN 屏蔽應遵循整體搭接策略。
-
-## 5. seam
-
-**Pronunciation:** /siːm/
-
-**Chinese meaning:** 接縫
-
-**Category:** Composite Structure
-
-**Difficulty:** 3
-
-**Example 1**
-
-Gaps and seams can reduce shielding effectiveness.
-
-縫隙與接縫會降低屏蔽效果。
-
-**Example 2**
-
-Each seam should be bonded or overlapped properly.
-
-每個接縫都應適當搭接或重疊。
-
-## 6. grounding
-
-**Pronunciation:** /ˈɡraʊn.dɪŋ/
-
-**Chinese meaning:** 接地
-
-**Category:** Grounding / Bonding / Shielding
-
-**Difficulty:** 3
-
-**Example 1**
-
-Grounding is difficult when the structure is non-conductive.
-
-當結構不導電時，接地會變得困難。
-
-**Example 2**
-
-We need a clear grounding strategy for the avionics rings.
-
-我們需要明確的航電環接地策略。
-
-## 7. verification
-
-**Pronunciation:** /ˌver.ə.fəˈkeɪ.ʃən/
-
-**Chinese meaning:** 驗證
-
-**Category:** Grounding / Bonding
-
-**Difficulty:** 3
-
-**Example 1**
-
-Bonding verification is performed before EMC testing.
-
-搭接驗證會在 EMC 測試前執行。
-
-**Example 2**
-
-Verification confirms that the installed system meets the requirement.
-
-驗證確認已安裝系統符合需求。
-
-## 8. shielding
-
-**Pronunciation:** /ˈʃiːl.dɪŋ/
-
-**Chinese meaning:** 屏蔽
-
-**Category:** Grounding / Bonding / Shielding
-
-**Difficulty:** 3
-
-**Example 1**
-
-Shielding reduces radiated emissions and susceptibility.
-
-屏蔽可降低輻射發射與敏感度。
-
-**Example 2**
-
-The composite ring does not naturally provide shielding.
-
-複合材質航電環本身不會自然提供屏蔽。
-
-## 9. requirement
-
-**Pronunciation:** /rɪˈkwaɪr.mənt/
-
-**Chinese meaning:** 需求、要求
-
-**Category:** Requirements / Standards
-
-**Difficulty:** 3
-
-**Example 1**
-
-Each subsystem must meet the EMC requirements.
-
-每個子系統都必須符合 EMC 需求。
-
-**Example 2**
-
-The requirement should include limits, methods, and verification criteria.
-
-需求應包含限制值、方法與驗證準則。
-
-## 10. lesson learned
-
-**Pronunciation:** /ˈles.ən lɝːnd/
-
-**Chinese meaning:** 經驗教訓
-
-**Category:** Documentation
-
-**Difficulty:** 3
-
-**Example 1**
-
-Lessons learned should be recorded after each test campaign.
-
-每次測試活動後都應記錄經驗教訓。
-
-**Example 2**
-
-A lesson learned from integration should be fed back into the next design.
-
-整合得到的經驗教訓應回饋到下一版設計。
-
-## 11. appendix
-
-**Pronunciation:** /əˈpen.dɪks/
-
-**Chinese meaning:** 附錄，單數
-
-**Category:** Documentation
-
-**Difficulty:** 3
-
-**Example 1**
-
-The appendix includes the measurement procedure.
-
-附錄包含量測程序。
-
-**Example 2**
-
-Place detailed checklists in the appendix.
-
-將詳細檢查表放在附錄中。
-
-## 12. EMC
-
-**Pronunciation:** /ˌiː em ˈsiː/
+**Pronunciation:** /ˌiː.emˈsiː/
 
 **Chinese meaning:** 電磁相容性
+
+**Category:** EMC / E3 Core Terms
+
+**Difficulty:** 3
+
+**Example 1**
+
+EMC problems often appear during system integration.
+
+EMC 問題常在系統整合階段出現。
+
+**Example 2**
+
+The avionics ring must be designed with EMC in mind.
+
+航電環設計時必須考慮 EMC。
+
+## 2. applicable standards
+
+**Pronunciation:** /ˈæp.lɪ.kə.bəl ˈstæn.dɚdz/
+
+**Chinese meaning:** 適用標準
 
 **Category:** Overall / Introduction
 
@@ -256,153 +36,109 @@ Place detailed checklists in the appendix.
 
 **Example 1**
 
-EMC must be considered before system-level testing.
+MIL-STD-461 and MIL-STD-464 are applicable standards.
 
-在系統級測試前必須考慮電磁相容性。
+MIL-STD-461 與 MIL-STD-464 是適用標準。
 
 **Example 2**
 
-The EMC plan defines how noise risks are controlled.
+Applicable standards should be listed before test planning begins.
 
-EMC 計畫定義如何管控雜訊風險。
+在測試規劃開始前應列出適用標準。
 
-## 13. wiring
+## 3. DAQ
 
-**Pronunciation:** /ˈwaɪr.ɪŋ/
+**Pronunciation:** /ˌdiː eɪ ˈkjuː/
 
-**Chinese meaning:** 配線
+**Chinese meaning:** 數據擷取系統
 
-**Category:** Harness / Wiring
+**Category:** DAQ / Sensors
 
 **Difficulty:** 3
 
 **Example 1**
 
-Good wiring design reduces EMC risk.
+The DAQ system connects to multiple sensors.
 
-良好的配線設計可降低 EMC 風險。
+DAQ 系統連接多種感測器。
 
 **Example 2**
 
-Wiring changes should be reviewed before retesting.
+DAQ wiring is sensitive to grounding and shielding errors.
 
-重新測試前應審查配線變更。
+DAQ 佈線對接地與屏蔽錯誤很敏感。
 
-## 14. pad
+## 4. sensor cable
 
-**Pronunciation:** /pæd/
+**Pronunciation:** /ˈsen.sɚ ˈkeɪ.bəl/
 
-**Chinese meaning:** 發射台
+**Chinese meaning:** 感測器線纜
 
-**Category:** Lightning / ESD
+**Category:** DAQ / Sensors
 
 **Difficulty:** 3
 
 **Example 1**
 
-The vehicle is exposed to the pad RF environment.
+Sensor cables are sensitive to conducted and radiated noise.
 
-載具會暴露在發射台 RF 環境中。
+感測器線纜容易受到傳導與輻射雜訊影響。
 
 **Example 2**
 
-Pad operations may introduce additional grounding constraints.
+Sensor cables should be routed away from power electronics.
 
-發射台操作可能引入額外接地限制。
+感測器線纜應遠離電力電子設備。
 
-## 15. EPDS
+## 5. copper bar
 
-**Pronunciation:** /ˌiː piː diː ˈes/
+**Pronunciation:** /ˈkɑː.pɚ bɑːr/
 
-**Chinese meaning:** 電力分配系統
+**Chinese meaning:** 銅排
 
-**Category:** Power / Return Path
+**Category:** Composite Structure
 
 **Difficulty:** 3
 
 **Example 1**
 
-The EPDS distributes 48 V, 28 V, and 5 V power.
+A copper bar can serve as a low-impedance bonding bus.
 
-EPDS 分配 48V、28V 與 5V 電源。
+銅排可以作為低阻抗搭接匯流排。
 
 **Example 2**
 
-The EPDS bonding point should be reviewed during EMC design.
+Subsystem enclosures can be bonded to the copper bar.
 
-EPDS 的搭接點應在 EMC 設計中審查。
+子系統外殼可以搭接到銅排。
 
-## 16. power electronics
+## 6. compliance
 
-**Pronunciation:** /ˈpaʊ.ɚ iˌlekˈtrɑː.nɪks/
+**Pronunciation:** /kəmˈplaɪ.əns/
 
-**Chinese meaning:** 電力電子
+**Chinese meaning:** 符合、合規
 
-**Category:** Power / Return Path
+**Category:** Requirements / Standards
 
 **Difficulty:** 3
 
 **Example 1**
 
-Power electronics can generate strong EMI.
+Compliance with MIL-STD-461 is required.
 
-電力電子可能產生強 EMI。
-
-**Example 2**
-
-Jet vane drivers should be isolated from sensitive DAQ systems.
-
-JetVane 驅動器應與敏感 DAQ 系統隔離。
-
-## 17. battery power system
-
-**Pronunciation:** /ˈbæt.ər.i ˈpaʊ.ɚ ˈsɪs.təm/
-
-**Chinese meaning:** 電池供電系統
-
-**Category:** Power / Return Path
-
-**Difficulty:** 3
-
-**Example 1**
-
-The battery power system supplies high-current loads.
-
-電池供電系統供電給大電流負載。
+必須符合 MIL-STD-461。
 
 **Example 2**
 
-Battery return and chassis bonding must be clearly defined.
+Compliance must be supported by test data and analysis.
 
-電池回流與機殼搭接必須明確定義。
+符合性必須由測試數據與分析支持。
 
-## 18. RS-422
+## 7. matrix
 
-**Pronunciation:** /ˌɑːr es fɔːr ˈtwɛn.ti tuː/
+**Pronunciation:** /ˈmeɪ.trɪks/
 
-**Chinese meaning:** RS-422 通訊介面
-
-**Category:** Communication
-
-**Difficulty:** 3
-
-**Example 1**
-
-RS-422 is used for differential communication.
-
-RS-422 用於差動通訊。
-
-**Example 2**
-
-RS-422 cable shields should be handled carefully in a composite structure.
-
-在複材結構中，RS-422 線纜屏蔽要謹慎處理。
-
-## 19. procedure
-
-**Pronunciation:** /prəˈsiː.dʒɚ/
-
-**Chinese meaning:** 程序
+**Chinese meaning:** 矩陣、表格
 
 **Category:** Documentation
 
@@ -410,34 +146,298 @@ RS-422 cable shields should be handled carefully in a composite structure.
 
 **Example 1**
 
-Each procedure must be repeatable and clearly documented.
+A matrix is useful for tracking requirement compliance.
 
-每個程序都必須可重複且清楚記錄。
+矩陣很適合用來追蹤需求符合性。
 
 **Example 2**
 
-The procedure should specify instruments, limits, and acceptance criteria.
+The review matrix shows open issues and responsible owners.
 
-程序應指定儀器、限制值與接受準則。
+審查矩陣顯示未解問題與負責人。
 
-## 20. common problem
+## 8. non-conductive
 
-**Pronunciation:** /ˈkɑː.mən ˈprɑː.bləm/
+**Pronunciation:** /ˌnɑːn kənˈdʌk.tɪv/
 
-**Chinese meaning:** 常見問題
+**Chinese meaning:** 不導電的
 
-**Category:** Troubleshooting
+**Category:** Composite Structure
 
 **Difficulty:** 3
 
 **Example 1**
 
-Converter noise is a common problem in power systems.
+The avionics ring is made of non-conductive composite material.
 
-轉換器雜訊是電源系統中的常見問題。
+航電環是由不導電的複合材質製成。
 
 **Example 2**
 
-A common problem during integration is incomplete shield termination.
+Non-conductive structures require additional bonding design.
 
-整合期間常見問題是不完整的屏蔽端接。
+不導電結構需要額外的搭接設計。
+
+## 9. fastener
+
+**Pronunciation:** /ˈfæs.ən.ɚ/
+
+**Chinese meaning:** 緊固件；螺絲固定件
+
+**Category:** Composite Structure
+
+**Difficulty:** 3
+
+**Example 1**
+
+Fasteners can be used as bonding points if properly treated.
+
+若處理得當，緊固件可作為搭接點。
+
+**Example 2**
+
+Paint or coating under fasteners may increase resistance.
+
+緊固件下方的油漆或塗層可能增加電阻。
+
+## 10. composite material
+
+**Pronunciation:** /kəmˈpɑː.zɪt məˈtɪr.i.əl/
+
+**Chinese meaning:** 複合材質
+
+**Category:** Composite Structure
+
+**Difficulty:** 3
+
+**Example 1**
+
+Composite material is lightweight but may not provide conductivity.
+
+複合材質很輕，但可能不具導電性。
+
+**Example 2**
+
+The grounding design must consider the composite material interface.
+
+接地設計必須考慮複合材質介面。
+
+## 11. test procedure
+
+**Pronunciation:** /test prəˈsiː.dʒɚ/
+
+**Chinese meaning:** 測試程序
+
+**Category:** Verification / Testing
+
+**Difficulty:** 3
+
+**Example 1**
+
+The test procedure should describe how to measure bonding resistance.
+
+測試程序應描述如何量測搭接電阻。
+
+**Example 2**
+
+A clear test procedure reduces ambiguity during integration.
+
+清楚的測試程序可降低整合時的模糊性。
+
+## 12. avionics ring
+
+**Pronunciation:** /ˌeɪ.viˈɑː.nɪks rɪŋ/
+
+**Chinese meaning:** 航電環
+
+**Category:** Avionics System
+
+**Difficulty:** 3
+
+**Example 1**
+
+The avionics ring supports multiple flight subsystems.
+
+航電環支撐多個飛行子系統。
+
+**Example 2**
+
+The avionics ring does not provide a natural metal reference.
+
+航電環沒有提供天然的金屬參考面。
+
+## 13. cable shield
+
+**Pronunciation:** /ˈkeɪ.bəl ʃiːld/
+
+**Chinese meaning:** 線纜屏蔽層
+
+**Category:** Harness / Connector
+
+**Difficulty:** 3
+
+**Example 1**
+
+The cable shield must not be left floating.
+
+線纜屏蔽層不應懸空。
+
+**Example 2**
+
+Cable shields should be terminated consistently across the system.
+
+線纜屏蔽層應在系統中一致地端接。
+
+## 14. constraint
+
+**Pronunciation:** /kənˈstreɪnt/
+
+**Chinese meaning:** 限制條件
+
+**Category:** Launch Operations
+
+**Difficulty:** 3
+
+**Example 1**
+
+Countdown constraints may prevent certain RF transmitters from operating.
+
+倒數限制可能禁止某些 RF 發射機運作。
+
+**Example 2**
+
+Each constraint should be linked to a safety or EMC requirement.
+
+每項限制條件都應連結到安全或 EMC 需求。
+
+## 15. lightning
+
+**Pronunciation:** /ˈlaɪt.nɪŋ/
+
+**Chinese meaning:** 雷擊
+
+**Category:** Lightning / ESD
+
+**Difficulty:** 3
+
+**Example 1**
+
+Lightning protection is part of vehicle EMC design.
+
+雷擊保護是載具 EMC 設計的一部分。
+
+**Example 2**
+
+Lightning current must be routed through a controlled path.
+
+雷擊電流必須透過受控路徑導引。
+
+## 16. audit
+
+**Pronunciation:** /ˈɑː.dɪt/
+
+**Chinese meaning:** 稽核、檢查
+
+**Category:** Verification / Test
+
+**Difficulty:** 3
+
+**Example 1**
+
+An EMC audit reviews design and installation quality.
+
+EMC 稽核會檢查設計與安裝品質。
+
+**Example 2**
+
+The audit found several missing bonding jumpers.
+
+稽核發現數個缺失的搭接跳線。
+
+## 17. IEPE sensor
+
+**Pronunciation:** /ˌaɪ iː piː ˈiː ˈsen.sɚ/
+
+**Chinese meaning:** IEPE 感測器
+
+**Category:** DAQ / Sensors
+
+**Difficulty:** 3
+
+**Example 1**
+
+IEPE sensors require low-noise signal wiring.
+
+IEPE 感測器需要低雜訊訊號佈線。
+
+**Example 2**
+
+IEPE cable shields should be terminated according to the DAQ design.
+
+IEPE 線纜屏蔽應依 DAQ 設計端接。
+
+## 18. failure mode
+
+**Pronunciation:** /ˈfeɪl.jɚ moʊd/
+
+**Chinese meaning:** 失效模式；問題模式
+
+**Category:** Verification / Testing
+
+**Difficulty:** 3
+
+**Example 1**
+
+Ground loops are a common EMC failure mode.
+
+地迴路是常見的 EMC 失效模式。
+
+**Example 2**
+
+We should ask the consultant about common integration failure modes.
+
+我們應詢問顧問常見的整合失效模式。
+
+## 19. qualification
+
+**Pronunciation:** /ˌkwɑː.lə.fəˈkeɪ.ʃən/
+
+**Chinese meaning:** 資格測試；鑑定測試
+
+**Category:** Verification / Testing
+
+**Difficulty:** 3
+
+**Example 1**
+
+Qualification testing confirms compliance with requirements.
+
+資格測試確認是否符合規範要求。
+
+**Example 2**
+
+We should reduce integration risks before qualification testing.
+
+我們應在資格測試前降低整合風險。
+
+## 20. test planning
+
+**Pronunciation:** /test ˈplæn.ɪŋ/
+
+**Chinese meaning:** 測試規劃
+
+**Category:** Verification / Test
+
+**Difficulty:** 3
+
+**Example 1**
+
+Test planning should start before hardware integration.
+
+測試規劃應在硬體整合前開始。
+
+**Example 2**
+
+Good test planning reduces schedule risk during EMC qualification.
+
+良好的測試規劃可降低 EMC 鑑定期間的時程風險。
