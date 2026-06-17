@@ -7,6 +7,11 @@ on:
       - main
     paths:
       - ".github/workflows/daily-vocabulary.yml"
+      - "*.py"
+      - "*.csv"
+      - "requirements.txt"
+      - "tests/**"
+      - "web/**"
   schedule:
     - cron: "10 22 * * *"
 
