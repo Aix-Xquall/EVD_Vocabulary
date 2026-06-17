@@ -107,8 +107,8 @@ function playCurrent() {
     elements.answerFeedback.className = "feedback wrong";
     return;
   }
-  applyPlaybackRate();
   elements.audioPlayer.src = resolveAssetPath(word.audio);
+  applyPlaybackRate();
   elements.audioPlayer.play().catch(() => {
     elements.answerFeedback.textContent = "請先按一次開始播放。";
     elements.answerFeedback.className = "feedback wrong";
@@ -119,8 +119,8 @@ function playCombinedAudio() {
   if (!state.data.combined_audio) {
     return;
   }
-  applyPlaybackRate();
   elements.audioPlayer.src = resolveAssetPath(state.data.combined_audio);
+  applyPlaybackRate();
   elements.audioPlayer.play().catch(() => {
     elements.answerFeedback.textContent = "請先按一次播放按鈕。";
     elements.answerFeedback.className = "feedback wrong";
@@ -293,6 +293,8 @@ elements.audioPlayer.addEventListener("ended", () => {
   }
   nextWord(true);
 });
+elements.audioPlayer.addEventListener("loadedmetadata", applyPlaybackRate);
+elements.audioPlayer.addEventListener("play", applyPlaybackRate);
 
 loadDailyData()
   .then((data) => {

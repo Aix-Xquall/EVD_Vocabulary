@@ -14,6 +14,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('value="0.8"', index_html)
         self.assertIn("DEFAULT_PLAYBACK_RATE = 0.8", app_js)
         self.assertIn("audioPlayer.playbackRate", app_js)
+        self.assertIn('audioPlayer.addEventListener("loadedmetadata"', app_js)
 
 
 if __name__ == "__main__":

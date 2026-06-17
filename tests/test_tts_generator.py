@@ -38,6 +38,25 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertIn("Read English example two.", ssml)
         self.assertIn("READ_CHINESE_TRANSLATION_TWO", ssml)
 
+    def test_entry_ssml_uses_chinese_voice_for_chinese_segments(self):
+        entry = {
+            "word": "impedance",
+            "pronunciation": "/im-PEE-dance/",
+            "chinese_meaning": "中文意思",
+            "example_1_en": "Read English example one.",
+            "example_1_zh": "中文翻譯一",
+            "example_2_en": "Read English example two.",
+            "example_2_zh": "中文翻譯二",
+        }
+
+        ssml = _entry_ssml(entry, Settings(generate_audio=False))
+
+        self.assertIn('voice name="en-US-JennyNeural"', ssml)
+        self.assertIn('voice name="zh-TW-HsiaoChenNeural"', ssml)
+        self.assertIn("中文意思", ssml)
+        self.assertIn("中文翻譯一", ssml)
+        self.assertIn("中文翻譯二", ssml)
+
     def test_entry_ssml_wraps_breaks_inside_voice_node(self):
         entry = {
             "word": "impedance",
@@ -84,7 +103,8 @@ class TtsGeneratorTests(unittest.TestCase):
         root = ElementTree.fromstring(ssml)
         direct_child_names = [child.tag.split("}", 1)[-1] for child in root]
         self.assertNotIn("break", direct_child_names)
-        self.assertEqual(direct_child_names, ["voice"])
+        self.assertTrue(direct_child_names)
+        self.assertTrue(all(name == "voice" for name in direct_child_names))
 
 
 if __name__ == "__main__":

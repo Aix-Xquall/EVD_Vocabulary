@@ -91,10 +91,8 @@ def _synthesize_ssml(speechsdk, settings: Settings, ssml: str, output_file: Path
 
 def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:
     english_voice = html.escape(settings.english_voice)
-    content = "\n<break time=\"1000ms\"/>\n".join(
-        _entry_content(entry, settings) for entry in entries
-    )
-    body = "\n".join([f'<voice name="{english_voice}">', content, "</voice>"])
+    separator = _voice_segment("", english_voice, settings.speech_rate, "1000ms")
+    body = f"\n{separator}\n".join(_entry_content(entry, settings) for entry in entries)
     return _wrap_ssml(body)
 
 
@@ -103,66 +101,98 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 
 def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
-    english_voice = html.escape(settings.english_voice)
-    return "\n".join(
-        [
-            f'<voice name="{english_voice}">',
-            _entry_content(entry, settings),
-            "</voice>",
-        ]
-    )
+    return _entry_content(entry, settings)
 
 
 def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
-    rate = html.escape(settings.speech_rate)
+    english_voice = html.escape(settings.english_voice)
+    chinese_voice = html.escape(settings.chinese_voice)
+    rate = settings.speech_rate
 
     parts = [
-        f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
+        _voice_segment(entry.get("word", ""), english_voice, rate, "350ms"),
     ]
     if settings.include_chinese_in_audio:
         parts.extend(
             [
-                '<break time="350ms"/>',
-                f'<lang xml:lang="zh-TW"><prosody rate="{rate}">{_escape(entry.get("chinese_meaning", ""))}</prosody></lang>',
+                _voice_segment(
+                    entry.get("chinese_meaning", ""),
+                    chinese_voice,
+                    rate,
+                    "500ms",
+                    "zh-TW",
+                ),
             ]
         )
 
     parts.extend(
         [
-            '<break time="500ms"/>',
-            f'<prosody rate="{rate}">{_escape(entry.get("example_1_en", ""))}</prosody>',
+            _voice_segment(entry.get("example_1_en", ""), english_voice, rate, "350ms"),
         ]
     )
     if settings.include_chinese_in_audio:
         parts.extend(
             [
-                '<break time="350ms"/>',
-                f'<lang xml:lang="zh-TW"><prosody rate="{rate}">{_escape(entry.get("example_1_zh", ""))}</prosody></lang>',
+                _voice_segment(
+                    entry.get("example_1_zh", ""),
+                    chinese_voice,
+                    rate,
+                    "500ms",
+                    "zh-TW",
+                ),
             ]
         )
 
     parts.extend(
         [
-            '<break time="500ms"/>',
-            f'<prosody rate="{rate}">{_escape(entry.get("example_2_en", ""))}</prosody>',
+            _voice_segment(entry.get("example_2_en", ""), english_voice, rate, "350ms"),
         ]
     )
     if settings.include_chinese_in_audio:
         parts.extend(
             [
-                '<break time="350ms"/>',
-                f'<lang xml:lang="zh-TW"><prosody rate="{rate}">{_escape(entry.get("example_2_zh", ""))}</prosody></lang>',
+                _voice_segment(
+                    entry.get("example_2_zh", ""),
+                    chinese_voice,
+                    rate,
+                    "600ms",
+                    "zh-TW",
+                ),
             ]
         )
 
     if settings.repeat_each_word:
         parts.extend(
             [
-                '<break time="600ms"/>',
-                f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
+                _voice_segment(entry.get("word", ""), english_voice, rate),
             ]
         )
     return "\n".join(parts)
+
+
+def _voice_segment(
+    text: str,
+    voice: str,
+    rate: str,
+    break_time: str | None = None,
+    language: str | None = None,
+) -> str:
+    escaped_rate = html.escape(rate)
+    escaped_voice = html.escape(voice)
+    escaped_text = _escape(text)
+    if language:
+        content = (
+            f'<lang xml:lang="{html.escape(language)}">'
+            f'<prosody rate="{escaped_rate}">{escaped_text}</prosody>'
+            "</lang>"
+        )
+    elif escaped_text:
+        content = f'<prosody rate="{escaped_rate}">{escaped_text}</prosody>'
+    else:
+        content = ""
+    if break_time:
+        content = f'{content}\n<break time="{html.escape(break_time)}"/>'.strip()
+    return f'<voice name="{escaped_voice}">{content}</voice>'
 
 
 def _wrap_ssml(body: str) -> str:
