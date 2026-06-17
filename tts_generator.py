@@ -50,18 +50,27 @@ def generate_audio_files(
     word_audio_dir = settings.output_dir / "audio" / date_text
     word_audio_dir.mkdir(parents=True, exist_ok=True)
 
+    generated_files = []
     for index, entry in enumerate(entries, start=1):
         relative_path = per_word_paths[audio_key_for_entry(entry)]
         output_file = settings.output_dir / relative_path
         output_file.parent.mkdir(parents=True, exist_ok=True)
         ssml = _entry_ssml(entry, settings)
         _synthesize_ssml(speechsdk, settings, ssml, output_file)
+        generated_files.append(output_file)
 
     combined_output = settings.output_dir / combined_path
     combined_output.parent.mkdir(parents=True, exist_ok=True)
-    combined_ssml = _combined_ssml(entries, settings)
-    _synthesize_ssml(speechsdk, settings, combined_ssml, combined_output)
+    _combine_audio_files(generated_files, combined_output)
     return per_word_paths, combined_path
+
+
+def _combine_audio_files(source_files: List[Path], output_file: Path) -> None:
+    # Azure rejects a large combined SSML after many English/Chinese voice switches.
+    # MP3 frame concatenation works for the Azure MP3 files generated above.
+    with output_file.open("wb") as combined:
+        for source_file in source_files:
+            combined.write(source_file.read_bytes())
 
 
 def _synthesize_ssml(speechsdk, settings: Settings, ssml: str, output_file: Path) -> None:

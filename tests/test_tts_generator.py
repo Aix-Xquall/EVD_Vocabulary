@@ -1,12 +1,27 @@
 import unittest
 from datetime import date
+from pathlib import Path
+import tempfile
 from xml.etree import ElementTree
 
 from config import Settings
-from tts_generator import _combined_ssml, _entry_ssml, expected_audio_paths
+from tts_generator import _combined_ssml, _combine_audio_files, _entry_ssml, expected_audio_paths
 
 
 class TtsGeneratorTests(unittest.TestCase):
+    def test_combine_audio_files_concatenates_per_word_mp3_outputs(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            first = workspace / "001.mp3"
+            second = workspace / "002.mp3"
+            combined = workspace / "combined.mp3"
+            first.write_bytes(b"first-audio")
+            second.write_bytes(b"second-audio")
+
+            _combine_audio_files([first, second], combined)
+
+            self.assertEqual(combined.read_bytes(), b"first-audiosecond-audio")
+
     def test_expected_audio_paths_are_relative_to_published_site_root(self):
         per_word, combined = expected_audio_paths(
             [{"id": "1", "word": "impedance"}],
