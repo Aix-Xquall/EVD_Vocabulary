@@ -79,7 +79,14 @@ def _synthesize_ssml(speechsdk, settings: Settings, ssml: str, output_file: Path
     )
     result = synthesizer.speak_ssml_async(ssml).get()
     if result.reason != speechsdk.ResultReason.SynthesizingAudioCompleted:
-        raise RuntimeError(f"Azure Speech synthesis failed for: {output_file}")
+        details = speechsdk.SpeechSynthesisCancellationDetails(result)
+        raise RuntimeError(
+            "Azure Speech synthesis failed for: "
+            f"{output_file}; reason={result.reason}; "
+            f"cancellation_reason={details.reason}; "
+            f"error_code={details.error_code}; "
+            f"error_details={details.error_details}"
+        )
 
 
 def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:
