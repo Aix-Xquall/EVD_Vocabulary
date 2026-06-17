@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Keep generation outside the github-pages environment so it reads repository secrets.
+  # Generation stays outside the github-pages environment so it reads repository secrets.
   build:
     runs-on: ubuntu-latest
 
