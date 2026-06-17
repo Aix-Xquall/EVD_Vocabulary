@@ -1,9 +1,12 @@
+const DEFAULT_PLAYBACK_RATE = 0.8;
+
 const state = {
   data: null,
   currentIndex: 0,
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
+  playbackRate: DEFAULT_PLAYBACK_RATE,
   practice: {
     current: null,
     attempts: 0,
@@ -29,6 +32,8 @@ const elements = {
   nextButton: document.getElementById("nextButton"),
   repeatAllToggle: document.getElementById("repeatAllToggle"),
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
+  playbackRate: document.getElementById("playbackRate"),
+  playbackRateValue: document.getElementById("playbackRateValue"),
   combinedAudioButton: document.getElementById("combinedAudioButton"),
   toggleMeaningButton: document.getElementById("toggleMeaningButton"),
   audioPlayer: document.getElementById("audioPlayer"),
@@ -102,6 +107,7 @@ function playCurrent() {
     elements.answerFeedback.className = "feedback wrong";
     return;
   }
+  applyPlaybackRate();
   elements.audioPlayer.src = resolveAssetPath(word.audio);
   elements.audioPlayer.play().catch(() => {
     elements.answerFeedback.textContent = "請先按一次開始播放。";
@@ -113,6 +119,7 @@ function playCombinedAudio() {
   if (!state.data.combined_audio) {
     return;
   }
+  applyPlaybackRate();
   elements.audioPlayer.src = resolveAssetPath(state.data.combined_audio);
   elements.audioPlayer.play().catch(() => {
     elements.answerFeedback.textContent = "請先按一次播放按鈕。";
@@ -206,6 +213,12 @@ function updatePracticeScore() {
   elements.practiceScore.textContent = `${state.practice.correct} / ${state.practice.attempts}`;
 }
 
+function applyPlaybackRate() {
+  elements.audioPlayer.playbackRate = state.playbackRate;
+  elements.playbackRate.value = String(state.playbackRate);
+  elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
+}
+
 function saveProgress() {
   if (!state.data) {
     return;
@@ -215,6 +228,7 @@ function saveProgress() {
     key,
     JSON.stringify({
       currentIndex: state.currentIndex,
+      playbackRate: state.playbackRate,
       practice: state.practice,
     }),
   );
@@ -229,6 +243,7 @@ function restoreProgress() {
   try {
     const saved = JSON.parse(raw);
     state.currentIndex = Math.min(saved.currentIndex || 0, state.data.words.length - 1);
+    state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
@@ -260,6 +275,11 @@ elements.repeatAllToggle.addEventListener("change", (event) => {
 elements.repeatCurrentToggle.addEventListener("change", (event) => {
   state.repeatCurrent = event.target.checked;
 });
+elements.playbackRate.addEventListener("input", (event) => {
+  state.playbackRate = Number(event.target.value);
+  applyPlaybackRate();
+  saveProgress();
+});
 elements.toggleMeaningButton.addEventListener("click", () => {
   state.hideMeaning = !state.hideMeaning;
   elements.toggleMeaningButton.textContent = state.hideMeaning ? "顯示中文" : "隱藏中文";
@@ -278,6 +298,7 @@ loadDailyData()
   .then((data) => {
     state.data = data;
     restoreProgress();
+    applyPlaybackRate();
     render();
     buildQuestion();
     updatePracticeScore();

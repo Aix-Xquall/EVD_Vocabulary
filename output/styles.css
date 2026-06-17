@@ -192,6 +192,23 @@ h2 {
   gap: 8px;
 }
 
+.rate-control {
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.rate-control output {
+  min-width: 3ch;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.rate-control input {
+  width: 130px;
+}
+
 .examples {
   margin-top: 24px;
   padding-top: 18px;
