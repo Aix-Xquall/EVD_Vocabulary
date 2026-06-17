@@ -90,7 +90,11 @@ def _synthesize_ssml(speechsdk, settings: Settings, ssml: str, output_file: Path
 
 
 def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:
-    body = "\n<break time=\"1000ms\"/>\n".join(_entry_body(entry, settings) for entry in entries)
+    english_voice = html.escape(settings.english_voice)
+    content = "\n<break time=\"1000ms\"/>\n".join(
+        _entry_content(entry, settings) for entry in entries
+    )
+    body = "\n".join([f'<voice name="{english_voice}">', content, "</voice>"])
     return _wrap_ssml(body)
 
 
@@ -100,10 +104,19 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
     english_voice = html.escape(settings.english_voice)
+    return "\n".join(
+        [
+            f'<voice name="{english_voice}">',
+            _entry_content(entry, settings),
+            "</voice>",
+        ]
+    )
+
+
+def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
     rate = html.escape(settings.speech_rate)
 
     parts = [
-        f'<voice name="{english_voice}">',
         f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
         '<break time="350ms"/>',
         f'<prosody rate="{rate}">{_escape(entry.get("pronunciation", ""))}</prosody>',
@@ -151,7 +164,6 @@ def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
                 f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
             ]
         )
-    parts.append("</voice>")
     return "\n".join(parts)
 
 
