@@ -2,77 +2,55 @@
 
 航太 / 航電 / EMC 工程英文每日學習稿
 
-## 1. filter integration
+## 1. wire segregation
 
-**Pronunciation:** /ˈfɪl.tɚ ˌɪn.təˈɡreɪ.ʃən/
+**Pronunciation:** /waɪr ˌseɡ.rəˈɡeɪ.ʃən/
 
-**Chinese meaning:** 濾波器整合
+**Chinese meaning:** 線路隔離、線種分離
 
-**Category:** Power Quality
-
-**Difficulty:** 5
-
-**Example 1**
-
-Filter integration must consider grounding and layout.
-
-濾波器整合必須考慮接地與佈局。
-
-**Example 2**
-
-Bad filter integration may reduce attenuation at high frequency.
-
-不良濾波器整合可能降低高頻衰減效果。
-
-## 2. transfer impedance
-
-**Pronunciation:** /ˈtræns.fɚ ɪmˈpiː.dəns/
-
-**Chinese meaning:** 轉移阻抗
-
-**Category:** Verification / Testing
+**Category:** Harness / Wiring
 
 **Difficulty:** 5
 
 **Example 1**
 
-Transfer impedance is important for shield performance.
+Wire segregation prevents noisy cables from coupling into sensitive signals.
 
-轉移阻抗對屏蔽性能很重要。
+線路隔離可避免噪聲線纜耦合到敏感訊號。
 
 **Example 2**
 
-Cable shields with lower transfer impedance provide better protection.
+Power, RF, and low-level analog wires need proper wire segregation.
 
-轉移阻抗較低的線纜屏蔽可提供較好保護。
+電源、RF 與低位準類比線路需要適當線路隔離。
 
-## 3. compliance matrix
+## 2. HERO compliance
 
-**Pronunciation:** /kəmˈplaɪ.əns ˈmeɪ.trɪks/
+**Pronunciation:** /ˈhɪr.oʊ kəmˈplaɪ.əns/
 
-**Chinese meaning:** 符合性矩陣
+**Chinese meaning:** 符合 HERO 要求
 
-**Category:** Requirements / Standards
+**Category:** Ordnance / HERO
 
 **Difficulty:** 5
 
 **Example 1**
 
-A compliance matrix tracks every EMC requirement.
+The system must demonstrate HERO compliance before launch.
 
-符合性矩陣追蹤每項 EMC 需求。
+系統必須在發射前證明符合 HERO 要求。
 
 **Example 2**
 
-The compliance matrix should identify verification status and evidence.
+HERO compliance may restrict transmitter operation during integration.
 
-符合性矩陣應標示驗證狀態與證據。
+HERO 符合性可能限制整合期間的發射機操作。
 
-## 4. self-compatibility
+## 3. antenna coupling
 
-**Pronunciation:** /self kəmˌpæt̬.əˈbɪl.ə.t̬i/
+**Pronunciation:** /ænˈten.ə ˈkʌp.lɪŋ/
 
-**Chinese meaning:** 自相容性
+**Chinese meaning:** 天線耦合
 
 **Category:** RF Compatibility
 
@@ -80,21 +58,87 @@ The compliance matrix should identify verification status and evidence.
 
 **Example 1**
 
-Self-compatibility testing checks interference within the vehicle.
+Antenna coupling can disturb nearby receivers.
 
-自相容性測試會檢查載具內部干擾。
+天線耦合可能干擾附近接收器。
 
 **Example 2**
 
-Self-compatibility problems often appear when multiple radios operate together.
+Antenna coupling depends on distance, frequency, and orientation.
 
-多個無線電同時運作時常會出現自相容性問題。
+天線耦合取決於距離、頻率與方向。
 
-## 5. pad RF environment
+## 4. victim circuit
 
-**Pronunciation:** /pæd ˌɑːr ˈef ɪnˈvaɪ.rən.mənt/
+**Pronunciation:** /ˈvɪk.tɪm ˈsɝː.kɪt/
 
-**Chinese meaning:** 發射台 RF 環境
+**Chinese meaning:** 受害電路
+
+**Category:** Troubleshooting
+
+**Difficulty:** 5
+
+**Example 1**
+
+A sensitive receiver can become a victim circuit.
+
+敏感接收器可能成為受害電路。
+
+**Example 2**
+
+The victim circuit should be protected with filtering and shielding.
+
+受害電路應透過濾波與屏蔽保護。
+
+## 5. shield failure
+
+**Pronunciation:** /ʃiːld ˈfeɪl.jɚ/
+
+**Chinese meaning:** 屏蔽失效
+
+**Category:** Harness / Wiring
+
+**Difficulty:** 5
+
+**Example 1**
+
+Shield failure can cause radiated emissions to increase.
+
+屏蔽失效會導致輻射發射增加。
+
+**Example 2**
+
+A loose backshell is a common cause of shield failure.
+
+鬆動的後殼是屏蔽失效的常見原因。
+
+## 6. converter noise
+
+**Pronunciation:** /kənˈvɝː.t̬ɚ nɔɪz/
+
+**Chinese meaning:** 轉換器雜訊
+
+**Category:** Power Quality
+
+**Difficulty:** 5
+
+**Example 1**
+
+DC-DC converter noise is a common EMC problem.
+
+DC-DC 轉換器雜訊是常見 EMC 問題。
+
+**Example 2**
+
+Converter noise can couple into sensors through power and ground paths.
+
+轉換器雜訊可能透過電源與接地路徑耦合到感測器。
+
+## 7. umbilical transient
+
+**Pronunciation:** /ʌmˈbɪl.ɪ.kəl ˈtræn.zi.ənt/
+
+**Chinese meaning:** 臍帶纜線暫態
 
 **Category:** Launch Operations
 
@@ -102,43 +146,43 @@ Self-compatibility problems often appear when multiple radios operate together.
 
 **Example 1**
 
-The pad RF environment includes telemetry and communication transmitters.
+Umbilical transients may occur during disconnect.
 
-發射台 RF 環境包含遙測與通訊發射機。
+臍帶纜線在斷開時可能產生暫態。
 
 **Example 2**
 
-The pad RF environment may affect receivers before liftoff.
+The avionics power input must tolerate umbilical transients.
 
-起飛前，發射台 RF 環境可能影響接收器。
+航電電源輸入必須能承受臍帶纜線暫態。
 
-## 6. firing circuit
+## 8. harness coupling
 
-**Pronunciation:** /ˈfaɪr.ɪŋ ˈsɝː.kɪt/
+**Pronunciation:** /ˈhɑːr.nəs ˈkʌp.lɪŋ/
 
-**Chinese meaning:** 點火電路
+**Chinese meaning:** 線束耦合
 
-**Category:** Ordnance / HERO
+**Category:** Harness / Wiring
 
 **Difficulty:** 5
 
 **Example 1**
 
-The firing circuit must remain isolated until commanded.
+Harness coupling may transfer noise between cables.
 
-點火電路在命令前必須保持隔離。
+線束耦合可能在線纜之間傳遞雜訊。
 
 **Example 2**
 
-Firing circuit layout should minimize unintended coupling.
+Increasing physical separation can reduce harness coupling.
 
-點火電路佈局應盡量降低非預期耦合。
+增加實體間距可降低線束耦合。
 
-## 7. bus transient
+## 9. conducted emission
 
-**Pronunciation:** /bʌs ˈtræn.zi.ənt/
+**Pronunciation:** /kənˈdʌk.tɪd ɪˈmɪʃ.ən/
 
-**Chinese meaning:** 電源母線暫態
+**Chinese meaning:** 傳導發射
 
 **Category:** Power Quality
 
@@ -146,153 +190,21 @@ Firing circuit layout should minimize unintended coupling.
 
 **Example 1**
 
-Bus transients must be limited during launch operations.
+Conducted emissions are measured on power lines.
 
-發射操作期間必須限制電源母線暫態。
-
-**Example 2**
-
-An umbilical disconnect can create a bus transient.
-
-臍帶纜線斷開可能產生電源母線暫態。
-
-## 8. flow-down
-
-**Pronunciation:** /ˈfloʊ daʊn/
-
-**Chinese meaning:** 需求下展、需求分解
-
-**Category:** Requirements / Standards
-
-**Difficulty:** 5
-
-**Example 1**
-
-Vehicle-level requirements are flowed down to each box.
-
-載具級需求會下展到每個設備盒。
+傳導發射會在電源線上量測。
 
 **Example 2**
 
-Requirement flow-down prevents gaps between system and subsystem design.
+A filter can reduce conducted emission from a DC-DC converter.
 
-需求下展可避免系統與子系統設計之間產生落差。
+濾波器可降低 DC-DC 轉換器的傳導發射。
 
-## 9. receiver desensitization
+## 10. EED
 
-**Pronunciation:** /rɪˈsiː.vɚ diːˌsen.sə.taɪˈzeɪ.ʃən/
+**Pronunciation:** /ˌiː iː ˈdiː/
 
-**Chinese meaning:** 接收機去敏化
-
-**Category:** RF / Communication
-
-**Difficulty:** 5
-
-**Example 1**
-
-Receiver desensitization can reduce communication range.
-
-接收機去敏化會降低通訊距離。
-
-**Example 2**
-
-Strong nearby transmitters may cause receiver desensitization.
-
-附近強發射機可能造成接收機去敏化。
-
-## 10. P-static
-
-**Pronunciation:** /ˈpiː ˈstæt̬.ɪk/
-
-**Chinese meaning:** 降水靜電 / 飛行摩擦靜電
-
-**Category:** Lightning / ESD
-
-**Difficulty:** 5
-
-**Example 1**
-
-P-static may affect antennas during flight.
-
-P-static 可能在飛行中影響天線。
-
-**Example 2**
-
-P-static control is important for RF and telemetry performance.
-
-P-static 控制對 RF 與遙測性能很重要。
-
-## 11. FTS
-
-**Pronunciation:** /ˌef tiː ˈes/
-
-**Chinese meaning:** 飛行終止系統
-
-**Category:** RF Compatibility
-
-**Difficulty:** 5
-
-**Example 1**
-
-The FTS link must be protected from interference.
-
-飛行終止系統鏈路必須避免干擾。
-
-**Example 2**
-
-FTS performance is critical during launch operations.
-
-飛行終止系統性能在發射操作期間非常關鍵。
-
-## 12. RF compatibility
-
-**Pronunciation:** /ˌɑːr ˈef kəmˌpæt̬.əˈbɪl.ə.t̬i/
-
-**Chinese meaning:** 射頻相容性
-
-**Category:** RF Compatibility
-
-**Difficulty:** 5
-
-**Example 1**
-
-RF compatibility ensures radios can operate together.
-
-射頻相容性確保無線電設備能共同運作。
-
-**Example 2**
-
-RF compatibility must be checked with all transmitters and receivers active.
-
-必須在所有發射機與接收器啟用時檢查射頻相容性。
-
-## 13. discharge path
-
-**Pronunciation:** /dɪsˈtʃɑːrdʒ pæθ/
-
-**Chinese meaning:** 放電路徑
-
-**Category:** Lightning / ESD
-
-**Difficulty:** 5
-
-**Example 1**
-
-A low-impedance discharge path helps protect electronics.
-
-低阻抗放電路徑有助於保護電子設備。
-
-**Example 2**
-
-The discharge path should not pass through sensitive circuits.
-
-放電路徑不應穿過敏感電路。
-
-## 14. HERO
-
-**Pronunciation:** /ˈhɪr.oʊ/
-
-**Chinese meaning:** 電磁輻射對火工品危害
+**Chinese meaning:** 電爆裝置
 
 **Category:** Ordnance / HERO
 
@@ -300,21 +212,21 @@ The discharge path should not pass through sensitive circuits.
 
 **Example 1**
 
-HERO compliance is critical for ordnance safety.
+EEDs must be protected from unintended RF energy.
 
-HERO 符合性對火工品安全非常關鍵。
+電爆裝置必須避免受到非預期 RF 能量影響。
 
 **Example 2**
 
-HERO analysis evaluates RF hazards near electro-explosive devices.
+An EED requires shielding, isolation, and procedural controls.
 
-HERO 分析評估電爆裝置附近的 RF 危害。
+電爆裝置需要屏蔽、隔離與程序管制。
 
-## 15. ground loop
+## 11. bonding requirement
 
-**Pronunciation:** /ɡraʊnd luːp/
+**Pronunciation:** /ˈbɑːn.dɪŋ rɪˈkwaɪr.mənt/
 
-**Chinese meaning:** 接地迴路
+**Chinese meaning:** 搭接要求
 
 **Category:** Grounding / Bonding
 
@@ -322,21 +234,65 @@ HERO 分析評估電爆裝置附近的 RF 危害。
 
 **Example 1**
 
-A ground loop can introduce low-frequency noise.
+The bonding requirement defines the maximum resistance.
 
-接地迴路可能引入低頻雜訊。
+搭接要求定義最大電阻值。
 
 **Example 2**
 
-Ground loops often appear when multiple return paths exist.
+Each bonding requirement should include an inspection method.
 
-當存在多個回流路徑時，接地迴路常會出現。
+每項搭接要求都應包含檢查方法。
 
-## 16. self-compatibility test
+## 12. bonding audit
 
-**Pronunciation:** /self kəmˌpæt̬.əˈbɪl.ə.t̬i test/
+**Pronunciation:** /ˈbɑːn.dɪŋ ˈɑː.dɪt/
 
-**Chinese meaning:** 自相容性測試
+**Chinese meaning:** 搭接檢查 / 稽核
+
+**Category:** Grounding / Bonding
+
+**Difficulty:** 5
+
+**Example 1**
+
+A bonding audit checks all grounding paths.
+
+搭接檢查會確認所有接地路徑。
+
+**Example 2**
+
+The bonding audit should include torque marks and resistance records.
+
+搭接檢查應包含扭力標記與電阻紀錄。
+
+## 13. shield grounding
+
+**Pronunciation:** /ʃiːld ˈɡraʊn.dɪŋ/
+
+**Chinese meaning:** 屏蔽層接地
+
+**Category:** Harness / Wiring
+
+**Difficulty:** 5
+
+**Example 1**
+
+Shield grounding must match the system grounding plan.
+
+屏蔽層接地必須符合系統接地規劃。
+
+**Example 2**
+
+Incorrect shield grounding can create a noise injection path.
+
+錯誤的屏蔽層接地可能形成雜訊注入路徑。
+
+## 14. integration-stage verification
+
+**Pronunciation:** /ˌɪn.təˈɡreɪ.ʃən steɪdʒ ˌver.ə.fəˈkeɪ.ʃən/
+
+**Chinese meaning:** 整合階段驗證
 
 **Category:** Verification / Test
 
@@ -344,100 +300,144 @@ Ground loops often appear when multiple return paths exist.
 
 **Example 1**
 
-A self-compatibility test checks whether onboard systems interfere with each other.
+Integration-stage verification confirms system-level EMC behavior.
 
-自相容性測試檢查機上系統是否互相干擾。
+整合階段驗證確認系統級 EMC 行為。
 
 **Example 2**
 
-The self-compatibility test should include representative operating modes.
+Integration-stage verification should be planned before final assembly.
 
-自相容性測試應包含具代表性的操作模式。
+整合階段驗證應在最終組裝前規劃。
 
-## 17. ordnance circuit
+## 15. pad lightning interface
 
-**Pronunciation:** /ˈɔːrd.nəns ˈsɝː.kɪt/
+**Pronunciation:** /pæd ˈlaɪt.nɪŋ ˈɪn.t̬ɚ.feɪs/
 
-**Chinese meaning:** 火工品電路、點火電路
+**Chinese meaning:** 發射台雷擊介面
 
-**Category:** Ordnance / HERO
+**Category:** Lightning / ESD
 
 **Difficulty:** 5
 
 **Example 1**
 
-Ordnance circuits require strict EMC control.
+The pad lightning interface must provide a safe discharge path.
 
-火工品電路需要嚴格 EMC 控制。
+發射台雷擊介面必須提供安全放電路徑。
 
 **Example 2**
 
-The ordnance circuit must be isolated from noisy power wiring.
+The pad lightning interface should be reviewed before vehicle rollout.
 
-火工品電路必須與噪聲電源線隔離。
+載具推出前應審查發射台雷擊介面。
 
-## 18. EMC control plan
+## 16. grounding philosophy
 
-**Pronunciation:** /ˌiː em ˈsiː kənˈtroʊl plæn/
+**Pronunciation:** /ˈɡraʊn.dɪŋ fəˈlɑː.sə.fi/
 
-**Chinese meaning:** EMC 管制計畫
+**Chinese meaning:** 接地設計理念
 
-**Category:** Documentation
+**Category:** Grounding / Bonding
 
 **Difficulty:** 5
 
 **Example 1**
 
-The EMC control plan defines design rules and test methods.
+The grounding philosophy must be defined early.
 
-EMC 管制計畫定義設計規則與測試方法。
+接地設計理念必須及早定義。
 
 **Example 2**
 
-The EMC control plan should be updated after each major design change.
+A mixed grounding philosophy can create unpredictable noise paths.
 
-每次重大設計變更後應更新 EMC 管制計畫。
+混亂的接地理念可能產生不可預測的雜訊路徑。
 
-## 19. EED shielding
+## 17. shield termination
 
-**Pronunciation:** /ˌiː iː ˈdiː ˈʃiːl.dɪŋ/
+**Pronunciation:** /ʃiːld ˌtɝː.məˈneɪ.ʃən/
 
-**Chinese meaning:** 電爆裝置屏蔽
+**Chinese meaning:** 屏蔽層端接
 
-**Category:** Ordnance / HERO
+**Category:** Harness / Wiring
 
 **Difficulty:** 5
 
 **Example 1**
 
-EED shielding reduces the risk of accidental initiation.
+360-degree shield termination improves high-frequency performance.
 
-電爆裝置屏蔽可降低誤觸發風險。
+360 度屏蔽端接可改善高頻性能。
 
 **Example 2**
 
-EED shielding should be inspected before ordnance connection.
+Poor shield termination may turn a cable into an antenna.
 
-連接火工品前應檢查電爆裝置屏蔽。
+不良屏蔽端接可能使線纜變成天線。
 
-## 20. desensitization
+## 18. power quality
 
-**Pronunciation:** /diːˌsen.sə.təˈzeɪ.ʃən/
+**Pronunciation:** /ˈpaʊ.ɚ ˈkwɑː.lə.t̬i/
 
-**Chinese meaning:** 靈敏度降低、去敏化
+**Chinese meaning:** 電源品質
 
-**Category:** RF Compatibility
+**Category:** Power Quality
 
-**Difficulty:** 5
+**Difficulty:** 4
 
 **Example 1**
 
-Receiver desensitization may reduce GNSS performance.
+Power quality affects both reliability and EMC performance.
 
-接收器去敏化可能降低 GNSS 性能。
+電源品質會影響可靠度與 EMC 表現。
 
 **Example 2**
 
-Desensitization can occur even when the receiver is not damaged.
+Power quality should be checked under maximum load conditions.
 
-即使接收器未受損，也可能發生去敏化。
+電源品質應在最大負載條件下檢查。
+
+## 19. return path
+
+**Pronunciation:** /rɪˈtɝːn pæθ/
+
+**Chinese meaning:** 回流路徑
+
+**Category:** Power / Return Path
+
+**Difficulty:** 4
+
+**Example 1**
+
+High-frequency current follows the lowest impedance return path.
+
+高頻電流會沿著最低阻抗回流路徑流動。
+
+**Example 2**
+
+An uncontrolled return path may cause EMC problems.
+
+未受控的回流路徑可能造成 EMC 問題。
+
+## 20. bonding strap
+
+**Pronunciation:** /ˈbɑːn.dɪŋ stræp/
+
+**Chinese meaning:** 搭接編織帶；接地編織帶
+
+**Category:** Grounding / Bonding / Shielding
+
+**Difficulty:** 4
+
+**Example 1**
+
+A bonding strap should be short and wide.
+
+搭接編織帶應該短而寬。
+
+**Example 2**
+
+Long bonding straps are ineffective at high frequency.
+
+過長的搭接編織帶在高頻下效果不佳。
