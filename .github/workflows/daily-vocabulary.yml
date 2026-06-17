@@ -2,6 +2,11 @@ name: Daily Vocabulary
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/daily-vocabulary.yml"
   schedule:
     - cron: "10 22 * * *"
 
@@ -42,7 +47,7 @@ jobs:
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
-          EVD_SITE_URL: ${{ vars.EVD_SITE_URL }}
+          EVD_SITE_URL: https://aix-xquall.github.io/EVD_Vocabulary/
         run: python main.py
 
       - name: Commit generated files
