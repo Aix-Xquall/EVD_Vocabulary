@@ -64,11 +64,14 @@ def run_daily_generation(
         update_review_files(selected, target_date)
 
     if notify_line:
-        send_daily_line_notification(
-            settings,
-            target_date.isoformat(),
-            [entry.get("word", "") for entry in selected],
-        )
+        try:
+            send_daily_line_notification(
+                settings,
+                target_date.isoformat(),
+                [entry.get("word", "") for entry in selected],
+            )
+        except RuntimeError as exc:
+            print(f"LINE notification warning: {exc}")
 
     return {
         "date": target_date.isoformat(),
