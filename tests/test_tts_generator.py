@@ -1,11 +1,22 @@
 import unittest
+from datetime import date
 from xml.etree import ElementTree
 
 from config import Settings
-from tts_generator import _combined_ssml, _entry_ssml
+from tts_generator import _combined_ssml, _entry_ssml, expected_audio_paths
 
 
 class TtsGeneratorTests(unittest.TestCase):
+    def test_expected_audio_paths_are_relative_to_published_site_root(self):
+        per_word, combined = expected_audio_paths(
+            [{"id": "1", "word": "impedance"}],
+            date(2026, 6, 17),
+            Settings(generate_audio=False).output_dir,
+        )
+
+        self.assertEqual(per_word["1"], "audio/2026-06-17/001_impedance.mp3")
+        self.assertEqual(combined, "audio/2026-06-17_daily_vocabulary.mp3")
+
     def test_entry_ssml_wraps_breaks_inside_voice_node(self):
         entry = {
             "word": "impedance",

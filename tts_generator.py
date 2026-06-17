@@ -20,8 +20,8 @@ def expected_audio_paths(
     per_word = {}
     for index, entry in enumerate(entries, start=1):
         filename = f"{index:03d}_{_safe_filename(entry.get('word', 'word'))}.mp3"
-        per_word[audio_key_for_entry(entry)] = f"output/audio/{date_text}/{filename}"
-    combined = f"output/audio/{date_text}_daily_vocabulary.mp3"
+        per_word[audio_key_for_entry(entry)] = f"audio/{date_text}/{filename}"
+    combined = f"audio/{date_text}_daily_vocabulary.mp3"
     return per_word, combined
 
 
@@ -52,12 +52,12 @@ def generate_audio_files(
 
     for index, entry in enumerate(entries, start=1):
         relative_path = per_word_paths[audio_key_for_entry(entry)]
-        output_file = settings.output_dir.parent / relative_path
+        output_file = settings.output_dir / relative_path
         output_file.parent.mkdir(parents=True, exist_ok=True)
         ssml = _entry_ssml(entry, settings)
         _synthesize_ssml(speechsdk, settings, ssml, output_file)
 
-    combined_output = settings.output_dir.parent / combined_path
+    combined_output = settings.output_dir / combined_path
     combined_output.parent.mkdir(parents=True, exist_ok=True)
     combined_ssml = _combined_ssml(entries, settings)
     _synthesize_ssml(speechsdk, settings, combined_ssml, combined_output)

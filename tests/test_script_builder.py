@@ -35,14 +35,14 @@ class ScriptBuilderTests(unittest.TestCase):
         payload = build_daily_payload(
             [sample_entry()],
             date(2026, 6, 17),
-            per_word_audio={"1": "output/audio/2026-06-17/001_impedance.mp3"},
-            combined_audio="output/audio/2026-06-17_daily_vocabulary.mp3",
+            per_word_audio={"1": "audio/2026-06-17/001_impedance.mp3"},
+            combined_audio="audio/2026-06-17_daily_vocabulary.mp3",
         )
 
         self.assertEqual(payload["date"], "2026-06-17")
-        self.assertEqual(payload["combined_audio"], "output/audio/2026-06-17_daily_vocabulary.mp3")
+        self.assertEqual(payload["combined_audio"], "audio/2026-06-17_daily_vocabulary.mp3")
         self.assertEqual(payload["words"][0]["word"], "impedance")
-        self.assertEqual(payload["words"][0]["audio"], "output/audio/2026-06-17/001_impedance.mp3")
+        self.assertEqual(payload["words"][0]["audio"], "audio/2026-06-17/001_impedance.mp3")
 
     def test_build_daily_payload_handles_duplicate_ids_from_different_files(self):
         first = sample_entry()
@@ -57,14 +57,14 @@ class ScriptBuilderTests(unittest.TestCase):
             [first, second],
             date(2026, 6, 17),
             per_word_audio={
-                audio_key_for_entry(first): "output/audio/2026-06-17/001_impedance.mp3",
-                audio_key_for_entry(second): "output/audio/2026-06-17/002_coupling.mp3",
+                audio_key_for_entry(first): "audio/2026-06-17/001_impedance.mp3",
+                audio_key_for_entry(second): "audio/2026-06-17/002_coupling.mp3",
             },
-            combined_audio="output/audio/2026-06-17_daily_vocabulary.mp3",
+            combined_audio="audio/2026-06-17_daily_vocabulary.mp3",
         )
 
-        self.assertEqual(payload["words"][0]["audio"], "output/audio/2026-06-17/001_impedance.mp3")
-        self.assertEqual(payload["words"][1]["audio"], "output/audio/2026-06-17/002_coupling.mp3")
+        self.assertEqual(payload["words"][0]["audio"], "audio/2026-06-17/001_impedance.mp3")
+        self.assertEqual(payload["words"][1]["audio"], "audio/2026-06-17/002_coupling.mp3")
 
 
 if __name__ == "__main__":
