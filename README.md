@@ -1,0 +1,196 @@
+# EVD Daily Vocabulary
+
+每日航太 / 航電 / EMC 工程英文學習工具。
+
+這個專案會從同一個資料夾內的 `*.csv` 讀取單字，每天選出 20 個，產生：
+
+- Markdown 學習稿
+- 每個單字一個 MP3
+- 一個完整 MP3
+- 給網頁使用的 `latest.json`
+- 可部署到 GitHub Pages 的每日練習網頁
+- 可選的 LINE 個人通知
+
+## 資料格式
+
+CSV 必須包含以下欄位：
+
+```text
+id
+word
+pronunciation
+chinese_meaning
+example_1_en
+example_1_zh
+example_2_en
+example_2_zh
+category
+difficulty
+review_count
+last_review_date
+```
+
+請參考 `sample vocabulary.csv`。
+
+## 每日選字規則
+
+程式會優先選：
+
+1. `review_count` 較低的單字
+2. `last_review_date` 較舊的單字，空白視為最久沒複習
+3. `difficulty` 較高的單字
+4. 同分時用日期做穩定排序，避免每天完全一樣
+
+產生檔案後，程式才會更新原始 CSV 的：
+
+- `review_count`
+- `last_review_date`
+
+## 本機執行
+
+在 Windows 11 + VS Code 中：
+
+```powershell
+cd D:\Dropbox\English\projects\EVD_Vocabulary
+python -m venv .venv
+.\.venv\Scripts\activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+```
+
+如果只想測試資料、Markdown、JSON、網頁，不產生音訊：
+
+```powershell
+python main.py --skip-audio --skip-line --no-update-review
+```
+
+正式產生每日內容：
+
+```powershell
+python main.py
+```
+
+## Azure Speech 設定
+
+產生 MP3 需要 Azure AI Speech。
+
+請設定環境變數：
+
+```powershell
+$env:AZURE_SPEECH_KEY="你的 Azure Speech key"
+$env:AZURE_SPEECH_REGION="你的 Azure region"
+```
+
+可選設定：
+
+```powershell
+$env:EVD_DAILY_WORD_COUNT="20"
+$env:EVD_SPEECH_RATE="0%"
+$env:EVD_INCLUDE_CHINESE_AUDIO="true"
+$env:EVD_REPEAT_EACH_WORD="true"
+$env:EVD_OUTPUT_DIR="D:\Dropbox\English\projects\EVD_Vocabulary\output"
+$env:EVD_ENGLISH_VOICE="en-US-JennyNeural"
+$env:EVD_CHINESE_VOICE="zh-TW-HsiaoChenNeural"
+```
+
+## 輸出結構
+
+```text
+output/
+  audio/
+    YYYY-MM-DD/
+      001_word.mp3
+      002_word.mp3
+    YYYY-MM-DD_daily_vocabulary.mp3
+  data/
+    YYYY-MM-DD_daily_vocabulary.json
+    latest.json
+  scripts/
+    YYYY-MM-DD_daily_vocabulary.md
+  index.html
+  app.js
+  styles.css
+```
+
+GitHub Pages 會部署 `output/` 這個資料夾。
+
+## 網頁播放
+
+網頁可以線上播放音訊，不需要手動下載 MP3。
+
+瀏覽器通常會阻擋「打開網頁就直接出聲音」，所以使用方式是：
+
+1. 點 LINE 裡的網頁連結
+2. 按一次「開始播放」
+3. 後續 20 個單字會自動依序播放
+
+## GitHub Pages
+
+建議流程：
+
+1. 先在本機確認 `python main.py --skip-audio --skip-line --no-update-review` 可產生輸出
+2. 在 GitHub 建立 public repo
+3. 把整個 `EVD_Vocabulary` 專案推上 GitHub
+4. 到 repo 的 Settings → Pages
+5. Source 選 GitHub Actions
+6. 到 Actions 手動執行 `Daily Vocabulary`
+
+## GitHub Secrets
+
+在 GitHub repo 的 Settings → Secrets and variables → Actions 新增：
+
+Secrets:
+
+```text
+AZURE_SPEECH_KEY
+AZURE_SPEECH_REGION
+LINE_CHANNEL_ACCESS_TOKEN
+LINE_USER_ID
+```
+
+Variables:
+
+```text
+EVD_SITE_URL
+```
+
+`EVD_SITE_URL` 範例：
+
+```text
+https://你的帳號.github.io/你的repo名稱/
+```
+
+## LINE 個人通知
+
+LINE Notify 已經在 2025-03-31 結束服務，所以這裡使用 LINE Messaging API。
+
+你需要：
+
+1. 建立 LINE 官方帳號
+2. 在 LINE Developers 建立 Messaging API channel
+3. 取得 channel access token
+4. 取得自己的 LINE user ID
+5. 把 token 和 user ID 放到 GitHub Secrets
+
+注意：`LINE_USER_ID` 不是你的 LINE 顯示 ID。它通常從 LINE Developers Console 的個人資訊或 webhook event 取得。
+
+## 常用指令
+
+測試：
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+產生指定日期，但不更新 CSV：
+
+```powershell
+python main.py --date 2026-06-17 --skip-audio --skip-line --no-update-review
+```
+
+產生指定日期並更新 CSV：
+
+```powershell
+python main.py --date 2026-06-17
+```
