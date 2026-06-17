@@ -100,47 +100,47 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
     english_voice = html.escape(settings.english_voice)
-    chinese_voice = html.escape(settings.chinese_voice)
     rate = html.escape(settings.speech_rate)
 
     parts = [
-        f'<voice name="{english_voice}"><prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody></voice>',
+        f'<voice name="{english_voice}">',
+        f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
         '<break time="350ms"/>',
-        f'<voice name="{english_voice}"><prosody rate="{rate}">{_escape(entry.get("pronunciation", ""))}</prosody></voice>',
+        f'<prosody rate="{rate}">{_escape(entry.get("pronunciation", ""))}</prosody>',
     ]
     if settings.include_chinese_in_audio:
         parts.extend(
             [
                 '<break time="350ms"/>',
-                f'<voice name="{chinese_voice}"><prosody rate="{rate}">{_escape(entry.get("chinese_meaning", ""))}</prosody></voice>',
+                f'<lang xml:lang="zh-TW"><prosody rate="{rate}">{_escape(entry.get("chinese_meaning", ""))}</prosody></lang>',
             ]
         )
 
     parts.extend(
         [
             '<break time="500ms"/>',
-            f'<voice name="{english_voice}"><prosody rate="{rate}">{_escape(entry.get("example_1_en", ""))}</prosody></voice>',
+            f'<prosody rate="{rate}">{_escape(entry.get("example_1_en", ""))}</prosody>',
         ]
     )
     if settings.include_chinese_in_audio:
         parts.extend(
             [
                 '<break time="350ms"/>',
-                f'<voice name="{chinese_voice}"><prosody rate="{rate}">{_escape(entry.get("example_1_zh", ""))}</prosody></voice>',
+                f'<lang xml:lang="zh-TW"><prosody rate="{rate}">{_escape(entry.get("example_1_zh", ""))}</prosody></lang>',
             ]
         )
 
     parts.extend(
         [
             '<break time="500ms"/>',
-            f'<voice name="{english_voice}"><prosody rate="{rate}">{_escape(entry.get("example_2_en", ""))}</prosody></voice>',
+            f'<prosody rate="{rate}">{_escape(entry.get("example_2_en", ""))}</prosody>',
         ]
     )
     if settings.include_chinese_in_audio:
         parts.extend(
             [
                 '<break time="350ms"/>',
-                f'<voice name="{chinese_voice}"><prosody rate="{rate}">{_escape(entry.get("example_2_zh", ""))}</prosody></voice>',
+                f'<lang xml:lang="zh-TW"><prosody rate="{rate}">{_escape(entry.get("example_2_zh", ""))}</prosody></lang>',
             ]
         )
 
@@ -148,9 +148,10 @@ def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
         parts.extend(
             [
                 '<break time="600ms"/>',
-                f'<voice name="{english_voice}"><prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody></voice>',
+                f'<prosody rate="{rate}">{_escape(entry.get("word", ""))}</prosody>',
             ]
         )
+    parts.append("</voice>")
     return "\n".join(parts)
 
 
