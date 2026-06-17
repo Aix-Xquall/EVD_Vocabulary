@@ -2,165 +2,209 @@
 
 航太 / 航電 / EMC 工程英文每日學習稿
 
-## 1. power survey
+## 1. range requirements
 
-**Pronunciation:** /ˈpaʊ.ɚ ˈsɝː.veɪ/
+**Pronunciation:** /reɪndʒ rɪˈkwaɪr.mənts/
 
-**Chinese meaning:** 電源調查 / 電源量測
+**Chinese meaning:** 發射場 / 靶場要求
 
-**Category:** Power Quality
-
-**Difficulty:** 4
-
-**Example 1**
-
-A power survey checks voltage ripple and transients.
-
-電源調查會檢查電壓漣波與暫態。
-
-**Example 2**
-
-The power survey should be repeated after major harness changes.
-
-重大線束變更後應重複執行電源調查。
-
-## 2. ESD control
-
-**Pronunciation:** /ˌiː es ˈdiː kənˈtroʊl/
-
-**Chinese meaning:** 靜電控制
-
-**Category:** Lightning / ESD
+**Category:** Requirements / Standards
 
 **Difficulty:** 4
 
 **Example 1**
 
-ESD control is required during integration.
+Range requirements may add extra safety constraints.
 
-整合期間需要靜電控制。
+發射場要求可能增加額外安全限制。
 
 **Example 2**
 
-ESD control includes grounding straps, mats, and handling procedures.
+Range requirements can affect RF operations during countdown.
 
-ESD 控制包含接地腕帶、靜電墊與操作程序。
+發射場要求可能影響倒數期間的 RF 操作。
 
-## 3. conductive foil
+## 2. strain gauge
 
-**Pronunciation:** /kənˈdʌk.tɪv fɔɪl/
+**Pronunciation:** /streɪn ɡeɪdʒ/
 
-**Chinese meaning:** 導電箔
+**Chinese meaning:** 應變規
 
-**Category:** Composite Structure
+**Category:** DAQ / Sensors
 
 **Difficulty:** 4
 
 **Example 1**
 
-Conductive foil may be applied to the composite panel.
+Strain gauge signals are very small and noise-sensitive.
 
-導電箔可以貼在複合板上。
+應變規訊號很小，且對雜訊敏感。
 
 **Example 2**
 
-The seams of conductive foil must be electrically continuous.
+Strain gauge wiring must be separated from high-current cables.
 
-導電箔的接縫必須保持電氣連續。
+應變規線路必須與大電流線纜分開。
 
-## 4. E3
+## 3. bonding hub
 
-**Pronunciation:** /ˌiː θriː/
+**Pronunciation:** /ˈbɑːn.dɪŋ hʌb/
 
-**Chinese meaning:** 電磁環境效應
+**Chinese meaning:** 搭接中心點；接地匯集點
 
-**Category:** EMC / E3 Core Terms
+**Category:** Grounding / Bonding / Shielding
 
 **Difficulty:** 4
 
 **Example 1**
 
-MIL-STD-464 focuses on system-level E3 requirements.
+A central bonding hub may connect the three panels together.
 
-MIL-STD-464 著重於系統級 E3 要求。
+中央搭接點可將三片板連接在一起。
 
 **Example 2**
 
-We need to control E3 risks before vehicle integration.
+The consultant should review whether a bonding hub is appropriate.
 
-我們需要在載具整合前控制 E3 風險。
+顧問應審查搭接中心點是否合適。
 
-## 5. conducted emission
+## 4. ground loop
 
-**Pronunciation:** /kənˈdʌk.tɪd ɪˈmɪʃ.ən/
+**Pronunciation:** /ɡraʊnd luːp/
 
-**Chinese meaning:** 傳導發射
+**Chinese meaning:** 地迴路
 
-**Category:** EMC / E3 Core Terms
+**Category:** Grounding / Bonding / Shielding
 
 **Difficulty:** 4
 
 **Example 1**
 
-Conducted emission can travel through power lines.
+A ground loop can introduce noise into sensor signals.
 
-傳導發射可透過電源線傳播。
+地迴路可能把雜訊導入感測器訊號。
 
 **Example 2**
 
-Power filters help reduce conducted emission.
+We need to avoid large uncontrolled ground loops.
 
-電源濾波器有助於降低傳導發射。
+我們需要避免大型且未受控的地迴路。
 
-## 6. common-mode choke
+## 5. RF compatibility
 
-**Pronunciation:** /ˈkɑː.mən moʊd tʃoʊk/
+**Pronunciation:** /ˌɑːrˈef kəmˌpæt.əˈbɪl.ə.ti/
 
-**Chinese meaning:** 共模扼流圈
+**Chinese meaning:** 射頻相容性
 
-**Category:** Power / Return Path
+**Category:** RF / Communication
 
 **Difficulty:** 4
 
 **Example 1**
 
-A common-mode choke can suppress common-mode noise.
+RF compatibility is critical for communication modules.
 
-共模扼流圈可抑制共模雜訊。
+RF 相容性對通訊模組非常關鍵。
 
 **Example 2**
 
-Power and communication lines may require common-mode chokes.
+We need to verify RF compatibility between S-band, UHF, and C-band systems.
 
-電源與通訊線可能需要共模扼流圈。
+我們需要驗證 S-band、UHF 與 C-band 系統之間的 RF 相容性。
 
-## 7. susceptibility
+## 6. noise source
 
-**Pronunciation:** /səˌsep.təˈbɪl.ə.ti/
+**Pronunciation:** /nɔɪz sɔːrs/
 
-**Chinese meaning:** 敏感度；易受干擾性
+**Chinese meaning:** 雜訊源
 
-**Category:** EMC / E3 Core Terms
+**Category:** Troubleshooting
 
 **Difficulty:** 4
 
 **Example 1**
 
-Susceptibility tests evaluate how equipment reacts to external fields.
+The switching converter was identified as the noise source.
 
-敏感度測試評估設備對外部場的反應。
+切換式轉換器被確認為雜訊源。
 
 **Example 2**
 
-Poor shielding increases system susceptibility.
+Finding the noise source is the first step in EMC troubleshooting.
 
-屏蔽不良會增加系統敏感度。
+找出雜訊源是 EMC 故障排查的第一步。
 
-## 8. backshell
+## 7. measurement procedure
 
-**Pronunciation:** /ˈbæk.ʃel/
+**Pronunciation:** /ˈmeʒ.ɚ.mənt prəˈsiː.dʒɚ/
 
-**Chinese meaning:** 連接器後殼
+**Chinese meaning:** 量測程序
+
+**Category:** Verification / Test
+
+**Difficulty:** 4
+
+**Example 1**
+
+The measurement procedure defines equipment setup and limits.
+
+量測程序定義設備架設與限制值。
+
+**Example 2**
+
+A repeatable measurement procedure improves test credibility.
+
+可重複的量測程序可提升測試可信度。
+
+## 8. troubleshooting
+
+**Pronunciation:** /ˈtruː.bəlˌʃuː.t̬ɪŋ/
+
+**Chinese meaning:** 故障排查
+
+**Category:** Troubleshooting
+
+**Difficulty:** 4
+
+**Example 1**
+
+Troubleshooting starts with identifying the noise source.
+
+故障排查從辨識雜訊源開始。
+
+**Example 2**
+
+Effective troubleshooting requires controlled configuration changes.
+
+有效的故障排查需要受控的配置變更。
+
+## 9. coax shield
+
+**Pronunciation:** /ˈkoʊ.æks ʃiːld/
+
+**Chinese meaning:** 同軸線屏蔽層
+
+**Category:** RF / Communication
+
+**Difficulty:** 4
+
+**Example 1**
+
+The coax shield should be bonded at the antenna interface.
+
+同軸線屏蔽層應在天線介面搭接。
+
+**Example 2**
+
+Poor coax shield bonding may cause RF leakage.
+
+同軸屏蔽搭接不良可能造成 RF 洩漏。
+
+## 10. pigtail
+
+**Pronunciation:** /ˈpɪɡ.teɪl/
+
+**Chinese meaning:** 豬尾線；屏蔽引出線
 
 **Category:** Harness / Connector
 
@@ -168,21 +212,43 @@ Poor shielding increases system susceptibility.
 
 **Example 1**
 
-A metal backshell supports 360-degree shield termination.
+A long pigtail increases inductance.
 
-金屬後殼可支援 360 度屏蔽端接。
+過長的豬尾線會增加電感。
 
 **Example 2**
 
-The backshell should be bonded to the local reference plane.
+We should avoid pigtails for high-frequency shield termination.
 
-後殼應搭接到局部參考平面。
+高頻屏蔽端接應避免使用豬尾線。
 
-## 9. common pitfall
+## 11. high-current load
 
-**Pronunciation:** /ˈkɑː.mən ˈpɪt.fɑːl/
+**Pronunciation:** /haɪ ˈkɝː.ənt loʊd/
 
-**Chinese meaning:** 常見陷阱
+**Chinese meaning:** 大電流負載
+
+**Category:** Power / Return Path
+
+**Difficulty:** 4
+
+**Example 1**
+
+Valve controllers and jet vane drivers are high-current loads.
+
+閥門控制器與 JetVane 驅動器屬於大電流負載。
+
+**Example 2**
+
+High-current loads should not share uncontrolled return paths with sensors.
+
+大電流負載不應與感測器共用未受控回流路徑。
+
+## 12. bonding
+
+**Pronunciation:** /ˈbɑːn.dɪŋ/
+
+**Chinese meaning:** 搭接、等電位連接
 
 **Category:** Grounding / Bonding
 
@@ -190,65 +256,43 @@ The backshell should be bonded to the local reference plane.
 
 **Example 1**
 
-A common pitfall is grounding a shield at the wrong location.
+Bonding reduces voltage differences between metal parts.
 
-常見陷阱是在錯誤位置接地屏蔽層。
+搭接可降低金屬部件間的電位差。
 
 **Example 2**
 
-Another common pitfall is assuming metal contact always provides good bonding.
+All equipment cases should have a controlled bonding path.
 
-另一個常見陷阱是假設金屬接觸一定能提供良好搭接。
+所有設備外殼都應有受控的搭接路徑。
 
-## 10. ground reference
+## 13. conductive chassis
 
-**Pronunciation:** /ɡraʊnd ˈref.ər.əns/
+**Pronunciation:** /kənˈdʌk.tɪv ˈʃæs.i/
 
-**Chinese meaning:** 接地參考；地參考
+**Chinese meaning:** 導電機殼；導電底盤
 
-**Category:** Grounding / Bonding / Shielding
+**Category:** Composite Structure
 
 **Difficulty:** 4
 
 **Example 1**
 
-The system needs a stable ground reference.
+The avionics ring does not have a conductive chassis.
 
-系統需要穩定的接地參考。
-
-**Example 2**
-
-Cable shields must be terminated to a proper ground reference.
-
-線纜屏蔽層必須端接到適當的地參考。
-
-## 11. Faraday cage
-
-**Pronunciation:** /ˈfær.ə.deɪ keɪdʒ/
-
-**Chinese meaning:** 法拉第籠
-
-**Category:** Grounding / Bonding / Shielding
-
-**Difficulty:** 4
-
-**Example 1**
-
-A true Faraday cage requires a continuous conductive enclosure.
-
-真正的法拉第籠需要連續的導電外殼。
+航電環沒有導電機殼。
 
 **Example 2**
 
-We need to ask whether a full Faraday cage is required.
+Without a conductive chassis, shield termination becomes more difficult.
 
-我們需要詢問是否需要完整法拉第籠。
+沒有導電機殼時，屏蔽端接會變得更困難。
 
-## 12. feedthrough
+## 14. shield termination
 
-**Pronunciation:** /ˈfiːd.θruː/
+**Pronunciation:** /ʃiːld ˌtɝː.məˈneɪ.ʃən/
 
-**Chinese meaning:** 穿艙；穿牆介面
+**Chinese meaning:** 屏蔽端接
 
 **Category:** Harness / Connector
 
@@ -256,43 +300,21 @@ We need to ask whether a full Faraday cage is required.
 
 **Example 1**
 
-Antenna feedthroughs should be bonded to the RF reference.
+Poor shield termination reduces shielding effectiveness.
 
-天線穿艙介面應搭接到 RF 參考。
-
-**Example 2**
-
-Power feedthroughs may require filtering.
-
-電源穿艙介面可能需要濾波。
-
-## 13. harness
-
-**Pronunciation:** /ˈhɑːr.nəs/
-
-**Chinese meaning:** 線束
-
-**Category:** Harness / Wiring
-
-**Difficulty:** 4
-
-**Example 1**
-
-The power harness should be separated from signal cables.
-
-電源線束應與訊號線分開。
+不良的屏蔽端接會降低屏蔽效果。
 
 **Example 2**
 
-Harness design strongly affects EMC performance during integration.
+We need to define shield termination rules for each cable type.
 
-線束設計會強烈影響整合期間的 EMC 表現。
+我們需要為每種線纜定義屏蔽端接規則。
 
-## 14. allocation
+## 15. tailoring
 
-**Pronunciation:** /ˌæl.əˈkeɪ.ʃən/
+**Pronunciation:** /ˈteɪ.lɚ.ɪŋ/
 
-**Chinese meaning:** 分配、配置
+**Chinese meaning:** 裁適、客製化調整
 
 **Category:** Requirements / Standards
 
@@ -300,87 +322,21 @@ Harness design strongly affects EMC performance during integration.
 
 **Example 1**
 
-Noise limits must be allocated to each subsystem.
+EMC tailoring is needed for mission-specific conditions.
 
-雜訊限制必須分配到各子系統。
-
-**Example 2**
-
-Proper allocation helps avoid exceeding the total EMC margin.
-
-適當分配有助於避免超出整體 EMC 裕度。
-
-## 15. transient suppression
-
-**Pronunciation:** /ˈtræn.zi.ənt səˈpreʃ.ən/
-
-**Chinese meaning:** 瞬態抑制
-
-**Category:** Power / Return Path
-
-**Difficulty:** 4
-
-**Example 1**
-
-Transient suppression protects equipment from voltage spikes.
-
-瞬態抑制可保護設備免受電壓尖峰影響。
+任務特定條件需要 EMC 裁適。
 
 **Example 2**
 
-Power entry points should include transient suppression devices.
+Tailoring should be justified and documented in the control plan.
 
-電源入口應包含瞬態抑制元件。
+裁適應提出理由並記錄在管制計畫中。
 
-## 16. integration-stage
+## 16. box-level
 
-**Pronunciation:** /ˌɪn.təˈɡreɪ.ʃən steɪdʒ/
+**Pronunciation:** /bɑːks ˈlev.əl/
 
-**Chinese meaning:** 整合階段
-
-**Category:** Overall / Introduction
-
-**Difficulty:** 4
-
-**Example 1**
-
-EMC problems often appear during the integration stage.
-
-EMC 問題常在整合階段出現。
-
-**Example 2**
-
-Integration-stage verification should include bonding and power checks.
-
-整合階段驗證應包含搭接與電源檢查。
-
-## 17. GNSS
-
-**Pronunciation:** /ˌdʒiː en es ˈes/
-
-**Chinese meaning:** 全球導航衛星系統
-
-**Category:** RF Compatibility
-
-**Difficulty:** 4
-
-**Example 1**
-
-GNSS antennas are sensitive to RF interference.
-
-GNSS 天線對 RF 干擾很敏感。
-
-**Example 2**
-
-GNSS protection is important near high-power transmitters.
-
-在高功率發射機附近，GNSS 保護很重要。
-
-## 18. vehicle-level
-
-**Pronunciation:** /ˈviː.ə.kəl ˈlev.əl/
-
-**Chinese meaning:** 載具級、整機級
+**Chinese meaning:** 設備級、盒級
 
 **Category:** Requirements / Standards
 
@@ -388,56 +344,100 @@ GNSS protection is important near high-power transmitters.
 
 **Example 1**
 
-Vehicle-level EMC testing verifies the complete system.
+Box-level tests are performed before integration.
 
-載具級 EMC 測試驗證完整系統。
+設備級測試會在整合前執行。
 
 **Example 2**
 
-Vehicle-level limits are usually stricter than informal bench checks.
+Box-level compliance does not guarantee vehicle-level compatibility.
 
-載具級限制通常比非正式桌上測試更嚴格。
+設備級符合性不保證載具級相容性。
 
-## 19. radiated emission
+## 17. acceptance criteria
 
-**Pronunciation:** /ˈreɪ.diˌeɪ.tɪd ɪˈmɪʃ.ən/
+**Pronunciation:** /əkˈsep.təns kraɪˈtɪr.i.ə/
 
-**Chinese meaning:** 輻射發射
+**Chinese meaning:** 驗收標準
 
-**Category:** EMC / E3 Core Terms
+**Category:** Verification / Testing
 
 **Difficulty:** 4
 
 **Example 1**
 
-Radiated emission may increase after harness integration.
+The consultant should help define acceptance criteria.
 
-線束整合後，輻射發射可能增加。
+顧問應協助定義驗收標準。
 
 **Example 2**
 
-The avionics assembly should be checked for radiated emission issues.
+Bonding resistance limits should be part of the acceptance criteria.
 
-航電組件應檢查輻射發射問題。
+搭接電阻限制應納入驗收標準。
 
-## 20. feedthrough capacitor
+## 18. bonding stud
 
-**Pronunciation:** /ˈfiːd.θruː kəˈpæs.ɪ.tɚ/
+**Pronunciation:** /ˈbɑːn.dɪŋ stʌd/
 
-**Chinese meaning:** 穿心電容
+**Chinese meaning:** 搭接螺柱；接地柱
 
-**Category:** Power / Return Path
+**Category:** Composite Structure
 
 **Difficulty:** 4
 
 **Example 1**
 
-A feedthrough capacitor can reduce conducted noise at the interface.
+Each panel may need dedicated bonding studs.
 
-穿心電容可降低介面處的傳導雜訊。
+每片板可能需要專用搭接螺柱。
 
 **Example 2**
 
-The consultant should advise whether feedthrough capacitors are needed.
+Bonding studs should be inspected during integration.
 
-顧問應建議是否需要穿心電容。
+搭接螺柱應在整合期間檢查。
+
+## 19. conductive insert
+
+**Pronunciation:** /kənˈdʌk.tɪv ˈɪn.sɝːt/
+
+**Chinese meaning:** 導電嵌件
+
+**Category:** Composite Structure
+
+**Difficulty:** 4
+
+**Example 1**
+
+Conductive inserts may be installed in composite panels.
+
+導電嵌件可安裝於複合板中。
+
+**Example 2**
+
+The insert must be connected to the bonding network.
+
+嵌件必須連接到搭接網路。
+
+## 20. transient
+
+**Pronunciation:** /ˈtræn.zi.ənt/
+
+**Chinese meaning:** 暫態、瞬變
+
+**Category:** Power Quality
+
+**Difficulty:** 4
+
+**Example 1**
+
+Load switching may create bus transients.
+
+負載切換可能產生母線暫態。
+
+**Example 2**
+
+The transient must stay within the equipment input rating.
+
+該暫態必須保持在設備輸入額定範圍內。
