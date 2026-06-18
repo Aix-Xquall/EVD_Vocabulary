@@ -2745,6 +2745,14 @@
             "example_1_zh": {
               "src": "audio/segments/zh/7a60edcd0416f014cbe3273b.mp3",
               "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/cd4b9557bef4451e4e4c651d.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/f480a031bc47509a51c7652c.mp3",
+              "language": "zh"
             }
           }
         },
@@ -2762,7 +2770,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 68,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/ea6363665bd6f71614dd608f.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/7a81c513b187e0b3e0dead60.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/4ef3d8d69165b49257fc97b3.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/8b29b2ba96bdbce785d050b4.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/cffc00ae188f3b2052f861e4.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/2bd2c8e9699d4b4cbae61ed9.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "69",
@@ -2778,7 +2811,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 69,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/2204fc1d034d6abdca30edc4.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/655757e4fabc681f2a929bd2.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/01a3110147ce54638e64e25d.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/ce4450bf6c50da49a09e5cf1.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/013effed322776c9986520f7.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/17728dcfafda37fd7c19138d.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "70",
@@ -2794,7 +2852,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 70,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/df6571f03e81eef7e504f86e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/10ec7d414d3331f839327283.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/19c1b8afab827c0d190dd31f.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/8fc43adf839f461be022016f.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/5d6912a7759decaa9043d476.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/595a9cbb4b606652a8c7d591.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "71",
@@ -2810,7 +2893,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 71,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/d5faff60840123bb37364b1d.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/392fc58bc08c9f5adc61d44c.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/d54cf310355c8ef1bcdb2917.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/c8d076ae42f186757239c019.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/26a94daccca89d598c5c99b2.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/afd61b0ec67f37abb4c8df95.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "72",
@@ -2826,7 +2934,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 72,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/2fcd9adf463a7fc19db9f0b8.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/312e726654b7d684e51b5792.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/d16ecab4d46110d03213f1b2.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/23af8409d38990c3448bf7c5.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/736c972a558dfdb50de04909.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/34e49b1f6c2640f5ad81c52a.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "73",
@@ -2842,7 +2975,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 73,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/3d2a1bec7a080a5996ed013a.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d92634f3f032886d16ee9686.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/4a4879f2e11d90046a50bc57.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/b4a95215ab0235036c03cab4.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/1c2d956ccc9ad92c8640b0e4.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/1060ed3ff818ce67563fb169.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "74",
@@ -2858,7 +3016,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 74,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/4e9cb601262bb4733e297146.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/11d39f4e419aa10eca99a158.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/1b0a1ddf121dd113c7fd31b2.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/9a1299de0a294bb15a9250d7.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/58041b2a638e4e4e7bba4f31.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/bb5e66197d848a4fdf0cac29.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "75",
@@ -2874,7 +3057,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 75,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/b84cfd588f648f6b89863ed8.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/0c7fa70c946d636c71b4d1ed.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/d006c69d9969bbb5cd1d9419.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/2eee433f7f80ce266d8c6905.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/a91ae4949ed5f05c3418d27f.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/3a05b8a8fbff36b9254407f9.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "76",
@@ -2890,7 +3098,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 76,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/44f3b3b68e4de69a63eb6fbe.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/cbdd84cf4b8d8f6e0e018cd8.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/9b06ea45b40b4425ed3d4544.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/a81b474eccb444726a4ffa71.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/2b8422856ba0de9d9e8a340f.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/63d3eb90b9bb605a2474cf50.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "77",
@@ -2906,7 +3139,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 77,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/90b21d8f6f4d493c1bfe30d9.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/aa102fbbbbfcea89c26371db.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/5445ea81076b627904c9eb6e.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/badb47d1d920286877a20331.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/ef515fc9ca1ed76ab1bc6b05.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/461c0730169e03e16511f6d4.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "78",
@@ -2922,7 +3180,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 78,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/6ccacf38853c98d872b49b6c.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d45b5568879e308b072775c9.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/86653a8bd3906fc524d60b5a.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/37618660a9dc1693eff30649.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/da4f42708047b2f7e8ada0f1.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/8cc471c10b2ef4a40c53ffd7.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "79",
@@ -2938,7 +3221,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 79,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/2843cdccc8018d0676a42734.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d2f222477ac1ad9661455d4f.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/6f56a3436023e41fb2e68ccb.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/f80cc8b4cce37c47692b5f68.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/45d1ce37f9d832affcf52f68.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/26d328ba45fb63bb193c1d23.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "80",
@@ -2954,7 +3262,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 80,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/5a307e4b69952ba0950f3453.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/1ffcf433e2d1c09b809be886.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/79e4f9ecd132a7e61430b259.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/56c5cbf9322b091efbb24314.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/ce73a288930c4e10d76dba87.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/036a54b1012441ffff8d7a21.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "81",
@@ -2970,7 +3303,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 81,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/86bbe19ec1b039ffde1c1340.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/4bba0eb7cf15ebacdd077e95.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/3971a1d09537f0d8c4610105.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/ebcbe9af5119d00f6cc88526.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/a3037552754cbba04a88d764.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/d3037422ebb56775aa80f0a7.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "82",
@@ -2986,7 +3344,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 82,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/3b9399e1b8c6ce551506bd62.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/b1ed30c466fc4f087857d599.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/a53b234363b4590773bd195f.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/e87fa6b8a555ddf35f07f110.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/f9b794d13cb97b5240483421.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/a5dbc0dc9199dae9274488d2.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "83",
@@ -3002,7 +3385,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 83,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/fb7fdad7fd5a84850c582eb4.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/2b27feb9a2f617376327c398.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/da0cbc47b15d86eb540af875.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/973be9a5fab457acb9bcec7c.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/805124ebc79d528d0d6e1e00.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/e0f862bca3f6f4db3529717e.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "84",
@@ -3018,7 +3426,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 84,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/bd106c6c374839243527b694.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/b7a176b6f9265e1fa2e55e7c.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/d5569760ade7c40eead14116.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/327d2605e988dbd090569bde.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/0366a1d65a1932c51fdeddd3.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/7b4bc53cfffddbfe9d314f8a.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "85",
@@ -3034,7 +3467,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 85,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/072ce363cde9aa567cb08f2e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/35d6676366c66017f32409b7.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/5f69f0fad6aa918b0b86aadb.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/be328c29466986aea57d34d9.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/6a63be19637ca8d0734bab5f.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/047fb8aedf4fe0a88e3cebaa.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "86",
@@ -3050,7 +3508,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 86,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/4f8299057aeedfbbdfaad0a3.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/37dea956d11dc5f088390b15.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/1ed7ef09ba6bf0871a623772.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/12943cdc276db268df58aaf4.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/ca3c9248cca0d1dcd3aeddc1.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/1c15261dbb529159920c7f6a.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "87",
@@ -3066,7 +3549,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 87,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/c178dce2cb586f5ce08c1004.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/2c22a13e309102f2440bc2f1.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/40cf162911dcb383e741809b.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/14770eb11428e2617faa53ff.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/06f7eeee6106b0f494986986.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/22d1dd35a3c0f5e55edd9f34.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "88",
@@ -3082,7 +3590,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 88,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/3aab81460ea9c99a675c1d58.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/e26ee0498f1a46ad654c6ac8.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/70916eeca7c17ad9b62295af.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/3ad7896e98b368902a6c6bfd.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/7b045b5f8c6e7588fe2dc0c2.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/649e54ade962dffdbdd8245f.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "89",
@@ -3098,7 +3631,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 89,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/7e4620a8e32571968902e14d.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/e23218bdd21ec902bfa5536d.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/ab62c611c49fa543b995434f.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/4822415f37c15e89449e2915.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/0b2b72dc7bb26f291fb7d8b5.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/af06d69bd468652e134c9960.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "90",
@@ -3114,7 +3672,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 90,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/93eb06b6b9c700faf08af656.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/c2d3176fd2ef318b9eb21cea.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/c308094454d77dd0908f322f.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/cbe5e6e8c25548a1c2955d2e.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/fe0a26885db3d27013a05e48.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/5ea40a4692735a4d66ecbdc8.mp3",
+              "language": "zh"
+            }
+          }
         }
       ]
     },
@@ -3138,7 +3721,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 1,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/e070d25b372fb683b4c5076e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/8c045508f8d72a39cec6de9b.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/34b10535f6963b0590dc4fea.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/2d20b93ae6c2356dcf397de5.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/55e8defa5554e26761c9d8fb.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/21ca3c1656f3030b1ddc190b.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "2",
@@ -3162,6 +3770,22 @@
             "meaning": {
               "src": "audio/segments/zh/80b6b733ec73e04238ac2dd1.mp3",
               "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/b7bd77db880eac1fd1d5f704.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/e31f0a75599e06d5a4cbc836.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/20156cea92dce87a4f253ecf.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/d2c1829c58b71e60c365ecca.mp3",
+              "language": "zh"
             }
           }
         },
@@ -3179,7 +3803,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 3,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/0c00cb6572b50b46127bc708.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/38d8c203da89b27ef521ddb0.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/04aea4b4ab9b2d692bc45825.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/cabf5fa96a022063058f439c.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/ee0f1bd51b476811680a6cd0.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/bcc569305520f7f90c2c944b.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "4",
@@ -3195,7 +3844,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 4,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/8e4ef905fba81190b9cb36a8.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/379dcdbff0ce3dae35af8d0b.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/9103aeb1be41e70b686333e3.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/6b48edc82a96ed900c2a04ba.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/fcf1b7428b96f4a6a17eceba.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/781bb9bcb543342fbc6341b3.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "5",
@@ -3211,7 +3885,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 5,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/7ddc074f0d3f94955d2f5c66.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/32064a1913fd82e4d69006ca.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/37fe0e6ad7cc46cb6a11b757.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/7295a9806054b5a713bd98a5.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/8c7c73005c6edd4168c11a1e.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/7f89750c6c7e261e116d0d50.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "6",
@@ -3227,7 +3926,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 6,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/02065311e77383cb48e2a045.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/1a6bc0aa6131978bcf268aac.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/6181096f4986b899920273ba.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/d6fe9f0a7d9723ef2587ebe9.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/9d9ec8ab2a0bb2eb5f8e7617.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/53ce69357854a9aa6cdb65e2.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "7",
@@ -3243,7 +3967,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 7,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/ee8d7992b9f5b1188c2dde4b.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/16fbd32565d47234e17c6983.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/80ba1be74bfaf36f22ece0a5.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/67837d72118019dadb51ff83.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/695f461549fc72405454f25c.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/618e1518408b5877c5e295da.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "8",
@@ -3259,7 +4008,32 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 8,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/caf522dbdb1e5bbe857f8320.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/7d0747be7a5e44b25957ab77.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/7be500c945c499b9fb4ba949.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/a5d15dcd926e6ff57049ee9d.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/67b4bfd0c36b99d4a095393a.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/fb9c8ba9c2390377026ef1b1.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "9",
@@ -3279,6 +4053,26 @@
             "word": {
               "src": "audio/segments/en/6bc8c6d68a98ca8ed96ea718.mp3",
               "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/471309027ea0bf4b0a4989bb.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/01f2a72c5b8e4ef50e975443.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/7d8b56c3f45349f7f1c7755f.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/6b26b262271e43311db737c4.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/e576ea7ca36955dd8533942f.mp3",
+              "language": "zh"
             }
           }
         },
@@ -3296,7 +4090,32 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 10,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/b74900166f764f6f6c89a2ab.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/4e77114c2e58edb5f18f17e9.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/8bba76824fabaa58ce13c733.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/1f2238f118046dc0d8968026.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/f4f6a6cac1373caa90a37c38.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/2a54d111be0dbbbf644a9452.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "11",
@@ -3312,7 +4131,20 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 11,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/4f05e131d6d3f1d6ad4682e8.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/796dcdec55cac84787ac4ca2.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/43debdfd636902a8ef49cb91.mp3",
+              "language": "en"
+            }
+          }
         },
         {
           "id": "12",
@@ -3507,7 +4339,16 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 22,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/44f3b3b68e4de69a63eb6fbe.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/cbdd84cf4b8d8f6e0e018cd8.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "23",
@@ -3798,7 +4639,16 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 39,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/b84cfd588f648f6b89863ed8.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/0c7fa70c946d636c71b4d1ed.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "40",
@@ -3974,7 +4824,16 @@
           "review_count": "1",
           "last_review_date": "2026-06-17",
           "index": 50,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/df6571f03e81eef7e504f86e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/10ec7d414d3331f839327283.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "51",
@@ -4278,7 +5137,16 @@
           "review_count": "0",
           "last_review_date": "",
           "index": 69,
-          "audio_segments": {}
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/072ce363cde9aa567cb08f2e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/35d6676366c66017f32409b7.mp3",
+              "language": "zh"
+            }
+          }
         },
         {
           "id": "70",
@@ -7412,6 +8280,14 @@
         "example_1_zh": {
           "src": "audio/segments/zh/7a60edcd0416f014cbe3273b.mp3",
           "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/cd4b9557bef4451e4e4c651d.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/f480a031bc47509a51c7652c.mp3",
+          "language": "zh"
         }
       }
     },
@@ -7429,7 +8305,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 68,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/ea6363665bd6f71614dd608f.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/7a81c513b187e0b3e0dead60.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/4ef3d8d69165b49257fc97b3.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/8b29b2ba96bdbce785d050b4.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/cffc00ae188f3b2052f861e4.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/2bd2c8e9699d4b4cbae61ed9.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "69",
@@ -7445,7 +8346,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 69,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/2204fc1d034d6abdca30edc4.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/655757e4fabc681f2a929bd2.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/01a3110147ce54638e64e25d.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/ce4450bf6c50da49a09e5cf1.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/013effed322776c9986520f7.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/17728dcfafda37fd7c19138d.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "70",
@@ -7461,7 +8387,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 70,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/df6571f03e81eef7e504f86e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/10ec7d414d3331f839327283.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/19c1b8afab827c0d190dd31f.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/8fc43adf839f461be022016f.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/5d6912a7759decaa9043d476.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/595a9cbb4b606652a8c7d591.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "71",
@@ -7477,7 +8428,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 71,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/d5faff60840123bb37364b1d.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/392fc58bc08c9f5adc61d44c.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/d54cf310355c8ef1bcdb2917.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/c8d076ae42f186757239c019.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/26a94daccca89d598c5c99b2.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/afd61b0ec67f37abb4c8df95.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "72",
@@ -7493,7 +8469,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 72,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/2fcd9adf463a7fc19db9f0b8.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/312e726654b7d684e51b5792.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/d16ecab4d46110d03213f1b2.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/23af8409d38990c3448bf7c5.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/736c972a558dfdb50de04909.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/34e49b1f6c2640f5ad81c52a.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "73",
@@ -7509,7 +8510,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 73,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/3d2a1bec7a080a5996ed013a.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d92634f3f032886d16ee9686.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/4a4879f2e11d90046a50bc57.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/b4a95215ab0235036c03cab4.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/1c2d956ccc9ad92c8640b0e4.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/1060ed3ff818ce67563fb169.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "74",
@@ -7525,7 +8551,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 74,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/4e9cb601262bb4733e297146.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/11d39f4e419aa10eca99a158.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/1b0a1ddf121dd113c7fd31b2.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/9a1299de0a294bb15a9250d7.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/58041b2a638e4e4e7bba4f31.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/bb5e66197d848a4fdf0cac29.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "75",
@@ -7541,7 +8592,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 75,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/b84cfd588f648f6b89863ed8.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/0c7fa70c946d636c71b4d1ed.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/d006c69d9969bbb5cd1d9419.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/2eee433f7f80ce266d8c6905.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/a91ae4949ed5f05c3418d27f.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/3a05b8a8fbff36b9254407f9.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "76",
@@ -7557,7 +8633,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 76,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/44f3b3b68e4de69a63eb6fbe.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/cbdd84cf4b8d8f6e0e018cd8.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/9b06ea45b40b4425ed3d4544.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/a81b474eccb444726a4ffa71.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/2b8422856ba0de9d9e8a340f.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/63d3eb90b9bb605a2474cf50.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "77",
@@ -7573,7 +8674,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 77,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/90b21d8f6f4d493c1bfe30d9.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/aa102fbbbbfcea89c26371db.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/5445ea81076b627904c9eb6e.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/badb47d1d920286877a20331.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/ef515fc9ca1ed76ab1bc6b05.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/461c0730169e03e16511f6d4.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "78",
@@ -7589,7 +8715,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 78,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/6ccacf38853c98d872b49b6c.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d45b5568879e308b072775c9.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/86653a8bd3906fc524d60b5a.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/37618660a9dc1693eff30649.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/da4f42708047b2f7e8ada0f1.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/8cc471c10b2ef4a40c53ffd7.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "79",
@@ -7605,7 +8756,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 79,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/2843cdccc8018d0676a42734.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d2f222477ac1ad9661455d4f.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/6f56a3436023e41fb2e68ccb.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/f80cc8b4cce37c47692b5f68.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/45d1ce37f9d832affcf52f68.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/26d328ba45fb63bb193c1d23.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "80",
@@ -7621,7 +8797,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 80,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/5a307e4b69952ba0950f3453.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/1ffcf433e2d1c09b809be886.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/79e4f9ecd132a7e61430b259.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/56c5cbf9322b091efbb24314.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/ce73a288930c4e10d76dba87.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/036a54b1012441ffff8d7a21.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "81",
@@ -7637,7 +8838,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 81,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/86bbe19ec1b039ffde1c1340.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/4bba0eb7cf15ebacdd077e95.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/3971a1d09537f0d8c4610105.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/ebcbe9af5119d00f6cc88526.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/a3037552754cbba04a88d764.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/d3037422ebb56775aa80f0a7.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "82",
@@ -7653,7 +8879,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 82,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/3b9399e1b8c6ce551506bd62.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/b1ed30c466fc4f087857d599.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/a53b234363b4590773bd195f.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/e87fa6b8a555ddf35f07f110.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/f9b794d13cb97b5240483421.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/a5dbc0dc9199dae9274488d2.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "83",
@@ -7669,7 +8920,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 83,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/fb7fdad7fd5a84850c582eb4.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/2b27feb9a2f617376327c398.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/da0cbc47b15d86eb540af875.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/973be9a5fab457acb9bcec7c.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/805124ebc79d528d0d6e1e00.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/e0f862bca3f6f4db3529717e.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "84",
@@ -7685,7 +8961,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 84,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/bd106c6c374839243527b694.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/b7a176b6f9265e1fa2e55e7c.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/d5569760ade7c40eead14116.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/327d2605e988dbd090569bde.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/0366a1d65a1932c51fdeddd3.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/7b4bc53cfffddbfe9d314f8a.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "85",
@@ -7701,7 +9002,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 85,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/072ce363cde9aa567cb08f2e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/35d6676366c66017f32409b7.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/5f69f0fad6aa918b0b86aadb.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/be328c29466986aea57d34d9.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/6a63be19637ca8d0734bab5f.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/047fb8aedf4fe0a88e3cebaa.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "86",
@@ -7717,7 +9043,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 86,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/4f8299057aeedfbbdfaad0a3.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/37dea956d11dc5f088390b15.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/1ed7ef09ba6bf0871a623772.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/12943cdc276db268df58aaf4.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/ca3c9248cca0d1dcd3aeddc1.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/1c15261dbb529159920c7f6a.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "87",
@@ -7733,7 +9084,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 87,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/c178dce2cb586f5ce08c1004.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/2c22a13e309102f2440bc2f1.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/40cf162911dcb383e741809b.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/14770eb11428e2617faa53ff.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/06f7eeee6106b0f494986986.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/22d1dd35a3c0f5e55edd9f34.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "88",
@@ -7749,7 +9125,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 88,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/3aab81460ea9c99a675c1d58.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/e26ee0498f1a46ad654c6ac8.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/70916eeca7c17ad9b62295af.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/3ad7896e98b368902a6c6bfd.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/7b045b5f8c6e7588fe2dc0c2.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/649e54ade962dffdbdd8245f.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "89",
@@ -7765,7 +9166,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 89,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/7e4620a8e32571968902e14d.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/e23218bdd21ec902bfa5536d.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/ab62c611c49fa543b995434f.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/4822415f37c15e89449e2915.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/0b2b72dc7bb26f291fb7d8b5.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/af06d69bd468652e134c9960.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "90",
@@ -7781,7 +9207,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 90,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/93eb06b6b9c700faf08af656.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/c2d3176fd2ef318b9eb21cea.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/c308094454d77dd0908f322f.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/cbe5e6e8c25548a1c2955d2e.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/fe0a26885db3d27013a05e48.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/5ea40a4692735a4d66ecbdc8.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "1",
@@ -7797,7 +9248,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 1,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/e070d25b372fb683b4c5076e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/8c045508f8d72a39cec6de9b.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/34b10535f6963b0590dc4fea.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/2d20b93ae6c2356dcf397de5.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/55e8defa5554e26761c9d8fb.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/21ca3c1656f3030b1ddc190b.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "2",
@@ -7821,6 +9297,22 @@
         "meaning": {
           "src": "audio/segments/zh/80b6b733ec73e04238ac2dd1.mp3",
           "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/b7bd77db880eac1fd1d5f704.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/e31f0a75599e06d5a4cbc836.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/20156cea92dce87a4f253ecf.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/d2c1829c58b71e60c365ecca.mp3",
+          "language": "zh"
         }
       }
     },
@@ -7838,7 +9330,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 3,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/0c00cb6572b50b46127bc708.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/38d8c203da89b27ef521ddb0.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/04aea4b4ab9b2d692bc45825.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/cabf5fa96a022063058f439c.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/ee0f1bd51b476811680a6cd0.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/bcc569305520f7f90c2c944b.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "4",
@@ -7854,7 +9371,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 4,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/8e4ef905fba81190b9cb36a8.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/379dcdbff0ce3dae35af8d0b.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/9103aeb1be41e70b686333e3.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/6b48edc82a96ed900c2a04ba.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/fcf1b7428b96f4a6a17eceba.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/781bb9bcb543342fbc6341b3.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "5",
@@ -7870,7 +9412,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 5,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/7ddc074f0d3f94955d2f5c66.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/32064a1913fd82e4d69006ca.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/37fe0e6ad7cc46cb6a11b757.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/7295a9806054b5a713bd98a5.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/8c7c73005c6edd4168c11a1e.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/7f89750c6c7e261e116d0d50.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "6",
@@ -7886,7 +9453,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 6,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/02065311e77383cb48e2a045.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/1a6bc0aa6131978bcf268aac.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/6181096f4986b899920273ba.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/d6fe9f0a7d9723ef2587ebe9.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/9d9ec8ab2a0bb2eb5f8e7617.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/53ce69357854a9aa6cdb65e2.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "7",
@@ -7902,7 +9494,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 7,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/ee8d7992b9f5b1188c2dde4b.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/16fbd32565d47234e17c6983.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/80ba1be74bfaf36f22ece0a5.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/67837d72118019dadb51ff83.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/695f461549fc72405454f25c.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/618e1518408b5877c5e295da.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "8",
@@ -7918,7 +9535,32 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 8,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/caf522dbdb1e5bbe857f8320.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/7d0747be7a5e44b25957ab77.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/7be500c945c499b9fb4ba949.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/a5d15dcd926e6ff57049ee9d.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/67b4bfd0c36b99d4a095393a.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/fb9c8ba9c2390377026ef1b1.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "9",
@@ -7938,6 +9580,26 @@
         "word": {
           "src": "audio/segments/en/6bc8c6d68a98ca8ed96ea718.mp3",
           "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/471309027ea0bf4b0a4989bb.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/01f2a72c5b8e4ef50e975443.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/7d8b56c3f45349f7f1c7755f.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/6b26b262271e43311db737c4.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/e576ea7ca36955dd8533942f.mp3",
+          "language": "zh"
         }
       }
     },
@@ -7955,7 +9617,32 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 10,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/b74900166f764f6f6c89a2ab.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/4e77114c2e58edb5f18f17e9.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/8bba76824fabaa58ce13c733.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/1f2238f118046dc0d8968026.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/f4f6a6cac1373caa90a37c38.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/2a54d111be0dbbbf644a9452.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "11",
@@ -7971,7 +9658,20 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 11,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/4f05e131d6d3f1d6ad4682e8.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/796dcdec55cac84787ac4ca2.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/43debdfd636902a8ef49cb91.mp3",
+          "language": "en"
+        }
+      }
     },
     {
       "id": "12",
@@ -8166,7 +9866,16 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 22,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/44f3b3b68e4de69a63eb6fbe.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/cbdd84cf4b8d8f6e0e018cd8.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "23",
@@ -8457,7 +10166,16 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 39,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/b84cfd588f648f6b89863ed8.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/0c7fa70c946d636c71b4d1ed.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "40",
@@ -8633,7 +10351,16 @@
       "review_count": "1",
       "last_review_date": "2026-06-17",
       "index": 50,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/df6571f03e81eef7e504f86e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/10ec7d414d3331f839327283.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "51",
@@ -8937,7 +10664,16 @@
       "review_count": "0",
       "last_review_date": "",
       "index": 69,
-      "audio_segments": {}
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/072ce363cde9aa567cb08f2e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/35d6676366c66017f32409b7.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "70",
