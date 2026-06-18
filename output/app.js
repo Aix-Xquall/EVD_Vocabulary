@@ -1,5 +1,5 @@
 const DEFAULT_PLAYBACK_RATE = 0.8;
-const DEFAULT_EXAMPLE_REPEAT_COUNT = 3;
+const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const EXAMPLE_REPEAT_DELAY_MS = 1500;
 
 const state = {
@@ -10,8 +10,9 @@ const state = {
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
+  includeExamples: true,
   playbackRate: DEFAULT_PLAYBACK_RATE,
-  exampleRepeatCount: DEFAULT_EXAMPLE_REPEAT_COUNT,
+  englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
   playbackQueue: [],
   queueIndex: 0,
   isChapterPlayback: false,
@@ -42,6 +43,7 @@ const elements = {
   nextButton: document.getElementById("nextButton"),
   repeatAllToggle: document.getElementById("repeatAllToggle"),
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
+  includeExamplesToggle: document.getElementById("includeExamplesToggle"),
   playbackRate: document.getElementById("playbackRate"),
   playbackRateValue: document.getElementById("playbackRateValue"),
   exampleRepeatCount: document.getElementById("exampleRepeatCount"),
@@ -198,18 +200,18 @@ function buildChapterQueue() {
 function buildWordQueue(word) {
   const segments = word?.audio_segments || {};
   const queue = [];
-  addNarration(queue, segments.word, word?.word, "en");
-  addNarration(queue, segments.meaning, word?.chinese_meaning, "zh");
-  addExampleSegments(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh);
-  addExampleSegments(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh);
-  addNarration(queue, segments.word, word?.word, "en");
+  addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning);
+  if (state.includeExamples) {
+    addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh);
+    addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh);
+  }
   return queue;
 }
 
-function addExampleSegments(queue, englishSegment, englishText, chineseSegment, chineseText) {
+function addRepeatedEnglishWithChinese(queue, englishSegment, englishText, chineseSegment, chineseText) {
   addNarration(queue, englishSegment, englishText, "en");
   addNarration(queue, chineseSegment, chineseText, "zh");
-  for (let count = 1; count < state.exampleRepeatCount; count += 1) {
+  for (let count = 1; count < state.englishRepeatCount; count += 1) {
     addNarration(queue, englishSegment, englishText, "en", EXAMPLE_REPEAT_DELAY_MS);
   }
 }
@@ -422,8 +424,9 @@ function applyPlaybackRate(segment = currentQueueSegment()) {
   elements.audioPlayer.playbackRate = rate;
   elements.playbackRate.value = String(state.playbackRate);
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
-  elements.exampleRepeatCount.value = String(state.exampleRepeatCount);
-  elements.exampleRepeatCountValue.textContent = String(state.exampleRepeatCount);
+  elements.exampleRepeatCount.value = String(state.englishRepeatCount);
+  elements.exampleRepeatCountValue.textContent = String(state.englishRepeatCount);
+  elements.includeExamplesToggle.checked = state.includeExamples;
 }
 
 function currentQueueSegment() {
@@ -446,7 +449,8 @@ function saveProgress() {
       currentChapterIndex: state.currentChapterIndex,
       currentIndex: state.currentIndex,
       playbackRate: state.playbackRate,
-      exampleRepeatCount: state.exampleRepeatCount,
+      englishRepeatCount: state.englishRepeatCount,
+      includeExamples: state.includeExamples,
       practice: state.practice,
     }),
   );
@@ -463,7 +467,8 @@ function restoreProgress() {
     state.currentChapterIndex = Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
     state.currentIndex = Math.min(saved.currentIndex || 0, currentWords().length - 1);
     state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
-    state.exampleRepeatCount = clampRepeatCount(saved.exampleRepeatCount || DEFAULT_EXAMPLE_REPEAT_COUNT);
+    state.englishRepeatCount = clampRepeatCount(saved.englishRepeatCount || saved.exampleRepeatCount || DEFAULT_ENGLISH_REPEAT_COUNT);
+    state.includeExamples = saved.includeExamples !== false;
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
@@ -472,7 +477,7 @@ function restoreProgress() {
 }
 
 function clampRepeatCount(value) {
-  return Math.min(5, Math.max(1, Number(value) || DEFAULT_EXAMPLE_REPEAT_COUNT));
+  return Math.min(5, Math.max(1, Number(value) || DEFAULT_ENGLISH_REPEAT_COUNT));
 }
 
 function shuffle(items) {
@@ -511,13 +516,17 @@ elements.repeatAllToggle.addEventListener("change", (event) => {
 elements.repeatCurrentToggle.addEventListener("change", (event) => {
   state.repeatCurrent = event.target.checked;
 });
+elements.includeExamplesToggle.addEventListener("change", (event) => {
+  state.includeExamples = event.target.checked;
+  saveProgress();
+});
 elements.playbackRate.addEventListener("input", (event) => {
   state.playbackRate = Number(event.target.value);
   applyPlaybackRate();
   saveProgress();
 });
 elements.exampleRepeatCount.addEventListener("input", (event) => {
-  state.exampleRepeatCount = clampRepeatCount(event.target.value);
+  state.englishRepeatCount = clampRepeatCount(event.target.value);
   applyPlaybackRate();
   saveProgress();
 });

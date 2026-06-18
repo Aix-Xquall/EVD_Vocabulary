@@ -16,21 +16,36 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("audioPlayer.playbackRate", app_js)
         self.assertIn('audioPlayer.addEventListener("loadedmetadata"', app_js)
 
-    def test_web_player_exposes_chapters_and_example_repeat_controls(self):
+    def test_web_player_exposes_chapters_and_english_repeat_controls(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn('id="chapterTabs"', index_html)
+        self.assertIn('id="includeExamplesToggle"', index_html)
         self.assertIn('id="exampleRepeatCount"', index_html)
         self.assertIn('min="1"', index_html)
         self.assertIn('max="5"', index_html)
         self.assertIn('value="3"', index_html)
-        self.assertIn("DEFAULT_EXAMPLE_REPEAT_COUNT = 3", app_js)
+        self.assertIn("DEFAULT_ENGLISH_REPEAT_COUNT = 3", app_js)
+        self.assertIn("includeExamples: true", app_js)
+        self.assertIn("includeExamplesToggle", app_js)
         self.assertIn("buildWordQueue", app_js)
         self.assertIn("buildChapterQueue", app_js)
+        self.assertIn("addRepeatedEnglishWithChinese", app_js)
+        self.assertIn("if (state.includeExamples)", app_js)
         self.assertIn('segment.language === "en" ? state.playbackRate : 1', app_js)
         self.assertIn("speechSynthesis", app_js)
         self.assertIn("SpeechSynthesisUtterance", app_js)
+
+    def test_word_and_examples_share_the_same_repeat_behavior(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn(
+            'addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning)',
+            app_js,
+        )
+        self.assertIn("for (let count = 1; count < state.englishRepeatCount; count += 1)", app_js)
+        self.assertNotIn("addNarration(queue, segments.word, word?.word, \"en\");", app_js)
 
     def test_word_list_scrolls_when_chapter_has_many_words(self):
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
