@@ -312,6 +312,14 @@ h2 {
     min-height: auto;
   }
 
+  .study-panel {
+    order: 1;
+  }
+
+  .word-list {
+    order: 2;
+  }
+
   .word-items {
     max-height: 42vh;
   }

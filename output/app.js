@@ -158,6 +158,16 @@ function renderWordList() {
     });
     elements.wordList.appendChild(button);
   });
+  scrollActiveWordIntoView();
+}
+
+function scrollActiveWordIntoView() {
+  const container = elements.wordList;
+  const activeButton = container.querySelector(".word-item.active");
+  if (!activeButton) {
+    return;
+  }
+  container.scrollTop = activeButton.offsetTop - container.clientHeight / 2 + activeButton.clientHeight / 2;
 }
 
 function playCurrent() {

@@ -39,6 +39,20 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("max-height: calc(100vh - 260px)", styles_css)
         self.assertIn("overflow-y: auto", styles_css)
 
+    def test_mobile_layout_places_player_before_word_list(self):
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("@media (max-width: 820px)", styles_css)
+        self.assertIn(".study-panel {\n    order: 1;", styles_css)
+        self.assertIn(".word-list {\n    order: 2;", styles_css)
+
+    def test_active_word_is_centered_inside_scrollable_word_list(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("scrollActiveWordIntoView", app_js)
+        self.assertIn("container.scrollTop =", app_js)
+        self.assertIn("activeButton.offsetTop - container.clientHeight / 2 + activeButton.clientHeight / 2", app_js)
+
 
 if __name__ == "__main__":
     unittest.main()
