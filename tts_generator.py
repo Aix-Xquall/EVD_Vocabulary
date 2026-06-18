@@ -1,6 +1,8 @@
 import hashlib
 import html
 import re
+import urllib.error
+import urllib.request
 from datetime import date
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -50,13 +52,6 @@ def generate_audio_files(
             "Azure Speech is enabled, but AZURE_SPEECH_KEY or AZURE_SPEECH_REGION is missing."
         )
 
-    try:
-        import azure.cognitiveservices.speech as speechsdk
-    except ImportError as exc:
-        raise RuntimeError(
-            "Azure Speech SDK is not installed. Run: pip install -r requirements.txt"
-        ) from exc
-
     date_text = target_date.isoformat()
     word_audio_dir = settings.output_dir / "audio" / date_text
     word_audio_dir.mkdir(parents=True, exist_ok=True)
@@ -67,7 +62,7 @@ def generate_audio_files(
         output_file = settings.output_dir / relative_path
         output_file.parent.mkdir(parents=True, exist_ok=True)
         ssml = _entry_ssml(entry, settings)
-        _synthesize_ssml(speechsdk, settings, ssml, output_file)
+        _synthesize_ssml(settings, ssml, output_file)
         generated_files.append(output_file)
 
     combined_output = settings.output_dir / combined_path
@@ -111,14 +106,8 @@ def generate_segment_audio_files(
             "Azure Speech is enabled, but AZURE_SPEECH_KEY or AZURE_SPEECH_REGION is missing."
         )
 
-    try:
-        import azure.cognitiveservices.speech as speechsdk
-    except ImportError as exc:
-        raise RuntimeError(
-            "Azure Speech SDK is not installed. Run: pip install -r requirements.txt"
-        ) from exc
-
     generated_sources = set()
+    pending_segments = []
     for entry in entries:
         for role, field_name, language in SEGMENT_FIELDS:
             segments = segment_paths.get(audio_key_for_entry(entry), {})
@@ -129,9 +118,18 @@ def generate_segment_audio_files(
             output_file = settings.output_dir / segment["src"]
             if not _should_synthesize_segment(output_file):
                 continue
-            output_file.parent.mkdir(parents=True, exist_ok=True)
-            ssml = _segment_ssml(entry.get(field_name, ""), language, settings)
-            _synthesize_ssml(speechsdk, settings, ssml, output_file)
+            pending_segments.append((role, field_name, language, entry, output_file))
+
+    total_segments = len(pending_segments)
+    for index, (role, field_name, language, entry, output_file) in enumerate(pending_segments, start=1):
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        ssml = _segment_ssml(entry.get(field_name, ""), language, settings)
+        print(
+            f"Synthesizing segment {index}/{total_segments}: "
+            f"{language} {role} {entry.get('word', '')}",
+            flush=True,
+        )
+        _synthesize_ssml(settings, ssml, output_file)
     return segment_paths
 
 
@@ -147,29 +145,33 @@ def _combine_audio_files(source_files: List[Path], output_file: Path) -> None:
             combined.write(source_file.read_bytes())
 
 
-def _synthesize_ssml(speechsdk, settings: Settings, ssml: str, output_file: Path) -> None:
-    speech_config = speechsdk.SpeechConfig(
-        subscription=settings.azure_speech_key,
-        region=settings.azure_speech_region,
+def _synthesize_ssml(settings: Settings, ssml: str, output_file: Path) -> None:
+    url = f"https://{settings.azure_speech_region}.tts.speech.microsoft.com/cognitiveservices/v1"
+    request = urllib.request.Request(
+        url,
+        data=ssml.encode("utf-8"),
+        headers={
+            "Ocp-Apim-Subscription-Key": settings.azure_speech_key,
+            "Content-Type": "application/ssml+xml",
+            "X-Microsoft-OutputFormat": "audio-16khz-32kbitrate-mono-mp3",
+            "User-Agent": "EVD-Vocabulary",
+        },
+        method="POST",
     )
-    speech_config.set_speech_synthesis_output_format(
-        speechsdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3
-    )
-    audio_config = speechsdk.audio.AudioOutputConfig(filename=str(output_file))
-    synthesizer = speechsdk.SpeechSynthesizer(
-        speech_config=speech_config,
-        audio_config=audio_config,
-    )
-    result = synthesizer.speak_ssml_async(ssml).get()
-    if result.reason != speechsdk.ResultReason.SynthesizingAudioCompleted:
-        details = speechsdk.SpeechSynthesisCancellationDetails(result)
+    try:
+        with urllib.request.urlopen(
+            request,
+            timeout=settings.azure_request_timeout_seconds,
+        ) as response:
+            output_file.write_bytes(response.read())
+    except urllib.error.HTTPError as exc:
+        error_detail = exc.read().decode("utf-8", errors="replace")
         raise RuntimeError(
-            "Azure Speech synthesis failed for: "
-            f"{output_file}; reason={result.reason}; "
-            f"cancellation_reason={details.reason}; "
-            f"error_code={details.error_code}; "
-            f"error_details={details.error_details}"
-        )
+            f"Azure Speech synthesis failed for {output_file}; "
+            f"status={exc.code}; details={error_detail}"
+        ) from exc
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f"Azure Speech request failed for {output_file}: {exc}") from exc
 
 
 def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:

@@ -39,6 +39,7 @@ class Settings:
 
     azure_speech_key: str = _text_env("AZURE_SPEECH_KEY")
     azure_speech_region: str = _text_env("AZURE_SPEECH_REGION")
+    azure_request_timeout_seconds: int = _int_env("EVD_AZURE_REQUEST_TIMEOUT_SECONDS", 60)
     english_voice: str = _text_env("EVD_ENGLISH_VOICE", "en-US-JennyNeural")
     chinese_voice: str = _text_env("EVD_CHINESE_VOICE", "zh-TW-HsiaoChenNeural")
 
