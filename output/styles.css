@@ -144,6 +144,9 @@ h2 {
   display: grid;
   gap: 8px;
   margin-top: 14px;
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .word-item {
@@ -307,5 +310,9 @@ h2 {
   .word-list,
   .study-panel {
     min-height: auto;
+  }
+
+  .word-items {
+    max-height: 42vh;
   }
 }

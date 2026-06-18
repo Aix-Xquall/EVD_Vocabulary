@@ -32,6 +32,13 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("speechSynthesis", app_js)
         self.assertIn("SpeechSynthesisUtterance", app_js)
 
+    def test_word_list_scrolls_when_chapter_has_many_words(self):
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn(".word-items", styles_css)
+        self.assertIn("max-height: calc(100vh - 260px)", styles_css)
+        self.assertIn("overflow-y: auto", styles_css)
+
 
 if __name__ == "__main__":
     unittest.main()
