@@ -54,6 +54,27 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertTrue(paths["1"]["meaning"]["src"].startswith("audio/segments/zh/"))
         self.assertTrue(paths["1"]["word"]["src"].endswith(".mp3"))
 
+    def test_sample_vocabulary_entries_do_not_receive_audio_segments(self):
+        formal = {
+            "id": "1",
+            "word": "impedance",
+            "chinese_meaning": "meaning",
+            "_source_file": r"C:\workspace\EMC航電詞彙整合1.csv",
+            "_row_number": 1,
+        }
+        sample = {
+            "id": "1",
+            "word": "sample",
+            "chinese_meaning": "sample meaning",
+            "_source_file": r"C:\workspace\sample vocabulary.csv",
+            "_row_number": 1,
+        }
+
+        paths = expected_segment_audio_paths([formal, sample], Settings(generate_audio=False))
+
+        self.assertIn("word", paths[r"C:\workspace\EMC航電詞彙整合1.csv#1"])
+        self.assertEqual(paths[r"C:\workspace\sample vocabulary.csv#1"], {})
+
     def test_existing_non_empty_segment_is_not_synthesized_again(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             segment = Path(temp_dir) / "segment.mp3"

@@ -4,7 +4,7 @@ import re
 import urllib.error
 import urllib.request
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Dict, List, Tuple
 
 from config import Settings
@@ -78,6 +78,9 @@ def expected_segment_audio_paths(
     paths: Dict[str, Dict[str, dict]] = {}
     for entry in entries:
         entry_segments = {}
+        if _is_sample_vocabulary_entry(entry):
+            paths[audio_key_for_entry(entry)] = entry_segments
+            continue
         for role, field_name, language in SEGMENT_FIELDS:
             if language == "zh" and not settings.include_chinese_in_audio:
                 continue
@@ -327,3 +330,11 @@ def _segment_relative_path(text: str, language: str, settings: Settings) -> str:
     key = f"{language}|{voice}|{rate}|{str(text or '').strip()}"
     digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:24]
     return f"audio/segments/{language}/{digest}.mp3"
+
+
+def _is_sample_vocabulary_entry(entry: VocabularyEntry) -> bool:
+    source_file = entry.get("_source_file", "")
+    if not source_file:
+        return False
+    source_path = PureWindowsPath(source_file) if "\\" in source_file else Path(source_file)
+    return source_path.stem.strip().lower().startswith("sample")
