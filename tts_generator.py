@@ -208,7 +208,7 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 def _segment_ssml(text: str, language: str, settings: Settings) -> str:
     if language == "zh":
-        return _wrap_ssml(_voice_segment(text, settings.chinese_voice, "0%", language="zh-TW"))
+        return _wrap_ssml(_voice_segment(_speech_text_for_audio(text, language), settings.chinese_voice, "0%", language="zh-TW"))
     return _wrap_ssml(_voice_segment(text, settings.english_voice, settings.speech_rate))
 
 
@@ -327,9 +327,16 @@ def _safe_filename(value: str) -> str:
 def _segment_relative_path(text: str, language: str, settings: Settings) -> str:
     voice = settings.chinese_voice if language == "zh" else settings.english_voice
     rate = "0%" if language == "zh" else settings.speech_rate
-    key = f"{language}|{voice}|{rate}|{str(text or '').strip()}"
+    key = f"{language}|{voice}|{rate}|{_speech_text_for_audio(text, language)}"
     digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:24]
     return f"audio/segments/{language}/{digest}.mp3"
+
+
+def _speech_text_for_audio(text: str, language: str) -> str:
+    value = str(text or "").strip()
+    if language == "zh":
+        return value.replace("地", "第")
+    return value
 
 
 def _is_sample_vocabulary_entry(entry: VocabularyEntry) -> bool:

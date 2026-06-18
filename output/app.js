@@ -276,12 +276,20 @@ function speakTextSegment(segment) {
     return;
   }
   window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(segment.text);
+  const utterance = new SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language));
   utterance.lang = segment.language === "zh" ? "zh-TW" : "en-US";
   utterance.rate = segment.language === "en" ? state.playbackRate : 1;
   utterance.onend = playNextQueueSegment;
   utterance.onerror = () => showPlaybackError("瀏覽器語音朗讀失敗。");
   window.speechSynthesis.speak(utterance);
+}
+
+function speechTextForAudio(text, language) {
+  const value = String(text || "");
+  if (language === "zh") {
+    return value.replaceAll("地", "第");
+  }
+  return value;
 }
 
 function finishQueue() {

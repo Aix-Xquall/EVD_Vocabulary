@@ -53,6 +53,13 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("container.scrollTop =", app_js)
         self.assertIn("activeButton.offsetTop - container.clientHeight / 2 + activeButton.clientHeight / 2", app_js)
 
+    def test_browser_speech_fallback_uses_di_pronunciation_for_ground_character(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("speechTextForAudio", app_js)
+        self.assertIn('.replaceAll("地", "第")', app_js)
+        self.assertIn("SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language))", app_js)
+
 
 if __name__ == "__main__":
     unittest.main()

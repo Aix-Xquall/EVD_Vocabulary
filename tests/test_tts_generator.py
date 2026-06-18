@@ -11,6 +11,7 @@ from tts_generator import (
     _combine_audio_files,
     _entry_ssml,
     _segment_ssml,
+    _speech_text_for_audio,
     _should_synthesize_segment,
     expected_audio_paths,
     expected_segment_audio_paths,
@@ -114,6 +115,24 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertIn('rate="-20%"', english_ssml)
         self.assertIn('voice name="zh-TW-HsiaoChenNeural"', chinese_ssml)
         self.assertIn('rate="0%"', chinese_ssml)
+
+    def test_chinese_audio_pronounces_ground_character_like_di_not_de(self):
+        settings = Settings(generate_audio=False)
+
+        ssml = _segment_ssml("地面接地點", "zh", settings)
+        display_path = expected_segment_audio_paths(
+            [{"id": "1", "chinese_meaning": "地面接地點"}],
+            settings,
+        )["1"]["meaning"]["src"]
+        spoken_path = expected_segment_audio_paths(
+            [{"id": "1", "chinese_meaning": "第面接第點"}],
+            settings,
+        )["1"]["meaning"]["src"]
+
+        self.assertEqual(_speech_text_for_audio("地面接地點", "zh"), "第面接第點")
+        self.assertIn("第面接第點", ssml)
+        self.assertNotIn("地面接地點", ssml)
+        self.assertEqual(display_path, spoken_path)
 
     def test_entry_ssml_skips_pronunciation_but_keeps_meanings_and_examples(self):
         entry = {
