@@ -6,6 +6,7 @@ from xml.etree import ElementTree
 
 from config import Settings
 from tts_generator import (
+    _available_segment_audio_paths,
     _combined_ssml,
     _combine_audio_files,
     _entry_ssml,
@@ -60,6 +61,27 @@ class TtsGeneratorTests(unittest.TestCase):
 
             self.assertFalse(_should_synthesize_segment(segment))
             self.assertTrue(_should_synthesize_segment(Path(temp_dir) / "missing.mp3"))
+
+    def test_available_segment_audio_paths_only_keeps_existing_mp3_files(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            existing = output_dir / "audio" / "segments" / "en" / "existing.mp3"
+            existing.parent.mkdir(parents=True)
+            existing.write_bytes(b"audio")
+            settings = Settings(output_dir=output_dir, generate_audio=False)
+
+            available = _available_segment_audio_paths(
+                {
+                    "1": {
+                        "word": {"src": "audio/segments/en/existing.mp3", "language": "en"},
+                        "meaning": {"src": "audio/segments/zh/missing.mp3", "language": "zh"},
+                    }
+                },
+                settings,
+            )
+
+            self.assertIn("word", available["1"])
+            self.assertNotIn("meaning", available["1"])
 
     def test_english_segment_ssml_uses_configured_rate_but_chinese_segment_keeps_normal_rate(self):
         settings = Settings(generate_audio=False, speech_rate="-20%")

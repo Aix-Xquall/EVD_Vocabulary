@@ -36,6 +36,7 @@ class Settings:
     include_chinese_in_audio: bool = _bool_env("EVD_INCLUDE_CHINESE_AUDIO", True)
     repeat_each_word: bool = _bool_env("EVD_REPEAT_EACH_WORD", True)
     generate_audio: bool = _bool_env("EVD_GENERATE_AUDIO", True)
+    max_audio_segments_per_run: int = _int_env("EVD_MAX_AUDIO_SEGMENTS_PER_RUN", 0)
 
     azure_speech_key: str = _text_env("AZURE_SPEECH_KEY")
     azure_speech_region: str = _text_env("AZURE_SPEECH_REGION")

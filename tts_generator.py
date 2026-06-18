@@ -120,6 +120,9 @@ def generate_segment_audio_files(
                 continue
             pending_segments.append((role, field_name, language, entry, output_file))
 
+    if settings.max_audio_segments_per_run > 0:
+        pending_segments = pending_segments[: settings.max_audio_segments_per_run]
+
     total_segments = len(pending_segments)
     for index, (role, field_name, language, entry, output_file) in enumerate(pending_segments, start=1):
         output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -130,11 +133,26 @@ def generate_segment_audio_files(
             flush=True,
         )
         _synthesize_ssml(settings, ssml, output_file)
-    return segment_paths
+    return _available_segment_audio_paths(segment_paths, settings)
 
 
 def _should_synthesize_segment(output_file: Path) -> bool:
     return not output_file.exists() or output_file.stat().st_size == 0
+
+
+def _available_segment_audio_paths(
+    segment_paths: Dict[str, Dict[str, dict]],
+    settings: Settings,
+) -> Dict[str, Dict[str, dict]]:
+    available_paths: Dict[str, Dict[str, dict]] = {}
+    for entry_key, segments in segment_paths.items():
+        available_segments = {}
+        for role, segment in segments.items():
+            output_file = settings.output_dir / segment["src"]
+            if output_file.exists() and output_file.stat().st_size > 0:
+                available_segments[role] = segment
+        available_paths[entry_key] = available_segments
+    return available_paths
 
 
 def _combine_audio_files(source_files: List[Path], output_file: Path) -> None:

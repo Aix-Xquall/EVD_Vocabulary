@@ -52,6 +52,7 @@ jobs:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
           EVD_SITE_URL: https://aix-xquall.github.io/EVD_Vocabulary/
+          EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "200"
         run: python main.py
 
       - name: Commit generated files

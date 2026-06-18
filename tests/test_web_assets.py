@@ -29,6 +29,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("buildWordQueue", app_js)
         self.assertIn("buildChapterQueue", app_js)
         self.assertIn('segment.language === "en" ? state.playbackRate : 1', app_js)
+        self.assertIn("speechSynthesis", app_js)
+        self.assertIn("SpeechSynthesisUtterance", app_js)
 
 
 if __name__ == "__main__":

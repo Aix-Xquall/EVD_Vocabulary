@@ -188,29 +188,37 @@ function buildChapterQueue() {
 function buildWordQueue(word) {
   const segments = word?.audio_segments || {};
   const queue = [];
-  addSegment(queue, segments.word);
-  addSegment(queue, segments.meaning);
-  addExampleSegments(queue, segments.example_1_en, segments.example_1_zh);
-  addExampleSegments(queue, segments.example_2_en, segments.example_2_zh);
-  addSegment(queue, segments.word);
+  addNarration(queue, segments.word, word?.word, "en");
+  addNarration(queue, segments.meaning, word?.chinese_meaning, "zh");
+  addExampleSegments(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh);
+  addExampleSegments(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh);
+  addNarration(queue, segments.word, word?.word, "en");
   return queue;
 }
 
-function addExampleSegments(queue, englishSegment, chineseSegment) {
-  addSegment(queue, englishSegment);
-  addSegment(queue, chineseSegment);
+function addExampleSegments(queue, englishSegment, englishText, chineseSegment, chineseText) {
+  addNarration(queue, englishSegment, englishText, "en");
+  addNarration(queue, chineseSegment, chineseText, "zh");
   for (let count = 1; count < state.exampleRepeatCount; count += 1) {
-    addSegment(queue, englishSegment, EXAMPLE_REPEAT_DELAY_MS);
+    addNarration(queue, englishSegment, englishText, "en", EXAMPLE_REPEAT_DELAY_MS);
   }
 }
 
-function addSegment(queue, segment, delayMs = 0) {
-  if (!segment?.src) {
+function addNarration(queue, segment, fallbackText, fallbackLanguage, delayMs = 0) {
+  if (segment?.src) {
+    queue.push({
+      src: segment.src,
+      language: segment.language || fallbackLanguage,
+      delayMs,
+    });
+    return;
+  }
+  if (!fallbackText) {
     return;
   }
   queue.push({
-    src: segment.src,
-    language: segment.language || "en",
+    text: fallbackText,
+    language: fallbackLanguage,
     delayMs,
   });
 }
@@ -235,6 +243,10 @@ function playNextQueueSegment() {
   }
   state.queueIndex += 1;
   const startSegment = () => {
+    if (!segment.src && segment.text) {
+      speakTextSegment(segment);
+      return;
+    }
     elements.audioPlayer.src = resolveAssetPath(segment.src);
     applyPlaybackRate(segment);
     elements.audioPlayer.play().catch(() => {
@@ -246,6 +258,20 @@ function playNextQueueSegment() {
   } else {
     startSegment();
   }
+}
+
+function speakTextSegment(segment) {
+  if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
+    showPlaybackError("瀏覽器不支援線上語音朗讀。");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(segment.text);
+  utterance.lang = segment.language === "zh" ? "zh-TW" : "en-US";
+  utterance.rate = segment.language === "en" ? state.playbackRate : 1;
+  utterance.onend = playNextQueueSegment;
+  utterance.onerror = () => showPlaybackError("瀏覽器語音朗讀失敗。");
+  window.speechSynthesis.speak(utterance);
 }
 
 function finishQueue() {
@@ -269,6 +295,9 @@ function stopQueue() {
   state.queueIndex = 0;
   state.isChapterPlayback = false;
   elements.audioPlayer.pause();
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+  }
 }
 
 function playDirectAudio(src, isEnglish) {
