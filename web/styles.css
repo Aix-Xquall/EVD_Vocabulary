@@ -63,6 +63,24 @@ button.primary {
   margin-bottom: 20px;
 }
 
+.chapter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.chapter-tab {
+  padding: 0 14px;
+  font-weight: 700;
+}
+
+.chapter-tab.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
 .eyebrow {
   margin: 0 0 6px;
   color: var(--muted);

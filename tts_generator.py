@@ -1,3 +1,4 @@
+import hashlib
 import html
 import re
 from datetime import date
@@ -9,6 +10,16 @@ from script_builder import audio_key_for_entry
 
 
 VocabularyEntry = Dict[str, str]
+
+
+SEGMENT_FIELDS = [
+    ("word", "word", "en"),
+    ("meaning", "chinese_meaning", "zh"),
+    ("example_1_en", "example_1_en", "en"),
+    ("example_1_zh", "example_1_zh", "zh"),
+    ("example_2_en", "example_2_en", "en"),
+    ("example_2_zh", "example_2_zh", "zh"),
+]
 
 
 def expected_audio_paths(
@@ -65,6 +76,69 @@ def generate_audio_files(
     return per_word_paths, combined_path
 
 
+def expected_segment_audio_paths(
+    entries: List[VocabularyEntry],
+    settings: Settings,
+) -> Dict[str, Dict[str, dict]]:
+    paths: Dict[str, Dict[str, dict]] = {}
+    for entry in entries:
+        entry_segments = {}
+        for role, field_name, language in SEGMENT_FIELDS:
+            if language == "zh" and not settings.include_chinese_in_audio:
+                continue
+            text = entry.get(field_name, "")
+            if not text:
+                continue
+            relative_path = _segment_relative_path(text, language, settings)
+            entry_segments[role] = {
+                "src": relative_path,
+                "language": language,
+            }
+        paths[audio_key_for_entry(entry)] = entry_segments
+    return paths
+
+
+def generate_segment_audio_files(
+    entries: List[VocabularyEntry],
+    settings: Settings,
+) -> Dict[str, Dict[str, dict]]:
+    segment_paths = expected_segment_audio_paths(entries, settings)
+    if not settings.generate_audio:
+        return segment_paths
+
+    if not settings.azure_speech_key or not settings.azure_speech_region:
+        raise RuntimeError(
+            "Azure Speech is enabled, but AZURE_SPEECH_KEY or AZURE_SPEECH_REGION is missing."
+        )
+
+    try:
+        import azure.cognitiveservices.speech as speechsdk
+    except ImportError as exc:
+        raise RuntimeError(
+            "Azure Speech SDK is not installed. Run: pip install -r requirements.txt"
+        ) from exc
+
+    generated_sources = set()
+    for entry in entries:
+        for role, field_name, language in SEGMENT_FIELDS:
+            segments = segment_paths.get(audio_key_for_entry(entry), {})
+            segment = segments.get(role)
+            if not segment or segment["src"] in generated_sources:
+                continue
+            generated_sources.add(segment["src"])
+            output_file = settings.output_dir / segment["src"]
+            if not _should_synthesize_segment(output_file):
+                continue
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            ssml = _segment_ssml(entry.get(field_name, ""), language, settings)
+            _synthesize_ssml(speechsdk, settings, ssml, output_file)
+    return segment_paths
+
+
+def _should_synthesize_segment(output_file: Path) -> bool:
+    return not output_file.exists() or output_file.stat().st_size == 0
+
+
 def _combine_audio_files(source_files: List[Path], output_file: Path) -> None:
     # Azure rejects a large combined SSML after many English/Chinese voice switches.
     # MP3 frame concatenation works for the Azure MP3 files generated above.
@@ -107,6 +181,12 @@ def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:
 
 def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
     return _wrap_ssml(_entry_body(entry, settings))
+
+
+def _segment_ssml(text: str, language: str, settings: Settings) -> str:
+    if language == "zh":
+        return _wrap_ssml(_voice_segment(text, settings.chinese_voice, "0%", language="zh-TW"))
+    return _wrap_ssml(_voice_segment(text, settings.english_voice, settings.speech_rate))
 
 
 def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
@@ -219,3 +299,11 @@ def _escape(value: str) -> str:
 def _safe_filename(value: str) -> str:
     name = re.sub(r"[^A-Za-z0-9_-]+", "_", value.strip())
     return name.strip("_") or "word"
+
+
+def _segment_relative_path(text: str, language: str, settings: Settings) -> str:
+    voice = settings.chinese_voice if language == "zh" else settings.english_voice
+    rate = "0%" if language == "zh" else settings.speech_rate
+    key = f"{language}|{voice}|{rate}|{str(text or '').strip()}"
+    digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:24]
+    return f"audio/segments/{language}/{digest}.mp3"

@@ -1,4 +1,5 @@
 from datetime import date
+from pathlib import Path, PureWindowsPath
 from typing import Dict, List
 
 
@@ -82,9 +83,69 @@ def build_daily_payload(
     }
 
 
+def build_chapter_payload(
+    entries: List[VocabularyEntry],
+    target_date: date,
+    segment_audio: Dict[str, Dict[str, dict]],
+) -> dict:
+    chapters = []
+    chapters_by_source: Dict[str, dict] = {}
+    flat_words = []
+
+    for entry in entries:
+        source_file = entry.get("_source_file", "")
+        chapter_key = source_file or "vocabulary.csv"
+        if chapter_key not in chapters_by_source:
+            chapter = {
+                "id": _chapter_id(chapter_key),
+                "title": _chapter_title(chapter_key),
+                "source_file": _source_name(chapter_key),
+                "word_count": 0,
+                "words": [],
+            }
+            chapters_by_source[chapter_key] = chapter
+            chapters.append(chapter)
+
+        chapter = chapters_by_source[chapter_key]
+        public_entry = {column: entry.get(column, "") for column in PUBLIC_COLUMNS}
+        public_entry["index"] = len(chapter["words"]) + 1
+        public_entry["audio_segments"] = segment_audio.get(audio_key_for_entry(entry), {})
+        chapter["words"].append(public_entry)
+        chapter["word_count"] = len(chapter["words"])
+        flat_words.append(public_entry)
+
+    return {
+        "date": target_date.isoformat(),
+        "title": f"EVD Vocabulary Chapters - {target_date.isoformat()}",
+        "mode": "chapters",
+        "chapters": chapters,
+        "words": flat_words,
+    }
+
+
 def audio_key_for_entry(entry: VocabularyEntry) -> str:
     source_file = entry.get("_source_file")
     row_number = entry.get("_row_number")
     if source_file and row_number is not None:
         return f"{source_file}#{row_number}"
     return entry.get("id", "")
+
+
+def _chapter_title(source_file: str) -> str:
+    return _source_path(source_file).stem or "vocabulary"
+
+
+def _chapter_id(source_file: str) -> str:
+    value = _chapter_title(source_file).lower()
+    slug = "".join(character if character.isalnum() else "-" for character in value)
+    return "-".join(part for part in slug.split("-") if part) or "vocabulary"
+
+
+def _source_name(source_file: str) -> str:
+    return _source_path(source_file).name or "vocabulary.csv"
+
+
+def _source_path(source_file: str):
+    if "\\" in source_file:
+        return PureWindowsPath(source_file)
+    return Path(source_file)

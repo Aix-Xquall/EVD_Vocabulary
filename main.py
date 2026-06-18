@@ -5,11 +5,9 @@ from datetime import date, datetime
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
-from daily_selector import select_daily_words
 from line_notifier import send_daily_line_notification
-from review_updater import update_review_files
-from script_builder import build_daily_payload, build_markdown
-from tts_generator import expected_audio_paths, generate_audio_files
+from script_builder import build_chapter_payload, build_markdown
+from tts_generator import expected_segment_audio_paths, generate_segment_audio_files
 from vocabulary_loader import load_vocabulary
 
 
@@ -35,7 +33,7 @@ def main() -> None:
         update_review=not args.no_update_review,
         notify_line=not args.skip_line,
     )
-    print(f"Generated {len(result['words'])} words for {result['date']}")
+    print(f"Generated {result['word_count']} words for {result['date']}")
     print(f"Markdown: {result['markdown_path']}")
     print(f"JSON: {result['json_path']}")
 
@@ -47,35 +45,35 @@ def run_daily_generation(
     notify_line: bool = True,
 ) -> dict:
     entries = load_vocabulary(settings.vocabulary_dir)
-    selected = select_daily_words(entries, settings.daily_word_count, target_date)
 
     if settings.generate_audio:
-        per_word_audio, combined_audio = generate_audio_files(selected, target_date, settings)
+        segment_audio = generate_segment_audio_files(entries, settings)
     else:
-        per_word_audio, combined_audio = expected_audio_paths(selected, target_date, settings.output_dir)
+        segment_audio = expected_segment_audio_paths(entries, settings)
 
-    markdown = build_markdown(selected, target_date)
-    payload = build_daily_payload(selected, target_date, per_word_audio, combined_audio)
+    markdown = build_markdown(entries, target_date)
+    payload = build_chapter_payload(entries, target_date, segment_audio)
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)
     _copy_web_files(settings.output_dir)
 
     if update_review:
-        update_review_files(selected, target_date)
+        print("Review metadata is not updated in chapter mode.")
 
     if notify_line:
         try:
             send_daily_line_notification(
                 settings,
                 target_date.isoformat(),
-                [entry.get("word", "") for entry in selected],
+                [entry.get("word", "") for entry in entries[:20]],
             )
         except RuntimeError as exc:
             print(f"LINE notification warning: {exc}")
 
     return {
         "date": target_date.isoformat(),
-        "words": selected,
+        "words": entries,
+        "word_count": len(entries),
         "markdown_path": str(output_paths["markdown"]),
         "json_path": str(output_paths["json"]),
     }

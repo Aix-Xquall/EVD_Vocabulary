@@ -1,12 +1,21 @@
 const DEFAULT_PLAYBACK_RATE = 0.8;
+const DEFAULT_EXAMPLE_REPEAT_COUNT = 3;
+const EXAMPLE_REPEAT_DELAY_MS = 1500;
 
 const state = {
   data: null,
+  chapters: [],
+  currentChapterIndex: 0,
   currentIndex: 0,
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
   playbackRate: DEFAULT_PLAYBACK_RATE,
+  exampleRepeatCount: DEFAULT_EXAMPLE_REPEAT_COUNT,
+  playbackQueue: [],
+  queueIndex: 0,
+  isChapterPlayback: false,
+  queueTimer: null,
   practice: {
     current: null,
     attempts: 0,
@@ -17,6 +26,7 @@ const state = {
 const elements = {
   courseDate: document.getElementById("courseDate"),
   progressText: document.getElementById("progressText"),
+  chapterTabs: document.getElementById("chapterTabs"),
   wordList: document.getElementById("wordList"),
   categoryText: document.getElementById("categoryText"),
   wordText: document.getElementById("wordText"),
@@ -34,6 +44,8 @@ const elements = {
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
   playbackRate: document.getElementById("playbackRate"),
   playbackRateValue: document.getElementById("playbackRateValue"),
+  exampleRepeatCount: document.getElementById("exampleRepeatCount"),
+  exampleRepeatCountValue: document.getElementById("exampleRepeatCountValue"),
   combinedAudioButton: document.getElementById("combinedAudioButton"),
   toggleMeaningButton: document.getElementById("toggleMeaningButton"),
   audioPlayer: document.getElementById("audioPlayer"),
@@ -65,33 +77,81 @@ async function loadDailyData() {
   throw new Error("Cannot load latest vocabulary data.");
 }
 
+function normalizeData(data) {
+  if (Array.isArray(data.chapters) && data.chapters.length > 0) {
+    return data.chapters;
+  }
+  return [
+    {
+      id: "daily",
+      title: "Daily",
+      word_count: data.words?.length || 0,
+      words: data.words || [],
+    },
+  ];
+}
+
+function currentChapter() {
+  return state.chapters[state.currentChapterIndex] || { words: [] };
+}
+
+function currentWords() {
+  return currentChapter().words || [];
+}
+
+function currentWord() {
+  return currentWords()[state.currentIndex] || {};
+}
+
 function render() {
-  const words = state.data.words;
-  const word = words[state.currentIndex];
+  const chapter = currentChapter();
+  const words = currentWords();
+  const word = currentWord();
   elements.courseDate.textContent = state.data.date;
   elements.progressText.textContent = `${state.currentIndex + 1} / ${words.length}`;
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
-  elements.wordText.textContent = word.word;
-  elements.pronunciationText.textContent = word.pronunciation;
-  elements.meaningText.textContent = word.chinese_meaning;
-  elements.exampleOneEn.textContent = word.example_1_en;
-  elements.exampleOneZh.textContent = word.example_1_zh;
-  elements.exampleTwoEn.textContent = word.example_2_en;
-  elements.exampleTwoZh.textContent = word.example_2_zh;
+  elements.wordText.textContent = word.word || "Loading";
+  elements.pronunciationText.textContent = word.pronunciation || "";
+  elements.meaningText.textContent = word.chinese_meaning || "";
+  elements.exampleOneEn.textContent = word.example_1_en || "";
+  elements.exampleOneZh.textContent = word.example_1_zh || "";
+  elements.exampleTwoEn.textContent = word.example_2_en || "";
+  elements.exampleTwoZh.textContent = word.example_2_zh || "";
+  elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
+  renderChapterTabs();
   renderWordList();
   saveProgress();
 }
 
+function renderChapterTabs() {
+  elements.chapterTabs.innerHTML = "";
+  state.chapters.forEach((chapter, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `chapter-tab${index === state.currentChapterIndex ? " active" : ""}`;
+    button.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapter.word_count || chapter.words.length})`;
+    button.addEventListener("click", () => {
+      stopQueue();
+      state.currentChapterIndex = index;
+      state.currentIndex = 0;
+      render();
+      buildQuestion();
+    });
+    elements.chapterTabs.appendChild(button);
+  });
+}
+
 function renderWordList() {
   elements.wordList.innerHTML = "";
-  state.data.words.forEach((word, index) => {
+  currentWords().forEach((word, index) => {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `word-item${index === state.currentIndex ? " active" : ""}`;
     button.innerHTML = `<strong>${index + 1}. ${escapeHtml(word.word)}</strong><small>${escapeHtml(word.chinese_meaning)}</small>`;
     button.addEventListener("click", () => {
+      stopQueue();
       state.currentIndex = index;
       render();
       playCurrent();
@@ -101,34 +161,128 @@ function renderWordList() {
 }
 
 function playCurrent() {
-  const word = state.data.words[state.currentIndex];
-  if (!word.audio) {
-    elements.answerFeedback.textContent = "這個單字沒有音訊檔。";
-    elements.answerFeedback.className = "feedback wrong";
+  const word = currentWord();
+  const queue = buildWordQueue(word);
+  if (queue.length === 0 && word.audio) {
+    playDirectAudio(word.audio, true);
     return;
   }
-  elements.audioPlayer.src = resolveAssetPath(word.audio);
-  applyPlaybackRate();
-  elements.audioPlayer.play().catch(() => {
-    elements.answerFeedback.textContent = "請先按一次開始播放。";
-    elements.answerFeedback.className = "feedback wrong";
-  });
+  playQueue(queue, false);
 }
 
 function playCombinedAudio() {
-  if (!state.data.combined_audio) {
+  const chapterQueue = buildChapterQueue();
+  if (chapterQueue.length > 0) {
+    playQueue(chapterQueue, true);
     return;
   }
-  elements.audioPlayer.src = resolveAssetPath(state.data.combined_audio);
-  applyPlaybackRate();
+  if (state.data.combined_audio) {
+    playDirectAudio(state.data.combined_audio, true);
+  }
+}
+
+function buildChapterQueue() {
+  return currentWords().flatMap((word) => buildWordQueue(word));
+}
+
+function buildWordQueue(word) {
+  const segments = word?.audio_segments || {};
+  const queue = [];
+  addSegment(queue, segments.word);
+  addSegment(queue, segments.meaning);
+  addExampleSegments(queue, segments.example_1_en, segments.example_1_zh);
+  addExampleSegments(queue, segments.example_2_en, segments.example_2_zh);
+  addSegment(queue, segments.word);
+  return queue;
+}
+
+function addExampleSegments(queue, englishSegment, chineseSegment) {
+  addSegment(queue, englishSegment);
+  addSegment(queue, chineseSegment);
+  for (let count = 1; count < state.exampleRepeatCount; count += 1) {
+    addSegment(queue, englishSegment, EXAMPLE_REPEAT_DELAY_MS);
+  }
+}
+
+function addSegment(queue, segment, delayMs = 0) {
+  if (!segment?.src) {
+    return;
+  }
+  queue.push({
+    src: segment.src,
+    language: segment.language || "en",
+    delayMs,
+  });
+}
+
+function playQueue(queue, isChapterPlayback) {
+  if (queue.length === 0) {
+    showPlaybackError("目前沒有可播放的音訊。");
+    return;
+  }
+  stopQueue();
+  state.playbackQueue = queue;
+  state.queueIndex = 0;
+  state.isChapterPlayback = isChapterPlayback;
+  playNextQueueSegment();
+}
+
+function playNextQueueSegment() {
+  const segment = state.playbackQueue[state.queueIndex];
+  if (!segment) {
+    finishQueue();
+    return;
+  }
+  state.queueIndex += 1;
+  const startSegment = () => {
+    elements.audioPlayer.src = resolveAssetPath(segment.src);
+    applyPlaybackRate(segment);
+    elements.audioPlayer.play().catch(() => {
+      showPlaybackError("瀏覽器無法播放這段音訊。");
+    });
+  };
+  if (segment.delayMs > 0) {
+    state.queueTimer = window.setTimeout(startSegment, segment.delayMs);
+  } else {
+    startSegment();
+  }
+}
+
+function finishQueue() {
+  if (state.isChapterPlayback) {
+    state.isChapterPlayback = false;
+    return;
+  }
+  if (state.repeatCurrent) {
+    playCurrent();
+    return;
+  }
+  nextWord(state.repeatAll);
+}
+
+function stopQueue() {
+  if (state.queueTimer) {
+    window.clearTimeout(state.queueTimer);
+    state.queueTimer = null;
+  }
+  state.playbackQueue = [];
+  state.queueIndex = 0;
+  state.isChapterPlayback = false;
+  elements.audioPlayer.pause();
+}
+
+function playDirectAudio(src, isEnglish) {
+  stopQueue();
+  elements.audioPlayer.src = resolveAssetPath(src);
+  applyPlaybackRate({ language: isEnglish ? "en" : "zh" });
   elements.audioPlayer.play().catch(() => {
-    elements.answerFeedback.textContent = "請先按一次播放按鈕。";
-    elements.answerFeedback.className = "feedback wrong";
+    showPlaybackError("瀏覽器無法播放音訊。");
   });
 }
 
 function nextWord(autoplay = false) {
-  const lastIndex = state.data.words.length - 1;
+  const words = currentWords();
+  const lastIndex = words.length - 1;
   if (state.currentIndex >= lastIndex) {
     if (!state.repeatAll) {
       return;
@@ -144,7 +298,7 @@ function nextWord(autoplay = false) {
 }
 
 function previousWord() {
-  const lastIndex = state.data.words.length - 1;
+  const lastIndex = currentWords().length - 1;
   state.currentIndex = state.currentIndex === 0 ? lastIndex : state.currentIndex - 1;
   render();
 }
@@ -164,13 +318,16 @@ function resolveAssetPath(path) {
 }
 
 function buildQuestion() {
-  const words = state.data.words;
+  const words = currentWords();
+  if (words.length === 0) {
+    return;
+  }
   const word = words[Math.floor(Math.random() * words.length)];
   const askEnglish = Math.random() >= 0.5;
   const correctAnswer = askEnglish ? word.chinese_meaning : word.word;
   const options = shuffle([
     correctAnswer,
-    ...shuffle(words.filter((item) => item.id !== word.id))
+    ...shuffle(words.filter((item) => item.id !== word.id || item.word !== word.word))
       .slice(0, 3)
       .map((item) => (askEnglish ? item.chinese_meaning : item.word)),
   ]);
@@ -202,7 +359,7 @@ function answerQuestion(answer) {
     elements.answerFeedback.textContent = "答對";
     elements.answerFeedback.className = "feedback correct";
   } else {
-    elements.answerFeedback.textContent = `答案：${current.correctAnswer}`;
+    elements.answerFeedback.textContent = `答錯，答案是 ${current.correctAnswer}`;
     elements.answerFeedback.className = "feedback wrong";
   }
   updatePracticeScore();
@@ -213,10 +370,22 @@ function updatePracticeScore() {
   elements.practiceScore.textContent = `${state.practice.correct} / ${state.practice.attempts}`;
 }
 
-function applyPlaybackRate() {
-  elements.audioPlayer.playbackRate = state.playbackRate;
+function applyPlaybackRate(segment = currentQueueSegment()) {
+  const rate = segment.language === "en" ? state.playbackRate : 1;
+  elements.audioPlayer.playbackRate = rate;
   elements.playbackRate.value = String(state.playbackRate);
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
+  elements.exampleRepeatCount.value = String(state.exampleRepeatCount);
+  elements.exampleRepeatCountValue.textContent = String(state.exampleRepeatCount);
+}
+
+function currentQueueSegment() {
+  return state.playbackQueue[Math.max(0, state.queueIndex - 1)] || { language: "en" };
+}
+
+function showPlaybackError(message) {
+  elements.answerFeedback.textContent = message;
+  elements.answerFeedback.className = "feedback wrong";
 }
 
 function saveProgress() {
@@ -227,8 +396,10 @@ function saveProgress() {
   localStorage.setItem(
     key,
     JSON.stringify({
+      currentChapterIndex: state.currentChapterIndex,
       currentIndex: state.currentIndex,
       playbackRate: state.playbackRate,
+      exampleRepeatCount: state.exampleRepeatCount,
       practice: state.practice,
     }),
   );
@@ -242,13 +413,19 @@ function restoreProgress() {
   }
   try {
     const saved = JSON.parse(raw);
-    state.currentIndex = Math.min(saved.currentIndex || 0, state.data.words.length - 1);
+    state.currentChapterIndex = Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
+    state.currentIndex = Math.min(saved.currentIndex || 0, currentWords().length - 1);
     state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
+    state.exampleRepeatCount = clampRepeatCount(saved.exampleRepeatCount || DEFAULT_EXAMPLE_REPEAT_COUNT);
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
     localStorage.removeItem(key);
   }
+}
+
+function clampRepeatCount(value) {
+  return Math.min(5, Math.max(1, Number(value) || DEFAULT_EXAMPLE_REPEAT_COUNT));
 }
 
 function shuffle(items) {
@@ -265,9 +442,21 @@ function escapeHtml(value) {
 }
 
 elements.playButton.addEventListener("click", playCurrent);
-elements.pauseButton.addEventListener("click", () => elements.audioPlayer.pause());
-elements.nextButton.addEventListener("click", () => nextWord(false));
-elements.previousButton.addEventListener("click", previousWord);
+elements.pauseButton.addEventListener("click", () => {
+  if (state.queueTimer) {
+    window.clearTimeout(state.queueTimer);
+    state.queueTimer = null;
+  }
+  elements.audioPlayer.pause();
+});
+elements.nextButton.addEventListener("click", () => {
+  stopQueue();
+  nextWord(false);
+});
+elements.previousButton.addEventListener("click", () => {
+  stopQueue();
+  previousWord();
+});
 elements.combinedAudioButton.addEventListener("click", playCombinedAudio);
 elements.repeatAllToggle.addEventListener("change", (event) => {
   state.repeatAll = event.target.checked;
@@ -280,25 +469,25 @@ elements.playbackRate.addEventListener("input", (event) => {
   applyPlaybackRate();
   saveProgress();
 });
+elements.exampleRepeatCount.addEventListener("input", (event) => {
+  state.exampleRepeatCount = clampRepeatCount(event.target.value);
+  applyPlaybackRate();
+  saveProgress();
+});
 elements.toggleMeaningButton.addEventListener("click", () => {
   state.hideMeaning = !state.hideMeaning;
   elements.toggleMeaningButton.textContent = state.hideMeaning ? "顯示中文" : "隱藏中文";
   render();
 });
 elements.nextQuestionButton.addEventListener("click", buildQuestion);
-elements.audioPlayer.addEventListener("ended", () => {
-  if (state.repeatCurrent) {
-    playCurrent();
-    return;
-  }
-  nextWord(true);
-});
-elements.audioPlayer.addEventListener("loadedmetadata", applyPlaybackRate);
-elements.audioPlayer.addEventListener("play", applyPlaybackRate);
+elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
+elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
+elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
 
 loadDailyData()
   .then((data) => {
     state.data = data;
+    state.chapters = normalizeData(data);
     restoreProgress();
     applyPlaybackRate();
     render();
@@ -306,6 +495,6 @@ loadDailyData()
     updatePracticeScore();
   })
   .catch((error) => {
-    elements.wordText.textContent = "找不到每日單字資料";
+    elements.wordText.textContent = "無法載入單字資料";
     elements.meaningText.textContent = error.message;
   });

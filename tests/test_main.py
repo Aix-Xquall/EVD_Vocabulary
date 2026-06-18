@@ -1,4 +1,5 @@
 import csv
+import json
 import tempfile
 import unittest
 from datetime import date
@@ -38,8 +39,34 @@ class MainWorkflowTests(unittest.TestCase):
             self.assertTrue((output_dir / "data" / "2026-06-17_daily_vocabulary.json").exists())
             self.assertTrue((output_dir / "data" / "latest.json").exists())
 
+    def test_daily_generation_publishes_all_csv_files_as_chapters(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            output_dir = workspace / "output"
+            _write_vocabulary(workspace / "chapter-a.csv", word="impedance")
+            _write_vocabulary(workspace / "chapter-b.csv", word="coupling")
+            settings = Settings(
+                vocabulary_dir=workspace,
+                output_dir=output_dir,
+                daily_word_count=1,
+                generate_audio=False,
+            )
 
-def _write_vocabulary(path: Path) -> None:
+            result = run_daily_generation(
+                settings=settings,
+                target_date=date(2026, 6, 17),
+                update_review=False,
+                notify_line=False,
+            )
+
+            payload = json.loads((output_dir / "data" / "latest.json").read_text(encoding="utf-8"))
+            self.assertEqual(result["word_count"], 2)
+            self.assertEqual(payload["mode"], "chapters")
+            self.assertEqual([chapter["title"] for chapter in payload["chapters"]], ["chapter-a", "chapter-b"])
+            self.assertEqual([chapter["word_count"] for chapter in payload["chapters"]], [1, 1])
+
+
+def _write_vocabulary(path: Path, word: str = "impedance") -> None:
     fieldnames = [
         "id",
         "word",
@@ -56,7 +83,7 @@ def _write_vocabulary(path: Path) -> None:
     ]
     row = {
         "id": "1",
-        "word": "impedance",
+        "word": word,
         "pronunciation": "/im-PEE-dance/",
         "chinese_meaning": "阻抗",
         "example_1_en": "The impedance must be controlled.",

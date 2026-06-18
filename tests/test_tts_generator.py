@@ -5,7 +5,15 @@ import tempfile
 from xml.etree import ElementTree
 
 from config import Settings
-from tts_generator import _combined_ssml, _combine_audio_files, _entry_ssml, expected_audio_paths
+from tts_generator import (
+    _combined_ssml,
+    _combine_audio_files,
+    _entry_ssml,
+    _segment_ssml,
+    _should_synthesize_segment,
+    expected_audio_paths,
+    expected_segment_audio_paths,
+)
 
 
 class TtsGeneratorTests(unittest.TestCase):
@@ -31,6 +39,38 @@ class TtsGeneratorTests(unittest.TestCase):
 
         self.assertEqual(per_word["1"], "audio/2026-06-17/001_impedance.mp3")
         self.assertEqual(combined, "audio/2026-06-17_daily_vocabulary.mp3")
+
+    def test_expected_segment_audio_paths_are_content_addressed_and_grouped_by_language(self):
+        first = {"id": "1", "word": "impedance", "chinese_meaning": "meaning"}
+        second = {"id": "2", "word": "impedance", "chinese_meaning": "meaning"}
+
+        paths = expected_segment_audio_paths([first, second], Settings(generate_audio=False))
+
+        self.assertEqual(paths["1"]["word"], paths["2"]["word"])
+        self.assertEqual(paths["1"]["word"]["language"], "en")
+        self.assertEqual(paths["1"]["meaning"]["language"], "zh")
+        self.assertTrue(paths["1"]["word"]["src"].startswith("audio/segments/en/"))
+        self.assertTrue(paths["1"]["meaning"]["src"].startswith("audio/segments/zh/"))
+        self.assertTrue(paths["1"]["word"]["src"].endswith(".mp3"))
+
+    def test_existing_non_empty_segment_is_not_synthesized_again(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            segment = Path(temp_dir) / "segment.mp3"
+            segment.write_bytes(b"already-generated")
+
+            self.assertFalse(_should_synthesize_segment(segment))
+            self.assertTrue(_should_synthesize_segment(Path(temp_dir) / "missing.mp3"))
+
+    def test_english_segment_ssml_uses_configured_rate_but_chinese_segment_keeps_normal_rate(self):
+        settings = Settings(generate_audio=False, speech_rate="-20%")
+
+        english_ssml = _segment_ssml("English example.", "en", settings)
+        chinese_ssml = _segment_ssml("中文翻譯", "zh", settings)
+
+        self.assertIn('voice name="en-US-JennyNeural"', english_ssml)
+        self.assertIn('rate="-20%"', english_ssml)
+        self.assertIn('voice name="zh-TW-HsiaoChenNeural"', chinese_ssml)
+        self.assertIn('rate="0%"', chinese_ssml)
 
     def test_entry_ssml_skips_pronunciation_but_keeps_meanings_and_examples(self):
         entry = {

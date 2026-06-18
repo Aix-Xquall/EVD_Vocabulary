@@ -1,7 +1,12 @@
 import unittest
 from datetime import date
 
-from script_builder import audio_key_for_entry, build_daily_payload, build_markdown
+from script_builder import (
+    audio_key_for_entry,
+    build_chapter_payload,
+    build_daily_payload,
+    build_markdown,
+)
 
 
 def sample_entry():
@@ -65,6 +70,35 @@ class ScriptBuilderTests(unittest.TestCase):
 
         self.assertEqual(payload["words"][0]["audio"], "audio/2026-06-17/001_impedance.mp3")
         self.assertEqual(payload["words"][1]["audio"], "audio/2026-06-17/002_coupling.mp3")
+
+    def test_build_chapter_payload_groups_words_by_source_csv(self):
+        first = sample_entry()
+        first["_source_file"] = r"C:\workspace\chapter-a.csv"
+        first["_row_number"] = 1
+        second = sample_entry()
+        second["_source_file"] = r"C:\workspace\chapter-b.csv"
+        second["_row_number"] = 1
+        second["word"] = "coupling"
+
+        payload = build_chapter_payload(
+            [first, second],
+            date(2026, 6, 17),
+            segment_audio={
+                audio_key_for_entry(first): {
+                    "word": {"src": "audio/segments/en/word.mp3", "language": "en"},
+                    "meaning": {"src": "audio/segments/zh/meaning.mp3", "language": "zh"},
+                },
+                audio_key_for_entry(second): {
+                    "word": {"src": "audio/segments/en/coupling.mp3", "language": "en"},
+                },
+            },
+        )
+
+        self.assertEqual(payload["mode"], "chapters")
+        self.assertEqual([chapter["title"] for chapter in payload["chapters"]], ["chapter-a", "chapter-b"])
+        self.assertEqual(payload["chapters"][0]["word_count"], 1)
+        self.assertEqual(payload["chapters"][0]["words"][0]["audio_segments"]["meaning"]["language"], "zh")
+        self.assertEqual(payload["chapters"][1]["words"][0]["audio_segments"]["word"]["src"], "audio/segments/en/coupling.mp3")
 
 
 if __name__ == "__main__":
