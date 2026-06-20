@@ -2,6 +2,20 @@ name: Daily Vocabulary
 
 on:
   workflow_dispatch:
+    inputs:
+      run_audio_test:
+        description: "Generate the chapter 2 first-10 0.8x Azure audio test."
+        required: false
+        default: false
+        type: boolean
+      audio_test_chapter:
+        description: "CSV chapter title for the audio test."
+        required: false
+        default: "EMC航電詞彙整合2"
+      audio_test_limit:
+        description: "Number of words to include in the audio test."
+        required: false
+        default: "10"
   push:
     branches:
       - main
@@ -54,6 +68,19 @@ jobs:
           EVD_SITE_URL: https://aix-xquall.github.io/EVD_Vocabulary/
           EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "200"
         run: python main.py
+
+      - name: Generate 0.8x audio test sample
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_audio_test }}
+        env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+        run: >
+          python audio_sample_generator.py
+          --chapter "${{ inputs.audio_test_chapter }}"
+          --limit "${{ inputs.audio_test_limit }}"
+          --speech-rate "-20%"
+          --repeat-count 3
+          --output-name "emc2_first10_0_8"
 
       - name: Commit generated files
         run: |
