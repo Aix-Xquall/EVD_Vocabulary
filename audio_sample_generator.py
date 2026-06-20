@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import hashlib
 import html
 import json
@@ -11,12 +11,13 @@ from vocabulary_loader import load_vocabulary
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate a small Azure TTS audio sample for listening tests.")
-    parser.add_argument("--chapter", help="CSV chapter stem, for example EMC航電詞彙整合2.")
+    parser.add_argument("--chapter", help="CSV chapter stem, for example EMC?芷閰??游?2.")
     parser.add_argument("--chapter-index", type=int, help="One-based index of the CSV chapter after filename sorting.")
     parser.add_argument("--limit", type=int, default=10, help="Number of words from the selected chapter.")
     parser.add_argument("--speech-rate", default="-20%", help="Azure prosody rate for English, e.g. -20% for about 0.8x.")
     parser.add_argument("--repeat-count", type=int, default=3, help="English segment repeat count in the combined sample.")
     parser.add_argument("--output-name", default="audio_sample", help="Folder name under output/audio_tests.")
+    parser.add_argument("--title", default="", help="Title shown on the generated sample page.")
     return parser.parse_args()
 
 
@@ -31,7 +32,8 @@ def main() -> None:
     else:
         raise ValueError("Either --chapter or --chapter-index is required.")
     output_dir = settings.output_dir / "audio_tests" / args.output_name
-    result = generate_audio_sample(entries, output_dir, settings, args.repeat_count)
+    title = args.title or f"{Path(entries[0].get('_source_file', '')).stem} first {len(entries)} words 0.8x audio test"
+    result = generate_audio_sample(entries, output_dir, settings, args.repeat_count, args.output_name, title)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
@@ -61,7 +63,14 @@ def estimate_synthesized_characters(entries: list[dict]) -> int:
     return sum(len(_speech_text_for_audio(text, language)) for _, text, language in unique_segments)
 
 
-def generate_audio_sample(entries: list[dict], output_dir: Path, settings: Settings, repeat_count: int) -> dict:
+def generate_audio_sample(
+    entries: list[dict],
+    output_dir: Path,
+    settings: Settings,
+    repeat_count: int,
+    output_name: str = "audio_sample",
+    title: str = "EVD Audio Test",
+) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     segments_dir = output_dir / "segments"
     segments_dir.mkdir(parents=True, exist_ok=True)
@@ -79,9 +88,9 @@ def generate_audio_sample(entries: list[dict], output_dir: Path, settings: Setti
 
     sequence = _playback_sequence(entries, repeat_count)
     combined_files = [segment_files[item] for item in sequence if item in segment_files]
-    combined_path = output_dir / "emc2_first10_0_8.mp3"
+    combined_path = output_dir / f"{output_name}.mp3"
     _combine_audio_files(combined_files, combined_path)
-    _write_sample_page(output_dir, combined_path.name, entries, settings, repeat_count, synthesized_characters)
+    _write_sample_page(output_dir, combined_path.name, entries, settings, repeat_count, synthesized_characters, title)
 
     return {
         "words": len(entries),
@@ -160,6 +169,7 @@ def _write_sample_page(
     settings: Settings,
     repeat_count: int,
     synthesized_characters: int,
+    title: str,
 ) -> None:
     items = "\n".join(
         f"<li><strong>{html.escape(entry.get('word', ''))}</strong> - {html.escape(entry.get('chinese_meaning', ''))}</li>"
@@ -173,7 +183,7 @@ def _write_sample_page(
     <title>EVD Audio Test</title>
   </head>
   <body>
-    <h1>EMC航電詞彙整合2 前 10 個 0.8 語速測試</h1>
+    <h1>{html.escape(title)}</h1>
     <p>English Azure prosody rate: {html.escape(settings.speech_rate)}. English repeat count: {repeat_count}. Estimated synthesized characters: {synthesized_characters}.</p>
     <audio controls preload=\"metadata\" src=\"{html.escape(audio_filename)}\"></audio>
     <ol>{items}</ol>

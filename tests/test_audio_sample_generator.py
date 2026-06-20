@@ -1,11 +1,16 @@
 import unittest
+from pathlib import Path
+import tempfile
+from unittest.mock import patch
 
 from audio_sample_generator import (
     _playback_sequence,
     estimate_synthesized_characters,
+    generate_audio_sample,
     select_chapter_entries,
     select_chapter_entries_by_index,
 )
+from config import Settings
 
 
 class AudioSampleGeneratorTests(unittest.TestCase):
@@ -78,6 +83,32 @@ class AudioSampleGeneratorTests(unittest.TestCase):
                 ("example_1_en", "Example one.", "en"),
             ],
         )
+
+    def test_generate_audio_sample_uses_output_name_for_mp3_and_page_title(self):
+        entry = {
+            "word": "impedance",
+            "chinese_meaning": "阻抗",
+            "example_1_en": "",
+            "example_1_zh": "",
+            "example_2_en": "",
+            "example_2_zh": "",
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "emc1_first3_0_8"
+
+            with patch("audio_sample_generator._synthesize_ssml", side_effect=lambda settings, ssml, output_file: output_file.write_bytes(b"mp3")):
+                result = generate_audio_sample(
+                    [entry],
+                    output_dir,
+                    Settings(generate_audio=False, speech_rate="-20%"),
+                    repeat_count=1,
+                    output_name="emc1_first3_0_8",
+                    title="EMC航電詞彙整合1 前 3 個 0.8 語速測試",
+                )
+
+            self.assertTrue(result["combined_audio"].endswith("emc1_first3_0_8.mp3"))
+            html = (output_dir / "index.html").read_text(encoding="utf-8")
+            self.assertIn("EMC航電詞彙整合1 前 3 個 0.8 語速測試", html)
 
 
 if __name__ == "__main__":

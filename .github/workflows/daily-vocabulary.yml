@@ -20,6 +20,14 @@ on:
         description: "Number of words to include in the audio test."
         required: false
         default: "10"
+      audio_test_output_name:
+        description: "Folder and MP3 base name under output/audio_tests."
+        required: false
+        default: "emc2_first10_0_8"
+      audio_test_title:
+        description: "Title shown on the generated audio test page."
+        required: false
+        default: "EMC航電詞彙整合2 前 10 個 0.8 語速測試"
   push:
     branches:
       - main
@@ -84,7 +92,8 @@ jobs:
           --limit "${{ inputs.audio_test_limit }}"
           --speech-rate=-20%
           --repeat-count 3
-          --output-name "emc2_first10_0_8"
+          --output-name "${{ inputs.audio_test_output_name }}"
+          --title "${{ inputs.audio_test_title }}"
 
       - name: Commit generated files
         run: |
