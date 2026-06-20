@@ -1,6 +1,11 @@
 import unittest
 
-from audio_sample_generator import _playback_sequence, estimate_synthesized_characters, select_chapter_entries
+from audio_sample_generator import (
+    _playback_sequence,
+    estimate_synthesized_characters,
+    select_chapter_entries,
+    select_chapter_entries_by_index,
+)
 
 
 class AudioSampleGeneratorTests(unittest.TestCase):
@@ -12,6 +17,17 @@ class AudioSampleGeneratorTests(unittest.TestCase):
         ]
 
         selected = select_chapter_entries(entries, "chapter-b", 1)
+
+        self.assertEqual([entry["word"] for entry in selected], ["b"])
+
+    def test_select_chapter_entries_by_index_ignores_sample_chapter(self):
+        entries = [
+            {"word": "a", "_source_file": "vocabulary/chapter-a.csv"},
+            {"word": "b", "_source_file": "vocabulary/chapter-b.csv"},
+            {"word": "sample", "_source_file": "vocabulary/sample vocabulary.csv"},
+        ]
+
+        selected = select_chapter_entries_by_index(entries, 2, 10)
 
         self.assertEqual([entry["word"] for entry in selected], ["b"])
 

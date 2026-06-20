@@ -12,6 +12,10 @@ on:
         description: "CSV chapter title for the audio test."
         required: false
         default: "EMC航電詞彙整合2"
+      audio_test_chapter_index:
+        description: "One-based formal chapter index for the audio test."
+        required: false
+        default: "2"
       audio_test_limit:
         description: "Number of words to include in the audio test."
         required: false
@@ -76,9 +80,9 @@ jobs:
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
         run: >
           python audio_sample_generator.py
-          --chapter "${{ inputs.audio_test_chapter }}"
+          --chapter-index "${{ inputs.audio_test_chapter_index }}"
           --limit "${{ inputs.audio_test_limit }}"
-          --speech-rate "-20%"
+          --speech-rate=-20%
           --repeat-count 3
           --output-name "emc2_first10_0_8"
 

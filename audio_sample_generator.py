@@ -11,7 +11,8 @@ from vocabulary_loader import load_vocabulary
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate a small Azure TTS audio sample for listening tests.")
-    parser.add_argument("--chapter", required=True, help="CSV chapter stem, for example EMC航電詞彙整合2.")
+    parser.add_argument("--chapter", help="CSV chapter stem, for example EMC航電詞彙整合2.")
+    parser.add_argument("--chapter-index", type=int, help="One-based index of the CSV chapter after filename sorting.")
     parser.add_argument("--limit", type=int, default=10, help="Number of words from the selected chapter.")
     parser.add_argument("--speech-rate", default="-20%", help="Azure prosody rate for English, e.g. -20% for about 0.8x.")
     parser.add_argument("--repeat-count", type=int, default=3, help="English segment repeat count in the combined sample.")
@@ -22,7 +23,13 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     settings = _replace_setting(DEFAULT_SETTINGS, speech_rate=args.speech_rate)
-    entries = select_chapter_entries(load_vocabulary(settings.vocabulary_dir), args.chapter, args.limit)
+    all_entries = load_vocabulary(settings.vocabulary_dir)
+    if args.chapter_index:
+        entries = select_chapter_entries_by_index(all_entries, args.chapter_index, args.limit)
+    elif args.chapter:
+        entries = select_chapter_entries(all_entries, args.chapter, args.limit)
+    else:
+        raise ValueError("Either --chapter or --chapter-index is required.")
     output_dir = settings.output_dir / "audio_tests" / args.output_name
     result = generate_audio_sample(entries, output_dir, settings, args.repeat_count)
     print(json.dumps(result, ensure_ascii=False, indent=2))
@@ -36,6 +43,17 @@ def select_chapter_entries(entries: list[dict], chapter: str, limit: int) -> lis
     if not selected:
         raise ValueError(f"No entries found for chapter: {chapter}")
     return selected[:limit]
+
+
+def select_chapter_entries_by_index(entries: list[dict], chapter_index: int, limit: int) -> list[dict]:
+    chapter_names = []
+    for entry in entries:
+        chapter_name = Path(entry.get("_source_file", "")).stem
+        if chapter_name and chapter_name.lower() != "sample vocabulary" and chapter_name not in chapter_names:
+            chapter_names.append(chapter_name)
+    if chapter_index < 1 or chapter_index > len(chapter_names):
+        raise ValueError(f"Chapter index {chapter_index} is outside 1..{len(chapter_names)}.")
+    return select_chapter_entries(entries, chapter_names[chapter_index - 1], limit)
 
 
 def estimate_synthesized_characters(entries: list[dict]) -> int:
