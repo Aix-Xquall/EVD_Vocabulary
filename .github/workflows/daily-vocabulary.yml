@@ -8,7 +8,7 @@ on:
     paths:
       - ".github/workflows/daily-vocabulary.yml"
       - "*.py"
-      - "*.csv"
+      - "vocabulary/**/*.csv"
       - "requirements.txt"
       - "tests/**"
       - "web/**"

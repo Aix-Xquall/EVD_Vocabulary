@@ -2,6 +2,8 @@ import csv
 from pathlib import Path
 from typing import Dict, List
 
+from abbreviation_expander import expand_abbreviations_for_display
+
 
 REQUIRED_COLUMNS = [
     "id",
@@ -33,12 +35,20 @@ def load_vocabulary(vocabulary_dir: Path | str) -> List[VocabularyEntry]:
         raise FileNotFoundError(f"No CSV files found in: {directory}")
 
     entries: List[VocabularyEntry] = []
+    seen_words = set()
     for csv_file in csv_files:
         with csv_file.open("r", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)
             _validate_columns(csv_file, reader.fieldnames or [])
             for row_number, row in enumerate(reader, start=1):
-                normalized = {column: (row.get(column) or "").strip() for column in REQUIRED_COLUMNS}
+                normalized = {
+                    column: expand_abbreviations_for_display(row.get(column) or "")
+                    for column in REQUIRED_COLUMNS
+                }
+                word_key = normalized["word"].casefold()
+                if word_key in seen_words:
+                    continue
+                seen_words.add(word_key)
                 normalized["_source_file"] = str(csv_file)
                 normalized["_row_number"] = row_number
                 entries.append(normalized)

@@ -75,6 +75,13 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('.replaceAll("地", "第")', app_js)
         self.assertIn("SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language))", app_js)
 
+    def test_browser_speech_fallback_expands_known_english_abbreviations(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("expandKnownAbbreviationsForSpeech", app_js)
+        self.assertIn("Electromagnetic Compatibility", app_js)
+        self.assertIn("Military Standard 461", app_js)
+
 
 if __name__ == "__main__":
     unittest.main()

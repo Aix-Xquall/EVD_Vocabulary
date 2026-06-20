@@ -34,6 +34,27 @@ class VocabularyLoaderTests(unittest.TestCase):
             self.assertTrue(all(entry["_source_file"].endswith(".csv") for entry in entries))
             self.assertTrue(all(entry["_row_number"] == 1 for entry in entries))
 
+    def test_load_vocabulary_expands_known_abbreviations_and_skips_duplicate_words(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "a.csv",
+                "1,EMC,/emc/,meaning,EMC must satisfy MIL-STD-461.,EMC 測試,EPDS supports E3.,EPDS 與 E3,EMC / E3,4,0,\n",
+            )
+            write_csv(
+                tmp_path / "b.csv",
+                "2,Electromagnetic Compatibility (EMC),/emc/,duplicate,duplicate,duplicate,duplicate,duplicate,EMC,4,0,\n",
+            )
+
+            entries = load_vocabulary(tmp_path)
+
+            self.assertEqual(len(entries), 1)
+            self.assertEqual(entries[0]["word"], "Electromagnetic Compatibility (EMC)")
+            self.assertIn("Military Standard 461 (MIL-STD-461)", entries[0]["example_1_en"])
+            self.assertIn("Electronic Power Distribution System (EPDS)", entries[0]["example_2_en"])
+            self.assertIn("Electromagnetic Environmental Effects (E3)", entries[0]["example_2_en"])
+            self.assertEqual(entries[0]["category"], "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3)")
+
     def test_load_vocabulary_rejects_missing_required_columns(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             tmp_path = Path(temp_dir)

@@ -1,5 +1,18 @@
 # EVD Daily Vocabulary
 
+## CSV vocabulary folder
+
+Put vocabulary CSV files in `vocabulary/`. GitHub Actions watches this folder, so future CSV additions or edits there will be included in the daily site update.
+
+The loader expands these engineering abbreviations for display:
+
+- `MIL-STD-461` -> `Military Standard 461 (MIL-STD-461)`
+- `EMC` -> `Electromagnetic Compatibility (EMC)`
+- `E3` -> `Electromagnetic Environmental Effects (E3)`
+- `EPDS` -> `Electronic Power Distribution System (EPDS)`
+
+For audio, the same terms are spoken as the full English phrase. Duplicate entries are skipped by the normalized `word` field, keeping the first occurrence found by filename order.
+
 ## 目前模式
 
 此專案目前採用「章節化 + 分段音訊 + 前端播放佇列」：

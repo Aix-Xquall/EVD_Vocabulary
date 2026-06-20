@@ -291,7 +291,15 @@ function speechTextForAudio(text, language) {
   if (language === "zh") {
     return value.replaceAll("地", "第");
   }
-  return value;
+  return expandKnownAbbreviationsForSpeech(value);
+}
+
+function expandKnownAbbreviationsForSpeech(text) {
+  return text
+    .replaceAll(/\bMilitary Standard 461 \(MIL-STD-461\)|\bMIL-STD-461\b/g, "Military Standard 461")
+    .replaceAll(/\bElectromagnetic Compatibility \(EMC\)|\bEMC\b/g, "Electromagnetic Compatibility")
+    .replaceAll(/\bElectromagnetic Environmental Effects \(E3\)|\bE3\b/g, "Electromagnetic Environmental Effects")
+    .replaceAll(/\bElectronic Power Distribution System \(EPDS\)|\bEPDS\b/g, "Electronic Power Distribution System");
 }
 
 function finishQueue() {

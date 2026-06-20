@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path, PureWindowsPath
 from typing import Dict, List, Tuple
 
+from abbreviation_expander import expand_abbreviations_for_speech
 from config import Settings
 from script_builder import audio_key_for_entry
 
@@ -208,7 +209,7 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 def _segment_ssml(text: str, language: str, settings: Settings) -> str:
     if language == "zh":
-        return _wrap_ssml(_voice_segment(_speech_text_for_audio(text, language), settings.chinese_voice, "0%", language="zh-TW"))
+        return _wrap_ssml(_voice_segment(text, settings.chinese_voice, "0%", language="zh-TW"))
     return _wrap_ssml(_voice_segment(text, settings.english_voice, settings.speech_rate))
 
 
@@ -291,7 +292,8 @@ def _voice_segment(
 ) -> str:
     escaped_rate = html.escape(rate)
     escaped_voice = html.escape(voice)
-    escaped_text = _escape(text)
+    audio_language = "zh" if language else "en"
+    escaped_text = _escape(_speech_text_for_audio(text, audio_language))
     if language:
         content = (
             f'<lang xml:lang="{html.escape(language)}">'
@@ -336,7 +338,7 @@ def _speech_text_for_audio(text: str, language: str) -> str:
     value = str(text or "").strip()
     if language == "zh":
         return value.replace("地", "第")
-    return value
+    return expand_abbreviations_for_speech(value)
 
 
 def _is_sample_vocabulary_entry(entry: VocabularyEntry) -> bool:

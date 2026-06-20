@@ -29,7 +29,7 @@ def _text_env(name: str, default: str = "") -> str:
 
 @dataclass(frozen=True)
 class Settings:
-    vocabulary_dir: Path = Path(_text_env("EVD_VOCABULARY_DIR", str(BASE_DIR)))
+    vocabulary_dir: Path = Path(_text_env("EVD_VOCABULARY_DIR", str(BASE_DIR / "vocabulary")))
     output_dir: Path = Path(_text_env("EVD_OUTPUT_DIR", str(BASE_DIR / "output")))
     daily_word_count: int = _int_env("EVD_DAILY_WORD_COUNT", 20)
     speech_rate: str = _text_env("EVD_SPEECH_RATE", "0%")

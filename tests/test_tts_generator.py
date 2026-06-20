@@ -134,6 +134,17 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertNotIn("地面接地點", ssml)
         self.assertEqual(display_path, spoken_path)
 
+    def test_english_audio_expands_known_engineering_abbreviations(self):
+        spoken = _speech_text_for_audio("EMC, E3, EPDS, and MIL-STD-461", "en")
+
+        self.assertEqual(
+            spoken,
+            "Electromagnetic Compatibility, "
+            "Electromagnetic Environmental Effects, "
+            "Electronic Power Distribution System, and "
+            "Military Standard 461",
+        )
+
     def test_entry_ssml_skips_pronunciation_but_keeps_meanings_and_examples(self):
         entry = {
             "word": "impedance",

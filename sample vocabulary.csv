@@ -1,3 +1,0 @@
-id,word,pronunciation,chinese_meaning,example_1_en,example_1_zh,example_2_en,example_2_zh,category,difficulty,review_count,last_review_date
-1,impedance,/ɪmˈpiːdəns/,阻抗,The impedance must be controlled in high-speed avionics wiring.,高速航電線路中的阻抗必須被控制。,Cable impedance affects signal integrity and EMC performance.,電纜阻抗會影響訊號完整性與 EMC 表現。,EMC / E3 Core Terms,4,1,2026-06-17
-2,coupling,/ˈkʌp.lɪŋ/,耦合,Capacitive coupling may introduce noise into the receiver input.,電容耦合可能把雜訊導入接收器輸入端。,Reducing cable coupling is important for aircraft EMC design.,降低電纜耦合對飛機 EMC 設計很重要。,EMC / Wiring,3,0,
