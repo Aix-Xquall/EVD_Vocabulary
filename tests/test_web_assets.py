@@ -82,6 +82,21 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("Electromagnetic Compatibility", app_js)
         self.assertIn("Military Standard 461", app_js)
 
+    def test_player_uses_wake_lock_and_media_session_for_mobile_playback(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("requestWakeLock", app_js)
+        self.assertIn('navigator.wakeLock.request("screen")', app_js)
+        self.assertIn("releaseWakeLock", app_js)
+        self.assertIn('document.addEventListener("visibilitychange"', app_js)
+        self.assertIn("setupMediaSession", app_js)
+        self.assertIn("navigator.mediaSession.metadata", app_js)
+        self.assertIn("new MediaMetadata", app_js)
+        self.assertIn('navigator.mediaSession.setActionHandler("play"', app_js)
+        self.assertIn('navigator.mediaSession.setActionHandler("pause"', app_js)
+        self.assertIn('navigator.mediaSession.setActionHandler("nexttrack"', app_js)
+        self.assertIn('navigator.mediaSession.setActionHandler("previoustrack"', app_js)
+
 
 if __name__ == "__main__":
     unittest.main()
