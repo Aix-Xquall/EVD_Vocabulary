@@ -7,6 +7,7 @@
       "id": "emc航電詞彙整合1",
       "title": "EMC航電詞彙整合1",
       "source_file": "EMC航電詞彙整合1.csv",
+      "chapter_audio": "audio/chapters/EMC_1_45602fefea996920.mp3",
       "word_count": 90,
       "words": [
         {
@@ -3705,6 +3706,7 @@
       "id": "emc航電詞彙整合2",
       "title": "EMC航電詞彙整合2",
       "source_file": "EMC航電詞彙整合2.csv",
+      "chapter_audio": "audio/chapters/EMC_2_0efb25de866a00c0.mp3",
       "word_count": 79,
       "words": [
         {
@@ -6952,6 +6954,7 @@
       "id": "sample-vocabulary",
       "title": "sample vocabulary",
       "source_file": "sample vocabulary.csv",
+      "chapter_audio": "",
       "word_count": 1,
       "words": [
         {
@@ -6976,6 +6979,7 @@
       "id": "複合材質航電環",
       "title": "複合材質航電環",
       "source_file": "複合材質航電環.csv",
+      "chapter_audio": "",
       "word_count": 35,
       "words": [
         {
