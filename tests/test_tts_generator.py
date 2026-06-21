@@ -4,6 +4,7 @@ from pathlib import Path
 import tempfile
 from xml.etree import ElementTree
 
+import tts_generator
 from config import Settings
 from tts_generator import (
     _available_segment_audio_paths,
@@ -15,6 +16,7 @@ from tts_generator import (
     _should_synthesize_segment,
     expected_audio_paths,
     expected_segment_audio_paths,
+    generate_segment_audio_files,
 )
 
 
@@ -102,6 +104,45 @@ class TtsGeneratorTests(unittest.TestCase):
                 settings,
             )
 
+            self.assertIn("word", available["1"])
+            self.assertNotIn("meaning", available["1"])
+
+    def test_quota_exceeded_keeps_available_segments_and_stops_generation(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            settings = Settings(
+                output_dir=output_dir,
+                generate_audio=True,
+                azure_speech_key="key",
+                azure_speech_region="eastasia",
+                max_audio_segments_per_run=10,
+            )
+            entry = {
+                "id": "1",
+                "word": "busbar",
+                "chinese_meaning": "busbar meaning",
+            }
+            calls = []
+            original_synthesize = tts_generator._synthesize_ssml
+
+            def fake_synthesize(_settings, _ssml, output_file):
+                calls.append(output_file)
+                if len(calls) == 1:
+                    output_file.write_bytes(b"audio")
+                    return
+                raise tts_generator.AzureSpeechQuotaExceeded(
+                    output_file,
+                    429,
+                    "Quota Exceeded",
+                )
+
+            try:
+                tts_generator._synthesize_ssml = fake_synthesize
+                available = generate_segment_audio_files([entry], settings)
+            finally:
+                tts_generator._synthesize_ssml = original_synthesize
+
+            self.assertEqual(len(calls), 2)
             self.assertIn("word", available["1"])
             self.assertNotIn("meaning", available["1"])
 

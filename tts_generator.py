@@ -25,6 +25,22 @@ SEGMENT_FIELDS = [
 ]
 
 
+class AzureSpeechSynthesisError(RuntimeError):
+    def __init__(self, output_file: Path, status_code: int | None, details: str) -> None:
+        self.output_file = output_file
+        self.status_code = status_code
+        self.details = details
+        status_text = f"status={status_code}; " if status_code is not None else ""
+        super().__init__(
+            f"Azure Speech synthesis failed for {output_file}; "
+            f"{status_text}details={details}"
+        )
+
+
+class AzureSpeechQuotaExceeded(AzureSpeechSynthesisError):
+    pass
+
+
 def expected_audio_paths(
     entries: List[VocabularyEntry],
     target_date: date,
@@ -136,7 +152,15 @@ def generate_segment_audio_files(
             f"{language} {role} {entry.get('word', '')}",
             flush=True,
         )
-        _synthesize_ssml(settings, ssml, output_file)
+        try:
+            _synthesize_ssml(settings, ssml, output_file)
+        except AzureSpeechQuotaExceeded as exc:
+            print(
+                "Azure Speech quota exhausted; stopping this run and publishing "
+                f"available audio only. Last error: {exc.details}",
+                flush=True,
+            )
+            break
     return _available_segment_audio_paths(segment_paths, settings)
 
 
@@ -188,10 +212,12 @@ def _synthesize_ssml(settings: Settings, ssml: str, output_file: Path) -> None:
             output_file.write_bytes(response.read())
     except urllib.error.HTTPError as exc:
         error_detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(
-            f"Azure Speech synthesis failed for {output_file}; "
-            f"status={exc.code}; details={error_detail}"
-        ) from exc
+        error_type = (
+            AzureSpeechQuotaExceeded
+            if exc.code == 429 or "Quota Exceeded" in error_detail
+            else AzureSpeechSynthesisError
+        )
+        raise error_type(output_file, exc.code, error_detail) from exc
     except urllib.error.URLError as exc:
         raise RuntimeError(f"Azure Speech request failed for {output_file}: {exc}") from exc
 
