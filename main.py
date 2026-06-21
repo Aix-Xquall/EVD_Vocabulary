@@ -7,7 +7,11 @@ from pathlib import Path
 from config import DEFAULT_SETTINGS, Settings
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
-from tts_generator import expected_segment_audio_paths, generate_segment_audio_files
+from tts_generator import (
+    expected_segment_audio_paths,
+    generate_chapter_audio_files,
+    generate_segment_audio_files,
+)
 from vocabulary_loader import load_vocabulary
 
 
@@ -50,9 +54,10 @@ def run_daily_generation(
         segment_audio = generate_segment_audio_files(entries, settings)
     else:
         segment_audio = expected_segment_audio_paths(entries, settings)
+    chapter_audio = generate_chapter_audio_files(entries, segment_audio, settings)
 
     markdown = build_markdown(entries, target_date)
-    payload = build_chapter_payload(entries, target_date, segment_audio)
+    payload = build_chapter_payload(entries, target_date, segment_audio, chapter_audio)
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)
     _copy_web_files(settings.output_dir)

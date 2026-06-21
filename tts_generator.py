@@ -23,6 +23,7 @@ SEGMENT_FIELDS = [
     ("example_2_en", "example_2_en", "en"),
     ("example_2_zh", "example_2_zh", "zh"),
 ]
+CHAPTER_AUDIO_ENGLISH_REPEAT_COUNT = 3
 
 
 class AzureSpeechSynthesisError(RuntimeError):
@@ -162,6 +163,83 @@ def generate_segment_audio_files(
             )
             break
     return _available_segment_audio_paths(segment_paths, settings)
+
+
+def generate_chapter_audio_files(
+    entries: List[VocabularyEntry],
+    segment_audio: Dict[str, Dict[str, dict]],
+    settings: Settings,
+) -> Dict[str, str]:
+    expected_segments = expected_segment_audio_paths(entries, settings)
+    entries_by_chapter: Dict[str, List[VocabularyEntry]] = {}
+    for entry in entries:
+        chapter_key = _chapter_key_for_entry(entry)
+        entries_by_chapter.setdefault(chapter_key, []).append(entry)
+
+    chapter_audio = {}
+    for chapter_key, chapter_entries in entries_by_chapter.items():
+        source_files = _chapter_segment_files(chapter_entries, expected_segments, segment_audio, settings)
+        if not source_files:
+            continue
+        relative_path = _chapter_audio_relative_path(chapter_key, source_files)
+        output_file = settings.output_dir / relative_path
+        if _should_synthesize_segment(output_file):
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            _combine_audio_files(source_files, output_file)
+        chapter_audio[chapter_key] = relative_path
+    return chapter_audio
+
+
+def _chapter_segment_files(
+    entries: List[VocabularyEntry],
+    expected_segments: Dict[str, Dict[str, dict]],
+    available_segments: Dict[str, Dict[str, dict]],
+    settings: Settings,
+) -> List[Path]:
+    source_files: List[Path] = []
+    for entry in entries:
+        entry_key = audio_key_for_entry(entry)
+        for role in _chapter_audio_roles(settings):
+            expected = expected_segments.get(entry_key, {}).get(role)
+            available = available_segments.get(entry_key, {}).get(role)
+            if not expected or not available or expected.get("src") != available.get("src"):
+                return []
+            source_file = settings.output_dir / available["src"]
+            if _should_synthesize_segment(source_file):
+                return []
+            source_files.append(source_file)
+    return source_files
+
+
+def _chapter_audio_roles(settings: Settings) -> List[str]:
+    roles = ["word"]
+    if settings.include_chinese_in_audio:
+        roles.append("meaning")
+    roles.extend(["word"] * (CHAPTER_AUDIO_ENGLISH_REPEAT_COUNT - 1))
+    for english_role, chinese_role in [
+        ("example_1_en", "example_1_zh"),
+        ("example_2_en", "example_2_zh"),
+    ]:
+        roles.append(english_role)
+        if settings.include_chinese_in_audio:
+            roles.append(chinese_role)
+        roles.extend([english_role] * (CHAPTER_AUDIO_ENGLISH_REPEAT_COUNT - 1))
+    return roles
+
+
+def _chapter_audio_relative_path(chapter_key: str, source_files: List[Path]) -> str:
+    source_key = "|".join(source.as_posix() for source in source_files)
+    digest = hashlib.sha256(source_key.encode("utf-8")).hexdigest()[:16]
+    return f"audio/chapters/{_safe_filename(_chapter_title_for_key(chapter_key))}_{digest}.mp3"
+
+
+def _chapter_key_for_entry(entry: VocabularyEntry) -> str:
+    return entry.get("_source_file", "") or "vocabulary.csv"
+
+
+def _chapter_title_for_key(chapter_key: str) -> str:
+    source_path = PureWindowsPath(chapter_key) if "\\" in chapter_key else Path(chapter_key)
+    return source_path.stem or "vocabulary"
 
 
 def _should_synthesize_segment(output_file: Path) -> bool:
