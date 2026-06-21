@@ -17,6 +17,9 @@ const state = {
   queueIndex: 0,
   isChapterPlayback: false,
   queueTimer: null,
+  wakeLock: null,
+  wantsWakeLock: false,
+  mediaSessionReady: false,
   practice: {
     current: null,
     attempts: 0,
@@ -244,6 +247,8 @@ function playQueue(queue, isChapterPlayback) {
   state.playbackQueue = queue;
   state.queueIndex = 0;
   state.isChapterPlayback = isChapterPlayback;
+  requestWakeLock();
+  updateMediaSession();
   playNextQueueSegment();
 }
 
@@ -254,6 +259,7 @@ function playNextQueueSegment() {
     return;
   }
   state.queueIndex += 1;
+  updateMediaSession();
   const startSegment = () => {
     if (!segment.src && segment.text) {
       speakTextSegment(segment);
@@ -305,6 +311,8 @@ function expandKnownAbbreviationsForSpeech(text) {
 function finishQueue() {
   if (state.isChapterPlayback) {
     state.isChapterPlayback = false;
+    releaseWakeLock();
+    updateMediaSessionPlaybackState("none");
     return;
   }
   if (state.repeatCurrent) {
@@ -322,6 +330,9 @@ function stopQueue() {
   state.playbackQueue = [];
   state.queueIndex = 0;
   state.isChapterPlayback = false;
+  state.wantsWakeLock = false;
+  releaseWakeLock();
+  updateMediaSessionPlaybackState("none");
   elements.audioPlayer.pause();
   if (window.speechSynthesis) {
     window.speechSynthesis.cancel();
@@ -332,9 +343,93 @@ function playDirectAudio(src, isEnglish) {
   stopQueue();
   elements.audioPlayer.src = resolveAssetPath(src);
   applyPlaybackRate({ language: isEnglish ? "en" : "zh" });
+  requestWakeLock();
+  updateMediaSession();
   elements.audioPlayer.play().catch(() => {
     showPlaybackError("瀏覽器無法播放音訊。");
   });
+}
+
+async function requestWakeLock() {
+  state.wantsWakeLock = true;
+  if (!("wakeLock" in navigator) || state.wakeLock) {
+    return;
+  }
+  try {
+    state.wakeLock = await navigator.wakeLock.request("screen");
+    state.wakeLock.addEventListener("release", () => {
+      state.wakeLock = null;
+    });
+  } catch (error) {
+    state.wakeLock = null;
+  }
+}
+
+function releaseWakeLock() {
+  state.wantsWakeLock = false;
+  if (!state.wakeLock) {
+    return;
+  }
+  state.wakeLock.release().catch(() => {});
+  state.wakeLock = null;
+}
+
+function setupMediaSession() {
+  if (!("mediaSession" in navigator) || state.mediaSessionReady) {
+    return;
+  }
+  state.mediaSessionReady = true;
+  navigator.mediaSession.setActionHandler("play", () => {
+    if (elements.audioPlayer.src && elements.audioPlayer.paused) {
+      requestWakeLock();
+      elements.audioPlayer.play();
+      return;
+    }
+    playCurrent();
+  });
+  navigator.mediaSession.setActionHandler("pause", pausePlayback);
+  navigator.mediaSession.setActionHandler("nexttrack", () => {
+    stopQueue();
+    nextWord(true);
+  });
+  navigator.mediaSession.setActionHandler("previoustrack", () => {
+    stopQueue();
+    previousWord();
+    playCurrent();
+  });
+}
+
+function updateMediaSession() {
+  if (!("mediaSession" in navigator) || !("MediaMetadata" in window)) {
+    return;
+  }
+  const chapter = currentChapter();
+  const word = currentWord();
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: word.word || "EVD Vocabulary",
+    artist: word.chinese_meaning || chapter.title || "",
+    album: chapter.title || "EVD Vocabulary",
+  });
+  updateMediaSessionPlaybackState("playing");
+}
+
+function updateMediaSessionPlaybackState(playbackState) {
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.playbackState = playbackState;
+  }
+}
+
+function pausePlayback() {
+  if (state.queueTimer) {
+    window.clearTimeout(state.queueTimer);
+    state.queueTimer = null;
+  }
+  elements.audioPlayer.pause();
+  if (window.speechSynthesis) {
+    window.speechSynthesis.pause();
+  }
+  releaseWakeLock();
+  updateMediaSessionPlaybackState("paused");
 }
 
 function nextWord(autoplay = false) {
@@ -502,13 +597,7 @@ function escapeHtml(value) {
 }
 
 elements.playButton.addEventListener("click", playCurrent);
-elements.pauseButton.addEventListener("click", () => {
-  if (state.queueTimer) {
-    window.clearTimeout(state.queueTimer);
-    state.queueTimer = null;
-  }
-  elements.audioPlayer.pause();
-});
+elements.pauseButton.addEventListener("click", pausePlayback);
 elements.nextButton.addEventListener("click", () => {
   stopQueue();
   nextWord(false);
@@ -547,12 +636,18 @@ elements.nextQuestionButton.addEventListener("click", buildQuestion);
 elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && state.wantsWakeLock) {
+    requestWakeLock();
+  }
+});
 
 loadDailyData()
   .then((data) => {
     state.data = data;
     state.chapters = normalizeData(data);
     restoreProgress();
+    setupMediaSession();
     applyPlaybackRate();
     render();
     buildQuestion();
