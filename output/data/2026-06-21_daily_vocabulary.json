@@ -7008,6 +7008,10 @@
             "example_1_en": {
               "src": "audio/segments/en/6acf689ed998feb9d3cbf586.mp3",
               "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/6b4794f9bb73dc92b3bcee91.mp3",
+              "language": "zh"
             }
           }
         },
@@ -14535,6 +14539,10 @@
         "example_1_en": {
           "src": "audio/segments/en/6acf689ed998feb9d3cbf586.mp3",
           "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/6b4794f9bb73dc92b3bcee91.mp3",
+          "language": "zh"
         }
       }
     },
