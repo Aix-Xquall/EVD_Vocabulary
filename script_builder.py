@@ -87,12 +87,10 @@ def build_chapter_payload(
     entries: List[VocabularyEntry],
     target_date: date,
     segment_audio: Dict[str, Dict[str, dict]],
-    chapter_audio: Dict[str, str] | None = None,
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
     flat_words = []
-    chapter_audio = chapter_audio or {}
 
     for entry in entries:
         source_file = entry.get("_source_file", "")
@@ -102,7 +100,6 @@ def build_chapter_payload(
                 "id": _chapter_id(chapter_key),
                 "title": _chapter_title(chapter_key),
                 "source_file": _source_name(chapter_key),
-                "chapter_audio": chapter_audio.get(chapter_key, ""),
                 "word_count": 0,
                 "words": [],
             }

@@ -97,12 +97,13 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('navigator.mediaSession.setActionHandler("nexttrack"', app_js)
         self.assertIn('navigator.mediaSession.setActionHandler("previoustrack"', app_js)
 
-    def test_chapter_playback_prefers_complete_azure_chapter_mp3(self):
+    def test_chapter_playback_uses_segment_queue_with_wake_lock_controls(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn("chapter.chapter_audio", app_js)
-        self.assertIn('playDirectAudio(chapter.chapter_audio, "mixed")', app_js)
-        self.assertIn('segment.language === "mixed" ? 1', app_js)
+        self.assertIn("const chapterQueue = buildChapterQueue()", app_js)
+        self.assertIn("playQueue(chapterQueue, true)", app_js)
+        self.assertNotIn("chapter.chapter_audio", app_js)
+        self.assertNotIn('playDirectAudio(chapter.chapter_audio, "mixed")', app_js)
 
 
 if __name__ == "__main__":

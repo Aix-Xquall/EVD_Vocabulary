@@ -16,7 +16,6 @@ from tts_generator import (
     _should_synthesize_segment,
     expected_audio_paths,
     expected_segment_audio_paths,
-    generate_chapter_audio_files,
     generate_segment_audio_files,
 )
 
@@ -146,57 +145,6 @@ class TtsGeneratorTests(unittest.TestCase):
             self.assertEqual(len(calls), 2)
             self.assertIn("word", available["1"])
             self.assertNotIn("meaning", available["1"])
-
-    def test_generate_chapter_audio_combines_existing_azure_segments(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            output_dir = Path(temp_dir)
-            settings = Settings(output_dir=output_dir, generate_audio=False)
-            entry = {
-                "id": "1",
-                "word": "busbar",
-                "chinese_meaning": "匯流排",
-                "example_1_en": "The busbar carries return current.",
-                "example_1_zh": "匯流排承載回流電流。",
-                "example_2_en": "The busbar shall be bonded to the ring.",
-                "example_2_zh": "匯流排應搭接到航電環。",
-                "_source_file": "chapter-a.csv",
-                "_row_number": 1,
-            }
-            segment_audio = expected_segment_audio_paths([entry], settings)
-            for segment in segment_audio["chapter-a.csv#1"].values():
-                segment_path = output_dir / segment["src"]
-                segment_path.parent.mkdir(parents=True, exist_ok=True)
-                segment_path.write_bytes(segment["src"].encode("utf-8"))
-
-            chapter_audio = generate_chapter_audio_files([entry], segment_audio, settings)
-
-            self.assertIn("chapter-a.csv", chapter_audio)
-            output_file = output_dir / chapter_audio["chapter-a.csv"]
-            self.assertTrue(output_file.exists())
-            combined = output_file.read_bytes()
-            self.assertEqual(combined.count(b"audio/segments/en/"), 9)
-            self.assertEqual(combined.count(b"audio/segments/zh/"), 3)
-
-    def test_generate_chapter_audio_skips_chapter_until_all_segments_exist(self):
-        with tempfile.TemporaryDirectory() as temp_dir:
-            output_dir = Path(temp_dir)
-            settings = Settings(output_dir=output_dir, generate_audio=False)
-            entry = {
-                "id": "1",
-                "word": "busbar",
-                "chinese_meaning": "匯流排",
-                "_source_file": "chapter-a.csv",
-                "_row_number": 1,
-            }
-            segment_audio = expected_segment_audio_paths([entry], settings)
-            word_segment = segment_audio["chapter-a.csv#1"]["word"]
-            word_path = output_dir / word_segment["src"]
-            word_path.parent.mkdir(parents=True, exist_ok=True)
-            word_path.write_bytes(b"word-audio")
-
-            chapter_audio = generate_chapter_audio_files([entry], segment_audio, settings)
-
-            self.assertEqual(chapter_audio, {})
 
     def test_english_segment_ssml_uses_configured_rate_but_chinese_segment_keeps_normal_rate(self):
         settings = Settings(generate_audio=False, speech_rate="-20%")

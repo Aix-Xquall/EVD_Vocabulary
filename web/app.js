@@ -186,11 +186,6 @@ function playCurrent() {
 }
 
 function playCombinedAudio() {
-  const chapter = currentChapter();
-  if (chapter.chapter_audio) {
-    playDirectAudio(chapter.chapter_audio, "mixed");
-    return;
-  }
   const chapterQueue = buildChapterQueue();
   if (chapterQueue.length > 0) {
     playQueue(chapterQueue, true);
@@ -349,7 +344,6 @@ function playDirectAudio(src, language) {
   const playbackLanguage = language === true ? "en" : language === false ? "zh" : language;
   elements.audioPlayer.src = resolveAssetPath(src);
   applyPlaybackRate({ language: playbackLanguage || "en" });
-  state.isChapterPlayback = playbackLanguage === "mixed";
   requestWakeLock();
   updateMediaSession();
   elements.audioPlayer.play().catch(() => {
@@ -530,7 +524,7 @@ function updatePracticeScore() {
 }
 
 function applyPlaybackRate(segment = currentQueueSegment()) {
-  const rate = segment.language === "mixed" ? 1 : segment.language === "en" ? state.playbackRate : 1;
+  const rate = segment.language === "en" ? state.playbackRate : 1;
   elements.audioPlayer.playbackRate = rate;
   elements.playbackRate.value = String(state.playbackRate);
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;

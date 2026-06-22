@@ -100,7 +100,7 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertEqual(payload["chapters"][0]["words"][0]["audio_segments"]["meaning"]["language"], "zh")
         self.assertEqual(payload["chapters"][1]["words"][0]["audio_segments"]["word"]["src"], "audio/segments/en/coupling.mp3")
 
-    def test_build_chapter_payload_includes_complete_chapter_audio_when_available(self):
+    def test_build_chapter_payload_does_not_publish_complete_chapter_audio(self):
         entry = sample_entry()
         entry["_source_file"] = r"C:\workspace\chapter-a.csv"
         entry["_row_number"] = 1
@@ -109,10 +109,9 @@ class ScriptBuilderTests(unittest.TestCase):
             [entry],
             date(2026, 6, 17),
             segment_audio={},
-            chapter_audio={r"C:\workspace\chapter-a.csv": "audio/chapters/chapter-a.mp3"},
         )
 
-        self.assertEqual(payload["chapters"][0]["chapter_audio"], "audio/chapters/chapter-a.mp3")
+        self.assertNotIn("chapter_audio", payload["chapters"][0])
 
 
 if __name__ == "__main__":
