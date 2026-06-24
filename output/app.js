@@ -2,6 +2,10 @@ const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const EXAMPLE_REPEAT_DELAY_MS = 1500;
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
+const HARD_WORD_STATUS = {
+  active: "active",
+  removed: "removed",
+};
 
 const state = {
   data: null,
@@ -22,7 +26,7 @@ const state = {
   wantsWakeLock: false,
   mediaSessionReady: false,
   hardWordsWriteUrl: "",
-  hardWordsPending: new Set(),
+  hardWordsPending: new Map(),
   practice: {
     current: null,
     attempts: 0,
@@ -326,16 +330,19 @@ function updateHardWordControls() {
   }
   const word = currentWord();
   const wordKey = hardWordKey(word);
-  const alreadyAdded = isHardWord(wordKey) || state.hardWordsPending.has(wordKey);
+  const alreadyAdded = isHardWord(wordKey);
   elements.hardWordButton.hidden = false;
-  elements.hardWordButton.disabled = alreadyAdded || !word.word;
-  elements.hardWordButton.textContent = alreadyAdded ? "已加入不易記住" : "加入不易記住";
-  elements.hardWordStatus.textContent = alreadyAdded ? "可在不易記住單字章節練習" : "";
+  elements.hardWordButton.disabled = !word.word;
+  elements.hardWordButton.textContent = alreadyAdded ? "從未熟記單字移除" : "加入未熟記單字練習";
+  elements.hardWordStatus.textContent = alreadyAdded ? "目前在未熟記單字練習" : "";
 }
 
 function isHardWord(wordKey) {
   if (!wordKey) {
     return false;
+  }
+  if (state.hardWordsPending.has(wordKey)) {
+    return state.hardWordsPending.get(wordKey);
   }
   return state.chapters.some((chapter) => (
     chapter.is_hard_words
@@ -347,16 +354,17 @@ function hardWordKey(word) {
   return String(word?.word || "").trim().toLowerCase();
 }
 
-async function addHardWord() {
+async function toggleHardWord() {
   if (!state.hardWordsWriteUrl) {
     return;
   }
   const word = currentWord();
   const wordKey = hardWordKey(word);
-  if (!wordKey || isHardWord(wordKey) || state.hardWordsPending.has(wordKey)) {
+  if (!wordKey) {
     updateHardWordControls();
     return;
   }
+  const nextStatus = isHardWord(wordKey) ? HARD_WORD_STATUS.removed : HARD_WORD_STATUS.active;
   const passcode = getHardWordsPasscode();
   if (!passcode) {
     elements.hardWordStatus.textContent = "未設定同步密碼";
@@ -366,9 +374,9 @@ async function addHardWord() {
   elements.hardWordButton.disabled = true;
   elements.hardWordStatus.textContent = "同步中...";
   try {
-    await postHardWord(word, passcode);
-    state.hardWordsPending.add(wordKey);
-    elements.hardWordStatus.textContent = "已加入，下一次每日更新後會出現在章節";
+    await postHardWord(word, passcode, nextStatus);
+    state.hardWordsPending.set(wordKey, nextStatus === HARD_WORD_STATUS.active);
+    elements.hardWordStatus.textContent = "已更新，下一次每日更新後會同步章節";
     updateHardWordControls();
   } catch (error) {
     elements.hardWordButton.disabled = false;
@@ -381,7 +389,7 @@ function getHardWordsPasscode() {
   if (saved) {
     return saved;
   }
-  const entered = window.prompt("請輸入不易記住單字同步密碼");
+  const entered = window.prompt("請輸入未熟記單字同步密碼");
   if (!entered) {
     return "";
   }
@@ -389,11 +397,11 @@ function getHardWordsPasscode() {
   return entered;
 }
 
-async function postHardWord(word, passcode) {
+async function postHardWord(word, passcode, status) {
   const chapter = currentChapter();
   const payload = {
     passcode,
-    "status": "active",
+    "status": status,
     added_at: new Date().toISOString(),
     source_chapter: chapter.title || "",
     source_id: word.id || "",
@@ -749,7 +757,7 @@ elements.toggleMeaningButton.addEventListener("click", () => {
   render();
 });
 elements.nextQuestionButton.addEventListener("click", buildQuestion);
-elements.hardWordButton.addEventListener("click", addHardWord);
+elements.hardWordButton.addEventListener("click", toggleHardWord);
 elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());

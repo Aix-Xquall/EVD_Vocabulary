@@ -90,10 +90,14 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('id="hardWordButton"', index_html)
         self.assertIn('id="hardWordStatus"', index_html)
         self.assertIn("hardWordsWriteUrl", app_js)
-        self.assertIn("addHardWord", app_js)
+        self.assertIn("toggleHardWord", app_js)
         self.assertIn("localStorage.getItem(HARD_WORDS_PASSCODE_KEY)", app_js)
         self.assertIn('fetch(state.hardWordsWriteUrl', app_js)
-        self.assertIn('"status": "active"', app_js)
+        self.assertIn('active: "active"', app_js)
+        self.assertIn('removed: "removed"', app_js)
+        self.assertIn("加入未熟記單字練習", app_js)
+        self.assertIn("從未熟記單字移除", app_js)
+        self.assertIn('"status": status', app_js)
 
     def test_player_uses_wake_lock_and_media_session_for_mobile_playback(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

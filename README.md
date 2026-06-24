@@ -16,7 +16,7 @@ For audio, the same terms are spoken as the full English phrase. Chinese columns
 
 ## Hard words sync
 
-The site can show a separate hard words chapter named `不易記住單字`. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC.
+The site shows a separate hard words chapter named `未熟記單字練習`, even when it currently has zero words. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC.
 
 Google Sheet columns should include the normal vocabulary columns:
 
@@ -40,7 +40,7 @@ HARD_WORDS_READ_TOKEN
 HARD_WORDS_WRITE_URL
 ```
 
-`HARD_WORDS_SHEET_CSV_URL` is the CSV export or Apps Script read URL. `HARD_WORDS_READ_TOKEN` is optional. `HARD_WORDS_WRITE_URL` is the Apps Script Web App URL used by the browser when you tap `加入不易記住`.
+`HARD_WORDS_SHEET_CSV_URL` is the CSV export or Apps Script read URL. `HARD_WORDS_READ_TOKEN` is optional. `HARD_WORDS_WRITE_URL` is the Apps Script Web App URL used by the browser when you tap `加入未熟記單字練習` or `從未熟記單字移除`.
 
 Recommended Apps Script deployment:
 

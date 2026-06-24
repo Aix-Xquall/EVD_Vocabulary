@@ -5,7 +5,7 @@ from typing import Dict, List
 
 VocabularyEntry = Dict[str, str]
 HARD_WORDS_FILENAME = "hard_words.csv"
-HARD_WORDS_CHAPTER_TITLE = "\u4e0d\u6613\u8a18\u4f4f\u55ae\u5b57"
+HARD_WORDS_CHAPTER_TITLE = "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2"
 
 
 PUBLIC_COLUMNS = [
@@ -117,6 +117,18 @@ def build_chapter_payload(
         chapter["words"].append(public_entry)
         chapter["word_count"] = len(chapter["words"])
         flat_words.append(public_entry)
+
+    if not any(chapter.get("is_hard_words") for chapter in chapters):
+        chapters.append(
+            {
+                "id": "hard-words",
+                "title": HARD_WORDS_CHAPTER_TITLE,
+                "source_file": HARD_WORDS_FILENAME,
+                "is_hard_words": True,
+                "word_count": 0,
+                "words": [],
+            }
+        )
 
     payload = {
         "date": target_date.isoformat(),

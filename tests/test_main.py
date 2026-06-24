@@ -62,8 +62,12 @@ class MainWorkflowTests(unittest.TestCase):
             payload = json.loads((output_dir / "data" / "latest.json").read_text(encoding="utf-8"))
             self.assertEqual(result["word_count"], 2)
             self.assertEqual(payload["mode"], "chapters")
-            self.assertEqual([chapter["title"] for chapter in payload["chapters"]], ["chapter-a", "chapter-b"])
-            self.assertEqual([chapter["word_count"] for chapter in payload["chapters"]], [1, 1])
+            self.assertEqual(
+                [chapter["title"] for chapter in payload["chapters"]],
+                ["chapter-a", "chapter-b", "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2"],
+            )
+            self.assertEqual([chapter["word_count"] for chapter in payload["chapters"]], [1, 1, 0])
+            self.assertTrue(payload["chapters"][2]["is_hard_words"])
 
 
 def _write_vocabulary(path: Path, word: str = "impedance") -> None:
