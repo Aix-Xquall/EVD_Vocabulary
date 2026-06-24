@@ -65,8 +65,12 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn("scrollActiveWordIntoView", app_js)
+        self.assertIn("container.getBoundingClientRect()", app_js)
+        self.assertIn("activeButton.getBoundingClientRect()", app_js)
+        self.assertIn("container.scrollTop + activeRect.top - containerRect.top", app_js)
+        self.assertIn("Math.max(0, targetTop)", app_js)
         self.assertIn("container.scrollTop =", app_js)
-        self.assertIn("activeButton.offsetTop - container.clientHeight / 2 + activeButton.clientHeight / 2", app_js)
+        self.assertNotIn("activeButton.offsetTop - container.clientHeight / 2", app_js)
 
     def test_browser_speech_fallback_uses_di_pronunciation_for_ground_character(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

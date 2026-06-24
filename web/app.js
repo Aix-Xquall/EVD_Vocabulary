@@ -182,7 +182,11 @@ function scrollActiveWordIntoView() {
   if (!activeButton) {
     return;
   }
-  container.scrollTop = activeButton.offsetTop - container.clientHeight / 2 + activeButton.clientHeight / 2;
+  const containerRect = container.getBoundingClientRect();
+  const activeRect = activeButton.getBoundingClientRect();
+  const targetTop = container.scrollTop + activeRect.top - containerRect.top
+    - container.clientHeight / 2 + activeButton.clientHeight / 2;
+  container.scrollTop = Math.max(0, targetTop);
 }
 
 function playCurrent() {
