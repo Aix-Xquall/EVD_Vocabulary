@@ -80,7 +80,20 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("expandKnownAbbreviationsForSpeech", app_js)
         self.assertIn("Electromagnetic Compatibility", app_js)
+        self.assertIn("Electromagnetic Susceptibility", app_js)
         self.assertIn("Military Standard 461", app_js)
+
+    def test_web_player_exposes_hard_words_sync_controls(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn('id="hardWordButton"', index_html)
+        self.assertIn('id="hardWordStatus"', index_html)
+        self.assertIn("hardWordsWriteUrl", app_js)
+        self.assertIn("addHardWord", app_js)
+        self.assertIn("localStorage.getItem(HARD_WORDS_PASSCODE_KEY)", app_js)
+        self.assertIn('fetch(state.hardWordsWriteUrl', app_js)
+        self.assertIn('"status": "active"', app_js)
 
     def test_player_uses_wake_lock_and_media_session_for_mobile_playback(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

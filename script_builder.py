@@ -4,6 +4,8 @@ from typing import Dict, List
 
 
 VocabularyEntry = Dict[str, str]
+HARD_WORDS_FILENAME = "hard_words.csv"
+HARD_WORDS_CHAPTER_TITLE = "\u4e0d\u6613\u8a18\u4f4f\u55ae\u5b57"
 
 
 PUBLIC_COLUMNS = [
@@ -87,6 +89,7 @@ def build_chapter_payload(
     entries: List[VocabularyEntry],
     target_date: date,
     segment_audio: Dict[str, Dict[str, dict]],
+    hard_words_write_url: str = "",
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
@@ -100,6 +103,7 @@ def build_chapter_payload(
                 "id": _chapter_id(chapter_key),
                 "title": _chapter_title(chapter_key),
                 "source_file": _source_name(chapter_key),
+                "is_hard_words": _is_hard_words_source(chapter_key),
                 "word_count": 0,
                 "words": [],
             }
@@ -114,13 +118,16 @@ def build_chapter_payload(
         chapter["word_count"] = len(chapter["words"])
         flat_words.append(public_entry)
 
-    return {
+    payload = {
         "date": target_date.isoformat(),
         "title": f"EVD Vocabulary Chapters - {target_date.isoformat()}",
         "mode": "chapters",
         "chapters": chapters,
         "words": flat_words,
     }
+    if hard_words_write_url:
+        payload["hard_words"] = {"write_url": hard_words_write_url}
+    return payload
 
 
 def audio_key_for_entry(entry: VocabularyEntry) -> str:
@@ -132,10 +139,14 @@ def audio_key_for_entry(entry: VocabularyEntry) -> str:
 
 
 def _chapter_title(source_file: str) -> str:
+    if _is_hard_words_source(source_file):
+        return HARD_WORDS_CHAPTER_TITLE
     return _source_path(source_file).stem or "vocabulary"
 
 
 def _chapter_id(source_file: str) -> str:
+    if _is_hard_words_source(source_file):
+        return "hard-words"
     value = _chapter_title(source_file).lower()
     slug = "".join(character if character.isalnum() else "-" for character in value)
     return "-".join(part for part in slug.split("-") if part) or "vocabulary"
@@ -143,6 +154,10 @@ def _chapter_id(source_file: str) -> str:
 
 def _source_name(source_file: str) -> str:
     return _source_path(source_file).name or "vocabulary.csv"
+
+
+def _is_hard_words_source(source_file: str) -> bool:
+    return _source_name(source_file).lower() == HARD_WORDS_FILENAME
 
 
 def _source_path(source_file: str):

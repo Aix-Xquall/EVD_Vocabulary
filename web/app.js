@@ -1,6 +1,7 @@
 const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const EXAMPLE_REPEAT_DELAY_MS = 1500;
+const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
 
 const state = {
   data: null,
@@ -20,6 +21,8 @@ const state = {
   wakeLock: null,
   wantsWakeLock: false,
   mediaSessionReady: false,
+  hardWordsWriteUrl: "",
+  hardWordsPending: new Set(),
   practice: {
     current: null,
     attempts: 0,
@@ -36,6 +39,8 @@ const elements = {
   wordText: document.getElementById("wordText"),
   pronunciationText: document.getElementById("pronunciationText"),
   meaningText: document.getElementById("meaningText"),
+  hardWordButton: document.getElementById("hardWordButton"),
+  hardWordStatus: document.getElementById("hardWordStatus"),
   exampleOneEn: document.getElementById("exampleOneEn"),
   exampleOneZh: document.getElementById("exampleOneZh"),
   exampleTwoEn: document.getElementById("exampleTwoEn"),
@@ -127,6 +132,7 @@ function render() {
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
   renderChapterTabs();
   renderWordList();
+  updateHardWordControls();
   saveProgress();
 }
 
@@ -304,8 +310,117 @@ function expandKnownAbbreviationsForSpeech(text) {
   return text
     .replaceAll(/\bMilitary Standard 461 \(MIL-STD-461\)|\bMIL-STD-461\b/g, "Military Standard 461")
     .replaceAll(/\bElectromagnetic Compatibility \(EMC\)|\bEMC\b/g, "Electromagnetic Compatibility")
+    .replaceAll(/\bElectromagnetic Susceptibility \(EMS\)|\bEMS\b/g, "Electromagnetic Susceptibility")
     .replaceAll(/\bElectromagnetic Environmental Effects \(E3\)|\bE3\b/g, "Electromagnetic Environmental Effects")
     .replaceAll(/\bElectronic Power Distribution System \(EPDS\)|\bEPDS\b/g, "Electronic Power Distribution System");
+}
+
+function updateHardWordControls() {
+  if (!elements.hardWordButton || !elements.hardWordStatus) {
+    return;
+  }
+  if (!state.hardWordsWriteUrl) {
+    elements.hardWordButton.hidden = true;
+    elements.hardWordStatus.textContent = "";
+    return;
+  }
+  const word = currentWord();
+  const wordKey = hardWordKey(word);
+  const alreadyAdded = isHardWord(wordKey) || state.hardWordsPending.has(wordKey);
+  elements.hardWordButton.hidden = false;
+  elements.hardWordButton.disabled = alreadyAdded || !word.word;
+  elements.hardWordButton.textContent = alreadyAdded ? "已加入不易記住" : "加入不易記住";
+  elements.hardWordStatus.textContent = alreadyAdded ? "可在不易記住單字章節練習" : "";
+}
+
+function isHardWord(wordKey) {
+  if (!wordKey) {
+    return false;
+  }
+  return state.chapters.some((chapter) => (
+    chapter.is_hard_words
+    && (chapter.words || []).some((word) => hardWordKey(word) === wordKey)
+  ));
+}
+
+function hardWordKey(word) {
+  return String(word?.word || "").trim().toLowerCase();
+}
+
+async function addHardWord() {
+  if (!state.hardWordsWriteUrl) {
+    return;
+  }
+  const word = currentWord();
+  const wordKey = hardWordKey(word);
+  if (!wordKey || isHardWord(wordKey) || state.hardWordsPending.has(wordKey)) {
+    updateHardWordControls();
+    return;
+  }
+  const passcode = getHardWordsPasscode();
+  if (!passcode) {
+    elements.hardWordStatus.textContent = "未設定同步密碼";
+    return;
+  }
+
+  elements.hardWordButton.disabled = true;
+  elements.hardWordStatus.textContent = "同步中...";
+  try {
+    await postHardWord(word, passcode);
+    state.hardWordsPending.add(wordKey);
+    elements.hardWordStatus.textContent = "已加入，下一次每日更新後會出現在章節";
+    updateHardWordControls();
+  } catch (error) {
+    elements.hardWordButton.disabled = false;
+    elements.hardWordStatus.textContent = "同步失敗，請稍後再試";
+  }
+}
+
+function getHardWordsPasscode() {
+  const saved = localStorage.getItem(HARD_WORDS_PASSCODE_KEY);
+  if (saved) {
+    return saved;
+  }
+  const entered = window.prompt("請輸入不易記住單字同步密碼");
+  if (!entered) {
+    return "";
+  }
+  localStorage.setItem(HARD_WORDS_PASSCODE_KEY, entered);
+  return entered;
+}
+
+async function postHardWord(word, passcode) {
+  const chapter = currentChapter();
+  const payload = {
+    passcode,
+    "status": "active",
+    added_at: new Date().toISOString(),
+    source_chapter: chapter.title || "",
+    source_id: word.id || "",
+    id: word.id || "",
+    word: word.word || "",
+    pronunciation: word.pronunciation || "",
+    chinese_meaning: word.chinese_meaning || "",
+    example_1_en: word.example_1_en || "",
+    example_1_zh: word.example_1_zh || "",
+    example_2_en: word.example_2_en || "",
+    example_2_zh: word.example_2_zh || "",
+    category: word.category || "",
+    difficulty: word.difficulty || "",
+    review_count: word.review_count || "0",
+    last_review_date: word.last_review_date || "",
+  };
+  const response = await fetch(state.hardWordsWriteUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8",
+    },
+    body: JSON.stringify(payload),
+  });
+  if (response.type !== "opaque" && !response.ok) {
+    throw new Error("Hard words sync failed.");
+  }
 }
 
 function finishQueue() {
@@ -634,6 +749,7 @@ elements.toggleMeaningButton.addEventListener("click", () => {
   render();
 });
 elements.nextQuestionButton.addEventListener("click", buildQuestion);
+elements.hardWordButton.addEventListener("click", addHardWord);
 elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
@@ -647,6 +763,7 @@ loadDailyData()
   .then((data) => {
     state.data = data;
     state.chapters = normalizeData(data);
+    state.hardWordsWriteUrl = data.hard_words?.write_url || "";
     restoreProgress();
     setupMediaSession();
     applyPlaybackRate();

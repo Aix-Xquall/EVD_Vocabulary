@@ -48,5 +48,9 @@ class Settings:
     line_user_id: str = _text_env("LINE_USER_ID")
     site_url: str = _text_env("EVD_SITE_URL")
 
+    hard_words_sheet_csv_url: str = _text_env("HARD_WORDS_SHEET_CSV_URL")
+    hard_words_read_token: str = _text_env("HARD_WORDS_READ_TOKEN")
+    hard_words_write_url: str = _text_env("HARD_WORDS_WRITE_URL")
+
 
 DEFAULT_SETTINGS = Settings()

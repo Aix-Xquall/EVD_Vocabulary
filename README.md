@@ -8,10 +8,69 @@ The loader expands these engineering abbreviations for display:
 
 - `MIL-STD-461` -> `Military Standard 461 (MIL-STD-461)`
 - `EMC` -> `Electromagnetic Compatibility (EMC)`
+- `EMS` -> `Electromagnetic Susceptibility (EMS)`
 - `E3` -> `Electromagnetic Environmental Effects (E3)`
 - `EPDS` -> `Electronic Power Distribution System (EPDS)`
 
-For audio, the same terms are spoken as the full English phrase. Duplicate entries are skipped by the normalized `word` field, keeping the first occurrence found by filename order.
+For audio, the same terms are spoken as the full English phrase. Chinese columns keep abbreviations such as `EMC` and `EMS` unchanged, so Chinese TTS reads the abbreviation letters instead of the expanded English phrase.
+
+## Hard words sync
+
+The site can show a separate hard words chapter named `不易記住單字`. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC.
+
+Google Sheet columns should include the normal vocabulary columns:
+
+```csv
+id,word,pronunciation,chinese_meaning,example_1_en,example_1_zh,example_2_en,example_2_zh,category,difficulty,review_count,last_review_date
+```
+
+Optional tracking columns:
+
+```csv
+source_chapter,source_id,added_at,status,note
+```
+
+Only blank `status` or `active` rows are published. `removed` rows stay in the sheet but are not shown.
+
+GitHub repository secrets for this feature:
+
+```text
+HARD_WORDS_SHEET_CSV_URL
+HARD_WORDS_READ_TOKEN
+HARD_WORDS_WRITE_URL
+```
+
+`HARD_WORDS_SHEET_CSV_URL` is the CSV export or Apps Script read URL. `HARD_WORDS_READ_TOKEN` is optional. `HARD_WORDS_WRITE_URL` is the Apps Script Web App URL used by the browser when you tap `加入不易記住`.
+
+Recommended Apps Script deployment:
+
+- Execute as: `Me`
+- Who has access: `Anyone`
+- Validate a simple passcode in the script before writing to the sheet.
+
+Do not put GitHub tokens, Azure keys, LINE tokens, or Google account credentials in the public web page.
+
+Minimal Apps Script write handler example:
+
+```javascript
+const SHEET_NAME = "HardWords";
+const PASSCODE = "change-this-passcode";
+
+function doPost(e) {
+  const payload = JSON.parse(e.postData.contents || "{}");
+  if (payload.passcode !== PASSCODE) {
+    return ContentService.createTextOutput(JSON.stringify({ ok: false }));
+  }
+
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const row = headers.map((header) => payload[header] || "");
+  sheet.appendRow(row);
+  return ContentService.createTextOutput(JSON.stringify({ ok: true }));
+}
+```
+
+Duplicate entries are skipped by the normalized `word` field inside each normal chapter. The hard words chapter can intentionally repeat a word that also exists in a normal chapter, but duplicate words inside `hard_words.csv` are collapsed.
 
 ## 目前模式
 

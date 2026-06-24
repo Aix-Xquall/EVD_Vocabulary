@@ -55,6 +55,51 @@ class VocabularyLoaderTests(unittest.TestCase):
             self.assertIn("Electromagnetic Environmental Effects (E3)", entries[0]["example_2_en"])
             self.assertEqual(entries[0]["category"], "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3)")
 
+    def test_load_vocabulary_expands_ems_only_in_english_fields(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "ems.csv",
+                "1,EMS,/ems/,EMS 測試,EMS applies to receiver immunity.,中文 EMS 不展開,"
+                "The EMS margin is low.,EMC 與 EMS 都保留縮寫,EMC,4,0,\n",
+            )
+
+            entries = load_vocabulary(tmp_path)
+
+            self.assertEqual(entries[0]["word"], "Electromagnetic Susceptibility (EMS)")
+            self.assertIn("Electromagnetic Susceptibility (EMS) applies", entries[0]["example_1_en"])
+            self.assertIn("Electromagnetic Susceptibility (EMS) margin", entries[0]["example_2_en"])
+            self.assertEqual(entries[0]["chinese_meaning"], "EMS 測試")
+            self.assertEqual(entries[0]["example_1_zh"], "中文 EMS 不展開")
+            self.assertEqual(entries[0]["example_2_zh"], "EMC 與 EMS 都保留縮寫")
+
+    def test_load_vocabulary_allows_hard_words_to_duplicate_normal_chapters(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "chapter.csv",
+                "1,EMS,/ems/,EMS 測試,Example one,例句一,Example two,例句二,EMC,4,0,\n",
+            )
+            (tmp_path / "hard_words.csv").write_text(
+                "id,word,pronunciation,chinese_meaning,example_1_en,example_1_zh,"
+                "example_2_en,example_2_zh,category,difficulty,review_count,last_review_date,status\n"
+                "1,EMS,/ems/,EMS 測試,Example one,例句一,Example two,例句二,EMC,4,0,,active\n"
+                "2,EMS,/ems/,duplicate,Example one,例句一,Example two,例句二,EMC,4,0,,active\n"
+                "3,E3,/e3/,removed,Example one,例句一,Example two,例句二,EMC,4,0,,removed\n",
+                encoding="utf-8",
+            )
+
+            entries = load_vocabulary(tmp_path)
+
+            self.assertEqual(
+                [entry["word"] for entry in entries],
+                [
+                    "Electromagnetic Susceptibility (EMS)",
+                    "Electromagnetic Susceptibility (EMS)",
+                ],
+            )
+            self.assertEqual(Path(entries[1]["_source_file"]).name, "hard_words.csv")
+
     def test_load_vocabulary_rejects_missing_required_columns(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             tmp_path = Path(temp_dir)

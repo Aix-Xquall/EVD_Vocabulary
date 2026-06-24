@@ -20,6 +20,9 @@ REQUIRED_COLUMNS = [
     "last_review_date",
 ]
 
+CHINESE_COLUMNS = {"chinese_meaning", "example_1_zh", "example_2_zh"}
+HARD_WORDS_FILENAME = "hard_words.csv"
+
 
 VocabularyEntry = Dict[str, str]
 
@@ -37,18 +40,27 @@ def load_vocabulary(vocabulary_dir: Path | str) -> List[VocabularyEntry]:
     entries: List[VocabularyEntry] = []
     seen_words = set()
     for csv_file in csv_files:
+        is_hard_words_file = csv_file.name.lower() == HARD_WORDS_FILENAME
+        seen_hard_words = set()
         with csv_file.open("r", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)
             _validate_columns(csv_file, reader.fieldnames or [])
             for row_number, row in enumerate(reader, start=1):
+                if is_hard_words_file and _is_removed_hard_word(row):
+                    continue
                 normalized = {
-                    column: expand_abbreviations_for_display(row.get(column) or "")
+                    column: _normalize_cell(column, row.get(column) or "")
                     for column in REQUIRED_COLUMNS
                 }
                 word_key = normalized["word"].casefold()
-                if word_key in seen_words:
+                if is_hard_words_file:
+                    if word_key in seen_hard_words:
+                        continue
+                    seen_hard_words.add(word_key)
+                elif word_key in seen_words:
                     continue
-                seen_words.add(word_key)
+                if not is_hard_words_file:
+                    seen_words.add(word_key)
                 normalized["_source_file"] = str(csv_file)
                 normalized["_row_number"] = row_number
                 entries.append(normalized)
@@ -60,3 +72,14 @@ def _validate_columns(csv_file: Path, fieldnames: list[str]) -> None:
     if missing:
         joined = ", ".join(missing)
         raise ValueError(f"{csv_file} missing required columns: {joined}")
+
+
+def _normalize_cell(column: str, value: str) -> str:
+    if column in CHINESE_COLUMNS:
+        return str(value or "").strip()
+    return expand_abbreviations_for_display(value)
+
+
+def _is_removed_hard_word(row: dict) -> bool:
+    status = str(row.get("status") or "").strip().lower()
+    return bool(status and status != "active")

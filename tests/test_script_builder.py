@@ -113,6 +113,23 @@ class ScriptBuilderTests(unittest.TestCase):
 
         self.assertNotIn("chapter_audio", payload["chapters"][0])
 
+    def test_build_chapter_payload_labels_hard_words_chapter(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\vocabulary\hard_words.csv"
+        entry["_row_number"] = 1
+
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 6, 24),
+            segment_audio={},
+            hard_words_write_url="https://script.google.com/macros/s/example/exec",
+        )
+
+        self.assertEqual(payload["chapters"][0]["id"], "hard-words")
+        self.assertEqual(payload["chapters"][0]["title"], "\u4e0d\u6613\u8a18\u4f4f\u55ae\u5b57")
+        self.assertTrue(payload["chapters"][0]["is_hard_words"])
+        self.assertEqual(payload["hard_words"]["write_url"], "https://script.google.com/macros/s/example/exec")
+
 
 if __name__ == "__main__":
     unittest.main()

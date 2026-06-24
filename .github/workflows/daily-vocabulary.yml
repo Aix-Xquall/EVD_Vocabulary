@@ -80,6 +80,9 @@ jobs:
           EVD_SITE_URL: https://aix-xquall.github.io/EVD_Vocabulary/
           EVD_SPEECH_RATE: "-20%"
           EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "200"
+          HARD_WORDS_SHEET_CSV_URL: ${{ secrets.HARD_WORDS_SHEET_CSV_URL }}
+          HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}
+          HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}
         run: python main.py
 
       - name: Generate 0.8x audio test sample

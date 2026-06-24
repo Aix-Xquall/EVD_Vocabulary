@@ -5,6 +5,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
+from hard_words_sync import sync_hard_words
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
 from tts_generator import expected_segment_audio_paths, generate_segment_audio_files
@@ -44,6 +45,11 @@ def run_daily_generation(
     update_review: bool = True,
     notify_line: bool = True,
 ) -> dict:
+    sync_result = sync_hard_words(settings)
+    if sync_result:
+        source = "remote" if sync_result.used_remote else "local"
+        print(f"Hard words snapshot: {sync_result.row_count} rows from {source}")
+
     entries = load_vocabulary(settings.vocabulary_dir)
 
     if settings.generate_audio:
@@ -52,7 +58,12 @@ def run_daily_generation(
         segment_audio = expected_segment_audio_paths(entries, settings)
 
     markdown = build_markdown(entries, target_date)
-    payload = build_chapter_payload(entries, target_date, segment_audio)
+    payload = build_chapter_payload(
+        entries,
+        target_date,
+        segment_audio,
+        hard_words_write_url=settings.hard_words_write_url,
+    )
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)
     _copy_web_files(settings.output_dir)

@@ -184,6 +184,24 @@ h2 {
   font-weight: 700;
 }
 
+.hard-word-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.hard-word-actions button {
+  padding: 0 14px;
+}
+
+.sync-status {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .controls,
 .toggles,
 .answer-options {
