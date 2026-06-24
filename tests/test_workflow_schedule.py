@@ -30,6 +30,20 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}", workflow)
         self.assertIn("HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}", workflow)
 
+    def test_push_workflow_skips_daily_generation_for_static_site_changes(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("id: scope", workflow)
+        self.assertIn('changed_files="$(git diff --name-only HEAD^ HEAD || true)"', workflow)
+        self.assertIn('echo "should_generate=${should_generate}" >> "$GITHUB_OUTPUT"', workflow)
+        self.assertIn("if: ${{ steps.scope.outputs.should_generate == 'true' }}", workflow)
+        self.assertIn("if: ${{ steps.scope.outputs.should_generate != 'true' }}", workflow)
+        self.assertIn("cp web/index.html output/index.html", workflow)
+        self.assertIn("cp web/app.js output/app.js", workflow)
+        self.assertIn("cp web/styles.css output/styles.css", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

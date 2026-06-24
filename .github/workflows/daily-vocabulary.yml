@@ -59,6 +59,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -71,7 +73,28 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -v
 
+      - name: Detect generation scope
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          should_generate=false
+          if [[ "${{ github.event_name }}" != "push" ]]; then
+            should_generate=true
+          else
+            changed_files="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" || true)"
+            if [[ -z "$changed_files" ]]; then
+              changed_files="$(git diff --name-only HEAD^ HEAD || true)"
+            fi
+            if echo "$changed_files" | grep -Eq '^(\.github/workflows/daily-vocabulary\.yml|[^/]+\.py|requirements\.txt|vocabulary/.*\.csv)$'; then
+              should_generate=true
+            fi
+          fi
+          echo "should_generate=${should_generate}" >> "$GITHUB_OUTPUT"
+          echo "Daily generation required: ${should_generate}"
+
       - name: Generate daily vocabulary
+        if: ${{ steps.scope.outputs.should_generate == 'true' }}
         env:
           AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
@@ -84,6 +107,13 @@ jobs:
           HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}
           HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}
         run: python main.py
+
+      - name: Publish static web assets
+        if: ${{ steps.scope.outputs.should_generate != 'true' }}
+        run: |
+          cp web/index.html output/index.html
+          cp web/app.js output/app.js
+          cp web/styles.css output/styles.css
 
       - name: Generate 0.8x audio test sample
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_audio_test }}
@@ -100,6 +130,7 @@ jobs:
           --title "${{ inputs.audio_test_title }}"
 
       - name: Commit generated files
+        if: ${{ steps.scope.outputs.should_generate == 'true' || (github.event_name == 'workflow_dispatch' && inputs.run_audio_test) }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
