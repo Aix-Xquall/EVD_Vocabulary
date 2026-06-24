@@ -146,7 +146,7 @@ function renderChapterTabs() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `chapter-tab${index === state.currentChapterIndex ? " active" : ""}`;
-    button.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapter.word_count || chapter.words.length})`;
+    button.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterWordCount(chapter)})`;
     button.addEventListener("click", () => {
       stopQueue();
       state.currentChapterIndex = index;
@@ -156,6 +156,14 @@ function renderChapterTabs() {
     });
     elements.chapterTabs.appendChild(button);
   });
+}
+
+function chapterWordCount(chapter) {
+  const words = chapter.words || [];
+  if (chapter.is_hard_words) {
+    return words.length;
+  }
+  return chapter.word_count || words.length;
 }
 
 function renderWordList() {
@@ -358,6 +366,29 @@ function hardWordKey(word) {
   return String(word?.word || "").trim().toLowerCase();
 }
 
+function hardWordsChapter() {
+  return state.chapters.find((chapter) => chapter.is_hard_words);
+}
+
+function applyHardWordLocalState(word, status) {
+  const chapter = hardWordsChapter();
+  if (!chapter) {
+    return;
+  }
+  chapter.words = chapter.words || [];
+  const wordKey = hardWordKey(word);
+  const existingIndex = chapter.words.findIndex((item) => hardWordKey(item) === wordKey);
+  if (status === HARD_WORD_STATUS.active && existingIndex === -1) {
+    chapter.words.push({ ...word });
+  } else if (status === HARD_WORD_STATUS.removed && existingIndex !== -1) {
+    chapter.words.splice(existingIndex, 1);
+    if (currentChapter() === chapter) {
+      state.currentIndex = Math.min(state.currentIndex, Math.max(0, chapter.words.length - 1));
+    }
+  }
+  chapter.word_count = chapter.words.length;
+}
+
 async function toggleHardWord() {
   if (!state.hardWordsWriteUrl) {
     return;
@@ -380,8 +411,11 @@ async function toggleHardWord() {
   try {
     await postHardWord(word, passcode, nextStatus);
     state.hardWordsPending.set(wordKey, nextStatus === HARD_WORD_STATUS.active);
-    elements.hardWordStatus.textContent = "已更新，下一次每日更新後會同步章節";
-    updateHardWordControls();
+    applyHardWordLocalState(word, nextStatus);
+    render();
+    elements.hardWordStatus.textContent = nextStatus === HARD_WORD_STATUS.active
+      ? "已加入未熟記單字練習"
+      : "已從未熟記單字移除";
   } catch (error) {
     elements.hardWordButton.disabled = false;
     elements.hardWordStatus.textContent = "同步失敗，請稍後再試";

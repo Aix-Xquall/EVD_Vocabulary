@@ -103,6 +103,17 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("從未熟記單字移除", app_js)
         self.assertIn('"status": status', app_js)
 
+    def test_hard_words_chapter_count_updates_immediately_after_toggle(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("chapterWordCount(chapter)", app_js)
+        self.assertIn("function hardWordsChapter()", app_js)
+        self.assertIn("function applyHardWordLocalState(word, status)", app_js)
+        self.assertIn("applyHardWordLocalState(word, nextStatus)", app_js)
+        self.assertIn("chapter.words.push({ ...word })", app_js)
+        self.assertIn("chapter.words.splice(existingIndex, 1)", app_js)
+        self.assertIn("chapter.word_count = chapter.words.length", app_js)
+
     def test_player_uses_wake_lock_and_media_session_for_mobile_playback(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
