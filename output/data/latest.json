@@ -8585,7 +8585,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 4,
+      "word_count": 11,
       "words": [
         {
           "id": "1",
@@ -8645,47 +8645,6 @@
           "audio_segments": {}
         },
         {
-          "id": "73",
-          "word": "susceptibility",
-          "pronunciation": "/səˌsep.təˈbɪl.ə.ti/",
-          "chinese_meaning": "敏感度；易受干擾性",
-          "example_1_en": "Susceptibility tests evaluate how equipment reacts to external fields.",
-          "example_1_zh": "敏感度測試評估設備對外部場的反應。",
-          "example_2_en": "Poor shielding increases system susceptibility.",
-          "example_2_zh": "屏蔽不良會增加系統敏感度。",
-          "category": "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3) Core Terms",
-          "difficulty": "4",
-          "review_count": "1",
-          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 3,
-          "audio_segments": {
-            "word": {
-              "src": "audio/segments/en/56f7ce6be6b94db75d7c3f92.mp3",
-              "language": "en"
-            },
-            "meaning": {
-              "src": "audio/segments/zh/d92634f3f032886d16ee9686.mp3",
-              "language": "zh"
-            },
-            "example_1_en": {
-              "src": "audio/segments/en/37895319e238530fb91ab8ae.mp3",
-              "language": "en"
-            },
-            "example_1_zh": {
-              "src": "audio/segments/zh/b4a95215ab0235036c03cab4.mp3",
-              "language": "zh"
-            },
-            "example_2_en": {
-              "src": "audio/segments/en/8c3ade1dbbe84c28ff780538.mp3",
-              "language": "en"
-            },
-            "example_2_zh": {
-              "src": "audio/segments/zh/1060ed3ff818ce67563fb169.mp3",
-              "language": "zh"
-            }
-          }
-        },
-        {
           "id": "6",
           "word": "compliance",
           "pronunciation": "/kəmˈplaɪ.əns/",
@@ -8698,7 +8657,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 4,
+          "index": 3,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/ced65990164dff597ccf2e79.mp3",
@@ -8722,6 +8681,334 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/71ee0dbd6b3c02d6b4013aff.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "7",
+          "word": "applicable standards",
+          "pronunciation": "/ˈæp.lɪ.kə.bəl ˈstæn.dɚdz/",
+          "chinese_meaning": "適用標準",
+          "example_1_en": "Military Standard 461 (MIL-STD-461) and MIL-STD-464 are applicable standards.",
+          "example_1_zh": "Military Standard 461 (MIL-STD-461) 與 MIL-STD-464 是適用標準。",
+          "example_2_en": "Applicable standards should be listed before test planning begins.",
+          "example_2_zh": "在測試規劃開始前應列出適用標準。",
+          "category": "Overview / Scope",
+          "difficulty": "3",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 4,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/5d45b69174844ba150c8ead3.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/16fbd32565d47234e17c6983.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/ac2e22e26f563467a2d00e68.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/7b6736984aab3eb859d2536f.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/7c88a7557d871ec752cea960.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/618e1518408b5877c5e295da.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "82",
+          "word": "umbilical transient",
+          "pronunciation": "/ʌmˈbɪl.ɪ.kəl ˈtræn.zi.ənt/",
+          "chinese_meaning": "臍帶纜線暫態",
+          "example_1_en": "Umbilical transients may occur during disconnect.",
+          "example_1_zh": "臍帶纜線在斷開時可能產生暫態。",
+          "example_2_en": "The avionics power input must tolerate umbilical transients.",
+          "example_2_zh": "航電電源輸入必須能承受臍帶纜線暫態。",
+          "category": "Launch Operations",
+          "difficulty": "5",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 5,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/51fe7e86c0490065e6c4ff0b.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/3fd905416dd0af6ba5f05489.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/860baef10339289e8eedd4d7.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/cd53788e74e7d6f582e55cb9.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/335f7eaef747c7b48c404ce2.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/3c7050a793c1558d5fad554d.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "25",
+          "word": "enclosure",
+          "pronunciation": "/ɪnˈkloʊ.ʒɚ/",
+          "chinese_meaning": "外殼；機箱",
+          "example_1_en": "Each subsystem enclosure should be bonded to the reference network.",
+          "example_1_zh": "每個子系統外殼都應搭接到參考網路。",
+          "example_2_en": "A floating enclosure may increase radiated emissions.",
+          "example_2_zh": "浮接外殼可能增加輻射發射。",
+          "category": "Avionics Ring / Enclosure",
+          "difficulty": "3",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 6,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/b6615eaae3944651d0d93ce5.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/3c925db1e48483a2fbb492ec.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/bf07c460aa2ef968f4634038.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/06abd158396301cb4796eb31.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/7491faa01b699c027af04ba9.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/8f765bf4affa1aec2037c4c5.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "30",
+          "word": "bonding strap",
+          "pronunciation": "/ˈbɑːn.dɪŋ stræp/",
+          "chinese_meaning": "搭接編織帶；接地編織帶",
+          "example_1_en": "A bonding strap should be short and wide.",
+          "example_1_zh": "搭接編織帶應該短而寬。",
+          "example_2_en": "Long bonding straps are ineffective at high frequency.",
+          "example_2_zh": "過長的搭接編織帶在高頻下效果不佳。",
+          "category": "Grounding / Bonding / Shielding",
+          "difficulty": "4",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 7,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/54650af60a165914dd862cf9.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/a90ceb1835ac06354b00039c.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/7ae7f05bf74429d41164d060.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/8d5e6406627aba5288472791.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/571bdd499f6cfa8f5456c217.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/32f8b0da5c858c6a68f598b1.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "13",
+          "word": "conductive chassis",
+          "pronunciation": "/kənˈdʌk.tɪv ˈʃæs.i/",
+          "chinese_meaning": "導電機殼；導電底盤",
+          "example_1_en": "The avionics ring does not have a conductive chassis.",
+          "example_1_zh": "航電環沒有導電機殼。",
+          "example_2_en": "Without a conductive chassis, shield termination becomes more difficult.",
+          "example_2_zh": "沒有導電機殼時，屏蔽端接會變得更困難。",
+          "category": "Composite Structure / Conductive Hardware",
+          "difficulty": "4",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 8,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/731834ab57ac9c227024cb7a.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d257c536fc8a5e856ae5eb90.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/880b462f79046dbb52ad965d.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/6a067e64d7c3575e077a2b33.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/ba635eee2af9f7337df59e4f.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/630932d8e86ff2ade8be377c.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "55",
+          "word": "coax shield",
+          "pronunciation": "/ˈkoʊ.æks ʃiːld/",
+          "chinese_meaning": "同軸線屏蔽層",
+          "example_1_en": "The coax shield should be bonded at the antenna interface.",
+          "example_1_zh": "同軸線屏蔽層應在天線介面搭接。",
+          "example_2_en": "Poor coax shield bonding may cause RF leakage.",
+          "example_2_zh": "同軸屏蔽搭接不良可能造成 RF 洩漏。",
+          "category": "Harness / Connector / Cable Shielding",
+          "difficulty": "4",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 9,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/16670bc37f80dfc641b88997.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/ab1c92d875bebae4d8034ecc.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/df30ced4c0af8546d66c2f34.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/019306deadf41f898d11b868.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/d22b69b463dfd8c5e55ed5cc.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/53766ef1b91cc64be54a6eb5.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "78",
+          "word": "acceptance criteria",
+          "pronunciation": "/əkˈsep.təns kraɪˈtɪr.i.ə/",
+          "chinese_meaning": "驗收標準",
+          "example_1_en": "The consultant should help define acceptance criteria.",
+          "example_1_zh": "顧問應協助定義驗收標準。",
+          "example_2_en": "Bonding resistance limits should be part of the acceptance criteria.",
+          "example_2_zh": "搭接電阻限制應納入驗收標準。",
+          "category": "Verification / Testing",
+          "difficulty": "4",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 10,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/d71aabdbbb7f001e1bb0acbd.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d45b5568879e308b072775c9.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/7470c116c0dd7746a08107d6.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/37618660a9dc1693eff30649.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/e836ca6ee92690a05a49f649.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/8cc471c10b2ef4a40c53ffd7.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "88",
+          "word": "inspection",
+          "pronunciation": "/ɪnˈspek.ʃən/",
+          "chinese_meaning": "檢查",
+          "example_1_en": "Bonding inspection should be performed after installation.",
+          "example_1_zh": "安裝後應執行搭接檢查。",
+          "example_2_en": "Visual inspection alone is not sufficient for bonding verification.",
+          "example_2_zh": "僅靠目視檢查不足以驗證搭接。",
+          "category": "Verification / Testing",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 11,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/9c22e136d2c1f58cbff39ba7.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/e26ee0498f1a46ad654c6ac8.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/379c4dbab77324f93c11e10d.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/3ad7896e98b368902a6c6bfd.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/e639da790ea9af77bcbb57ee.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/649e54ade962dffdbdd8245f.mp3",
               "language": "zh"
             }
           }
@@ -17954,47 +18241,6 @@
       "audio_segments": {}
     },
     {
-      "id": "73",
-      "word": "susceptibility",
-      "pronunciation": "/səˌsep.təˈbɪl.ə.ti/",
-      "chinese_meaning": "敏感度；易受干擾性",
-      "example_1_en": "Susceptibility tests evaluate how equipment reacts to external fields.",
-      "example_1_zh": "敏感度測試評估設備對外部場的反應。",
-      "example_2_en": "Poor shielding increases system susceptibility.",
-      "example_2_zh": "屏蔽不良會增加系統敏感度。",
-      "category": "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3) Core Terms",
-      "difficulty": "4",
-      "review_count": "1",
-      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 3,
-      "audio_segments": {
-        "word": {
-          "src": "audio/segments/en/56f7ce6be6b94db75d7c3f92.mp3",
-          "language": "en"
-        },
-        "meaning": {
-          "src": "audio/segments/zh/d92634f3f032886d16ee9686.mp3",
-          "language": "zh"
-        },
-        "example_1_en": {
-          "src": "audio/segments/en/37895319e238530fb91ab8ae.mp3",
-          "language": "en"
-        },
-        "example_1_zh": {
-          "src": "audio/segments/zh/b4a95215ab0235036c03cab4.mp3",
-          "language": "zh"
-        },
-        "example_2_en": {
-          "src": "audio/segments/en/8c3ade1dbbe84c28ff780538.mp3",
-          "language": "en"
-        },
-        "example_2_zh": {
-          "src": "audio/segments/zh/1060ed3ff818ce67563fb169.mp3",
-          "language": "zh"
-        }
-      }
-    },
-    {
       "id": "6",
       "word": "compliance",
       "pronunciation": "/kəmˈplaɪ.əns/",
@@ -18007,7 +18253,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 4,
+      "index": 3,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/ced65990164dff597ccf2e79.mp3",
@@ -18031,6 +18277,334 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/71ee0dbd6b3c02d6b4013aff.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "7",
+      "word": "applicable standards",
+      "pronunciation": "/ˈæp.lɪ.kə.bəl ˈstæn.dɚdz/",
+      "chinese_meaning": "適用標準",
+      "example_1_en": "Military Standard 461 (MIL-STD-461) and MIL-STD-464 are applicable standards.",
+      "example_1_zh": "Military Standard 461 (MIL-STD-461) 與 MIL-STD-464 是適用標準。",
+      "example_2_en": "Applicable standards should be listed before test planning begins.",
+      "example_2_zh": "在測試規劃開始前應列出適用標準。",
+      "category": "Overview / Scope",
+      "difficulty": "3",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 4,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/5d45b69174844ba150c8ead3.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/16fbd32565d47234e17c6983.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/ac2e22e26f563467a2d00e68.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/7b6736984aab3eb859d2536f.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/7c88a7557d871ec752cea960.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/618e1518408b5877c5e295da.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "82",
+      "word": "umbilical transient",
+      "pronunciation": "/ʌmˈbɪl.ɪ.kəl ˈtræn.zi.ənt/",
+      "chinese_meaning": "臍帶纜線暫態",
+      "example_1_en": "Umbilical transients may occur during disconnect.",
+      "example_1_zh": "臍帶纜線在斷開時可能產生暫態。",
+      "example_2_en": "The avionics power input must tolerate umbilical transients.",
+      "example_2_zh": "航電電源輸入必須能承受臍帶纜線暫態。",
+      "category": "Launch Operations",
+      "difficulty": "5",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 5,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/51fe7e86c0490065e6c4ff0b.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/3fd905416dd0af6ba5f05489.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/860baef10339289e8eedd4d7.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/cd53788e74e7d6f582e55cb9.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/335f7eaef747c7b48c404ce2.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/3c7050a793c1558d5fad554d.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "25",
+      "word": "enclosure",
+      "pronunciation": "/ɪnˈkloʊ.ʒɚ/",
+      "chinese_meaning": "外殼；機箱",
+      "example_1_en": "Each subsystem enclosure should be bonded to the reference network.",
+      "example_1_zh": "每個子系統外殼都應搭接到參考網路。",
+      "example_2_en": "A floating enclosure may increase radiated emissions.",
+      "example_2_zh": "浮接外殼可能增加輻射發射。",
+      "category": "Avionics Ring / Enclosure",
+      "difficulty": "3",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 6,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/b6615eaae3944651d0d93ce5.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/3c925db1e48483a2fbb492ec.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/bf07c460aa2ef968f4634038.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/06abd158396301cb4796eb31.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/7491faa01b699c027af04ba9.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/8f765bf4affa1aec2037c4c5.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "30",
+      "word": "bonding strap",
+      "pronunciation": "/ˈbɑːn.dɪŋ stræp/",
+      "chinese_meaning": "搭接編織帶；接地編織帶",
+      "example_1_en": "A bonding strap should be short and wide.",
+      "example_1_zh": "搭接編織帶應該短而寬。",
+      "example_2_en": "Long bonding straps are ineffective at high frequency.",
+      "example_2_zh": "過長的搭接編織帶在高頻下效果不佳。",
+      "category": "Grounding / Bonding / Shielding",
+      "difficulty": "4",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 7,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/54650af60a165914dd862cf9.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/a90ceb1835ac06354b00039c.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/7ae7f05bf74429d41164d060.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/8d5e6406627aba5288472791.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/571bdd499f6cfa8f5456c217.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/32f8b0da5c858c6a68f598b1.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "13",
+      "word": "conductive chassis",
+      "pronunciation": "/kənˈdʌk.tɪv ˈʃæs.i/",
+      "chinese_meaning": "導電機殼；導電底盤",
+      "example_1_en": "The avionics ring does not have a conductive chassis.",
+      "example_1_zh": "航電環沒有導電機殼。",
+      "example_2_en": "Without a conductive chassis, shield termination becomes more difficult.",
+      "example_2_zh": "沒有導電機殼時，屏蔽端接會變得更困難。",
+      "category": "Composite Structure / Conductive Hardware",
+      "difficulty": "4",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 8,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/731834ab57ac9c227024cb7a.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d257c536fc8a5e856ae5eb90.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/880b462f79046dbb52ad965d.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/6a067e64d7c3575e077a2b33.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/ba635eee2af9f7337df59e4f.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/630932d8e86ff2ade8be377c.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "55",
+      "word": "coax shield",
+      "pronunciation": "/ˈkoʊ.æks ʃiːld/",
+      "chinese_meaning": "同軸線屏蔽層",
+      "example_1_en": "The coax shield should be bonded at the antenna interface.",
+      "example_1_zh": "同軸線屏蔽層應在天線介面搭接。",
+      "example_2_en": "Poor coax shield bonding may cause RF leakage.",
+      "example_2_zh": "同軸屏蔽搭接不良可能造成 RF 洩漏。",
+      "category": "Harness / Connector / Cable Shielding",
+      "difficulty": "4",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 9,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/16670bc37f80dfc641b88997.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/ab1c92d875bebae4d8034ecc.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/df30ced4c0af8546d66c2f34.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/019306deadf41f898d11b868.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/d22b69b463dfd8c5e55ed5cc.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/53766ef1b91cc64be54a6eb5.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "78",
+      "word": "acceptance criteria",
+      "pronunciation": "/əkˈsep.təns kraɪˈtɪr.i.ə/",
+      "chinese_meaning": "驗收標準",
+      "example_1_en": "The consultant should help define acceptance criteria.",
+      "example_1_zh": "顧問應協助定義驗收標準。",
+      "example_2_en": "Bonding resistance limits should be part of the acceptance criteria.",
+      "example_2_zh": "搭接電阻限制應納入驗收標準。",
+      "category": "Verification / Testing",
+      "difficulty": "4",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 10,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/d71aabdbbb7f001e1bb0acbd.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d45b5568879e308b072775c9.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/7470c116c0dd7746a08107d6.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/37618660a9dc1693eff30649.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/e836ca6ee92690a05a49f649.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/8cc471c10b2ef4a40c53ffd7.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "88",
+      "word": "inspection",
+      "pronunciation": "/ɪnˈspek.ʃən/",
+      "chinese_meaning": "檢查",
+      "example_1_en": "Bonding inspection should be performed after installation.",
+      "example_1_zh": "安裝後應執行搭接檢查。",
+      "example_2_en": "Visual inspection alone is not sufficient for bonding verification.",
+      "example_2_zh": "僅靠目視檢查不足以驗證搭接。",
+      "category": "Verification / Testing",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 11,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/9c22e136d2c1f58cbff39ba7.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/e26ee0498f1a46ad654c6ac8.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/379c4dbab77324f93c11e10d.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/3ad7896e98b368902a6c6bfd.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/e639da790ea9af77bcbb57ee.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/649e54ade962dffdbdd8245f.mp3",
           "language": "zh"
         }
       }
