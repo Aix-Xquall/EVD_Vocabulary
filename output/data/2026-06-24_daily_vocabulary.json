@@ -7729,6 +7729,10 @@
             "example_2_en": {
               "src": "audio/segments/en/b2d991463aabe53db1dfa251.mp3",
               "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/819683bb58f938db554af419.mp3",
+              "language": "zh"
             }
           }
         },
@@ -16883,6 +16887,10 @@
         "example_2_en": {
           "src": "audio/segments/en/b2d991463aabe53db1dfa251.mp3",
           "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/819683bb58f938db554af419.mp3",
+          "language": "zh"
         }
       }
     },
@@ -18314,5 +18322,8 @@
       "index": 35,
       "audio_segments": {}
     }
-  ]
+  ],
+  "hard_words": {
+    "write_url": "https://script.google.com/macros/s/AKfycbz00ZAcjKyCtJhbPpIKorKh-n3TJ1E0aChvN56NeNM-VqE2dH1NSYepiN_i-fMI_Gl9/exec"
+  }
 }
