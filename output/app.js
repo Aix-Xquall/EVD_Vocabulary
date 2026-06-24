@@ -2,6 +2,7 @@ const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const EXAMPLE_REPEAT_DELAY_MS = 1500;
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
+const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state";
 const HARD_WORD_STATUS = {
   active: "active",
   removed: "removed",
@@ -370,13 +371,29 @@ function hardWordsChapter() {
   return state.chapters.find((chapter) => chapter.is_hard_words);
 }
 
-function applyHardWordLocalState(word, status) {
-  const chapter = hardWordsChapter();
+function ensureHardWordsChapter() {
+  let chapter = hardWordsChapter();
   if (!chapter) {
+    chapter = {
+      id: "hard-words",
+      title: "未熟記單字練習",
+      source_file: "hard_words.csv",
+      is_hard_words: true,
+      word_count: 0,
+      words: [],
+    };
+    state.chapters.push(chapter);
+  }
+  return chapter;
+}
+
+function applyHardWordLocalState(word, status) {
+  const chapter = ensureHardWordsChapter();
+  const wordKey = hardWordKey(word);
+  if (!wordKey) {
     return;
   }
   chapter.words = chapter.words || [];
-  const wordKey = hardWordKey(word);
   const existingIndex = chapter.words.findIndex((item) => hardWordKey(item) === wordKey);
   if (status === HARD_WORD_STATUS.active && existingIndex === -1) {
     chapter.words.push({ ...word });
@@ -387,6 +404,50 @@ function applyHardWordLocalState(word, status) {
     }
   }
   chapter.word_count = chapter.words.length;
+}
+
+function readHardWordsLocalState() {
+  const empty = { active: [], removed: [] };
+  const raw = localStorage.getItem(HARD_WORDS_LOCAL_KEY);
+  if (!raw) {
+    return empty;
+  }
+  try {
+    const saved = JSON.parse(raw);
+    return {
+      active: Array.isArray(saved.active) ? saved.active : [],
+      removed: Array.isArray(saved.removed) ? saved.removed : [],
+    };
+  } catch (error) {
+    localStorage.removeItem(HARD_WORDS_LOCAL_KEY);
+    return empty;
+  }
+}
+
+function saveHardWordsLocalState(word, status) {
+  const wordKey = hardWordKey(word);
+  if (!wordKey) {
+    return;
+  }
+  const saved = readHardWordsLocalState();
+  saved.active = saved.active.filter((savedWord) => hardWordKey(savedWord) !== wordKey);
+  saved.removed = saved.removed.filter((savedWordKey) => savedWordKey !== wordKey);
+  if (status === HARD_WORD_STATUS.active) {
+    saved.active.push({ ...word });
+  } else if (status === HARD_WORD_STATUS.removed) {
+    saved.removed.push(wordKey);
+  }
+  localStorage.setItem(HARD_WORDS_LOCAL_KEY, JSON.stringify(saved));
+}
+
+function restoreHardWordsLocalState() {
+  const saved = readHardWordsLocalState();
+  saved.removed.forEach((wordKey) => applyHardWordLocalState({ word: wordKey }, HARD_WORD_STATUS.removed));
+  saved.active.forEach((savedWord) => applyHardWordLocalState(savedWord, HARD_WORD_STATUS.active));
+  const chapter = hardWordsChapter();
+  if (chapter) {
+    chapter.word_count = (chapter.words || []).length;
+  }
 }
 
 async function toggleHardWord() {
@@ -411,6 +472,7 @@ async function toggleHardWord() {
   try {
     await postHardWord(word, passcode, nextStatus);
     state.hardWordsPending.set(wordKey, nextStatus === HARD_WORD_STATUS.active);
+    saveHardWordsLocalState(word, nextStatus);
     applyHardWordLocalState(word, nextStatus);
     render();
     elements.hardWordStatus.textContent = nextStatus === HARD_WORD_STATUS.active
@@ -810,6 +872,7 @@ loadDailyData()
     state.data = data;
     state.chapters = normalizeData(data);
     state.hardWordsWriteUrl = data.hard_words?.write_url || "";
+    restoreHardWordsLocalState();
     restoreProgress();
     setupMediaSession();
     applyPlaybackRate();

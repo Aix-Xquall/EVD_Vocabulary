@@ -114,6 +114,19 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("chapter.words.splice(existingIndex, 1)", app_js)
         self.assertIn("chapter.word_count = chapter.words.length", app_js)
 
+    def test_hard_words_local_state_survives_page_reload(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn('const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state"', app_js)
+        self.assertIn("function restoreHardWordsLocalState()", app_js)
+        self.assertIn("function saveHardWordsLocalState(word, status)", app_js)
+        self.assertIn("restoreHardWordsLocalState();", app_js)
+        self.assertIn("saveHardWordsLocalState(word, nextStatus);", app_js)
+        self.assertIn("localStorage.getItem(HARD_WORDS_LOCAL_KEY)", app_js)
+        self.assertIn("localStorage.setItem(HARD_WORDS_LOCAL_KEY", app_js)
+        self.assertIn("saved.active.forEach((savedWord) => applyHardWordLocalState(savedWord, HARD_WORD_STATUS.active))", app_js)
+        self.assertIn("saved.removed.forEach((wordKey) => applyHardWordLocalState({ word: wordKey }, HARD_WORD_STATUS.removed))", app_js)
+
     def test_player_uses_wake_lock_and_media_session_for_mobile_playback(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
