@@ -7766,6 +7766,10 @@
             "example_1_zh": {
               "src": "audio/segments/zh/771e5de72cd2fef58e097cfb.mp3",
               "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/54334057dc5e3326548909b5.mp3",
+              "language": "en"
             }
           }
         },
@@ -8585,49 +8589,8 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 11,
+      "word_count": 10,
       "words": [
-        {
-          "id": "1",
-          "word": "consultant",
-          "pronunciation": "/kənˈsʌl.tənt/",
-          "chinese_meaning": "顧問",
-          "example_1_en": "We would like to consult with an experienced aerospace Electromagnetic Compatibility (EMC) consultant.",
-          "example_1_zh": "我們想請教一位有航太 Electromagnetic Compatibility (EMC) 經驗的顧問。",
-          "example_2_en": "The consultant should review our grounding and shielding concept.",
-          "example_2_zh": "顧問應該審查我們的接地與屏蔽概念。",
-          "category": "Consultant / Program Context",
-          "difficulty": "2",
-          "review_count": "0",
-          "last_review_date": "",
-          "index": 1,
-          "audio_segments": {
-            "word": {
-              "src": "audio/segments/en/3ed16c932694fe83cad3036c.mp3",
-              "language": "en"
-            },
-            "meaning": {
-              "src": "audio/segments/zh/04ba7b23e01891f0dbab0cba.mp3",
-              "language": "zh"
-            },
-            "example_1_en": {
-              "src": "audio/segments/en/0d934051617802f7b054713b.mp3",
-              "language": "en"
-            },
-            "example_1_zh": {
-              "src": "audio/segments/zh/42f415e766064895ebfa8959.mp3",
-              "language": "zh"
-            },
-            "example_2_en": {
-              "src": "audio/segments/en/68f2f361f10523bea0c602c0.mp3",
-              "language": "en"
-            },
-            "example_2_zh": {
-              "src": "audio/segments/zh/763fd5fec478bcf890819e75.mp3",
-              "language": "zh"
-            }
-          }
-        },
         {
           "id": "17",
           "word": "geometry",
@@ -8641,7 +8604,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 2,
+          "index": 1,
           "audio_segments": {}
         },
         {
@@ -8657,7 +8620,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 3,
+          "index": 2,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/ced65990164dff597ccf2e79.mp3",
@@ -8698,7 +8661,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 4,
+          "index": 3,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/5d45b69174844ba150c8ead3.mp3",
@@ -8739,7 +8702,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 5,
+          "index": 4,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/51fe7e86c0490065e6c4ff0b.mp3",
@@ -8780,7 +8743,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 6,
+          "index": 5,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/b6615eaae3944651d0d93ce5.mp3",
@@ -8821,7 +8784,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 7,
+          "index": 6,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/54650af60a165914dd862cf9.mp3",
@@ -8862,7 +8825,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 8,
+          "index": 7,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/731834ab57ac9c227024cb7a.mp3",
@@ -8903,7 +8866,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 9,
+          "index": 8,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/16670bc37f80dfc641b88997.mp3",
@@ -8944,7 +8907,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 10,
+          "index": 9,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d71aabdbbb7f001e1bb0acbd.mp3",
@@ -8985,7 +8948,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 11,
+          "index": 10,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/9c22e136d2c1f58cbff39ba7.mp3",
@@ -17371,6 +17334,10 @@
         "example_1_zh": {
           "src": "audio/segments/zh/771e5de72cd2fef58e097cfb.mp3",
           "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/54334057dc5e3326548909b5.mp3",
+          "language": "en"
         }
       }
     },
@@ -18184,47 +18151,6 @@
       "audio_segments": {}
     },
     {
-      "id": "1",
-      "word": "consultant",
-      "pronunciation": "/kənˈsʌl.tənt/",
-      "chinese_meaning": "顧問",
-      "example_1_en": "We would like to consult with an experienced aerospace Electromagnetic Compatibility (EMC) consultant.",
-      "example_1_zh": "我們想請教一位有航太 Electromagnetic Compatibility (EMC) 經驗的顧問。",
-      "example_2_en": "The consultant should review our grounding and shielding concept.",
-      "example_2_zh": "顧問應該審查我們的接地與屏蔽概念。",
-      "category": "Consultant / Program Context",
-      "difficulty": "2",
-      "review_count": "0",
-      "last_review_date": "",
-      "index": 1,
-      "audio_segments": {
-        "word": {
-          "src": "audio/segments/en/3ed16c932694fe83cad3036c.mp3",
-          "language": "en"
-        },
-        "meaning": {
-          "src": "audio/segments/zh/04ba7b23e01891f0dbab0cba.mp3",
-          "language": "zh"
-        },
-        "example_1_en": {
-          "src": "audio/segments/en/0d934051617802f7b054713b.mp3",
-          "language": "en"
-        },
-        "example_1_zh": {
-          "src": "audio/segments/zh/42f415e766064895ebfa8959.mp3",
-          "language": "zh"
-        },
-        "example_2_en": {
-          "src": "audio/segments/en/68f2f361f10523bea0c602c0.mp3",
-          "language": "en"
-        },
-        "example_2_zh": {
-          "src": "audio/segments/zh/763fd5fec478bcf890819e75.mp3",
-          "language": "zh"
-        }
-      }
-    },
-    {
       "id": "17",
       "word": "geometry",
       "pronunciation": "/dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english",
@@ -18237,7 +18163,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 2,
+      "index": 1,
       "audio_segments": {}
     },
     {
@@ -18253,7 +18179,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 3,
+      "index": 2,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/ced65990164dff597ccf2e79.mp3",
@@ -18294,7 +18220,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 4,
+      "index": 3,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/5d45b69174844ba150c8ead3.mp3",
@@ -18335,7 +18261,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 5,
+      "index": 4,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/51fe7e86c0490065e6c4ff0b.mp3",
@@ -18376,7 +18302,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 6,
+      "index": 5,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/b6615eaae3944651d0d93ce5.mp3",
@@ -18417,7 +18343,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 7,
+      "index": 6,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/54650af60a165914dd862cf9.mp3",
@@ -18458,7 +18384,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 8,
+      "index": 7,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/731834ab57ac9c227024cb7a.mp3",
@@ -18499,7 +18425,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 9,
+      "index": 8,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/16670bc37f80dfc641b88997.mp3",
@@ -18540,7 +18466,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 10,
+      "index": 9,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d71aabdbbb7f001e1bb0acbd.mp3",
@@ -18581,7 +18507,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 11,
+      "index": 10,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/9c22e136d2c1f58cbff39ba7.mp3",
