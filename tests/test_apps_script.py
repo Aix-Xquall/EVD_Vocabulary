@@ -12,6 +12,10 @@ class AppsScriptTests(unittest.TestCase):
         )
 
         self.assertIn("function doPost(e)", script)
+        self.assertIn("function readPostPayload(e)", script)
+        self.assertIn("if (!e || !e.postData || !e.postData.contents)", script)
+        self.assertIn("Missing POST body", script)
+        self.assertIn("function testTriggerDailyVocabularyWorkflow()", script)
         self.assertIn("sheet.appendRow(row)", script)
         self.assertIn("triggerDailyVocabularyWorkflow()", script)
         self.assertIn("UrlFetchApp.fetch(url, options)", script)

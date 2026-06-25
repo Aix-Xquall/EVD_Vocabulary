@@ -7,7 +7,10 @@ const PROP_GITHUB_WORKFLOW_FILE = "GITHUB_WORKFLOW_FILE";
 const PROP_GITHUB_REF = "GITHUB_REF";
 
 function doPost(e) {
-  const payload = JSON.parse((e.postData && e.postData.contents) || "{}");
+  const payload = readPostPayload(e);
+  if (payload.error) {
+    return jsonResponse({ ok: false, error: payload.error });
+  }
   const props = PropertiesService.getScriptProperties();
   const passcode = props.getProperty(PROP_PASSCODE);
   if (!passcode || payload.passcode !== passcode) {
@@ -31,6 +34,19 @@ function doPost(e) {
   }
 
   return jsonResponse({ ok: true, rowNumber, workflow });
+}
+
+function readPostPayload(e) {
+  if (!e || !e.postData || !e.postData.contents) {
+    return {
+      error: "Missing POST body. Deploy this script as a Web App and call the Web App URL, or run testTriggerDailyVocabularyWorkflow() to test GitHub Actions dispatch manually.",
+    };
+  }
+  return JSON.parse(e.postData.contents || "{}");
+}
+
+function testTriggerDailyVocabularyWorkflow() {
+  return triggerDailyVocabularyWorkflow();
 }
 
 function upsertHardWordRow(sheet, headers, row, word) {
