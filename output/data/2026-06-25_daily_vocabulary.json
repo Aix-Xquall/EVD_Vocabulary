@@ -8597,7 +8597,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 31,
+      "word_count": 33,
       "words": [
         {
           "id": "17",
@@ -9569,6 +9569,88 @@
           "last_review_date": "",
           "index": 31,
           "audio_segments": {}
+        },
+        {
+          "id": "17",
+          "word": "compliance matrix",
+          "pronunciation": "/kəmˈplaɪ.əns ˈmeɪ.trɪks/",
+          "chinese_meaning": "符合性矩陣",
+          "example_1_en": "A compliance matrix tracks every Electromagnetic Compatibility (EMC) requirement.",
+          "example_1_zh": "符合性矩陣追蹤每項 Electromagnetic Compatibility (EMC) 需求。",
+          "example_2_en": "The compliance matrix should identify verification status and evidence.",
+          "example_2_zh": "符合性矩陣應標示驗證狀態與證據。",
+          "category": "Requirements / Standards",
+          "difficulty": "5",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 32,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/dbc59c0edce41faaec367ae9.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/4cd5cd1c7b651b264f2926e2.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/64fc38ee89e4e0ae62305326.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/122d9589170b1460d3ed95c2.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/4cfeb9cbbcc9830c0fdbd5e5.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/50cb26549e38563aa8eff18c.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "28",
+          "word": "wire segregation",
+          "pronunciation": "/waɪr ˌseɡ.rəˈɡeɪ.ʃən/",
+          "chinese_meaning": "線路隔離、線種分離",
+          "example_1_en": "Wire segregation prevents noisy cables from coupling into sensitive signals.",
+          "example_1_zh": "線路隔離可避免噪聲線纜耦合到敏感訊號。",
+          "example_2_en": "Power, RF, and low-level analog wires need proper wire segregation.",
+          "example_2_zh": "電源、RF 與低位準類比線路需要適當線路隔離。",
+          "category": "Harness / Wiring / Shielding",
+          "difficulty": "5",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 33,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/35232bc0df93ff5f9e71a5ed.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/df1c1a8cda5721e2af4107f9.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/516b3bfdcaf85d4fdae73e6b.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/8732789877d8255216d3abb6.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/3dbe2fc5aa6664bded9769c6.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/75e4b649b6937fb333d15bdd.mp3",
+              "language": "zh"
+            }
+          }
         }
       ]
     },
@@ -19722,6 +19804,88 @@
       "last_review_date": "",
       "index": 31,
       "audio_segments": {}
+    },
+    {
+      "id": "17",
+      "word": "compliance matrix",
+      "pronunciation": "/kəmˈplaɪ.əns ˈmeɪ.trɪks/",
+      "chinese_meaning": "符合性矩陣",
+      "example_1_en": "A compliance matrix tracks every Electromagnetic Compatibility (EMC) requirement.",
+      "example_1_zh": "符合性矩陣追蹤每項 Electromagnetic Compatibility (EMC) 需求。",
+      "example_2_en": "The compliance matrix should identify verification status and evidence.",
+      "example_2_zh": "符合性矩陣應標示驗證狀態與證據。",
+      "category": "Requirements / Standards",
+      "difficulty": "5",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 32,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/dbc59c0edce41faaec367ae9.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/4cd5cd1c7b651b264f2926e2.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/64fc38ee89e4e0ae62305326.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/122d9589170b1460d3ed95c2.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/4cfeb9cbbcc9830c0fdbd5e5.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/50cb26549e38563aa8eff18c.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "28",
+      "word": "wire segregation",
+      "pronunciation": "/waɪr ˌseɡ.rəˈɡeɪ.ʃən/",
+      "chinese_meaning": "線路隔離、線種分離",
+      "example_1_en": "Wire segregation prevents noisy cables from coupling into sensitive signals.",
+      "example_1_zh": "線路隔離可避免噪聲線纜耦合到敏感訊號。",
+      "example_2_en": "Power, RF, and low-level analog wires need proper wire segregation.",
+      "example_2_zh": "電源、RF 與低位準類比線路需要適當線路隔離。",
+      "category": "Harness / Wiring / Shielding",
+      "difficulty": "5",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 33,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/35232bc0df93ff5f9e71a5ed.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/df1c1a8cda5721e2af4107f9.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/516b3bfdcaf85d4fdae73e6b.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/8732789877d8255216d3abb6.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/3dbe2fc5aa6664bded9769c6.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/75e4b649b6937fb333d15bdd.mp3",
+          "language": "zh"
+        }
+      }
     },
     {
       "id": "1",
