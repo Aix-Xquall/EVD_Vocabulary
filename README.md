@@ -73,6 +73,8 @@ HARD_WORDS_READ_TOKEN=YOUR_READ_TOKEN
 
 After each successful hard-word write, the Apps Script template calls the GitHub Actions API to run `Daily Vocabulary`. That workflow refreshes `vocabulary/hard_words.csv`, regenerates `latest.json`, deploys GitHub Pages, and sends the normal LINE notification.
 
+Hard-word add/remove refreshes pass `skip_line_notification=true`, so they update the site without sending a LINE message. The scheduled 06:30 run still sends the normal LINE notification.
+
 After changing or redeploying the Apps Script Web App, run `Daily Vocabulary` once from GitHub Actions or push a normal repo change so the published site picks up the latest hard-words settings and snapshot.
 
 Duplicate entries are skipped by the normalized `word` field inside each normal chapter. The hard words chapter can intentionally repeat a word that also exists in a normal chapter, but duplicate words inside `hard_words.csv` are collapsed.

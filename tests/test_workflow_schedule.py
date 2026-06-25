@@ -30,6 +30,17 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}", workflow)
         self.assertIn("HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}", workflow)
 
+    def test_hard_words_dispatch_skips_line_notification(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("skip_line_notification:", workflow)
+        self.assertIn("default: true", workflow)
+        self.assertIn('"${{ github.event_name }}" == "schedule"', workflow)
+        self.assertIn('inputs.skip_line_notification }}" != "true"', workflow)
+        self.assertIn("python main.py --skip-line", workflow)
+
     def test_push_workflow_skips_daily_generation_for_static_site_changes(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
             encoding="utf-8"

@@ -28,7 +28,7 @@ function doPost(e) {
   const rowNumber = upsertHardWordRow(sheet, headers, row, payload.word);
   let workflow = { ok: false };
   try {
-    workflow = triggerDailyVocabularyWorkflow();
+    workflow = triggerDailyVocabularyWorkflow(true);
   } catch (error) {
     workflow = { ok: false, error: String(error) };
     console.error(error);
@@ -66,7 +66,7 @@ function readPostPayload(e) {
 }
 
 function testTriggerDailyVocabularyWorkflow() {
-  return triggerDailyVocabularyWorkflow();
+  return triggerDailyVocabularyWorkflow(false);
 }
 
 function upsertHardWordRow(sheet, headers, row, word) {
@@ -92,7 +92,7 @@ function upsertHardWordRow(sheet, headers, row, word) {
   return sheet.getLastRow();
 }
 
-function triggerDailyVocabularyWorkflow() {
+function triggerDailyVocabularyWorkflow(skipLineNotification) {
   const props = PropertiesService.getScriptProperties();
   const token = props.getProperty(PROP_GITHUB_TOKEN);
   const owner = props.getProperty(PROP_GITHUB_OWNER) || "Aix-Xquall";
@@ -113,7 +113,12 @@ function triggerDailyVocabularyWorkflow() {
       "Accept": "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28",
     },
-    payload: JSON.stringify({ ref }),
+    payload: JSON.stringify({
+      ref,
+      inputs: {
+        skip_line_notification: skipLineNotification ? "true" : "false",
+      },
+    }),
   };
   const response = UrlFetchApp.fetch(url, options);
   const status = response.getResponseCode();
