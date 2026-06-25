@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 from hard_words_sync import (
     HARD_WORDS_FILENAME,
@@ -77,6 +78,28 @@ class HardWordsSyncTests(unittest.TestCase):
             )
 
             result = sync_hard_words(settings)
+
+            self.assertEqual(result.row_count, 1)
+            self.assertFalse(result.used_remote)
+            self.assertIn("EMS", snapshot.read_text(encoding="utf-8-sig"))
+
+    def test_sync_hard_words_keeps_existing_snapshot_when_remote_text_is_not_csv(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            vocabulary_dir = Path(temp_dir)
+            snapshot = vocabulary_dir / HARD_WORDS_FILENAME
+            snapshot.write_text(
+                HEADER
+                + "1,EMS,/ems/,EMS 皜祈岫,Example one,靘銝,Example two,靘鈭?EMC,4,0,,chapter,1,2026-06-24,active,\n",
+                encoding="utf-8-sig",
+            )
+            settings = SimpleNamespace(
+                hard_words_sheet_csv_url="https://script.google.com/macros/s/example/exec",
+                hard_words_read_token="",
+                vocabulary_dir=vocabulary_dir,
+            )
+
+            with patch("hard_words_sync._fetch_csv_text", return_value="ok,error\nfalse,Invalid read token.\n"):
+                result = sync_hard_words(settings)
 
             self.assertEqual(result.row_count, 1)
             self.assertFalse(result.used_remote)

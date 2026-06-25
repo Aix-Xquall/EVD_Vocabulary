@@ -32,13 +32,12 @@ def sync_hard_words(settings) -> HardWordsSyncResult | None:
 
     try:
         csv_text = _fetch_csv_text(settings.hard_words_sheet_csv_url, settings.hard_words_read_token)
+        return sync_hard_words_from_csv_text(csv_text, vocabulary_dir, used_remote=True)
     except (OSError, urllib.error.URLError, ValueError) as exc:
         print(f"Hard words sync warning: {exc}")
         if snapshot_path.exists():
             return HardWordsSyncResult(snapshot_path, _count_csv_rows(snapshot_path), False)
         return None
-
-    return sync_hard_words_from_csv_text(csv_text, vocabulary_dir, used_remote=True)
 
 
 def sync_hard_words_from_csv_text(
