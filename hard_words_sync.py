@@ -32,7 +32,7 @@ def sync_hard_words(settings) -> HardWordsSyncResult | None:
 
     try:
         csv_text = _fetch_csv_text(settings.hard_words_sheet_csv_url, settings.hard_words_read_token)
-    except (OSError, urllib.error.URLError) as exc:
+    except (OSError, urllib.error.URLError, ValueError) as exc:
         print(f"Hard words sync warning: {exc}")
         if snapshot_path.exists():
             return HardWordsSyncResult(snapshot_path, _count_csv_rows(snapshot_path), False)
@@ -48,7 +48,9 @@ def sync_hard_words_from_csv_text(
 ) -> HardWordsSyncResult:
     vocabulary_path = Path(vocabulary_dir)
     vocabulary_path.mkdir(parents=True, exist_ok=True)
-    rows = list(csv.DictReader(io.StringIO(csv_text)))
+    reader = csv.DictReader(io.StringIO(csv_text))
+    _validate_remote_csv_columns(reader.fieldnames or [])
+    rows = list(reader)
     filtered_rows = filter_hard_word_rows(rows)
 
     snapshot_path = vocabulary_path / HARD_WORDS_FILENAME
@@ -85,6 +87,13 @@ def _fetch_csv_text(url: str, read_token: str = "") -> str:
         request.add_header("Authorization", f"Bearer {read_token}")
     with urllib.request.urlopen(request, timeout=30) as response:
         return response.read().decode("utf-8-sig")
+
+
+def _validate_remote_csv_columns(fieldnames: list[str]) -> None:
+    missing = [column for column in REQUIRED_COLUMNS if column not in fieldnames]
+    if missing:
+        joined = ", ".join(missing)
+        raise ValueError(f"Hard words remote CSV missing required columns: {joined}")
 
 
 def _count_csv_rows(path: Path) -> int:

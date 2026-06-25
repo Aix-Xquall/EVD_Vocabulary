@@ -54,11 +54,19 @@ Use the maintained Apps Script template in `apps_script/hard_words_web_app.gs`. 
 
 ```text
 HARD_WORDS_PASSCODE
+HARD_WORDS_READ_TOKEN
 GITHUB_TOKEN
 GITHUB_OWNER=Aix-Xquall
 GITHUB_REPO=EVD_Vocabulary
 GITHUB_WORKFLOW_FILE=daily-vocabulary.yml
 GITHUB_REF=main
+```
+
+Use the Apps Script Web App URL with `readToken` for the repository secret:
+
+```text
+HARD_WORDS_SHEET_CSV_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?readToken=YOUR_READ_TOKEN
+HARD_WORDS_READ_TOKEN=YOUR_READ_TOKEN
 ```
 
 `GITHUB_TOKEN` should be a fine-grained GitHub token that can access only this repository. Give it `Actions: Read and write` permission so Apps Script can call `workflow_dispatch`. Keep the token only in Apps Script Properties; never paste it into `web/app.js`, `latest.json`, GitHub Pages, or any public file.

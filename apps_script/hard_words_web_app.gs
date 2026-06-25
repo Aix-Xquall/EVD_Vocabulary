@@ -5,6 +5,7 @@ const PROP_GITHUB_OWNER = "GITHUB_OWNER";
 const PROP_GITHUB_REPO = "GITHUB_REPO";
 const PROP_GITHUB_WORKFLOW_FILE = "GITHUB_WORKFLOW_FILE";
 const PROP_GITHUB_REF = "GITHUB_REF";
+const PROP_READ_TOKEN = "HARD_WORDS_READ_TOKEN";
 
 function doPost(e) {
   const payload = readPostPayload(e);
@@ -34,6 +35,25 @@ function doPost(e) {
   }
 
   return jsonResponse({ ok: true, rowNumber, workflow });
+}
+
+function doGet(e) {
+  const props = PropertiesService.getScriptProperties();
+  const expectedToken = props.getProperty(PROP_READ_TOKEN) || props.getProperty("READ_TOKEN");
+  const readToken = e && e.parameter ? e.parameter.readToken : "";
+  if (!expectedToken) {
+    return jsonResponse({ ok: false, error: "Missing HARD_WORDS_READ_TOKEN script property." });
+  }
+  if (readToken !== expectedToken) {
+    return jsonResponse({ ok: false, error: "Invalid read token." });
+  }
+
+  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    return jsonResponse({ ok: false, error: `Missing sheet: ${SHEET_NAME}` });
+  }
+
+  return csvResponse(sheetToCsv(sheet));
 }
 
 function readPostPayload(e) {
@@ -105,6 +125,25 @@ function triggerDailyVocabularyWorkflow() {
 
 function normalizeWord(value) {
   return String(value || "").trim().toLowerCase();
+}
+
+function sheetToCsv(sheet) {
+  const values = sheet.getDataRange().getValues();
+  return values.map((row) => row.map(csvCell).join(",")).join("\n") + "\n";
+}
+
+function csvCell(value) {
+  const text = String(value == null ? "" : value);
+  if (/[",\r\n]/.test(text)) {
+    return `"${text.replace(/"/g, '""')}"`;
+  }
+  return text;
+}
+
+function csvResponse(value) {
+  return ContentService
+    .createTextOutput(value)
+    .setMimeType(ContentService.MimeType.CSV);
 }
 
 function jsonResponse(value) {

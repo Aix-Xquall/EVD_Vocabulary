@@ -2,10 +2,12 @@ import csv
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
 from hard_words_sync import (
     HARD_WORDS_FILENAME,
     filter_hard_word_rows,
+    sync_hard_words,
     sync_hard_words_from_csv_text,
 )
 
@@ -52,6 +54,33 @@ class HardWordsSyncTests(unittest.TestCase):
             written_rows = list(csv.DictReader(snapshot.read_text(encoding="utf-8-sig").splitlines()))
             self.assertEqual(written_rows[0]["word"], "EMS")
             self.assertEqual(written_rows[0]["status"], "active")
+
+    def test_sync_hard_words_from_csv_text_rejects_non_vocabulary_csv(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with self.assertRaises(ValueError):
+                sync_hard_words_from_csv_text("ok,error\nfalse,Invalid read token.\n", temp_dir)
+
+    def test_sync_hard_words_keeps_existing_snapshot_when_remote_is_invalid(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            vocabulary_dir = Path(temp_dir)
+            snapshot = vocabulary_dir / HARD_WORDS_FILENAME
+            snapshot.write_text(
+                HEADER
+                + "1,EMS,/ems/,EMS 皜祈岫,Example one,靘銝,Example two,靘鈭?EMC,4,0,,chapter,1,2026-06-24,active,\n",
+                encoding="utf-8-sig",
+            )
+
+            settings = SimpleNamespace(
+                hard_words_sheet_csv_url="file-does-not-exist",
+                hard_words_read_token="",
+                vocabulary_dir=vocabulary_dir,
+            )
+
+            result = sync_hard_words(settings)
+
+            self.assertEqual(result.row_count, 1)
+            self.assertFalse(result.used_remote)
+            self.assertIn("EMS", snapshot.read_text(encoding="utf-8-sig"))
 
 
 if __name__ == "__main__":

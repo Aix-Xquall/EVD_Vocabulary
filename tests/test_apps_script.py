@@ -12,7 +12,11 @@ class AppsScriptTests(unittest.TestCase):
         )
 
         self.assertIn("function doPost(e)", script)
+        self.assertIn("function doGet(e)", script)
         self.assertIn("function readPostPayload(e)", script)
+        self.assertIn("HARD_WORDS_READ_TOKEN", script)
+        self.assertIn("sheetToCsv(sheet)", script)
+        self.assertIn("ContentService.MimeType.CSV", script)
         self.assertIn("if (!e || !e.postData || !e.postData.contents)", script)
         self.assertIn("Missing POST body", script)
         self.assertIn("function testTriggerDailyVocabularyWorkflow()", script)
