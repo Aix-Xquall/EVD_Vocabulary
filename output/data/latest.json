@@ -7770,6 +7770,10 @@
             "example_2_en": {
               "src": "audio/segments/en/54334057dc5e3326548909b5.mp3",
               "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/518193f5562974e9ab530ce2.mp3",
+              "language": "zh"
             }
           }
         },
@@ -8589,7 +8593,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 22,
+      "word_count": 23,
       "words": [
         {
           "id": "17",
@@ -9364,6 +9368,47 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/72f4da70eb005fa8384559bd.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "12",
+          "word": "subject to final confirmation",
+          "pronunciation": "/ˈsʌbdʒekt tuː ˈfaɪnəl ˌkɑːnfərˈmeɪʃən/",
+          "chinese_meaning": "待最終確認；需最終確認",
+          "example_1_en": "The values are preliminary assumptions and subject to final confirmation.",
+          "example_1_zh": "這些數值為初步假設，仍待最終確認。",
+          "example_2_en": "The bonding method is subject to final confirmation by the structural team.",
+          "example_2_zh": "搭接方法仍需由結構團隊做最終確認。",
+          "category": "Engineering Documentation / Assumptions",
+          "difficulty": "Advanced",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 23,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/09d9acb40588980173176936.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/ab858ee0de9998f3f308ab2e.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/c0a96edde8ec2d158968db15.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/57adf4a7ab6b9f041d8d4e0c.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/1b7066abc0c0e6362295b46b.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/7c9852e570b7b13d4229ef3e.mp3",
               "language": "zh"
             }
           }
@@ -17730,6 +17775,10 @@
         "example_2_en": {
           "src": "audio/segments/en/54334057dc5e3326548909b5.mp3",
           "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/518193f5562974e9ab530ce2.mp3",
+          "language": "zh"
         }
       }
     },
@@ -19315,6 +19364,47 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/72f4da70eb005fa8384559bd.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "12",
+      "word": "subject to final confirmation",
+      "pronunciation": "/ˈsʌbdʒekt tuː ˈfaɪnəl ˌkɑːnfərˈmeɪʃən/",
+      "chinese_meaning": "待最終確認；需最終確認",
+      "example_1_en": "The values are preliminary assumptions and subject to final confirmation.",
+      "example_1_zh": "這些數值為初步假設，仍待最終確認。",
+      "example_2_en": "The bonding method is subject to final confirmation by the structural team.",
+      "example_2_zh": "搭接方法仍需由結構團隊做最終確認。",
+      "category": "Engineering Documentation / Assumptions",
+      "difficulty": "Advanced",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 23,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/09d9acb40588980173176936.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/ab858ee0de9998f3f308ab2e.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/c0a96edde8ec2d158968db15.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/57adf4a7ab6b9f041d8d4e0c.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/1b7066abc0c0e6362295b46b.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/7c9852e570b7b13d4229ef3e.mp3",
           "language": "zh"
         }
       }
