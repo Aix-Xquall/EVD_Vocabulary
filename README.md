@@ -50,25 +50,20 @@ Recommended Apps Script deployment:
 
 Do not put GitHub tokens, Azure keys, LINE tokens, or Google account credentials in the public web page.
 
-Minimal Apps Script write handler example:
+Use the maintained Apps Script template in `apps_script/hard_words_web_app.gs`. Copy it into your Google Apps Script project, then set these Script Properties:
 
-```javascript
-const SHEET_NAME = "HardWords";
-const PASSCODE = "change-this-passcode";
-
-function doPost(e) {
-  const payload = JSON.parse(e.postData.contents || "{}");
-  if (payload.passcode !== PASSCODE) {
-    return ContentService.createTextOutput(JSON.stringify({ ok: false }));
-  }
-
-  const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
-  const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  const row = headers.map((header) => payload[header] || "");
-  sheet.appendRow(row);
-  return ContentService.createTextOutput(JSON.stringify({ ok: true }));
-}
+```text
+HARD_WORDS_PASSCODE
+GITHUB_TOKEN
+GITHUB_OWNER=Aix-Xquall
+GITHUB_REPO=EVD_Vocabulary
+GITHUB_WORKFLOW_FILE=daily-vocabulary.yml
+GITHUB_REF=main
 ```
+
+`GITHUB_TOKEN` should be a fine-grained GitHub token that can access only this repository. Give it `Actions: Read and write` permission so Apps Script can call `workflow_dispatch`. Keep the token only in Apps Script Properties; never paste it into `web/app.js`, `latest.json`, GitHub Pages, or any public file.
+
+After each successful hard-word write, the Apps Script template calls the GitHub Actions API to run `Daily Vocabulary`. That workflow refreshes `vocabulary/hard_words.csv`, regenerates `latest.json`, deploys GitHub Pages, and sends the normal LINE notification.
 
 Duplicate entries are skipped by the normalized `word` field inside each normal chapter. The hard words chapter can intentionally repeat a word that also exists in a normal chapter, but duplicate words inside `hard_words.csv` are collapsed.
 

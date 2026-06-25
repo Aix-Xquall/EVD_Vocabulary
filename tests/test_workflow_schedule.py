@@ -36,6 +36,8 @@ class WorkflowScheduleTests(unittest.TestCase):
         )
 
         self.assertIn("id: scope", workflow)
+        self.assertIn('- "apps_script/**"', workflow)
+        self.assertIn('- "README.md"', workflow)
         self.assertIn('changed_files="$(git diff --name-only HEAD^ HEAD || true)"', workflow)
         self.assertIn('echo "should_generate=${should_generate}" >> "$GITHUB_OUTPUT"', workflow)
         self.assertIn("if: ${{ steps.scope.outputs.should_generate == 'true' }}", workflow)

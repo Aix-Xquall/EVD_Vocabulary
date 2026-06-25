@@ -36,6 +36,8 @@ on:
       - "*.py"
       - "vocabulary/**/*.csv"
       - "requirements.txt"
+      - "README.md"
+      - "apps_script/**"
       - "tests/**"
       - "web/**"
   schedule:
