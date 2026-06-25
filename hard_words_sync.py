@@ -22,7 +22,7 @@ class HardWordsSyncResult:
 
 
 def sync_hard_words(settings) -> HardWordsSyncResult | None:
-    """Refresh the local hard words CSV snapshot when a remote CSV URL is configured."""
+    """Refresh the local hard words CSV snapshot when a valid remote CSV URL is configured."""
     vocabulary_dir = Path(settings.vocabulary_dir)
     snapshot_path = vocabulary_dir / HARD_WORDS_FILENAME
     if not settings.hard_words_sheet_csv_url:
