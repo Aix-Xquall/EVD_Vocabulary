@@ -21,6 +21,10 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn('id="chapterTabs"', index_html)
+        self.assertNotIn('id="courseDate"', index_html)
+        self.assertNotIn('id="progressText"', index_html)
+        self.assertNotIn("courseDate", app_js)
+        self.assertNotIn("progressText", app_js)
         self.assertIn('id="includeExamplesToggle"', index_html)
         self.assertIn('id="exampleRepeatCount"', index_html)
         self.assertIn('min="1"', index_html)
@@ -36,6 +40,17 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('segment.language === "en" ? state.playbackRate : 1', app_js)
         self.assertIn("speechSynthesis", app_js)
         self.assertIn("SpeechSynthesisUtterance", app_js)
+
+    def test_hard_words_chapter_is_first_and_tabs_show_progress(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("function sortHardWordsFirst(chapters)", app_js)
+        self.assertIn("Number(Boolean(second.is_hard_words))", app_js)
+        self.assertIn("function chapterProgressText(chapter, index)", app_js)
+        self.assertIn("saveCurrentChapterProgress()", app_js)
+        self.assertIn("chapterProgress: state.chapterProgress", app_js)
+        self.assertIn("state.chapters.unshift(chapter)", app_js)
+        self.assertIn("`${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`", app_js)
 
     def test_word_and_examples_share_the_same_repeat_behavior(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

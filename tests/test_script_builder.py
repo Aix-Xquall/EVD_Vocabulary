@@ -97,12 +97,12 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertEqual(payload["mode"], "chapters")
         self.assertEqual(
             [chapter["title"] for chapter in payload["chapters"]],
-            ["chapter-a", "chapter-b", "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2"],
+            ["\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2", "chapter-a", "chapter-b"],
         )
-        self.assertEqual(payload["chapters"][0]["word_count"], 1)
-        self.assertEqual(payload["chapters"][0]["words"][0]["audio_segments"]["meaning"]["language"], "zh")
-        self.assertEqual(payload["chapters"][1]["words"][0]["audio_segments"]["word"]["src"], "audio/segments/en/coupling.mp3")
-        self.assertEqual(payload["chapters"][2]["word_count"], 0)
+        self.assertEqual(payload["chapters"][0]["word_count"], 0)
+        self.assertEqual(payload["chapters"][1]["word_count"], 1)
+        self.assertEqual(payload["chapters"][1]["words"][0]["audio_segments"]["meaning"]["language"], "zh")
+        self.assertEqual(payload["chapters"][2]["words"][0]["audio_segments"]["word"]["src"], "audio/segments/en/coupling.mp3")
 
     def test_build_chapter_payload_does_not_publish_complete_chapter_audio(self):
         entry = sample_entry()
@@ -145,11 +145,11 @@ class ScriptBuilderTests(unittest.TestCase):
             segment_audio={},
         )
 
-        self.assertEqual(payload["chapters"][-1]["id"], "hard-words")
-        self.assertEqual(payload["chapters"][-1]["title"], "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2")
-        self.assertEqual(payload["chapters"][-1]["word_count"], 0)
-        self.assertEqual(payload["chapters"][-1]["words"], [])
-        self.assertTrue(payload["chapters"][-1]["is_hard_words"])
+        self.assertEqual(payload["chapters"][0]["id"], "hard-words")
+        self.assertEqual(payload["chapters"][0]["title"], "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2")
+        self.assertEqual(payload["chapters"][0]["word_count"], 0)
+        self.assertEqual(payload["chapters"][0]["words"], [])
+        self.assertTrue(payload["chapters"][0]["is_hard_words"])
 
 
 if __name__ == "__main__":

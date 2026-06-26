@@ -4,7 +4,7 @@ import re
 import urllib.error
 import urllib.request
 from datetime import date
-from pathlib import Path, PureWindowsPath
+from pathlib import Path
 from typing import Dict, List, Tuple
 
 from abbreviation_expander import expand_abbreviations_for_speech
@@ -95,9 +95,6 @@ def expected_segment_audio_paths(
     paths: Dict[str, Dict[str, dict]] = {}
     for entry in entries:
         entry_segments = {}
-        if _is_sample_vocabulary_entry(entry):
-            paths[audio_key_for_entry(entry)] = entry_segments
-            continue
         for role, field_name, language in SEGMENT_FIELDS:
             if language == "zh" and not settings.include_chinese_in_audio:
                 continue
@@ -367,9 +364,3 @@ def _speech_text_for_audio(text: str, language: str) -> str:
     return expand_abbreviations_for_speech(value)
 
 
-def _is_sample_vocabulary_entry(entry: VocabularyEntry) -> bool:
-    source_file = entry.get("_source_file", "")
-    if not source_file:
-        return False
-    source_path = PureWindowsPath(source_file) if "\\" in source_file else Path(source_file)
-    return source_path.stem.strip().lower().startswith("sample")

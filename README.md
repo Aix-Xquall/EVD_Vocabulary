@@ -121,7 +121,7 @@ review_count
 last_review_date
 ```
 
-請參考 `sample vocabulary.csv`。
+新增 CSV 時請使用上方欄位名稱，並放在 `vocabulary/` 資料夾。
 
 ## 每日選字規則
 

@@ -64,10 +64,10 @@ class MainWorkflowTests(unittest.TestCase):
             self.assertEqual(payload["mode"], "chapters")
             self.assertEqual(
                 [chapter["title"] for chapter in payload["chapters"]],
-                ["chapter-a", "chapter-b", "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2"],
+                ["\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2", "chapter-a", "chapter-b"],
             )
-            self.assertEqual([chapter["word_count"] for chapter in payload["chapters"]], [1, 1, 0])
-            self.assertTrue(payload["chapters"][2]["is_hard_words"])
+            self.assertEqual([chapter["word_count"] for chapter in payload["chapters"]], [0, 1, 1])
+            self.assertTrue(payload["chapters"][0]["is_hard_words"])
 
 
 def _write_vocabulary(path: Path, word: str = "impedance") -> None:

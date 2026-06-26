@@ -119,7 +119,8 @@ def build_chapter_payload(
         flat_words.append(public_entry)
 
     if not any(chapter.get("is_hard_words") for chapter in chapters):
-        chapters.append(
+        chapters.insert(
+            0,
             {
                 "id": "hard-words",
                 "title": HARD_WORDS_CHAPTER_TITLE,
@@ -129,6 +130,8 @@ def build_chapter_payload(
                 "words": [],
             }
         )
+    else:
+        chapters.sort(key=lambda chapter: 0 if chapter.get("is_hard_words") else 1)
 
     payload = {
         "date": target_date.isoformat(),

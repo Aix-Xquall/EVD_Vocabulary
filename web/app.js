@@ -13,6 +13,7 @@ const state = {
   chapters: [],
   currentChapterIndex: 0,
   currentIndex: 0,
+  chapterProgress: {},
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
@@ -36,8 +37,6 @@ const state = {
 };
 
 const elements = {
-  courseDate: document.getElementById("courseDate"),
-  progressText: document.getElementById("progressText"),
   chapterTabs: document.getElementById("chapterTabs"),
   wordList: document.getElementById("wordList"),
   categoryText: document.getElementById("categoryText"),
@@ -94,16 +93,22 @@ async function loadDailyData() {
 
 function normalizeData(data) {
   if (Array.isArray(data.chapters) && data.chapters.length > 0) {
-    return data.chapters;
+    return sortHardWordsFirst(data.chapters);
   }
-  return [
+  return sortHardWordsFirst([
     {
       id: "daily",
       title: "Daily",
       word_count: data.words?.length || 0,
       words: data.words || [],
     },
-  ];
+  ]);
+}
+
+function sortHardWordsFirst(chapters) {
+  return [...chapters].sort((first, second) => (
+    Number(Boolean(second.is_hard_words)) - Number(Boolean(first.is_hard_words))
+  ));
 }
 
 function currentChapter() {
@@ -122,8 +127,7 @@ function render() {
   const chapter = currentChapter();
   const words = currentWords();
   const word = currentWord();
-  elements.courseDate.textContent = state.data.date;
-  elements.progressText.textContent = `${state.currentIndex + 1} / ${words.length}`;
+  saveCurrentChapterProgress();
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
   elements.wordText.textContent = word.word || "Loading";
   elements.pronunciationText.textContent = word.pronunciation || "";
@@ -147,11 +151,12 @@ function renderChapterTabs() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `chapter-tab${index === state.currentChapterIndex ? " active" : ""}`;
-    button.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterWordCount(chapter)})`;
+    button.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`;
     button.addEventListener("click", () => {
       stopQueue();
+      saveCurrentChapterProgress();
       state.currentChapterIndex = index;
-      state.currentIndex = 0;
+      state.currentIndex = Math.max(0, savedChapterIndex(chapter));
       render();
       buildQuestion();
     });
@@ -165,6 +170,38 @@ function chapterWordCount(chapter) {
     return words.length;
   }
   return chapter.word_count || words.length;
+}
+
+function chapterProgressText(chapter, index) {
+  const total = chapterWordCount(chapter);
+  if (total <= 0) {
+    return "0/0";
+  }
+  if (index === state.currentChapterIndex) {
+    return `${Math.min(state.currentIndex + 1, total)}/${total}`;
+  }
+  const savedIndex = savedChapterIndex(chapter);
+  return savedIndex >= 0 ? `${Math.min(savedIndex + 1, total)}/${total}` : `0/${total}`;
+}
+
+function chapterKey(chapter) {
+  return chapter.id || chapter.source_file || chapter.title || "";
+}
+
+function savedChapterIndex(chapter) {
+  const key = chapterKey(chapter);
+  if (!key || state.chapterProgress[key] === undefined) {
+    return -1;
+  }
+  return Math.min(Number(state.chapterProgress[key]) || 0, Math.max(0, chapterWordCount(chapter) - 1));
+}
+
+function saveCurrentChapterProgress() {
+  const chapter = currentChapter();
+  const key = chapterKey(chapter);
+  if (key && chapterWordCount(chapter) > 0) {
+    state.chapterProgress[key] = state.currentIndex;
+  }
 }
 
 function renderWordList() {
@@ -382,7 +419,7 @@ function ensureHardWordsChapter() {
       word_count: 0,
       words: [],
     };
-    state.chapters.push(chapter);
+    state.chapters.unshift(chapter);
   }
   return chapter;
 }
@@ -775,6 +812,7 @@ function saveProgress() {
     JSON.stringify({
       currentChapterIndex: state.currentChapterIndex,
       currentIndex: state.currentIndex,
+      chapterProgress: state.chapterProgress,
       playbackRate: state.playbackRate,
       englishRepeatCount: state.englishRepeatCount,
       includeExamples: state.includeExamples,
@@ -792,7 +830,8 @@ function restoreProgress() {
   try {
     const saved = JSON.parse(raw);
     state.currentChapterIndex = Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
-    state.currentIndex = Math.min(saved.currentIndex || 0, currentWords().length - 1);
+    state.currentIndex = Math.max(0, Math.min(saved.currentIndex || 0, currentWords().length - 1));
+    state.chapterProgress = saved.chapterProgress || {};
     state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
     state.englishRepeatCount = clampRepeatCount(saved.englishRepeatCount || saved.exampleRepeatCount || DEFAULT_ENGLISH_REPEAT_COUNT);
     state.includeExamples = saved.includeExamples !== false;

@@ -60,7 +60,7 @@
 - Create: `.github/workflows/daily-vocabulary.yml`
 - Create: `requirements.txt`
 - Create: `README.md`
-- Create: `sample vocabulary.csv`
+- Use CSV files under `vocabulary/` as the vocabulary source.
 
 - [ ] Add GitHub Actions workflow with manual and scheduled triggers.
 - [ ] Configure workflow to install dependencies, run tests, generate daily outputs, commit changes, and deploy GitHub Pages-compatible files.

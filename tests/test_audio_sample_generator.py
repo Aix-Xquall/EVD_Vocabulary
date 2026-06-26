@@ -25,11 +25,10 @@ class AudioSampleGeneratorTests(unittest.TestCase):
 
         self.assertEqual([entry["word"] for entry in selected], ["b"])
 
-    def test_select_chapter_entries_by_index_ignores_sample_chapter(self):
+    def test_select_chapter_entries_by_index_uses_sorted_chapter_order(self):
         entries = [
             {"word": "a", "_source_file": "vocabulary/chapter-a.csv"},
             {"word": "b", "_source_file": "vocabulary/chapter-b.csv"},
-            {"word": "sample", "_source_file": "vocabulary/sample vocabulary.csv"},
         ]
 
         selected = select_chapter_entries_by_index(entries, 2, 10)

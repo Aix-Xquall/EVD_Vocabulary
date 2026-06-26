@@ -51,7 +51,7 @@ def select_chapter_entries_by_index(entries: list[dict], chapter_index: int, lim
     chapter_names = []
     for entry in entries:
         chapter_name = Path(entry.get("_source_file", "")).stem
-        if chapter_name and chapter_name.lower() != "sample vocabulary" and chapter_name not in chapter_names:
+        if chapter_name and chapter_name not in chapter_names:
             chapter_names.append(chapter_name)
     if chapter_index < 1 or chapter_index > len(chapter_names):
         raise ValueError(f"Chapter index {chapter_index} is outside 1..{len(chapter_names)}.")
