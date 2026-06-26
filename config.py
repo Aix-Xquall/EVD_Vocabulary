@@ -47,6 +47,8 @@ class Settings:
     google_english_voice: str = _text_env("GOOGLE_ENGLISH_VOICE", "en-US-Neural2-J")
     google_chinese_voice: str = _text_env("GOOGLE_CHINESE_VOICE", "cmn-TW-Wavenet-A")
     google_request_timeout_seconds: int = _int_env("EVD_GOOGLE_REQUEST_TIMEOUT_SECONDS", 60)
+    google_tts_free_remaining: str = _text_env("EVD_GOOGLE_TTS_FREE_REMAINING")
+    azure_speech_free_remaining: str = _text_env("EVD_AZURE_SPEECH_FREE_REMAINING")
 
     line_channel_access_token: str = _text_env("LINE_CHANNEL_ACCESS_TOKEN")
     line_user_id: str = _text_env("LINE_USER_ID")

@@ -57,6 +57,7 @@ def run_daily_generation(
     else:
         segment_audio = expected_segment_audio_paths(entries, settings)
 
+    previous_payload = _read_latest_payload(settings.output_dir)
     markdown = build_markdown(entries, target_date)
     payload = build_chapter_payload(
         entries,
@@ -76,7 +77,7 @@ def run_daily_generation(
             send_daily_line_notification(
                 settings,
                 target_date.isoformat(),
-                [entry.get("word", "") for entry in entries[:20]],
+                build_notification_report(previous_payload, payload),
             )
         except RuntimeError as exc:
             print(f"LINE notification warning: {exc}")
@@ -88,6 +89,50 @@ def run_daily_generation(
         "markdown_path": str(output_paths["markdown"]),
         "json_path": str(output_paths["json"]),
     }
+
+
+def _read_latest_payload(output_dir: Path) -> dict | None:
+    latest_path = output_dir / "data" / "latest.json"
+    if not latest_path.exists():
+        return None
+    try:
+        return json.loads(latest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"Previous latest.json warning: {exc}")
+        return None
+
+
+def build_notification_report(previous_payload: dict | None, current_payload: dict) -> dict:
+    previous_keys = _word_keys_by_chapter(previous_payload or {})
+    current_keys = _word_keys_by_chapter(current_payload)
+    previous_all = set().union(*previous_keys.values()) if previous_keys else set()
+    new_chapter_names = []
+    new_word_count = 0
+
+    for chapter in current_payload.get("chapters", []):
+        title = chapter.get("title", "")
+        keys = current_keys.get(title, set())
+        new_keys = keys - previous_all
+        new_word_count += len(new_keys)
+        if title and title not in previous_keys and keys:
+            new_chapter_names.append(title)
+
+    return {
+        "new_word_count": new_word_count,
+        "new_chapter_names": new_chapter_names,
+    }
+
+
+def _word_keys_by_chapter(payload: dict) -> dict[str, set[str]]:
+    chapters = {}
+    for chapter in payload.get("chapters", []):
+        title = chapter.get("title", "")
+        source_file = chapter.get("source_file", "")
+        words = set()
+        for word in chapter.get("words", []):
+            words.add("|".join([source_file, str(word.get("id", "")), word.get("word", "")]))
+        chapters[title] = words
+    return chapters
 
 
 def _write_outputs(output_dir: Path, target_date: date, markdown: str, payload: dict) -> dict:

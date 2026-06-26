@@ -31,6 +31,8 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("EVD_TTS_PROVIDER: ${{ vars.EVD_TTS_PROVIDER || 'azure' }}", workflow)
         self.assertIn("GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-J' }}", workflow)
         self.assertIn("GOOGLE_CHINESE_VOICE: ${{ vars.GOOGLE_CHINESE_VOICE || 'cmn-TW-Wavenet-A' }}", workflow)
+        self.assertIn("EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}", workflow)
+        self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)
 
     def test_daily_workflow_passes_hard_words_sync_settings(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
@@ -75,6 +77,16 @@ class WorkflowScheduleTests(unittest.TestCase):
 
         self.assertIn("git pull --rebase origin main", workflow)
         self.assertIn("git push", workflow)
+
+    def test_line_smoke_workflow_sends_current_notification_format(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "line-smoke-test.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("uses: actions/checkout@v4", workflow)
+        self.assertIn("EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}", workflow)
+        self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)
+        self.assertIn("python main.py --skip-audio --no-update-review", workflow)
 
 
 if __name__ == "__main__":

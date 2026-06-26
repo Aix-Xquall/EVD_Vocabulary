@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from config import Settings
-from main import run_daily_generation
+from main import build_notification_report, run_daily_generation
 
 
 class MainWorkflowTests(unittest.TestCase):
@@ -68,6 +68,49 @@ class MainWorkflowTests(unittest.TestCase):
             )
             self.assertEqual([chapter["word_count"] for chapter in payload["chapters"]], [0, 1, 1])
             self.assertTrue(payload["chapters"][0]["is_hard_words"])
+
+    def test_notification_report_detects_new_words_and_chapters(self):
+        previous_payload = {
+            "chapters": [
+                {
+                    "title": "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2",
+                    "source_file": "hard_words.csv",
+                    "words": [],
+                },
+                {
+                    "title": "chapter-a",
+                    "source_file": "chapter-a.csv",
+                    "words": [{"id": "1", "word": "impedance"}],
+                },
+            ]
+        }
+        current_payload = {
+            "chapters": [
+                {
+                    "title": "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2",
+                    "source_file": "hard_words.csv",
+                    "words": [],
+                },
+                {
+                    "title": "chapter-a",
+                    "source_file": "chapter-a.csv",
+                    "words": [
+                        {"id": "1", "word": "impedance"},
+                        {"id": "2", "word": "coupling"},
+                    ],
+                },
+                {
+                    "title": "chapter-b",
+                    "source_file": "chapter-b.csv",
+                    "words": [{"id": "1", "word": "shielding"}],
+                },
+            ]
+        }
+
+        report = build_notification_report(previous_payload, current_payload)
+
+        self.assertEqual(report["new_word_count"], 2)
+        self.assertEqual(report["new_chapter_names"], ["chapter-b"])
 
 
 def _write_vocabulary(path: Path, word: str = "impedance") -> None:

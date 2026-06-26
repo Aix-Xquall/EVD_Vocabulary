@@ -226,9 +226,13 @@ Add these Repository Variables:
 EVD_TTS_PROVIDER=google
 GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
+EVD_GOOGLE_TTS_FREE_REMAINING=900000 characters
+EVD_AZURE_SPEECH_FREE_REMAINING=45000 characters
 ```
 
 If `EVD_TTS_PROVIDER` is not set, the workflow stays on `azure`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x.
+
+`EVD_GOOGLE_TTS_FREE_REMAINING` and `EVD_AZURE_SPEECH_FREE_REMAINING` are shown in the LINE message as manual status fields. LINE message quota is queried automatically from the LINE Messaging API.
 
 ## 輸出結構
 
