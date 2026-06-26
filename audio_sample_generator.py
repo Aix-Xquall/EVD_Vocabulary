@@ -13,6 +13,8 @@ GOOGLE_FEMALE_TEST_VOICES = [
     ("Neural2-C", "en-US-Neural2-C"),
     ("Neural2-E", "en-US-Neural2-E"),
     ("Neural2-F", "en-US-Neural2-F"),
+    ("Neural2-G", "en-US-Neural2-G"),
+    ("Neural2-H", "en-US-Neural2-H"),
 ]
 
 
@@ -25,7 +27,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repeat-count", type=int, default=3, help="English segment repeat count in the combined sample.")
     parser.add_argument("--output-name", default="audio_sample", help="Folder name under output/audio_tests.")
     parser.add_argument("--title", default="", help="Title shown on the generated sample page.")
-    parser.add_argument("--google-female-voice-test", action="store_true", help="Generate a three-voice Google female English comparison page.")
+    parser.add_argument("--google-female-voice-test", action="store_true", help="Generate a five-voice Google female English comparison page.")
     return parser.parse_args()
 
 
