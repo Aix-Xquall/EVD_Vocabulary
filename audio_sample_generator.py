@@ -5,8 +5,15 @@ import json
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
-from tts_generator import SEGMENT_FIELDS, _combine_audio_files, _speech_text_for_audio, _synthesize_ssml, _voice_segment, _wrap_ssml
+from tts_generator import SEGMENT_FIELDS, _combine_audio_files, _speech_text_for_audio, _synthesize_segment
 from vocabulary_loader import load_vocabulary
+
+
+GOOGLE_FEMALE_TEST_VOICES = [
+    ("Neural2-C", "en-US-Neural2-C"),
+    ("Neural2-E", "en-US-Neural2-E"),
+    ("Neural2-F", "en-US-Neural2-F"),
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -18,6 +25,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--repeat-count", type=int, default=3, help="English segment repeat count in the combined sample.")
     parser.add_argument("--output-name", default="audio_sample", help="Folder name under output/audio_tests.")
     parser.add_argument("--title", default="", help="Title shown on the generated sample page.")
+    parser.add_argument("--google-female-voice-test", action="store_true", help="Generate a three-voice Google female English comparison page.")
     return parser.parse_args()
 
 
@@ -33,7 +41,17 @@ def main() -> None:
         raise ValueError("Either --chapter or --chapter-index is required.")
     output_dir = settings.output_dir / "audio_tests" / args.output_name
     title = args.title or f"{Path(entries[0].get('_source_file', '')).stem} first {len(entries)} words 0.8x audio test"
-    result = generate_audio_sample(entries, output_dir, settings, args.repeat_count, args.output_name, title)
+    if args.google_female_voice_test:
+        result = generate_google_voice_comparison_sample(
+            entries,
+            output_dir,
+            settings,
+            args.repeat_count,
+            args.output_name,
+            title,
+        )
+    else:
+        result = generate_audio_sample(entries, output_dir, settings, args.repeat_count, args.output_name, title)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
@@ -84,7 +102,7 @@ def generate_audio_sample(
         synthesized_characters += len(_speech_text_for_audio(text, language))
         if output_file.exists() and output_file.stat().st_size > 0:
             continue
-        _synthesize_ssml(settings, _sample_segment_ssml(text, language, settings), output_file)
+        _synthesize_segment(settings, text, language, output_file)
 
     sequence = _playback_sequence(entries, repeat_count)
     combined_files = [segment_files[item] for item in sequence if item in segment_files]
@@ -99,6 +117,63 @@ def generate_audio_sample(
         "combined_audio": str(combined_path),
         "page": str(output_dir / "index.html"),
     }
+
+
+def generate_google_voice_comparison_sample(
+    entries: list[dict],
+    output_dir: Path,
+    settings: Settings,
+    repeat_count: int,
+    output_name: str,
+    title: str,
+    voices: list[tuple[str, str]] | None = None,
+) -> dict:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    selected_voices = voices or GOOGLE_FEMALE_TEST_VOICES
+    audio_entries = _english_only_entries(entries)
+    voice_results = []
+    for label, voice_name in selected_voices:
+        voice_settings = _replace_setting(
+            settings,
+            tts_provider="google",
+            google_english_voice=voice_name,
+        )
+        voice_dir = output_dir / _safe_path_name(voice_name)
+        result = generate_audio_sample(
+            audio_entries,
+            voice_dir,
+            voice_settings,
+            repeat_count,
+            output_name=_safe_path_name(voice_name),
+            title=f"{title} - {label} ({voice_name})",
+        )
+        voice_results.append(
+            {
+                "label": label,
+                "voice": voice_name,
+                "audio": f"{_safe_path_name(voice_name)}/{_safe_path_name(voice_name)}.mp3",
+                "page": f"{_safe_path_name(voice_name)}/index.html",
+                "estimated_synthesized_characters": result["estimated_synthesized_characters"],
+            }
+        )
+
+    _write_comparison_page(output_dir, entries, title, selected_voices, voice_results, repeat_count)
+    return {
+        "words": len(entries),
+        "voices": voice_results,
+        "page": str(output_dir / "index.html"),
+    }
+
+
+def _english_only_entries(entries: list[dict]) -> list[dict]:
+    audio_entries = []
+    for entry in entries:
+        audio_entry = dict(entry)
+        audio_entry["chinese_meaning"] = ""
+        audio_entry["example_1_zh"] = ""
+        audio_entry["example_2_zh"] = ""
+        audio_entries.append(audio_entry)
+    return audio_entries
 
 
 def _unique_audio_segments(entries: list[dict], settings: Settings) -> list[tuple[str, str, str]]:
@@ -147,19 +222,20 @@ def _repeated_english_with_chinese(
     return sequence
 
 
-def _sample_segment_ssml(text: str, language: str, settings: Settings) -> str:
-    if language == "zh":
-        body = _voice_segment(text, settings.chinese_voice, "0%", "700ms", "zh-TW")
-    else:
-        body = _voice_segment(text, settings.english_voice, settings.speech_rate, "700ms")
-    return _wrap_ssml(body)
-
-
 def _segment_filename(role: str, text: str, language: str, settings: Settings) -> str:
     rate = "0%" if language == "zh" else settings.speech_rate
-    key = f"{role}|{language}|{rate}|{_speech_text_for_audio(text, language)}"
+    provider = str(settings.tts_provider or "azure").strip().lower()
+    voice = _voice_name_for_sample(settings, language)
+    key = f"{role}|{provider}|{voice}|{language}|{rate}|{_speech_text_for_audio(text, language)}"
     digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:12]
     return f"{role}_{language}_{digest}.mp3"
+
+
+def _voice_name_for_sample(settings: Settings, language: str) -> str:
+    provider = str(settings.tts_provider or "azure").strip().lower()
+    if provider == "google":
+        return settings.google_chinese_voice if language == "zh" else settings.google_english_voice
+    return settings.chinese_voice if language == "zh" else settings.english_voice
 
 
 def _write_sample_page(
@@ -175,6 +251,8 @@ def _write_sample_page(
         f"<li><strong>{html.escape(entry.get('word', ''))}</strong> - {html.escape(entry.get('chinese_meaning', ''))}</li>"
         for entry in entries
     )
+    provider = html.escape(str(settings.tts_provider or "azure"))
+    english_voice = html.escape(_voice_name_for_sample(settings, "en"))
     html_text = f"""<!doctype html>
 <html lang=\"zh-Hant\">
   <head>
@@ -184,13 +262,59 @@ def _write_sample_page(
   </head>
   <body>
     <h1>{html.escape(title)}</h1>
-    <p>English Azure prosody rate: {html.escape(settings.speech_rate)}. English repeat count: {repeat_count}. Estimated synthesized characters: {synthesized_characters}.</p>
+    <p>Provider: {provider}. English voice: {english_voice}. English rate: {html.escape(settings.speech_rate)}. English repeat count: {repeat_count}. Estimated synthesized characters: {synthesized_characters}.</p>
     <audio controls preload=\"metadata\" src=\"{html.escape(audio_filename)}\"></audio>
     <ol>{items}</ol>
   </body>
 </html>
 """
     (output_dir / "index.html").write_text(html_text, encoding="utf-8")
+
+
+def _write_comparison_page(
+    output_dir: Path,
+    entries: list[dict],
+    title: str,
+    voices: list[tuple[str, str]],
+    voice_results: list[dict],
+    repeat_count: int,
+) -> None:
+    players = "\n".join(
+        (
+            "<section>"
+            f"<h2>{html.escape(result['label'])} - {html.escape(result['voice'])}</h2>"
+            f"<audio controls preload=\"metadata\" src=\"{html.escape(result['audio'])}\"></audio>"
+            f"<p><a href=\"{html.escape(result['page'])}\">Open detail page</a></p>"
+            "</section>"
+        )
+        for result in voice_results
+    )
+    items = "\n".join(
+        f"<li><strong>{html.escape(entry.get('word', ''))}</strong> - {html.escape(entry.get('chinese_meaning', ''))}</li>"
+        for entry in entries
+    )
+    voice_text = ", ".join(voice for _, voice in voices)
+    html_text = f"""<!doctype html>
+<html lang=\"zh-Hant\">
+  <head>
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <title>{html.escape(title)}</title>
+  </head>
+  <body>
+    <h1>{html.escape(title)}</h1>
+    <p>Google English female voice comparison. Repeat count: {repeat_count}. Voices: {html.escape(voice_text)}.</p>
+    {players}
+    <h2>Words</h2>
+    <ol>{items}</ol>
+  </body>
+</html>
+"""
+    (output_dir / "index.html").write_text(html_text, encoding="utf-8")
+
+
+def _safe_path_name(value: str) -> str:
+    return "".join(char if char.isalnum() or char in "-_" else "_" for char in value).strip("_") or "voice"
 
 
 def _replace_setting(settings: Settings, **changes) -> Settings:

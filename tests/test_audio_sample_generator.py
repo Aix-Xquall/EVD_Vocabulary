@@ -7,6 +7,7 @@ from audio_sample_generator import (
     _playback_sequence,
     estimate_synthesized_characters,
     generate_audio_sample,
+    generate_google_voice_comparison_sample,
     select_chapter_entries,
     select_chapter_entries_by_index,
 )
@@ -95,7 +96,7 @@ class AudioSampleGeneratorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             output_dir = Path(temp_dir) / "emc1_first3_0_8"
 
-            with patch("audio_sample_generator._synthesize_ssml", side_effect=lambda settings, ssml, output_file: output_file.write_bytes(b"mp3")):
+            with patch("audio_sample_generator._synthesize_segment", side_effect=lambda settings, text, language, output_file: output_file.write_bytes(b"mp3")):
                 result = generate_audio_sample(
                     [entry],
                     output_dir,
@@ -108,6 +109,41 @@ class AudioSampleGeneratorTests(unittest.TestCase):
             self.assertTrue(result["combined_audio"].endswith("emc1_first3_0_8.mp3"))
             html = (output_dir / "index.html").read_text(encoding="utf-8")
             self.assertIn("EMC航電詞彙整合1 前 3 個 0.8 語速測試", html)
+
+    def test_generate_google_voice_comparison_sample_creates_three_voice_sections(self):
+        entry = {
+            "word": "impedance",
+            "chinese_meaning": "阻抗",
+            "example_1_en": "The impedance must be controlled.",
+            "example_1_zh": "阻抗必須受到控制。",
+            "example_2_en": "",
+            "example_2_zh": "",
+        }
+        voices = [
+            ("Neural2-C", "en-US-Neural2-C"),
+            ("Neural2-E", "en-US-Neural2-E"),
+            ("Neural2-F", "en-US-Neural2-F"),
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "google_female_emc1_first10"
+
+            with patch("audio_sample_generator._synthesize_segment", side_effect=lambda settings, text, language, output_file: output_file.write_bytes(b"mp3")):
+                result = generate_google_voice_comparison_sample(
+                    [entry],
+                    output_dir,
+                    Settings(generate_audio=False, speech_rate="-20%"),
+                    repeat_count=2,
+                    output_name="google_female_emc1_first10",
+                    title="Google 女聲比較",
+                    voices=voices,
+                )
+
+            html = (output_dir / "index.html").read_text(encoding="utf-8")
+            self.assertEqual(len(result["voices"]), 3)
+            self.assertIn("en-US-Neural2-C", html)
+            self.assertIn("en-US-Neural2-E", html)
+            self.assertIn("en-US-Neural2-F", html)
+            self.assertTrue((output_dir / "en-US-Neural2-C" / "en-US-Neural2-C.mp3").exists())
 
 
 if __name__ == "__main__":
