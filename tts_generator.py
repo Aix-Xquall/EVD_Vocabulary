@@ -1,5 +1,6 @@
 import hashlib
 import html
+import os
 import re
 import urllib.error
 import urllib.request
@@ -41,6 +42,9 @@ class AzureSpeechQuotaExceeded(AzureSpeechSynthesisError):
     pass
 
 
+SUPPORTED_TTS_PROVIDERS = {"azure", "google"}
+
+
 def expected_audio_paths(
     entries: List[VocabularyEntry],
     target_date: date,
@@ -64,10 +68,7 @@ def generate_audio_files(
     if not settings.generate_audio:
         return per_word_paths, combined_path
 
-    if not settings.azure_speech_key or not settings.azure_speech_region:
-        raise RuntimeError(
-            "Azure Speech is enabled, but AZURE_SPEECH_KEY or AZURE_SPEECH_REGION is missing."
-        )
+    _validate_tts_settings(settings)
 
     date_text = target_date.isoformat()
     word_audio_dir = settings.output_dir / "audio" / date_text
@@ -118,10 +119,7 @@ def generate_segment_audio_files(
     if not settings.generate_audio:
         return segment_paths
 
-    if not settings.azure_speech_key or not settings.azure_speech_region:
-        raise RuntimeError(
-            "Azure Speech is enabled, but AZURE_SPEECH_KEY or AZURE_SPEECH_REGION is missing."
-        )
+    _validate_tts_settings(settings)
 
     generated_sources = set()
     pending_segments = []
@@ -143,14 +141,13 @@ def generate_segment_audio_files(
     total_segments = len(pending_segments)
     for index, (role, field_name, language, entry, output_file) in enumerate(pending_segments, start=1):
         output_file.parent.mkdir(parents=True, exist_ok=True)
-        ssml = _segment_ssml(entry.get(field_name, ""), language, settings)
         print(
             f"Synthesizing segment {index}/{total_segments}: "
             f"{language} {role} {entry.get('word', '')}",
             flush=True,
         )
         try:
-            _synthesize_ssml(settings, ssml, output_file)
+            _synthesize_segment(settings, entry.get(field_name, ""), language, output_file)
         except AzureSpeechQuotaExceeded as exc:
             print(
                 "Azure Speech quota exhausted; stopping this run and publishing "
@@ -188,7 +185,38 @@ def _combine_audio_files(source_files: List[Path], output_file: Path) -> None:
             combined.write(source_file.read_bytes())
 
 
+def _validate_tts_settings(settings: Settings) -> None:
+    provider = _tts_provider(settings)
+    if provider == "azure" and (not settings.azure_speech_key or not settings.azure_speech_region):
+        raise RuntimeError(
+            "Azure Speech is enabled, but AZURE_SPEECH_KEY or AZURE_SPEECH_REGION is missing."
+        )
+
+
+def _tts_provider(settings: Settings) -> str:
+    provider = str(settings.tts_provider or "azure").strip().lower()
+    if provider not in SUPPORTED_TTS_PROVIDERS:
+        supported = ", ".join(sorted(SUPPORTED_TTS_PROVIDERS))
+        raise RuntimeError(f"Unsupported EVD_TTS_PROVIDER={settings.tts_provider!r}; use {supported}.")
+    return provider
+
+
+def _synthesize_segment(settings: Settings, text: str, language: str, output_file: Path) -> None:
+    if _tts_provider(settings) == "google":
+        _synthesize_google_text(
+            settings,
+            _speech_text_for_audio(text, language),
+            language,
+            output_file,
+        )
+        return
+    _synthesize_ssml(settings, _segment_ssml(text, language, settings), output_file)
+
+
 def _synthesize_ssml(settings: Settings, ssml: str, output_file: Path) -> None:
+    if _tts_provider(settings) == "google":
+        _synthesize_google_ssml(settings, ssml, output_file)
+        return
     url = f"https://{settings.azure_speech_region}.tts.speech.microsoft.com/cognitiveservices/v1"
     request = urllib.request.Request(
         url,
@@ -219,8 +247,68 @@ def _synthesize_ssml(settings: Settings, ssml: str, output_file: Path) -> None:
         raise RuntimeError(f"Azure Speech request failed for {output_file}: {exc}") from exc
 
 
+def _synthesize_google_text(
+    settings: Settings,
+    text: str,
+    language: str,
+    output_file: Path,
+) -> None:
+    _synthesize_google_input(settings, text, language, output_file, use_ssml=False)
+
+
+def _synthesize_google_ssml(settings: Settings, ssml: str, output_file: Path) -> None:
+    _synthesize_google_input(settings, ssml, "en", output_file, use_ssml=True)
+
+
+def _synthesize_google_input(
+    settings: Settings,
+    text: str,
+    language: str,
+    output_file: Path,
+    use_ssml: bool,
+) -> None:
+    try:
+        from google.cloud import texttospeech
+    except ImportError as exc:
+        raise RuntimeError(
+            "Google Cloud Text-to-Speech is enabled, but google-cloud-texttospeech "
+            "is not installed. Run: python -m pip install -r requirements.txt"
+        ) from exc
+
+    voice_name = _voice_name_for_language(settings, language)
+    language_code = _language_code_from_google_voice(voice_name, language)
+    rate = 1.0 if language == "zh" else _google_speaking_rate(settings.speech_rate)
+    synthesis_input = (
+        texttospeech.SynthesisInput(ssml=text)
+        if use_ssml
+        else texttospeech.SynthesisInput(text=text)
+    )
+    voice = texttospeech.VoiceSelectionParams(language_code=language_code, name=voice_name)
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.MP3,
+        speaking_rate=rate,
+    )
+    try:
+        client = texttospeech.TextToSpeechClient()
+        response = client.synthesize_speech(
+            input=synthesis_input,
+            voice=voice,
+            audio_config=audio_config,
+            timeout=settings.google_request_timeout_seconds,
+        )
+        output_file.write_bytes(response.audio_content)
+    except Exception as exc:
+        credential_hint = ""
+        if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
+            credential_hint = " Set GOOGLE_APPLICATION_CREDENTIALS or configure ADC first."
+        raise RuntimeError(
+            f"Google Cloud Text-to-Speech request failed for {output_file}: {exc}."
+            f"{credential_hint}"
+        ) from exc
+
+
 def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:
-    english_voice = html.escape(settings.english_voice)
+    english_voice = html.escape(_voice_name_for_language(settings, "en"))
     separator = _voice_segment("", english_voice, settings.speech_rate, "1000ms")
     body = f"\n{separator}\n".join(_entry_content(entry, settings) for entry in entries)
     return _wrap_ssml(body)
@@ -232,8 +320,8 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 def _segment_ssml(text: str, language: str, settings: Settings) -> str:
     if language == "zh":
-        return _wrap_ssml(_voice_segment(text, settings.chinese_voice, "0%", language="zh-TW"))
-    return _wrap_ssml(_voice_segment(text, settings.english_voice, settings.speech_rate))
+        return _wrap_ssml(_voice_segment(text, _voice_name_for_language(settings, "zh"), "0%", language="zh-TW"))
+    return _wrap_ssml(_voice_segment(text, _voice_name_for_language(settings, "en"), settings.speech_rate))
 
 
 def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
@@ -241,8 +329,8 @@ def _entry_body(entry: VocabularyEntry, settings: Settings) -> str:
 
 
 def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
-    english_voice = html.escape(settings.english_voice)
-    chinese_voice = html.escape(settings.chinese_voice)
+    english_voice = html.escape(_voice_name_for_language(settings, "en"))
+    chinese_voice = html.escape(_voice_name_for_language(settings, "zh"))
     rate = settings.speech_rate
 
     parts = [
@@ -350,11 +438,34 @@ def _safe_filename(value: str) -> str:
 
 
 def _segment_relative_path(text: str, language: str, settings: Settings) -> str:
-    voice = settings.chinese_voice if language == "zh" else settings.english_voice
+    provider = _tts_provider(settings)
+    voice = _voice_name_for_language(settings, language)
     rate = "0%" if language == "zh" else settings.speech_rate
-    key = f"{language}|{voice}|{rate}|{_speech_text_for_audio(text, language)}"
+    provider_prefix = "" if provider == "azure" else f"{provider}|"
+    key = f"{provider_prefix}{language}|{voice}|{rate}|{_speech_text_for_audio(text, language)}"
     digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:24]
     return f"audio/segments/{language}/{digest}.mp3"
+
+
+def _voice_name_for_language(settings: Settings, language: str) -> str:
+    if _tts_provider(settings) == "google":
+        return settings.google_chinese_voice if language == "zh" else settings.google_english_voice
+    return settings.chinese_voice if language == "zh" else settings.english_voice
+
+
+def _language_code_from_google_voice(voice_name: str, language: str) -> str:
+    parts = [part for part in str(voice_name or "").split("-") if part]
+    if len(parts) >= 2:
+        return f"{parts[0]}-{parts[1]}"
+    return "cmn-TW" if language == "zh" else "en-US"
+
+
+def _google_speaking_rate(rate: str) -> float:
+    value = str(rate or "0%").strip()
+    if value.endswith("%"):
+        percent = float(value[:-1] or 0)
+        return max(0.25, min(4.0, 1.0 + percent / 100.0))
+    return max(0.25, min(4.0, float(value)))
 
 
 def _speech_text_for_audio(text: str, language: str) -> str:

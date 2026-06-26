@@ -185,6 +185,51 @@ $env:EVD_ENGLISH_VOICE="en-US-JennyNeural"
 $env:EVD_CHINESE_VOICE="zh-TW-HsiaoChenNeural"
 ```
 
+## Google Cloud Text-to-Speech setup
+
+Google TTS is optional. Azure remains the default provider. When you switch to Google, existing Azure MP3 segment files are not overwritten; Google uses separate content-addressed segment file names.
+
+Before local testing:
+
+1. Create or select a Google Cloud project.
+2. Enable `Cloud Text-to-Speech API`.
+3. Link Billing if Google asks for it. Confirm this step carefully because it involves payment settings, even when you plan to stay inside the free tier.
+4. Create a Service Account and download its JSON key.
+5. Install dependencies:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+Local environment example:
+
+```powershell
+$env:EVD_TTS_PROVIDER="google"
+$env:GOOGLE_APPLICATION_CREDENTIALS="D:\secure\google-tts-key.json"
+$env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-J"
+$env:GOOGLE_CHINESE_VOICE="cmn-TW-Wavenet-A"
+$env:EVD_SPEECH_RATE="-20%"
+python main.py --skip-line --no-update-review
+```
+
+For GitHub Actions, add this Repository Secret:
+
+```text
+GOOGLE_TTS_CREDENTIALS_JSON
+```
+
+Paste the full Service Account JSON key as the secret value. Never commit the JSON key to the repo, and never put it under `web/` or `output/`.
+
+Add these Repository Variables:
+
+```text
+EVD_TTS_PROVIDER=google
+GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
+GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
+```
+
+If `EVD_TTS_PROVIDER` is not set, the workflow stays on `azure`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x.
+
 ## 輸出結構
 
 ```text

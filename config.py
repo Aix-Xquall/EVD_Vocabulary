@@ -38,11 +38,15 @@ class Settings:
     generate_audio: bool = _bool_env("EVD_GENERATE_AUDIO", True)
     max_audio_segments_per_run: int = _int_env("EVD_MAX_AUDIO_SEGMENTS_PER_RUN", 0)
 
+    tts_provider: str = _text_env("EVD_TTS_PROVIDER", "azure")
     azure_speech_key: str = _text_env("AZURE_SPEECH_KEY")
     azure_speech_region: str = _text_env("AZURE_SPEECH_REGION")
     azure_request_timeout_seconds: int = _int_env("EVD_AZURE_REQUEST_TIMEOUT_SECONDS", 60)
     english_voice: str = _text_env("EVD_ENGLISH_VOICE", "en-US-JennyNeural")
     chinese_voice: str = _text_env("EVD_CHINESE_VOICE", "zh-TW-HsiaoChenNeural")
+    google_english_voice: str = _text_env("GOOGLE_ENGLISH_VOICE", "en-US-Neural2-J")
+    google_chinese_voice: str = _text_env("GOOGLE_CHINESE_VOICE", "cmn-TW-Wavenet-A")
+    google_request_timeout_seconds: int = _int_env("EVD_GOOGLE_REQUEST_TIMEOUT_SECONDS", 60)
 
     line_channel_access_token: str = _text_env("LINE_CHANNEL_ACCESS_TOKEN")
     line_user_id: str = _text_env("LINE_USER_ID")

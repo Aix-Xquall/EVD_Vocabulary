@@ -11,9 +11,11 @@ from tts_generator import (
     _combined_ssml,
     _combine_audio_files,
     _entry_ssml,
+    _google_speaking_rate,
     _segment_ssml,
     _speech_text_for_audio,
     _should_synthesize_segment,
+    _voice_name_for_language,
     expected_audio_paths,
     expected_segment_audio_paths,
     generate_segment_audio_files,
@@ -56,6 +58,71 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertTrue(paths["1"]["word"]["src"].startswith("audio/segments/en/"))
         self.assertTrue(paths["1"]["meaning"]["src"].startswith("audio/segments/zh/"))
         self.assertTrue(paths["1"]["word"]["src"].endswith(".mp3"))
+
+    def test_google_segment_audio_paths_do_not_reuse_azure_cache_keys(self):
+        entry = {"id": "1", "word": "EMC", "chinese_meaning": "meaning"}
+
+        azure_paths = expected_segment_audio_paths(
+            [entry],
+            Settings(generate_audio=False, speech_rate="-20%"),
+        )
+        google_paths = expected_segment_audio_paths(
+            [entry],
+            Settings(generate_audio=False, tts_provider="google", speech_rate="-20%"),
+        )
+
+        self.assertNotEqual(azure_paths["1"]["word"]["src"], google_paths["1"]["word"]["src"])
+        self.assertNotEqual(azure_paths["1"]["meaning"]["src"], google_paths["1"]["meaning"]["src"])
+
+    def test_google_provider_uses_google_voices_and_converts_azure_style_rate(self):
+        settings = Settings(
+            generate_audio=False,
+            tts_provider="google",
+            speech_rate="-20%",
+            google_english_voice="en-US-Neural2-J",
+            google_chinese_voice="cmn-TW-Wavenet-A",
+        )
+
+        self.assertEqual(_voice_name_for_language(settings, "en"), "en-US-Neural2-J")
+        self.assertEqual(_voice_name_for_language(settings, "zh"), "cmn-TW-Wavenet-A")
+        self.assertEqual(_google_speaking_rate(settings.speech_rate), 0.8)
+        self.assertEqual(_google_speaking_rate("0%"), 1.0)
+
+    def test_google_provider_synthesizes_segments_with_spoken_text(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            settings = Settings(
+                output_dir=output_dir,
+                generate_audio=True,
+                tts_provider="google",
+                speech_rate="-20%",
+                google_english_voice="en-US-Neural2-J",
+                google_chinese_voice="cmn-TW-Wavenet-A",
+            )
+            entry = {
+                "id": "1",
+                "word": "EMC",
+                "chinese_meaning": "EMC 測試",
+            }
+            calls = []
+            original_synthesize = tts_generator._synthesize_google_text
+
+            def fake_synthesize(_settings, text, language, output_file):
+                calls.append((text, language, output_file))
+                output_file.write_bytes(b"google-mp3")
+
+            try:
+                tts_generator._synthesize_google_text = fake_synthesize
+                available = generate_segment_audio_files([entry], settings)
+            finally:
+                tts_generator._synthesize_google_text = original_synthesize
+
+            self.assertEqual(calls[0][0], "Electromagnetic Compatibility")
+            self.assertEqual(calls[0][1], "en")
+            self.assertEqual(calls[1][0], "EMC 測試")
+            self.assertEqual(calls[1][1], "zh")
+            self.assertIn("word", available["1"])
+            self.assertIn("meaning", available["1"])
 
     def test_all_vocabulary_entries_receive_audio_segments(self):
         entry = {
