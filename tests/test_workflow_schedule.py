@@ -68,6 +68,14 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("cp web/app.js output/app.js", workflow)
         self.assertIn("cp web/styles.css output/styles.css", workflow)
 
+    def test_generated_file_commit_rebases_before_pushing(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("git pull --rebase origin main", workflow)
+        self.assertIn("git push", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
