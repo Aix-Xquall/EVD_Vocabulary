@@ -48,6 +48,14 @@ class Settings:
     google_chinese_voice: str = _text_env("GOOGLE_CHINESE_VOICE", "cmn-TW-Wavenet-A")
     google_request_timeout_seconds: int = _int_env("EVD_GOOGLE_REQUEST_TIMEOUT_SECONDS", 60)
     google_tts_free_limit: int = _int_env("EVD_GOOGLE_TTS_FREE_LIMIT", 1000000)
+    google_cloud_project_id: str = _text_env(
+        "GOOGLE_CLOUD_PROJECT_ID",
+        _text_env("GOOGLE_CLOUD_PROJECT"),
+    )
+    google_tts_quota_metric: str = _text_env(
+        "GOOGLE_TTS_QUOTA_METRIC",
+        "texttospeech.googleapis.com/characters",
+    )
     azure_speech_free_limit: int = _int_env("EVD_AZURE_SPEECH_FREE_LIMIT", 500000)
     google_tts_free_remaining: str = _text_env("EVD_GOOGLE_TTS_FREE_REMAINING")
     azure_speech_free_remaining: str = _text_env("EVD_AZURE_SPEECH_FREE_REMAINING")

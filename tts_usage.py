@@ -11,6 +11,8 @@ from config import Settings
 USAGE_FILE_NAME = "tts_usage.json"
 AZURE_TOKEN_SCOPE = "https://management.azure.com/.default"
 AZURE_MANAGEMENT_ENDPOINT = "https://management.azure.com"
+GOOGLE_CLOUD_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
+GOOGLE_MONITORING_ENDPOINT = "https://monitoring.googleapis.com"
 
 
 def record_tts_synthesis_usage(
@@ -45,7 +47,12 @@ def record_tts_synthesis_usage(
 
 def build_google_tts_quota_summary(settings: Settings, target_date: date | None = None) -> str:
     usage_date = target_date or date.today()
-    used = _monthly_provider_characters(settings.output_dir, usage_date, "google")
+    try:
+        used = fetch_google_tts_quota_usage(settings, usage_date)
+    except RuntimeError:
+        if settings.google_tts_free_remaining:
+            return settings.google_tts_free_remaining
+        used = _monthly_provider_characters(settings.output_dir, usage_date, "google")
     limit = int(settings.google_tts_free_limit or 0)
     remaining = max(limit - used, 0)
     return f"{_format_number(remaining)} 字元 / 額度 {_format_number(limit)} 字元"
@@ -77,6 +84,79 @@ def fetch_azure_synthesized_characters(settings: Settings, target_date: date) ->
             for point in series.get("data", []):
                 total += int(point.get("total") or 0)
     return total
+
+
+def fetch_google_tts_quota_usage(settings: Settings, target_date: date) -> int:
+    """Read actual Google Cloud TTS quota usage from Cloud Monitoring."""
+    token, project_id = _fetch_google_access_token_and_project(settings)
+    if not project_id:
+        raise RuntimeError("Google Cloud project id is not configured")
+
+    metrics = _fetch_google_tts_monitoring_metrics(settings, token, project_id, target_date)
+    total = 0
+    for series in metrics.get("timeSeries", []):
+        for point in series.get("points", []):
+            value = point.get("value", {})
+            if "int64Value" in value:
+                total += int(value["int64Value"])
+            elif "doubleValue" in value:
+                total += int(float(value["doubleValue"]))
+    return total
+
+
+def _fetch_google_access_token_and_project(settings: Settings) -> tuple[str, str]:
+    try:
+        import google.auth
+        import google.auth.transport.requests
+    except ImportError as exc:
+        raise RuntimeError("google-auth is not installed") from exc
+
+    try:
+        credentials, default_project_id = google.auth.default(scopes=[GOOGLE_CLOUD_SCOPE])
+        request = google.auth.transport.requests.Request()
+        credentials.refresh(request)
+    except Exception as exc:  # pragma: no cover - depends on local/cloud credential setup.
+        raise RuntimeError(f"Google credentials unavailable: {exc}") from exc
+
+    token = getattr(credentials, "token", "")
+    if not token:
+        raise RuntimeError("Google credentials did not return an access token")
+    project_id = settings.google_cloud_project_id or default_project_id or ""
+    return token, project_id
+
+
+def _fetch_google_tts_monitoring_metrics(
+    settings: Settings,
+    token: str,
+    project_id: str,
+    target_date: date,
+) -> dict:
+    month_start = target_date.replace(day=1)
+    next_day = target_date + timedelta(days=1)
+    metric_filter = (
+        'metric.type="serviceruntime.googleapis.com/quota/rate/net_usage" '
+        'AND resource.type="consumer_quota" '
+        'AND metric.labels.service="texttospeech.googleapis.com" '
+        f'AND metric.labels.quota_metric="{settings.google_tts_quota_metric}"'
+    )
+    query = urllib.parse.urlencode(
+        {
+            "filter": metric_filter,
+            "interval.startTime": f"{month_start.isoformat()}T00:00:00Z",
+            "interval.endTime": f"{next_day.isoformat()}T00:00:00Z",
+            "aggregation.alignmentPeriod": "86400s",
+            "aggregation.perSeriesAligner": "ALIGN_SUM",
+            "aggregation.crossSeriesReducer": "REDUCE_SUM",
+        }
+    )
+    quoted_project_id = urllib.parse.quote(project_id, safe="")
+    url = f"{GOOGLE_MONITORING_ENDPOINT}/v3/projects/{quoted_project_id}/timeSeries?{query}"
+    request = urllib.request.Request(
+        url,
+        headers={"Authorization": f"Bearer {token}"},
+        method="GET",
+    )
+    return _urlopen_json(request, "Google Cloud Monitoring metrics")
 
 
 def _fetch_azure_access_token(settings: Settings) -> str:

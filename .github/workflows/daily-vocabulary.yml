@@ -123,6 +123,8 @@ jobs:
           EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "0"
           GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-F' }}
           GOOGLE_CHINESE_VOICE: ${{ vars.GOOGLE_CHINESE_VOICE || 'cmn-TW-Wavenet-A' }}
+          GOOGLE_CLOUD_PROJECT_ID: ${{ vars.GOOGLE_CLOUD_PROJECT_ID || vars.GOOGLE_CLOUD_PROJECT }}
+          GOOGLE_TTS_QUOTA_METRIC: ${{ vars.GOOGLE_TTS_QUOTA_METRIC || 'texttospeech.googleapis.com/characters' }}
           EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}
           EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}

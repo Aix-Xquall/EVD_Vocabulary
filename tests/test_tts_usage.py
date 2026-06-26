@@ -53,6 +53,50 @@ class TtsUsageTests(unittest.TestCase):
 
         self.assertEqual(summary, "998,766 字元 / 額度 1,000,000 字元")
 
+    def test_google_quota_summary_queries_cloud_monitoring_when_configured(self):
+        settings = Settings(
+            google_cloud_project_id="evd-project",
+            google_tts_quota_metric="texttospeech.googleapis.com/characters",
+        )
+        monitoring_payload = {
+            "timeSeries": [
+                {
+                    "points": [
+                        {"value": {"int64Value": "1200"}},
+                        {"value": {"doubleValue": 300.0}},
+                    ]
+                }
+            ]
+        }
+
+        with patch("tts_usage._fetch_google_access_token_and_project", return_value=("token", "evd-project")):
+            with patch("tts_usage.urllib.request.urlopen", return_value=FakeResponse(monitoring_payload)) as urlopen:
+                summary = build_google_tts_quota_summary(settings, date(2026, 6, 26))
+
+        request = urlopen.call_args.args[0]
+        request_url = request.full_url
+        self.assertIn("monitoring.googleapis.com/v3/projects/evd-project/timeSeries?", request_url)
+        self.assertIn("texttospeech.googleapis.com", request_url)
+        self.assertIn("texttospeech.googleapis.com%2Fcharacters", request_url)
+        self.assertEqual(request.headers["Authorization"], "Bearer token")
+        self.assertEqual(summary, "998,500 字元 / 額度 1,000,000 字元")
+
+    def test_google_quota_summary_falls_back_to_tracked_usage_when_monitoring_fails(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            settings = Settings(
+                output_dir=Path(temp_dir),
+                google_cloud_project_id="evd-project",
+            )
+            record_tts_synthesis_usage(settings, "google", 2222, date(2026, 6, 26))
+
+            with patch(
+                "tts_usage._fetch_google_access_token_and_project",
+                side_effect=RuntimeError("Google credentials unavailable"),
+            ):
+                summary = build_google_tts_quota_summary(settings, date(2026, 6, 26))
+
+        self.assertEqual(summary, "997,778 字元 / 額度 1,000,000 字元")
+
     def test_azure_quota_summary_queries_monitor_metrics_when_configured(self):
         settings = Settings(
             azure_tenant_id="tenant",

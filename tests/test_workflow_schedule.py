@@ -31,6 +31,8 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("EVD_TTS_PROVIDER: ${{ vars.EVD_TTS_PROVIDER || 'google' }}", workflow)
         self.assertIn("GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-F' }}", workflow)
         self.assertIn("GOOGLE_CHINESE_VOICE: ${{ vars.GOOGLE_CHINESE_VOICE || 'cmn-TW-Wavenet-A' }}", workflow)
+        self.assertIn("GOOGLE_CLOUD_PROJECT_ID: ${{ vars.GOOGLE_CLOUD_PROJECT_ID || vars.GOOGLE_CLOUD_PROJECT }}", workflow)
+        self.assertIn("GOOGLE_TTS_QUOTA_METRIC: ${{ vars.GOOGLE_TTS_QUOTA_METRIC || 'texttospeech.googleapis.com/characters' }}", workflow)
         self.assertIn("EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}", workflow)
         self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)
         self.assertIn("AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}", workflow)

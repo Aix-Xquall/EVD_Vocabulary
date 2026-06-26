@@ -187,15 +187,17 @@ $env:EVD_CHINESE_VOICE="zh-TW-HsiaoChenNeural"
 
 ## Google Cloud Text-to-Speech setup
 
-Google TTS is optional. Azure remains the default provider. When you switch to Google, existing Azure MP3 segment files are not overwritten; Google uses separate content-addressed segment file names.
+Google TTS is supported as the current default provider. Existing Azure MP3 segment files are not overwritten; Google uses separate content-addressed segment file names.
 
 Before local testing:
 
 1. Create or select a Google Cloud project.
 2. Enable `Cloud Text-to-Speech API`.
-3. Link Billing if Google asks for it. Confirm this step carefully because it involves payment settings, even when you plan to stay inside the free tier.
-4. Create a Service Account and download its JSON key.
-5. Install dependencies:
+3. To report actual monthly usage, also enable `Cloud Monitoring API`.
+4. Link Billing if Google asks for it. Confirm this step carefully because it involves payment settings, even when you plan to stay inside the free tier.
+5. Create a Service Account and download its JSON key.
+6. Grant the Service Account `Monitoring Viewer` if you want LINE to show Google TTS usage from Google Cloud Monitoring.
+7. Install dependencies:
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -206,6 +208,7 @@ Local environment example:
 ```powershell
 $env:EVD_TTS_PROVIDER="google"
 $env:GOOGLE_APPLICATION_CREDENTIALS="D:\secure\google-tts-key.json"
+$env:GOOGLE_CLOUD_PROJECT_ID="your-google-cloud-project-id"
 $env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-F"
 $env:GOOGLE_CHINESE_VOICE="cmn-TW-Wavenet-A"
 $env:EVD_SPEECH_RATE="-20%"
@@ -226,6 +229,7 @@ Add these Repository Variables:
 EVD_TTS_PROVIDER=google
 GOOGLE_ENGLISH_VOICE=en-US-Neural2-F
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
+GOOGLE_CLOUD_PROJECT_ID=your-google-cloud-project-id
 ```
 
 If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS with `en-US-Neural2-F`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
@@ -234,15 +238,19 @@ If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS with `en-US
 
 The LINE message reports remaining TTS quota as follows:
 
-- Google Cloud Text-to-Speech: the project records successful Google TTS synthesis characters in `output/data/tts_usage.json`, then estimates remaining free quota from `1,000,000` characters per month.
+- Google Cloud Text-to-Speech: the project first tries Google Cloud Monitoring `serviceruntime.googleapis.com/quota/rate/net_usage`, then falls back to `output/data/tts_usage.json` when Monitoring is not configured or not available.
 - Azure Free F0: the project can query Azure Monitor `SynthesizedCharacters`, then calculates remaining free quota from `500,000` characters per month.
 - LINE Messaging API: the project queries LINE quota and monthly consumption directly.
+
+Google Cloud Quotas API can show quota limit metadata, for example `https://cloudquotas.googleapis.com/v1/projects/PROJECT_ID/locations/global/services/texttospeech.googleapis.com/quotaInfos`. It is not used as the primary source for monthly used characters because Cloud Monitoring exposes the actual quota usage metric.
 
 Optional Repository Variables:
 
 ```text
 EVD_GOOGLE_TTS_FREE_LIMIT=1000000
 EVD_AZURE_SPEECH_FREE_LIMIT=500000
+GOOGLE_CLOUD_PROJECT_ID=your-google-cloud-project-id
+GOOGLE_TTS_QUOTA_METRIC=texttospeech.googleapis.com/characters
 EVD_GOOGLE_TTS_FREE_REMAINING=900000 characters
 EVD_AZURE_SPEECH_FREE_REMAINING=45000 characters
 ```
