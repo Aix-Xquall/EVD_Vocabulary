@@ -19,7 +19,7 @@ class WorkflowScheduleTests(unittest.TestCase):
         )
 
         self.assertIn('EVD_SPEECH_RATE: "-20%"', workflow)
-        self.assertIn('EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "200"', workflow)
+        self.assertIn('EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "0"', workflow)
 
     def test_daily_workflow_can_configure_google_tts_provider(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
@@ -28,8 +28,8 @@ class WorkflowScheduleTests(unittest.TestCase):
 
         self.assertIn("GOOGLE_TTS_CREDENTIALS_JSON: ${{ secrets.GOOGLE_TTS_CREDENTIALS_JSON }}", workflow)
         self.assertIn("GOOGLE_APPLICATION_CREDENTIALS=${credentials_path}", workflow)
-        self.assertIn("EVD_TTS_PROVIDER: ${{ vars.EVD_TTS_PROVIDER || 'azure' }}", workflow)
-        self.assertIn("GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-J' }}", workflow)
+        self.assertIn("EVD_TTS_PROVIDER: ${{ vars.EVD_TTS_PROVIDER || 'google' }}", workflow)
+        self.assertIn("GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-F' }}", workflow)
         self.assertIn("GOOGLE_CHINESE_VOICE: ${{ vars.GOOGLE_CHINESE_VOICE || 'cmn-TW-Wavenet-A' }}", workflow)
         self.assertIn("EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}", workflow)
         self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)

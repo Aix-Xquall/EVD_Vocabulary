@@ -64,7 +64,7 @@ class TtsGeneratorTests(unittest.TestCase):
 
         azure_paths = expected_segment_audio_paths(
             [entry],
-            Settings(generate_audio=False, speech_rate="-20%"),
+            Settings(generate_audio=False, tts_provider="azure", speech_rate="-20%"),
         )
         google_paths = expected_segment_audio_paths(
             [entry],
@@ -174,6 +174,7 @@ class TtsGeneratorTests(unittest.TestCase):
             settings = Settings(
                 output_dir=output_dir,
                 generate_audio=True,
+                tts_provider="azure",
                 azure_speech_key="key",
                 azure_speech_region="eastasia",
                 max_audio_segments_per_run=10,
@@ -208,7 +209,7 @@ class TtsGeneratorTests(unittest.TestCase):
             self.assertNotIn("meaning", available["1"])
 
     def test_english_segment_ssml_uses_configured_rate_but_chinese_segment_keeps_normal_rate(self):
-        settings = Settings(generate_audio=False, speech_rate="-20%")
+        settings = Settings(generate_audio=False, tts_provider="azure", speech_rate="-20%")
 
         english_ssml = _segment_ssml("English example.", "en", settings)
         chinese_ssml = _segment_ssml("中文翻譯", "zh", settings)
@@ -258,7 +259,7 @@ class TtsGeneratorTests(unittest.TestCase):
             "example_2_zh": "READ_CHINESE_TRANSLATION_TWO",
         }
 
-        ssml = _entry_ssml(entry, Settings(generate_audio=False))
+        ssml = _entry_ssml(entry, Settings(generate_audio=False, tts_provider="azure"))
 
         self.assertIn("impedance", ssml)
         self.assertNotIn("DO_NOT_READ_THIS_PRONUNCIATION", ssml)
@@ -279,7 +280,7 @@ class TtsGeneratorTests(unittest.TestCase):
             "example_2_zh": "中文翻譯二",
         }
 
-        ssml = _entry_ssml(entry, Settings(generate_audio=False))
+        ssml = _entry_ssml(entry, Settings(generate_audio=False, tts_provider="azure"))
 
         self.assertIn('voice name="en-US-JennyNeural"', ssml)
         self.assertIn('voice name="zh-TW-HsiaoChenNeural"', ssml)

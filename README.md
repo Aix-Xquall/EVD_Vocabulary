@@ -206,7 +206,7 @@ Local environment example:
 ```powershell
 $env:EVD_TTS_PROVIDER="google"
 $env:GOOGLE_APPLICATION_CREDENTIALS="D:\secure\google-tts-key.json"
-$env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-J"
+$env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-F"
 $env:GOOGLE_CHINESE_VOICE="cmn-TW-Wavenet-A"
 $env:EVD_SPEECH_RATE="-20%"
 python main.py --skip-line --no-update-review
@@ -224,11 +224,11 @@ Add these Repository Variables:
 
 ```text
 EVD_TTS_PROVIDER=google
-GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
+GOOGLE_ENGLISH_VOICE=en-US-Neural2-F
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
 ```
 
-If `EVD_TTS_PROVIDER` is not set, the workflow stays on `azure`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x.
+If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS with `en-US-Neural2-F`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
 
 ## TTS free quota reporting
 
