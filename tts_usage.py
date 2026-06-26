@@ -93,6 +93,9 @@ def fetch_google_tts_quota_usage(settings: Settings, target_date: date) -> int:
         raise RuntimeError("Google Cloud project id is not configured")
 
     metrics = _fetch_google_tts_monitoring_metrics(settings, token, project_id, target_date)
+    if not metrics.get("timeSeries"):
+        raise RuntimeError("Google Cloud Monitoring has no TTS character quota time series")
+
     total = 0
     for series in metrics.get("timeSeries", []):
         for point in series.get("points", []):
@@ -136,7 +139,7 @@ def _fetch_google_tts_monitoring_metrics(
     metric_filter = (
         'metric.type="serviceruntime.googleapis.com/quota/rate/net_usage" '
         'AND resource.type="consumer_quota" '
-        'AND metric.labels.service="texttospeech.googleapis.com" '
+        'AND resource.labels.service="texttospeech.googleapis.com" '
         f'AND metric.labels.quota_metric="{settings.google_tts_quota_metric}"'
     )
     query = urllib.parse.urlencode(
