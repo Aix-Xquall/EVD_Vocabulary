@@ -9066,6 +9066,14 @@
             "meaning": {
               "src": "audio/segments/zh/82843ae3a308485be3cd9f68.mp3",
               "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/61f5033e6a6fd0e63e36d49c.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/d046f757e28de6df4ee18c40.mp3",
+              "language": "zh"
             }
           }
         },
@@ -18359,6 +18367,14 @@
         },
         "meaning": {
           "src": "audio/segments/zh/82843ae3a308485be3cd9f68.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/61f5033e6a6fd0e63e36d49c.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/d046f757e28de6df4ee18c40.mp3",
           "language": "zh"
         }
       }
