@@ -51,7 +51,7 @@ class TtsUsageTests(unittest.TestCase):
 
             summary = build_google_tts_quota_summary(settings, date(2026, 6, 26))
 
-        self.assertEqual(summary, "剩餘 998,766 字元 / 免費額度 1,000,000 字元（本專案估算）")
+        self.assertEqual(summary, "998,766 字元 / 額度 1,000,000 字元")
 
     def test_azure_quota_summary_queries_monitor_metrics_when_configured(self):
         settings = Settings(
@@ -86,7 +86,7 @@ class TtsUsageTests(unittest.TestCase):
         with patch("tts_usage.urllib.request.urlopen", side_effect=responses):
             summary = build_azure_tts_quota_summary(settings, date(2026, 6, 26))
 
-        self.assertEqual(summary, "剩餘 498,500 字元 / 免費額度 500,000 字元")
+        self.assertEqual(summary, "498,500 字元 / 額度 500,000 字元")
 
 
 if __name__ == "__main__":

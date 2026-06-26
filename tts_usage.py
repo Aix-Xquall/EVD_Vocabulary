@@ -48,10 +48,7 @@ def build_google_tts_quota_summary(settings: Settings, target_date: date | None 
     used = _monthly_provider_characters(settings.output_dir, usage_date, "google")
     limit = int(settings.google_tts_free_limit or 0)
     remaining = max(limit - used, 0)
-    return (
-        f"剩餘 {_format_number(remaining)} 字元 / 免費額度 {_format_number(limit)} 字元"
-        "（本專案估算）"
-    )
+    return f"{_format_number(remaining)} 字元 / 額度 {_format_number(limit)} 字元"
 
 
 def build_azure_tts_quota_summary(settings: Settings, target_date: date | None = None) -> str:
@@ -68,7 +65,7 @@ def build_azure_tts_quota_summary(settings: Settings, target_date: date | None =
 
     limit = int(settings.azure_speech_free_limit or 0)
     remaining = max(limit - used, 0)
-    return f"剩餘 {_format_number(remaining)} 字元 / 免費額度 {_format_number(limit)} 字元"
+    return f"{_format_number(remaining)} 字元 / 額度 {_format_number(limit)} 字元"
 
 
 def fetch_azure_synthesized_characters(settings: Settings, target_date: date) -> int:

@@ -37,15 +37,15 @@ class LineNotifierTests(unittest.TestCase):
             {
                 "new_word_count": 3,
                 "new_chapter_names": ["EMC chapter", "Composite chapter"],
-                "line_quota_remaining": "剩餘 199 則 / 本月上限 200 則",
+                "line_quota_remaining": "剩餘 199 則 / 上限 200 則",
             },
         )
 
         self.assertIn("新增單字量：3", message)
         self.assertIn("新增章節名稱：EMC chapter, Composite chapter", message)
-        self.assertIn("Cloud Text-to-Speech 免費剩餘量：900000 characters", message)
-        self.assertIn("Azure Free F0 剩餘量：45000 characters", message)
-        self.assertIn("LINE 通知剩餘量：剩餘 199 則 / 本月上限 200 則", message)
+        self.assertIn("Cloud TTS剩餘量： 900000 characters", message)
+        self.assertIn("Azure Free F0 剩餘量： 45000 characters", message)
+        self.assertIn("LINE 通知剩餘量：剩餘 199 則 / 上限 200 則", message)
         self.assertIn("網站連結：https://example.test/", message)
 
     def test_line_quota_summary_uses_line_api_quota_and_consumption(self):
@@ -61,7 +61,7 @@ class LineNotifierTests(unittest.TestCase):
         with patch("line_notifier.urllib.request.urlopen", side_effect=responses):
             summary = fetch_line_quota_summary(settings)
 
-        self.assertEqual(summary, "剩餘 199 則 / 本月上限 200 則")
+        self.assertEqual(summary, "剩餘 199 則 / 上限 200 則")
 
 
 if __name__ == "__main__":
