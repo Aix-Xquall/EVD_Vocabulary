@@ -226,13 +226,41 @@ Add these Repository Variables:
 EVD_TTS_PROVIDER=google
 GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
-EVD_GOOGLE_TTS_FREE_REMAINING=900000 characters
-EVD_AZURE_SPEECH_FREE_REMAINING=45000 characters
 ```
 
 If `EVD_TTS_PROVIDER` is not set, the workflow stays on `azure`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x.
 
-`EVD_GOOGLE_TTS_FREE_REMAINING` and `EVD_AZURE_SPEECH_FREE_REMAINING` are shown in the LINE message as manual status fields. LINE message quota is queried automatically from the LINE Messaging API.
+## TTS free quota reporting
+
+The LINE message reports remaining TTS quota as follows:
+
+- Google Cloud Text-to-Speech: the project records successful Google TTS synthesis characters in `output/data/tts_usage.json`, then estimates remaining free quota from `1,000,000` characters per month.
+- Azure Free F0: the project can query Azure Monitor `SynthesizedCharacters`, then calculates remaining free quota from `500,000` characters per month.
+- LINE Messaging API: the project queries LINE quota and monthly consumption directly.
+
+Optional Repository Variables:
+
+```text
+EVD_GOOGLE_TTS_FREE_LIMIT=1000000
+EVD_AZURE_SPEECH_FREE_LIMIT=500000
+EVD_GOOGLE_TTS_FREE_REMAINING=900000 characters
+EVD_AZURE_SPEECH_FREE_REMAINING=45000 characters
+```
+
+`EVD_GOOGLE_TTS_FREE_REMAINING` and `EVD_AZURE_SPEECH_FREE_REMAINING` are fallback text only. They are used when automatic reporting is not available.
+
+To enable Azure Monitor reporting, create an Azure app registration or service principal with read access to the Speech resource. This involves Azure identity and permission setup, so confirm the scope carefully before granting access. Add these Repository Secrets:
+
+```text
+AZURE_TENANT_ID
+AZURE_CLIENT_ID
+AZURE_CLIENT_SECRET
+AZURE_SUBSCRIPTION_ID
+AZURE_SPEECH_RESOURCE_GROUP
+AZURE_SPEECH_RESOURCE_NAME
+```
+
+If these Azure Monitor secrets are missing, the daily workflow still runs. The LINE message will show the fallback value or `未設定 Azure Monitor 權限`.
 
 ## 輸出結構
 
@@ -246,6 +274,7 @@ output/
   data/
     YYYY-MM-DD_daily_vocabulary.json
     latest.json
+    tts_usage.json
   scripts/
     YYYY-MM-DD_daily_vocabulary.md
   index.html
@@ -285,6 +314,12 @@ Secrets:
 ```text
 AZURE_SPEECH_KEY
 AZURE_SPEECH_REGION
+AZURE_TENANT_ID
+AZURE_CLIENT_ID
+AZURE_CLIENT_SECRET
+AZURE_SUBSCRIPTION_ID
+AZURE_SPEECH_RESOURCE_GROUP
+AZURE_SPEECH_RESOURCE_NAME
 LINE_CHANNEL_ACCESS_TOKEN
 LINE_USER_ID
 ```

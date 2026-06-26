@@ -33,6 +33,12 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("GOOGLE_CHINESE_VOICE: ${{ vars.GOOGLE_CHINESE_VOICE || 'cmn-TW-Wavenet-A' }}", workflow)
         self.assertIn("EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}", workflow)
         self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)
+        self.assertIn("AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}", workflow)
+        self.assertIn("AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}", workflow)
+        self.assertIn("AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}", workflow)
+        self.assertIn("AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}", workflow)
+        self.assertIn("AZURE_SPEECH_RESOURCE_GROUP: ${{ secrets.AZURE_SPEECH_RESOURCE_GROUP }}", workflow)
+        self.assertIn("AZURE_SPEECH_RESOURCE_NAME: ${{ secrets.AZURE_SPEECH_RESOURCE_NAME }}", workflow)
 
     def test_daily_workflow_passes_hard_words_sync_settings(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
@@ -86,6 +92,8 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("uses: actions/checkout@v4", workflow)
         self.assertIn("EVD_GOOGLE_TTS_FREE_REMAINING: ${{ vars.EVD_GOOGLE_TTS_FREE_REMAINING }}", workflow)
         self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)
+        self.assertIn("AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}", workflow)
+        self.assertIn("AZURE_SPEECH_RESOURCE_NAME: ${{ secrets.AZURE_SPEECH_RESOURCE_NAME }}", workflow)
         self.assertIn("python main.py --skip-audio --no-update-review", workflow)
 
 

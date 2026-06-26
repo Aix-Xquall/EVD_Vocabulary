@@ -3,6 +3,7 @@ import urllib.error
 import urllib.request
 
 from config import Settings
+from tts_usage import build_azure_tts_quota_summary, build_google_tts_quota_summary
 
 
 LINE_PUSH_URL = "https://api.line.me/v2/bot/message/push"
@@ -20,6 +21,8 @@ def send_daily_line_notification(
         return False
 
     notification_report = dict(report or {})
+    notification_report.setdefault("google_tts_remaining", build_google_tts_quota_summary(settings))
+    notification_report.setdefault("azure_speech_remaining", build_azure_tts_quota_summary(settings))
     notification_report.setdefault("line_quota_remaining", fetch_line_quota_summary(settings))
     message = build_daily_line_message(settings, notification_report, target_date)
     payload = {
@@ -55,8 +58,8 @@ def build_daily_line_message(
         f"{date_line}"
         f"新增單字量：{report.get('new_word_count', 0)}\n"
         f"新增章節名稱：{chapter_text}\n"
-        f"Cloud Text-to-Speech 免費剩餘量：{_quota_text(settings.google_tts_free_remaining)}\n"
-        f"Azure Free F0 剩餘量：{_quota_text(settings.azure_speech_free_remaining)}\n"
+        f"Cloud Text-to-Speech 免費剩餘量：{_quota_text(report.get('google_tts_remaining') or settings.google_tts_free_remaining)}\n"
+        f"Azure Free F0 剩餘量：{_quota_text(report.get('azure_speech_remaining') or settings.azure_speech_free_remaining)}\n"
         f"LINE 通知剩餘量：{report.get('line_quota_remaining') or '無法自動查詢'}\n\n"
         f"網站連結：{settings.site_url or 'GitHub Pages site URL is not configured.'}"
     )

@@ -11,6 +11,7 @@ from typing import Dict, List, Tuple
 from abbreviation_expander import expand_abbreviations_for_speech
 from config import Settings
 from script_builder import audio_key_for_entry
+from tts_usage import record_tts_synthesis_usage
 
 
 VocabularyEntry = Dict[str, str]
@@ -235,6 +236,7 @@ def _synthesize_ssml(settings: Settings, ssml: str, output_file: Path) -> None:
             timeout=settings.azure_request_timeout_seconds,
         ) as response:
             output_file.write_bytes(response.read())
+            record_tts_synthesis_usage(settings, "azure", len(ssml), date.today())
     except urllib.error.HTTPError as exc:
         error_detail = exc.read().decode("utf-8", errors="replace")
         error_type = (
@@ -297,6 +299,7 @@ def _synthesize_google_input(
             timeout=settings.google_request_timeout_seconds,
         )
         output_file.write_bytes(response.audio_content)
+        record_tts_synthesis_usage(settings, "google", len(text), date.today())
     except Exception as exc:
         credential_hint = ""
         if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
