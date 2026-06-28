@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 49,
+      "word_count": 50,
       "words": [
         {
           "id": "17",
@@ -2015,6 +2015,47 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/d628628560956b94ad66eb2b.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "104",
+          "word": "challenge",
+          "pronunciation": "/ˈtʃæl.ɪndʒ/",
+          "chinese_meaning": "挑戰",
+          "example_1_en": "The key challenge is the non-conductive composite structure.",
+          "example_1_zh": "主要挑戰是不導電的複合材質結構。",
+          "example_2_en": "Cable shield termination is a major challenge in this design.",
+          "example_2_zh": "線纜屏蔽端接是此設計中的主要挑戰。",
+          "category": "Troubleshooting",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 50,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/f81beed09c3e7f2ce5155db5.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/a43e0dc05e343c5d0fcf3e82.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/14080c06479614cbcc920174.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/0608335885ecc1dc867248ae.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/100d70365c32ab4408e427a8.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/5e3015d421009f5057c113ff.mp3",
               "language": "zh"
             }
           }
@@ -27188,6 +27229,47 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/d628628560956b94ad66eb2b.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "104",
+      "word": "challenge",
+      "pronunciation": "/ˈtʃæl.ɪndʒ/",
+      "chinese_meaning": "挑戰",
+      "example_1_en": "The key challenge is the non-conductive composite structure.",
+      "example_1_zh": "主要挑戰是不導電的複合材質結構。",
+      "example_2_en": "Cable shield termination is a major challenge in this design.",
+      "example_2_zh": "線纜屏蔽端接是此設計中的主要挑戰。",
+      "category": "Troubleshooting",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 50,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/f81beed09c3e7f2ce5155db5.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/a43e0dc05e343c5d0fcf3e82.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/14080c06479614cbcc920174.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/0608335885ecc1dc867248ae.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/100d70365c32ab4408e427a8.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/5e3015d421009f5057c113ff.mp3",
           "language": "zh"
         }
       }
