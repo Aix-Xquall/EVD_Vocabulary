@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 50,
+      "word_count": 52,
       "words": [
         {
           "id": "17",
@@ -2056,6 +2056,88 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/5e3015d421009f5057c113ff.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "97",
+          "word": "concise",
+          "pronunciation": "/kənˈsaɪs/",
+          "chinese_meaning": "簡潔的；扼要的",
+          "example_1_en": "Please keep the briefing document concise and focused.",
+          "example_1_zh": "請讓簡報文件保持簡潔且聚焦。",
+          "example_2_en": "A concise summary helps the consultant understand the main issue quickly.",
+          "example_2_zh": "簡潔的摘要有助於顧問快速了解主要問題。",
+          "category": "Documentation / Lessons Learned",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 51,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/0dd522de14c9eba99498ac1a.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/fb5450626c880ed3d4bed778.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/8d75beb39b28a2e085485a1e.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/068d12c05c6b7074eebda61b.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/df4a0b7a4302be3908e65ecb.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/3712f2ebd01bf2fa10a4a0b0.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "100",
+          "word": "regarding",
+          "pronunciation": "/rɪˈɡɑːr.dɪŋ/",
+          "chinese_meaning": "關於；有關",
+          "example_1_en": "We would like to consult with you regarding the grounding architecture.",
+          "example_1_zh": "我們想就接地架構向您請教。",
+          "example_2_en": "The attached file includes discussion topics regarding MIL-STD-464 compliance.",
+          "example_2_zh": "附件包含有關 MIL-STD-464 合規性的討論議題。",
+          "category": "Documentation / Lessons Learned",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 52,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/78eff7cd29bee066e77a9e33.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/593e670b04e1a41731fcc8cd.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/6bb5ac9c85dc4ccaf491f64a.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/f405a06812a178cd896ece9b.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/52b9690b8db539810ae2e836.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/449a5b80d887126f4ce5e434.mp3",
               "language": "zh"
             }
           }
@@ -27270,6 +27352,88 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/5e3015d421009f5057c113ff.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "97",
+      "word": "concise",
+      "pronunciation": "/kənˈsaɪs/",
+      "chinese_meaning": "簡潔的；扼要的",
+      "example_1_en": "Please keep the briefing document concise and focused.",
+      "example_1_zh": "請讓簡報文件保持簡潔且聚焦。",
+      "example_2_en": "A concise summary helps the consultant understand the main issue quickly.",
+      "example_2_zh": "簡潔的摘要有助於顧問快速了解主要問題。",
+      "category": "Documentation / Lessons Learned",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 51,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/0dd522de14c9eba99498ac1a.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/fb5450626c880ed3d4bed778.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/8d75beb39b28a2e085485a1e.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/068d12c05c6b7074eebda61b.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/df4a0b7a4302be3908e65ecb.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/3712f2ebd01bf2fa10a4a0b0.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "100",
+      "word": "regarding",
+      "pronunciation": "/rɪˈɡɑːr.dɪŋ/",
+      "chinese_meaning": "關於；有關",
+      "example_1_en": "We would like to consult with you regarding the grounding architecture.",
+      "example_1_zh": "我們想就接地架構向您請教。",
+      "example_2_en": "The attached file includes discussion topics regarding MIL-STD-464 compliance.",
+      "example_2_zh": "附件包含有關 MIL-STD-464 合規性的討論議題。",
+      "category": "Documentation / Lessons Learned",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 52,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/78eff7cd29bee066e77a9e33.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/593e670b04e1a41731fcc8cd.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/6bb5ac9c85dc4ccaf491f64a.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/f405a06812a178cd896ece9b.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/52b9690b8db539810ae2e836.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/449a5b80d887126f4ce5e434.mp3",
           "language": "zh"
         }
       }
