@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 38,
+      "word_count": 46,
       "words": [
         {
           "id": "17",
@@ -1564,6 +1564,334 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/52636a15ef95ebf3c82f6875.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "96",
+          "word": "ineffective",
+          "pronunciation": "/ˌɪn.əˈfek.tɪv/",
+          "chinese_meaning": "無效的；效果不佳的",
+          "example_1_en": "A long pigtail may make the cable shield ineffective at high frequency.",
+          "example_1_zh": "過長的豬尾線可能使線纜屏蔽在高頻下失效。",
+          "example_2_en": "Shielding can be ineffective without a proper termination reference.",
+          "example_2_zh": "若沒有適當的端接參考，屏蔽可能無效。",
+          "category": "Troubleshooting",
+          "difficulty": "3",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 39,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/d5365a80c88ba55cdf8e94c2.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/0c1a68980312f13b287fcb11.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/6be6a5c210b8fd2c9d1f6388.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/2802cffc427aa523fd0528aa.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/6dd1d0102346a0022e343c3f.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/b9553cd82d0489b342a27ba5.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "101",
+          "word": "concern",
+          "pronunciation": "/kənˈsɝːn/",
+          "chinese_meaning": "疑慮；關切；擔心",
+          "example_1_en": "Our main concern is the lack of a conductive reference structure.",
+          "example_1_zh": "我們主要的疑慮是缺少導電參考結構。",
+          "example_2_en": "The consultant should understand our system-level Electromagnetic Compatibility (EMC) concerns.",
+          "example_2_zh": "顧問應了解我們的系統級 EMC 疑慮。",
+          "category": "Troubleshooting",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 40,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/001f4fb101dfe51bfb3f492e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d5f31ed9d4b5b8a448f9092e.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/d3906d832fd7fc6bcc3d8407.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/68f003a2aeae4954a60e3b73.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/c51f857424e5058c5768d52c.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/284926f213ed6f392c9afd22.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "112",
+          "word": "lack of",
+          "pronunciation": "/læk əv/",
+          "chinese_meaning": "缺乏；不足",
+          "example_1_en": "The lack of a conductive chassis is the main system-level concern.",
+          "example_1_zh": "缺乏導電機殼是主要的系統級疑慮。",
+          "example_2_en": "A lack of shield continuity can reduce Electromagnetic Compatibility (EMC) performance.",
+          "example_2_zh": "缺乏屏蔽連續性會降低 EMC 性能。",
+          "category": "Troubleshooting",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 41,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/39fbd362bd9a006bbe83e287.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/52aa87bf09fddb5d14330432.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/42129854ba315f6b3015f133.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/7b9fe76081fd1a8f5db32874.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/93af0e1a27d0d9d56aee359a.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/307e43b80757499c88d7649a.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "84",
+          "word": "constraint",
+          "pronunciation": "/kənˈstreɪnt/",
+          "chinese_meaning": "限制條件",
+          "example_1_en": "Countdown constraints may prevent certain RF transmitters from operating.",
+          "example_1_zh": "倒數限制可能禁止某些 RF 發射機運作。",
+          "example_2_en": "Each constraint should be linked to a safety or Electromagnetic Compatibility (EMC) requirement.",
+          "example_2_zh": "每項限制條件都應連結到安全或 Electromagnetic Compatibility (EMC) 需求。",
+          "category": "Launch Operations",
+          "difficulty": "3",
+          "review_count": "1",
+          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+          "index": 42,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/46e99678206f0ad52b857780.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/bc98e262bc0fc8f86729553f.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/7b98b2986d76a406c9e69b1e.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/785f1054796cd1143137f18d.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/87d7647699fa9bfe817d1ba8.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/ac1c42932e38bc4c13801a80.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "107",
+          "word": "proposed",
+          "pronunciation": "/prəˈpoʊzd/",
+          "chinese_meaning": "建議的；提出的",
+          "example_1_en": "The proposed topics are intended for the consultant's presentation.",
+          "example_1_zh": "這些建議議題是提供給顧問簡報使用的。",
+          "example_2_en": "We need to review the proposed grounding concept before implementation.",
+          "example_2_zh": "在實作前，我們需要審查建議的接地概念。",
+          "category": "Documentation / Lessons Learned",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 43,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/74130e85e2b27a7fd01aaf57.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/8386e5ea9f0eb0c05c0a3b0e.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/208835e072494cb1af98db8e.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/cfcecff3fe288d53e9a74621.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/5b142853a34753dec42b3785.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/a949ef03120ac45bcb0f7051.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "108",
+          "word": "purposed",
+          "pronunciation": "/ˈpɝː.pəst/",
+          "chinese_meaning": "有目的的；被設計為某用途的（較少用；名詞建議用 purpose）",
+          "example_1_en": "The proposed bonding network is purposed to provide a low-impedance reference path.",
+          "example_1_zh": "所提出的搭接網路旨在提供低阻抗參考路徑。",
+          "example_2_en": "In most technical writing, use 'intended' or 'designed' instead of 'purposed'.",
+          "example_2_zh": "在多數技術寫作中，建議用 intended 或 designed 取代 purposed。",
+          "category": "Documentation / Lessons Learned",
+          "difficulty": "3",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 44,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/b29eaaa2c809beb0089b20c5.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/0ca5de226c448a7ff07067f8.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/5a1e7f247d394eae07506318.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/4bcfc364f2b877d807fbdb47.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/dce86cd929012d5abde512c3.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/b4d12ebd9882fefc64ef29aa.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "110",
+          "word": "diagram",
+          "pronunciation": "/ˈdaɪ.ə.ɡræm/",
+          "chinese_meaning": "示意圖；圖解",
+          "example_1_en": "The diagram shows the bonding connection between the panels and the avionics ring.",
+          "example_1_zh": "示意圖顯示複合板與航電環之間的搭接連接。",
+          "example_2_en": "A clear diagram will help the consultant understand the installation concept.",
+          "example_2_zh": "清楚的示意圖有助於顧問理解安裝概念。",
+          "category": "Documentation / Lessons Learned",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 45,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/18b9155ce403c624fa7ee7af.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/90530bab4ed2ebc03daf074f.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/f63e02be5d5c5810fde0029e.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/201fc7cea605548697c28afd.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/de6e22fb63ca0acea54c063a.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/40d27a31210bc85f2e8a04c5.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "102",
+          "word": "experience",
+          "pronunciation": "/ɪkˈspɪr.i.əns/",
+          "chinese_meaning": "經驗",
+          "example_1_en": "We would appreciate your experience in rocket integration testing.",
+          "example_1_zh": "我們很希望了解您在火箭整合測試方面的經驗。",
+          "example_2_en": "Practical experience is important for grounding and shielding implementation.",
+          "example_2_zh": "實務經驗對接地與屏蔽實作非常重要。",
+          "category": "Documentation / Lessons Learned",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 46,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/52aad47b1e298702e926536e.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/4d6ab86e632c0c569da7761f.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/0d7433f870b31ee8a6c1b3f1.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/77b933c35e99f7ea6908722e.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/b4bb127a365795cff7b0eb18.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/dfc267281d23a2761794dbeb.mp3",
               "language": "zh"
             }
           }
@@ -26286,6 +26614,334 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/52636a15ef95ebf3c82f6875.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "96",
+      "word": "ineffective",
+      "pronunciation": "/ˌɪn.əˈfek.tɪv/",
+      "chinese_meaning": "無效的；效果不佳的",
+      "example_1_en": "A long pigtail may make the cable shield ineffective at high frequency.",
+      "example_1_zh": "過長的豬尾線可能使線纜屏蔽在高頻下失效。",
+      "example_2_en": "Shielding can be ineffective without a proper termination reference.",
+      "example_2_zh": "若沒有適當的端接參考，屏蔽可能無效。",
+      "category": "Troubleshooting",
+      "difficulty": "3",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 39,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/d5365a80c88ba55cdf8e94c2.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/0c1a68980312f13b287fcb11.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/6be6a5c210b8fd2c9d1f6388.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/2802cffc427aa523fd0528aa.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/6dd1d0102346a0022e343c3f.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/b9553cd82d0489b342a27ba5.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "101",
+      "word": "concern",
+      "pronunciation": "/kənˈsɝːn/",
+      "chinese_meaning": "疑慮；關切；擔心",
+      "example_1_en": "Our main concern is the lack of a conductive reference structure.",
+      "example_1_zh": "我們主要的疑慮是缺少導電參考結構。",
+      "example_2_en": "The consultant should understand our system-level Electromagnetic Compatibility (EMC) concerns.",
+      "example_2_zh": "顧問應了解我們的系統級 EMC 疑慮。",
+      "category": "Troubleshooting",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 40,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/001f4fb101dfe51bfb3f492e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d5f31ed9d4b5b8a448f9092e.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/d3906d832fd7fc6bcc3d8407.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/68f003a2aeae4954a60e3b73.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/c51f857424e5058c5768d52c.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/284926f213ed6f392c9afd22.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "112",
+      "word": "lack of",
+      "pronunciation": "/læk əv/",
+      "chinese_meaning": "缺乏；不足",
+      "example_1_en": "The lack of a conductive chassis is the main system-level concern.",
+      "example_1_zh": "缺乏導電機殼是主要的系統級疑慮。",
+      "example_2_en": "A lack of shield continuity can reduce Electromagnetic Compatibility (EMC) performance.",
+      "example_2_zh": "缺乏屏蔽連續性會降低 EMC 性能。",
+      "category": "Troubleshooting",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 41,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/39fbd362bd9a006bbe83e287.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/52aa87bf09fddb5d14330432.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/42129854ba315f6b3015f133.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/7b9fe76081fd1a8f5db32874.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/93af0e1a27d0d9d56aee359a.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/307e43b80757499c88d7649a.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "84",
+      "word": "constraint",
+      "pronunciation": "/kənˈstreɪnt/",
+      "chinese_meaning": "限制條件",
+      "example_1_en": "Countdown constraints may prevent certain RF transmitters from operating.",
+      "example_1_zh": "倒數限制可能禁止某些 RF 發射機運作。",
+      "example_2_en": "Each constraint should be linked to a safety or Electromagnetic Compatibility (EMC) requirement.",
+      "example_2_zh": "每項限制條件都應連結到安全或 Electromagnetic Compatibility (EMC) 需求。",
+      "category": "Launch Operations",
+      "difficulty": "3",
+      "review_count": "1",
+      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
+      "index": 42,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/46e99678206f0ad52b857780.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/bc98e262bc0fc8f86729553f.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/7b98b2986d76a406c9e69b1e.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/785f1054796cd1143137f18d.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/87d7647699fa9bfe817d1ba8.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/ac1c42932e38bc4c13801a80.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "107",
+      "word": "proposed",
+      "pronunciation": "/prəˈpoʊzd/",
+      "chinese_meaning": "建議的；提出的",
+      "example_1_en": "The proposed topics are intended for the consultant's presentation.",
+      "example_1_zh": "這些建議議題是提供給顧問簡報使用的。",
+      "example_2_en": "We need to review the proposed grounding concept before implementation.",
+      "example_2_zh": "在實作前，我們需要審查建議的接地概念。",
+      "category": "Documentation / Lessons Learned",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 43,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/74130e85e2b27a7fd01aaf57.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/8386e5ea9f0eb0c05c0a3b0e.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/208835e072494cb1af98db8e.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/cfcecff3fe288d53e9a74621.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/5b142853a34753dec42b3785.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/a949ef03120ac45bcb0f7051.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "108",
+      "word": "purposed",
+      "pronunciation": "/ˈpɝː.pəst/",
+      "chinese_meaning": "有目的的；被設計為某用途的（較少用；名詞建議用 purpose）",
+      "example_1_en": "The proposed bonding network is purposed to provide a low-impedance reference path.",
+      "example_1_zh": "所提出的搭接網路旨在提供低阻抗參考路徑。",
+      "example_2_en": "In most technical writing, use 'intended' or 'designed' instead of 'purposed'.",
+      "example_2_zh": "在多數技術寫作中，建議用 intended 或 designed 取代 purposed。",
+      "category": "Documentation / Lessons Learned",
+      "difficulty": "3",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 44,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/b29eaaa2c809beb0089b20c5.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/0ca5de226c448a7ff07067f8.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/5a1e7f247d394eae07506318.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/4bcfc364f2b877d807fbdb47.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/dce86cd929012d5abde512c3.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/b4d12ebd9882fefc64ef29aa.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "110",
+      "word": "diagram",
+      "pronunciation": "/ˈdaɪ.ə.ɡræm/",
+      "chinese_meaning": "示意圖；圖解",
+      "example_1_en": "The diagram shows the bonding connection between the panels and the avionics ring.",
+      "example_1_zh": "示意圖顯示複合板與航電環之間的搭接連接。",
+      "example_2_en": "A clear diagram will help the consultant understand the installation concept.",
+      "example_2_zh": "清楚的示意圖有助於顧問理解安裝概念。",
+      "category": "Documentation / Lessons Learned",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 45,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/18b9155ce403c624fa7ee7af.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/90530bab4ed2ebc03daf074f.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/f63e02be5d5c5810fde0029e.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/201fc7cea605548697c28afd.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/de6e22fb63ca0acea54c063a.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/40d27a31210bc85f2e8a04c5.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "102",
+      "word": "experience",
+      "pronunciation": "/ɪkˈspɪr.i.əns/",
+      "chinese_meaning": "經驗",
+      "example_1_en": "We would appreciate your experience in rocket integration testing.",
+      "example_1_zh": "我們很希望了解您在火箭整合測試方面的經驗。",
+      "example_2_en": "Practical experience is important for grounding and shielding implementation.",
+      "example_2_zh": "實務經驗對接地與屏蔽實作非常重要。",
+      "category": "Documentation / Lessons Learned",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 46,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/52aad47b1e298702e926536e.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/4d6ab86e632c0c569da7761f.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/0d7433f870b31ee8a6c1b3f1.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/77b933c35e99f7ea6908722e.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/b4bb127a365795cff7b0eb18.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/dfc267281d23a2761794dbeb.mp3",
           "language": "zh"
         }
       }
