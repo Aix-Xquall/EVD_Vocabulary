@@ -70,13 +70,26 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("id: scope", workflow)
         self.assertIn('- "apps_script/**"', workflow)
         self.assertIn('- "README.md"', workflow)
-        self.assertIn('changed_files="$(git diff --name-only HEAD^ HEAD || true)"', workflow)
+        self.assertIn(
+            'changed_files="$(git -c core.quotepath=false diff --name-only HEAD^ HEAD || true)"',
+            workflow,
+        )
         self.assertIn('echo "should_generate=${should_generate}" >> "$GITHUB_OUTPUT"', workflow)
         self.assertIn("if: ${{ steps.scope.outputs.should_generate == 'true' }}", workflow)
         self.assertIn("if: ${{ steps.scope.outputs.should_generate != 'true' }}", workflow)
         self.assertIn("cp web/index.html output/index.html", workflow)
         self.assertIn("cp web/app.js output/app.js", workflow)
         self.assertIn("cp web/styles.css output/styles.css", workflow)
+
+    def test_push_scope_detection_preserves_unicode_file_paths(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertEqual(
+            workflow.count("git -c core.quotepath=false diff --name-only"),
+            2,
+        )
 
     def test_generated_file_commit_rebases_before_pushing(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(

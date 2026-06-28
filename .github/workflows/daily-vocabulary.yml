@@ -99,9 +99,9 @@ jobs:
           if [[ "${{ github.event_name }}" != "push" ]]; then
             should_generate=true
           else
-            changed_files="$(git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" || true)"
+            changed_files="$(git -c core.quotepath=false diff --name-only "${{ github.event.before }}" "${{ github.sha }}" || true)"
             if [[ -z "$changed_files" ]]; then
-              changed_files="$(git diff --name-only HEAD^ HEAD || true)"
+              changed_files="$(git -c core.quotepath=false diff --name-only HEAD^ HEAD || true)"
             fi
             if echo "$changed_files" | grep -Eq '^(\.github/workflows/daily-vocabulary\.yml|[^/]+\.py|requirements\.txt|vocabulary/.*\.csv)$'; then
               should_generate=true
