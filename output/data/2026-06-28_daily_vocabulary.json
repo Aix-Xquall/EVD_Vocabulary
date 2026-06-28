@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 33,
+      "word_count": 36,
       "words": [
         {
           "id": "17",
@@ -1359,6 +1359,129 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/54efd4e218ca172b57eb39b9.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "99",
+          "word": "sufficient",
+          "pronunciation": "/səˈfɪʃ.ənt/",
+          "chinese_meaning": "足夠的；充足的",
+          "example_1_en": "The structure may not provide a sufficient Radio Frequency (RF) reference.",
+          "example_1_zh": "此結構可能無法提供足夠的 RF 參考。",
+          "example_2_en": "We need sufficient bonding points around the avionics ring.",
+          "example_2_zh": "我們需要在航電環周圍提供足夠的搭接點。",
+          "category": "Requirements / Standards",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 34,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/abed80eb4b8e1a304a6792fd.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/f80b589eeca22f8b0ecb5d7b.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/576afbd53458f97156d3c2ae.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/34e36949b984d1bf15d4de1d.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/358ff457901fe64b0de363ca.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/6ed53063a1228ad6190c5469.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "98",
+          "word": "approximately",
+          "pronunciation": "/əˈprɑːk.sə.mət.li/",
+          "chinese_meaning": "大約；約略",
+          "example_1_en": "The A1 avionics ring is approximately 110 cm in diameter.",
+          "example_1_zh": "A1 航電環直徑約 110 公分。",
+          "example_2_en": "Each composite panel is approximately 50 cm by 40 cm.",
+          "example_2_zh": "每片複合板尺寸約為 50 公分乘 40 公分。",
+          "category": "Overview / Scope",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 35,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/fcd6dab6398f4657fb511bc1.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/f8c61ff29abca332d3169cab.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/cfa4de7ecfdb2af8110254c1.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/a649472e8149bd790a561944.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/916973f17db596cc91d8d544.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/0cc61428cbaa03762dab7dc6.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "92",
+          "word": "although",
+          "pronunciation": "/ɔːlˈðoʊ/",
+          "chinese_meaning": "雖然；儘管",
+          "example_1_en": "Although each subsystem passed Military Standard 461 (MIL-STD-461), system-level integration still needs to be verified.",
+          "example_1_zh": "雖然每個子系統都通過 MIL-STD-461，系統級整合仍然需要驗證。",
+          "example_2_en": "Although the ring is lightweight, it does not provide a natural conductive reference.",
+          "example_2_zh": "雖然航電環很輕，但它不會提供天然的導電參考。",
+          "category": "Overview / Scope",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 36,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/3d4c8bbabcc782df5728503f.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/e6f52b281b196f3684c32d07.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/9dd3e606655f765d2518121f.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/9f26b5c8d32792452491f2f7.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/c2b74fdaaf5d6d62621adfae.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/367746b03a05c73f5a2bdb6c.mp3",
               "language": "zh"
             }
           }
@@ -25876,6 +25999,129 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/54efd4e218ca172b57eb39b9.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "99",
+      "word": "sufficient",
+      "pronunciation": "/səˈfɪʃ.ənt/",
+      "chinese_meaning": "足夠的；充足的",
+      "example_1_en": "The structure may not provide a sufficient Radio Frequency (RF) reference.",
+      "example_1_zh": "此結構可能無法提供足夠的 RF 參考。",
+      "example_2_en": "We need sufficient bonding points around the avionics ring.",
+      "example_2_zh": "我們需要在航電環周圍提供足夠的搭接點。",
+      "category": "Requirements / Standards",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 34,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/abed80eb4b8e1a304a6792fd.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/f80b589eeca22f8b0ecb5d7b.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/576afbd53458f97156d3c2ae.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/34e36949b984d1bf15d4de1d.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/358ff457901fe64b0de363ca.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/6ed53063a1228ad6190c5469.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "98",
+      "word": "approximately",
+      "pronunciation": "/əˈprɑːk.sə.mət.li/",
+      "chinese_meaning": "大約；約略",
+      "example_1_en": "The A1 avionics ring is approximately 110 cm in diameter.",
+      "example_1_zh": "A1 航電環直徑約 110 公分。",
+      "example_2_en": "Each composite panel is approximately 50 cm by 40 cm.",
+      "example_2_zh": "每片複合板尺寸約為 50 公分乘 40 公分。",
+      "category": "Overview / Scope",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 35,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/fcd6dab6398f4657fb511bc1.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/f8c61ff29abca332d3169cab.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/cfa4de7ecfdb2af8110254c1.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/a649472e8149bd790a561944.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/916973f17db596cc91d8d544.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/0cc61428cbaa03762dab7dc6.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "92",
+      "word": "although",
+      "pronunciation": "/ɔːlˈðoʊ/",
+      "chinese_meaning": "雖然；儘管",
+      "example_1_en": "Although each subsystem passed Military Standard 461 (MIL-STD-461), system-level integration still needs to be verified.",
+      "example_1_zh": "雖然每個子系統都通過 MIL-STD-461，系統級整合仍然需要驗證。",
+      "example_2_en": "Although the ring is lightweight, it does not provide a natural conductive reference.",
+      "example_2_zh": "雖然航電環很輕，但它不會提供天然的導電參考。",
+      "category": "Overview / Scope",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 36,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/3d4c8bbabcc782df5728503f.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/e6f52b281b196f3684c32d07.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/9dd3e606655f765d2518121f.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/9f26b5c8d32792452491f2f7.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/c2b74fdaaf5d6d62621adfae.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/367746b03a05c73f5a2bdb6c.mp3",
           "language": "zh"
         }
       }
