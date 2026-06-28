@@ -6602,7 +6602,51 @@ Although the ring is lightweight, it does not provide a natural conductive refer
 
 雖然航電環很輕，但它不會提供天然的導電參考。
 
-## 301. design scope
+## 301. effectiveness
+
+**Pronunciation:** /ɪˈfek.tɪv.nəs/
+
+**Chinese meaning:** 有效性；效果
+
+**Category:** RF Compatibility
+
+**Difficulty:** 3
+
+**Example 1**
+
+Shielding effectiveness depends on continuity and proper termination.
+
+屏蔽有效性取決於連續性與適當的端接。
+
+**Example 2**
+
+We need to verify the effectiveness of the bonding network.
+
+我們需要驗證搭接網路的有效性。
+
+## 302. react to
+
+**Pronunciation:** /riˈækt tuː/
+
+**Chinese meaning:** 對……反應；回應（注意：不是「導致」，導致可用 lead to / result in）
+
+**Category:** RF Compatibility
+
+**Difficulty:** 3
+
+**Example 1**
+
+We need to understand how the system will react to external Radio Frequency (RF) fields.
+
+我們需要了解系統會如何對外部 RF 場反應。
+
+**Example 2**
+
+The Data Acquisition (DAQ) system may react to conducted noise on the power line.
+
+DAQ 系統可能會對電源線上的傳導雜訊產生反應。
+
+## 303. design scope
 
 **Pronunciation:** /dɪˈzaɪn skoʊp/ | https://youglish.com/pronounce/design%20scope/english
 
@@ -6624,7 +6668,7 @@ Adhesive and protective film are outside the current design scope.
 
 黏著劑與保護膜不在目前設計範圍內。
 
-## 302. baseline
+## 304. baseline
 
 **Pronunciation:** /ˈbeɪslaɪn/ | https://youglish.com/pronounce/baseline/english
 
@@ -6646,7 +6690,7 @@ A clear baseline helps compare weight changes between options.
 
 明確的基準有助於比較各方案的重量變化。
 
-## 303. trade-off
+## 305. trade-off
 
 **Pronunciation:** /ˈtreɪd ɔːf/ | https://youglish.com/pronounce/trade-off/english
 
@@ -6668,7 +6712,7 @@ Every trade-off should be reviewed with the consultant before design freeze.
 
 每個折衷方案都應在設計凍結前與顧問確認。
 
-## 304. flight article
+## 306. flight article
 
 **Pronunciation:** /flaɪt ˈɑːrtɪkəl/ | https://youglish.com/pronounce/flight%20article/english
 
@@ -6690,7 +6734,7 @@ Prototype weights may differ from the flight article weight.
 
 原型件重量可能與飛行件重量不同。
 
-## 305. inner wall
+## 307. inner wall
 
 **Pronunciation:** /ˈɪnər wɔːl/ | https://youglish.com/pronounce/inner%20wall/english
 
@@ -6712,7 +6756,7 @@ The A4 inner wall has a larger foil area than the A1 inner wall.
 
 A4 內壁的銅箔面積比 A1 內壁大。
 
-## 306. geometry
+## 308. geometry
 
 **Pronunciation:** /dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english
 
@@ -6734,7 +6778,7 @@ Incorrect geometry will lead to an incorrect weight estimate.
 
 幾何尺寸錯誤會導致重量估算錯誤。
 
-## 307. circumference
+## 309. circumference
 
 **Pronunciation:** /sərˈkʌmfərəns/ | https://youglish.com/pronounce/circumference/english
 
@@ -6756,7 +6800,7 @@ The circumference is calculated from the ring diameter.
 
 圓周長由環體直徑計算。
 
-## 308. coverage ratio
+## 310. coverage ratio
 
 **Pronunciation:** /ˈkʌvərɪdʒ ˈreɪʃioʊ/ | https://youglish.com/pronounce/coverage%20ratio/english
 
@@ -6778,7 +6822,7 @@ Changing the coverage ratio directly changes the copper foil weight.
 
 改變覆蓋率會直接改變銅箔重量。
 
-## 309. busbar
+## 311. busbar
 
 **Pronunciation:** /ˈbʌsbɑːr/ | https://youglish.com/pronounce/busbar/english
 
@@ -6800,7 +6844,7 @@ A thicker busbar increases weight but can reduce resistance.
 
 較厚的銅排會增加重量，但可以降低電阻。
 
-## 310. braided strap
+## 312. braided strap
 
 **Pronunciation:** /ˈbreɪdɪd stræp/ | https://youglish.com/pronounce/braided%20strap/english
 
@@ -6822,7 +6866,7 @@ A shorter braided strap usually gives lower inductance and better RF performance
 
 較短的編織帶通常有較低電感與較好的 RF 表現。
 
-## 311. tinned copper
+## 313. tinned copper
 
 **Pronunciation:** /tɪnd ˈkɑːpər/ | https://youglish.com/pronounce/tinned%20copper/english
 
@@ -6844,7 +6888,7 @@ Tinned copper can improve corrosion resistance compared with bare copper.
 
 相較於裸銅，鍍錫銅可提升耐腐蝕性。
 
-## 312. solid copper equivalent
+## 314. solid copper equivalent
 
 **Pronunciation:** /ˈsɑːlɪd ˈkɑːpər ɪˈkwɪvələnt/ | https://youglish.com/pronounce/solid%20copper%20equivalent/english
 
@@ -6866,7 +6910,7 @@ The actual braided strap may be lighter because of gaps in the weave.
 
 實際編織帶可能因編織空隙而較輕。
 
-## 313. density
+## 315. density
 
 **Pronunciation:** /ˈdensəti/ | https://youglish.com/pronounce/density/english
 
@@ -6888,7 +6932,7 @@ The report uses stainless-steel density for the screw and washer calculation.
 
 報告使用不鏽鋼密度來計算螺絲與墊片重量。
 
-## 314. thickness
+## 316. thickness
 
 **Pronunciation:** /ˈθɪknəs/ | https://youglish.com/pronounce/thickness/english
 
@@ -6910,7 +6954,7 @@ The busbar thickness options are 1 millimeter and 2 millimeters.
 
 銅排厚度選項為 1 毫米與 2 毫米。
 
-## 315. material consumption
+## 317. material consumption
 
 **Pronunciation:** /məˈtɪriəl kənˈsʌmpʃən/ | https://youglish.com/pronounce/material%20consumption/english
 
@@ -6932,7 +6976,7 @@ The report summarizes material consumption for copper foil and busbars.
 
 報告彙整了銅箔與銅排的材料用量。
 
-## 316. weight estimate
+## 318. weight estimate
 
 **Pronunciation:** /weɪt ˈestɪmət/ | https://youglish.com/pronounce/weight%20estimate/english
 
@@ -6954,7 +6998,7 @@ This weight estimate does not include adhesive or installation loss.
 
 此重量估算不包含黏著劑或施工耗損。
 
-## 317. installation configuration
+## 319. installation configuration
 
 **Pronunciation:** /ˌɪnstəˈleɪʃən kənˌfɪɡjəˈreɪʃən/ | https://youglish.com/pronounce/installation%20configuration/english
 
@@ -6976,7 +7020,7 @@ We compared two installation configurations for the A2 section.
 
 我們比較了 A2 段的兩種安裝配置。
 
-## 318. clearance hole
+## 320. clearance hole
 
 **Pronunciation:** /ˈklɪrəns hoʊl/ | https://youglish.com/pronounce/clearance%20hole/english
 
@@ -6998,7 +7042,7 @@ The copper area removed by each clearance hole is subtracted from the weight cal
 
 每個間隙孔扣除的銅面積會從重量計算中扣除。
 
-## 319. washer
+## 321. washer
 
 **Pronunciation:** /ˈwɑːʃər/ | https://youglish.com/pronounce/washer/english
 
@@ -7020,7 +7064,7 @@ The washer prevents local damage and helps distribute the clamping force.
 
 墊片可避免局部損傷，並幫助分散夾持力。
 
-## 320. hex-head screw
+## 322. hex-head screw
 
 **Pronunciation:** /ˈheks hed skruː/ | https://youglish.com/pronounce/hex-head%20screw/english
 
@@ -7042,7 +7086,7 @@ The mass of each hex-head screw is approximated from its shaft and head geometry
 
 每顆六角頭螺絲的質量由桿身與頭部幾何近似估算。
 
-## 321. hole spacing
+## 323. hole spacing
 
 **Pronunciation:** /hoʊl ˈspeɪsɪŋ/ | https://youglish.com/pronounce/hole%20spacing/english
 
@@ -7064,7 +7108,7 @@ Smaller hole spacing increases the number of fasteners.
 
 較小的孔距會增加固定件數量。
 
-## 322. support bracket
+## 324. support bracket
 
 **Pronunciation:** /səˈpɔːrt ˈbrækɪt/ | https://youglish.com/pronounce/support%20bracket/english
 
@@ -7086,7 +7130,7 @@ Additional support brackets may be needed for vibration robustness.
 
 為提升振動強健性，可能需要額外支架。
 
-## 323. threaded insert
+## 325. threaded insert
 
 **Pronunciation:** /ˈθredɪd ˈɪnsɜːrt/ | https://youglish.com/pronounce/threaded%20insert/english
 
@@ -7108,7 +7152,7 @@ A weak threaded insert may reduce allowable clamp load.
 
 強度不足的螺紋嵌件可能降低允許夾持力。
 
-## 324. torque
+## 326. torque
 
 **Pronunciation:** /tɔːrk/ | https://youglish.com/pronounce/torque/english
 
@@ -7130,7 +7174,7 @@ Final torque should be confirmed based on the insert and locking method.
 
 最終扭矩應依螺紋嵌件與防鬆方式確認。
 
-## 325. anti-loosening method
+## 327. anti-loosening method
 
 **Pronunciation:** /ˌænti ˈluːsənɪŋ ˈmeθəd/ | https://youglish.com/pronounce/anti-loosening%20method/english
 
@@ -7152,7 +7196,7 @@ Thread locker, lock wire, or lock washers are possible anti-loosening methods.
 
 螺絲膠、保險絲或防鬆墊片都是可能的防鬆方式。
 
-## 326. protective film
+## 328. protective film
 
 **Pronunciation:** /prəˈtektɪv fɪlm/ | https://youglish.com/pronounce/protective%20film/english
 
@@ -7174,7 +7218,7 @@ The protective film must not cover the required contact surfaces.
 
 保護膜不可覆蓋必要的接觸面。
 
-## 327. adhesive
+## 329. adhesive
 
 **Pronunciation:** /ədˈhiːsɪv/ | https://youglish.com/pronounce/adhesive/english
 
@@ -7196,7 +7240,7 @@ The adhesive process must prevent copper foil edges from lifting.
 
 黏著製程必須避免銅箔邊緣翹起。
 
-## 328. cutting allowance
+## 330. cutting allowance
 
 **Pronunciation:** /ˈkʌtɪŋ əˈlaʊəns/ | https://youglish.com/pronounce/cutting%20allowance/english
 
@@ -7218,7 +7262,7 @@ The final flight weight should not include unused cutting allowance.
 
 最終飛行重量不應包含未使用的裁切裕量。
 
-## 329. procurement
+## 331. procurement
 
 **Pronunciation:** /prəˈkjʊrmənt/ | https://youglish.com/pronounce/procurement/english
 
@@ -7240,7 +7284,7 @@ The procurement quantity should include expected cutting loss.
 
 採購數量應包含預期裁切損耗。
 
-## 330. overlap
+## 332. overlap
 
 **Pronunciation:** /ˈoʊvərlæp/ | https://youglish.com/pronounce/overlap/english
 
@@ -7262,7 +7306,7 @@ Poor overlap can increase contact resistance.
 
 不良搭接可能增加接觸電阻。
 
-## 331. tolerance
+## 333. tolerance
 
 **Pronunciation:** /ˈtɑːlərəns/ | https://youglish.com/pronounce/tolerance/english
 
@@ -7284,7 +7328,7 @@ Large tolerance can affect hole alignment and assembly quality.
 
 較大的公差可能影響孔位對準與組裝品質。
 
-## 332. surface treatment
+## 334. surface treatment
 
 **Pronunciation:** /ˈsɜːrfɪs ˈtriːtmənt/ | https://youglish.com/pronounce/surface%20treatment/english
 
@@ -7306,7 +7350,7 @@ Copper, aluminum, and stainless steel may require different surface treatments.
 
 銅、鋁與不鏽鋼可能需要不同的表面處理。
 
-## 333. rework
+## 335. rework
 
 **Pronunciation:** /ˌriːˈwɜːrk/ | https://youglish.com/pronounce/rework/english
 
@@ -7328,7 +7372,7 @@ Rework may be required if the copper foil edge is damaged.
 
 若銅箔邊緣受損，可能需要重工。
 
-## 334. edge lifting
+## 336. edge lifting
 
 **Pronunciation:** /edʒ ˈlɪftɪŋ/ | https://youglish.com/pronounce/edge%20lifting/english
 
@@ -7350,7 +7394,7 @@ Edge lifting can create unreliable electrical contact.
 
 邊緣翹起可能造成不可靠的電氣接觸。
 
-## 335. galvanic corrosion
+## 337. galvanic corrosion
 
 **Pronunciation:** /ɡælˈvænɪk kəˈroʊʒən/ | https://youglish.com/pronounce/galvanic%20corrosion/english
 
@@ -7372,7 +7416,7 @@ Improper surface treatment may accelerate galvanic corrosion.
 
 不適當的表面處理可能加速異種金屬腐蝕。
 
-## 336. impedance
+## 338. impedance
 
 **Pronunciation:** /ɪmˈpiːdəns/
 

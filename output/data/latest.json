@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 36,
+      "word_count": 38,
       "words": [
         {
           "id": "17",
@@ -1482,6 +1482,88 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/367746b03a05c73f5a2bdb6c.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "103",
+          "word": "effectiveness",
+          "pronunciation": "/ɪˈfek.tɪv.nəs/",
+          "chinese_meaning": "有效性；效果",
+          "example_1_en": "Shielding effectiveness depends on continuity and proper termination.",
+          "example_1_zh": "屏蔽有效性取決於連續性與適當的端接。",
+          "example_2_en": "We need to verify the effectiveness of the bonding network.",
+          "example_2_zh": "我們需要驗證搭接網路的有效性。",
+          "category": "RF Compatibility",
+          "difficulty": "3",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 37,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/3abf8b8e9ebb465e31e92fdf.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/b56f43439f38f2c7f8c5fa69.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/01da4fa93e769fc574c13666.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/76f4a830a51bbfdb9d2765ba.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/f692219973931637de336d89.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/e081203ce294f1aaa216871e.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "111",
+          "word": "react to",
+          "pronunciation": "/riˈækt tuː/",
+          "chinese_meaning": "對……反應；回應（注意：不是「導致」，導致可用 lead to / result in）",
+          "example_1_en": "We need to understand how the system will react to external Radio Frequency (RF) fields.",
+          "example_1_zh": "我們需要了解系統會如何對外部 RF 場反應。",
+          "example_2_en": "The Data Acquisition (DAQ) system may react to conducted noise on the power line.",
+          "example_2_zh": "DAQ 系統可能會對電源線上的傳導雜訊產生反應。",
+          "category": "RF Compatibility",
+          "difficulty": "3",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 38,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/a344824132f91515a247af8b.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/d721ef363d5e76f3d32a850d.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/767960e5023389023442dd6d.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/4b6b7f48e573640f974a314e.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/926e172022dce30418133105.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/52636a15ef95ebf3c82f6875.mp3",
               "language": "zh"
             }
           }
@@ -26122,6 +26204,88 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/367746b03a05c73f5a2bdb6c.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "103",
+      "word": "effectiveness",
+      "pronunciation": "/ɪˈfek.tɪv.nəs/",
+      "chinese_meaning": "有效性；效果",
+      "example_1_en": "Shielding effectiveness depends on continuity and proper termination.",
+      "example_1_zh": "屏蔽有效性取決於連續性與適當的端接。",
+      "example_2_en": "We need to verify the effectiveness of the bonding network.",
+      "example_2_zh": "我們需要驗證搭接網路的有效性。",
+      "category": "RF Compatibility",
+      "difficulty": "3",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 37,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/3abf8b8e9ebb465e31e92fdf.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/b56f43439f38f2c7f8c5fa69.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/01da4fa93e769fc574c13666.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/76f4a830a51bbfdb9d2765ba.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/f692219973931637de336d89.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/e081203ce294f1aaa216871e.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "111",
+      "word": "react to",
+      "pronunciation": "/riˈækt tuː/",
+      "chinese_meaning": "對……反應；回應（注意：不是「導致」，導致可用 lead to / result in）",
+      "example_1_en": "We need to understand how the system will react to external Radio Frequency (RF) fields.",
+      "example_1_zh": "我們需要了解系統會如何對外部 RF 場反應。",
+      "example_2_en": "The Data Acquisition (DAQ) system may react to conducted noise on the power line.",
+      "example_2_zh": "DAQ 系統可能會對電源線上的傳導雜訊產生反應。",
+      "category": "RF Compatibility",
+      "difficulty": "3",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 38,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/a344824132f91515a247af8b.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/d721ef363d5e76f3d32a850d.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/767960e5023389023442dd6d.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/4b6b7f48e573640f974a314e.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/926e172022dce30418133105.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/52636a15ef95ebf3c82f6875.mp3",
           "language": "zh"
         }
       }
