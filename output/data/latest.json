@@ -38694,7 +38694,11 @@
   "mastery": {
     "statuses": {
       "consultant question": "mastered",
-      "interface": "mastered"
+      "interface": "mastered",
+      "final requirement": "mastered",
+      "subsystem": "mastered",
+      "interconnect": "mastered",
+      "system integration": "mastered"
     }
   },
   "hard_words": {
