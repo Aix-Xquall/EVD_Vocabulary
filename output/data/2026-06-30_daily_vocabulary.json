@@ -38787,7 +38787,8 @@
       "operation mode": "mastered",
       "power level control": "mastered",
       "response": "mastered",
-      "mission requirement": "mastered"
+      "mission requirement": "mastered",
+      "system requirement": "mastered"
     }
   },
   "hard_words": {
