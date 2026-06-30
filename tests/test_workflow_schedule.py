@@ -122,7 +122,8 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("EVD_AZURE_SPEECH_FREE_REMAINING: ${{ vars.EVD_AZURE_SPEECH_FREE_REMAINING }}", workflow)
         self.assertIn("AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}", workflow)
         self.assertIn("AZURE_SPEECH_RESOURCE_NAME: ${{ secrets.AZURE_SPEECH_RESOURCE_NAME }}", workflow)
-        self.assertIn("python main.py --skip-audio --no-update-review", workflow)
+        self.assertIn("python main.py --skip-audio --no-update-review --force-line", workflow)
+        self.assertNotIn("  push:", workflow)
 
 
 if __name__ == "__main__":
