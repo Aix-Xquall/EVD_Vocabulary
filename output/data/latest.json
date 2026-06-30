@@ -38783,7 +38783,8 @@
       "system integration": "mastered",
       "control plan": "mastered",
       "high di/dt": "mastered",
-      "high dv/dt": "mastered"
+      "high dv/dt": "mastered",
+      "operation mode": "mastered"
     }
   },
   "hard_words": {
