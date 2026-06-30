@@ -38698,7 +38698,8 @@
       "final requirement": "mastered",
       "subsystem": "mastered",
       "interconnect": "mastered",
-      "system integration": "mastered"
+      "system integration": "mastered",
+      "control plan": "mastered"
     }
   },
   "hard_words": {
