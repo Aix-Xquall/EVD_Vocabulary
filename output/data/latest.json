@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 52,
+      "word_count": 53,
       "words": [
         {
           "id": "17",
@@ -2138,6 +2138,47 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/449a5b80d887126f4ce5e434.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "25",
+          "word": "intra-system Electromagnetic Compatibility (EMC)",
+          "pronunciation": "/ˈɪntrə ˈsɪstəm ˌiː em ˈsiː/ | https://youglish.com/pronounce/intra-system%20EMC/english",
+          "chinese_meaning": "系統內 EMC；系統內部相容性",
+          "example_1_en": "Intra-system Electromagnetic Compatibility (EMC) checks whether one onboard subsystem interferes with another.",
+          "example_1_zh": "系統內 EMC 檢查一個機載子系統是否會干擾另一個子系統。",
+          "example_2_en": "JetVane operation is a key intra-system Electromagnetic Compatibility (EMC) case for DAQ monitoring.",
+          "example_2_zh": "JetVane 動作是 DAQ 監測的重要系統內 EMC 情境。",
+          "category": "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3) Planning",
+          "difficulty": "Advanced",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 53,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/2d7c1c64103892f0d99a2c4c.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/e20fad208e34863b807fa509.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/702894ec6ef031d85a5cef3f.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/c4ff8a8b57610d44d0ff293b.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/579ccff5a078263318313fc6.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/f8d9b353e0680396fe874de2.mp3",
               "language": "zh"
             }
           }
@@ -37133,6 +37174,47 @@
       }
     },
     {
+      "id": "25",
+      "word": "intra-system Electromagnetic Compatibility (EMC)",
+      "pronunciation": "/ˈɪntrə ˈsɪstəm ˌiː em ˈsiː/ | https://youglish.com/pronounce/intra-system%20EMC/english",
+      "chinese_meaning": "系統內 EMC；系統內部相容性",
+      "example_1_en": "Intra-system Electromagnetic Compatibility (EMC) checks whether one onboard subsystem interferes with another.",
+      "example_1_zh": "系統內 EMC 檢查一個機載子系統是否會干擾另一個子系統。",
+      "example_2_en": "JetVane operation is a key intra-system Electromagnetic Compatibility (EMC) case for DAQ monitoring.",
+      "example_2_zh": "JetVane 動作是 DAQ 監測的重要系統內 EMC 情境。",
+      "category": "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3) Planning",
+      "difficulty": "Advanced",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 53,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/2d7c1c64103892f0d99a2c4c.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/e20fad208e34863b807fa509.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/702894ec6ef031d85a5cef3f.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/c4ff8a8b57610d44d0ff293b.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/579ccff5a078263318313fc6.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/f8d9b353e0680396fe874de2.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
       "id": "6",
       "word": "design scope",
       "pronunciation": "/dɪˈzaɪn skoʊp/ | https://youglish.com/pronounce/design%20scope/english",
@@ -38610,7 +38692,10 @@
     }
   ],
   "mastery": {
-    "statuses": {}
+    "statuses": {
+      "consultant question": "mastered",
+      "interface": "mastered"
+    }
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
