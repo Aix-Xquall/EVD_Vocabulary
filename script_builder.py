@@ -90,6 +90,7 @@ def build_chapter_payload(
     target_date: date,
     segment_audio: Dict[str, Dict[str, dict]],
     hard_words_write_url: str = "",
+    mastered_word_statuses: Dict[str, str] | None = None,
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
@@ -139,6 +140,7 @@ def build_chapter_payload(
         "mode": "chapters",
         "chapters": chapters,
         "words": flat_words,
+        "mastery": {"statuses": dict(mastered_word_statuses or {})},
     }
     if hard_words_write_url:
         payload["hard_words"] = {"write_url": hard_words_write_url}

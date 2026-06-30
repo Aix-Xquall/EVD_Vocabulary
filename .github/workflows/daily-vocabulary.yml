@@ -13,6 +13,11 @@ on:
         required: false
         default: true
         type: boolean
+      force_line_notification:
+        description: "Send one manual LINE notification even when no words were added."
+        required: false
+        default: false
+        type: boolean
       audio_test_chapter:
         description: "CSV chapter title for the audio test."
         required: false
@@ -137,7 +142,9 @@ jobs:
           HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}
           HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}
         run: |
-          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.force_line_notification }}" == "true" ]]; then
+            python main.py --force-line
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             python main.py
           elif [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.skip_line_notification }}" != "true" ]]; then
             python main.py

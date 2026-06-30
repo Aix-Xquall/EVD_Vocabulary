@@ -12,6 +12,7 @@ from vocabulary_loader import REQUIRED_COLUMNS
 HARD_WORDS_FILENAME = "hard_words.csv"
 TRACKING_COLUMNS = ["source_chapter", "source_id", "added_at", "status", "note"]
 OUTPUT_COLUMNS = REQUIRED_COLUMNS + TRACKING_COLUMNS
+MASTERED_STATUSES = {"mastered", "mastered_active"}
 
 
 @dataclass(frozen=True)
@@ -50,16 +51,16 @@ def sync_hard_words_from_csv_text(
     reader = csv.DictReader(io.StringIO(csv_text))
     _validate_remote_csv_columns(reader.fieldnames or [])
     rows = list(reader)
-    filtered_rows = filter_hard_word_rows(rows)
+    snapshot_rows = _deduplicate_hard_word_rows(rows)
 
     snapshot_path = vocabulary_path / HARD_WORDS_FILENAME
     with snapshot_path.open("w", encoding="utf-8-sig", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=OUTPUT_COLUMNS, extrasaction="ignore")
         writer.writeheader()
-        for row in filtered_rows:
+        for row in snapshot_rows:
             writer.writerow({column: row.get(column, "") for column in OUTPUT_COLUMNS})
 
-    return HardWordsSyncResult(snapshot_path, len(filtered_rows), used_remote)
+    return HardWordsSyncResult(snapshot_path, len(snapshot_rows), used_remote)
 
 
 def filter_hard_word_rows(rows: Iterable[dict]) -> list[dict]:
@@ -78,6 +79,36 @@ def filter_hard_word_rows(rows: Iterable[dict]) -> list[dict]:
         seen_words.add(word_key)
         filtered.append(row)
     return filtered
+
+
+def load_mastered_word_statuses(vocabulary_dir: Path | str) -> dict[str, str]:
+    snapshot_path = Path(vocabulary_dir) / HARD_WORDS_FILENAME
+    if not snapshot_path.exists():
+        return {}
+
+    with snapshot_path.open("r", encoding="utf-8-sig", newline="") as file:
+        rows = csv.DictReader(file)
+        return {
+            str(row.get("word") or "").strip().casefold(): status
+            for row in rows
+            if (status := str(row.get("status") or "").strip().lower()) in MASTERED_STATUSES
+            and str(row.get("word") or "").strip()
+        }
+
+
+def _deduplicate_hard_word_rows(rows: Iterable[dict]) -> list[dict]:
+    deduplicated = []
+    seen_words = set()
+    for row in rows:
+        word = str(row.get("word") or "").strip()
+        if not word:
+            continue
+        word_key = word.casefold()
+        if word_key in seen_words:
+            continue
+        seen_words.add(word_key)
+        deduplicated.append(row)
+    return deduplicated
 
 
 def _fetch_csv_text(url: str, read_token: str = "") -> str:

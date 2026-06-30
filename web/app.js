@@ -3,9 +3,14 @@ const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const EXAMPLE_REPEAT_DELAY_MS = 1500;
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
 const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state";
+const MASTERED_WORDS_LOCAL_KEY = "evd-mastered-words-local-state";
 const HARD_WORD_STATUS = {
   active: "active",
   removed: "removed",
+};
+const MASTERY_STATUS = {
+  mastered: "mastered",
+  masteredActive: "mastered_active",
 };
 
 const state = {
@@ -18,6 +23,7 @@ const state = {
   repeatAll: true,
   repeatCurrent: false,
   includeExamples: true,
+  skipMastered: true,
   playbackRate: DEFAULT_PLAYBACK_RATE,
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
   playbackQueue: [],
@@ -29,6 +35,7 @@ const state = {
   mediaSessionReady: false,
   hardWordsWriteUrl: "",
   hardWordsPending: new Map(),
+  masteredWordStatuses: new Map(),
   practice: {
     current: null,
     attempts: 0,
@@ -45,6 +52,8 @@ const elements = {
   meaningText: document.getElementById("meaningText"),
   hardWordButton: document.getElementById("hardWordButton"),
   hardWordStatus: document.getElementById("hardWordStatus"),
+  masteredWordToggle: document.getElementById("masteredWordToggle"),
+  masteredWordStatus: document.getElementById("masteredWordStatus"),
   exampleOneEn: document.getElementById("exampleOneEn"),
   exampleOneZh: document.getElementById("exampleOneZh"),
   exampleTwoEn: document.getElementById("exampleTwoEn"),
@@ -56,6 +65,7 @@ const elements = {
   repeatAllToggle: document.getElementById("repeatAllToggle"),
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
   includeExamplesToggle: document.getElementById("includeExamplesToggle"),
+  skipMasteredToggle: document.getElementById("skipMasteredToggle"),
   playbackRate: document.getElementById("playbackRate"),
   playbackRateValue: document.getElementById("playbackRateValue"),
   exampleRepeatCount: document.getElementById("exampleRepeatCount"),
@@ -142,6 +152,7 @@ function render() {
   renderChapterTabs();
   renderWordList();
   updateHardWordControls();
+  updateMasteredControls();
   saveProgress();
 }
 
@@ -209,7 +220,8 @@ function renderWordList() {
   currentWords().forEach((word, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `word-item${index === state.currentIndex ? " active" : ""}`;
+    const masteredClass = isMasteredWord(word) ? "word-item mastered" : "word-item";
+    button.className = `${masteredClass}${index === state.currentIndex ? " active" : ""}`;
     button.innerHTML = `<strong>${index + 1}. ${escapeHtml(word.word)}</strong><small>${escapeHtml(word.chinese_meaning)}</small>`;
     button.addEventListener("click", () => {
       stopQueue();
@@ -257,7 +269,14 @@ function playCombinedAudio() {
 }
 
 function buildChapterQueue() {
-  return currentWords().flatMap((word) => buildWordQueue(word));
+  return playableWords().flatMap((word) => buildWordQueue(word));
+}
+
+function playableWords() {
+  if (!state.skipMastered) {
+    return currentWords();
+  }
+  return currentWords().filter((word) => !isMasteredWord(word));
 }
 
 function buildWordQueue(word) {
@@ -381,10 +400,32 @@ function updateHardWordControls() {
   const word = currentWord();
   const wordKey = hardWordKey(word);
   const alreadyAdded = isHardWord(wordKey);
+  const mastered = isMasteredWord(word);
   elements.hardWordButton.hidden = false;
-  elements.hardWordButton.disabled = !word.word;
+  elements.hardWordButton.disabled = !word.word || mastered;
   elements.hardWordButton.textContent = alreadyAdded ? "從未熟記單字移除" : "加入未熟記單字練習";
-  elements.hardWordStatus.textContent = alreadyAdded ? "目前在未熟記單字練習" : "";
+  elements.hardWordStatus.textContent = mastered
+    ? "已熟記，取消勾選後可加入未熟記練習"
+    : alreadyAdded ? "目前在未熟記單字練習" : "";
+}
+
+function masteryStatus(word) {
+  return state.masteredWordStatuses.get(hardWordKey(word)) || "";
+}
+
+function isMasteredWord(word) {
+  const status = masteryStatus(word);
+  return status === MASTERY_STATUS.mastered || status === MASTERY_STATUS.masteredActive;
+}
+
+function updateMasteredControls() {
+  if (!elements.masteredWordToggle || !elements.masteredWordStatus) {
+    return;
+  }
+  const word = currentWord();
+  elements.masteredWordToggle.checked = isMasteredWord(word);
+  elements.masteredWordToggle.disabled = !word.word || !state.hardWordsWriteUrl;
+  elements.masteredWordStatus.textContent = isMasteredWord(word) ? "播放時將略過" : "";
 }
 
 function isHardWord(wordKey) {
@@ -484,6 +525,80 @@ function restoreHardWordsLocalState() {
   const chapter = hardWordsChapter();
   if (chapter) {
     chapter.word_count = (chapter.words || []).length;
+  }
+}
+
+function readMasteredLocalState() {
+  const raw = localStorage.getItem(MASTERED_WORDS_LOCAL_KEY);
+  if (!raw) {
+    return {};
+  }
+  try {
+    const saved = JSON.parse(raw);
+    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  } catch (error) {
+    localStorage.removeItem(MASTERED_WORDS_LOCAL_KEY);
+    return {};
+  }
+}
+
+function saveMasteredLocalState(word, status) {
+  const wordKey = hardWordKey(word);
+  if (!wordKey) {
+    return;
+  }
+  const saved = readMasteredLocalState();
+  saved[wordKey] = status;
+  localStorage.setItem(MASTERED_WORDS_LOCAL_KEY, JSON.stringify(saved));
+}
+
+function restoreMasteredLocalState() {
+  Object.entries(readMasteredLocalState()).forEach(([wordKey, status]) => {
+    state.masteredWordStatuses.set(wordKey, status);
+  });
+}
+
+async function toggleMasteredWord() {
+  if (!state.hardWordsWriteUrl) {
+    return;
+  }
+  const word = currentWord();
+  const wordKey = hardWordKey(word);
+  if (!wordKey) {
+    return;
+  }
+  const currentStatus = masteryStatus(word);
+  const wasHardWord = isHardWord(wordKey);
+  const nextStatus = elements.masteredWordToggle.checked
+    ? (wasHardWord ? MASTERY_STATUS.masteredActive : MASTERY_STATUS.mastered)
+    : (currentStatus === MASTERY_STATUS.masteredActive ? HARD_WORD_STATUS.active : HARD_WORD_STATUS.removed);
+  const passcode = getHardWordsPasscode();
+  if (!passcode) {
+    elements.masteredWordToggle.checked = isMasteredWord(word);
+    elements.masteredWordStatus.textContent = "未設定同步密碼";
+    return;
+  }
+
+  elements.masteredWordToggle.disabled = true;
+  elements.masteredWordStatus.textContent = "同步中...";
+  try {
+    await postHardWord(word, passcode, nextStatus);
+    state.masteredWordStatuses.set(wordKey, nextStatus);
+    saveMasteredLocalState(word, nextStatus);
+    if (nextStatus === MASTERY_STATUS.masteredActive) {
+      state.hardWordsPending.set(wordKey, false);
+      saveHardWordsLocalState(word, HARD_WORD_STATUS.removed);
+      applyHardWordLocalState(word, HARD_WORD_STATUS.removed);
+    } else if (nextStatus === HARD_WORD_STATUS.active) {
+      state.hardWordsPending.set(wordKey, true);
+      saveHardWordsLocalState(word, HARD_WORD_STATUS.active);
+      applyHardWordLocalState(word, HARD_WORD_STATUS.active);
+    }
+    render();
+  } catch (error) {
+    elements.masteredWordToggle.disabled = false;
+    elements.masteredWordToggle.checked = isMasteredWord(word);
+    elements.masteredWordStatus.textContent = "同步失敗，請稍後再試";
   }
 }
 
@@ -695,15 +810,11 @@ function pausePlayback() {
 
 function nextWord(autoplay = false) {
   const words = currentWords();
-  const lastIndex = words.length - 1;
-  if (state.currentIndex >= lastIndex) {
-    if (!state.repeatAll) {
-      return;
-    }
-    state.currentIndex = 0;
-  } else {
-    state.currentIndex += 1;
+  const nextIndex = eligibleWordIndex(words, state.currentIndex, 1, state.repeatAll);
+  if (nextIndex < 0) {
+    return;
   }
+  state.currentIndex = nextIndex;
   render();
   if (autoplay) {
     playCurrent();
@@ -711,9 +822,28 @@ function nextWord(autoplay = false) {
 }
 
 function previousWord() {
-  const lastIndex = currentWords().length - 1;
-  state.currentIndex = state.currentIndex === 0 ? lastIndex : state.currentIndex - 1;
+  const words = currentWords();
+  const previousIndex = eligibleWordIndex(words, state.currentIndex, -1, true);
+  if (previousIndex < 0) {
+    return;
+  }
+  state.currentIndex = previousIndex;
   render();
+}
+
+function eligibleWordIndex(words, startIndex, direction, wrap) {
+  for (let step = 1; step <= words.length; step += 1) {
+    let index = startIndex + (step * direction);
+    if (wrap) {
+      index = (index + words.length) % words.length;
+    } else if (index < 0 || index >= words.length) {
+      return -1;
+    }
+    if (!state.skipMastered || !isMasteredWord(words[index])) {
+      return index;
+    }
+  }
+  return -1;
 }
 
 function resolveAssetPath(path) {
@@ -731,8 +861,12 @@ function resolveAssetPath(path) {
 }
 
 function buildQuestion() {
-  const words = currentWords();
+  const words = playableWords();
   if (words.length === 0) {
+    state.practice.current = null;
+    elements.questionText.textContent = "本章節沒有待練習單字";
+    elements.answerOptions.innerHTML = "";
+    elements.answerFeedback.textContent = "";
     return;
   }
   const word = words[Math.floor(Math.random() * words.length)];
@@ -816,6 +950,7 @@ function saveProgress() {
       playbackRate: state.playbackRate,
       englishRepeatCount: state.englishRepeatCount,
       includeExamples: state.includeExamples,
+      skipMastered: state.skipMastered,
       practice: state.practice,
     }),
   );
@@ -835,6 +970,7 @@ function restoreProgress() {
     state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
     state.englishRepeatCount = clampRepeatCount(saved.englishRepeatCount || saved.exampleRepeatCount || DEFAULT_ENGLISH_REPEAT_COUNT);
     state.includeExamples = saved.includeExamples !== false;
+    state.skipMastered = saved.skipMastered !== false;
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
@@ -880,6 +1016,11 @@ elements.includeExamplesToggle.addEventListener("change", (event) => {
   state.includeExamples = event.target.checked;
   saveProgress();
 });
+elements.skipMasteredToggle.addEventListener("change", (event) => {
+  state.skipMastered = event.target.checked;
+  buildQuestion();
+  saveProgress();
+});
 elements.playbackRate.addEventListener("input", (event) => {
   state.playbackRate = Number(event.target.value);
   applyPlaybackRate();
@@ -897,6 +1038,7 @@ elements.toggleMeaningButton.addEventListener("click", () => {
 });
 elements.nextQuestionButton.addEventListener("click", buildQuestion);
 elements.hardWordButton.addEventListener("click", toggleHardWord);
+elements.masteredWordToggle.addEventListener("change", toggleMasteredWord);
 elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
@@ -911,10 +1053,15 @@ loadDailyData()
     state.data = data;
     state.chapters = normalizeData(data);
     state.hardWordsWriteUrl = data.hard_words?.write_url || "";
+    Object.entries(data.mastery?.statuses || {}).forEach(([wordKey, status]) => {
+      state.masteredWordStatuses.set(hardWordKey({ word: wordKey }), status);
+    });
     restoreHardWordsLocalState();
+    restoreMasteredLocalState();
     restoreProgress();
     setupMediaSession();
     applyPlaybackRate();
+    elements.skipMasteredToggle.checked = state.skipMastered;
     render();
     buildQuestion();
     updatePracticeScore();

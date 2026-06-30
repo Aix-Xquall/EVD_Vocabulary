@@ -5,6 +5,8 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
+import hard_words_sync
+
 from hard_words_sync import (
     HARD_WORDS_FILENAME,
     filter_hard_word_rows,
@@ -55,6 +57,44 @@ class HardWordsSyncTests(unittest.TestCase):
             written_rows = list(csv.DictReader(snapshot.read_text(encoding="utf-8-sig").splitlines()))
             self.assertEqual(written_rows[0]["word"], "EMS")
             self.assertEqual(written_rows[0]["status"], "active")
+
+    def test_sync_snapshot_preserves_mastered_and_removed_rows(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            csv_text = (
+                HEADER
+                + "1,EMS,/ems/,meaning,Example one,translation,Example two,translation,EMC,4,0,,chapter,1,2026-06-24,active,\n"
+                + "2,EMC,/emc/,meaning,Example one,translation,Example two,translation,EMC,4,0,,chapter,2,2026-06-24,mastered,\n"
+                + "3,E3,/e3/,meaning,Example one,translation,Example two,translation,EMC,4,0,,chapter,3,2026-06-24,removed,\n"
+            )
+
+            result = sync_hard_words_from_csv_text(csv_text, temp_dir)
+            written_rows = list(
+                csv.DictReader(result.path.read_text(encoding="utf-8-sig").splitlines())
+            )
+
+            self.assertEqual(result.row_count, 3)
+            self.assertEqual(
+                [row["status"] for row in written_rows],
+                ["active", "mastered", "removed"],
+            )
+
+    def test_load_mastered_word_statuses_reads_cloud_snapshot_states(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            snapshot = Path(temp_dir) / HARD_WORDS_FILENAME
+            snapshot.write_text(
+                HEADER
+                + "1,EMS,/ems/,meaning,Example one,translation,Example two,translation,EMC,4,0,,chapter,1,2026-06-24,mastered,\n"
+                + "2,EMC,/emc/,meaning,Example one,translation,Example two,translation,EMC,4,0,,chapter,2,2026-06-24,mastered_active,\n"
+                + "3,E3,/e3/,meaning,Example one,translation,Example two,translation,EMC,4,0,,chapter,3,2026-06-24,active,\n",
+                encoding="utf-8-sig",
+            )
+
+            statuses = hard_words_sync.load_mastered_word_statuses(temp_dir)
+
+            self.assertEqual(
+                statuses,
+                {"ems": "mastered", "emc": "mastered_active"},
+            )
 
     def test_sync_hard_words_from_csv_text_rejects_non_vocabulary_csv(self):
         with tempfile.TemporaryDirectory() as temp_dir:

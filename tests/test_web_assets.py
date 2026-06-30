@@ -118,6 +118,22 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("從未熟記單字移除", app_js)
         self.assertIn('"status": status', app_js)
 
+    def test_web_player_exposes_mastered_word_controls_and_skip_behavior(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn('id="masteredWordToggle"', index_html)
+        self.assertIn('id="skipMasteredToggle"', index_html)
+        self.assertIn("mastered_active", app_js)
+        self.assertIn("function isMasteredWord(word)", app_js)
+        self.assertIn("function toggleMasteredWord", app_js)
+        self.assertIn("state.skipMastered", app_js)
+        self.assertIn("filter((word) => !isMasteredWord(word))", app_js)
+        self.assertIn("MASTERED_WORDS_LOCAL_KEY", app_js)
+        self.assertIn("word-item mastered", app_js)
+        self.assertIn(".word-item.mastered", styles_css)
+
     def test_hard_words_chapter_count_updates_immediately_after_toggle(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 

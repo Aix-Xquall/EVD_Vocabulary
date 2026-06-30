@@ -151,6 +151,23 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertEqual(payload["chapters"][0]["words"], [])
         self.assertTrue(payload["chapters"][0]["is_hard_words"])
 
+    def test_build_chapter_payload_publishes_mastered_word_statuses(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\chapter-a.csv"
+        entry["_row_number"] = 1
+
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 6, 24),
+            segment_audio={},
+            mastered_word_statuses={"impedance": "mastered"},
+        )
+
+        self.assertEqual(
+            payload["mastery"]["statuses"],
+            {"impedance": "mastered"},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

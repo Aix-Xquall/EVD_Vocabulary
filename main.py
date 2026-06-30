@@ -5,7 +5,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
-from hard_words_sync import sync_hard_words
+from hard_words_sync import load_mastered_word_statuses, sync_hard_words
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
 from tts_generator import expected_segment_audio_paths, generate_segment_audio_files
@@ -17,6 +17,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--date", help="Target date in YYYY-MM-DD format. Defaults to today.")
     parser.add_argument("--skip-audio", action="store_true", help="Skip Azure Speech MP3 generation.")
     parser.add_argument("--skip-line", action="store_true", help="Skip LINE notification.")
+    parser.add_argument(
+        "--force-line",
+        action="store_true",
+        help="Send LINE even when no new words were added.",
+    )
     parser.add_argument("--no-update-review", action="store_true", help="Do not update CSV review metadata.")
     return parser.parse_args()
 
@@ -33,6 +38,7 @@ def main() -> None:
         target_date=target_date,
         update_review=not args.no_update_review,
         notify_line=not args.skip_line,
+        force_line_notification=args.force_line,
     )
     print(f"Generated {result['word_count']} words for {result['date']}")
     print(f"Markdown: {result['markdown_path']}")
@@ -44,6 +50,7 @@ def run_daily_generation(
     target_date: date,
     update_review: bool = True,
     notify_line: bool = True,
+    force_line_notification: bool = False,
 ) -> dict:
     sync_result = sync_hard_words(settings)
     if sync_result:
@@ -51,6 +58,7 @@ def run_daily_generation(
         print(f"Hard words snapshot: {sync_result.row_count} rows from {source}")
 
     entries = load_vocabulary(settings.vocabulary_dir)
+    mastered_word_statuses = load_mastered_word_statuses(settings.vocabulary_dir)
 
     if settings.generate_audio:
         segment_audio = generate_segment_audio_files(entries, settings)
@@ -64,6 +72,7 @@ def run_daily_generation(
         target_date,
         segment_audio,
         hard_words_write_url=settings.hard_words_write_url,
+        mastered_word_statuses=mastered_word_statuses,
     )
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)
@@ -72,15 +81,20 @@ def run_daily_generation(
     if update_review:
         print("Review metadata is not updated in chapter mode.")
 
-    if notify_line:
+    notification_report = build_notification_report(previous_payload, payload)
+    if notify_line and (
+        force_line_notification or notification_report["new_word_count"] > 0
+    ):
         try:
             send_daily_line_notification(
                 settings,
                 target_date.isoformat(),
-                build_notification_report(previous_payload, payload),
+                notification_report,
             )
         except RuntimeError as exc:
             print(f"LINE notification warning: {exc}")
+    elif notify_line:
+        print("LINE notification skipped: no new vocabulary words.")
 
     return {
         "date": target_date.isoformat(),

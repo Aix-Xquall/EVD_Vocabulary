@@ -16,7 +16,7 @@ For audio, the same terms are spoken as the full English phrase. Chinese columns
 
 ## Hard words sync
 
-The site shows a separate hard words chapter named `未熟記單字練習`, even when it currently has zero words. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC.
+The site shows a separate hard words chapter named `未熟記單字練習`, even when it currently has zero words. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC. A word can also be marked `已熟記`; chapter playback and daily practice skip mastered words by default, while direct selection still allows replay.
 
 Google Sheet columns should include the normal vocabulary columns:
 
@@ -71,9 +71,9 @@ HARD_WORDS_READ_TOKEN=YOUR_READ_TOKEN
 
 `GITHUB_TOKEN` should be a fine-grained GitHub token that can access only this repository. Give it `Actions: Read and write` permission so Apps Script can call `workflow_dispatch`. Keep the token only in Apps Script Properties; never paste it into `web/app.js`, `latest.json`, GitHub Pages, or any public file.
 
-After each successful hard-word write, the Apps Script template calls the GitHub Actions API to run `Daily Vocabulary`. That workflow refreshes `vocabulary/hard_words.csv`, regenerates `latest.json`, deploys GitHub Pages, and sends the normal LINE notification.
+After each successful hard-word or mastered-word write, the Apps Script template calls the GitHub Actions API to run `Daily Vocabulary`. That workflow refreshes `vocabulary/hard_words.csv`, regenerates `latest.json`, and deploys GitHub Pages.
 
-Hard-word add/remove refreshes pass `skip_line_notification=true`, so they update the site without sending a LINE message. The scheduled 06:30 run still sends the normal LINE notification.
+Hard-word and mastered-word refreshes pass `skip_line_notification=true`, so they update the site without sending a LINE message. Scheduled runs send LINE only when new vocabulary is detected. For a one-time test or completion message, manually run `Daily Vocabulary` with `force_line_notification=true`.
 
 After changing or redeploying the Apps Script Web App, run `Daily Vocabulary` once from GitHub Actions or push a normal repo change so the published site picks up the latest hard-words settings and snapshot.
 

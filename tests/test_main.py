@@ -112,6 +112,71 @@ class MainWorkflowTests(unittest.TestCase):
         self.assertEqual(report["new_word_count"], 2)
         self.assertEqual(report["new_chapter_names"], ["chapter-b"])
 
+    def test_daily_generation_skips_line_when_there_are_no_new_words(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            output_dir = workspace / "output"
+            _write_vocabulary(workspace / "chapter-a.csv", word="impedance")
+            settings = Settings(
+                vocabulary_dir=workspace,
+                output_dir=output_dir,
+                generate_audio=False,
+                line_channel_access_token="token",
+                line_user_id="user",
+            )
+            run_daily_generation(settings, date(2026, 6, 17), False, False)
+
+            with patch("main.send_daily_line_notification") as send_line:
+                run_daily_generation(settings, date(2026, 6, 18), False, True)
+
+            send_line.assert_not_called()
+
+    def test_daily_generation_sends_line_when_new_words_exist(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            output_dir = workspace / "output"
+            _write_vocabulary(workspace / "chapter-a.csv", word="impedance")
+            settings = Settings(
+                vocabulary_dir=workspace,
+                output_dir=output_dir,
+                generate_audio=False,
+                line_channel_access_token="token",
+                line_user_id="user",
+            )
+            run_daily_generation(settings, date(2026, 6, 17), False, False)
+            _write_vocabulary(workspace / "chapter-b.csv", word="coupling")
+
+            with patch("main.send_daily_line_notification") as send_line:
+                run_daily_generation(settings, date(2026, 6, 18), False, True)
+
+            send_line.assert_called_once()
+            self.assertEqual(send_line.call_args.args[2]["new_word_count"], 1)
+
+    def test_force_line_sends_notification_without_new_words(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            output_dir = workspace / "output"
+            _write_vocabulary(workspace / "chapter-a.csv", word="impedance")
+            settings = Settings(
+                vocabulary_dir=workspace,
+                output_dir=output_dir,
+                generate_audio=False,
+                line_channel_access_token="token",
+                line_user_id="user",
+            )
+            run_daily_generation(settings, date(2026, 6, 17), False, False)
+
+            with patch("main.send_daily_line_notification") as send_line:
+                run_daily_generation(
+                    settings,
+                    date(2026, 6, 18),
+                    update_review=False,
+                    notify_line=True,
+                    force_line_notification=True,
+                )
+
+            send_line.assert_called_once()
+
 
 def _write_vocabulary(path: Path, word: str = "impedance") -> None:
     fieldnames = [

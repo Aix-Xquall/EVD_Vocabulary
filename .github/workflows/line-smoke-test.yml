@@ -37,4 +37,4 @@ jobs:
           AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           AZURE_SPEECH_RESOURCE_GROUP: ${{ secrets.AZURE_SPEECH_RESOURCE_GROUP }}
           AZURE_SPEECH_RESOURCE_NAME: ${{ secrets.AZURE_SPEECH_RESOURCE_NAME }}
-        run: python main.py --skip-audio --no-update-review
+        run: python main.py --skip-audio --no-update-review --force-line

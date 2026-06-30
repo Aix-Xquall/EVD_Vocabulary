@@ -62,6 +62,19 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn('inputs.skip_line_notification }}" != "true"', workflow)
         self.assertIn("python main.py --skip-line", workflow)
 
+    def test_manual_workflow_can_force_completion_line_notification(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+        smoke_workflow = (PROJECT_DIR / ".github" / "workflows" / "line-smoke-test.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("force_line_notification:", workflow)
+        self.assertIn("inputs.force_line_notification", workflow)
+        self.assertIn("python main.py --force-line", workflow)
+        self.assertIn("python main.py --skip-audio --no-update-review --force-line", smoke_workflow)
+
     def test_push_workflow_skips_daily_generation_for_static_site_changes(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
             encoding="utf-8"
