@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 53,
+      "word_count": 54,
       "words": [
         {
           "id": "17",
@@ -2179,6 +2179,47 @@
             },
             "example_2_zh": {
               "src": "audio/segments/zh/f8d9b353e0680396fe874de2.mp3",
+              "language": "zh"
+            }
+          }
+        },
+        {
+          "id": "51",
+          "word": "worst-case simultaneous operation",
+          "pronunciation": "/wɜːrst keɪs ˌsaɪməlˈteɪniəs ˌɑːpəˈreɪʃn/ | https://youglish.com/pronounce/worst-case%20simultaneous%20operation/english",
+          "chinese_meaning": "最壞情境同時操作",
+          "example_1_en": "Worst-case simultaneous operation should include RF transmit and actuator motion.",
+          "example_1_zh": "最壞情境同時操作應包含 RF 發射與致動器動作。",
+          "example_2_en": "The system must not lose critical data during worst-case simultaneous operation.",
+          "example_2_zh": "系統在最壞情境同時操作時不得遺失關鍵資料。",
+          "category": "System Test / Failure Criteria",
+          "difficulty": "Advanced",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 54,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/d5463e4f5807e6da8bb13e88.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/6082895ef0a8ba9e308ba4b5.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/472d9bd34318c444a5783e2e.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/c0de9f760429067522dc938b.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/d773f7f82a979e725c58e7c5.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/acec8746d4680ef1195c7bef.mp3",
               "language": "zh"
             }
           }
@@ -37210,6 +37251,47 @@
         },
         "example_2_zh": {
           "src": "audio/segments/zh/f8d9b353e0680396fe874de2.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
+      "id": "51",
+      "word": "worst-case simultaneous operation",
+      "pronunciation": "/wɜːrst keɪs ˌsaɪməlˈteɪniəs ˌɑːpəˈreɪʃn/ | https://youglish.com/pronounce/worst-case%20simultaneous%20operation/english",
+      "chinese_meaning": "最壞情境同時操作",
+      "example_1_en": "Worst-case simultaneous operation should include RF transmit and actuator motion.",
+      "example_1_zh": "最壞情境同時操作應包含 RF 發射與致動器動作。",
+      "example_2_en": "The system must not lose critical data during worst-case simultaneous operation.",
+      "example_2_zh": "系統在最壞情境同時操作時不得遺失關鍵資料。",
+      "category": "System Test / Failure Criteria",
+      "difficulty": "Advanced",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 54,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/d5463e4f5807e6da8bb13e88.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/6082895ef0a8ba9e308ba4b5.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/472d9bd34318c444a5783e2e.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/c0de9f760429067522dc938b.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/d773f7f82a979e725c58e7c5.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/acec8746d4680ef1195c7bef.mp3",
           "language": "zh"
         }
       }
