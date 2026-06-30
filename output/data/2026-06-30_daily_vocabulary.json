@@ -38786,7 +38786,8 @@
       "high dv/dt": "mastered",
       "operation mode": "mastered",
       "power level control": "mastered",
-      "response": "mastered"
+      "response": "mastered",
+      "mission requirement": "mastered"
     }
   },
   "hard_words": {
