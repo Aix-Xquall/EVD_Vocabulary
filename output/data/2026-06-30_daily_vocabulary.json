@@ -38699,7 +38699,9 @@
       "subsystem": "mastered",
       "interconnect": "mastered",
       "system integration": "mastered",
-      "control plan": "mastered"
+      "control plan": "mastered",
+      "high di/dt": "mastered",
+      "high dv/dt": "mastered"
     }
   },
   "hard_words": {
