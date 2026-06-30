@@ -38784,7 +38784,9 @@
       "control plan": "mastered",
       "high di/dt": "mastered",
       "high dv/dt": "mastered",
-      "operation mode": "mastered"
+      "operation mode": "mastered",
+      "power level control": "mastered",
+      "response": "mastered"
     }
   },
   "hard_words": {
