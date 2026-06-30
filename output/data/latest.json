@@ -38609,6 +38609,9 @@
       }
     }
   ],
+  "mastery": {
+    "statuses": {}
+  },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
   }

@@ -35,6 +35,11 @@
             <div class="hard-word-actions">
               <button id="hardWordButton" type="button">加入未熟記單字練習</button>
               <span id="hardWordStatus" class="sync-status"></span>
+              <label class="mastered-control">
+                <input id="masteredWordToggle" type="checkbox">
+                已熟記
+              </label>
+              <span id="masteredWordStatus" class="sync-status"></span>
             </div>
           </div>
 
@@ -49,6 +54,7 @@
             <label><input id="repeatAllToggle" type="checkbox" checked> 循環本章節</label>
             <label><input id="repeatCurrentToggle" type="checkbox"> 重複目前單字</label>
             <label><input id="includeExamplesToggle" type="checkbox" checked> 播放例句</label>
+            <label><input id="skipMasteredToggle" type="checkbox" checked> 略過已熟記</label>
             <label class="rate-control" for="playbackRate">
               英文語速 <output id="playbackRateValue">0.8x</output>
               <input id="playbackRate" type="range" min="0.5" max="1.5" step="0.1" value="0.8">
