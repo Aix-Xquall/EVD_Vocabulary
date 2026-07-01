@@ -38775,6 +38775,7 @@
   ],
   "mastery": {
     "statuses": {
+      "length-to-width ratio": "mastered",
       "onboard": "mastered",
       "electromagnetic environment": "mastered",
       "wiring": "mastered",
