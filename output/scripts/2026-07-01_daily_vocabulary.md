@@ -8406,7 +8406,29 @@ Reference rings help control some lightning indirect effects, but they are not e
 
 參考環有助於控制部分雷擊間接效應，但單靠它們並不足夠。
 
-## 383. worst-case simultaneous operation
+## 383. proper
+
+**Pronunciation:** /ˈprɑː.pɚ/
+
+**Chinese meaning:** 適當的；正確的
+
+**Category:** Harness / Wiring / Shielding
+
+**Difficulty:** 2
+
+**Example 1**
+
+Proper shield termination is required for high-frequency Electromagnetic Compatibility (EMC) control.
+
+高頻 EMC 控制需要適當的屏蔽端接。
+
+**Example 2**
+
+A proper bonding path should be short and low impedance.
+
+適當的搭接路徑應該短且低阻抗。
+
+## 384. worst-case simultaneous operation
 
 **Pronunciation:** /wɜːrst keɪs ˌsaɪməlˈteɪniəs ˌɑːpəˈreɪʃn/ | https://youglish.com/pronounce/worst-case%20simultaneous%20operation/english
 
@@ -8428,7 +8450,7 @@ The system must not lose critical data during worst-case simultaneous operation.
 
 系統在最壞情境同時操作時不得遺失關鍵資料。
 
-## 384. intra-system Electromagnetic Compatibility (EMC)
+## 385. intra-system Electromagnetic Compatibility (EMC)
 
 **Pronunciation:** /ˈɪntrə ˈsɪstəm ˌiː em ˈsiː/ | https://youglish.com/pronounce/intra-system%20EMC/english
 
@@ -8450,7 +8472,7 @@ JetVane operation is a key intra-system Electromagnetic Compatibility (EMC) case
 
 JetVane 動作是 DAQ 監測的重要系統內 EMC 情境。
 
-## 385. regarding
+## 386. regarding
 
 **Pronunciation:** /rɪˈɡɑːr.dɪŋ/
 
@@ -8472,7 +8494,7 @@ The attached file includes discussion topics regarding MIL-STD-464 compliance.
 
 附件包含有關 MIL-STD-464 合規性的討論議題。
 
-## 386. concise
+## 387. concise
 
 **Pronunciation:** /kənˈsaɪs/
 
@@ -8494,7 +8516,7 @@ A concise summary helps the consultant understand the main issue quickly.
 
 簡潔的摘要有助於顧問快速了解主要問題。
 
-## 387. challenge
+## 388. challenge
 
 **Pronunciation:** /ˈtʃæl.ɪndʒ/
 
@@ -8516,7 +8538,7 @@ Cable shield termination is a major challenge in this design.
 
 線纜屏蔽端接是此設計中的主要挑戰。
 
-## 388. arranged at
+## 389. arranged at
 
 **Pronunciation:** /əˈreɪndʒd æt/
 
@@ -8538,7 +8560,7 @@ The bonding points should be arranged at regular intervals around the ring.
 
 搭接點應沿航電環以固定間距排列。
 
-## 389. Mercedes-star
+## 390. Mercedes-star
 
 **Pronunciation:** /mɚˈseɪ.diːz stɑːr/
 
@@ -8560,7 +8582,7 @@ The Mercedes-star layout provides three vertical mounting surfaces inside the ri
 
 賓士星形配置在航電環內提供三個垂直安裝面。
 
-## 390. experience
+## 391. experience
 
 **Pronunciation:** /ɪkˈspɪr.i.əns/
 
@@ -8582,7 +8604,7 @@ Practical experience is important for grounding and shielding implementation.
 
 實務經驗對接地與屏蔽實作非常重要。
 
-## 391. diagram
+## 392. diagram
 
 **Pronunciation:** /ˈdaɪ.ə.ɡræm/
 
@@ -8604,7 +8626,7 @@ A clear diagram will help the consultant understand the installation concept.
 
 清楚的示意圖有助於顧問理解安裝概念。
 
-## 392. purposed
+## 393. purposed
 
 **Pronunciation:** /ˈpɝː.pəst/
 
@@ -8626,7 +8648,7 @@ In most technical writing, use 'intended' or 'designed' instead of 'purposed'.
 
 在多數技術寫作中，建議用 intended 或 designed 取代 purposed。
 
-## 393. proposed
+## 394. proposed
 
 **Pronunciation:** /prəˈpoʊzd/
 
@@ -8648,7 +8670,7 @@ We need to review the proposed grounding concept before implementation.
 
 在實作前，我們需要審查建議的接地概念。
 
-## 394. constraint
+## 395. constraint
 
 **Pronunciation:** /kənˈstreɪnt/
 
@@ -8670,7 +8692,7 @@ Each constraint should be linked to a safety or Electromagnetic Compatibility (E
 
 每項限制條件都應連結到安全或 Electromagnetic Compatibility (EMC) 需求。
 
-## 395. lack of
+## 396. lack of
 
 **Pronunciation:** /læk əv/
 
@@ -8692,7 +8714,7 @@ A lack of shield continuity can reduce Electromagnetic Compatibility (EMC) perfo
 
 缺乏屏蔽連續性會降低 EMC 性能。
 
-## 396. concern
+## 397. concern
 
 **Pronunciation:** /kənˈsɝːn/
 
@@ -8714,7 +8736,7 @@ The consultant should understand our system-level Electromagnetic Compatibility 
 
 顧問應了解我們的系統級 EMC 疑慮。
 
-## 397. ineffective
+## 398. ineffective
 
 **Pronunciation:** /ˌɪn.əˈfek.tɪv/
 
@@ -8736,7 +8758,7 @@ Shielding can be ineffective without a proper termination reference.
 
 若沒有適當的端接參考，屏蔽可能無效。
 
-## 398. react to
+## 399. react to
 
 **Pronunciation:** /riˈækt tuː/
 
@@ -8758,7 +8780,7 @@ The Data Acquisition (DAQ) system may react to conducted noise on the power line
 
 DAQ 系統可能會對電源線上的傳導雜訊產生反應。
 
-## 399. effectiveness
+## 400. effectiveness
 
 **Pronunciation:** /ɪˈfek.tɪv.nəs/
 
@@ -8780,7 +8802,7 @@ We need to verify the effectiveness of the bonding network.
 
 我們需要驗證搭接網路的有效性。
 
-## 400. although
+## 401. although
 
 **Pronunciation:** /ɔːlˈðoʊ/
 
@@ -8802,7 +8824,7 @@ Although the ring is lightweight, it does not provide a natural conductive refer
 
 雖然航電環很輕，但它不會提供天然的導電參考。
 
-## 401. approximately
+## 402. approximately
 
 **Pronunciation:** /əˈprɑːk.sə.mət.li/
 
@@ -8824,7 +8846,7 @@ Each composite panel is approximately 50 cm by 40 cm.
 
 每片複合板尺寸約為 50 公分乘 40 公分。
 
-## 402. sufficient
+## 403. sufficient
 
 **Pronunciation:** /səˈfɪʃ.ənt/
 
@@ -8846,7 +8868,7 @@ We need sufficient bonding points around the avionics ring.
 
 我們需要在航電環周圍提供足夠的搭接點。
 
-## 403. wire segregation
+## 404. wire segregation
 
 **Pronunciation:** /waɪr ˌseɡ.rəˈɡeɪ.ʃən/
 
@@ -8868,7 +8890,7 @@ Power, RF, and low-level analog wires need proper wire segregation.
 
 電源、RF 與低位準類比線路需要適當線路隔離。
 
-## 404. compliance matrix
+## 405. compliance matrix
 
 **Pronunciation:** /kəmˈplaɪ.əns ˈmeɪ.trɪks/
 
@@ -8890,7 +8912,7 @@ The compliance matrix should identify verification status and evidence.
 
 符合性矩陣應標示驗證狀態與證據。
 
-## 405. susceptibility
+## 406. susceptibility
 
 **Pronunciation:** /səˌsep.təˈbɪl.ə.ti/
 
@@ -8912,7 +8934,7 @@ Poor shielding increases system susceptibility.
 
 屏蔽不良會增加系統敏感度。
 
-## 406. edge lifting
+## 407. edge lifting
 
 **Pronunciation:** /edʒ ˈlɪftɪŋ/ | https://youglish.com/pronounce/edge%20lifting/english
 
@@ -8934,7 +8956,7 @@ Edge lifting can create unreliable electrical contact.
 
 邊緣翹起可能造成不可靠的電氣接觸。
 
-## 407. surface treatment
+## 408. surface treatment
 
 **Pronunciation:** /ˈsɜːrfɪs ˈtriːtmənt/ | https://youglish.com/pronounce/surface%20treatment/english
 
@@ -8956,7 +8978,7 @@ Copper, aluminum, and stainless steel may require different surface treatments.
 
 銅、鋁與不鏽鋼可能需要不同的表面處理。
 
-## 408. adhesive
+## 409. adhesive
 
 **Pronunciation:** /ədˈhiːsɪv/ | https://youglish.com/pronounce/adhesive/english
 
@@ -8978,7 +9000,7 @@ The adhesive process must prevent copper foil edges from lifting.
 
 黏著製程必須避免銅箔邊緣翹起。
 
-## 409. weight estimate
+## 410. weight estimate
 
 **Pronunciation:** /weɪt ˈestɪmət/ | https://youglish.com/pronounce/weight%20estimate/english
 
@@ -9000,7 +9022,7 @@ This weight estimate does not include adhesive or installation loss.
 
 此重量估算不包含黏著劑或施工耗損。
 
-## 410. thickness
+## 411. thickness
 
 **Pronunciation:** /ˈθɪknəs/ | https://youglish.com/pronounce/thickness/english
 
@@ -9022,7 +9044,7 @@ The busbar thickness options are 1 millimeter and 2 millimeters.
 
 銅排厚度選項為 1 毫米與 2 毫米。
 
-## 411. circumference
+## 412. circumference
 
 **Pronunciation:** /sərˈkʌmfərəns/ | https://youglish.com/pronounce/circumference/english
 
@@ -9044,7 +9066,7 @@ The circumference is calculated from the ring diameter.
 
 圓周長由環體直徑計算。
 
-## 412. flight article
+## 413. flight article
 
 **Pronunciation:** /flaɪt ˈɑːrtɪkəl/ | https://youglish.com/pronounce/flight%20article/english
 
@@ -9066,7 +9088,7 @@ Prototype weights may differ from the flight article weight.
 
 原型件重量可能與飛行件重量不同。
 
-## 413. subject to final confirmation
+## 414. subject to final confirmation
 
 **Pronunciation:** /ˈsʌbdʒekt tuː ˈfaɪnəl ˌkɑːnfərˈmeɪʃən/
 
@@ -9088,7 +9110,7 @@ The bonding method is subject to final confirmation by the structural team.
 
 搭接方法仍需由結構團隊做最終確認。
 
-## 414. on top of
+## 415. on top of
 
 **Pronunciation:** /ɑːn tɑːp əv/
 
@@ -9110,7 +9132,7 @@ The bonding washer is placed on top of the conductive surface.
 
 搭接墊片放置在導電表面上方。
 
-## 415. briefing document
+## 416. briefing document
 
 **Pronunciation:** /ˈbriːfɪŋ ˈdɑːkjumənt/
 
@@ -9132,7 +9154,7 @@ The briefing document summarizes the current grounding concept.
 
 該簡報文件彙整了目前的接地概念。
 
-## 416. RF transmit inhibit
+## 417. RF transmit inhibit
 
 **Pronunciation:** /ˌɑːr ˈef trænzˈmɪt ɪnˈhɪbɪt/ | https://youglish.com/pronounce/RF%20transmit%20inhibit/english
 
@@ -9154,7 +9176,7 @@ The test procedure should verify the RF transmit inhibit function.
 
 測試程序應驗證 RF 發射禁止功能。
 
-## 417. functional degradation
+## 418. functional degradation
 
 **Pronunciation:** /ˈfʌŋkʃənl ˌdeɡrəˈdeɪʃn/ | https://youglish.com/pronounce/functional%20degradation/english
 
@@ -9176,7 +9198,7 @@ Mission-critical functions should have no functional degradation during Electrom
 
 任務關鍵功能在 EMC 測試期間不應有功能劣化。
 
-## 418. stitching
+## 419. stitching
 
 **Pronunciation:** /ˈstɪtʃɪŋ/ | https://youglish.com/pronounce/stitching/english
 
@@ -9198,7 +9220,7 @@ RF-sensitive areas should use a shorter stitching interval.
 
 RF 敏感區應使用較短的 stitching 間距。
 
-## 419. property
+## 420. property
 
 **Pronunciation:** /ˈprɑːpərti/
 
@@ -9220,7 +9242,7 @@ Electrical conductivity is an important material property.
 
 導電性是一項重要的材料特性。
 
-## 420. copper braided strap
+## 421. copper braided strap
 
 **Pronunciation:** /ˈkɑːpər ˈbreɪdɪd stræp/
 
@@ -9242,7 +9264,7 @@ A short copper braided strap reduces bonding inductance.
 
 短的銅編織帶可以降低搭接電感。
 
-## 421. preliminary assumption
+## 422. preliminary assumption
 
 **Pronunciation:** /prɪˈlɪməneri əˈsʌmpʃən/
 
@@ -9264,7 +9286,7 @@ This grounding layout is based on a preliminary assumption.
 
 此接地配置是基於初步假設。
 
-## 422. preliminarily
+## 423. preliminarily
 
 **Pronunciation:** /prɪˌlɪməˈnerəli/
 
@@ -9286,7 +9308,7 @@ The acceptance values were preliminarily defined for discussion.
 
 驗收值是為了討論而初步定義的。
 
-## 423. supporting explanation
+## 424. supporting explanation
 
 **Pronunciation:** /səˈpɔːrtɪŋ ˌekspləˈneɪʃən/
 
@@ -9308,7 +9330,7 @@ A supporting explanation is provided for the proposed bonding method.
 
 針對建議的搭接方法已提供補充說明。
 
-## 424. self-compatibility
+## 425. self-compatibility
 
 **Pronunciation:** /self kəmˌpæt̬.əˈbɪl.ə.t̬i/
 
@@ -9330,7 +9352,7 @@ Self-compatibility problems often appear when multiple radios operate together.
 
 多個無線電同時運作時常會出現自相容性問題。
 
-## 425. tinned copper
+## 426. tinned copper
 
 **Pronunciation:** /tɪnd ˈkɑːpər/ | https://youglish.com/pronounce/tinned%20copper/english
 
@@ -9352,7 +9374,7 @@ Tinned copper can improve corrosion resistance compared with bare copper.
 
 相較於裸銅，鍍錫銅可提升耐腐蝕性。
 
-## 426. inspection
+## 427. inspection
 
 **Pronunciation:** /ɪnˈspek.ʃən/
 
@@ -9374,7 +9396,7 @@ Visual inspection alone is not sufficient for bonding verification.
 
 僅靠目視檢查不足以驗證搭接。
 
-## 427. acceptance criteria
+## 428. acceptance criteria
 
 **Pronunciation:** /əkˈsep.təns kraɪˈtɪr.i.ə/
 
@@ -9396,7 +9418,7 @@ Bonding resistance limits should be part of the acceptance criteria.
 
 搭接電阻限制應納入驗收標準。
 
-## 428. coax shield
+## 429. coax shield
 
 **Pronunciation:** /ˈkoʊ.æks ʃiːld/
 
@@ -9418,7 +9440,7 @@ Poor coax shield bonding may cause RF leakage.
 
 同軸屏蔽搭接不良可能造成 RF 洩漏。
 
-## 429. conductive chassis
+## 430. conductive chassis
 
 **Pronunciation:** /kənˈdʌk.tɪv ˈʃæs.i/
 
@@ -9440,7 +9462,7 @@ Without a conductive chassis, shield termination becomes more difficult.
 
 沒有導電機殼時，屏蔽端接會變得更困難。
 
-## 430. bonding strap
+## 431. bonding strap
 
 **Pronunciation:** /ˈbɑːn.dɪŋ stræp/
 
@@ -9462,7 +9484,7 @@ Long bonding straps are ineffective at high frequency.
 
 過長的搭接編織帶在高頻下效果不佳。
 
-## 431. enclosure
+## 432. enclosure
 
 **Pronunciation:** /ɪnˈkloʊ.ʒɚ/
 
@@ -9484,7 +9506,7 @@ A floating enclosure may increase radiated emissions.
 
 浮接外殼可能增加輻射發射。
 
-## 432. umbilical transient
+## 433. umbilical transient
 
 **Pronunciation:** /ʌmˈbɪl.ɪ.kəl ˈtræn.zi.ənt/
 
@@ -9506,7 +9528,7 @@ The avionics power input must tolerate umbilical transients.
 
 航電電源輸入必須能承受臍帶纜線暫態。
 
-## 433. applicable standards
+## 434. applicable standards
 
 **Pronunciation:** /ˈæp.lɪ.kə.bəl ˈstæn.dɚdz/
 
@@ -9528,7 +9550,7 @@ Applicable standards should be listed before test planning begins.
 
 在測試規劃開始前應列出適用標準。
 
-## 434. compliance
+## 435. compliance
 
 **Pronunciation:** /kəmˈplaɪ.əns/
 
@@ -9550,7 +9572,7 @@ Box-level compliance does not guarantee system-level compliance.
 
 單機合規不代表系統級一定合規。
 
-## 435. geometry
+## 436. geometry
 
 **Pronunciation:** /dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english
 
@@ -9572,7 +9594,7 @@ Incorrect geometry will lead to an incorrect weight estimate.
 
 幾何尺寸錯誤會導致重量估算錯誤。
 
-## 436. design scope
+## 437. design scope
 
 **Pronunciation:** /dɪˈzaɪn skoʊp/ | https://youglish.com/pronounce/design%20scope/english
 
@@ -9594,7 +9616,7 @@ Adhesive and protective film are outside the current design scope.
 
 黏著劑與保護膜不在目前設計範圍內。
 
-## 437. baseline
+## 438. baseline
 
 **Pronunciation:** /ˈbeɪslaɪn/ | https://youglish.com/pronounce/baseline/english
 
@@ -9616,7 +9638,7 @@ A clear baseline helps compare weight changes between options.
 
 明確的基準有助於比較各方案的重量變化。
 
-## 438. trade-off
+## 439. trade-off
 
 **Pronunciation:** /ˈtreɪd ɔːf/ | https://youglish.com/pronounce/trade-off/english
 
@@ -9638,7 +9660,7 @@ Every trade-off should be reviewed with the consultant before design freeze.
 
 每個折衷方案都應在設計凍結前與顧問確認。
 
-## 439. flight article
+## 440. flight article
 
 **Pronunciation:** /flaɪt ˈɑːrtɪkəl/ | https://youglish.com/pronounce/flight%20article/english
 
@@ -9660,7 +9682,7 @@ Prototype weights may differ from the flight article weight.
 
 原型件重量可能與飛行件重量不同。
 
-## 440. inner wall
+## 441. inner wall
 
 **Pronunciation:** /ˈɪnər wɔːl/ | https://youglish.com/pronounce/inner%20wall/english
 
@@ -9682,7 +9704,7 @@ The A4 inner wall has a larger foil area than the A1 inner wall.
 
 A4 內壁的銅箔面積比 A1 內壁大。
 
-## 441. geometry
+## 442. geometry
 
 **Pronunciation:** /dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english
 
@@ -9704,7 +9726,7 @@ Incorrect geometry will lead to an incorrect weight estimate.
 
 幾何尺寸錯誤會導致重量估算錯誤。
 
-## 442. circumference
+## 443. circumference
 
 **Pronunciation:** /sərˈkʌmfərəns/ | https://youglish.com/pronounce/circumference/english
 
@@ -9726,7 +9748,7 @@ The circumference is calculated from the ring diameter.
 
 圓周長由環體直徑計算。
 
-## 443. coverage ratio
+## 444. coverage ratio
 
 **Pronunciation:** /ˈkʌvərɪdʒ ˈreɪʃioʊ/ | https://youglish.com/pronounce/coverage%20ratio/english
 
@@ -9748,7 +9770,7 @@ Changing the coverage ratio directly changes the copper foil weight.
 
 改變覆蓋率會直接改變銅箔重量。
 
-## 444. busbar
+## 445. busbar
 
 **Pronunciation:** /ˈbʌsbɑːr/ | https://youglish.com/pronounce/busbar/english
 
@@ -9770,7 +9792,7 @@ A thicker busbar increases weight but can reduce resistance.
 
 較厚的銅排會增加重量，但可以降低電阻。
 
-## 445. braided strap
+## 446. braided strap
 
 **Pronunciation:** /ˈbreɪdɪd stræp/ | https://youglish.com/pronounce/braided%20strap/english
 
@@ -9792,7 +9814,7 @@ A shorter braided strap usually gives lower inductance and better RF performance
 
 較短的編織帶通常有較低電感與較好的 RF 表現。
 
-## 446. tinned copper
+## 447. tinned copper
 
 **Pronunciation:** /tɪnd ˈkɑːpər/ | https://youglish.com/pronounce/tinned%20copper/english
 
@@ -9814,7 +9836,7 @@ Tinned copper can improve corrosion resistance compared with bare copper.
 
 相較於裸銅，鍍錫銅可提升耐腐蝕性。
 
-## 447. solid copper equivalent
+## 448. solid copper equivalent
 
 **Pronunciation:** /ˈsɑːlɪd ˈkɑːpər ɪˈkwɪvələnt/ | https://youglish.com/pronounce/solid%20copper%20equivalent/english
 
@@ -9836,7 +9858,7 @@ The actual braided strap may be lighter because of gaps in the weave.
 
 實際編織帶可能因編織空隙而較輕。
 
-## 448. density
+## 449. density
 
 **Pronunciation:** /ˈdensəti/ | https://youglish.com/pronounce/density/english
 
@@ -9858,7 +9880,7 @@ The report uses stainless-steel density for the screw and washer calculation.
 
 報告使用不鏽鋼密度來計算螺絲與墊片重量。
 
-## 449. thickness
+## 450. thickness
 
 **Pronunciation:** /ˈθɪknəs/ | https://youglish.com/pronounce/thickness/english
 
@@ -9880,7 +9902,7 @@ The busbar thickness options are 1 millimeter and 2 millimeters.
 
 銅排厚度選項為 1 毫米與 2 毫米。
 
-## 450. material consumption
+## 451. material consumption
 
 **Pronunciation:** /məˈtɪriəl kənˈsʌmpʃən/ | https://youglish.com/pronounce/material%20consumption/english
 
@@ -9902,7 +9924,7 @@ The report summarizes material consumption for copper foil and busbars.
 
 報告彙整了銅箔與銅排的材料用量。
 
-## 451. weight estimate
+## 452. weight estimate
 
 **Pronunciation:** /weɪt ˈestɪmət/ | https://youglish.com/pronounce/weight%20estimate/english
 
@@ -9924,7 +9946,7 @@ This weight estimate does not include adhesive or installation loss.
 
 此重量估算不包含黏著劑或施工耗損。
 
-## 452. installation configuration
+## 453. installation configuration
 
 **Pronunciation:** /ˌɪnstəˈleɪʃən kənˌfɪɡjəˈreɪʃən/ | https://youglish.com/pronounce/installation%20configuration/english
 
@@ -9946,7 +9968,7 @@ We compared two installation configurations for the A2 section.
 
 我們比較了 A2 段的兩種安裝配置。
 
-## 453. clearance hole
+## 454. clearance hole
 
 **Pronunciation:** /ˈklɪrəns hoʊl/ | https://youglish.com/pronounce/clearance%20hole/english
 
@@ -9968,7 +9990,7 @@ The copper area removed by each clearance hole is subtracted from the weight cal
 
 每個間隙孔扣除的銅面積會從重量計算中扣除。
 
-## 454. washer
+## 455. washer
 
 **Pronunciation:** /ˈwɑːʃər/ | https://youglish.com/pronounce/washer/english
 
@@ -9990,7 +10012,7 @@ The washer prevents local damage and helps distribute the clamping force.
 
 墊片可避免局部損傷，並幫助分散夾持力。
 
-## 455. hex-head screw
+## 456. hex-head screw
 
 **Pronunciation:** /ˈheks hed skruː/ | https://youglish.com/pronounce/hex-head%20screw/english
 
@@ -10012,7 +10034,7 @@ The mass of each hex-head screw is approximated from its shaft and head geometry
 
 每顆六角頭螺絲的質量由桿身與頭部幾何近似估算。
 
-## 456. hole spacing
+## 457. hole spacing
 
 **Pronunciation:** /hoʊl ˈspeɪsɪŋ/ | https://youglish.com/pronounce/hole%20spacing/english
 
@@ -10034,7 +10056,7 @@ Smaller hole spacing increases the number of fasteners.
 
 較小的孔距會增加固定件數量。
 
-## 457. support bracket
+## 458. support bracket
 
 **Pronunciation:** /səˈpɔːrt ˈbrækɪt/ | https://youglish.com/pronounce/support%20bracket/english
 
@@ -10056,7 +10078,7 @@ Additional support brackets may be needed for vibration robustness.
 
 為提升振動強健性，可能需要額外支架。
 
-## 458. threaded insert
+## 459. threaded insert
 
 **Pronunciation:** /ˈθredɪd ˈɪnsɜːrt/ | https://youglish.com/pronounce/threaded%20insert/english
 
@@ -10078,7 +10100,7 @@ A weak threaded insert may reduce allowable clamp load.
 
 強度不足的螺紋嵌件可能降低允許夾持力。
 
-## 459. torque
+## 460. torque
 
 **Pronunciation:** /tɔːrk/ | https://youglish.com/pronounce/torque/english
 
@@ -10100,7 +10122,7 @@ Final torque should be confirmed based on the insert and locking method.
 
 最終扭矩應依螺紋嵌件與防鬆方式確認。
 
-## 460. anti-loosening method
+## 461. anti-loosening method
 
 **Pronunciation:** /ˌænti ˈluːsənɪŋ ˈmeθəd/ | https://youglish.com/pronounce/anti-loosening%20method/english
 
@@ -10122,7 +10144,7 @@ Thread locker, lock wire, or lock washers are possible anti-loosening methods.
 
 螺絲膠、保險絲或防鬆墊片都是可能的防鬆方式。
 
-## 461. protective film
+## 462. protective film
 
 **Pronunciation:** /prəˈtektɪv fɪlm/ | https://youglish.com/pronounce/protective%20film/english
 
@@ -10144,7 +10166,7 @@ The protective film must not cover the required contact surfaces.
 
 保護膜不可覆蓋必要的接觸面。
 
-## 462. adhesive
+## 463. adhesive
 
 **Pronunciation:** /ədˈhiːsɪv/ | https://youglish.com/pronounce/adhesive/english
 
@@ -10166,7 +10188,7 @@ The adhesive process must prevent copper foil edges from lifting.
 
 黏著製程必須避免銅箔邊緣翹起。
 
-## 463. cutting allowance
+## 464. cutting allowance
 
 **Pronunciation:** /ˈkʌtɪŋ əˈlaʊəns/ | https://youglish.com/pronounce/cutting%20allowance/english
 
@@ -10188,7 +10210,7 @@ The final flight weight should not include unused cutting allowance.
 
 最終飛行重量不應包含未使用的裁切裕量。
 
-## 464. procurement
+## 465. procurement
 
 **Pronunciation:** /prəˈkjʊrmənt/ | https://youglish.com/pronounce/procurement/english
 
@@ -10210,7 +10232,7 @@ The procurement quantity should include expected cutting loss.
 
 採購數量應包含預期裁切損耗。
 
-## 465. overlap
+## 466. overlap
 
 **Pronunciation:** /ˈoʊvərlæp/ | https://youglish.com/pronounce/overlap/english
 
@@ -10232,7 +10254,7 @@ Poor overlap can increase contact resistance.
 
 不良搭接可能增加接觸電阻。
 
-## 466. tolerance
+## 467. tolerance
 
 **Pronunciation:** /ˈtɑːlərəns/ | https://youglish.com/pronounce/tolerance/english
 
@@ -10254,7 +10276,7 @@ Large tolerance can affect hole alignment and assembly quality.
 
 較大的公差可能影響孔位對準與組裝品質。
 
-## 467. surface treatment
+## 468. surface treatment
 
 **Pronunciation:** /ˈsɜːrfɪs ˈtriːtmənt/ | https://youglish.com/pronounce/surface%20treatment/english
 
@@ -10276,7 +10298,7 @@ Copper, aluminum, and stainless steel may require different surface treatments.
 
 銅、鋁與不鏽鋼可能需要不同的表面處理。
 
-## 468. rework
+## 469. rework
 
 **Pronunciation:** /ˌriːˈwɜːrk/ | https://youglish.com/pronounce/rework/english
 
@@ -10298,7 +10320,7 @@ Rework may be required if the copper foil edge is damaged.
 
 若銅箔邊緣受損，可能需要重工。
 
-## 469. edge lifting
+## 470. edge lifting
 
 **Pronunciation:** /edʒ ˈlɪftɪŋ/ | https://youglish.com/pronounce/edge%20lifting/english
 
@@ -10320,7 +10342,7 @@ Edge lifting can create unreliable electrical contact.
 
 邊緣翹起可能造成不可靠的電氣接觸。
 
-## 470. galvanic corrosion
+## 471. galvanic corrosion
 
 **Pronunciation:** /ɡælˈvænɪk kəˈroʊʒən/ | https://youglish.com/pronounce/galvanic%20corrosion/english
 
@@ -10342,7 +10364,7 @@ Improper surface treatment may accelerate galvanic corrosion.
 
 不適當的表面處理可能加速異種金屬腐蝕。
 
-## 471. impedance
+## 472. impedance
 
 **Pronunciation:** /ɪmˈpiːdəns/
 

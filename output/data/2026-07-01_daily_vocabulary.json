@@ -8,8 +8,49 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 53,
+      "word_count": 54,
       "words": [
+        {
+          "id": "106",
+          "word": "proper",
+          "pronunciation": "/ˈprɑː.pɚ/",
+          "chinese_meaning": "適當的；正確的",
+          "example_1_en": "Proper shield termination is required for high-frequency Electromagnetic Compatibility (EMC) control.",
+          "example_1_zh": "高頻 EMC 控制需要適當的屏蔽端接。",
+          "example_2_en": "A proper bonding path should be short and low impedance.",
+          "example_2_zh": "適當的搭接路徑應該短且低阻抗。",
+          "category": "Harness / Wiring / Shielding",
+          "difficulty": "2",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 1,
+          "audio_segments": {
+            "word": {
+              "src": "audio/segments/en/3929eebc8fb530d8bb85e1a0.mp3",
+              "language": "en"
+            },
+            "meaning": {
+              "src": "audio/segments/zh/f2c191e04057e0a865141c8c.mp3",
+              "language": "zh"
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/e85325f66423bd9518da3066.mp3",
+              "language": "en"
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/49f383f19be58fdbca00ce23.mp3",
+              "language": "zh"
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/8f5a3ee3fc60facb136dd224.mp3",
+              "language": "en"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/d628628560956b94ad66eb2b.mp3",
+              "language": "zh"
+            }
+          }
+        },
         {
           "id": "51",
           "word": "worst-case simultaneous operation",
@@ -23,7 +64,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 1,
+          "index": 2,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d5463e4f5807e6da8bb13e88.mp3",
@@ -64,7 +105,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 2,
+          "index": 3,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/2d7c1c64103892f0d99a2c4c.mp3",
@@ -105,7 +146,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 3,
+          "index": 4,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/78eff7cd29bee066e77a9e33.mp3",
@@ -146,7 +187,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 4,
+          "index": 5,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/0dd522de14c9eba99498ac1a.mp3",
@@ -187,7 +228,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 5,
+          "index": 6,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/f81beed09c3e7f2ce5155db5.mp3",
@@ -228,7 +269,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 6,
+          "index": 7,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/f5043134458d1ecb973d184e.mp3",
@@ -269,7 +310,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 7,
+          "index": 8,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/544730f2c0553fce74189eed.mp3",
@@ -310,7 +351,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 8,
+          "index": 9,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/52aad47b1e298702e926536e.mp3",
@@ -351,7 +392,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 9,
+          "index": 10,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/18b9155ce403c624fa7ee7af.mp3",
@@ -392,7 +433,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 10,
+          "index": 11,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/b29eaaa2c809beb0089b20c5.mp3",
@@ -433,7 +474,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 11,
+          "index": 12,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/74130e85e2b27a7fd01aaf57.mp3",
@@ -474,7 +515,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 12,
+          "index": 13,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/46e99678206f0ad52b857780.mp3",
@@ -515,7 +556,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 13,
+          "index": 14,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/39fbd362bd9a006bbe83e287.mp3",
@@ -556,7 +597,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 14,
+          "index": 15,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/001f4fb101dfe51bfb3f492e.mp3",
@@ -597,7 +638,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 15,
+          "index": 16,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d5365a80c88ba55cdf8e94c2.mp3",
@@ -638,7 +679,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 16,
+          "index": 17,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/a344824132f91515a247af8b.mp3",
@@ -679,7 +720,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 17,
+          "index": 18,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/3abf8b8e9ebb465e31e92fdf.mp3",
@@ -720,7 +761,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 18,
+          "index": 19,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/3d4c8bbabcc782df5728503f.mp3",
@@ -761,7 +802,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 19,
+          "index": 20,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/fcd6dab6398f4657fb511bc1.mp3",
@@ -802,7 +843,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 20,
+          "index": 21,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/abed80eb4b8e1a304a6792fd.mp3",
@@ -843,7 +884,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 21,
+          "index": 22,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/ad48c1952a4b83f53966fd73.mp3",
@@ -884,7 +925,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 22,
+          "index": 23,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/a80903d8217522e6bf2caa16.mp3",
@@ -925,7 +966,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 23,
+          "index": 24,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/3e0a5aaf1fd284b27a48e780.mp3",
@@ -966,7 +1007,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 24,
+          "index": 25,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/bd6e72844ca96d2dcc3be26a.mp3",
@@ -1007,7 +1048,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 25,
+          "index": 26,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/132311aca085e041f4155fad.mp3",
@@ -1048,7 +1089,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 26,
+          "index": 27,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/60612ce1f5da4a807c07c9c6.mp3",
@@ -1089,7 +1130,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 27,
+          "index": 28,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/daeb95692d2f6f85b01de5c4.mp3",
@@ -1130,7 +1171,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 28,
+          "index": 29,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/fdd2a5f946659b43f19c0f17.mp3",
@@ -1171,7 +1212,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 29,
+          "index": 30,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/7984c1aa3a3aac79818e651e.mp3",
@@ -1212,7 +1253,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 30,
+          "index": 31,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/eee37724fd8da678fb966804.mp3",
@@ -1253,7 +1294,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 31,
+          "index": 32,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/b161af387540ef858192333d.mp3",
@@ -1294,7 +1335,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 32,
+          "index": 33,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/af594e1327ae3c3cf06bc46d.mp3",
@@ -1335,7 +1376,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 33,
+          "index": 34,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/eb06fbd2864f36b923054085.mp3",
@@ -1376,7 +1417,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 34,
+          "index": 35,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/e181b3925ee8462d78481b38.mp3",
@@ -1417,7 +1458,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 35,
+          "index": 36,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/b54db36deece1945574c449e.mp3",
@@ -1458,7 +1499,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 36,
+          "index": 37,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/68507931161c164a1ace579a.mp3",
@@ -1499,7 +1540,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 37,
+          "index": 38,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/c52a3b8ff797fbbd36ae6fc2.mp3",
@@ -1540,7 +1581,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 38,
+          "index": 39,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/37eed2ea43852845dffc2023.mp3",
@@ -1581,7 +1622,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 39,
+          "index": 40,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/80ac56c54d97cf6dc4f0e0d1.mp3",
@@ -1622,7 +1663,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 40,
+          "index": 41,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/32fdb1945607a0eed9bb7bd5.mp3",
@@ -1663,7 +1704,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 41,
+          "index": 42,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/eb232d69464d95b6383accd3.mp3",
@@ -1704,7 +1745,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 42,
+          "index": 43,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/02ee2d98192d44c143d2f61c.mp3",
@@ -1745,7 +1786,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 43,
+          "index": 44,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/9429fd9e86cea2eca7308473.mp3",
@@ -1786,7 +1827,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 44,
+          "index": 45,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/acd9993e3edb0dad4cf5b5a2.mp3",
@@ -1827,7 +1868,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 45,
+          "index": 46,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d9ac3067a492dde5215e6e20.mp3",
@@ -1868,7 +1909,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 46,
+          "index": 47,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/f0f720e1852609ef4e64bd3c.mp3",
@@ -1909,7 +1950,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 47,
+          "index": 48,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/2b5a352228e5ba9b53e71330.mp3",
@@ -1950,7 +1991,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 48,
+          "index": 49,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/72d2912cff98144d5df6e793.mp3",
@@ -1991,7 +2032,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 49,
+          "index": 50,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/976e80b7b7b6198a16de87be.mp3",
@@ -2032,7 +2073,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 50,
+          "index": 51,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/645360b79bc557f2daf20d92.mp3",
@@ -2073,7 +2114,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 51,
+          "index": 52,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/844c4f9f3c76c68b9a0d24f7.mp3",
@@ -2114,7 +2155,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 52,
+          "index": 53,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/0fa83704c8a49eec45cbfe81.mp3",
@@ -2155,7 +2196,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 53,
+          "index": 54,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d26eaf329f09013110100f5c.mp3",
@@ -35042,6 +35083,47 @@
       }
     },
     {
+      "id": "106",
+      "word": "proper",
+      "pronunciation": "/ˈprɑː.pɚ/",
+      "chinese_meaning": "適當的；正確的",
+      "example_1_en": "Proper shield termination is required for high-frequency Electromagnetic Compatibility (EMC) control.",
+      "example_1_zh": "高頻 EMC 控制需要適當的屏蔽端接。",
+      "example_2_en": "A proper bonding path should be short and low impedance.",
+      "example_2_zh": "適當的搭接路徑應該短且低阻抗。",
+      "category": "Harness / Wiring / Shielding",
+      "difficulty": "2",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 1,
+      "audio_segments": {
+        "word": {
+          "src": "audio/segments/en/3929eebc8fb530d8bb85e1a0.mp3",
+          "language": "en"
+        },
+        "meaning": {
+          "src": "audio/segments/zh/f2c191e04057e0a865141c8c.mp3",
+          "language": "zh"
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/e85325f66423bd9518da3066.mp3",
+          "language": "en"
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/49f383f19be58fdbca00ce23.mp3",
+          "language": "zh"
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/8f5a3ee3fc60facb136dd224.mp3",
+          "language": "en"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/d628628560956b94ad66eb2b.mp3",
+          "language": "zh"
+        }
+      }
+    },
+    {
       "id": "51",
       "word": "worst-case simultaneous operation",
       "pronunciation": "/wɜːrst keɪs ˌsaɪməlˈteɪniəs ˌɑːpəˈreɪʃn/ | https://youglish.com/pronounce/worst-case%20simultaneous%20operation/english",
@@ -35054,7 +35136,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 1,
+      "index": 2,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d5463e4f5807e6da8bb13e88.mp3",
@@ -35095,7 +35177,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 2,
+      "index": 3,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/2d7c1c64103892f0d99a2c4c.mp3",
@@ -35136,7 +35218,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 3,
+      "index": 4,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/78eff7cd29bee066e77a9e33.mp3",
@@ -35177,7 +35259,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 4,
+      "index": 5,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/0dd522de14c9eba99498ac1a.mp3",
@@ -35218,7 +35300,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 5,
+      "index": 6,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/f81beed09c3e7f2ce5155db5.mp3",
@@ -35259,7 +35341,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 6,
+      "index": 7,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/f5043134458d1ecb973d184e.mp3",
@@ -35300,7 +35382,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 7,
+      "index": 8,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/544730f2c0553fce74189eed.mp3",
@@ -35341,7 +35423,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 8,
+      "index": 9,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/52aad47b1e298702e926536e.mp3",
@@ -35382,7 +35464,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 9,
+      "index": 10,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/18b9155ce403c624fa7ee7af.mp3",
@@ -35423,7 +35505,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 10,
+      "index": 11,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/b29eaaa2c809beb0089b20c5.mp3",
@@ -35464,7 +35546,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 11,
+      "index": 12,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/74130e85e2b27a7fd01aaf57.mp3",
@@ -35505,7 +35587,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 12,
+      "index": 13,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/46e99678206f0ad52b857780.mp3",
@@ -35546,7 +35628,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 13,
+      "index": 14,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/39fbd362bd9a006bbe83e287.mp3",
@@ -35587,7 +35669,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 14,
+      "index": 15,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/001f4fb101dfe51bfb3f492e.mp3",
@@ -35628,7 +35710,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 15,
+      "index": 16,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d5365a80c88ba55cdf8e94c2.mp3",
@@ -35669,7 +35751,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 16,
+      "index": 17,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/a344824132f91515a247af8b.mp3",
@@ -35710,7 +35792,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 17,
+      "index": 18,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/3abf8b8e9ebb465e31e92fdf.mp3",
@@ -35751,7 +35833,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 18,
+      "index": 19,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/3d4c8bbabcc782df5728503f.mp3",
@@ -35792,7 +35874,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 19,
+      "index": 20,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/fcd6dab6398f4657fb511bc1.mp3",
@@ -35833,7 +35915,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 20,
+      "index": 21,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/abed80eb4b8e1a304a6792fd.mp3",
@@ -35874,7 +35956,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 21,
+      "index": 22,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/ad48c1952a4b83f53966fd73.mp3",
@@ -35915,7 +35997,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 22,
+      "index": 23,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/a80903d8217522e6bf2caa16.mp3",
@@ -35956,7 +36038,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 23,
+      "index": 24,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/3e0a5aaf1fd284b27a48e780.mp3",
@@ -35997,7 +36079,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 24,
+      "index": 25,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/bd6e72844ca96d2dcc3be26a.mp3",
@@ -36038,7 +36120,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 25,
+      "index": 26,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/132311aca085e041f4155fad.mp3",
@@ -36079,7 +36161,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 26,
+      "index": 27,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/60612ce1f5da4a807c07c9c6.mp3",
@@ -36120,7 +36202,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 27,
+      "index": 28,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/daeb95692d2f6f85b01de5c4.mp3",
@@ -36161,7 +36243,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 28,
+      "index": 29,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/fdd2a5f946659b43f19c0f17.mp3",
@@ -36202,7 +36284,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 29,
+      "index": 30,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/7984c1aa3a3aac79818e651e.mp3",
@@ -36243,7 +36325,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 30,
+      "index": 31,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/eee37724fd8da678fb966804.mp3",
@@ -36284,7 +36366,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 31,
+      "index": 32,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/b161af387540ef858192333d.mp3",
@@ -36325,7 +36407,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 32,
+      "index": 33,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/af594e1327ae3c3cf06bc46d.mp3",
@@ -36366,7 +36448,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 33,
+      "index": 34,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/eb06fbd2864f36b923054085.mp3",
@@ -36407,7 +36489,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 34,
+      "index": 35,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/e181b3925ee8462d78481b38.mp3",
@@ -36448,7 +36530,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 35,
+      "index": 36,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/b54db36deece1945574c449e.mp3",
@@ -36489,7 +36571,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 36,
+      "index": 37,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/68507931161c164a1ace579a.mp3",
@@ -36530,7 +36612,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 37,
+      "index": 38,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/c52a3b8ff797fbbd36ae6fc2.mp3",
@@ -36571,7 +36653,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 38,
+      "index": 39,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/37eed2ea43852845dffc2023.mp3",
@@ -36612,7 +36694,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 39,
+      "index": 40,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/80ac56c54d97cf6dc4f0e0d1.mp3",
@@ -36653,7 +36735,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 40,
+      "index": 41,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/32fdb1945607a0eed9bb7bd5.mp3",
@@ -36694,7 +36776,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 41,
+      "index": 42,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/eb232d69464d95b6383accd3.mp3",
@@ -36735,7 +36817,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 42,
+      "index": 43,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/02ee2d98192d44c143d2f61c.mp3",
@@ -36776,7 +36858,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 43,
+      "index": 44,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/9429fd9e86cea2eca7308473.mp3",
@@ -36817,7 +36899,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 44,
+      "index": 45,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/acd9993e3edb0dad4cf5b5a2.mp3",
@@ -36858,7 +36940,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 45,
+      "index": 46,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d9ac3067a492dde5215e6e20.mp3",
@@ -36899,7 +36981,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 46,
+      "index": 47,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/f0f720e1852609ef4e64bd3c.mp3",
@@ -36940,7 +37022,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 47,
+      "index": 48,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/2b5a352228e5ba9b53e71330.mp3",
@@ -36981,7 +37063,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 48,
+      "index": 49,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/72d2912cff98144d5df6e793.mp3",
@@ -37022,7 +37104,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 49,
+      "index": 50,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/976e80b7b7b6198a16de87be.mp3",
@@ -37063,7 +37145,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 50,
+      "index": 51,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/645360b79bc557f2daf20d92.mp3",
@@ -37104,7 +37186,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 51,
+      "index": 52,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/844c4f9f3c76c68b9a0d24f7.mp3",
@@ -37145,7 +37227,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 52,
+      "index": 53,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/0fa83704c8a49eec45cbfe81.mp3",
@@ -37186,7 +37268,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 53,
+      "index": 54,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d26eaf329f09013110100f5c.mp3",
@@ -38693,7 +38775,6 @@
   ],
   "mastery": {
     "statuses": {
-      "proper": "mastered_active",
       "wiring": "mastered",
       "issue": "mastered",
       "scope": "mastered",
