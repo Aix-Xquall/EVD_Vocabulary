@@ -38775,6 +38775,9 @@
   ],
   "mastery": {
     "statuses": {
+      "implementation": "mastered",
+      "flowdown": "mastered",
+      "assumption": "mastered",
       "length-to-width ratio": "mastered",
       "onboard": "mastered",
       "electromagnetic environment": "mastered",
