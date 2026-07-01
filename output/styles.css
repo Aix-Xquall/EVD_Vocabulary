@@ -211,7 +211,7 @@ h2 {
 
 .controls,
 .toggles,
-.answer-options {
+.cloze-answer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -287,10 +287,25 @@ h2 {
   font-size: 1.4rem;
 }
 
-.answer-options button {
-  flex: 1 1 220px;
-  padding: 10px 12px;
-  text-align: left;
+.question-hint {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.cloze-answer input {
+  flex: 1 1 260px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.cloze-answer button {
+  min-width: 110px;
+  padding: 0 14px;
 }
 
 .feedback {
