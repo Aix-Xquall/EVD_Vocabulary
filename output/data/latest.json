@@ -38795,7 +38795,11 @@
       "rework": "mastered",
       "impedance": "mastered",
       "installation configuration": "mastered",
-      "overlap": "mastered"
+      "overlap": "mastered",
+      "system-level": "mastered",
+      "integration": "mastered",
+      "requirement": "mastered",
+      "high-frequency": "mastered"
     }
   },
   "hard_words": {
