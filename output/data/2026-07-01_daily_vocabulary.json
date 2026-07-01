@@ -38775,6 +38775,8 @@
   ],
   "mastery": {
     "statuses": {
+      "onboard": "mastered",
+      "electromagnetic environment": "mastered",
       "wiring": "mastered",
       "issue": "mastered",
       "scope": "mastered",
