@@ -78,6 +78,28 @@ class HardWordsSyncTests(unittest.TestCase):
                 ["active", "mastered", "removed"],
             )
 
+    def test_sync_snapshot_sorts_newest_rows_before_deduplication(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            csv_text = (
+                HEADER
+                + "1,old word,/old/,old,Example,翻譯,Example,翻譯,EMC,2,0,,chapter,1,2026-06-01T08:00:00Z,active,\n"
+                + "2,duplicate word,/old duplicate/,old duplicate,Example,翻譯,Example,翻譯,EMC,2,0,,chapter,2,2026-05-01T08:00:00Z,active,\n"
+                + "3,undated word,/undated/,undated,Example,翻譯,Example,翻譯,EMC,2,0,,chapter,3,not-a-date,active,\n"
+                + "4,new word,/new/,new,Example,翻譯,Example,翻譯,EMC,2,0,,chapter,4,2026-07-01T08:00:00Z,active,\n"
+                + "5,duplicate word,/new duplicate/,new duplicate,Example,翻譯,Example,翻譯,EMC,2,0,,chapter,5,2026-07-02T08:00:00Z,active,\n"
+            )
+
+            result = sync_hard_words_from_csv_text(csv_text, temp_dir)
+            written_rows = list(
+                csv.DictReader(result.path.read_text(encoding="utf-8-sig").splitlines())
+            )
+
+            self.assertEqual(
+                [row["word"] for row in written_rows],
+                ["duplicate word", "new word", "old word", "undated word"],
+            )
+            self.assertEqual(written_rows[0]["chinese_meaning"], "new duplicate")
+
     def test_load_mastered_word_statuses_reads_cloud_snapshot_states(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             snapshot = Path(temp_dir) / HARD_WORDS_FILENAME

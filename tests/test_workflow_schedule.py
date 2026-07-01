@@ -42,6 +42,14 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("AZURE_SPEECH_RESOURCE_GROUP: ${{ secrets.AZURE_SPEECH_RESOURCE_GROUP }}", workflow)
         self.assertIn("AZURE_SPEECH_RESOURCE_NAME: ${{ secrets.AZURE_SPEECH_RESOURCE_NAME }}", workflow)
 
+    def test_daily_workflow_tests_and_publishes_learning_helpers(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("node --test tests/learning_helpers.test.js", workflow)
+        self.assertIn("cp web/learning_helpers.js output/learning_helpers.js", workflow)
+
     def test_daily_workflow_passes_hard_words_sync_settings(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
             encoding="utf-8"

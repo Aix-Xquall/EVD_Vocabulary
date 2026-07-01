@@ -56,10 +56,10 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn(
-            'addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning)',
+            'addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning, repeatCount)',
             app_js,
         )
-        self.assertIn("for (let count = 1; count < state.englishRepeatCount; count += 1)", app_js)
+        self.assertIn("for (let count = 1; count < repeatCount; count += 1)", app_js)
         self.assertNotIn("addNarration(queue, segments.word, word?.word, \"en\");", app_js)
 
     def test_word_list_scrolls_when_chapter_has_many_words(self):
@@ -118,21 +118,43 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("從未熟記單字移除", app_js)
         self.assertIn('"status": status', app_js)
 
-    def test_web_player_exposes_mastered_word_controls_and_skip_behavior(self):
+    def test_web_player_exposes_mastered_word_controls_and_one_repeat_behavior(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
         self.assertIn('id="masteredWordToggle"', index_html)
-        self.assertIn('id="skipMasteredToggle"', index_html)
+        self.assertNotIn('id="skipMasteredToggle"', index_html)
         self.assertIn("mastered_active", app_js)
         self.assertIn("function isMasteredWord(word)", app_js)
         self.assertIn("function toggleMasteredWord", app_js)
-        self.assertIn("state.skipMastered", app_js)
-        self.assertIn("filter((word) => !isMasteredWord(word))", app_js)
+        self.assertNotIn("skipMastered", app_js)
+        self.assertIn(
+            "repeatCountForWord(isMasteredWord(word), state.englishRepeatCount)",
+            app_js,
+        )
         self.assertIn("MASTERED_WORDS_LOCAL_KEY", app_js)
         self.assertIn("word-item mastered", app_js)
         self.assertIn(".word-item.mastered", styles_css)
+
+    def test_daily_practice_uses_example_cloze_text_input(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn('id="questionHint"', index_html)
+        self.assertIn('id="clozeAnswerInput"', index_html)
+        self.assertIn('id="submitAnswerButton"', index_html)
+        self.assertNotIn('id="answerOptions"', index_html)
+        self.assertIn("buildClozeCandidates(currentWords())", app_js)
+        self.assertIn("isCorrectClozeAnswer(answer, current.correctAnswer)", app_js)
+        self.assertIn('"本章節沒有可用的填空例句"', app_js)
+
+    def test_pronunciation_display_omits_external_url(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+
+        self.assertIn("sanitizePronunciation(word.pronunciation)", app_js)
+        self.assertIn('<script src="learning_helpers.js"></script>', index_html)
 
     def test_hard_words_chapter_count_updates_immediately_after_toggle(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -141,7 +163,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("function hardWordsChapter()", app_js)
         self.assertIn("function applyHardWordLocalState(word, status)", app_js)
         self.assertIn("applyHardWordLocalState(word, nextStatus)", app_js)
-        self.assertIn("chapter.words.push({ ...word })", app_js)
+        self.assertIn("chapter.words.unshift({ ...word })", app_js)
         self.assertIn("chapter.words.splice(existingIndex, 1)", app_js)
         self.assertIn("chapter.word_count = chapter.words.length", app_js)
 
@@ -155,7 +177,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("saveHardWordsLocalState(word, nextStatus);", app_js)
         self.assertIn("localStorage.getItem(HARD_WORDS_LOCAL_KEY)", app_js)
         self.assertIn("localStorage.setItem(HARD_WORDS_LOCAL_KEY", app_js)
-        self.assertIn("saved.active.forEach((savedWord) => applyHardWordLocalState(savedWord, HARD_WORD_STATUS.active))", app_js)
+        self.assertIn("saved.active.unshift({ ...word })", app_js)
+        self.assertIn("saved.active.slice().reverse().forEach(", app_js)
         self.assertIn("saved.removed.forEach((wordKey) => applyHardWordLocalState({ word: wordKey }, HARD_WORD_STATUS.removed))", app_js)
 
     def test_player_uses_wake_lock_and_media_session_for_mobile_playback(self):

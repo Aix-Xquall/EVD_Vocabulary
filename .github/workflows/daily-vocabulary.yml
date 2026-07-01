@@ -83,7 +83,9 @@ jobs:
         run: python -m pip install --upgrade pip && python -m pip install -r requirements.txt
 
       - name: Run tests
-        run: python -m unittest discover -s tests -v
+        run: |
+          python -m unittest discover -s tests -v
+          node --test tests/learning_helpers.test.js
 
       - name: Configure Google Cloud credentials
         env:
@@ -157,6 +159,7 @@ jobs:
         run: |
           cp web/index.html output/index.html
           cp web/app.js output/app.js
+          cp web/learning_helpers.js output/learning_helpers.js
           cp web/styles.css output/styles.css
 
       - name: Generate 0.8x audio test sample

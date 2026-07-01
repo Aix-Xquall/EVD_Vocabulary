@@ -3,6 +3,7 @@ import io
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
@@ -99,7 +100,8 @@ def load_mastered_word_statuses(vocabulary_dir: Path | str) -> dict[str, str]:
 def _deduplicate_hard_word_rows(rows: Iterable[dict]) -> list[dict]:
     deduplicated = []
     seen_words = set()
-    for row in rows:
+    sorted_rows = sorted(rows, key=_added_at_timestamp, reverse=True)
+    for row in sorted_rows:
         word = str(row.get("word") or "").strip()
         if not word:
             continue
@@ -109,6 +111,19 @@ def _deduplicate_hard_word_rows(rows: Iterable[dict]) -> list[dict]:
         seen_words.add(word_key)
         deduplicated.append(row)
     return deduplicated
+
+
+def _added_at_timestamp(row: dict) -> float:
+    value = str(row.get("added_at") or "").strip()
+    if not value:
+        return float("-inf")
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return float("-inf")
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.timestamp()
 
 
 def _fetch_csv_text(url: str, read_token: str = "") -> str:

@@ -1,6 +1,12 @@
 const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const EXAMPLE_REPEAT_DELAY_MS = 1500;
+const {
+  buildClozeCandidates,
+  isCorrectClozeAnswer,
+  repeatCountForWord,
+  sanitizePronunciation,
+} = window.EvdLearningHelpers;
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
 const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state";
 const MASTERED_WORDS_LOCAL_KEY = "evd-mastered-words-local-state";
@@ -23,7 +29,6 @@ const state = {
   repeatAll: true,
   repeatCurrent: false,
   includeExamples: true,
-  skipMastered: true,
   playbackRate: DEFAULT_PLAYBACK_RATE,
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
   playbackQueue: [],
@@ -65,7 +70,6 @@ const elements = {
   repeatAllToggle: document.getElementById("repeatAllToggle"),
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
   includeExamplesToggle: document.getElementById("includeExamplesToggle"),
-  skipMasteredToggle: document.getElementById("skipMasteredToggle"),
   playbackRate: document.getElementById("playbackRate"),
   playbackRateValue: document.getElementById("playbackRateValue"),
   exampleRepeatCount: document.getElementById("exampleRepeatCount"),
@@ -76,7 +80,9 @@ const elements = {
   practiceScore: document.getElementById("practiceScore"),
   questionMode: document.getElementById("questionMode"),
   questionText: document.getElementById("questionText"),
-  answerOptions: document.getElementById("answerOptions"),
+  questionHint: document.getElementById("questionHint"),
+  clozeAnswerInput: document.getElementById("clozeAnswerInput"),
+  submitAnswerButton: document.getElementById("submitAnswerButton"),
   answerFeedback: document.getElementById("answerFeedback"),
   nextQuestionButton: document.getElementById("nextQuestionButton"),
 };
@@ -140,7 +146,7 @@ function render() {
   saveCurrentChapterProgress();
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
   elements.wordText.textContent = word.word || "Loading";
-  elements.pronunciationText.textContent = word.pronunciation || "";
+  elements.pronunciationText.textContent = sanitizePronunciation(word.pronunciation);
   elements.meaningText.textContent = word.chinese_meaning || "";
   elements.exampleOneEn.textContent = word.example_1_en || "";
   elements.exampleOneZh.textContent = word.example_1_zh || "";
@@ -269,31 +275,32 @@ function playCombinedAudio() {
 }
 
 function buildChapterQueue() {
-  return playableWords().flatMap((word) => buildWordQueue(word));
-}
-
-function playableWords() {
-  if (!state.skipMastered) {
-    return currentWords();
-  }
-  return currentWords().filter((word) => !isMasteredWord(word));
+  return currentWords().flatMap((word) => buildWordQueue(word));
 }
 
 function buildWordQueue(word) {
   const segments = word?.audio_segments || {};
   const queue = [];
-  addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning);
+  const repeatCount = repeatCountForWord(isMasteredWord(word), state.englishRepeatCount);
+  addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning, repeatCount);
   if (state.includeExamples) {
-    addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh);
-    addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh);
+    addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh, repeatCount);
+    addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh, repeatCount);
   }
   return queue;
 }
 
-function addRepeatedEnglishWithChinese(queue, englishSegment, englishText, chineseSegment, chineseText) {
+function addRepeatedEnglishWithChinese(
+  queue,
+  englishSegment,
+  englishText,
+  chineseSegment,
+  chineseText,
+  repeatCount,
+) {
   addNarration(queue, englishSegment, englishText, "en");
   addNarration(queue, chineseSegment, chineseText, "zh");
-  for (let count = 1; count < state.englishRepeatCount; count += 1) {
+  for (let count = 1; count < repeatCount; count += 1) {
     addNarration(queue, englishSegment, englishText, "en", EXAMPLE_REPEAT_DELAY_MS);
   }
 }
@@ -425,7 +432,7 @@ function updateMasteredControls() {
   const word = currentWord();
   elements.masteredWordToggle.checked = isMasteredWord(word);
   elements.masteredWordToggle.disabled = !word.word || !state.hardWordsWriteUrl;
-  elements.masteredWordStatus.textContent = isMasteredWord(word) ? "播放時將略過" : "";
+  elements.masteredWordStatus.textContent = isMasteredWord(word) ? "英文播放一次" : "";
 }
 
 function isHardWord(wordKey) {
@@ -474,7 +481,7 @@ function applyHardWordLocalState(word, status) {
   chapter.words = chapter.words || [];
   const existingIndex = chapter.words.findIndex((item) => hardWordKey(item) === wordKey);
   if (status === HARD_WORD_STATUS.active && existingIndex === -1) {
-    chapter.words.push({ ...word });
+    chapter.words.unshift({ ...word });
   } else if (status === HARD_WORD_STATUS.removed && existingIndex !== -1) {
     chapter.words.splice(existingIndex, 1);
     if (currentChapter() === chapter) {
@@ -511,7 +518,7 @@ function saveHardWordsLocalState(word, status) {
   saved.active = saved.active.filter((savedWord) => hardWordKey(savedWord) !== wordKey);
   saved.removed = saved.removed.filter((savedWordKey) => savedWordKey !== wordKey);
   if (status === HARD_WORD_STATUS.active) {
-    saved.active.push({ ...word });
+    saved.active.unshift({ ...word });
   } else if (status === HARD_WORD_STATUS.removed) {
     saved.removed.push(wordKey);
   }
@@ -521,7 +528,9 @@ function saveHardWordsLocalState(word, status) {
 function restoreHardWordsLocalState() {
   const saved = readHardWordsLocalState();
   saved.removed.forEach((wordKey) => applyHardWordLocalState({ word: wordKey }, HARD_WORD_STATUS.removed));
-  saved.active.forEach((savedWord) => applyHardWordLocalState(savedWord, HARD_WORD_STATUS.active));
+  saved.active.slice().reverse().forEach(
+    (savedWord) => applyHardWordLocalState(savedWord, HARD_WORD_STATUS.active),
+  );
   const chapter = hardWordsChapter();
   if (chapter) {
     chapter.word_count = (chapter.words || []).length;
@@ -810,11 +819,15 @@ function pausePlayback() {
 
 function nextWord(autoplay = false) {
   const words = currentWords();
-  const nextIndex = eligibleWordIndex(words, state.currentIndex, 1, state.repeatAll);
-  if (nextIndex < 0) {
-    return;
+  const lastIndex = words.length - 1;
+  if (state.currentIndex >= lastIndex) {
+    if (!state.repeatAll) {
+      return;
+    }
+    state.currentIndex = 0;
+  } else {
+    state.currentIndex += 1;
   }
-  state.currentIndex = nextIndex;
   render();
   if (autoplay) {
     playCurrent();
@@ -822,28 +835,12 @@ function nextWord(autoplay = false) {
 }
 
 function previousWord() {
-  const words = currentWords();
-  const previousIndex = eligibleWordIndex(words, state.currentIndex, -1, true);
-  if (previousIndex < 0) {
+  const lastIndex = currentWords().length - 1;
+  if (lastIndex < 0) {
     return;
   }
-  state.currentIndex = previousIndex;
+  state.currentIndex = state.currentIndex === 0 ? lastIndex : state.currentIndex - 1;
   render();
-}
-
-function eligibleWordIndex(words, startIndex, direction, wrap) {
-  for (let step = 1; step <= words.length; step += 1) {
-    let index = startIndex + (step * direction);
-    if (wrap) {
-      index = (index + words.length) % words.length;
-    } else if (index < 0 || index >= words.length) {
-      return -1;
-    }
-    if (!state.skipMastered || !isMasteredWord(words[index])) {
-      return index;
-    }
-  }
-  return -1;
 }
 
 function resolveAssetPath(path) {
@@ -861,38 +858,31 @@ function resolveAssetPath(path) {
 }
 
 function buildQuestion() {
-  const words = playableWords();
-  if (words.length === 0) {
+  const candidates = buildClozeCandidates(currentWords());
+  if (candidates.length === 0) {
     state.practice.current = null;
-    elements.questionText.textContent = "本章節沒有待練習單字";
-    elements.answerOptions.innerHTML = "";
+    elements.questionMode.textContent = "英文例句填空";
+    elements.questionText.textContent = "本章節沒有可用的填空例句";
+    elements.questionHint.textContent = "";
+    elements.clozeAnswerInput.value = "";
+    elements.clozeAnswerInput.disabled = true;
+    elements.submitAnswerButton.disabled = true;
     elements.answerFeedback.textContent = "";
     return;
   }
-  const word = words[Math.floor(Math.random() * words.length)];
-  const askEnglish = Math.random() >= 0.5;
-  const correctAnswer = askEnglish ? word.chinese_meaning : word.word;
-  const options = shuffle([
-    correctAnswer,
-    ...shuffle(words.filter((item) => item.id !== word.id || item.word !== word.word))
-      .slice(0, 3)
-      .map((item) => (askEnglish ? item.chinese_meaning : item.word)),
-  ]);
-
-  state.practice.current = { word, correctAnswer };
-  elements.questionMode.textContent = askEnglish ? "English → Chinese" : "Chinese → English";
-  elements.questionText.textContent = askEnglish ? word.word : word.chinese_meaning;
+  const candidate = candidates[Math.floor(Math.random() * candidates.length)];
+  state.practice.current = {
+    word: candidate.word,
+    correctAnswer: candidate.answer,
+  };
+  elements.questionMode.textContent = "請依中文提示填空";
+  elements.questionText.textContent = candidate.clozeText;
+  elements.questionHint.textContent = candidate.hint;
   elements.answerFeedback.textContent = "";
   elements.answerFeedback.className = "feedback";
-  elements.answerOptions.innerHTML = "";
-
-  options.forEach((option) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = option;
-    button.addEventListener("click", () => answerQuestion(option));
-    elements.answerOptions.appendChild(button);
-  });
+  elements.clozeAnswerInput.value = "";
+  elements.clozeAnswerInput.disabled = false;
+  elements.submitAnswerButton.disabled = false;
 }
 
 function answerQuestion(answer) {
@@ -901,7 +891,7 @@ function answerQuestion(answer) {
     return;
   }
   state.practice.attempts += 1;
-  if (answer === current.correctAnswer) {
+  if (isCorrectClozeAnswer(answer, current.correctAnswer)) {
     state.practice.correct += 1;
     elements.answerFeedback.textContent = "答對";
     elements.answerFeedback.className = "feedback correct";
@@ -909,8 +899,14 @@ function answerQuestion(answer) {
     elements.answerFeedback.textContent = `答錯，答案是 ${current.correctAnswer}`;
     elements.answerFeedback.className = "feedback wrong";
   }
+  elements.clozeAnswerInput.disabled = true;
+  elements.submitAnswerButton.disabled = true;
   updatePracticeScore();
   saveProgress();
+}
+
+function submitCurrentAnswer() {
+  answerQuestion(elements.clozeAnswerInput.value);
 }
 
 function updatePracticeScore() {
@@ -950,7 +946,6 @@ function saveProgress() {
       playbackRate: state.playbackRate,
       englishRepeatCount: state.englishRepeatCount,
       includeExamples: state.includeExamples,
-      skipMastered: state.skipMastered,
       practice: state.practice,
     }),
   );
@@ -970,7 +965,6 @@ function restoreProgress() {
     state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
     state.englishRepeatCount = clampRepeatCount(saved.englishRepeatCount || saved.exampleRepeatCount || DEFAULT_ENGLISH_REPEAT_COUNT);
     state.includeExamples = saved.includeExamples !== false;
-    state.skipMastered = saved.skipMastered !== false;
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
@@ -980,10 +974,6 @@ function restoreProgress() {
 
 function clampRepeatCount(value) {
   return Math.min(5, Math.max(1, Number(value) || DEFAULT_ENGLISH_REPEAT_COUNT));
-}
-
-function shuffle(items) {
-  return [...items].sort(() => Math.random() - 0.5);
 }
 
 function escapeHtml(value) {
@@ -1016,11 +1006,6 @@ elements.includeExamplesToggle.addEventListener("change", (event) => {
   state.includeExamples = event.target.checked;
   saveProgress();
 });
-elements.skipMasteredToggle.addEventListener("change", (event) => {
-  state.skipMastered = event.target.checked;
-  buildQuestion();
-  saveProgress();
-});
 elements.playbackRate.addEventListener("input", (event) => {
   state.playbackRate = Number(event.target.value);
   applyPlaybackRate();
@@ -1037,6 +1022,12 @@ elements.toggleMeaningButton.addEventListener("click", () => {
   render();
 });
 elements.nextQuestionButton.addEventListener("click", buildQuestion);
+elements.submitAnswerButton.addEventListener("click", submitCurrentAnswer);
+elements.clozeAnswerInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && !elements.submitAnswerButton.disabled) {
+    submitCurrentAnswer();
+  }
+});
 elements.hardWordButton.addEventListener("click", toggleHardWord);
 elements.masteredWordToggle.addEventListener("change", toggleMasteredWord);
 elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
@@ -1061,7 +1052,6 @@ loadDailyData()
     restoreProgress();
     setupMediaSession();
     applyPlaybackRate();
-    elements.skipMasteredToggle.checked = state.skipMastered;
     render();
     buildQuestion();
     updatePracticeScore();
