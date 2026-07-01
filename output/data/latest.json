@@ -38775,6 +38775,7 @@
   ],
   "mastery": {
     "statuses": {
+      "external source": "mastered",
       "implementation": "mastered",
       "flowdown": "mastered",
       "assumption": "mastered",
