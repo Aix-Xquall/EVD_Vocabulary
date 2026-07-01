@@ -38775,6 +38775,10 @@
   ],
   "mastery": {
     "statuses": {
+      "chassis": "mastered",
+      "vibration": "mastered",
+      "strap": "mastered",
+      "jumper": "mastered",
       "external source": "mastered",
       "implementation": "mastered",
       "flowdown": "mastered",
