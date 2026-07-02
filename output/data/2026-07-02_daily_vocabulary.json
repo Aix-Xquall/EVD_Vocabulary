@@ -41563,6 +41563,7 @@
   ],
   "mastery": {
     "statuses": {
+      "fault current": "mastered",
       "chassis": "mastered",
       "vibration": "mastered",
       "strap": "mastered",
