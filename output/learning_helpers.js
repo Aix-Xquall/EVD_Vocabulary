@@ -8,7 +8,7 @@
   }
 }(typeof window !== "undefined" ? window : globalThis, () => {
   function repeatCountForWord(mastered, configuredCount) {
-    return mastered ? 1 : Math.max(1, Number(configuredCount) || 1);
+    return mastered ? 2 : Math.max(1, Number(configuredCount) || 1);
   }
 
   function sanitizePronunciation(value) {

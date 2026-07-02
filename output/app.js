@@ -432,7 +432,7 @@ function updateMasteredControls() {
   const word = currentWord();
   elements.masteredWordToggle.checked = isMasteredWord(word);
   elements.masteredWordToggle.disabled = !word.word || !state.hardWordsWriteUrl;
-  elements.masteredWordStatus.textContent = isMasteredWord(word) ? "英文播放一次" : "";
+  elements.masteredWordStatus.textContent = isMasteredWord(word) ? "英文播放兩次" : "";
 }
 
 function isHardWord(wordKey) {

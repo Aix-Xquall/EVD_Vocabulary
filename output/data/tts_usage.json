@@ -6,6 +6,13 @@
           "characters": 145059
         }
       }
+    },
+    "2026-07": {
+      "providers": {
+        "google": {
+          "characters": 6007
+        }
+      }
     }
   }
 }
