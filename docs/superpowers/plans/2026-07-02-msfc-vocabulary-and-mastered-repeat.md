@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Merge 34 unique imported words into the existing MSFC chapter and make mastered English content play twice.
+**Goal:** Merge 34 unique imported words into the existing MSFC chapter without adding new duplicate groups, and make mastered English content play twice.
 
 **Architecture:** Preserve the user's 35-row working copy as an ignored import artifact, then create an isolated worktree from the committed 84-row source. Add data-contract tests before performing a one-time structured CSV merge, and update the existing pure playback helper through its Node test.
 
@@ -12,7 +12,7 @@
 
 ## File Map
 
-- Create `tests/test_vocabulary_data.py`: validates the merged MSFC chapter and formal-chapter uniqueness.
+- Create `tests/test_vocabulary_data.py`: validates the merged MSFC chapter and prevents appended rows from adding cross-chapter duplicates.
 - Modify `vocabulary/MSFC-HDBK-3697.csv`: contains 84 existing rows plus 34 imported rows.
 - Modify `tests/learning_helpers.test.js`: expects mastered repetition count 2.
 - Modify `web/learning_helpers.js`: returns 2 repetitions for mastered words.
@@ -51,12 +51,13 @@ Create tests that read CSV files with `encoding="utf-8-sig"` and assert:
 
 ```python
 self.assertEqual(len(msfc_rows), 118)
-self.assertEqual([row["id"] for row in msfc_rows], [str(i) for i in range(1, 119)])
+self.assertEqual([row["id"] for row in msfc_rows[:84]], expected_existing_ids)
+self.assertEqual([row["id"] for row in msfc_rows[84:]], [str(i) for i in range(97, 131)])
 self.assertNotIn("individual", {row["word"].strip().casefold() for row in msfc_rows})
-self.assertEqual(duplicate_words, {})
+self.assertEqual(appended_cross_chapter_duplicates, {})
 ```
 
-The project-wide duplicate check includes formal chapter CSV files and excludes `hard_words.csv`, because hard words intentionally reference formal vocabulary.
+The duplicate check covers only appended MSFC rows, IDs 85 through 118, against other formal chapters. It excludes `hard_words.csv` and leaves the 15 pre-existing formal duplicate groups unchanged.
 
 - [ ] **Step 2: Run the focused test and confirm RED**
 
@@ -77,7 +78,7 @@ Use Python's `csv.DictReader` and `csv.DictWriter`:
 3. Build normalized-word keys from all formal chapters.
 4. Skip imported `individual`.
 5. Append the other 34 rows in source order.
-6. Rewrite IDs from 1 to 118.
+6. Preserve all existing IDs and assign IDs 97 through 130 to appended rows.
 7. Write through a temporary file with `encoding="utf-8-sig"` and atomically replace the chapter after validation.
 
 - [ ] **Step 4: Run the focused test and confirm GREEN**

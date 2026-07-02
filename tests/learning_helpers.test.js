@@ -8,8 +8,8 @@ const {
   sanitizePronunciation,
 } = require("../web/learning_helpers.js");
 
-test("mastered words use one English repetition", () => {
-  assert.equal(repeatCountForWord(true, 5), 1);
+test("mastered words use two English repetitions", () => {
+  assert.equal(repeatCountForWord(true, 5), 2);
   assert.equal(repeatCountForWord(false, 5), 5);
 });
 

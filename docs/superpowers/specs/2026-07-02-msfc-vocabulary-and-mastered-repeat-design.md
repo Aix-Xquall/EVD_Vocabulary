@@ -14,9 +14,12 @@ Merge the newly supplied MSFC vocabulary into the existing chapter without losin
 - The merged `MSFC-HDBK-3697.csv` must contain 118 rows.
 - Preserve the existing 12-column CSV schema and UTF-8 BOM encoding.
 - Preserve the existing row order, then append the new rows in their supplied order.
-- Renumber the complete merged chapter sequentially from 1 through 118.
-- Do not modify vocabulary content other than the ID field and removal of the duplicate `individual` row.
+- Preserve all existing IDs so existing content-addressed audio remains reusable.
+- Assign IDs 97 through 130 to the 34 appended rows.
+- Do not modify existing vocabulary content; only remove the duplicate `individual` import row.
 - Continue using case-insensitive, trimmed word comparison for duplicate detection.
+- Preserve the 15 pre-existing duplicate groups in other formal CSV files; the existing loader continues to remove them from the published website.
+- Do not allow any of the 34 appended MSFC rows to introduce a new cross-chapter duplicate.
 
 ## Playback Behavior
 
@@ -36,7 +39,7 @@ Merge the newly supplied MSFC vocabulary into the existing chapter without losin
 - `tests/learning_helpers.test.js`
   - Verifies mastered and non-mastered repetition counts.
 - `tests/test_vocabulary_data.py`
-  - Verifies MSFC row count, sequential IDs, required columns, and project-wide normalized-word uniqueness.
+  - Verifies MSFC row count, preserved existing IDs, appended IDs 97 through 130, required columns, and that appended rows introduce no new cross-chapter duplicates.
 
 ## Data Flow
 
@@ -45,15 +48,15 @@ Merge the newly supplied MSFC vocabulary into the existing chapter without losin
 3. Build a normalized-word set from all formal vocabulary chapters.
 4. Exclude the import row `individual`.
 5. Append the remaining 34 rows to the original 84 rows.
-6. Assign sequential IDs and write the merged CSV using the existing schema.
+6. Preserve the existing IDs, assign IDs 97 through 130 to appended rows, and write the merged CSV using the existing schema.
 7. GitHub Actions regenerates chapter payloads and deploys GitHub Pages.
 
 ## Error Handling
 
 - Abort the merge if either source does not contain the required 12 columns.
 - Abort if the result is not exactly 118 rows.
-- Abort if IDs are not sequential after writing.
-- Abort if normalized duplicate words remain across formal chapters.
+- Abort if existing IDs change or appended IDs are not 97 through 130.
+- Abort if an appended MSFC word duplicates any word in another formal chapter.
 - Do not alter the source data if validation fails before the final write.
 
 ## Testing and Deployment

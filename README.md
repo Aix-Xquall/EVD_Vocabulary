@@ -16,7 +16,7 @@ For audio, the same terms are spoken as the full English phrase. Chinese columns
 
 ## Hard words sync
 
-The site shows a separate hard words chapter named `未熟記單字練習`, even when it currently has zero words. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC. Newly added hard words appear first. A word can also be marked `已熟記`; its English word and English examples play once, while other words use the configured repeat count.
+The site shows a separate hard words chapter named `未熟記單字練習`, even when it currently has zero words. The repo uses `vocabulary/hard_words.csv` as the local snapshot, while Google Sheets and Google Apps Script provide cross-device writes from phone or PC. Newly added hard words appear first. A word can also be marked `已熟記`; its English word and English examples play twice, while other words use the configured repeat count.
 
 Daily practice uses an English example cloze question with the Chinese example as a hint. Answers ignore letter case and outer whitespace, but spelling and internal spaces must match exactly.
 

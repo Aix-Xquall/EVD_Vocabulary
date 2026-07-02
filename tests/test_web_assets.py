@@ -118,7 +118,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("從未熟記單字移除", app_js)
         self.assertIn('"status": status', app_js)
 
-    def test_web_player_exposes_mastered_word_controls_and_one_repeat_behavior(self):
+    def test_web_player_exposes_mastered_word_controls_and_two_repeat_behavior(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
@@ -133,6 +133,8 @@ class WebAssetsTests(unittest.TestCase):
             "repeatCountForWord(isMasteredWord(word), state.englishRepeatCount)",
             app_js,
         )
+        self.assertIn('"英文播放兩次"', app_js)
+        self.assertNotIn('"英文播放一次"', app_js)
         self.assertIn("MASTERED_WORDS_LOCAL_KEY", app_js)
         self.assertIn("word-item mastered", app_js)
         self.assertIn(".word-item.mastered", styles_css)
