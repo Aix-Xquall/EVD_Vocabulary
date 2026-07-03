@@ -41481,6 +41481,7 @@
   ],
   "mastery": {
     "statuses": {
+      "consultant": "mastered",
       "low inductance": "mastered",
       "low impedance": "mastered",
       "voltage drop": "mastered",
