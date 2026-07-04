@@ -91,6 +91,7 @@ Duplicate entries are skipped by the normalized `word` field inside each normal 
 - 分段 MP3 以文字內容、語言、voice 與語速產生 hash 檔名，已有相同內容時會重用，降低 Azure Speech Free (F0) 用量。
 - 英文語速可在網頁調整，預設 0.8x；中文播放固定 1.0x。
 - 英文例句預設重複 3 次，可在網頁調整為 1 到 5 次；中文翻譯只播放 1 次。
+- 例句 1（含中文與英文重複）完成後等待 2 秒，再播放例句 2；中文後的英文重複仍間隔 1.5 秒。
 - 章節模式不會自動更新 `review_count` 與 `last_review_date`，避免每日排程把所有章節都標記為已複習。
 
 每日航太 / 航電 / EMC 工程英文學習工具。

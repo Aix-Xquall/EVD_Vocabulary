@@ -1,6 +1,7 @@
 const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
-const EXAMPLE_REPEAT_DELAY_MS = 1500;
+const ENGLISH_REPEAT_DELAY_MS = 1500;
+const EXAMPLE_GROUP_DELAY_MS = 2000;
 const {
   buildClozeCandidates,
   isCorrectClozeAnswer,
@@ -285,7 +286,7 @@ function buildWordQueue(word) {
   addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning, repeatCount);
   if (state.includeExamples) {
     addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh, repeatCount);
-    addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh, repeatCount);
+    addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh, repeatCount, EXAMPLE_GROUP_DELAY_MS);
   }
   return queue;
 }
@@ -297,11 +298,16 @@ function addRepeatedEnglishWithChinese(
   chineseSegment,
   chineseText,
   repeatCount,
+  startDelayMs = 0,
 ) {
+  const groupStartIndex = queue.length;
   addNarration(queue, englishSegment, englishText, "en");
   addNarration(queue, chineseSegment, chineseText, "zh");
   for (let count = 1; count < repeatCount; count += 1) {
-    addNarration(queue, englishSegment, englishText, "en", EXAMPLE_REPEAT_DELAY_MS);
+    addNarration(queue, englishSegment, englishText, "en", ENGLISH_REPEAT_DELAY_MS);
+  }
+  if (queue.length > groupStartIndex) {
+    queue[groupStartIndex].delayMs = startDelayMs;
   }
 }
 

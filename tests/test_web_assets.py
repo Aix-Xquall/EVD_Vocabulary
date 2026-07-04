@@ -206,6 +206,26 @@ class WebAssetsTests(unittest.TestCase):
         self.assertNotIn("chapter.chapter_audio", app_js)
         self.assertNotIn('playDirectAudio(chapter.chapter_audio, "mixed")', app_js)
 
+    def test_example_two_starts_after_two_second_group_delay(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("const ENGLISH_REPEAT_DELAY_MS = 1500;", app_js)
+        self.assertIn("const EXAMPLE_GROUP_DELAY_MS = 2000;", app_js)
+        self.assertIn(
+            "addRepeatedEnglishWithChinese(queue, segments.example_1_en, "
+            "word?.example_1_en, segments.example_1_zh, word?.example_1_zh, "
+            "repeatCount);",
+            app_js,
+        )
+        self.assertIn(
+            "addRepeatedEnglishWithChinese(queue, segments.example_2_en, "
+            "word?.example_2_en, segments.example_2_zh, word?.example_2_zh, "
+            "repeatCount, EXAMPLE_GROUP_DELAY_MS);",
+            app_js,
+        )
+        self.assertIn("const groupStartIndex = queue.length;", app_js)
+        self.assertIn("queue[groupStartIndex].delayMs = startDelayMs;", app_js)
+
 
 if __name__ == "__main__":
     unittest.main()

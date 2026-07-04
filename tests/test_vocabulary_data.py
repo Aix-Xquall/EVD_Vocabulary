@@ -17,20 +17,45 @@ def read_rows(path: Path) -> list[dict]:
 
 
 class VocabularyDataTests(unittest.TestCase):
-    def test_msfc_chapter_has_118_rows_with_preserved_and_appended_ids(self):
+    def test_msfc_chapter_has_125_rows_with_preserved_and_appended_ids(self):
         with MSFC_PATH.open("r", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)
             rows = list(reader)
 
         self.assertEqual(reader.fieldnames, REQUIRED_COLUMNS)
-        self.assertEqual(len(rows), 118)
+        self.assertEqual(len(rows), 125)
         missing_existing_ids = {2, 31, 32, 35, 57, 67, 68, 69, 74, 81, 82, 90}
         expected_existing_ids = [
             str(index) for index in range(1, 97) if index not in missing_existing_ids
         ]
         self.assertEqual([row["id"] for row in rows[:84]], expected_existing_ids)
-        self.assertEqual([row["id"] for row in rows[84:]], [str(index) for index in range(97, 131)])
+        self.assertEqual([row["id"] for row in rows[84:]], [str(index) for index in range(97, 138)])
         self.assertTrue(MSFC_PATH.read_bytes().startswith(b"\xef\xbb\xbf"))
+
+    def test_latest_msfc_rows_contain_requested_words_and_usable_examples(self):
+        rows = read_rows(MSFC_PATH)
+        expected_words = [
+            "rely on",
+            "accidental",
+            "treated like",
+            "ignition",
+            "intermittent",
+            "specific",
+            "weakens",
+        ]
+        new_rows = rows[-len(expected_words):]
+
+        self.assertEqual([row["word"] for row in new_rows], expected_words)
+        for row in new_rows:
+            word = row["word"].casefold()
+            examples = [
+                row["example_1_en"].casefold(),
+                row["example_2_en"].casefold(),
+            ]
+            self.assertTrue(
+                any(word in example for example in examples),
+                f"{row['word']} needs an exact cloze example",
+            )
 
     def test_appended_msfc_rows_add_no_cross_chapter_duplicates(self):
         msfc_rows = read_rows(MSFC_PATH)
@@ -52,7 +77,7 @@ class VocabularyDataTests(unittest.TestCase):
         }
         msfc_words = {str(row.get("word") or "").strip().casefold() for row in msfc_rows}
 
-        self.assertEqual(len(appended_rows), 34)
+        self.assertEqual(len(appended_rows), 41)
         self.assertNotIn("individual", msfc_words)
         self.assertEqual(appended_duplicates, {})
 
