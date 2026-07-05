@@ -58136,6 +58136,7 @@
   ],
   "mastery": {
     "statuses": {
+      "rf impedance": "mastered",
       "micro-ohmmeter": "mastered",
       "resistance": "mastered",
       "capacitance": "mastered",
