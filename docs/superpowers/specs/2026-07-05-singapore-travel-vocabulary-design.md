@@ -92,9 +92,9 @@ least one English example. Apply the following minimum corrections:
 - `toothbrush`: change one example from `toothbrushes` to singular
   `toothbrush`.
 - `ticket`: change one example from `tickets` to singular `ticket`.
-- `elevator / lift`: change the word to `elevator`, retain `lift` as an
-  alternate term in the Chinese meaning, and keep an example containing the
-  exact word `elevator`.
+- `elevator / lift`: the source already has a separate `elevator` entry.
+  Change this combined entry to the British term `lift`, and keep an example
+  containing the exact word `lift`.
 - `public bus`: both revised examples must contain the exact phrase.
 
 Update each corresponding Chinese translation when an English sentence is
@@ -149,7 +149,7 @@ Add data regression tests that require:
 - the chapter introduces no duplicate against another formal chapter
 - `luggage`, `receipt`, `taxi`, and `towel` each appear once
 - `public bus` exists and `bus` does not exist in the travel chapter
-- `elevator` exists and `elevator / lift` does not exist
+- `elevator` and `lift` each exist once, and `elevator / lift` does not exist
 - every row has at least one exact cloze-compatible English example
 - required fields are populated
 
@@ -165,6 +165,6 @@ After merge:
 2. Confirm audio generation and Pages deployment succeed.
 3. Read the cache-busted public `latest.json`.
 4. Confirm the public chapter contains 196 words.
-5. Confirm `public bus` and `elevator` are present.
+5. Confirm `public bus`, `elevator`, and `lift` are present.
 6. Run and verify one `LINE Smoke Test`.
 

@@ -101,6 +101,8 @@ class SingaporeVocabularyDataTests(unittest.TestCase):
         self.assertIn("public bus", words)
         self.assertNotIn("bus", words)
         self.assertIn("elevator", words)
+        self.assertIn("lift", words)
+        self.assertEqual(words.count("elevator"), 1)
         self.assertNotIn("elevator / lift", words)
 
     def test_chapter_introduces_no_formal_cross_chapter_duplicates(self):
@@ -210,9 +212,9 @@ updates = {
         "example_1_zh": "我需要一張表演門票。",
     },
     "elevator / lift": {
-        "word": "elevator",
-        "pronunciation": "/ˈel.ə.veɪ.t̬ɚ/",
-        "chinese_meaning": "電梯；英式 lift",
+        "word": "lift",
+        "pronunciation": "/lɪft/",
+        "chinese_meaning": "電梯（英式）",
     },
     "bus": {
         "word": "public bus",
@@ -259,7 +261,7 @@ Run a compact structured check that prints:
 ```text
 count=196
 first=table
-last=elevator
+last=medical help
 duplicates=[]
 public_bus=1
 ```
@@ -305,7 +307,7 @@ Read the generated JSON and require:
 chapter=新加坡旅遊單字
 word_count=196
 first=table
-last=elevator
+last=medical help
 ```
 
 - [ ] **Step 3: Remove smoke-test output changes**
@@ -346,6 +348,7 @@ chapter=新加坡旅遊單字
 word_count=196
 public_bus=true
 elevator=true
+lift=true
 ```
 
 - [ ] **Step 4: Send one LINE notification**
