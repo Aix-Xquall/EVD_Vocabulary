@@ -58136,6 +58136,8 @@
   ],
   "mastery": {
     "statuses": {
+      "inductance": "mastered",
+      "reactance": "mastered",
       "short circuit": "mastered",
       "consultant": "mastered",
       "low inductance": "mastered",
