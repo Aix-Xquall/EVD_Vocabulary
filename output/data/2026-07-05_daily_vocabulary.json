@@ -58136,6 +58136,9 @@
   ],
   "mastery": {
     "statuses": {
+      "micro-ohmmeter": "mastered",
+      "resistance": "mastered",
+      "capacitance": "mastered",
       "inductance": "mastered",
       "reactance": "mastered",
       "short circuit": "mastered",
