@@ -357,4 +357,3 @@ Because push-triggered generation uses `--skip-line`, use the existing
 `LINE Smoke Test` once after Pages deployment. Verify its notification step
 completes successfully and its logs contain no `LINE notification warning` or
 HTTP error.
-

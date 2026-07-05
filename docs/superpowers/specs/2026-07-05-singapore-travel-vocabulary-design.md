@@ -167,4 +167,3 @@ After merge:
 4. Confirm the public chapter contains 196 words.
 5. Confirm `public bus`, `elevator`, and `lift` are present.
 6. Run and verify one `LINE Smoke Test`.
-
