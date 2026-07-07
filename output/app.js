@@ -2,6 +2,7 @@ const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
+const WORD_GROUP_DELAY_MS = 3000;
 const {
   buildClozeCandidates,
   isCorrectClozeAnswer,
@@ -276,7 +277,15 @@ function playCombinedAudio() {
 }
 
 function buildChapterQueue() {
-  return currentWords().flatMap((word) => buildWordQueue(word));
+  const queue = [];
+  currentWords().forEach((word) => {
+    const wordQueue = buildWordQueue(word);
+    if (queue.length > 0 && wordQueue.length > 0) {
+      wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;
+    }
+    queue.push(...wordQueue);
+  });
+  return queue;
 }
 
 function buildWordQueue(word) {
