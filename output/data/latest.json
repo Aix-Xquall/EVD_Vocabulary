@@ -58136,6 +58136,7 @@
   ],
   "mastery": {
     "statuses": {
+      "metal-to-metal contact": "mastered",
       "box-level": "mastered",
       "vehicle-level": "mastered",
       "flow-down": "mastered",
