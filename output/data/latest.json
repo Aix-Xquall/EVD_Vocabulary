@@ -58136,6 +58136,7 @@
   ],
   "mastery": {
     "statuses": {
+      "for more details": "mastered",
       "qualification": "mastered",
       "verification": "mastered",
       "high-current load": "mastered",
