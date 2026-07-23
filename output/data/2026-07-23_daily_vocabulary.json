@@ -58136,6 +58136,8 @@
   ],
   "mastery": {
     "statuses": {
+      "qualification": "mastered",
+      "verification": "mastered",
       "high-current load": "mastered",
       "metal-to-metal contact": "mastered",
       "box-level": "mastered",
