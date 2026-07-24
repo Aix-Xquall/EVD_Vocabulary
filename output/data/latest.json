@@ -58136,6 +58136,8 @@
   ],
   "mastery": {
     "statuses": {
+      "receiver": "mastered",
+      "isolation": "mastered",
       "bus": "mastered",
       "for more details": "mastered",
       "qualification": "mastered",
