@@ -171,6 +171,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("highlightExampleText(word.example_1_en, word.word)", app_js)
         self.assertIn("highlightExampleText(word.example_2_en, word.word)", app_js)
         self.assertIn("function highlightExampleText(text, target)", app_js)
+        self.assertIn("findTargetPhraseMatches(value, keyword)", app_js)
         self.assertIn('class="example-target"', app_js)
         self.assertIn(".example-target", styles_css)
         self.assertIn("color: var(--blue)", styles_css)

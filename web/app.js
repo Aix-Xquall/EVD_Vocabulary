@@ -5,6 +5,7 @@ const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
 const {
   buildClozeCandidates,
+  findTargetPhraseMatches,
   isCorrectClozeAnswer,
   repeatCountForWord,
   sanitizePronunciation,
@@ -1041,21 +1042,18 @@ function highlightExampleText(text, target) {
   if (!value || !keyword) {
     return escapeHtml(value);
   }
-  const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escapeRegExp(keyword)})(?=$|[^A-Za-z0-9])`, "gi");
+  const matches = findTargetPhraseMatches(value, keyword);
+  if (matches.length === 0) {
+    return escapeHtml(value);
+  }
   let highlighted = "";
   let lastIndex = 0;
-  value.replace(pattern, (match, prefix, matchedText, offset) => {
-    const targetStart = offset + prefix.length;
-    highlighted += escapeHtml(value.slice(lastIndex, targetStart));
-    highlighted += `<span class="example-target">${escapeHtml(matchedText)}</span>`;
-    lastIndex = offset + match.length;
-    return match;
+  matches.forEach((match) => {
+    highlighted += escapeHtml(value.slice(lastIndex, match.start));
+    highlighted += `<span class="example-target">${escapeHtml(match.text)}</span>`;
+    lastIndex = match.end;
   });
-  return highlighted ? highlighted + escapeHtml(value.slice(lastIndex)) : escapeHtml(value);
-}
-
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return highlighted + escapeHtml(value.slice(lastIndex));
 }
 
 elements.playButton.addEventListener("click", resumeOrPlayCurrent);

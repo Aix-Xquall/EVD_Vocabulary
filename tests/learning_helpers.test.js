@@ -3,6 +3,7 @@ const test = require("node:test");
 
 const {
   buildClozeCandidates,
+  findTargetPhraseMatches,
   isCorrectClozeAnswer,
   repeatCountForWord,
   sanitizePronunciation,
@@ -39,6 +40,24 @@ test("cloze candidates blank exact target phrases in either example", () => {
         answer: "galvanic corrosion",
       },
     ],
+  );
+});
+
+test("cloze candidates match simple plural form of a phrase final word", () => {
+  const candidates = buildClozeCandidates([
+    {
+      word: "consultant question",
+      example_1_en: "The review board answered several consultant questions during the meeting.",
+      example_1_zh: "",
+    },
+  ]);
+
+  assert.equal(candidates.length, 1);
+  assert.equal(candidates[0].clozeText, "The review board answered several _____ during the meeting.");
+  assert.equal(candidates[0].answer, "consultant questions");
+  assert.deepEqual(
+    findTargetPhraseMatches("Several consultant questions remained open.", "consultant question"),
+    [{ start: 8, end: 28, text: "consultant questions" }],
   );
 });
 
