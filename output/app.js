@@ -2,9 +2,10 @@ const DEFAULT_PLAYBACK_RATE = 0.8;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
-const WORD_GROUP_DELAY_MS = 3000;
+const WORD_GROUP_DELAY_MS = 2000;
 const {
   buildClozeCandidates,
+  findTargetPhraseMatches,
   isCorrectClozeAnswer,
   repeatCountForWord,
   sanitizePronunciation,
@@ -35,6 +36,8 @@ const state = {
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
   playbackQueue: [],
   queueIndex: 0,
+  isPaused: false,
+  pausedQueueIndex: 0,
   isChapterPlayback: false,
   queueTimer: null,
   wakeLock: null,
@@ -150,10 +153,10 @@ function render() {
   elements.wordText.textContent = word.word || "Loading";
   elements.pronunciationText.textContent = sanitizePronunciation(word.pronunciation);
   elements.meaningText.textContent = word.chinese_meaning || "";
-  elements.exampleOneEn.textContent = word.example_1_en || "";
-  elements.exampleOneZh.textContent = word.example_1_zh || "";
-  elements.exampleTwoEn.textContent = word.example_2_en || "";
-  elements.exampleTwoZh.textContent = word.example_2_zh || "";
+  elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights);
+  elements.exampleOneZh.innerHTML = renderTranslationWithTense(word.example_1_zh, word.example_1_tense);
+  elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word, word.example_2_tense?.highlights);
+  elements.exampleTwoZh.innerHTML = renderTranslationWithTense(word.example_2_zh, word.example_2_tense);
   elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
@@ -255,14 +258,31 @@ function scrollActiveWordIntoView() {
   container.scrollTop = Math.max(0, targetTop);
 }
 
-function playCurrent() {
+function playCurrent(startDelayMs = 0) {
   const word = currentWord();
   const queue = buildWordQueue(word);
   if (queue.length === 0 && word.audio) {
     playDirectAudio(word.audio, true);
     return;
   }
+  if (queue.length > 0 && startDelayMs > 0) {
+    queue[0].delayMs = startDelayMs;
+  }
   playQueue(queue, false);
+}
+
+function resumeOrPlayCurrent() {
+  if (state.isPaused && state.playbackQueue.length > 0) {
+    state.pausedQueueIndex = Math.min(state.pausedQueueIndex, state.playbackQueue.length - 1);
+    state.queueIndex = state.pausedQueueIndex;
+    state.playbackQueue[state.queueIndex].delayMs = 0;
+    state.isPaused = false;
+    requestWakeLock();
+    updateMediaSession();
+    playNextQueueSegment();
+    return;
+  }
+  playCurrent();
 }
 
 function playCombinedAudio() {
@@ -347,6 +367,8 @@ function playQueue(queue, isChapterPlayback) {
   stopQueue();
   state.playbackQueue = queue;
   state.queueIndex = 0;
+  state.isPaused = false;
+  state.pausedQueueIndex = 0;
   state.isChapterPlayback = isChapterPlayback;
   requestWakeLock();
   updateMediaSession();
@@ -367,6 +389,11 @@ function playNextQueueSegment() {
       return;
     }
     elements.audioPlayer.src = resolveAssetPath(segment.src);
+    try {
+      elements.audioPlayer.currentTime = 0;
+    } catch (error) {
+      // Some browsers reject seeking before metadata is available.
+    }
     applyPlaybackRate(segment);
     elements.audioPlayer.play().catch(() => {
       showPlaybackError("瀏覽器無法播放這段音訊。");
@@ -388,8 +415,16 @@ function speakTextSegment(segment) {
   const utterance = new SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language));
   utterance.lang = segment.language === "zh" ? "zh-TW" : "en-US";
   utterance.rate = segment.language === "en" ? state.playbackRate : 1;
-  utterance.onend = playNextQueueSegment;
-  utterance.onerror = () => showPlaybackError("瀏覽器語音朗讀失敗。");
+  utterance.onend = () => {
+    if (!state.isPaused) {
+      playNextQueueSegment();
+    }
+  };
+  utterance.onerror = () => {
+    if (!state.isPaused) {
+      showPlaybackError("瀏覽器語音朗讀失敗。");
+    }
+  };
   window.speechSynthesis.speak(utterance);
 }
 
@@ -718,7 +753,7 @@ function finishQueue() {
     playCurrent();
     return;
   }
-  nextWord(state.repeatAll);
+  nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);
 }
 
 function stopQueue() {
@@ -728,6 +763,8 @@ function stopQueue() {
   }
   state.playbackQueue = [];
   state.queueIndex = 0;
+  state.isPaused = false;
+  state.pausedQueueIndex = 0;
   state.isChapterPlayback = false;
   state.wantsWakeLock = false;
   releaseWakeLock();
@@ -780,12 +817,7 @@ function setupMediaSession() {
   }
   state.mediaSessionReady = true;
   navigator.mediaSession.setActionHandler("play", () => {
-    if (elements.audioPlayer.src && elements.audioPlayer.paused) {
-      requestWakeLock();
-      elements.audioPlayer.play();
-      return;
-    }
-    playCurrent();
+    resumeOrPlayCurrent();
   });
   navigator.mediaSession.setActionHandler("pause", pausePlayback);
   navigator.mediaSession.setActionHandler("nexttrack", () => {
@@ -824,15 +856,19 @@ function pausePlayback() {
     window.clearTimeout(state.queueTimer);
     state.queueTimer = null;
   }
+  if (state.playbackQueue.length > 0) {
+    state.isPaused = true;
+    state.pausedQueueIndex = Math.max(0, state.queueIndex - 1);
+  }
   elements.audioPlayer.pause();
   if (window.speechSynthesis) {
-    window.speechSynthesis.pause();
+    window.speechSynthesis.cancel();
   }
   releaseWakeLock();
   updateMediaSessionPlaybackState("paused");
 }
 
-function nextWord(autoplay = false) {
+function nextWord(autoplay = false, startDelayMs = 0) {
   const words = currentWords();
   const lastIndex = words.length - 1;
   if (state.currentIndex >= lastIndex) {
@@ -845,7 +881,7 @@ function nextWord(autoplay = false) {
   }
   render();
   if (autoplay) {
-    playCurrent();
+    playCurrent(startDelayMs);
   }
 }
 
@@ -1000,7 +1036,88 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-elements.playButton.addEventListener("click", playCurrent);
+function highlightExampleText(text, target, tenseHighlights = []) {
+  const value = String(text || "");
+  const keyword = String(target || "").trim();
+  if (!value) {
+    return "";
+  }
+  const ranges = [];
+  if (keyword) {
+    findTargetPhraseMatches(value, keyword).forEach((match) => {
+      ranges.push({ start: match.start, end: match.end, className: "example-target" });
+    });
+  }
+  findLiteralHighlightRanges(value, tenseHighlights).forEach((range) => {
+    ranges.push({ ...range, className: "tense-target" });
+  });
+  if (ranges.length === 0) {
+    return escapeHtml(value);
+  }
+  return renderHighlightedRanges(value, ranges);
+}
+
+function findLiteralHighlightRanges(value, highlights = []) {
+  const ranges = [];
+  highlights.forEach((highlight) => {
+    const text = String(highlight || "").trim();
+    if (!text) {
+      return;
+    }
+    const pattern = new RegExp(escapeRegExp(text), "gi");
+    let match;
+    while ((match = pattern.exec(value)) !== null) {
+      ranges.push({ start: match.index, end: match.index + match[0].length });
+      if (match.index === pattern.lastIndex) {
+        pattern.lastIndex += 1;
+      }
+    }
+  });
+  return ranges;
+}
+
+function renderHighlightedRanges(value, ranges) {
+  const boundaries = Array.from(new Set([
+    0,
+    value.length,
+    ...ranges.flatMap((range) => [range.start, range.end]),
+  ])).filter((index) => index >= 0 && index <= value.length).sort((first, second) => first - second);
+  let html = "";
+  for (let index = 0; index < boundaries.length - 1; index += 1) {
+    const start = boundaries[index];
+    const end = boundaries[index + 1];
+    const text = value.slice(start, end);
+    if (!text) {
+      continue;
+    }
+    const classNames = Array.from(new Set(
+      ranges
+        .filter((range) => start >= range.start && end <= range.end)
+        .map((range) => range.className),
+    ));
+    const escaped = escapeHtml(text);
+    html += classNames.length > 0
+      ? `<span class="${classNames.join(" ")}">${escaped}</span>`
+      : escaped;
+  }
+  return html;
+}
+
+function renderTranslationWithTense(translation, tense) {
+  const text = escapeHtml(translation || "");
+  const name = String(tense?.name_zh || "").trim();
+  const formula = String(tense?.formula || "").trim();
+  if (!name || !formula) {
+    return text;
+  }
+  return `${text}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+elements.playButton.addEventListener("click", resumeOrPlayCurrent);
 elements.pauseButton.addEventListener("click", pausePlayback);
 elements.nextButton.addEventListener("click", () => {
   stopQueue();

@@ -38,31 +38,70 @@
 
   function buildClozeCandidate(word, target, exampleIndex) {
     const exampleText = String(word?.[`example_${exampleIndex}_en`] || "");
-    const clozeText = replaceExactPhrase(exampleText, target);
-    if (!clozeText) {
+    const match = findTargetPhraseMatches(exampleText, target)[0];
+    if (!match) {
       return null;
     }
     return {
       word,
-      answer: target,
-      clozeText,
+      answer: normalizeClozeAnswer(match.text) === normalizeClozeAnswer(target) ? target : match.text,
+      clozeText: `${exampleText.slice(0, match.start)}_____${exampleText.slice(match.end)}`,
       hint: String(word?.[`example_${exampleIndex}_zh`] || ""),
       exampleIndex,
     };
   }
 
-  function replaceExactPhrase(text, target) {
-    const escapedTarget = target.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escapedTarget})(?=$|[^A-Za-z0-9])`, "gi");
-    if (!pattern.test(text)) {
-      return "";
+  function findTargetPhraseMatches(text, target) {
+    const pattern = buildTargetPhrasePattern(target);
+    if (!pattern) {
+      return [];
     }
-    pattern.lastIndex = 0;
-    return text.replace(pattern, (match, prefix) => `${prefix}_____`);
+    const matches = [];
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      const prefix = match[1] || "";
+      const start = match.index + prefix.length;
+      const end = match.index + match[0].length;
+      matches.push({ start, end, text: match[2] });
+      if (match.index === pattern.lastIndex) {
+        pattern.lastIndex += 1;
+      }
+    }
+    return matches;
+  }
+
+  function buildTargetPhrasePattern(target) {
+    const parts = String(target || "").trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) {
+      return null;
+    }
+    const phrase = parts.map((part, index) => (
+      index === parts.length - 1 ? finalWordVariantPattern(part) : escapeRegExp(part)
+    )).join("\\s+");
+    return new RegExp(`(^|[^A-Za-z0-9])(${phrase})(?=$|[^A-Za-z0-9])`, "gi");
+  }
+
+  function finalWordVariantPattern(word) {
+    if (!/[A-Za-z]$/.test(word)) {
+      return escapeRegExp(word);
+    }
+    const lower = word.toLocaleLowerCase("en-US");
+    if (/[sxz]$/.test(lower) || lower.endsWith("ch") || lower.endsWith("sh")) {
+      return `${escapeRegExp(word)}(?:es)?`;
+    }
+    if (/[^aeiou]y$/.test(lower)) {
+      return `${escapeRegExp(word.slice(0, -1))}(?:y|ies)`;
+    }
+    return `${escapeRegExp(word)}s?`;
+  }
+
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
   return {
     buildClozeCandidates,
+    findTargetPhraseMatches,
     isCorrectClozeAnswer,
     normalizeClozeAnswer,
     repeatCountForWord,
