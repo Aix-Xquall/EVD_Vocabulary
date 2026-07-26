@@ -3,6 +3,7 @@ import csv
 import hashlib
 import json
 import os
+import re
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path, PureWindowsPath
@@ -31,11 +32,11 @@ TENSE_NAMES_ZH = [
 
 TENSE_FORMULAS = {
     "現在簡單式": "S + V / V-s",
-    "現在進行式": "S + am / is / are + V-ing",
-    "現在完成式": "S + have / has + p.p.",
-    "現在完成進行式": "S + have / has been + V-ing",
-    "過去簡單式": "S + V-ed / irregular past",
-    "過去進行式": "S + was / were + V-ing",
+    "現在進行式": "S + am/is/are + V-ing",
+    "現在完成式": "S + have/has + p.p.",
+    "現在完成進行式": "S + have/has been + V-ing",
+    "過去簡單式": "S + V-ed",
+    "過去進行式": "S + was/were + V-ing",
     "過去完成式": "S + had + p.p.",
     "過去完成進行式": "S + had been + V-ing",
     "未來簡單式": "S + will + V",
@@ -43,6 +44,12 @@ TENSE_FORMULAS = {
     "未來完成式": "S + will have + p.p.",
     "未來完成進行式": "S + will have been + V-ing",
     "特殊句型/需確認": "依實際句型判斷",
+}
+
+TENSE_DISPLAY_NAMES = {
+    name: name.removesuffix("式")
+    for name in TENSE_NAMES_ZH
+    if name != "特殊句型/需確認"
 }
 
 ANNOTATION_COLUMNS = [
@@ -58,6 +65,49 @@ ANNOTATION_COLUMNS = [
     "confidence",
     "reviewed_at",
 ]
+
+_MODAL_PATTERN = re.compile(
+    r"\b(?:cannot|can't|couldn't|shouldn't|wouldn't|won't|mightn't|mustn't|shan't|"
+    r"can|could|may|might|must|shall|should|will|would)\b",
+    re.IGNORECASE,
+)
+_WORD_PATTERN = re.compile(r"[A-Za-z]+(?:'[A-Za-z]+)?")
+_MODAL_SUBJECT_PRONOUNS = {"i", "you", "he", "she", "it", "we", "they"}
+_MODAL_SUBJECT_DETERMINERS = {
+    "a",
+    "an",
+    "the",
+    "my",
+    "your",
+    "his",
+    "her",
+    "its",
+    "our",
+    "their",
+    "this",
+    "that",
+    "these",
+    "those",
+    "each",
+    "every",
+    "some",
+    "any",
+}
+_MODAL_INTERVENING_ADVERBS = {
+    "also",
+    "always",
+    "certainly",
+    "definitely",
+    "ever",
+    "just",
+    "never",
+    "possibly",
+    "probably",
+    "rather",
+    "really",
+    "simply",
+    "still",
+}
 
 
 @dataclass(frozen=True)
@@ -88,13 +138,179 @@ def load_tense_annotations_for_entries(
             if analysis is None:
                 missing_count += 1
                 continue
-            result.setdefault(entry_key, {})[f"example_{example_index}"] = analysis
+            public_analysis = dict(analysis)
+            modal_structure = extract_modal_structure(text)
+            if modal_structure:
+                public_analysis["modal_structure"] = modal_structure
+            public_analysis.update(_display_analysis(public_analysis))
+            result.setdefault(entry_key, {})[f"example_{example_index}"] = public_analysis
 
     if missing_count:
         print(f"Tense annotations: {missing_count} example occurrences are not annotated.")
     else:
         print(f"Tense annotations: all {count_unique_examples(entry_list)} unique examples are covered.")
     return result
+
+
+def extract_modal_structure(sentence: str) -> dict | None:
+    """Return the concrete modal and following base verb used in a sentence."""
+    words = [match.group(0) for match in _WORD_PATTERN.finditer(sentence)]
+    modal_index = next(
+        (index for index, word in enumerate(words) if _MODAL_PATTERN.fullmatch(word)),
+        None,
+    )
+    if modal_index is None:
+        return None
+
+    modal_verb = words[modal_index].lower()
+    next_index = modal_index + 1
+    is_question = "?" in sentence
+
+    if is_question and next_index < len(words):
+        subject_start = words[next_index].lower()
+        if subject_start in _MODAL_SUBJECT_PRONOUNS:
+            next_index += 1
+        elif subject_start in _MODAL_SUBJECT_DETERMINERS:
+            # Current vocabulary questions use a determiner plus one subject noun,
+            # such as "Can my child try...?" and "Could a porter help...?".
+            next_index += 2
+
+    if next_index < len(words) and words[next_index].lower() == "not":
+        modal_verb = f"{modal_verb} not"
+        next_index += 1
+
+    while next_index < len(words):
+        candidate = words[next_index].lower()
+        if candidate in _MODAL_INTERVENING_ADVERBS or candidate.endswith("ly"):
+            next_index += 1
+            continue
+        return {
+            "modal_verb": modal_verb,
+            "base_verb": candidate,
+        }
+    return None
+
+
+def validate_annotations_three_passes(
+    entries: Iterable[dict],
+    annotations_path: Path,
+) -> list[dict]:
+    """Validate stored annotations, display rules, and explicit grammar markers."""
+    entry_list = list(entries)
+    records = _unique_example_records(entry_list)
+    validation, missing = validate_annotation_coverage(entry_list, annotations_path)
+    reports = [
+        {
+            "pass": 1,
+            "name": "資料完整性",
+            "checked": len(validation.annotations),
+            "errors": list(validation.errors)
+            + ([f"missing {len(missing)} unique examples"] if missing else []),
+        }
+    ]
+
+    display_errors = []
+    for key, analysis in validation.annotations.items():
+        sentence = str(records.get(key, {}).get("example_en") or "")
+        if not sentence:
+            continue
+        modal_structure = extract_modal_structure(sentence)
+        display = _display_analysis(
+            {
+                **analysis,
+                "modal_structure": modal_structure,
+            }
+        )
+        if not display.get("display_name_zh") or not display.get("display_formula"):
+            display_errors.append(f"{sentence!r}: display label or formula is empty")
+        elif (
+            analysis["name_zh"] == "特殊句型/需確認"
+            and _MODAL_PATTERN.search(sentence)
+            and display["display_name_zh"] != "情態動詞"
+        ):
+            display_errors.append(f"{sentence!r}: modal structure was not converted")
+        elif analysis["name_zh"] in TENSE_DISPLAY_NAMES and (
+            display["display_name_zh"] != TENSE_DISPLAY_NAMES[analysis["name_zh"]]
+            or display["display_formula"] != TENSE_FORMULAS[analysis["name_zh"]]
+        ):
+            display_errors.append(f"{sentence!r}: tense display is not canonical")
+    reports.append(
+        {
+            "pass": 2,
+            "name": "顯示規則",
+            "checked": len(validation.annotations),
+            "errors": display_errors,
+        }
+    )
+
+    grammar_errors = []
+    for key, analysis in validation.annotations.items():
+        sentence = str(records.get(key, {}).get("example_en") or "")
+        if not sentence or analysis["name_zh"] == "特殊句型/需確認":
+            continue
+        highlighted_structure = " ".join(analysis.get("highlights") or [])
+        inferred_name = _infer_explicit_tense(highlighted_structure)
+        if inferred_name and inferred_name != analysis["name_zh"]:
+            grammar_errors.append(
+                f"{sentence!r}: annotated {analysis['name_zh']}, "
+                f"explicit markers indicate {inferred_name}"
+            )
+    reports.append(
+        {
+            "pass": 3,
+            "name": "文法標記交叉檢查",
+            "checked": len(validation.annotations),
+            "errors": grammar_errors,
+        }
+    )
+    return reports
+
+
+def _display_analysis(analysis: dict) -> dict:
+    modal = analysis.get("modal_structure") or {}
+    modal_verb = str(modal.get("modal_verb") or "").strip()
+    base_verb = str(modal.get("base_verb") or "").strip()
+    if (
+        analysis.get("name_zh") == "特殊句型/需確認"
+        and modal_verb
+        and base_verb
+    ):
+        return {
+            "display_name_zh": "情態動詞",
+            "display_formula": f"{modal_verb} + 原形動詞：{base_verb}",
+        }
+
+    name = str(analysis.get("name_zh") or "").strip()
+    return {
+        "display_name_zh": TENSE_DISPLAY_NAMES.get(name, name),
+        "display_formula": TENSE_FORMULAS.get(
+            name,
+            str(analysis.get("formula") or "").strip(),
+        ),
+    }
+
+
+def _infer_explicit_tense(sentence: str) -> str | None:
+    """Infer only tenses with unambiguous auxiliary markers."""
+    normalized = " ".join(word.lower() for word in _WORD_PATTERN.findall(sentence))
+    adverbs = r"(?:[a-z]+ly\s+){0,2}"
+    past_participle = r"(?:been|[a-z]+(?:ed|en))"
+    patterns = [
+        ("未來完成進行式", r"\bwill have been [a-z]+ing\b"),
+        ("未來完成式", rf"\bwill have {adverbs}{past_participle}\b"),
+        ("未來進行式", r"\bwill be [a-z]+ing\b"),
+        ("現在完成進行式", r"\b(?:have|has) been [a-z]+ing\b"),
+        ("過去完成進行式", r"\bhad been [a-z]+ing\b"),
+        ("現在進行式", r"\b(?:am|is|are) [a-z]+ing\b"),
+        ("過去進行式", r"\b(?:was|were) [a-z]+ing\b"),
+        ("現在完成式", rf"\b(?:have|has) {adverbs}{past_participle}\b"),
+        ("過去完成式", rf"\bhad {adverbs}{past_participle}\b"),
+        ("未來簡單式", r"\bwill\b"),
+    ]
+    for name, pattern in patterns:
+        if re.search(pattern, normalized):
+            return name
+    return None
 
 
 def export_pending_annotations(
@@ -401,12 +617,21 @@ def main() -> None:
         return
 
     validation, missing = validate_annotation_coverage(entries, args.annotations)
+    reports = validate_annotations_three_passes(entries, args.annotations)
+    for report in reports:
+        print(
+            f"Pass {report['pass']} ({report['name']}): "
+            f"checked {report['checked']}, errors {len(report['errors'])}."
+        )
+        for error in report["errors"][:20]:
+            print(f"- {error}")
+    errors = [error for report in reports for error in report["errors"]]
     if validation.errors:
         raise SystemExit(_format_validation_errors(validation.errors))
     print(f"Validated {len(validation.annotations)} tense annotations.")
     print(f"Missing {len(missing)} of {count_unique_examples(entries)} unique examples.")
-    if args.require_complete and missing:
-        raise SystemExit("Tense annotations are incomplete. Run export-pending before deployment.")
+    if args.require_complete and errors:
+        raise SystemExit("Tense annotation three-pass validation failed.")
 
 
 if __name__ == "__main__":

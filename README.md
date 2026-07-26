@@ -241,6 +241,11 @@ If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS with `en-US
 
 The site shows each English example tense and bolds the words that express the tense. Reviewed results are stored in `annotations/tense_annotations.csv`; the daily workflow does not call OpenAI or require an API key.
 
+Modal verbs are derived automatically from each English example. A reviewed
+`特殊句型/需確認` annotation that contains a modal is displayed only as its
+concrete modal and base verb, such as `情態動詞：should + 原形動詞：review`.
+The twelve tense labels use the standard `時態：公式` display format.
+
 When new vocabulary CSV files are added:
 
 1. Export only examples that do not have annotations:
@@ -263,7 +268,7 @@ When new vocabulary CSV files are added:
    python tense_analyzer.py validate --require-complete
    ```
 
-The importer rejects unknown sentences, invalid tense names, confidence values outside `0` to `1`, malformed JSON, and highlighted text that is not an exact substring of the English example. Temporary files under `tense_review/` are ignored by Git. GitHub Actions also runs the complete validation before deployment.
+The importer rejects unknown sentences, invalid tense names, confidence values outside `0` to `1`, malformed JSON, and highlighted text that is not an exact substring of the English example. Validation runs three passes: data integrity and coverage, display-rule consistency, and an independent check of explicit auxiliary-verb markers against the reviewed tense. Temporary files under `tense_review/` are ignored by Git. GitHub Actions also runs the complete validation before deployment.
 
 ## TTS free quota reporting
 

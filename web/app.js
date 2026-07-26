@@ -1105,8 +1105,8 @@ function renderHighlightedRanges(value, ranges) {
 
 function renderTranslationWithTense(translation, tense) {
   const text = escapeHtml(translation || "");
-  const name = String(tense?.name_zh || "").trim();
-  const formula = String(tense?.formula || "").trim();
+  const name = String(tense?.display_name_zh || tense?.name_zh || "").trim();
+  const formula = String(tense?.display_formula || tense?.formula || "").trim();
   if (!name || !formula) {
     return text;
   }
