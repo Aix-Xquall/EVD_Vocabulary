@@ -242,6 +242,15 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;", app_js)
         self.assertIn("queue.push(...wordQueue);", app_js)
 
+    def test_single_word_autoplay_waits_three_seconds_before_next_word(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("function playCurrent(startDelayMs = 0)", app_js)
+        self.assertIn("queue[0].delayMs = startDelayMs;", app_js)
+        self.assertIn("nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);", app_js)
+        self.assertIn("function nextWord(autoplay = false, startDelayMs = 0)", app_js)
+        self.assertIn("playCurrent(startDelayMs);", app_js)
+
     def test_example_two_starts_after_two_second_group_delay(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 

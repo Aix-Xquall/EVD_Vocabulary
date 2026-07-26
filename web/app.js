@@ -257,12 +257,15 @@ function scrollActiveWordIntoView() {
   container.scrollTop = Math.max(0, targetTop);
 }
 
-function playCurrent() {
+function playCurrent(startDelayMs = 0) {
   const word = currentWord();
   const queue = buildWordQueue(word);
   if (queue.length === 0 && word.audio) {
     playDirectAudio(word.audio, true);
     return;
+  }
+  if (queue.length > 0 && startDelayMs > 0) {
+    queue[0].delayMs = startDelayMs;
   }
   playQueue(queue, false);
 }
@@ -749,7 +752,7 @@ function finishQueue() {
     playCurrent();
     return;
   }
-  nextWord(state.repeatAll);
+  nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);
 }
 
 function stopQueue() {
@@ -864,7 +867,7 @@ function pausePlayback() {
   updateMediaSessionPlaybackState("paused");
 }
 
-function nextWord(autoplay = false) {
+function nextWord(autoplay = false, startDelayMs = 0) {
   const words = currentWords();
   const lastIndex = words.length - 1;
   if (state.currentIndex >= lastIndex) {
@@ -877,7 +880,7 @@ function nextWord(autoplay = false) {
   }
   render();
   if (autoplay) {
-    playCurrent();
+    playCurrent(startDelayMs);
   }
 }
 
