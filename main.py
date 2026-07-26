@@ -8,6 +8,7 @@ from config import DEFAULT_SETTINGS, Settings
 from hard_words_sync import load_mastered_word_statuses, sync_hard_words
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
+from tense_analyzer import analyze_tenses_for_entries
 from tts_generator import expected_segment_audio_paths, generate_segment_audio_files
 from vocabulary_loader import load_vocabulary
 
@@ -65,6 +66,7 @@ def run_daily_generation(
     else:
         segment_audio = expected_segment_audio_paths(entries, settings)
 
+    tense_analysis = analyze_tenses_for_entries(entries, settings)
     previous_payload = _read_latest_payload(settings.output_dir)
     markdown = build_markdown(entries, target_date)
     payload = build_chapter_payload(
@@ -73,6 +75,7 @@ def run_daily_generation(
         segment_audio,
         hard_words_write_url=settings.hard_words_write_url,
         mastered_word_statuses=mastered_word_statuses,
+        tense_analysis=tense_analysis,
     )
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)

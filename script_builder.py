@@ -91,6 +91,7 @@ def build_chapter_payload(
     segment_audio: Dict[str, Dict[str, dict]],
     hard_words_write_url: str = "",
     mastered_word_statuses: Dict[str, str] | None = None,
+    tense_analysis: Dict[str, Dict[str, dict]] | None = None,
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
@@ -112,9 +113,11 @@ def build_chapter_payload(
             chapters.append(chapter)
 
         chapter = chapters_by_source[chapter_key]
+        entry_audio_key = audio_key_for_entry(entry)
         public_entry = {column: entry.get(column, "") for column in PUBLIC_COLUMNS}
         public_entry["index"] = len(chapter["words"]) + 1
-        public_entry["audio_segments"] = segment_audio.get(audio_key_for_entry(entry), {})
+        public_entry["audio_segments"] = segment_audio.get(entry_audio_key, {})
+        _apply_tense_analysis(public_entry, (tense_analysis or {}).get(entry_audio_key, {}))
         chapter["words"].append(public_entry)
         chapter["word_count"] = len(chapter["words"])
         flat_words.append(public_entry)
@@ -145,6 +148,15 @@ def build_chapter_payload(
     if hard_words_write_url:
         payload["hard_words"] = {"write_url": hard_words_write_url}
     return payload
+
+
+
+
+def _apply_tense_analysis(public_entry: dict, entry_tense_analysis: Dict[str, dict]) -> None:
+    for example_index in (1, 2):
+        analysis = entry_tense_analysis.get(f"example_{example_index}")
+        if analysis:
+            public_entry[f"example_{example_index}_tense"] = analysis
 
 
 def audio_key_for_entry(entry: VocabularyEntry) -> str:

@@ -58,6 +58,9 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("HARD_WORDS_SHEET_CSV_URL: ${{ secrets.HARD_WORDS_SHEET_CSV_URL }}", workflow)
         self.assertIn("HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}", workflow)
         self.assertIn("HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}", workflow)
+        self.assertIn("OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}", workflow)
+        self.assertIn("EVD_TENSE_MODEL: ${{ vars.EVD_TENSE_MODEL || 'gpt-4.1-mini' }}", workflow)
+        self.assertIn("EVD_MAX_TENSE_ANALYSIS_PER_RUN: ${{ vars.EVD_MAX_TENSE_ANALYSIS_PER_RUN || '0' }}", workflow)
 
     def test_hard_words_dispatch_skips_line_notification(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(

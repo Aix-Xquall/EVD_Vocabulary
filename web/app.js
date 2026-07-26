@@ -153,10 +153,10 @@ function render() {
   elements.wordText.textContent = word.word || "Loading";
   elements.pronunciationText.textContent = sanitizePronunciation(word.pronunciation);
   elements.meaningText.textContent = word.chinese_meaning || "";
-  elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word);
-  elements.exampleOneZh.textContent = word.example_1_zh || "";
-  elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word);
-  elements.exampleTwoZh.textContent = word.example_2_zh || "";
+  elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights);
+  elements.exampleOneZh.innerHTML = renderTranslationWithTense(word.example_1_zh, word.example_1_tense);
+  elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word, word.example_2_tense?.highlights);
+  elements.exampleTwoZh.innerHTML = renderTranslationWithTense(word.example_2_zh, word.example_2_tense);
   elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
@@ -1036,24 +1036,85 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-function highlightExampleText(text, target) {
+function highlightExampleText(text, target, tenseHighlights = []) {
   const value = String(text || "");
   const keyword = String(target || "").trim();
-  if (!value || !keyword) {
-    return escapeHtml(value);
+  if (!value) {
+    return "";
   }
-  const matches = findTargetPhraseMatches(value, keyword);
-  if (matches.length === 0) {
-    return escapeHtml(value);
+  const ranges = [];
+  if (keyword) {
+    findTargetPhraseMatches(value, keyword).forEach((match) => {
+      ranges.push({ start: match.start, end: match.end, className: "example-target" });
+    });
   }
-  let highlighted = "";
-  let lastIndex = 0;
-  matches.forEach((match) => {
-    highlighted += escapeHtml(value.slice(lastIndex, match.start));
-    highlighted += `<span class="example-target">${escapeHtml(match.text)}</span>`;
-    lastIndex = match.end;
+  findLiteralHighlightRanges(value, tenseHighlights).forEach((range) => {
+    ranges.push({ ...range, className: "tense-target" });
   });
-  return highlighted + escapeHtml(value.slice(lastIndex));
+  if (ranges.length === 0) {
+    return escapeHtml(value);
+  }
+  return renderHighlightedRanges(value, ranges);
+}
+
+function findLiteralHighlightRanges(value, highlights = []) {
+  const ranges = [];
+  highlights.forEach((highlight) => {
+    const text = String(highlight || "").trim();
+    if (!text) {
+      return;
+    }
+    const pattern = new RegExp(escapeRegExp(text), "gi");
+    let match;
+    while ((match = pattern.exec(value)) !== null) {
+      ranges.push({ start: match.index, end: match.index + match[0].length });
+      if (match.index === pattern.lastIndex) {
+        pattern.lastIndex += 1;
+      }
+    }
+  });
+  return ranges;
+}
+
+function renderHighlightedRanges(value, ranges) {
+  const boundaries = Array.from(new Set([
+    0,
+    value.length,
+    ...ranges.flatMap((range) => [range.start, range.end]),
+  ])).filter((index) => index >= 0 && index <= value.length).sort((first, second) => first - second);
+  let html = "";
+  for (let index = 0; index < boundaries.length - 1; index += 1) {
+    const start = boundaries[index];
+    const end = boundaries[index + 1];
+    const text = value.slice(start, end);
+    if (!text) {
+      continue;
+    }
+    const classNames = Array.from(new Set(
+      ranges
+        .filter((range) => start >= range.start && end <= range.end)
+        .map((range) => range.className),
+    ));
+    const escaped = escapeHtml(text);
+    html += classNames.length > 0
+      ? `<span class="${classNames.join(" ")}">${escaped}</span>`
+      : escaped;
+  }
+  return html;
+}
+
+function renderTranslationWithTense(translation, tense) {
+  const text = escapeHtml(translation || "");
+  const name = String(tense?.name_zh || "").trim();
+  const formula = String(tense?.formula || "").trim();
+  if (!name || !formula) {
+    return text;
+  }
+  return `${text}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 elements.playButton.addEventListener("click", resumeOrPlayCurrent);

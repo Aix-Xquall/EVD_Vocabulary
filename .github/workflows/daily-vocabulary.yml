@@ -143,6 +143,9 @@ jobs:
           HARD_WORDS_SHEET_CSV_URL: ${{ secrets.HARD_WORDS_SHEET_CSV_URL }}
           HARD_WORDS_READ_TOKEN: ${{ secrets.HARD_WORDS_READ_TOKEN }}
           HARD_WORDS_WRITE_URL: ${{ secrets.HARD_WORDS_WRITE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          EVD_TENSE_MODEL: ${{ vars.EVD_TENSE_MODEL || 'gpt-4.1-mini' }}
+          EVD_MAX_TENSE_ANALYSIS_PER_RUN: ${{ vars.EVD_MAX_TENSE_ANALYSIS_PER_RUN || '0' }}
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.force_line_notification }}" == "true" ]]; then
             python main.py --force-line

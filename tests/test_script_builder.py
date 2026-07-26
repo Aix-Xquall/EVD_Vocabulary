@@ -104,6 +104,31 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertEqual(payload["chapters"][1]["words"][0]["audio_segments"]["meaning"]["language"], "zh")
         self.assertEqual(payload["chapters"][2]["words"][0]["audio_segments"]["word"]["src"], "audio/segments/en/coupling.mp3")
 
+    def test_build_chapter_payload_publishes_example_tense_analysis(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\chapter-a.csv"
+        entry["_row_number"] = 1
+
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 6, 24),
+            segment_audio={},
+            tense_analysis={
+                audio_key_for_entry(entry): {
+                    "example_1": {
+                        "name_zh": "現在簡單式",
+                        "formula": "S + V / V-s",
+                        "highlights": ["affects"],
+                        "confidence": 0.9,
+                    }
+                }
+            },
+        )
+
+        word = payload["chapters"][1]["words"][0]
+        self.assertEqual(word["example_1_tense"]["name_zh"], "現在簡單式")
+        self.assertEqual(word["example_1_tense"]["highlights"], ["affects"])
+        self.assertNotIn("example_2_tense", word)
     def test_build_chapter_payload_does_not_publish_complete_chapter_audio(self):
         entry = sample_entry()
         entry["_source_file"] = r"C:\workspace\chapter-a.csv"

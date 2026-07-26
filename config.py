@@ -74,5 +74,14 @@ class Settings:
     hard_words_read_token: str = _text_env("HARD_WORDS_READ_TOKEN")
     hard_words_write_url: str = _text_env("HARD_WORDS_WRITE_URL")
 
+    analyze_tenses: bool = _bool_env("EVD_ANALYZE_TENSES", True)
+    openai_api_key: str = _text_env("OPENAI_API_KEY")
+    tense_model: str = _text_env("EVD_TENSE_MODEL", "gpt-4.1-mini")
+    openai_request_timeout_seconds: int = _int_env("EVD_OPENAI_REQUEST_TIMEOUT_SECONDS", 60)
+    max_tense_analysis_per_run: int = _int_env("EVD_MAX_TENSE_ANALYSIS_PER_RUN", 0)
+    tense_cache_path: Path = Path(
+        _text_env("EVD_TENSE_CACHE_PATH", str(BASE_DIR / "output" / "data" / "tense_cache.json"))
+    )
+
 
 DEFAULT_SETTINGS = Settings()
