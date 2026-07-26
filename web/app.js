@@ -35,6 +35,8 @@ const state = {
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
   playbackQueue: [],
   queueIndex: 0,
+  isPaused: false,
+  pausedQueueIndex: 0,
   isChapterPlayback: false,
   queueTimer: null,
   wakeLock: null,
@@ -150,9 +152,9 @@ function render() {
   elements.wordText.textContent = word.word || "Loading";
   elements.pronunciationText.textContent = sanitizePronunciation(word.pronunciation);
   elements.meaningText.textContent = word.chinese_meaning || "";
-  elements.exampleOneEn.textContent = word.example_1_en || "";
+  elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word);
   elements.exampleOneZh.textContent = word.example_1_zh || "";
-  elements.exampleTwoEn.textContent = word.example_2_en || "";
+  elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word);
   elements.exampleTwoZh.textContent = word.example_2_zh || "";
   elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
@@ -265,6 +267,20 @@ function playCurrent() {
   playQueue(queue, false);
 }
 
+function resumeOrPlayCurrent() {
+  if (state.isPaused && state.playbackQueue.length > 0) {
+    state.pausedQueueIndex = Math.min(state.pausedQueueIndex, state.playbackQueue.length - 1);
+    state.queueIndex = state.pausedQueueIndex;
+    state.playbackQueue[state.queueIndex].delayMs = 0;
+    state.isPaused = false;
+    requestWakeLock();
+    updateMediaSession();
+    playNextQueueSegment();
+    return;
+  }
+  playCurrent();
+}
+
 function playCombinedAudio() {
   const chapterQueue = buildChapterQueue();
   if (chapterQueue.length > 0) {
@@ -347,6 +363,8 @@ function playQueue(queue, isChapterPlayback) {
   stopQueue();
   state.playbackQueue = queue;
   state.queueIndex = 0;
+  state.isPaused = false;
+  state.pausedQueueIndex = 0;
   state.isChapterPlayback = isChapterPlayback;
   requestWakeLock();
   updateMediaSession();
@@ -367,6 +385,11 @@ function playNextQueueSegment() {
       return;
     }
     elements.audioPlayer.src = resolveAssetPath(segment.src);
+    try {
+      elements.audioPlayer.currentTime = 0;
+    } catch (error) {
+      // Some browsers reject seeking before metadata is available.
+    }
     applyPlaybackRate(segment);
     elements.audioPlayer.play().catch(() => {
       showPlaybackError("瀏覽器無法播放這段音訊。");
@@ -388,8 +411,16 @@ function speakTextSegment(segment) {
   const utterance = new SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language));
   utterance.lang = segment.language === "zh" ? "zh-TW" : "en-US";
   utterance.rate = segment.language === "en" ? state.playbackRate : 1;
-  utterance.onend = playNextQueueSegment;
-  utterance.onerror = () => showPlaybackError("瀏覽器語音朗讀失敗。");
+  utterance.onend = () => {
+    if (!state.isPaused) {
+      playNextQueueSegment();
+    }
+  };
+  utterance.onerror = () => {
+    if (!state.isPaused) {
+      showPlaybackError("瀏覽器語音朗讀失敗。");
+    }
+  };
   window.speechSynthesis.speak(utterance);
 }
 
@@ -728,6 +759,8 @@ function stopQueue() {
   }
   state.playbackQueue = [];
   state.queueIndex = 0;
+  state.isPaused = false;
+  state.pausedQueueIndex = 0;
   state.isChapterPlayback = false;
   state.wantsWakeLock = false;
   releaseWakeLock();
@@ -780,12 +813,7 @@ function setupMediaSession() {
   }
   state.mediaSessionReady = true;
   navigator.mediaSession.setActionHandler("play", () => {
-    if (elements.audioPlayer.src && elements.audioPlayer.paused) {
-      requestWakeLock();
-      elements.audioPlayer.play();
-      return;
-    }
-    playCurrent();
+    resumeOrPlayCurrent();
   });
   navigator.mediaSession.setActionHandler("pause", pausePlayback);
   navigator.mediaSession.setActionHandler("nexttrack", () => {
@@ -824,9 +852,13 @@ function pausePlayback() {
     window.clearTimeout(state.queueTimer);
     state.queueTimer = null;
   }
+  if (state.playbackQueue.length > 0) {
+    state.isPaused = true;
+    state.pausedQueueIndex = Math.max(0, state.queueIndex - 1);
+  }
   elements.audioPlayer.pause();
   if (window.speechSynthesis) {
-    window.speechSynthesis.pause();
+    window.speechSynthesis.cancel();
   }
   releaseWakeLock();
   updateMediaSessionPlaybackState("paused");
@@ -1000,7 +1032,30 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
-elements.playButton.addEventListener("click", playCurrent);
+function highlightExampleText(text, target) {
+  const value = String(text || "");
+  const keyword = String(target || "").trim();
+  if (!value || !keyword) {
+    return escapeHtml(value);
+  }
+  const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escapeRegExp(keyword)})(?=$|[^A-Za-z0-9])`, "gi");
+  let highlighted = "";
+  let lastIndex = 0;
+  value.replace(pattern, (match, prefix, matchedText, offset) => {
+    const targetStart = offset + prefix.length;
+    highlighted += escapeHtml(value.slice(lastIndex, targetStart));
+    highlighted += `<span class="example-target">${escapeHtml(matchedText)}</span>`;
+    lastIndex = offset + match.length;
+    return match;
+  });
+  return highlighted ? highlighted + escapeHtml(value.slice(lastIndex)) : escapeHtml(value);
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+elements.playButton.addEventListener("click", resumeOrPlayCurrent);
 elements.pauseButton.addEventListener("click", pausePlayback);
 elements.nextButton.addEventListener("click", () => {
   stopQueue();

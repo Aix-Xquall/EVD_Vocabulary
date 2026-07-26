@@ -168,7 +168,7 @@ h2 {
 
 .current-word h2 {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(1.6rem, 4vw, 3rem);
 }
 
 .pronunciation {
@@ -263,6 +263,11 @@ h2 {
 
 .examples h3 {
   margin: 0 0 12px;
+}
+
+.example-target {
+  color: var(--blue);
+  font-weight: 700;
 }
 
 .translation {

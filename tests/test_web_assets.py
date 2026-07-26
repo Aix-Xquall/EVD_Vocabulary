@@ -158,6 +158,35 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("sanitizePronunciation(word.pronunciation)", app_js)
         self.assertIn('<script src="learning_helpers.js"></script>', index_html)
 
+    def test_current_word_title_uses_smaller_type(self):
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("font-size: clamp(1.6rem, 4vw, 3rem)", styles_css)
+        self.assertNotIn("font-size: clamp(2rem, 6vw, 4rem)", styles_css)
+
+    def test_english_examples_highlight_target_word(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("highlightExampleText(word.example_1_en, word.word)", app_js)
+        self.assertIn("highlightExampleText(word.example_2_en, word.word)", app_js)
+        self.assertIn("function highlightExampleText(text, target)", app_js)
+        self.assertIn('class="example-target"', app_js)
+        self.assertIn(".example-target", styles_css)
+        self.assertIn("color: var(--blue)", styles_css)
+        self.assertIn("font-weight: 700", styles_css)
+
+    def test_pause_then_play_restarts_current_queue_segment(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("isPaused: false", app_js)
+        self.assertIn("pausedQueueIndex: 0", app_js)
+        self.assertIn("function resumeOrPlayCurrent()", app_js)
+        self.assertIn("state.queueIndex = state.pausedQueueIndex;", app_js)
+        self.assertIn("state.pausedQueueIndex = Math.max(0, state.queueIndex - 1);", app_js)
+        self.assertIn("elements.audioPlayer.currentTime = 0;", app_js)
+        self.assertIn('elements.playButton.addEventListener("click", resumeOrPlayCurrent);', app_js)
+
     def test_hard_words_chapter_count_updates_immediately_after_toggle(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
