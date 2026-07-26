@@ -55,6 +55,26 @@ class VocabularyLoaderTests(unittest.TestCase):
             self.assertIn("Electromagnetic Environmental Effects (E3)", entries[0]["example_2_en"])
             self.assertEqual(entries[0]["category"], "Electromagnetic Compatibility (EMC) / Electromagnetic Environmental Effects (E3)")
 
+    def test_load_vocabulary_can_preserve_duplicate_words_for_annotation_coverage(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "a.csv",
+                "1,impedance,/im/,阻抗,First example,例句一,Second example,例句二,EMC,4,0,\n",
+            )
+            write_csv(
+                tmp_path / "b.csv",
+                "2,impedance,/im/,阻抗,Third example,例句三,Fourth example,例句四,EMC,4,0,\n",
+            )
+
+            entries = load_vocabulary(tmp_path, deduplicate_words=False)
+
+            self.assertEqual(len(entries), 2)
+            self.assertEqual(
+                [entry["example_1_en"] for entry in entries],
+                ["First example", "Third example"],
+            )
+
     def test_load_vocabulary_expands_ems_only_in_english_fields(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             tmp_path = Path(temp_dir)

@@ -1,12 +1,16 @@
+import argparse
+import csv
 import hashlib
 import json
-import urllib.error
-import urllib.request
-from pathlib import Path
-from typing import Callable, Dict, Iterable
+import os
+from dataclasses import dataclass
+from datetime import date
+from pathlib import Path, PureWindowsPath
+from typing import Dict, Iterable
 
-from config import Settings
+from config import DEFAULT_SETTINGS, Settings
 from script_builder import audio_key_for_entry
+from vocabulary_loader import load_vocabulary
 
 
 TENSE_NAMES_ZH = [
@@ -38,198 +42,372 @@ TENSE_FORMULAS = {
     "未來進行式": "S + will be + V-ing",
     "未來完成式": "S + will have + p.p.",
     "未來完成進行式": "S + will have been + V-ing",
-    "特殊句型/需確認": "非典型十二時態或需要人工確認",
+    "特殊句型/需確認": "依實際句型判斷",
 }
 
-EMPTY_ANALYSIS = {
-    "name_zh": "",
-    "formula": "",
-    "highlights": [],
-    "confidence": 0.0,
-}
+ANNOTATION_COLUMNS = [
+    "sentence_key",
+    "source_file",
+    "source_id",
+    "word",
+    "example_number",
+    "example_en",
+    "tense_name_zh",
+    "formula",
+    "highlights_json",
+    "confidence",
+    "reviewed_at",
+]
 
-Analyzer = Callable[[str], dict]
+
+@dataclass(frozen=True)
+class AnnotationValidation:
+    annotations: Dict[str, dict]
+    errors: list[str]
 
 
-def analyze_tenses_for_entries(
+def load_tense_annotations_for_entries(
     entries: Iterable[dict],
     settings: Settings,
-    analyzer: Analyzer | None = None,
 ) -> Dict[str, Dict[str, dict]]:
-    cache_path = settings.tense_cache_path
-    cache = _read_cache(cache_path)
-    examples = cache.setdefault("examples", {})
+    """Map reviewed CSV annotations to the payload format used by the website."""
+    entry_list = list(entries)
+    validation = read_tense_annotations(settings.tense_annotations_path)
+    if validation.errors:
+        raise ValueError(_format_validation_errors(validation.errors))
+
     result: Dict[str, Dict[str, dict]] = {}
     missing_count = 0
-
-    for entry in entries:
+    for entry in entry_list:
         entry_key = audio_key_for_entry(entry)
         for example_index in (1, 2):
-            text = str(entry.get(f"example_{example_index}_en") or "").strip()
+            text = _example_text(entry, example_index)
             if not text:
                 continue
-            cache_key = _cache_key(text)
-            cached = examples.get(cache_key)
-            if not cached and _can_analyze(settings, analyzer):
-                if settings.max_tense_analysis_per_run and missing_count >= settings.max_tense_analysis_per_run:
-                    continue
-                try:
-                    sentence_analyzer = analyzer or (lambda sentence: _openai_analyze_sentence(sentence, settings))
-                    analysis = _sanitize_analysis(sentence_analyzer(text), text)
-                except RuntimeError as exc:
-                    print(f"Tense analysis warning: {exc}")
-                    continue
-                examples[cache_key] = {"text": text, "analysis": analysis}
-                cached = examples[cache_key]
+            analysis = validation.annotations.get(sentence_key(text))
+            if analysis is None:
                 missing_count += 1
-            if cached:
-                result.setdefault(entry_key, {})[f"example_{example_index}"] = cached.get("analysis", EMPTY_ANALYSIS)
+                continue
+            result.setdefault(entry_key, {})[f"example_{example_index}"] = analysis
 
-    if missing_count > 0:
-        _write_cache(cache_path, cache)
-        print(f"Tense analysis: cached {missing_count} new examples.")
-    elif not settings.openai_api_key and analyzer is None:
-        print("Tense analysis skipped: OPENAI_API_KEY is not set.")
+    if missing_count:
+        print(f"Tense annotations: {missing_count} example occurrences are not annotated.")
+    else:
+        print(f"Tense annotations: all {count_unique_examples(entry_list)} unique examples are covered.")
     return result
 
 
-def _can_analyze(settings: Settings, analyzer: Analyzer | None) -> bool:
-    return settings.analyze_tenses and (analyzer is not None or bool(settings.openai_api_key))
+def export_pending_annotations(
+    entries: Iterable[dict],
+    annotations_path: Path,
+    output_path: Path,
+) -> int:
+    """Write only examples that are missing from the reviewed annotation CSV."""
+    validation = read_tense_annotations(annotations_path)
+    if validation.errors:
+        raise ValueError(_format_validation_errors(validation.errors))
+
+    records = _unique_example_records(entries)
+    pending = [
+        _pending_row(record)
+        for key, record in records.items()
+        if key not in validation.annotations
+    ]
+    _write_rows(output_path, pending)
+    return len(pending)
 
 
-def _openai_analyze_sentence(sentence: str, settings: Settings) -> dict:
-    payload = {
-        "model": settings.tense_model,
-        "input": [
-            {
-                "role": "system",
-                "content": [
-                    {
-                        "type": "input_text",
-                        "text": (
-                            "Analyze the main tense of one English engineering example sentence. "
-                            "Return Traditional Chinese labels. Choose one of the 12 English tenses when clear. "
-                            "If the sentence is imperative, modal-only, passive without clear tense, fragment, or ambiguous, "
-                            "use 特殊句型/需確認 instead of forcing a wrong tense. "
-                            "highlights must be exact substrings copied from the sentence that show the tense or special pattern."
-                        ),
-                    }
-                ],
-            },
-            {
-                "role": "user",
-                "content": [{"type": "input_text", "text": sentence}],
-            },
-        ],
-        "text": {
-            "format": {
-                "type": "json_schema",
-                "name": "tense_analysis",
-                "strict": True,
-                "schema": _response_schema(),
-            }
-        },
-    }
-    request = urllib.request.Request(
-        "https://api.openai.com/v1/responses",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {settings.openai_api_key}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
+def import_completed_annotations(
+    completed_path: Path,
+    annotations_path: Path,
+    entries: Iterable[dict],
+) -> int:
+    """Validate ChatGPT output and merge it into the reviewed annotation CSV."""
+    known_examples = _unique_example_records(entries)
+    existing = read_tense_annotations(annotations_path)
+    if existing.errors:
+        raise ValueError(_format_validation_errors(existing.errors))
+
+    imported = read_tense_annotations(completed_path)
+    errors = list(imported.errors)
+    completed_rows = _read_csv_rows(completed_path)
+    imported_keys = set(imported.annotations)
+
+    for row_number, row in completed_rows:
+        key = str(row.get("sentence_key") or "").strip()
+        if key and key not in known_examples:
+            errors.append(f"row {row_number}: sentence_key is not present in the current vocabulary")
+
+    if not imported_keys:
+        errors.append("completed file does not contain any valid annotations")
+    if errors:
+        raise ValueError(_format_validation_errors(errors))
+
+    merged = dict(existing.annotations)
+    for key, analysis in imported.annotations.items():
+        merged[key] = analysis
+
+    rows = []
+    for key, record in known_examples.items():
+        analysis = merged.get(key)
+        if analysis is None:
+            continue
+        rows.append(_annotation_row(record, analysis))
+
+    _write_rows(annotations_path, rows)
+    return len(imported_keys)
+
+
+def validate_annotation_coverage(
+    entries: Iterable[dict],
+    annotations_path: Path,
+) -> tuple[AnnotationValidation, list[dict]]:
+    validation = read_tense_annotations(annotations_path)
+    records = _unique_example_records(entries)
+    missing = [record for key, record in records.items() if key not in validation.annotations]
+    return validation, missing
+
+
+def read_tense_annotations(path: Path) -> AnnotationValidation:
+    if not path.exists():
+        return AnnotationValidation({}, [])
+
+    annotations: Dict[str, dict] = {}
+    errors: list[str] = []
+    for row_number, row in _read_csv_rows(path):
+        if not any(str(value or "").strip() for value in row.values()):
+            continue
+        key = str(row.get("sentence_key") or "").strip()
+        sentence = str(row.get("example_en") or "").strip()
+        if not sentence:
+            errors.append(f"row {row_number}: example_en is required")
+            continue
+        expected_key = sentence_key(sentence)
+        if key != expected_key:
+            errors.append(f"row {row_number}: sentence_key does not match example_en")
+            continue
+
+        analysis, row_errors = _analysis_from_row(row, sentence, row_number)
+        errors.extend(row_errors)
+        if row_errors:
+            continue
+        previous = annotations.get(key)
+        if previous is not None and previous != analysis:
+            errors.append(f"row {row_number}: duplicate sentence_key has conflicting analysis")
+            continue
+        annotations[key] = analysis
+    return AnnotationValidation(annotations, errors)
+
+
+def count_unique_examples(entries: Iterable[dict]) -> int:
+    return len(_unique_example_records(entries))
+
+
+def sentence_key(text: str) -> str:
+    normalized = " ".join(text.strip().split())
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def _read_csv_rows(path: Path) -> list[tuple[int, dict]]:
     try:
-        with urllib.request.urlopen(request, timeout=settings.openai_request_timeout_seconds) as response:
-            data = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"OpenAI HTTP {exc.code}: {detail}") from exc
-    except (urllib.error.URLError, TimeoutError) as exc:
-        raise RuntimeError(f"OpenAI request failed: {exc}") from exc
-
-    text = _extract_response_text(data)
-    if not text:
-        raise RuntimeError("OpenAI response did not include JSON text.")
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError as exc:
-        raise RuntimeError(f"OpenAI response was not valid JSON: {text[:200]}") from exc
+        with path.open("r", encoding="utf-8-sig", newline="") as file:
+            reader = csv.DictReader(file)
+            fieldnames = reader.fieldnames or []
+            missing = [column for column in ANNOTATION_COLUMNS if column not in fieldnames]
+            if missing:
+                raise ValueError(f"{path} missing required columns: {', '.join(missing)}")
+            return [(row_number, row) for row_number, row in enumerate(reader, start=2)]
+    except OSError as exc:
+        raise ValueError(f"Unable to read {path}: {exc}") from exc
 
 
-def _response_schema() -> dict:
-    return {
-        "type": "object",
-        "additionalProperties": False,
-        "required": ["name_zh", "formula", "highlights", "confidence"],
-        "properties": {
-            "name_zh": {"type": "string", "enum": TENSE_NAMES_ZH},
-            "formula": {"type": "string"},
-            "highlights": {
-                "type": "array",
-                "items": {"type": "string"},
-            },
-            "confidence": {"type": "number"},
-        },
-    }
-
-
-def _extract_response_text(data: dict) -> str:
-    if isinstance(data.get("output_text"), str):
-        return data["output_text"]
-    for item in data.get("output", []):
-        for content in item.get("content", []):
-            if content.get("type") in {"output_text", "text"} and isinstance(content.get("text"), str):
-                return content["text"]
-    return ""
-
-
-def _sanitize_analysis(value: dict, sentence: str) -> dict:
-    if not isinstance(value, dict):
-        return EMPTY_ANALYSIS.copy()
-    name = str(value.get("name_zh") or "特殊句型/需確認").strip()
+def _analysis_from_row(row: dict, sentence: str, row_number: int) -> tuple[dict, list[str]]:
+    errors = []
+    name = str(row.get("tense_name_zh") or "").strip()
     if name not in TENSE_NAMES_ZH:
-        name = "特殊句型/需確認"
-    formula = str(value.get("formula") or TENSE_FORMULAS[name]).strip() or TENSE_FORMULAS[name]
+        errors.append(f"row {row_number}: invalid tense_name_zh {name!r}")
+
+    formula = str(row.get("formula") or "").strip()
+    if not formula:
+        errors.append(f"row {row_number}: formula is required")
+
     highlights = []
-    for highlight in value.get("highlights") or []:
-        text = str(highlight).strip()
-        if text and text in sentence and text not in highlights:
-            highlights.append(text)
+    raw_highlights = str(row.get("highlights_json") or "").strip()
     try:
-        confidence = float(value.get("confidence", 0.0))
-    except (TypeError, ValueError):
-        confidence = 0.0
-    confidence = min(1.0, max(0.0, confidence))
-    return {
+        parsed_highlights = json.loads(raw_highlights)
+    except json.JSONDecodeError:
+        parsed_highlights = None
+        errors.append(f"row {row_number}: highlights_json must be a JSON array")
+    if isinstance(parsed_highlights, list):
+        for highlight in parsed_highlights:
+            value = str(highlight).strip()
+            if not value:
+                errors.append(f"row {row_number}: highlights_json contains an empty value")
+            elif value not in sentence:
+                errors.append(f"row {row_number}: highlight {value!r} is not an exact substring")
+            elif value not in highlights:
+                highlights.append(value)
+    elif parsed_highlights is not None:
+        errors.append(f"row {row_number}: highlights_json must be a JSON array")
+
+    try:
+        confidence = float(str(row.get("confidence") or "").strip())
+    except ValueError:
+        confidence = -1.0
+    if not 0.0 <= confidence <= 1.0:
+        errors.append(f"row {row_number}: confidence must be between 0 and 1")
+
+    analysis = {
         "name_zh": name,
         "formula": formula,
         "highlights": highlights,
         "confidence": confidence,
     }
+    return analysis, errors
 
 
-def _cache_key(text: str) -> str:
-    normalized = " ".join(text.strip().split())
-    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+def _unique_example_records(entries: Iterable[dict]) -> Dict[str, dict]:
+    entry_list = list(entries)
+    formal_entries = [entry for entry in entry_list if not _is_hard_words_entry(entry)]
+    hard_word_entries = [entry for entry in entry_list if _is_hard_words_entry(entry)]
+    records: Dict[str, dict] = {}
+
+    for entry in formal_entries + hard_word_entries:
+        for example_index in (1, 2):
+            sentence = _example_text(entry, example_index)
+            if not sentence:
+                continue
+            key = sentence_key(sentence)
+            records.setdefault(
+                key,
+                {
+                    "sentence_key": key,
+                    "source_file": _source_name(entry),
+                    "source_id": str(entry.get("id") or "").strip(),
+                    "word": str(entry.get("word") or "").strip(),
+                    "example_number": str(example_index),
+                    "example_en": sentence,
+                },
+            )
+    return records
 
 
-def _read_cache(path: Path) -> dict:
-    if not path.exists():
-        return {"version": 1, "examples": {}}
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        print(f"Tense cache warning: {exc}")
-        return {"version": 1, "examples": {}}
-    if not isinstance(data, dict):
-        return {"version": 1, "examples": {}}
-    data.setdefault("version", 1)
-    if not isinstance(data.get("examples"), dict):
-        data["examples"] = {}
-    return data
+def _pending_row(record: dict) -> dict:
+    row = dict(record)
+    row.update(
+        {
+            "tense_name_zh": "",
+            "formula": "",
+            "highlights_json": "",
+            "confidence": "",
+            "reviewed_at": "",
+        }
+    )
+    return row
 
 
-def _write_cache(path: Path, cache: dict) -> None:
+def _annotation_row(record: dict, analysis: dict) -> dict:
+    row = dict(record)
+    row.update(
+        {
+            "tense_name_zh": analysis["name_zh"],
+            "formula": analysis["formula"],
+            "highlights_json": json.dumps(analysis["highlights"], ensure_ascii=False),
+            "confidence": f"{analysis['confidence']:.2f}",
+            "reviewed_at": date.today().isoformat(),
+        }
+    )
+    return row
+
+
+def _write_rows(path: Path, rows: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary_path = path.with_suffix(path.suffix + ".tmp")
+    with temporary_path.open("w", encoding="utf-8-sig", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=ANNOTATION_COLUMNS)
+        writer.writeheader()
+        writer.writerows(rows)
+    os.replace(temporary_path, path)
+
+
+def _example_text(entry: dict, example_index: int) -> str:
+    return str(entry.get(f"example_{example_index}_en") or "").strip()
+
+
+def _source_name(entry: dict) -> str:
+    source = str(entry.get("_source_file") or "")
+    if "\\" in source:
+        return PureWindowsPath(source).name
+    return Path(source).name
+
+
+def _is_hard_words_entry(entry: dict) -> bool:
+    return _source_name(entry).casefold() == "hard_words.csv"
+
+
+def _format_validation_errors(errors: list[str]) -> str:
+    preview = "\n".join(f"- {error}" for error in errors[:20])
+    remainder = len(errors) - 20
+    if remainder > 0:
+        preview += f"\n- ... and {remainder} more errors"
+    return f"Invalid tense annotations:\n{preview}"
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Manage manually reviewed tense annotations.")
+    parser.add_argument(
+        "--vocabulary-dir",
+        type=Path,
+        default=DEFAULT_SETTINGS.vocabulary_dir,
+        help="Folder containing chapter vocabulary CSV files.",
+    )
+    parser.add_argument(
+        "--annotations",
+        type=Path,
+        default=DEFAULT_SETTINGS.tense_annotations_path,
+        help="Reviewed tense annotation CSV.",
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    export_parser = subparsers.add_parser("export-pending", help="Export examples missing annotations.")
+    export_parser.add_argument(
+        "--output",
+        type=Path,
+        default=Path("tense_review") / "pending_tense_examples.csv",
+    )
+
+    import_parser = subparsers.add_parser("import", help="Validate and merge completed ChatGPT CSV.")
+    import_parser.add_argument("completed_csv", type=Path)
+
+    validate_parser = subparsers.add_parser("validate", help="Validate annotation rows and coverage.")
+    validate_parser.add_argument("--require-complete", action="store_true")
+    return parser
+
+
+def main() -> None:
+    args = _build_parser().parse_args()
+    # Annotation coverage includes every source row, even when the website
+    # intentionally hides a repeated word from a later chapter.
+    entries = load_vocabulary(args.vocabulary_dir, deduplicate_words=False)
+
+    if args.command == "export-pending":
+        count = export_pending_annotations(entries, args.annotations, args.output)
+        print(f"Exported {count} pending examples to {args.output}")
+        return
+
+    if args.command == "import":
+        count = import_completed_annotations(args.completed_csv, args.annotations, entries)
+        print(f"Imported {count} reviewed examples into {args.annotations}")
+        return
+
+    validation, missing = validate_annotation_coverage(entries, args.annotations)
+    if validation.errors:
+        raise SystemExit(_format_validation_errors(validation.errors))
+    print(f"Validated {len(validation.annotations)} tense annotations.")
+    print(f"Missing {len(missing)} of {count_unique_examples(entries)} unique examples.")
+    if args.require_complete and missing:
+        raise SystemExit("Tense annotations are incomplete. Run export-pending before deployment.")
+
+
+if __name__ == "__main__":
+    main()

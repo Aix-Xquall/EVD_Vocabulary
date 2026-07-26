@@ -237,24 +237,33 @@ GOOGLE_CLOUD_PROJECT_ID=your-google-cloud-project-id
 
 If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS with `en-US-Neural2-F`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
 
-## AI tense analysis
+## Manual ChatGPT tense analysis
 
-The site can show each English example tense and bold the tense-related words. Analysis runs during `python main.py`, stores results in `output/data/tense_cache.json`, and reuses cached examples so unchanged sentences are not analyzed again.
+The site shows each English example tense and bolds the words that express the tense. Reviewed results are stored in `annotations/tense_annotations.csv`; the daily workflow does not call OpenAI or require an API key.
 
-Add this Repository Secret before enabling cloud analysis:
+When new vocabulary CSV files are added:
 
-```text
-OPENAI_API_KEY
-```
+1. Export only examples that do not have annotations:
 
-Optional Repository Variables:
+   ```powershell
+   python tense_analyzer.py export-pending
+   ```
 
-```text
-EVD_TENSE_MODEL=gpt-4.1-mini
-EVD_MAX_TENSE_ANALYSIS_PER_RUN=0
-```
+2. Upload `tense_review/pending_tense_examples.csv` to ChatGPT and use the prompt in `docs/tense-analysis-prompt.md`.
+3. Download the completed CSV without changing its headers or original English sentences.
+4. Validate and merge the completed file:
 
-`EVD_MAX_TENSE_ANALYSIS_PER_RUN=0` means no per-run cap. If the key is missing, daily generation still succeeds and only existing cached tense results are shown. Do not commit API keys or put them under `web/` or `output/`.
+   ```powershell
+   python tense_analyzer.py import C:\path\to\completed_tense_examples.csv
+   ```
+
+5. Confirm every current example is covered:
+
+   ```powershell
+   python tense_analyzer.py validate --require-complete
+   ```
+
+The importer rejects unknown sentences, invalid tense names, confidence values outside `0` to `1`, malformed JSON, and highlighted text that is not an exact substring of the English example. Temporary files under `tense_review/` are ignored by Git. GitHub Actions also runs the complete validation before deployment.
 
 ## TTS free quota reporting
 

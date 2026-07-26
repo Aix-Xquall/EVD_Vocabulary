@@ -5810,3505 +5810,7 @@ Safety-critical functions require clear pass-fail criteria.
 
 安全關鍵功能需要明確的通過/失敗判準。
 
-## 265. implementation
-
-**Pronunciation:** /ˌɪmplɪmenˈteɪʃən/
-
-**Chinese meaning:** 實作；落實；執行
-
-**Category:** Requirements & Process
-
-**Difficulty:** 3
-
-**Example 1**
-
-The implementation must be shown on the engineering drawing.
-
-實作方式必須呈現在工程圖面上。
-
-**Example 2**
-
-Good implementation makes the design easier to verify.
-
-良好的落實方式會讓設計更容易驗證。
-
-## 266. flowdown
-
-**Pronunciation:** /ˈfloʊ daʊn/
-
-**Chinese meaning:** 需求下展；要求逐層分配
-
-**Category:** Requirements & Process
-
-**Difficulty:** 4
-
-**Example 1**
-
-Requirement flowdown helps each team understand its design responsibility.
-
-需求下展可幫助各團隊了解自己的設計責任。
-
-**Example 2**
-
-The Electromagnetic Compatibility (EMC) requirement must flow down to the avionics ring design.
-
-EMC 要求必須下展到航電環設計。
-
-## 267. allocated baseline
-
-**Pronunciation:** /ˈæləkeɪtɪd ˈbeɪslaɪn/
-
-**Chinese meaning:** 分配基準；配置基準
-
-**Category:** Requirements & Process
-
-**Difficulty:** 4
-
-**Example 1**
-
-The allocated baseline defines the design-to requirements.
-
-分配基準定義了設計所需符合的要求。
-
-**Example 2**
-
-Each subsystem should follow the allocated baseline.
-
-每個子系統都應遵循分配基準。
-
-## 268. mission requirement
-
-**Pronunciation:** /ˈmɪʃən rɪˈkwaɪərmənt/
-
-**Chinese meaning:** 任務需求
-
-**Category:** Requirements & Process
-
-**Difficulty:** 3
-
-**Example 1**
-
-A mission requirement is usually defined at the highest level.
-
-任務需求通常在最高層級定義。
-
-**Example 2**
-
-The mission requirement drives the system-level Electromagnetic Compatibility (EMC) design.
-
-任務需求會推動系統層級的 EMC 設計。
-
-## 269. system requirement
-
-**Pronunciation:** /ˈsɪstəm rɪˈkwaɪərmənt/
-
-**Chinese meaning:** 系統需求
-
-**Category:** Requirements & Process
-
-**Difficulty:** 3
-
-**Example 1**
-
-The system requirement must be traceable to the mission objective.
-
-系統需求必須能追溯到任務目標。
-
-**Example 2**
-
-A clear system requirement prevents different teams from using different assumptions.
-
-清楚的系統需求可避免不同團隊使用不同假設。
-
-## 270. functional analysis
-
-**Pronunciation:** /ˈfʌŋkʃənəl əˈnæləsɪs/
-
-**Chinese meaning:** 功能分析
-
-**Category:** Requirements & Process
-
-**Difficulty:** 4
-
-**Example 1**
-
-Functional analysis breaks a high-level requirement into detailed functions.
-
-功能分析會把高層級需求拆成詳細功能。
-
-**Example 2**
-
-The team used functional analysis to define bonding interfaces.
-
-團隊使用功能分析來定義接合介面。
-
-## 271. subassembly
-
-**Pronunciation:** /ˌsʌbəˈsembli/
-
-**Chinese meaning:** 次組件；子組裝件
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-Every subassembly should have electrical continuity to the next higher assembly.
-
-每個次組件都應與上一層組件具有電氣連續性。
-
-**Example 2**
-
-The avionics panel is treated as a subassembly of the ring.
-
-航電板可視為航電環的一個次組件。
-
-## 272. interface constraint
-
-**Pronunciation:** /ˈɪntərfeɪs kənˈstreɪnt/
-
-**Chinese meaning:** 介面限制；介面約束
-
-**Category:** Requirements & Process
-
-**Difficulty:** 4
-
-**Example 1**
-
-The interface constraint defines how the equipment is mounted and connected.
-
-介面限制定義設備如何安裝與連接。
-
-**Example 2**
-
-Bonding points should be included as interface constraints.
-
-接合點應納入介面限制中。
-
-## 273. electromagnetic environment
-
-**Pronunciation:** /ɪˌlektroʊmæɡˈnetɪk ɪnˈvaɪrənmənt/
-
-**Chinese meaning:** 電磁環境
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-The launch vehicle is exposed to a severe electromagnetic environment.
-
-運載火箭會暴露在嚴苛的電磁環境中。
-
-**Example 2**
-
-The electromagnetic environment includes onboard and external sources.
-
-電磁環境包含機載與外部來源。
-
-## 274. onboard
-
-**Pronunciation:** /ˈɑːnbɔːrd/
-
-**Chinese meaning:** 機載的； onboard 的
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 3
-
-**Example 1**
-
-Onboard electronics can generate unintentional RF noise.
-
-機載電子設備可能產生非預期 RF 雜訊。
-
-**Example 2**
-
-The onboard power system must not disturb sensitive receivers.
-
-機載電源系統不應干擾敏感接收器。
-
-## 275. external source
-
-**Pronunciation:** /ɪkˈstɜːrnəl sɔːrs/
-
-**Chinese meaning:** 外部來源
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 3
-
-**Example 1**
-
-An external source may couple RF energy into the vehicle harness.
-
-外部來源可能把 RF 能量耦合進載具線路。
-
-**Example 2**
-
-Pad RF transmitters are one possible external source.
-
-發射場 RF 發射機是一種可能的外部來源。
-
-## 276. fault current
-
-**Pronunciation:** /fɔːlt ˈkɜːrənt/
-
-**Chinese meaning:** 故障電流
-
-**Category:** Electrical Safety
-
-**Difficulty:** 4
-
-**Example 1**
-
-The structure must carry fault current until the protection device opens.
-
-結構必須承載故障電流，直到保護裝置動作斷開。
-
-**Example 2**
-
-A small contact area may overheat under fault current.
-
-接觸面積太小可能在故障電流下過熱。
-
-## 277. short circuit
-
-**Pronunciation:** /ˌʃɔːrt ˈsɜːrkɪt/
-
-**Chinese meaning:** 短路
-
-**Category:** Electrical Safety
-
-**Difficulty:** 3
-
-**Example 1**
-
-A short circuit to the chassis can create a shock hazard.
-
-短路到機殼可能造成觸電危害。
-
-**Example 2**
-
-The design should prevent a short circuit from entering the composite structure.
-
-設計應避免短路電流進入複材結構。
-
-## 278. current return path
-
-**Pronunciation:** /ˈkɜːrənt rɪˈtɜːrn pæθ/
-
-**Chinese meaning:** 電流回流路徑
-
-**Category:** Electrical Design
-
-**Difficulty:** 4
-
-**Example 1**
-
-A dedicated current return path is preferred for power circuits.
-
-電源電路最好使用專用的電流回流路徑。
-
-**Example 2**
-
-Do not rely on the composite panel as the current return path.
-
-不要依賴複材板作為電流回流路徑。
-
-## 279. voltage drop
-
-**Pronunciation:** /ˈvoʊltɪdʒ drɑːp/
-
-**Chinese meaning:** 壓降
-
-**Category:** Electrical Design
-
-**Difficulty:** 3
-
-**Example 1**
-
-The voltage drop must be controlled in the power return path.
-
-電源回流路徑中的壓降必須受到控制。
-
-**Example 2**
-
-Excessive voltage drop may reduce equipment margin.
-
-過大的壓降可能降低設備裕度。
-
-## 280. low impedance
-
-**Pronunciation:** /loʊ ɪmˈpiːdəns/
-
-**Chinese meaning:** 低阻抗
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-RF bonding requires a low impedance path, not just a low DC resistance.
-
-RF 接合需要低阻抗路徑，而不只是低直流電阻。
-
-**Example 2**
-
-A wide and short path usually has lower impedance.
-
-寬且短的路徑通常具有較低阻抗。
-
-## 281. low inductance
-
-**Pronunciation:** /loʊ ɪnˈdʌktəns/
-
-**Chinese meaning:** 低電感
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-High-frequency currents require a low inductance return path.
-
-高頻電流需要低電感回流路徑。
-
-**Example 2**
-
-A long narrow strap does not provide low inductance.
-
-又長又窄的帶材無法提供低電感。
-
-## 282. inductance
-
-**Pronunciation:** /ɪnˈdʌktəns/
-
-**Chinese meaning:** 電感
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 3
-
-**Example 1**
-
-Inductance increases the impedance at high frequency.
-
-電感會提高高頻下的阻抗。
-
-**Example 2**
-
-Reducing loop area helps reduce inductance.
-
-減少迴路面積有助於降低電感。
-
-## 283. capacitance
-
-**Pronunciation:** /kəˈpæsɪtəns/
-
-**Chinese meaning:** 電容
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 3
-
-**Example 1**
-
-Capacitance between structures can affect RF impedance.
-
-結構之間的電容會影響 RF 阻抗。
-
-**Example 2**
-
-The jumper and nearby metal can form unwanted capacitance.
-
-跳接線與附近金屬可能形成非預期電容。
-
-## 284. reactance
-
-**Pronunciation:** /riˈæktəns/
-
-**Chinese meaning:** 電抗
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 3
-
-**Example 1**
-
-Reactance changes with frequency.
-
-電抗會隨頻率改變。
-
-**Example 2**
-
-Impedance includes resistance and reactance.
-
-阻抗包含電阻與電抗。
-
-## 285. resistance
-
-**Pronunciation:** /rɪˈzɪstəns/
-
-**Chinese meaning:** 電阻
-
-**Category:** Electrical Measurement
-
-**Difficulty:** 2
-
-**Example 1**
-
-DC resistance is easy to measure with a micro-ohmmeter.
-
-直流電阻可用微歐姆計量測。
-
-**Example 2**
-
-Low resistance does not always mean good RF performance.
-
-低電阻不一定代表良好的 RF 性能。
-
-## 286. micro-ohmmeter
-
-**Pronunciation:** /ˈmaɪkroʊ ˈoʊmˌmiːtər/
-
-**Chinese meaning:** 微歐姆計
-
-**Category:** Verification
-
-**Difficulty:** 4
-
-**Example 1**
-
-A micro-ohmmeter is used to measure very low bonding resistance.
-
-微歐姆計用於量測很低的接合電阻。
-
-**Example 2**
-
-Use a four-wire method with the micro-ohmmeter.
-
-使用微歐姆計時應採用四線式量測。
-
-## 287. RF impedance
-
-**Pronunciation:** /ˌɑːr ˈef ɪmˈpiːdəns/
-
-**Chinese meaning:** RF 阻抗；射頻阻抗
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-RF impedance is more important than DC resistance for high-frequency bonding.
-
-對高頻接合而言，RF 阻抗比直流電阻更重要。
-
-**Example 2**
-
-The reference ring should minimize RF impedance.
-
-參考環應盡量降低 RF 阻抗。
-
-## 288. faying surface
-
-**Pronunciation:** /ˈfeɪɪŋ ˈsɜːrfɪs/
-
-**Chinese meaning:** 接合面；貼合面
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 4
-
-**Example 1**
-
-The faying surface must be cleaned before assembly.
-
-接合面在組裝前必須清潔。
-
-**Example 2**
-
-Paint on the faying surface will degrade the electrical connection.
-
-接合面上的油漆會降低電氣連接品質。
-
-## 289. mating surface
-
-**Pronunciation:** /ˈmeɪtɪŋ ˈsɜːrfɪs/
-
-**Chinese meaning:** 配合面；接觸配合面
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-Both mating surfaces must be free of nonconductive films.
-
-兩個配合面都必須沒有非導電薄膜。
-
-**Example 2**
-
-The connector flange and panel mating surface require preparation.
-
-接頭法蘭與面板配合面需要進行表面準備。
-
-## 290. metal-to-metal contact
-
-**Pronunciation:** /ˈmetəl tə ˈmetəl ˈkɑːntækt/
-
-**Chinese meaning:** 金屬對金屬接觸
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-Metal-to-metal contact is preferred for RF performance.
-
-金屬對金屬接觸對 RF 性能較佳。
-
-**Example 2**
-
-A gasket may be needed when metal-to-metal contact is not reliable.
-
-當金屬對金屬接觸不可靠時，可能需要墊片。
-
-## 291. nonconductive coating
-
-**Pronunciation:** /ˌnɑːnkənˈdʌktɪv ˈkoʊtɪŋ/
-
-**Chinese meaning:** 非導電塗層
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Nonconductive coating must be removed from the bonding area.
-
-非導電塗層必須從接合區域移除。
-
-**Example 2**
-
-A thin nonconductive coating can make a good joint electrically poor.
-
-薄薄的非導電塗層可能讓良好的機械接合變成差的電氣接合。
-
-## 292. foreign matter
-
-**Pronunciation:** /ˈfɔːrən ˈmætər/
-
-**Chinese meaning:** 異物；外來物
-
-**Category:** Manufacturing
-
-**Difficulty:** 3
-
-**Example 1**
-
-Foreign matter on the contact area can increase resistance.
-
-接觸區域上的異物會增加電阻。
-
-**Example 2**
-
-Remove all chips, dust, and foreign matter before assembly.
-
-組裝前應移除所有切屑、灰塵與異物。
-
-## 293. aperture
-
-**Pronunciation:** /ˈæpərtʃər/
-
-**Chinese meaning:** 孔洞；開口；電磁洩漏開口
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-An unbonded seam can become an RF aperture.
-
-未良好接合的接縫可能形成 RF 開口。
-
-**Example 2**
-
-Reducing aperture size improves enclosure performance.
-
-縮小開口尺寸可改善外殼性能。
-
-## 294. threaded fastener
-
-**Pronunciation:** /ˈθredɪd ˈfæsənər/
-
-**Chinese meaning:** 螺紋緊固件
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 4
-
-**Example 1**
-
-A threaded fastener should not be the only current path.
-
-螺紋緊固件不應成為唯一的電流路徑。
-
-**Example 2**
-
-The threaded fastener mainly provides mechanical preload.
-
-螺紋緊固件主要提供機械預緊力。
-
-## 295. rivet
-
-**Pronunciation:** /ˈrɪvɪt/
-
-**Chinese meaning:** 鉚釘
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-Rivets can provide good contact when installed correctly.
-
-鉚釘若正確安裝，可提供良好接觸。
-
-**Example 2**
-
-At least three rivets are often recommended for one junction.
-
-一個接合點通常建議至少使用三個鉚釘。
-
-## 296. preload
-
-**Pronunciation:** /ˈpriːloʊd/
-
-**Chinese meaning:** 預緊力；預載
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 4
-
-**Example 1**
-
-Proper preload keeps the joint stable under vibration.
-
-適當的預緊力可讓接點在振動下保持穩定。
-
-**Example 2**
-
-Loss of preload may increase contact resistance.
-
-預緊力喪失可能增加接觸電阻。
-
-## 297. dynamic environment
-
-**Pronunciation:** /daɪˈnæmɪk ɪnˈvaɪrənmənt/
-
-**Chinese meaning:** 動態環境
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-The joint must maintain contact in a dynamic environment.
-
-接點必須在動態環境下維持接觸。
-
-**Example 2**
-
-Vibration and shock are part of the dynamic environment.
-
-振動與衝擊是動態環境的一部分。
-
-## 298. vibration
-
-**Pronunciation:** /vaɪˈbreɪʃən/
-
-**Chinese meaning:** 振動
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 2
-
-**Example 1**
-
-Vibration can loosen a poorly designed connection.
-
-振動可能使設計不良的連接鬆脫。
-
-**Example 2**
-
-The strap must survive vibration without cracking.
-
-該帶材必須能承受振動而不破裂。
-
-## 299. jumper
-
-**Pronunciation:** /ˈdʒʌmpər/
-
-**Chinese meaning:** 跳接線；跨接線
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-A jumper may be used when direct contact is impractical.
-
-當直接接觸不可行時，可使用跳接線。
-
-**Example 2**
-
-The jumper should be short, wide, and easy to inspect.
-
-跳接線應該短、寬且容易檢查。
-
-## 300. strap
-
-**Pronunciation:** /stræp/
-
-**Chinese meaning:** 帶材；接地/接合帶
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-A flat strap usually has lower inductance than a round wire.
-
-扁平帶材通常比圓線有較低電感。
-
-**Example 2**
-
-Keep the strap as short as possible.
-
-盡可能縮短帶材長度。
-
-## 301. length-to-width ratio
-
-**Pronunciation:** /leŋθ tə wɪdθ ˈreɪʃiˌoʊ/
-
-**Chinese meaning:** 長寬比
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-The length-to-width ratio of the strap should be kept low.
-
-帶材的長寬比應盡量低。
-
-**Example 2**
-
-A high length-to-width ratio increases inductance.
-
-高長寬比會增加電感。
-
-## 302. surface area
-
-**Pronunciation:** /ˈsɜːrfɪs ˈeriə/
-
-**Chinese meaning:** 表面積；接觸面積
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-Larger surface area improves current carrying capability.
-
-較大的表面積可改善載流能力。
-
-**Example 2**
-
-The design should maximize surface area at RF joints.
-
-設計應最大化 RF 接點的接觸面積。
-
-## 303. surface condition
-
-**Pronunciation:** /ˈsɜːrfɪs kənˈdɪʃən/
-
-**Chinese meaning:** 表面狀態
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Surface condition affects contact resistance.
-
-表面狀態會影響接觸電阻。
-
-**Example 2**
-
-Roughness and hardness are part of surface condition.
-
-粗糙度與硬度屬於表面狀態的一部分。
-
-## 304. cleanliness
-
-**Pronunciation:** /ˈkliːnlinəs/
-
-**Chinese meaning:** 清潔度
-
-**Category:** Manufacturing
-
-**Difficulty:** 2
-
-**Example 1**
-
-Cleanliness is essential for reliable electrical contact.
-
-清潔度對可靠電氣接觸非常重要。
-
-**Example 2**
-
-Poor cleanliness can cause unstable measurement results.
-
-清潔度不佳可能造成量測結果不穩定。
-
-## 305. surface preparation
-
-**Pronunciation:** /ˈsɜːrfɪs ˌprepəˈreɪʃən/
-
-**Chinese meaning:** 表面準備；表面處理前準備
-
-**Category:** Manufacturing
-
-**Difficulty:** 3
-
-**Example 1**
-
-Surface preparation must be defined before manufacturing.
-
-表面準備必須在製造前定義清楚。
-
-**Example 2**
-
-The drawing should specify the required surface preparation.
-
-圖面應指定所需的表面準備。
-
-## 306. abrasive material
-
-**Pronunciation:** /əˈbreɪsɪv məˈtɪriəl/
-
-**Chinese meaning:** 研磨材料
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Use abrasive material carefully to avoid damaging the base metal.
-
-使用研磨材料時要小心，避免損傷基材。
-
-**Example 2**
-
-The abrasive material should be compatible with the surface.
-
-研磨材料應與表面材料相容。
-
-## 307. solvent
-
-**Pronunciation:** /ˈsɑːlvənt/
-
-**Chinese meaning:** 溶劑
-
-**Category:** Manufacturing
-
-**Difficulty:** 2
-
-**Example 1**
-
-Use an approved solvent to clean the faying surface.
-
-使用核可的溶劑清潔接合面。
-
-**Example 2**
-
-The solvent must be compatible with the hardware.
-
-溶劑必須與硬體材料相容。
-
-## 308. sealant
-
-**Pronunciation:** /ˈsiːlənt/
-
-**Chinese meaning:** 密封膠；封膠
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Apply sealant around the joint to prevent moisture intrusion.
-
-在接點周圍塗佈密封膠以防止濕氣進入。
-
-**Example 2**
-
-The sealant must not block the electrical contact area.
-
-密封膠不得阻隔電氣接觸區域。
-
-## 309. plating
-
-**Pronunciation:** /ˈpleɪtɪŋ/
-
-**Chinese meaning:** 電鍍；鍍層
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Plating can improve corrosion resistance and electrical contact.
-
-電鍍可改善耐蝕性與電氣接觸。
-
-**Example 2**
-
-The plating material must be selected for galvanic compatibility.
-
-鍍層材料必須依電偶相容性選擇。
-
-## 310. tin plating
-
-**Pronunciation:** /tɪn ˈpleɪtɪŋ/
-
-**Chinese meaning:** 鍍錫
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Tin plating is often used on copper or steel surfaces.
-
-鍍錫常用於銅或鋼表面。
-
-**Example 2**
-
-Tin plating may require special control to prevent whisker growth.
-
-鍍錫可能需要特殊管制以避免錫鬚生長。
-
-## 311. nickel plating
-
-**Pronunciation:** /ˈnɪkəl ˈpleɪtɪŋ/
-
-**Chinese meaning:** 鍍鎳
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Nickel plating can reduce dissimilar-metal corrosion risk.
-
-鍍鎳可降低異種金屬腐蝕風險。
-
-**Example 2**
-
-Aluminum may be nickel-plated before mating with stainless steel.
-
-鋁件與不鏽鋼接合前可進行鍍鎳處理。
-
-## 312. chemical conversion coating
-
-**Pronunciation:** /ˈkemɪkəl kənˈvɜːrʒən ˈkoʊtɪŋ/
-
-**Chinese meaning:** 化學轉化膜；化成處理
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Chemical conversion coating can protect aluminum while maintaining conductivity.
-
-化學轉化膜可保護鋁材，同時維持導電能力。
-
-**Example 2**
-
-The drawing may call out a Class 3 chemical conversion coating.
-
-圖面可標註 Class 3 化學轉化膜。
-
-## 313. passivation
-
-**Pronunciation:** /ˌpæsɪˈveɪʃən/
-
-**Chinese meaning:** 鈍化處理
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Passivation improves the corrosion resistance of stainless steel.
-
-鈍化處理可改善不鏽鋼的耐蝕性。
-
-**Example 2**
-
-Passivation is not primarily an electrical bonding requirement.
-
-鈍化處理主要不是電氣接合要求。
-
-## 314. anodize
-
-**Pronunciation:** /ˈænədaɪz/
-
-**Chinese meaning:** 陽極處理；陽極氧化
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Anodize is usually nonconductive and must be removed from bonding areas.
-
-陽極處理通常不導電，必須從接合區域移除。
-
-**Example 2**
-
-The drawing should mask the contact area before anodize.
-
-圖面應要求在陽極處理前遮蔽接觸區域。
-
-## 315. tin whisker
-
-**Pronunciation:** /tɪn ˈwɪskər/
-
-**Chinese meaning:** 錫鬚
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Tin whisker growth can create reliability problems.
-
-錫鬚生長可能造成可靠度問題。
-
-**Example 2**
-
-Lead-alloyed tin may be used to reduce tin whisker risk.
-
-含鉛合金錫可用於降低錫鬚風險。
-
-## 316. corrosion control
-
-**Pronunciation:** /kəˈroʊʒən kənˈtroʊl/
-
-**Chinese meaning:** 腐蝕控制
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Corrosion control must be considered together with electrical contact.
-
-腐蝕控制必須與電氣接觸一起考量。
-
-**Example 2**
-
-Poor corrosion control will degrade the joint over time.
-
-腐蝕控制不佳會讓接點隨時間劣化。
-
-## 317. galvanic series
-
-**Pronunciation:** /ɡælˈvænɪk ˈsɪriːz/
-
-**Chinese meaning:** 電偶序列；金屬電位序
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-The galvanic series helps compare material compatibility.
-
-電偶序列可用來比較材料相容性。
-
-**Example 2**
-
-Materials far apart in the galvanic series need special protection.
-
-在電偶序列中相距很遠的材料需要特殊防護。
-
-## 318. cathode
-
-**Pronunciation:** /ˈkæθoʊd/
-
-**Chinese meaning:** 陰極
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Carbon-fiber composites often behave as the cathode in a galvanic couple.
-
-碳纖複材在電偶對中常表現為陰極。
-
-**Example 2**
-
-The cathode is usually the more noble material.
-
-陰極通常是較惰性、較耐蝕的材料。
-
-## 319. anode
-
-**Pronunciation:** /ˈænoʊd/
-
-**Chinese meaning:** 陽極
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-The anode is the material that tends to corrode.
-
-陽極是較容易腐蝕的材料。
-
-**Example 2**
-
-Protect the anode when dissimilar metals cannot be avoided.
-
-當無法避免異種金屬時，應保護陽極材料。
-
-## 320. electrolyte
-
-**Pronunciation:** /ɪˈlektroʊlaɪt/
-
-**Chinese meaning:** 電解質
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Moisture can act as an electrolyte in galvanic corrosion.
-
-濕氣可在電偶腐蝕中扮演電解質。
-
-**Example 2**
-
-Preventing electrolyte intrusion helps prevent corrosion.
-
-防止電解質侵入有助於避免腐蝕。
-
-## 321. dissimilar metal
-
-**Pronunciation:** /dɪˈsɪmələr ˈmetəl/
-
-**Chinese meaning:** 異種金屬
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Dissimilar metal contact should be reviewed by materials engineers.
-
-異種金屬接觸應由材料工程師審查。
-
-**Example 2**
-
-Use plating or sealing when dissimilar metal contact is unavoidable.
-
-當無法避免異種金屬接觸時，應使用鍍層或密封處理。
-
-## 322. moisture
-
-**Pronunciation:** /ˈmɔɪstʃər/
-
-**Chinese meaning:** 濕氣；水分
-
-**Category:** Materials & Surface
-
-**Difficulty:** 2
-
-**Example 1**
-
-Moisture can accelerate corrosion at the joint.
-
-濕氣會加速接點腐蝕。
-
-**Example 2**
-
-Seal the joint to keep moisture out.
-
-密封接點以防止濕氣進入。
-
-## 323. delamination
-
-**Pronunciation:** /diːˌlæməˈneɪʃən/
-
-**Chinese meaning:** 分層；剝離
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-High current at a fastener can cause local heating and delamination.
-
-緊固件處的高電流可能造成局部發熱與分層。
-
-**Example 2**
-
-Composite delamination is a serious structural concern.
-
-複材分層是嚴重的結構問題。
-
-## 324. volume resistivity
-
-**Pronunciation:** /ˈvɑːljuːm rɪˌzɪstɪˈvɪti/
-
-**Chinese meaning:** 體積電阻率
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-Volume resistivity determines whether a material can dissipate charge.
-
-體積電阻率決定材料是否能釋放電荷。
-
-**Example 2**
-
-Nonmetallic tubing may need a volume resistivity limit.
-
-非金屬管路可能需要體積電阻率限制。
-
-## 325. conductivity
-
-**Pronunciation:** /ˌkɑːndʌkˈtɪvəti/
-
-**Chinese meaning:** 導電率；導電性
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Graphite epoxy has much lower conductivity than aluminum.
-
-石墨環氧材料的導電性遠低於鋁。
-
-**Example 2**
-
-Additional metal paths can improve overall conductivity.
-
-額外金屬路徑可改善整體導電性。
-
-## 326. gasket
-
-**Pronunciation:** /ˈɡæskɪt/
-
-**Chinese meaning:** 墊片；密封墊
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-A conductive gasket can improve seam performance.
-
-導電墊片可改善接縫性能。
-
-**Example 2**
-
-The gasket must be compressed within the specified range.
-
-墊片必須壓縮在規定範圍內。
-
-## 327. compression set
-
-**Pronunciation:** /kəmˈpreʃən set/
-
-**Chinese meaning:** 壓縮永久變形
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 4
-
-**Example 1**
-
-Compression set affects whether a gasket can be reused.
-
-壓縮永久變形會影響墊片是否可重複使用。
-
-**Example 2**
-
-Low compression set is important for removable covers.
-
-低壓縮永久變形對可拆蓋板很重要。
-
-## 328. chassis
-
-**Pronunciation:** /ˈʃæsi/
-
-**Chinese meaning:** 機殼；底盤
-
-**Category:** Electrical Safety
-
-**Difficulty:** 3
-
-**Example 1**
-
-The chassis should be connected to the reference plane.
-
-機殼應連接到參考平面。
-
-**Example 2**
-
-A powered chassis must have a safe fault-current path.
-
-有供電的機殼必須具有安全的故障電流路徑。
-
-## 329. reference plane
-
-**Pronunciation:** /ˈrefərəns pleɪn/
-
-**Chinese meaning:** 參考平面
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-The copper layer acts as a local reference plane.
-
-銅層可作為局部參考平面。
-
-**Example 2**
-
-All critical shields should return to the reference plane.
-
-所有關鍵屏蔽都應回到參考平面。
-
-## 330. equipotential
-
-**Pronunciation:** /ˌiːkwɪpəˈtenʃəl/
-
-**Chinese meaning:** 等電位的
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-The goal is to make the structure as equipotential as practical.
-
-目標是讓結構盡可能接近等電位。
-
-**Example 2**
-
-An equipotential reference reduces unwanted voltage differences.
-
-等電位參考可減少非預期電位差。
-
-## 331. equipment rack
-
-**Pronunciation:** /ɪˈkwɪpmənt ræk/
-
-**Chinese meaning:** 設備機架；設備架
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-The avionics panel can be treated like a small equipment rack.
-
-航電板可視為小型設備機架。
-
-**Example 2**
-
-An equipment rack should provide defined mounting and bonding points.
-
-設備機架應提供明確的安裝與接合點。
-
-## 332. mounting bracket
-
-**Pronunciation:** /ˈmaʊntɪŋ ˈbrækɪt/
-
-**Chinese meaning:** 安裝支架
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-The mounting bracket must have a defined electrical path.
-
-安裝支架必須有明確的電氣路徑。
-
-**Example 2**
-
-Do not rely on a painted mounting bracket for RF return.
-
-不要依賴有塗裝的安裝支架作為 RF 回流。
-
-## 333. mounting surface
-
-**Pronunciation:** /ˈmaʊntɪŋ ˈsɜːrfɪs/
-
-**Chinese meaning:** 安裝面
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-The mounting surface should be prepared before the connector is installed.
-
-接頭安裝前，安裝面應先完成表面準備。
-
-**Example 2**
-
-A painted mounting surface may isolate the chassis.
-
-有塗裝的安裝面可能會使機殼電氣隔離。
-
-## 334. pyrotechnics
-
-**Pronunciation:** /ˌpaɪroʊˈteknɪks/
-
-**Chinese meaning:** 火工品；爆炸螺栓等火工裝置
-
-**Category:** System Safety
-
-**Difficulty:** 4
-
-**Example 1**
-
-Pyrotechnics require special attention to prevent accidental ignition.
-
-火工品需要特別注意，以避免意外點燃。
-
-**Example 2**
-
-Wires to pyrotechnics should be carefully shielded and terminated.
-
-連到火工品的線路應仔細屏蔽並妥善終端處理。
-
-## 335. arc discharge
-
-**Pronunciation:** /ɑːrk ˈdɪstʃɑːrdʒ/
-
-**Chinese meaning:** 電弧放電
-
-**Category:** System Safety
-
-**Difficulty:** 4
-
-**Example 1**
-
-High impedance at a joint can cause arc discharge.
-
-接點高阻抗可能造成電弧放電。
-
-**Example 2**
-
-Arc discharge near fuel or pyrotechnics is dangerous.
-
-燃料或火工品附近的電弧放電很危險。
-
-## 336. workmanship
-
-**Pronunciation:** /ˈwɜːrkmənʃɪp/
-
-**Chinese meaning:** 工藝品質；施工品質
-
-**Category:** Manufacturing
-
-**Difficulty:** 3
-
-**Example 1**
-
-Resistance measurement can verify workmanship quality.
-
-電阻量測可驗證施工品質。
-
-**Example 2**
-
-Poor workmanship may create an intermittent connection.
-
-施工品質不良可能造成間歇性連接。
-
-## 337. quality record
-
-**Pronunciation:** /ˈkwɑːləti ˈrekərd/
-
-**Chinese meaning:** 品質紀錄
-
-**Category:** Verification
-
-**Difficulty:** 3
-
-**Example 1**
-
-Quality records should include bonding resistance measurements.
-
-品質紀錄應包含接合電阻量測值。
-
-**Example 2**
-
-The quality record supports final acceptance.
-
-品質紀錄可支援最終驗收。
-
-## 338. engineering drawing
-
-**Pronunciation:** /ˌendʒɪˈnɪrɪŋ ˈdrɔːɪŋ/
-
-**Chinese meaning:** 工程圖面
-
-**Category:** Drawing & Documentation
-
-**Difficulty:** 3
-
-**Example 1**
-
-The engineering drawing must identify each bonded area.
-
-工程圖面必須標示每個接合區域。
-
-**Example 2**
-
-Manufacturing follows the notes on the engineering drawing.
-
-製造單位依照工程圖面上的註記執行。
-
-## 339. drawing note
-
-**Pronunciation:** /ˈdrɔːɪŋ noʊt/
-
-**Chinese meaning:** 圖面註記
-
-**Category:** Drawing & Documentation
-
-**Difficulty:** 3
-
-**Example 1**
-
-A drawing note should specify cleaning and resistance requirements.
-
-圖面註記應指定清潔與電阻要求。
-
-**Example 2**
-
-Use a local drawing note for a special bonding location.
-
-對特殊接合位置使用局部圖面註記。
-
-## 340. general note
-
-**Pronunciation:** /ˈdʒenrəl noʊt/
-
-**Chinese meaning:** 一般註記
-
-**Category:** Drawing & Documentation
-
-**Difficulty:** 2
-
-**Example 1**
-
-A general note applies to the entire drawing.
-
-一般註記適用於整張圖面。
-
-**Example 2**
-
-The general note can define the default cleaning requirement.
-
-一般註記可定義預設清潔要求。
-
-## 341. local note
-
-**Pronunciation:** /ˈloʊkəl noʊt/
-
-**Chinese meaning:** 局部註記
-
-**Category:** Drawing & Documentation
-
-**Difficulty:** 2
-
-**Example 1**
-
-A local note applies only to a specific location.
-
-局部註記只適用於特定位置。
-
-**Example 2**
-
-Use a local note when one joint has a different resistance limit.
-
-當某個接點有不同電阻限制時，使用局部註記。
-
-## 342. flag note
-
-**Pronunciation:** /flæɡ noʊt/
-
-**Chinese meaning:** 旗標註記；符號註記
-
-**Category:** Drawing & Documentation
-
-**Difficulty:** 3
-
-**Example 1**
-
-A flag note can be reused at multiple drawing locations.
-
-旗標註記可重複用於圖面多個位置。
-
-**Example 2**
-
-The flag note identifies surfaces that require preparation.
-
-旗標註記可標示需要表面準備的位置。
-
-## 343. verification matrix
-
-**Pronunciation:** /ˌverɪfɪˈkeɪʃən ˈmeɪtrɪks/
-
-**Chinese meaning:** 驗證矩陣
-
-**Category:** Verification
-
-**Difficulty:** 4
-
-**Example 1**
-
-A verification matrix maps each bonding path to a test method.
-
-驗證矩陣會將每條接合路徑對應到測試方法。
-
-**Example 2**
-
-The avionics ring should have its own verification matrix.
-
-航電環應建立自己的驗證矩陣。
-
-## 344. work instruction
-
-**Pronunciation:** /wɜːrk ɪnˈstrʌkʃən/
-
-**Chinese meaning:** 作業指導書；工作指令
-
-**Category:** Manufacturing
-
-**Difficulty:** 3
-
-**Example 1**
-
-The work instruction should describe how to prepare the surface.
-
-作業指導書應說明如何進行表面準備。
-
-**Example 2**
-
-Do not leave critical bonding steps only in the presentation.
-
-不要只把關鍵接合步驟留在簡報中。
-
-## 345. traceable
-
-**Pronunciation:** /ˈtreɪsəbəl/
-
-**Chinese meaning:** 可追溯的
-
-**Category:** Requirements & Process
-
-**Difficulty:** 3
-
-**Example 1**
-
-Each measurement result should be traceable to a specific joint.
-
-每個量測結果都應可追溯到特定接點。
-
-**Example 2**
-
-Requirements should be traceable from system level to design drawings.
-
-要求應可從系統層級追溯到設計圖面。
-
-## 346. margin
-
-**Pronunciation:** /ˈmɑːrdʒɪn/
-
-**Chinese meaning:** 裕度；安全餘裕
-
-**Category:** Engineering General
-
-**Difficulty:** 2
-
-**Example 1**
-
-The design should keep enough electrical and thermal margin.
-
-設計應保留足夠的電氣與熱裕度。
-
-**Example 2**
-
-A poor bonding path can reduce Electromagnetic Compatibility (EMC) margin.
-
-不良接合路徑可能降低 EMC 裕度。
-
-## 347. mitigation
-
-**Pronunciation:** /ˌmɪtɪˈɡeɪʃən/
-
-**Chinese meaning:** 緩解；降低風險措施
-
-**Category:** Engineering General
-
-**Difficulty:** 3
-
-**Example 1**
-
-Corrosion mitigation must be included in the design.
-
-設計中必須包含腐蝕緩解措施。
-
-**Example 2**
-
-The copper reference ring is one mitigation for RF coupling.
-
-銅參考環是降低 RF 耦合的一項措施。
-
-## 348. assumption
-
-**Pronunciation:** /əˈsʌmpʃən/
-
-**Chinese meaning:** 假設
-
-**Category:** Engineering General
-
-**Difficulty:** 2
-
-**Example 1**
-
-The table values are assumptions, not final acceptance limits.
-
-表格數值是假設，不是最終驗收限制。
-
-**Example 2**
-
-Every design assumption should be reviewed with the consultant.
-
-每個設計假設都應與顧問確認。
-
-## 349. dictate
-
-**Pronunciation:** /dɪkˈteɪt/
-
-**Chinese meaning:** 規定；命令；指定
-
-**Category:** Requirements & Process
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-The designer does not need to dictate how manufacturing performs the bonding task.
-
-設計師不需要規定製造單位如何執行 bonding 作業。
-
-**Example 2**
-
-The specification may dictate the required test method.
-
-規範可能會指定所需的測試方法。
-
-## 350. entail
-
-**Pronunciation:** /ɪnˈteɪl/
-
-**Chinese meaning:** 涉及；包含；需要
-
-**Category:** Requirements & Process
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-The engineer should understand what the task entails.
-
-工程師應了解這項任務包含哪些工作。
-
-**Example 2**
-
-This design change may entail additional verification.
-
-這項設計變更可能需要額外驗證。
-
-## 351. plumbing
-
-**Pronunciation:** /ˈplʌmɪŋ/
-
-**Chinese meaning:** 管路；管線系統
-
-**Category:** Vehicle Structure & Systems
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Metallic plumbing can carry lightning current.
-
-金屬管路可能承載雷擊電流。
-
-**Example 2**
-
-The fuel plumbing must be reviewed for bonding continuity.
-
-燃料管路必須審查 bonding 連續性。
-
-## 352. strike
-
-**Pronunciation:** /straɪk/
-
-**Chinese meaning:** 擊中；雷擊；打擊
-
-**Category:** Lightning & Transients
-
-**Difficulty:** Basic
-
-**Example 1**
-
-Lightning strikes can induce large currents in the structure.
-
-雷擊可能在結構中感應大電流。
-
-**Example 2**
-
-A strike path should stay outside the vehicle.
-
-雷擊路徑應盡量保持在載具外部。
-
-## 353. essential
-
-**Pronunciation:** /ɪˈsenʃəl/
-
-**Chinese meaning:** 必要的；不可或缺的
-
-**Category:** General Engineering
-
-**Difficulty:** Basic
-
-**Example 1**
-
-Electrical continuity is essential across mechanical joints.
-
-機械接合處的電氣連續性是必要的。
-
-**Example 2**
-
-A low-impedance path is essential for RF bonding.
-
-低阻抗路徑對 RF bonding 是必要的。
-
-## 354. achieve
-
-**Pronunciation:** /əˈtʃiːv/
-
-**Chinese meaning:** 達成；實現
-
-**Category:** Requirements & Process
-
-**Difficulty:** Basic
-
-**Example 1**
-
-Proper bonding helps achieve the shielding objective.
-
-適當的 bonding 有助於達成 shielding 目標。
-
-**Example 2**
-
-To achieve low resistance, remove nonconductive coatings from the faying surface.
-
-為達成低電阻，需移除接合面的非導電塗層。
-
-## 355. inadvertently
-
-**Pronunciation:** /ˌɪnədˈvɜːrtəntli/
-
-**Chinese meaning:** 無意地；不慎地
-
-**Category:** Safety & Fault Protection
-
-**Difficulty:** Advanced
-
-**Example 1**
-
-Primary power may be inadvertently shorted to the enclosure.
-
-主電源可能不慎短路到外殼。
-
-**Example 2**
-
-Do not place the strap where it can be inadvertently damaged.
-
-不要將 strap 放在可能被不慎損壞的位置。
-
-## 356. characteristics
-
-**Pronunciation:** /ˌkærəktəˈrɪstɪks/
-
-**Chinese meaning:** 特性；特徵
-
-**Category:** General Engineering
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Each bond class has different characteristics.
-
-每一種 bond class 都有不同特性。
-
-**Example 2**
-
-Material characteristics affect bonding performance.
-
-材料特性會影響 bonding 性能。
-
-## 357. incorporate
-
-**Pronunciation:** /ɪnˈkɔːrpəreɪt/
-
-**Chinese meaning:** 納入；整合；包含
-
-**Category:** Design Integration
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-The designer must incorporate mechanical and thermal requirements.
-
-設計師必須納入機械與熱要求。
-
-**Example 2**
-
-The panel design should incorporate dedicated bonding points.
-
-板件設計應納入專用 bonding 點。
-
-## 358. compromise
-
-**Pronunciation:** /ˈkɑːmprəmaɪz/
-
-**Chinese meaning:** 妥協；折衷；取捨
-
-**Category:** Design Tradeoff
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-The final design may require a compromise between weight and Electromagnetic Compatibility (EMC) margin.
-
-最終設計可能需要在重量和 EMC 裕度之間取捨。
-
-**Example 2**
-
-Avoid a compromise that weakens the fault-current path.
-
-避免做出會削弱故障電流路徑的妥協。
-
-## 359. especially
-
-**Pronunciation:** /ɪˈspeʃəli/
-
-**Chinese meaning:** 尤其；特別是
-
-**Category:** General English
-
-**Difficulty:** Basic
-
-**Example 1**
-
-Large systems, especially those with EMI concerns, need a dedicated return.
-
-大型系統，尤其是有 EMI 疑慮者，需要專用回流。
-
-**Example 2**
-
-This is especially important near fuel systems.
-
-這在燃料系統附近尤其重要。
-
-## 360. dedicated
-
-**Pronunciation:** /ˈdedɪkeɪtɪd/
-
-**Chinese meaning:** 專用的；專門的
-
-**Category:** Power & Return Path
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Use a dedicated power return instead of relying on structure.
-
-使用專用電源回流，而不是依賴結構。
-
-**Example 2**
-
-A dedicated bonding pad simplifies inspection.
-
-專用 bonding pad 可簡化檢查。
-
-## 361. coordination
-
-**Pronunciation:** /koʊˌɔːrdɪˈneɪʃən/
-
-**Chinese meaning:** 協調；協同作業
-
-**Category:** Team Coordination
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Coordination with the power distribution designer may be required.
-
-可能需要與電源分配設計工程師協調。
-
-**Example 2**
-
-Good coordination between Electromagnetic Compatibility (EMC) and structural teams reduces rework.
-
-EMC 與結構團隊良好協調可減少重工。
-
-## 362. intent of
-
-**Pronunciation:** /ɪnˈtent əv/
-
-**Chinese meaning:** ……的目的；……的意圖
-
-**Category:** Requirements & Process
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-The intent of a Class H bond is to prevent shock hazards.
-
-Class H bond 的目的在於防止電擊危害。
-
-**Example 2**
-
-Understand the intent of the requirement before selecting a method.
-
-選擇方法前，要先理解要求的目的。
-
-## 363. electrical
-
-**Pronunciation:** /ɪˈlektrɪkəl/
-
-**Chinese meaning:** 電氣的；電的
-
-**Category:** Electrical Engineering
-
-**Difficulty:** Basic
-
-**Example 1**
-
-Electrical equipment must be bonded to structure.
-
-電氣設備必須 bond 到結構。
-
-**Example 2**
-
-The electrical path should not depend on paint or adhesive.
-
-電氣路徑不應依賴油漆或膠材。
-
-## 364. shock hazard
-
-**Pronunciation:** /ʃɑːk ˈhæzərd/
-
-**Chinese meaning:** 電擊危害；觸電風險
-
-**Category:** Safety & Fault Protection
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-A floating chassis can become a shock hazard.
-
-浮接 chassis 可能變成電擊危害。
-
-**Example 2**
-
-Class H bonding reduces the shock hazard during a fault.
-
-Class H bonding 可降低故障時的電擊危害。
-
-## 365. historically
-
-**Pronunciation:** /hɪˈstɔːrɪkəli/
-
-**Chinese meaning:** 歷史上；過去以來
-
-**Category:** Technical Writing
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Historically, Class R bonding has been associated with 2.5 milliohms.
-
-歷史上，Class R bonding 通常與 2.5 mΩ 相關。
-
-**Example 2**
-
-Historically, DC resistance was used as a workmanship indicator.
-
-過去以來，DC 電阻常被用作品質指標。
-
-## 366. associated
-
-**Pronunciation:** /əˈsoʊʃieɪtɪd/
-
-**Chinese meaning:** 相關聯的；伴隨的
-
-**Category:** Technical Writing
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Class R bonding is associated with RF suppression performance.
-
-Class R bonding 與 RF 抑制性能相關。
-
-**Example 2**
-
-The risk is associated with high current and fast rise time.
-
-此風險與高電流及快速上升時間相關。
-
-## 367. unfortunately
-
-**Pronunciation:** /ʌnˈfɔːrtʃənətli/
-
-**Chinese meaning:** 不幸的是；可惜的是
-
-**Category:** Technical Writing
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Unfortunately, low DC resistance does not guarantee low RF impedance.
-
-可惜的是，低 DC 電阻不保證低 RF 阻抗。
-
-**Example 2**
-
-Unfortunately, long straps can behave poorly at high frequency.
-
-可惜的是，長 strap 在高頻下表現可能很差。
-
-## 368. relatively easy with
-
-**Pronunciation:** /ˈrelətɪvli ˈiːzi wɪð/
-
-**Chinese meaning:** 使用……相對容易
-
-**Category:** Technical Writing
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Measuring DC resistance is relatively easy with a micro-ohmmeter.
-
-使用 micro-ohmmeter 量測 DC 電阻相對容易。
-
-**Example 2**
-
-Bond inspection is relatively easy with clear drawing notes.
-
-有清楚圖面註記時，bond 檢查相對容易。
-
-## 369. realistically
-
-**Pronunciation:** /ˌriːəˈlɪstɪkli/
-
-**Chinese meaning:** 實際上；務實地
-
-**Category:** Design Feasibility
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-A direct RF bond may not be realistically obtained with shock mounts.
-
-使用 shock mount 時，直接 RF bond 可能實際上無法達成。
-
-**Example 2**
-
-Choose a method that can be realistically manufactured and inspected.
-
-選擇能實際製造與檢查的方法。
-
-## 370. interference
-
-**Pronunciation:** /ˌɪntərˈfɪrəns/
-
-**Chinese meaning:** 干擾
-
-**Category:** Electromagnetic Compatibility (EMC) / EMI
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-High currents can create electromagnetic interference.
-
-高電流可能產生電磁干擾。
-
-**Example 2**
-
-Shielding reduces interference coupled into sensitive equipment.
-
-Shielding 可降低耦合進敏感設備的干擾。
-
-## 371. extremity
-
-**Pronunciation:** /ɪkˈstreməti/
-
-**Chinese meaning:** 端部；末端
-
-**Category:** Lightning & Transients
-
-**Difficulty:** Advanced
-
-**Example 1**
-
-Lightning current may enter one extremity of the vehicle.
-
-雷擊電流可能從載具一端進入。
-
-**Example 2**
-
-Bonding should provide a current path from one extremity to another.
-
-Bonding 應提供從一端到另一端的電流路徑。
-
-## 372. spark
-
-**Pronunciation:** /spɑːrk/
-
-**Chinese meaning:** 火花；產生火花
-
-**Category:** Lightning & Transients
-
-**Difficulty:** Basic
-
-**Example 1**
-
-A poor joint can create a spark during a lightning event.
-
-不良接合可能在雷擊事件中產生火花。
-
-**Example 2**
-
-Sparks must not jump between metallic structures near fuel.
-
-火花不得在燃料附近的金屬結構間跳躍。
-
-## 373. particularly
-
-**Pronunciation:** /pərˈtɪkjələrli/
-
-**Chinese meaning:** 特別地；尤其
-
-**Category:** General English
-
-**Difficulty:** Basic
-
-**Example 1**
-
-This is particularly important around fuel and pyrotechnics.
-
-這在燃料與火工品周圍特別重要。
-
-**Example 2**
-
-Class R bonding is particularly sensitive to strap length.
-
-Class R bonding 對 strap 長度特別敏感。
-
-## 374. around fuel
-
-**Pronunciation:** /əˈraʊnd ˈfjuːəl/
-
-**Chinese meaning:** 在燃料周圍；燃料附近
-
-**Category:** Safety & Hazardous Areas
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Bonding near areas around fuel requires special attention.
-
-燃料周圍區域的 bonding 需要特別注意。
-
-**Example 2**
-
-Avoid sparks around fuel during fault or lightning conditions.
-
-在故障或雷擊條件下，應避免燃料周圍產生火花。
-
-## 375. adequate
-
-**Pronunciation:** /ˈædɪkwət/
-
-**Chinese meaning:** 足夠的；適當的
-
-**Category:** General Engineering
-
-**Difficulty:** Basic
-
-**Example 1**
-
-The design must provide an adequate margin against ignition.
-
-設計必須提供足夠的防點燃裕度。
-
-**Example 2**
-
-The contact area must be adequate for the expected current.
-
-接觸面積必須足以承載預期電流。
-
-## 376. against
-
-**Pronunciation:** /əˈɡenst/
-
-**Chinese meaning:** 防止；對抗；針對
-
-**Category:** General English
-
-**Difficulty:** Basic
-
-**Example 1**
-
-The Faraday cage provides protection against ignition.
-
-Faraday cage 提供防止點燃的保護。
-
-**Example 2**
-
-The bonding path should protect against arcing at joints.
-
-bonding path 應防止接合點電弧。
-
-## 377. soldered terminals
-
-**Pronunciation:** /ˈsɑːdərd ˈtɜːrmɪnəlz/
-
-**Chinese meaning:** 焊接端子
-
-**Category:** Lightning & Transients
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Do not use soldered terminals for lightning current paths.
-
-雷擊電流路徑不要使用焊接端子。
-
-**Example 2**
-
-Soldered terminals may fail under high-current transients.
-
-焊接端子可能在高電流暫態下失效。
-
-## 378. crimped
-
-**Pronunciation:** /krɪmpt/
-
-**Chinese meaning:** 壓接的
-
-**Category:** Manufacturing & Assembly
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Most crimped connectors are satisfactory for bonding jumpers.
-
-大多數壓接式接頭可用於 bonding jumpers。
-
-**Example 2**
-
-Use a qualified crimped terminal for the strap.
-
-strap 應使用合格的壓接端子。
-
-## 379. satisfactory
-
-**Pronunciation:** /ˌsætɪsˈfæktəri/
-
-**Chinese meaning:** 可接受的；令人滿意的
-
-**Category:** Quality & Verification
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Most crimped connectors are satisfactory for this application.
-
-大多數壓接式接頭對此應用是可接受的。
-
-**Example 2**
-
-A low resistance reading is a satisfactory workmanship indicator.
-
-低電阻讀值是可接受的作業品質指標。
-
-## 380. perforation
-
-**Pronunciation:** /ˌpɜːrfəˈreɪʃən/
-
-**Chinese meaning:** 穿孔；孔洞形成
-
-**Category:** Lightning & Damage Effects
-
-**Difficulty:** Advanced
-
-**Example 1**
-
-Sparking between panels may cause perforation of the vehicle skin.
-
-面板間火花可能造成載具外殼穿孔。
-
-**Example 2**
-
-Inspect the panel for perforation after a high-current event.
-
-高電流事件後應檢查面板是否穿孔。
-
-## 381. flammable liquids
-
-**Pronunciation:** /ˈflæməbəl ˈlɪkwɪdz/
-
-**Chinese meaning:** 易燃液體
-
-**Category:** Safety & Hazardous Areas
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Joints near flammable liquids are considered hazardous.
-
-靠近易燃液體的接合處被視為危險。
-
-**Example 2**
-
-Bonding near flammable liquids must be reviewed carefully.
-
-易燃液體附近的 bonding 必須仔細審查。
-
-## 382. vapor
-
-**Pronunciation:** /ˈveɪpər/
-
-**Chinese meaning:** 蒸氣
-
-**Category:** Safety & Hazardous Areas
-
-**Difficulty:** Basic
-
-**Example 1**
-
-Fuel vapors can ignite if sparks occur.
-
-若產生火花，燃料蒸氣可能被點燃。
-
-**Example 2**
-
-Joints near vapors require special attention.
-
-靠近蒸氣的接合處需要特別注意。
-
-## 383. rely on
-
-**Pronunciation:** /rɪˈlaɪ ɑːn/
-
-**Chinese meaning:** 依賴；仰賴
-
-**Category:** Power & Return Path
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Do not rely on the vehicle structure as the primary power return.
-
-不要依賴載具結構作為主要電源回流路徑。
-
-**Example 2**
-
-Bonding jumpers should not rely on adjacent parts for their connection.
-
-Bonding jumper 不應依賴相鄰零件形成連接。
-
-## 384. accidental
-
-**Pronunciation:** /ˌæksɪˈdentəl/
-
-**Chinese meaning:** 意外的；非預期的
-
-**Category:** Safety & Fault Protection
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-An accidental fault may place primary power on the equipment enclosure.
-
-意外故障可能使設備外殼帶有主電源電壓。
-
-**Example 2**
-
-Proper bonding provides a safe path for accidental current.
-
-適當的 bonding 可為意外電流提供安全路徑。
-
-## 385. treated like
-
-**Pronunciation:** /ˈtriːtɪd laɪk/
-
-**Chinese meaning:** 被視同；像……一樣處理
-
-**Category:** Materials & Corrosion
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Faying surfaces of bond straps should be treated like other faying surfaces.
-
-Bond strap 的接合面應像其他接合面一樣處理。
-
-**Example 2**
-
-Graphite-based composites should be treated like dissimilar metal couples.
-
-石墨基複合材料應像異種金屬組合一樣處理。
-
-## 386. ignition
-
-**Pronunciation:** /ɪɡˈnɪʃən/
-
-**Chinese meaning:** 點燃；著火
-
-**Category:** Lightning & Transients
-
-**Difficulty:** Advanced
-
-**Example 1**
-
-Fuel and pyrotechnics should be enclosed by a Faraday cage to provide an adequate margin against ignition.
-
-燃料與火工品應由 Faraday cage 包覆，以提供足夠的防點燃裕度。
-
-**Example 2**
-
-A bond must carry lightning current without heating enough to become an ignition hazard.
-
-Bond 必須能承載雷擊電流，且不得因過熱而形成點燃危害。
-
-## 387. intermittent
-
-**Pronunciation:** /ˌɪntərˈmɪtənt/
-
-**Chinese meaning:** 間歇性的；時有時無的
-
-**Category:** Quality & Verification
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Movement of a loose bond strap can create an intermittent connection and electrical noise.
-
-鬆動 bond strap 的移動可能造成間歇性連接與電氣雜訊。
-
-**Example 2**
-
-An intermittent bond may cause arcing during vibration.
-
-間歇性的 bond 可能在振動期間造成電弧。
-
-## 388. specific
-
-**Pronunciation:** /spəˈsɪfɪk/
-
-**Chinese meaning:** 特定的；明確的
-
-**Category:** Requirements & Process
-
-**Difficulty:** Basic
-
-**Example 1**
-
-The handbook helps determine bonding requirements applicable to specific hardware.
-
-本手冊協助判定適用於特定硬體的 bonding 要求。
-
-**Example 2**
-
-Program documents may include requirements for a specific project.
-
-計畫文件可能包含特定專案的要求。
-
-## 389. weakens
-
-**Pronunciation:** /ˈwiːkənz/
-
-**Chinese meaning:** 削弱；使變弱
-
-**Category:** Lightning & Damage Effects
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Lightning current weakens a fastener when excessive heat develops at the connection.
-
-當連接處產生過多熱量時，雷擊電流會削弱緊固件。
-
-**Example 2**
-
-Corrosion weakens the bond and increases electrical resistance.
-
-腐蝕會削弱 bond 並增加電阻。
-
-## 390. circumferential
-
-**Pronunciation:** /sərˌkʌmfəˈrenʃəl/
-
-**Chinese meaning:** 環向的；沿圓周的
-
-**Category:** Mechanical / Electromagnetic Compatibility (EMC)
-
-**Difficulty:** 4
-
-**Example 1**
-
-A circumferential reference ring is installed along the inner wall.
-
-環向參考環安裝在內壁周圍。
-
-**Example 2**
-
-The circumferential path reduces the return loop area.
-
-環向路徑可降低回流迴路面積。
-
-## 391. continuous
-
-**Pronunciation:** /kənˈtɪnjuəs/
-
-**Chinese meaning:** 連續的
-
-**Category:** Design Requirement
-
-**Difficulty:** 2
-
-**Example 1**
-
-The metal layer should be continuous around the ring.
-
-金屬層應沿著環形結構連續一圈。
-
-**Example 2**
-
-A continuous path is better than several isolated metal strips.
-
-連續路徑比數段孤立金屬條更好。
-
-## 392. open-ended
-
-**Pronunciation:** /ˌoʊpən ˈendɪd/
-
-**Chinese meaning:** 開口的；非封閉的
-
-**Category:** Mechanical Structure
-
-**Difficulty:** 3
-
-**Example 1**
-
-The A1 ring is open-ended at the top and bottom.
-
-A1 航電環上下兩端是開口的。
-
-**Example 2**
-
-An open-ended structure cannot be treated as a fully enclosed shield.
-
-開口結構不能視為完整封閉屏蔽體。
-
-## 393. low-impedance
-
-**Pronunciation:** /loʊ ɪmˈpiːdəns/
-
-**Chinese meaning:** 低阻抗的
-
-**Category:** Electromagnetic Compatibility (EMC) / Electrical
-
-**Difficulty:** 3
-
-**Example 1**
-
-The reference ring should provide a low-impedance path.
-
-參考環應提供低阻抗路徑。
-
-**Example 2**
-
-A low-impedance connection is essential for RF return current.
-
-低阻抗連接對 RF 回流電流很重要。
-
-## 394. low-inductance
-
-**Pronunciation:** /loʊ ɪnˈdʌktəns/
-
-**Chinese meaning:** 低電感的
-
-**Category:** Electromagnetic Compatibility (EMC) / Electrical
-
-**Difficulty:** 4
-
-**Example 1**
-
-Use short and wide conductors to create a low-inductance path.
-
-使用短而寬的導體建立低電感路徑。
-
-**Example 2**
-
-A low-inductance path is more important than DC resistance at high frequency.
-
-在高頻時，低電感路徑比 DC 電阻更重要。
-
-## 395. resonance
-
-**Pronunciation:** /ˈrezənəns/
-
-**Chinese meaning:** 共振
-
-**Category:** Electromagnetic Compatibility (EMC) / RF
-
-**Difficulty:** 4
-
-**Example 1**
-
-The bonding path should avoid unwanted resonance.
-
-搭接路徑應避免不必要的共振。
-
-**Example 2**
-
-A long strap may resonate at certain frequencies.
-
-很長的搭接帶可能在特定頻率產生共振。
-
-## 396. joint
-
-**Pronunciation:** /dʒɔɪnt/
-
-**Chinese meaning:** 接合點；搭接點
-
-**Category:** Mechanical / Verification
-
-**Difficulty:** 3
-
-**Example 1**
-
-Each joint should be inspected and measured.
-
-每個接合點都應檢查與量測。
-
-**Example 2**
-
-A loose joint can increase resistance and noise.
-
-鬆動的接合點會增加電阻與雜訊。
-
-## 397. vehicle structure
-
-**Pronunciation:** /ˈviːəkəl ˈstrʌktʃər/
-
-**Chinese meaning:** 載具結構；火箭結構
-
-**Category:** Avionics Structure
-
-**Difficulty:** 3
-
-**Example 1**
-
-The equipment case should be connected to the vehicle structure.
-
-設備外殼應連接到載具結構。
-
-**Example 2**
-
-In a non-conductive ring, the vehicle structure must be defined carefully.
-
-在非導電航電環中，必須謹慎定義載具結構參考。
-
-## 398. structural element
-
-**Pronunciation:** /ˈstrʌktʃərəl ˈelɪmənt/
-
-**Chinese meaning:** 結構元件
-
-**Category:** Mechanical / Electromagnetic Compatibility (EMC)
-
-**Difficulty:** 3
-
-**Example 1**
-
-Each structural element should be part of the controlled reference network.
-
-每個結構元件都應納入受控參考網路。
-
-**Example 2**
-
-An isolated structural element may become a noise source.
-
-孤立的結構元件可能變成雜訊源。
-
-## 399. interconnected
-
-**Pronunciation:** /ˌɪntərkəˈnektɪd/
-
-**Chinese meaning:** 互相連接的
-
-**Category:** Electromagnetic Compatibility (EMC) / Bonding
-
-**Difficulty:** 3
-
-**Example 1**
-
-The A1 and A4 reference rings should be interconnected.
-
-A1 與 A4 的參考環應互相連接。
-
-**Example 2**
-
-Interconnected metal paths reduce potential differences.
-
-互連的金屬路徑可降低電位差。
-
-## 400. uniform
-
-**Pronunciation:** /ˈjuːnɪfɔːrm/
-
-**Chinese meaning:** 均勻的；一致的
-
-**Category:** Design Requirement
-
-**Difficulty:** 3
-
-**Example 1**
-
-The bonding network should have uniform low impedance.
-
-搭接網路應具有均勻的低阻抗。
-
-**Example 2**
-
-A uniform reference helps reduce unexpected current paths.
-
-一致的參考面有助於降低非預期電流路徑。
-
-## 401. dedicated return
-
-**Pronunciation:** /ˈdedɪkeɪtɪd rɪˈtɜːrn/
-
-**Chinese meaning:** 專用回流線；專用回流路徑
-
-**Category:** Power / Electromagnetic Compatibility (EMC)
-
-**Difficulty:** 4
-
-**Example 1**
-
-The 28 V supply should use a dedicated return conductor.
-
-28 V 電源應使用專用回流導體。
-
-**Example 2**
-
-A dedicated return keeps load current out of the reference ring.
-
-專用回流可避免負載電流流入參考環。
-
-## 402. backbone
-
-**Pronunciation:** /ˈbækboʊn/
-
-**Chinese meaning:** 主幹；骨幹路徑
-
-**Category:** Electromagnetic Compatibility (EMC) / Architecture
-
-**Difficulty:** 3
-
-**Example 1**
-
-A metal cable tray can serve as the bonding backbone.
-
-金屬線槽可作為搭接主幹。
-
-**Example 2**
-
-The backbone should follow the main cable route.
-
-主幹路徑應沿著主要電纜路徑配置。
-
-## 403. cable tray
-
-**Pronunciation:** /ˈkeɪbəl treɪ/
-
-**Chinese meaning:** 電纜托盤；線槽
-
-**Category:** Cable Routing
-
-**Difficulty:** 3
-
-**Example 1**
-
-A metal cable tray can provide a controlled return path.
-
-金屬電纜托盤可提供受控回流路徑。
-
-**Example 2**
-
-The cable tray should be connected to both reference rings.
-
-電纜托盤應連接到兩個參考環。
-
-## 404. conduit
-
-**Pronunciation:** /ˈkɑːnduɪt/
-
-**Chinese meaning:** 導管；線管
-
-**Category:** Cable Routing
-
-**Difficulty:** 3
-
-**Example 1**
-
-A metal conduit can improve shielding along the cable route.
-
-金屬導管可改善電纜路徑上的屏蔽效果。
-
-**Example 2**
-
-The conduit must be electrically connected at both ends.
-
-導管兩端必須做電氣連接。
-
-## 405. parallel path
-
-**Pronunciation:** /ˈpærəlel pæθ/
-
-**Chinese meaning:** 並聯路徑
-
-**Category:** Electromagnetic Compatibility (EMC) / Architecture
-
-**Difficulty:** 3
-
-**Example 1**
-
-Multiple parallel paths reduce the impedance between A1 and A4.
-
-多條並聯路徑可降低 A1 與 A4 之間的阻抗。
-
-**Example 2**
-
-A single path is less robust than several parallel paths.
-
-單一路徑不如多條並聯路徑可靠。
-
-## 406. local chassis
-
-**Pronunciation:** /ˈloʊkəl ˈʃæsi/
-
-**Chinese meaning:** 局部機殼；本地底盤
-
-**Category:** Electromagnetic Compatibility (EMC) / Hardware
-
-**Difficulty:** 3
-
-**Example 1**
-
-The shield should terminate to the local chassis.
-
-屏蔽層應端接到局部機殼。
-
-**Example 2**
-
-Local chassis bonding reduces cable shield current loops.
-
-局部機殼搭接可降低電纜屏蔽層電流迴路。
-
-## 407. fault protection
-
-**Pronunciation:** /fɔːlt prəˈtekʃən/
-
-**Chinese meaning:** 故障保護
-
-**Category:** Safety / Power
-
-**Difficulty:** 3
-
-**Example 1**
-
-Fault protection prevents overheating during a short circuit.
-
-故障保護可避免短路時過熱。
-
-**Example 2**
-
-Bonding for fault protection is different from RF bonding.
-
-故障保護用搭接與 RF 搭接不同。
-
-## 408. overload current
-
-**Pronunciation:** /ˈoʊvərloʊd ˈkɜːrənt/
-
-**Chinese meaning:** 過載電流
-
-**Category:** Safety / Power
-
-**Difficulty:** 4
-
-**Example 1**
-
-The path should survive the specified overload current.
-
-該路徑應能承受規定的過載電流。
-
-**Example 2**
-
-Overload current may heat a narrow conductor quickly.
-
-過載電流可能快速加熱狹窄導體。
-
-## 409. current-carrying capability
-
-**Pronunciation:** /ˈkɜːrənt ˈkæriɪŋ ˌkeɪpəˈbɪləti/
-
-**Chinese meaning:** 載流能力
-
-**Category:** Verification / Power
-
-**Difficulty:** 4
-
-**Example 1**
-
-The current-carrying capability of the bonding path must be verified.
-
-必須驗證搭接路徑的載流能力。
-
-**Example 2**
-
-A wide conductor has better current-carrying capability.
-
-較寬的導體具有較好的載流能力。
-
-## 410. return loop
-
-**Pronunciation:** /rɪˈtɜːrn luːp/
-
-**Chinese meaning:** 回流迴路
-
-**Category:** Electromagnetic Compatibility (EMC) / Layout
-
-**Difficulty:** 4
-
-**Example 1**
-
-The cable and reference path should form a small return loop.
-
-電纜與參考路徑應形成小的回流迴路。
-
-**Example 2**
-
-A large return loop can radiate more noise.
-
-大型回流迴路可能輻射更多雜訊。
-
-## 411. loop area
-
-**Pronunciation:** /luːp ˈeriə/
-
-**Chinese meaning:** 迴路面積
-
-**Category:** Electromagnetic Compatibility (EMC) / Layout
-
-**Difficulty:** 4
-
-**Example 1**
-
-Reducing loop area lowers magnetic coupling.
-
-降低迴路面積可減少磁場耦合。
-
-**Example 2**
-
-Keep the bonding path close to the harness to minimize loop area.
-
-讓搭接路徑靠近線束，以最小化迴路面積。
-
-## 412. termination strategy
-
-**Pronunciation:** /ˌtɜːrmɪˈneɪʃən ˈstrætədʒi/
-
-**Chinese meaning:** 端接策略
-
-**Category:** Electromagnetic Compatibility (EMC) / Cable Design
-
-**Difficulty:** 4
-
-**Example 1**
-
-The shield termination strategy depends on the signal type.
-
-屏蔽端接策略取決於訊號類型。
-
-**Example 2**
-
-A clear termination strategy is required before harness design.
-
-線束設計前需要明確的端接策略。
-
-## 413. controlled interconnection
-
-**Pronunciation:** /kənˈtroʊld ˌɪntərkəˈnekʃən/
-
-**Chinese meaning:** 受控互連
-
-**Category:** Electromagnetic Compatibility (EMC) / Architecture
-
-**Difficulty:** 4
-
-**Example 1**
-
-A1 and A4 need a controlled interconnection between reference rings.
-
-A1 與 A4 的參考環之間需要受控互連。
-
-**Example 2**
-
-Controlled interconnection prevents accidental current paths.
-
-受控互連可避免非預期電流路徑。
-
-## 414. end-to-end resistance
-
-**Pronunciation:** /end tuː end rɪˈzɪstəns/
-
-**Chinese meaning:** 端到端電阻
-
-**Category:** Verification
-
-**Difficulty:** 3
-
-**Example 1**
-
-Measure the end-to-end resistance from the A1 ring to the A4 ring.
-
-量測 A1 參考環到 A4 參考環的端到端電阻。
-
-**Example 2**
-
-End-to-end resistance is different from single-joint resistance.
-
-端到端電阻不同於單一接合點電阻。
-
-## 415. DC resistance
-
-**Pronunciation:** /ˌdiː ˈsiː rɪˈzɪstəns/
-
-**Chinese meaning:** 直流電阻
-
-**Category:** Verification
-
-**Difficulty:** 3
-
-**Example 1**
-
-DC resistance alone does not prove good RF performance.
-
-僅有直流電阻無法證明良好的 RF 性能。
-
-**Example 2**
-
-Use a four-wire meter for low DC resistance measurements.
-
-使用四線式電表量測低直流電阻。
-
-## 416. surface conductivity
-
-**Pronunciation:** /ˈsɜːrfɪs ˌkɑːndʌkˈtɪvəti/
-
-**Chinese meaning:** 表面導電性
-
-**Category:** Material / ESD
-
-**Difficulty:** 4
-
-**Example 1**
-
-Surface conductivity must be verified on the coated composite panel.
-
-必須驗證塗層複材板的表面導電性。
-
-**Example 2**
-
-Poor surface conductivity can create local charge buildup.
-
-表面導電性不佳會造成局部電荷累積。
-
-## 417. conductive coating
-
-**Pronunciation:** /kənˈdʌktɪv ˈkoʊtɪŋ/
-
-**Chinese meaning:** 導電塗層
-
-**Category:** Material / ESD
-
-**Difficulty:** 3
-
-**Example 1**
-
-The conductive coating must not be left floating.
-
-導電塗層不能處於浮接狀態。
-
-**Example 2**
-
-Conductive coating can help control static charge on a composite surface.
-
-導電塗層可協助控制複材表面的靜電荷。
-
-## 418. floating conductor
-
-**Pronunciation:** /ˈfloʊtɪŋ kənˈdʌktər/
-
-**Chinese meaning:** 浮接導體
-
-**Category:** Electromagnetic Compatibility (EMC) / Risk
-
-**Difficulty:** 4
-
-**Example 1**
-
-A floating conductor can behave like an unintended antenna.
-
-浮接導體可能像非預期天線一樣作用。
-
-**Example 2**
-
-Copper pieces on the panel should not become floating conductors.
-
-板上的銅片不應變成浮接導體。
-
-## 419. re-radiator
-
-**Pronunciation:** /ˌriːˈreɪdieɪtər/
-
-**Chinese meaning:** 再輻射體；二次輻射源
-
-**Category:** Electromagnetic Compatibility (EMC) / Risk
-
-**Difficulty:** 4
-
-**Example 1**
-
-An isolated metal plate may become a re-radiator.
-
-孤立金屬板可能變成再輻射體。
-
-**Example 2**
-
-Bonding the panel reduces the chance of re-radiation.
-
-將板件搭接可降低再輻射的機會。
-
-## 420. metallized layer
-
-**Pronunciation:** /ˈmetəlaɪzd ˈleɪər/
-
-**Chinese meaning:** 金屬化層
-
-**Category:** Material / Electromagnetic Compatibility (EMC)
-
-**Difficulty:** 4
-
-**Example 1**
-
-The metallized layer should connect to the reference ring.
-
-金屬化層應連接到參考環。
-
-**Example 2**
-
-A metallized layer can improve shielding if it is properly terminated.
-
-若端接正確，金屬化層可改善屏蔽效果。
-
-## 421. radial bus
-
-**Pronunciation:** /ˈreɪdiəl bʌs/
-
-**Chinese meaning:** 徑向匯流路徑；徑向母線
-
-**Category:** Electromagnetic Compatibility (EMC) / Architecture
-
-**Difficulty:** 3
-
-**Example 1**
-
-A radial bus connects the center hub to the reference ring.
-
-徑向母線將中心集線點連到參考環。
-
-**Example 2**
-
-Three radial buses can match the 120-degree panel layout.
-
-三條徑向母線可配合 120 度的板件配置。
-
-## 422. chassis reference
-
-**Pronunciation:** /ˈʃæsi ˈrefərəns/
-
-**Chinese meaning:** 機殼參考點；底盤參考
-
-**Category:** Electromagnetic Compatibility (EMC) / Architecture
-
-**Difficulty:** 3
-
-**Example 1**
-
-The chassis reference should be defined before cable routing.
-
-在電纜佈線前應先定義機殼參考點。
-
-**Example 2**
-
-A stable chassis reference improves EMI repeatability.
-
-穩定的機殼參考可改善 EMI 測試重複性。
-
-## 423. lightning indirect effect
-
-**Pronunciation:** /ˈlaɪtnɪŋ ˌɪndəˈrekt ɪˈfekt/
-
-**Chinese meaning:** 雷擊間接效應
-
-**Category:** System Electromagnetic Environmental Effects (E3)
-
-**Difficulty:** 4
-
-**Example 1**
-
-Lightning indirect effects can couple into long cables.
-
-雷擊間接效應可能耦合到長電纜中。
-
-**Example 2**
-
-Reference rings help control some lightning indirect effects, but they are not enough alone.
-
-參考環有助於控制部分雷擊間接效應，但單靠它們並不足夠。
-
-## 424. proper
+## 265. proper
 
 **Pronunciation:** /ˈprɑː.pɚ/
 
@@ -9330,7 +5832,7 @@ A proper bonding path should be short and low impedance.
 
 適當的搭接路徑應該短且低阻抗。
 
-## 425. intra-system Electromagnetic Compatibility (EMC)
+## 266. intra-system Electromagnetic Compatibility (EMC)
 
 **Pronunciation:** /ˈɪntrə ˈsɪstəm ˌiː em ˈsiː/ | https://youglish.com/pronounce/intra-system%20EMC/english
 
@@ -9352,7 +5854,7 @@ JetVane operation is a key intra-system Electromagnetic Compatibility (EMC) case
 
 JetVane 動作是 DAQ 監測的重要系統內 EMC 情境。
 
-## 426. regarding
+## 267. regarding
 
 **Pronunciation:** /rɪˈɡɑːr.dɪŋ/
 
@@ -9374,7 +5876,7 @@ The attached file includes discussion topics regarding MIL-STD-464 compliance.
 
 附件包含有關 MIL-STD-464 合規性的討論議題。
 
-## 427. concise
+## 268. concise
 
 **Pronunciation:** /kənˈsaɪs/
 
@@ -9396,7 +5898,7 @@ A concise summary helps the consultant understand the main issue quickly.
 
 簡潔的摘要有助於顧問快速了解主要問題。
 
-## 428. challenge
+## 269. challenge
 
 **Pronunciation:** /ˈtʃæl.ɪndʒ/
 
@@ -9418,7 +5920,7 @@ Cable shield termination is a major challenge in this design.
 
 線纜屏蔽端接是此設計中的主要挑戰。
 
-## 429. arranged at
+## 270. arranged at
 
 **Pronunciation:** /əˈreɪndʒd æt/
 
@@ -9440,7 +5942,7 @@ The bonding points should be arranged at regular intervals around the ring.
 
 搭接點應沿航電環以固定間距排列。
 
-## 430. Mercedes-star
+## 271. Mercedes-star
 
 **Pronunciation:** /mɚˈseɪ.diːz stɑːr/
 
@@ -9462,7 +5964,7 @@ The Mercedes-star layout provides three vertical mounting surfaces inside the ri
 
 賓士星形配置在航電環內提供三個垂直安裝面。
 
-## 431. experience
+## 272. experience
 
 **Pronunciation:** /ɪkˈspɪr.i.əns/
 
@@ -9484,7 +5986,7 @@ Practical experience is important for grounding and shielding implementation.
 
 實務經驗對接地與屏蔽實作非常重要。
 
-## 432. diagram
+## 273. diagram
 
 **Pronunciation:** /ˈdaɪ.ə.ɡræm/
 
@@ -9506,7 +6008,7 @@ A clear diagram will help the consultant understand the installation concept.
 
 清楚的示意圖有助於顧問理解安裝概念。
 
-## 433. purposed
+## 274. purposed
 
 **Pronunciation:** /ˈpɝː.pəst/
 
@@ -9528,7 +6030,7 @@ In most technical writing, use 'intended' or 'designed' instead of 'purposed'.
 
 在多數技術寫作中，建議用 intended 或 designed 取代 purposed。
 
-## 434. proposed
+## 275. proposed
 
 **Pronunciation:** /prəˈpoʊzd/
 
@@ -9550,7 +6052,7 @@ We need to review the proposed grounding concept before implementation.
 
 在實作前，我們需要審查建議的接地概念。
 
-## 435. constraint
+## 276. constraint
 
 **Pronunciation:** /kənˈstreɪnt/
 
@@ -9572,7 +6074,7 @@ Each constraint should be linked to a safety or Electromagnetic Compatibility (E
 
 每項限制條件都應連結到安全或 Electromagnetic Compatibility (EMC) 需求。
 
-## 436. lack of
+## 277. lack of
 
 **Pronunciation:** /læk əv/
 
@@ -9594,7 +6096,7 @@ A lack of shield continuity can reduce Electromagnetic Compatibility (EMC) perfo
 
 缺乏屏蔽連續性會降低 EMC 性能。
 
-## 437. concern
+## 278. concern
 
 **Pronunciation:** /kənˈsɝːn/
 
@@ -9616,7 +6118,7 @@ The consultant should understand our system-level Electromagnetic Compatibility 
 
 顧問應了解我們的系統級 EMC 疑慮。
 
-## 438. ineffective
+## 279. ineffective
 
 **Pronunciation:** /ˌɪn.əˈfek.tɪv/
 
@@ -9638,7 +6140,7 @@ Shielding can be ineffective without a proper termination reference.
 
 若沒有適當的端接參考，屏蔽可能無效。
 
-## 439. react to
+## 280. react to
 
 **Pronunciation:** /riˈækt tuː/
 
@@ -9660,7 +6162,7 @@ The Data Acquisition (DAQ) system may react to conducted noise on the power line
 
 DAQ 系統可能會對電源線上的傳導雜訊產生反應。
 
-## 440. effectiveness
+## 281. effectiveness
 
 **Pronunciation:** /ɪˈfek.tɪv.nəs/
 
@@ -9682,7 +6184,7 @@ We need to verify the effectiveness of the bonding network.
 
 我們需要驗證搭接網路的有效性。
 
-## 441. although
+## 282. although
 
 **Pronunciation:** /ɔːlˈðoʊ/
 
@@ -9704,7 +6206,7 @@ Although the ring is lightweight, it does not provide a natural conductive refer
 
 雖然航電環很輕，但它不會提供天然的導電參考。
 
-## 442. approximately
+## 283. approximately
 
 **Pronunciation:** /əˈprɑːk.sə.mət.li/
 
@@ -9726,7 +6228,7 @@ Each composite panel is approximately 50 cm by 40 cm.
 
 每片複合板尺寸約為 50 公分乘 40 公分。
 
-## 443. sufficient
+## 284. sufficient
 
 **Pronunciation:** /səˈfɪʃ.ənt/
 
@@ -9748,7 +6250,7 @@ We need sufficient bonding points around the avionics ring.
 
 我們需要在航電環周圍提供足夠的搭接點。
 
-## 444. wire segregation
+## 285. wire segregation
 
 **Pronunciation:** /waɪr ˌseɡ.rəˈɡeɪ.ʃən/
 
@@ -9770,7 +6272,7 @@ Power, RF, and low-level analog wires need proper wire segregation.
 
 電源、RF 與低位準類比線路需要適當線路隔離。
 
-## 445. compliance matrix
+## 286. compliance matrix
 
 **Pronunciation:** /kəmˈplaɪ.əns ˈmeɪ.trɪks/
 
@@ -9792,7 +6294,7 @@ The compliance matrix should identify verification status and evidence.
 
 符合性矩陣應標示驗證狀態與證據。
 
-## 446. susceptibility
+## 287. susceptibility
 
 **Pronunciation:** /səˌsep.təˈbɪl.ə.ti/
 
@@ -9814,7 +6316,7 @@ Poor shielding increases system susceptibility.
 
 屏蔽不良會增加系統敏感度。
 
-## 447. edge lifting
+## 288. edge lifting
 
 **Pronunciation:** /edʒ ˈlɪftɪŋ/ | https://youglish.com/pronounce/edge%20lifting/english
 
@@ -9836,7 +6338,7 @@ Edge lifting can create unreliable electrical contact.
 
 邊緣翹起可能造成不可靠的電氣接觸。
 
-## 448. surface treatment
+## 289. surface treatment
 
 **Pronunciation:** /ˈsɜːrfɪs ˈtriːtmənt/ | https://youglish.com/pronounce/surface%20treatment/english
 
@@ -9858,7 +6360,7 @@ Copper, aluminum, and stainless steel may require different surface treatments.
 
 銅、鋁與不鏽鋼可能需要不同的表面處理。
 
-## 449. adhesive
+## 290. adhesive
 
 **Pronunciation:** /ədˈhiːsɪv/ | https://youglish.com/pronounce/adhesive/english
 
@@ -9880,7 +6382,7 @@ The adhesive process must prevent copper foil edges from lifting.
 
 黏著製程必須避免銅箔邊緣翹起。
 
-## 450. weight estimate
+## 291. weight estimate
 
 **Pronunciation:** /weɪt ˈestɪmət/ | https://youglish.com/pronounce/weight%20estimate/english
 
@@ -9902,7 +6404,7 @@ This weight estimate does not include adhesive or installation loss.
 
 此重量估算不包含黏著劑或施工耗損。
 
-## 451. thickness
+## 292. thickness
 
 **Pronunciation:** /ˈθɪknəs/ | https://youglish.com/pronounce/thickness/english
 
@@ -9924,7 +6426,7 @@ The busbar thickness options are 1 millimeter and 2 millimeters.
 
 銅排厚度選項為 1 毫米與 2 毫米。
 
-## 452. circumference
+## 293. circumference
 
 **Pronunciation:** /sərˈkʌmfərəns/ | https://youglish.com/pronounce/circumference/english
 
@@ -9946,7 +6448,7 @@ The circumference is calculated from the ring diameter.
 
 圓周長由環體直徑計算。
 
-## 453. flight article
+## 294. flight article
 
 **Pronunciation:** /flaɪt ˈɑːrtɪkəl/ | https://youglish.com/pronounce/flight%20article/english
 
@@ -9968,7 +6470,7 @@ Prototype weights may differ from the flight article weight.
 
 原型件重量可能與飛行件重量不同。
 
-## 454. subject to final confirmation
+## 295. subject to final confirmation
 
 **Pronunciation:** /ˈsʌbdʒekt tuː ˈfaɪnəl ˌkɑːnfərˈmeɪʃən/
 
@@ -9990,7 +6492,7 @@ The bonding method is subject to final confirmation by the structural team.
 
 搭接方法仍需由結構團隊做最終確認。
 
-## 455. on top of
+## 296. on top of
 
 **Pronunciation:** /ɑːn tɑːp əv/
 
@@ -10012,7 +6514,7 @@ The bonding washer is placed on top of the conductive surface.
 
 搭接墊片放置在導電表面上方。
 
-## 456. briefing document
+## 297. briefing document
 
 **Pronunciation:** /ˈbriːfɪŋ ˈdɑːkjumənt/
 
@@ -10034,7 +6536,7 @@ The briefing document summarizes the current grounding concept.
 
 該簡報文件彙整了目前的接地概念。
 
-## 457. RF transmit inhibit
+## 298. RF transmit inhibit
 
 **Pronunciation:** /ˌɑːr ˈef trænzˈmɪt ɪnˈhɪbɪt/ | https://youglish.com/pronounce/RF%20transmit%20inhibit/english
 
@@ -10056,7 +6558,7 @@ The test procedure should verify the RF transmit inhibit function.
 
 測試程序應驗證 RF 發射禁止功能。
 
-## 458. functional degradation
+## 299. functional degradation
 
 **Pronunciation:** /ˈfʌŋkʃənl ˌdeɡrəˈdeɪʃn/ | https://youglish.com/pronounce/functional%20degradation/english
 
@@ -10078,7 +6580,7 @@ Mission-critical functions should have no functional degradation during Electrom
 
 任務關鍵功能在 EMC 測試期間不應有功能劣化。
 
-## 459. stitching
+## 300. stitching
 
 **Pronunciation:** /ˈstɪtʃɪŋ/ | https://youglish.com/pronounce/stitching/english
 
@@ -10100,7 +6602,7 @@ RF-sensitive areas should use a shorter stitching interval.
 
 RF 敏感區應使用較短的 stitching 間距。
 
-## 460. property
+## 301. property
 
 **Pronunciation:** /ˈprɑːpərti/
 
@@ -10122,7 +6624,7 @@ Electrical conductivity is an important material property.
 
 導電性是一項重要的材料特性。
 
-## 461. copper braided strap
+## 302. copper braided strap
 
 **Pronunciation:** /ˈkɑːpər ˈbreɪdɪd stræp/
 
@@ -10144,7 +6646,7 @@ A short copper braided strap reduces bonding inductance.
 
 短的銅編織帶可以降低搭接電感。
 
-## 462. preliminary assumption
+## 303. preliminary assumption
 
 **Pronunciation:** /prɪˈlɪməneri əˈsʌmpʃən/
 
@@ -10166,7 +6668,7 @@ This grounding layout is based on a preliminary assumption.
 
 此接地配置是基於初步假設。
 
-## 463. preliminarily
+## 304. preliminarily
 
 **Pronunciation:** /prɪˌlɪməˈnerəli/
 
@@ -10188,7 +6690,7 @@ The acceptance values were preliminarily defined for discussion.
 
 驗收值是為了討論而初步定義的。
 
-## 464. supporting explanation
+## 305. supporting explanation
 
 **Pronunciation:** /səˈpɔːrtɪŋ ˌekspləˈneɪʃən/
 
@@ -10210,7 +6712,7 @@ A supporting explanation is provided for the proposed bonding method.
 
 針對建議的搭接方法已提供補充說明。
 
-## 465. self-compatibility
+## 306. self-compatibility
 
 **Pronunciation:** /self kəmˌpæt̬.əˈbɪl.ə.t̬i/
 
@@ -10232,7 +6734,7 @@ Self-compatibility problems often appear when multiple radios operate together.
 
 多個無線電同時運作時常會出現自相容性問題。
 
-## 466. tinned copper
+## 307. tinned copper
 
 **Pronunciation:** /tɪnd ˈkɑːpər/ | https://youglish.com/pronounce/tinned%20copper/english
 
@@ -10254,7 +6756,7 @@ Tinned copper can improve corrosion resistance compared with bare copper.
 
 相較於裸銅，鍍錫銅可提升耐腐蝕性。
 
-## 467. inspection
+## 308. inspection
 
 **Pronunciation:** /ɪnˈspek.ʃən/
 
@@ -10276,7 +6778,7 @@ Visual inspection alone is not sufficient for bonding verification.
 
 僅靠目視檢查不足以驗證搭接。
 
-## 468. acceptance criteria
+## 309. acceptance criteria
 
 **Pronunciation:** /əkˈsep.təns kraɪˈtɪr.i.ə/
 
@@ -10298,7 +6800,7 @@ Bonding resistance limits should be part of the acceptance criteria.
 
 搭接電阻限制應納入驗收標準。
 
-## 469. coax shield
+## 310. coax shield
 
 **Pronunciation:** /ˈkoʊ.æks ʃiːld/
 
@@ -10320,7 +6822,7 @@ Poor coax shield bonding may cause RF leakage.
 
 同軸屏蔽搭接不良可能造成 RF 洩漏。
 
-## 470. conductive chassis
+## 311. conductive chassis
 
 **Pronunciation:** /kənˈdʌk.tɪv ˈʃæs.i/
 
@@ -10342,7 +6844,7 @@ Without a conductive chassis, shield termination becomes more difficult.
 
 沒有導電機殼時，屏蔽端接會變得更困難。
 
-## 471. bonding strap
+## 312. bonding strap
 
 **Pronunciation:** /ˈbɑːn.dɪŋ stræp/
 
@@ -10364,7 +6866,7 @@ Long bonding straps are ineffective at high frequency.
 
 過長的搭接編織帶在高頻下效果不佳。
 
-## 472. enclosure
+## 313. enclosure
 
 **Pronunciation:** /ɪnˈkloʊ.ʒɚ/
 
@@ -10386,7 +6888,7 @@ A floating enclosure may increase radiated emissions.
 
 浮接外殼可能增加輻射發射。
 
-## 473. umbilical transient
+## 314. umbilical transient
 
 **Pronunciation:** /ʌmˈbɪl.ɪ.kəl ˈtræn.zi.ənt/
 
@@ -10408,7 +6910,7 @@ The avionics power input must tolerate umbilical transients.
 
 航電電源輸入必須能承受臍帶纜線暫態。
 
-## 474. applicable standards
+## 315. applicable standards
 
 **Pronunciation:** /ˈæp.lɪ.kə.bəl ˈstæn.dɚdz/
 
@@ -10430,7 +6932,7 @@ Applicable standards should be listed before test planning begins.
 
 在測試規劃開始前應列出適用標準。
 
-## 475. compliance
+## 316. compliance
 
 **Pronunciation:** /kəmˈplaɪ.əns/
 
@@ -10452,7 +6954,7 @@ Box-level compliance does not guarantee system-level compliance.
 
 單機合規不代表系統級一定合規。
 
-## 476. geometry
+## 317. geometry
 
 **Pronunciation:** /dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english
 
@@ -10473,6 +6975,3504 @@ The weight model is based on the ring geometry and copper coverage.
 Incorrect geometry will lead to an incorrect weight estimate.
 
 幾何尺寸錯誤會導致重量估算錯誤。
+
+## 318. implementation
+
+**Pronunciation:** /ˌɪmplɪmenˈteɪʃən/
+
+**Chinese meaning:** 實作；落實；執行
+
+**Category:** Requirements & Process
+
+**Difficulty:** 3
+
+**Example 1**
+
+The implementation must be shown on the engineering drawing.
+
+實作方式必須呈現在工程圖面上。
+
+**Example 2**
+
+Good implementation makes the design easier to verify.
+
+良好的落實方式會讓設計更容易驗證。
+
+## 319. flowdown
+
+**Pronunciation:** /ˈfloʊ daʊn/
+
+**Chinese meaning:** 需求下展；要求逐層分配
+
+**Category:** Requirements & Process
+
+**Difficulty:** 4
+
+**Example 1**
+
+Requirement flowdown helps each team understand its design responsibility.
+
+需求下展可幫助各團隊了解自己的設計責任。
+
+**Example 2**
+
+The Electromagnetic Compatibility (EMC) requirement must flow down to the avionics ring design.
+
+EMC 要求必須下展到航電環設計。
+
+## 320. allocated baseline
+
+**Pronunciation:** /ˈæləkeɪtɪd ˈbeɪslaɪn/
+
+**Chinese meaning:** 分配基準；配置基準
+
+**Category:** Requirements & Process
+
+**Difficulty:** 4
+
+**Example 1**
+
+The allocated baseline defines the design-to requirements.
+
+分配基準定義了設計所需符合的要求。
+
+**Example 2**
+
+Each subsystem should follow the allocated baseline.
+
+每個子系統都應遵循分配基準。
+
+## 321. mission requirement
+
+**Pronunciation:** /ˈmɪʃən rɪˈkwaɪərmənt/
+
+**Chinese meaning:** 任務需求
+
+**Category:** Requirements & Process
+
+**Difficulty:** 3
+
+**Example 1**
+
+A mission requirement is usually defined at the highest level.
+
+任務需求通常在最高層級定義。
+
+**Example 2**
+
+The mission requirement drives the system-level Electromagnetic Compatibility (EMC) design.
+
+任務需求會推動系統層級的 EMC 設計。
+
+## 322. system requirement
+
+**Pronunciation:** /ˈsɪstəm rɪˈkwaɪərmənt/
+
+**Chinese meaning:** 系統需求
+
+**Category:** Requirements & Process
+
+**Difficulty:** 3
+
+**Example 1**
+
+The system requirement must be traceable to the mission objective.
+
+系統需求必須能追溯到任務目標。
+
+**Example 2**
+
+A clear system requirement prevents different teams from using different assumptions.
+
+清楚的系統需求可避免不同團隊使用不同假設。
+
+## 323. functional analysis
+
+**Pronunciation:** /ˈfʌŋkʃənəl əˈnæləsɪs/
+
+**Chinese meaning:** 功能分析
+
+**Category:** Requirements & Process
+
+**Difficulty:** 4
+
+**Example 1**
+
+Functional analysis breaks a high-level requirement into detailed functions.
+
+功能分析會把高層級需求拆成詳細功能。
+
+**Example 2**
+
+The team used functional analysis to define bonding interfaces.
+
+團隊使用功能分析來定義接合介面。
+
+## 324. subassembly
+
+**Pronunciation:** /ˌsʌbəˈsembli/
+
+**Chinese meaning:** 次組件；子組裝件
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+Every subassembly should have electrical continuity to the next higher assembly.
+
+每個次組件都應與上一層組件具有電氣連續性。
+
+**Example 2**
+
+The avionics panel is treated as a subassembly of the ring.
+
+航電板可視為航電環的一個次組件。
+
+## 325. interface constraint
+
+**Pronunciation:** /ˈɪntərfeɪs kənˈstreɪnt/
+
+**Chinese meaning:** 介面限制；介面約束
+
+**Category:** Requirements & Process
+
+**Difficulty:** 4
+
+**Example 1**
+
+The interface constraint defines how the equipment is mounted and connected.
+
+介面限制定義設備如何安裝與連接。
+
+**Example 2**
+
+Bonding points should be included as interface constraints.
+
+接合點應納入介面限制中。
+
+## 326. electromagnetic environment
+
+**Pronunciation:** /ɪˌlektroʊmæɡˈnetɪk ɪnˈvaɪrənmənt/
+
+**Chinese meaning:** 電磁環境
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+The launch vehicle is exposed to a severe electromagnetic environment.
+
+運載火箭會暴露在嚴苛的電磁環境中。
+
+**Example 2**
+
+The electromagnetic environment includes onboard and external sources.
+
+電磁環境包含機載與外部來源。
+
+## 327. onboard
+
+**Pronunciation:** /ˈɑːnbɔːrd/
+
+**Chinese meaning:** 機載的； onboard 的
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 3
+
+**Example 1**
+
+Onboard electronics can generate unintentional RF noise.
+
+機載電子設備可能產生非預期 RF 雜訊。
+
+**Example 2**
+
+The onboard power system must not disturb sensitive receivers.
+
+機載電源系統不應干擾敏感接收器。
+
+## 328. external source
+
+**Pronunciation:** /ɪkˈstɜːrnəl sɔːrs/
+
+**Chinese meaning:** 外部來源
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 3
+
+**Example 1**
+
+An external source may couple RF energy into the vehicle harness.
+
+外部來源可能把 RF 能量耦合進載具線路。
+
+**Example 2**
+
+Pad RF transmitters are one possible external source.
+
+發射場 RF 發射機是一種可能的外部來源。
+
+## 329. fault current
+
+**Pronunciation:** /fɔːlt ˈkɜːrənt/
+
+**Chinese meaning:** 故障電流
+
+**Category:** Electrical Safety
+
+**Difficulty:** 4
+
+**Example 1**
+
+The structure must carry fault current until the protection device opens.
+
+結構必須承載故障電流，直到保護裝置動作斷開。
+
+**Example 2**
+
+A small contact area may overheat under fault current.
+
+接觸面積太小可能在故障電流下過熱。
+
+## 330. short circuit
+
+**Pronunciation:** /ˌʃɔːrt ˈsɜːrkɪt/
+
+**Chinese meaning:** 短路
+
+**Category:** Electrical Safety
+
+**Difficulty:** 3
+
+**Example 1**
+
+A short circuit to the chassis can create a shock hazard.
+
+短路到機殼可能造成觸電危害。
+
+**Example 2**
+
+The design should prevent a short circuit from entering the composite structure.
+
+設計應避免短路電流進入複材結構。
+
+## 331. current return path
+
+**Pronunciation:** /ˈkɜːrənt rɪˈtɜːrn pæθ/
+
+**Chinese meaning:** 電流回流路徑
+
+**Category:** Electrical Design
+
+**Difficulty:** 4
+
+**Example 1**
+
+A dedicated current return path is preferred for power circuits.
+
+電源電路最好使用專用的電流回流路徑。
+
+**Example 2**
+
+Do not rely on the composite panel as the current return path.
+
+不要依賴複材板作為電流回流路徑。
+
+## 332. voltage drop
+
+**Pronunciation:** /ˈvoʊltɪdʒ drɑːp/
+
+**Chinese meaning:** 壓降
+
+**Category:** Electrical Design
+
+**Difficulty:** 3
+
+**Example 1**
+
+The voltage drop must be controlled in the power return path.
+
+電源回流路徑中的壓降必須受到控制。
+
+**Example 2**
+
+Excessive voltage drop may reduce equipment margin.
+
+過大的壓降可能降低設備裕度。
+
+## 333. low impedance
+
+**Pronunciation:** /loʊ ɪmˈpiːdəns/
+
+**Chinese meaning:** 低阻抗
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+RF bonding requires a low impedance path, not just a low DC resistance.
+
+RF 接合需要低阻抗路徑，而不只是低直流電阻。
+
+**Example 2**
+
+A wide and short path usually has lower impedance.
+
+寬且短的路徑通常具有較低阻抗。
+
+## 334. low inductance
+
+**Pronunciation:** /loʊ ɪnˈdʌktəns/
+
+**Chinese meaning:** 低電感
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+High-frequency currents require a low inductance return path.
+
+高頻電流需要低電感回流路徑。
+
+**Example 2**
+
+A long narrow strap does not provide low inductance.
+
+又長又窄的帶材無法提供低電感。
+
+## 335. inductance
+
+**Pronunciation:** /ɪnˈdʌktəns/
+
+**Chinese meaning:** 電感
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 3
+
+**Example 1**
+
+Inductance increases the impedance at high frequency.
+
+電感會提高高頻下的阻抗。
+
+**Example 2**
+
+Reducing loop area helps reduce inductance.
+
+減少迴路面積有助於降低電感。
+
+## 336. capacitance
+
+**Pronunciation:** /kəˈpæsɪtəns/
+
+**Chinese meaning:** 電容
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 3
+
+**Example 1**
+
+Capacitance between structures can affect RF impedance.
+
+結構之間的電容會影響 RF 阻抗。
+
+**Example 2**
+
+The jumper and nearby metal can form unwanted capacitance.
+
+跳接線與附近金屬可能形成非預期電容。
+
+## 337. reactance
+
+**Pronunciation:** /riˈæktəns/
+
+**Chinese meaning:** 電抗
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 3
+
+**Example 1**
+
+Reactance changes with frequency.
+
+電抗會隨頻率改變。
+
+**Example 2**
+
+Impedance includes resistance and reactance.
+
+阻抗包含電阻與電抗。
+
+## 338. resistance
+
+**Pronunciation:** /rɪˈzɪstəns/
+
+**Chinese meaning:** 電阻
+
+**Category:** Electrical Measurement
+
+**Difficulty:** 2
+
+**Example 1**
+
+DC resistance is easy to measure with a micro-ohmmeter.
+
+直流電阻可用微歐姆計量測。
+
+**Example 2**
+
+Low resistance does not always mean good RF performance.
+
+低電阻不一定代表良好的 RF 性能。
+
+## 339. micro-ohmmeter
+
+**Pronunciation:** /ˈmaɪkroʊ ˈoʊmˌmiːtər/
+
+**Chinese meaning:** 微歐姆計
+
+**Category:** Verification
+
+**Difficulty:** 4
+
+**Example 1**
+
+A micro-ohmmeter is used to measure very low bonding resistance.
+
+微歐姆計用於量測很低的接合電阻。
+
+**Example 2**
+
+Use a four-wire method with the micro-ohmmeter.
+
+使用微歐姆計時應採用四線式量測。
+
+## 340. RF impedance
+
+**Pronunciation:** /ˌɑːr ˈef ɪmˈpiːdəns/
+
+**Chinese meaning:** RF 阻抗；射頻阻抗
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+RF impedance is more important than DC resistance for high-frequency bonding.
+
+對高頻接合而言，RF 阻抗比直流電阻更重要。
+
+**Example 2**
+
+The reference ring should minimize RF impedance.
+
+參考環應盡量降低 RF 阻抗。
+
+## 341. faying surface
+
+**Pronunciation:** /ˈfeɪɪŋ ˈsɜːrfɪs/
+
+**Chinese meaning:** 接合面；貼合面
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 4
+
+**Example 1**
+
+The faying surface must be cleaned before assembly.
+
+接合面在組裝前必須清潔。
+
+**Example 2**
+
+Paint on the faying surface will degrade the electrical connection.
+
+接合面上的油漆會降低電氣連接品質。
+
+## 342. mating surface
+
+**Pronunciation:** /ˈmeɪtɪŋ ˈsɜːrfɪs/
+
+**Chinese meaning:** 配合面；接觸配合面
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+Both mating surfaces must be free of nonconductive films.
+
+兩個配合面都必須沒有非導電薄膜。
+
+**Example 2**
+
+The connector flange and panel mating surface require preparation.
+
+接頭法蘭與面板配合面需要進行表面準備。
+
+## 343. metal-to-metal contact
+
+**Pronunciation:** /ˈmetəl tə ˈmetəl ˈkɑːntækt/
+
+**Chinese meaning:** 金屬對金屬接觸
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+Metal-to-metal contact is preferred for RF performance.
+
+金屬對金屬接觸對 RF 性能較佳。
+
+**Example 2**
+
+A gasket may be needed when metal-to-metal contact is not reliable.
+
+當金屬對金屬接觸不可靠時，可能需要墊片。
+
+## 344. nonconductive coating
+
+**Pronunciation:** /ˌnɑːnkənˈdʌktɪv ˈkoʊtɪŋ/
+
+**Chinese meaning:** 非導電塗層
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Nonconductive coating must be removed from the bonding area.
+
+非導電塗層必須從接合區域移除。
+
+**Example 2**
+
+A thin nonconductive coating can make a good joint electrically poor.
+
+薄薄的非導電塗層可能讓良好的機械接合變成差的電氣接合。
+
+## 345. foreign matter
+
+**Pronunciation:** /ˈfɔːrən ˈmætər/
+
+**Chinese meaning:** 異物；外來物
+
+**Category:** Manufacturing
+
+**Difficulty:** 3
+
+**Example 1**
+
+Foreign matter on the contact area can increase resistance.
+
+接觸區域上的異物會增加電阻。
+
+**Example 2**
+
+Remove all chips, dust, and foreign matter before assembly.
+
+組裝前應移除所有切屑、灰塵與異物。
+
+## 346. aperture
+
+**Pronunciation:** /ˈæpərtʃər/
+
+**Chinese meaning:** 孔洞；開口；電磁洩漏開口
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+An unbonded seam can become an RF aperture.
+
+未良好接合的接縫可能形成 RF 開口。
+
+**Example 2**
+
+Reducing aperture size improves enclosure performance.
+
+縮小開口尺寸可改善外殼性能。
+
+## 347. threaded fastener
+
+**Pronunciation:** /ˈθredɪd ˈfæsənər/
+
+**Chinese meaning:** 螺紋緊固件
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 4
+
+**Example 1**
+
+A threaded fastener should not be the only current path.
+
+螺紋緊固件不應成為唯一的電流路徑。
+
+**Example 2**
+
+The threaded fastener mainly provides mechanical preload.
+
+螺紋緊固件主要提供機械預緊力。
+
+## 348. rivet
+
+**Pronunciation:** /ˈrɪvɪt/
+
+**Chinese meaning:** 鉚釘
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+Rivets can provide good contact when installed correctly.
+
+鉚釘若正確安裝，可提供良好接觸。
+
+**Example 2**
+
+At least three rivets are often recommended for one junction.
+
+一個接合點通常建議至少使用三個鉚釘。
+
+## 349. preload
+
+**Pronunciation:** /ˈpriːloʊd/
+
+**Chinese meaning:** 預緊力；預載
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 4
+
+**Example 1**
+
+Proper preload keeps the joint stable under vibration.
+
+適當的預緊力可讓接點在振動下保持穩定。
+
+**Example 2**
+
+Loss of preload may increase contact resistance.
+
+預緊力喪失可能增加接觸電阻。
+
+## 350. dynamic environment
+
+**Pronunciation:** /daɪˈnæmɪk ɪnˈvaɪrənmənt/
+
+**Chinese meaning:** 動態環境
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+The joint must maintain contact in a dynamic environment.
+
+接點必須在動態環境下維持接觸。
+
+**Example 2**
+
+Vibration and shock are part of the dynamic environment.
+
+振動與衝擊是動態環境的一部分。
+
+## 351. vibration
+
+**Pronunciation:** /vaɪˈbreɪʃən/
+
+**Chinese meaning:** 振動
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 2
+
+**Example 1**
+
+Vibration can loosen a poorly designed connection.
+
+振動可能使設計不良的連接鬆脫。
+
+**Example 2**
+
+The strap must survive vibration without cracking.
+
+該帶材必須能承受振動而不破裂。
+
+## 352. jumper
+
+**Pronunciation:** /ˈdʒʌmpər/
+
+**Chinese meaning:** 跳接線；跨接線
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+A jumper may be used when direct contact is impractical.
+
+當直接接觸不可行時，可使用跳接線。
+
+**Example 2**
+
+The jumper should be short, wide, and easy to inspect.
+
+跳接線應該短、寬且容易檢查。
+
+## 353. strap
+
+**Pronunciation:** /stræp/
+
+**Chinese meaning:** 帶材；接地/接合帶
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+A flat strap usually has lower inductance than a round wire.
+
+扁平帶材通常比圓線有較低電感。
+
+**Example 2**
+
+Keep the strap as short as possible.
+
+盡可能縮短帶材長度。
+
+## 354. length-to-width ratio
+
+**Pronunciation:** /leŋθ tə wɪdθ ˈreɪʃiˌoʊ/
+
+**Chinese meaning:** 長寬比
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+The length-to-width ratio of the strap should be kept low.
+
+帶材的長寬比應盡量低。
+
+**Example 2**
+
+A high length-to-width ratio increases inductance.
+
+高長寬比會增加電感。
+
+## 355. surface area
+
+**Pronunciation:** /ˈsɜːrfɪs ˈeriə/
+
+**Chinese meaning:** 表面積；接觸面積
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+Larger surface area improves current carrying capability.
+
+較大的表面積可改善載流能力。
+
+**Example 2**
+
+The design should maximize surface area at RF joints.
+
+設計應最大化 RF 接點的接觸面積。
+
+## 356. surface condition
+
+**Pronunciation:** /ˈsɜːrfɪs kənˈdɪʃən/
+
+**Chinese meaning:** 表面狀態
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Surface condition affects contact resistance.
+
+表面狀態會影響接觸電阻。
+
+**Example 2**
+
+Roughness and hardness are part of surface condition.
+
+粗糙度與硬度屬於表面狀態的一部分。
+
+## 357. cleanliness
+
+**Pronunciation:** /ˈkliːnlinəs/
+
+**Chinese meaning:** 清潔度
+
+**Category:** Manufacturing
+
+**Difficulty:** 2
+
+**Example 1**
+
+Cleanliness is essential for reliable electrical contact.
+
+清潔度對可靠電氣接觸非常重要。
+
+**Example 2**
+
+Poor cleanliness can cause unstable measurement results.
+
+清潔度不佳可能造成量測結果不穩定。
+
+## 358. surface preparation
+
+**Pronunciation:** /ˈsɜːrfɪs ˌprepəˈreɪʃən/
+
+**Chinese meaning:** 表面準備；表面處理前準備
+
+**Category:** Manufacturing
+
+**Difficulty:** 3
+
+**Example 1**
+
+Surface preparation must be defined before manufacturing.
+
+表面準備必須在製造前定義清楚。
+
+**Example 2**
+
+The drawing should specify the required surface preparation.
+
+圖面應指定所需的表面準備。
+
+## 359. abrasive material
+
+**Pronunciation:** /əˈbreɪsɪv məˈtɪriəl/
+
+**Chinese meaning:** 研磨材料
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Use abrasive material carefully to avoid damaging the base metal.
+
+使用研磨材料時要小心，避免損傷基材。
+
+**Example 2**
+
+The abrasive material should be compatible with the surface.
+
+研磨材料應與表面材料相容。
+
+## 360. solvent
+
+**Pronunciation:** /ˈsɑːlvənt/
+
+**Chinese meaning:** 溶劑
+
+**Category:** Manufacturing
+
+**Difficulty:** 2
+
+**Example 1**
+
+Use an approved solvent to clean the faying surface.
+
+使用核可的溶劑清潔接合面。
+
+**Example 2**
+
+The solvent must be compatible with the hardware.
+
+溶劑必須與硬體材料相容。
+
+## 361. sealant
+
+**Pronunciation:** /ˈsiːlənt/
+
+**Chinese meaning:** 密封膠；封膠
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Apply sealant around the joint to prevent moisture intrusion.
+
+在接點周圍塗佈密封膠以防止濕氣進入。
+
+**Example 2**
+
+The sealant must not block the electrical contact area.
+
+密封膠不得阻隔電氣接觸區域。
+
+## 362. plating
+
+**Pronunciation:** /ˈpleɪtɪŋ/
+
+**Chinese meaning:** 電鍍；鍍層
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Plating can improve corrosion resistance and electrical contact.
+
+電鍍可改善耐蝕性與電氣接觸。
+
+**Example 2**
+
+The plating material must be selected for galvanic compatibility.
+
+鍍層材料必須依電偶相容性選擇。
+
+## 363. tin plating
+
+**Pronunciation:** /tɪn ˈpleɪtɪŋ/
+
+**Chinese meaning:** 鍍錫
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Tin plating is often used on copper or steel surfaces.
+
+鍍錫常用於銅或鋼表面。
+
+**Example 2**
+
+Tin plating may require special control to prevent whisker growth.
+
+鍍錫可能需要特殊管制以避免錫鬚生長。
+
+## 364. nickel plating
+
+**Pronunciation:** /ˈnɪkəl ˈpleɪtɪŋ/
+
+**Chinese meaning:** 鍍鎳
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Nickel plating can reduce dissimilar-metal corrosion risk.
+
+鍍鎳可降低異種金屬腐蝕風險。
+
+**Example 2**
+
+Aluminum may be nickel-plated before mating with stainless steel.
+
+鋁件與不鏽鋼接合前可進行鍍鎳處理。
+
+## 365. chemical conversion coating
+
+**Pronunciation:** /ˈkemɪkəl kənˈvɜːrʒən ˈkoʊtɪŋ/
+
+**Chinese meaning:** 化學轉化膜；化成處理
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Chemical conversion coating can protect aluminum while maintaining conductivity.
+
+化學轉化膜可保護鋁材，同時維持導電能力。
+
+**Example 2**
+
+The drawing may call out a Class 3 chemical conversion coating.
+
+圖面可標註 Class 3 化學轉化膜。
+
+## 366. passivation
+
+**Pronunciation:** /ˌpæsɪˈveɪʃən/
+
+**Chinese meaning:** 鈍化處理
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Passivation improves the corrosion resistance of stainless steel.
+
+鈍化處理可改善不鏽鋼的耐蝕性。
+
+**Example 2**
+
+Passivation is not primarily an electrical bonding requirement.
+
+鈍化處理主要不是電氣接合要求。
+
+## 367. anodize
+
+**Pronunciation:** /ˈænədaɪz/
+
+**Chinese meaning:** 陽極處理；陽極氧化
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Anodize is usually nonconductive and must be removed from bonding areas.
+
+陽極處理通常不導電，必須從接合區域移除。
+
+**Example 2**
+
+The drawing should mask the contact area before anodize.
+
+圖面應要求在陽極處理前遮蔽接觸區域。
+
+## 368. tin whisker
+
+**Pronunciation:** /tɪn ˈwɪskər/
+
+**Chinese meaning:** 錫鬚
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Tin whisker growth can create reliability problems.
+
+錫鬚生長可能造成可靠度問題。
+
+**Example 2**
+
+Lead-alloyed tin may be used to reduce tin whisker risk.
+
+含鉛合金錫可用於降低錫鬚風險。
+
+## 369. corrosion control
+
+**Pronunciation:** /kəˈroʊʒən kənˈtroʊl/
+
+**Chinese meaning:** 腐蝕控制
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Corrosion control must be considered together with electrical contact.
+
+腐蝕控制必須與電氣接觸一起考量。
+
+**Example 2**
+
+Poor corrosion control will degrade the joint over time.
+
+腐蝕控制不佳會讓接點隨時間劣化。
+
+## 370. galvanic series
+
+**Pronunciation:** /ɡælˈvænɪk ˈsɪriːz/
+
+**Chinese meaning:** 電偶序列；金屬電位序
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+The galvanic series helps compare material compatibility.
+
+電偶序列可用來比較材料相容性。
+
+**Example 2**
+
+Materials far apart in the galvanic series need special protection.
+
+在電偶序列中相距很遠的材料需要特殊防護。
+
+## 371. cathode
+
+**Pronunciation:** /ˈkæθoʊd/
+
+**Chinese meaning:** 陰極
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Carbon-fiber composites often behave as the cathode in a galvanic couple.
+
+碳纖複材在電偶對中常表現為陰極。
+
+**Example 2**
+
+The cathode is usually the more noble material.
+
+陰極通常是較惰性、較耐蝕的材料。
+
+## 372. anode
+
+**Pronunciation:** /ˈænoʊd/
+
+**Chinese meaning:** 陽極
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+The anode is the material that tends to corrode.
+
+陽極是較容易腐蝕的材料。
+
+**Example 2**
+
+Protect the anode when dissimilar metals cannot be avoided.
+
+當無法避免異種金屬時，應保護陽極材料。
+
+## 373. electrolyte
+
+**Pronunciation:** /ɪˈlektroʊlaɪt/
+
+**Chinese meaning:** 電解質
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Moisture can act as an electrolyte in galvanic corrosion.
+
+濕氣可在電偶腐蝕中扮演電解質。
+
+**Example 2**
+
+Preventing electrolyte intrusion helps prevent corrosion.
+
+防止電解質侵入有助於避免腐蝕。
+
+## 374. dissimilar metal
+
+**Pronunciation:** /dɪˈsɪmələr ˈmetəl/
+
+**Chinese meaning:** 異種金屬
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Dissimilar metal contact should be reviewed by materials engineers.
+
+異種金屬接觸應由材料工程師審查。
+
+**Example 2**
+
+Use plating or sealing when dissimilar metal contact is unavoidable.
+
+當無法避免異種金屬接觸時，應使用鍍層或密封處理。
+
+## 375. moisture
+
+**Pronunciation:** /ˈmɔɪstʃər/
+
+**Chinese meaning:** 濕氣；水分
+
+**Category:** Materials & Surface
+
+**Difficulty:** 2
+
+**Example 1**
+
+Moisture can accelerate corrosion at the joint.
+
+濕氣會加速接點腐蝕。
+
+**Example 2**
+
+Seal the joint to keep moisture out.
+
+密封接點以防止濕氣進入。
+
+## 376. delamination
+
+**Pronunciation:** /diːˌlæməˈneɪʃən/
+
+**Chinese meaning:** 分層；剝離
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+High current at a fastener can cause local heating and delamination.
+
+緊固件處的高電流可能造成局部發熱與分層。
+
+**Example 2**
+
+Composite delamination is a serious structural concern.
+
+複材分層是嚴重的結構問題。
+
+## 377. volume resistivity
+
+**Pronunciation:** /ˈvɑːljuːm rɪˌzɪstɪˈvɪti/
+
+**Chinese meaning:** 體積電阻率
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+Volume resistivity determines whether a material can dissipate charge.
+
+體積電阻率決定材料是否能釋放電荷。
+
+**Example 2**
+
+Nonmetallic tubing may need a volume resistivity limit.
+
+非金屬管路可能需要體積電阻率限制。
+
+## 378. conductivity
+
+**Pronunciation:** /ˌkɑːndʌkˈtɪvəti/
+
+**Chinese meaning:** 導電率；導電性
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Graphite epoxy has much lower conductivity than aluminum.
+
+石墨環氧材料的導電性遠低於鋁。
+
+**Example 2**
+
+Additional metal paths can improve overall conductivity.
+
+額外金屬路徑可改善整體導電性。
+
+## 379. gasket
+
+**Pronunciation:** /ˈɡæskɪt/
+
+**Chinese meaning:** 墊片；密封墊
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+A conductive gasket can improve seam performance.
+
+導電墊片可改善接縫性能。
+
+**Example 2**
+
+The gasket must be compressed within the specified range.
+
+墊片必須壓縮在規定範圍內。
+
+## 380. compression set
+
+**Pronunciation:** /kəmˈpreʃən set/
+
+**Chinese meaning:** 壓縮永久變形
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 4
+
+**Example 1**
+
+Compression set affects whether a gasket can be reused.
+
+壓縮永久變形會影響墊片是否可重複使用。
+
+**Example 2**
+
+Low compression set is important for removable covers.
+
+低壓縮永久變形對可拆蓋板很重要。
+
+## 381. chassis
+
+**Pronunciation:** /ˈʃæsi/
+
+**Chinese meaning:** 機殼；底盤
+
+**Category:** Electrical Safety
+
+**Difficulty:** 3
+
+**Example 1**
+
+The chassis should be connected to the reference plane.
+
+機殼應連接到參考平面。
+
+**Example 2**
+
+A powered chassis must have a safe fault-current path.
+
+有供電的機殼必須具有安全的故障電流路徑。
+
+## 382. reference plane
+
+**Pronunciation:** /ˈrefərəns pleɪn/
+
+**Chinese meaning:** 參考平面
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+The copper layer acts as a local reference plane.
+
+銅層可作為局部參考平面。
+
+**Example 2**
+
+All critical shields should return to the reference plane.
+
+所有關鍵屏蔽都應回到參考平面。
+
+## 383. equipotential
+
+**Pronunciation:** /ˌiːkwɪpəˈtenʃəl/
+
+**Chinese meaning:** 等電位的
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+The goal is to make the structure as equipotential as practical.
+
+目標是讓結構盡可能接近等電位。
+
+**Example 2**
+
+An equipotential reference reduces unwanted voltage differences.
+
+等電位參考可減少非預期電位差。
+
+## 384. equipment rack
+
+**Pronunciation:** /ɪˈkwɪpmənt ræk/
+
+**Chinese meaning:** 設備機架；設備架
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+The avionics panel can be treated like a small equipment rack.
+
+航電板可視為小型設備機架。
+
+**Example 2**
+
+An equipment rack should provide defined mounting and bonding points.
+
+設備機架應提供明確的安裝與接合點。
+
+## 385. mounting bracket
+
+**Pronunciation:** /ˈmaʊntɪŋ ˈbrækɪt/
+
+**Chinese meaning:** 安裝支架
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+The mounting bracket must have a defined electrical path.
+
+安裝支架必須有明確的電氣路徑。
+
+**Example 2**
+
+Do not rely on a painted mounting bracket for RF return.
+
+不要依賴有塗裝的安裝支架作為 RF 回流。
+
+## 386. mounting surface
+
+**Pronunciation:** /ˈmaʊntɪŋ ˈsɜːrfɪs/
+
+**Chinese meaning:** 安裝面
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+The mounting surface should be prepared before the connector is installed.
+
+接頭安裝前，安裝面應先完成表面準備。
+
+**Example 2**
+
+A painted mounting surface may isolate the chassis.
+
+有塗裝的安裝面可能會使機殼電氣隔離。
+
+## 387. pyrotechnics
+
+**Pronunciation:** /ˌpaɪroʊˈteknɪks/
+
+**Chinese meaning:** 火工品；爆炸螺栓等火工裝置
+
+**Category:** System Safety
+
+**Difficulty:** 4
+
+**Example 1**
+
+Pyrotechnics require special attention to prevent accidental ignition.
+
+火工品需要特別注意，以避免意外點燃。
+
+**Example 2**
+
+Wires to pyrotechnics should be carefully shielded and terminated.
+
+連到火工品的線路應仔細屏蔽並妥善終端處理。
+
+## 388. arc discharge
+
+**Pronunciation:** /ɑːrk ˈdɪstʃɑːrdʒ/
+
+**Chinese meaning:** 電弧放電
+
+**Category:** System Safety
+
+**Difficulty:** 4
+
+**Example 1**
+
+High impedance at a joint can cause arc discharge.
+
+接點高阻抗可能造成電弧放電。
+
+**Example 2**
+
+Arc discharge near fuel or pyrotechnics is dangerous.
+
+燃料或火工品附近的電弧放電很危險。
+
+## 389. workmanship
+
+**Pronunciation:** /ˈwɜːrkmənʃɪp/
+
+**Chinese meaning:** 工藝品質；施工品質
+
+**Category:** Manufacturing
+
+**Difficulty:** 3
+
+**Example 1**
+
+Resistance measurement can verify workmanship quality.
+
+電阻量測可驗證施工品質。
+
+**Example 2**
+
+Poor workmanship may create an intermittent connection.
+
+施工品質不良可能造成間歇性連接。
+
+## 390. quality record
+
+**Pronunciation:** /ˈkwɑːləti ˈrekərd/
+
+**Chinese meaning:** 品質紀錄
+
+**Category:** Verification
+
+**Difficulty:** 3
+
+**Example 1**
+
+Quality records should include bonding resistance measurements.
+
+品質紀錄應包含接合電阻量測值。
+
+**Example 2**
+
+The quality record supports final acceptance.
+
+品質紀錄可支援最終驗收。
+
+## 391. engineering drawing
+
+**Pronunciation:** /ˌendʒɪˈnɪrɪŋ ˈdrɔːɪŋ/
+
+**Chinese meaning:** 工程圖面
+
+**Category:** Drawing & Documentation
+
+**Difficulty:** 3
+
+**Example 1**
+
+The engineering drawing must identify each bonded area.
+
+工程圖面必須標示每個接合區域。
+
+**Example 2**
+
+Manufacturing follows the notes on the engineering drawing.
+
+製造單位依照工程圖面上的註記執行。
+
+## 392. drawing note
+
+**Pronunciation:** /ˈdrɔːɪŋ noʊt/
+
+**Chinese meaning:** 圖面註記
+
+**Category:** Drawing & Documentation
+
+**Difficulty:** 3
+
+**Example 1**
+
+A drawing note should specify cleaning and resistance requirements.
+
+圖面註記應指定清潔與電阻要求。
+
+**Example 2**
+
+Use a local drawing note for a special bonding location.
+
+對特殊接合位置使用局部圖面註記。
+
+## 393. general note
+
+**Pronunciation:** /ˈdʒenrəl noʊt/
+
+**Chinese meaning:** 一般註記
+
+**Category:** Drawing & Documentation
+
+**Difficulty:** 2
+
+**Example 1**
+
+A general note applies to the entire drawing.
+
+一般註記適用於整張圖面。
+
+**Example 2**
+
+The general note can define the default cleaning requirement.
+
+一般註記可定義預設清潔要求。
+
+## 394. local note
+
+**Pronunciation:** /ˈloʊkəl noʊt/
+
+**Chinese meaning:** 局部註記
+
+**Category:** Drawing & Documentation
+
+**Difficulty:** 2
+
+**Example 1**
+
+A local note applies only to a specific location.
+
+局部註記只適用於特定位置。
+
+**Example 2**
+
+Use a local note when one joint has a different resistance limit.
+
+當某個接點有不同電阻限制時，使用局部註記。
+
+## 395. flag note
+
+**Pronunciation:** /flæɡ noʊt/
+
+**Chinese meaning:** 旗標註記；符號註記
+
+**Category:** Drawing & Documentation
+
+**Difficulty:** 3
+
+**Example 1**
+
+A flag note can be reused at multiple drawing locations.
+
+旗標註記可重複用於圖面多個位置。
+
+**Example 2**
+
+The flag note identifies surfaces that require preparation.
+
+旗標註記可標示需要表面準備的位置。
+
+## 396. verification matrix
+
+**Pronunciation:** /ˌverɪfɪˈkeɪʃən ˈmeɪtrɪks/
+
+**Chinese meaning:** 驗證矩陣
+
+**Category:** Verification
+
+**Difficulty:** 4
+
+**Example 1**
+
+A verification matrix maps each bonding path to a test method.
+
+驗證矩陣會將每條接合路徑對應到測試方法。
+
+**Example 2**
+
+The avionics ring should have its own verification matrix.
+
+航電環應建立自己的驗證矩陣。
+
+## 397. work instruction
+
+**Pronunciation:** /wɜːrk ɪnˈstrʌkʃən/
+
+**Chinese meaning:** 作業指導書；工作指令
+
+**Category:** Manufacturing
+
+**Difficulty:** 3
+
+**Example 1**
+
+The work instruction should describe how to prepare the surface.
+
+作業指導書應說明如何進行表面準備。
+
+**Example 2**
+
+Do not leave critical bonding steps only in the presentation.
+
+不要只把關鍵接合步驟留在簡報中。
+
+## 398. traceable
+
+**Pronunciation:** /ˈtreɪsəbəl/
+
+**Chinese meaning:** 可追溯的
+
+**Category:** Requirements & Process
+
+**Difficulty:** 3
+
+**Example 1**
+
+Each measurement result should be traceable to a specific joint.
+
+每個量測結果都應可追溯到特定接點。
+
+**Example 2**
+
+Requirements should be traceable from system level to design drawings.
+
+要求應可從系統層級追溯到設計圖面。
+
+## 399. margin
+
+**Pronunciation:** /ˈmɑːrdʒɪn/
+
+**Chinese meaning:** 裕度；安全餘裕
+
+**Category:** Engineering General
+
+**Difficulty:** 2
+
+**Example 1**
+
+The design should keep enough electrical and thermal margin.
+
+設計應保留足夠的電氣與熱裕度。
+
+**Example 2**
+
+A poor bonding path can reduce Electromagnetic Compatibility (EMC) margin.
+
+不良接合路徑可能降低 EMC 裕度。
+
+## 400. mitigation
+
+**Pronunciation:** /ˌmɪtɪˈɡeɪʃən/
+
+**Chinese meaning:** 緩解；降低風險措施
+
+**Category:** Engineering General
+
+**Difficulty:** 3
+
+**Example 1**
+
+Corrosion mitigation must be included in the design.
+
+設計中必須包含腐蝕緩解措施。
+
+**Example 2**
+
+The copper reference ring is one mitigation for RF coupling.
+
+銅參考環是降低 RF 耦合的一項措施。
+
+## 401. assumption
+
+**Pronunciation:** /əˈsʌmpʃən/
+
+**Chinese meaning:** 假設
+
+**Category:** Engineering General
+
+**Difficulty:** 2
+
+**Example 1**
+
+The table values are assumptions, not final acceptance limits.
+
+表格數值是假設，不是最終驗收限制。
+
+**Example 2**
+
+Every design assumption should be reviewed with the consultant.
+
+每個設計假設都應與顧問確認。
+
+## 402. dictate
+
+**Pronunciation:** /dɪkˈteɪt/
+
+**Chinese meaning:** 規定；命令；指定
+
+**Category:** Requirements & Process
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+The designer does not need to dictate how manufacturing performs the bonding task.
+
+設計師不需要規定製造單位如何執行 bonding 作業。
+
+**Example 2**
+
+The specification may dictate the required test method.
+
+規範可能會指定所需的測試方法。
+
+## 403. entail
+
+**Pronunciation:** /ɪnˈteɪl/
+
+**Chinese meaning:** 涉及；包含；需要
+
+**Category:** Requirements & Process
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+The engineer should understand what the task entails.
+
+工程師應了解這項任務包含哪些工作。
+
+**Example 2**
+
+This design change may entail additional verification.
+
+這項設計變更可能需要額外驗證。
+
+## 404. plumbing
+
+**Pronunciation:** /ˈplʌmɪŋ/
+
+**Chinese meaning:** 管路；管線系統
+
+**Category:** Vehicle Structure & Systems
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Metallic plumbing can carry lightning current.
+
+金屬管路可能承載雷擊電流。
+
+**Example 2**
+
+The fuel plumbing must be reviewed for bonding continuity.
+
+燃料管路必須審查 bonding 連續性。
+
+## 405. strike
+
+**Pronunciation:** /straɪk/
+
+**Chinese meaning:** 擊中；雷擊；打擊
+
+**Category:** Lightning & Transients
+
+**Difficulty:** Basic
+
+**Example 1**
+
+Lightning strikes can induce large currents in the structure.
+
+雷擊可能在結構中感應大電流。
+
+**Example 2**
+
+A strike path should stay outside the vehicle.
+
+雷擊路徑應盡量保持在載具外部。
+
+## 406. essential
+
+**Pronunciation:** /ɪˈsenʃəl/
+
+**Chinese meaning:** 必要的；不可或缺的
+
+**Category:** General Engineering
+
+**Difficulty:** Basic
+
+**Example 1**
+
+Electrical continuity is essential across mechanical joints.
+
+機械接合處的電氣連續性是必要的。
+
+**Example 2**
+
+A low-impedance path is essential for RF bonding.
+
+低阻抗路徑對 RF bonding 是必要的。
+
+## 407. achieve
+
+**Pronunciation:** /əˈtʃiːv/
+
+**Chinese meaning:** 達成；實現
+
+**Category:** Requirements & Process
+
+**Difficulty:** Basic
+
+**Example 1**
+
+Proper bonding helps achieve the shielding objective.
+
+適當的 bonding 有助於達成 shielding 目標。
+
+**Example 2**
+
+To achieve low resistance, remove nonconductive coatings from the faying surface.
+
+為達成低電阻，需移除接合面的非導電塗層。
+
+## 408. inadvertently
+
+**Pronunciation:** /ˌɪnədˈvɜːrtəntli/
+
+**Chinese meaning:** 無意地；不慎地
+
+**Category:** Safety & Fault Protection
+
+**Difficulty:** Advanced
+
+**Example 1**
+
+Primary power may be inadvertently shorted to the enclosure.
+
+主電源可能不慎短路到外殼。
+
+**Example 2**
+
+Do not place the strap where it can be inadvertently damaged.
+
+不要將 strap 放在可能被不慎損壞的位置。
+
+## 409. characteristics
+
+**Pronunciation:** /ˌkærəktəˈrɪstɪks/
+
+**Chinese meaning:** 特性；特徵
+
+**Category:** General Engineering
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Each bond class has different characteristics.
+
+每一種 bond class 都有不同特性。
+
+**Example 2**
+
+Material characteristics affect bonding performance.
+
+材料特性會影響 bonding 性能。
+
+## 410. incorporate
+
+**Pronunciation:** /ɪnˈkɔːrpəreɪt/
+
+**Chinese meaning:** 納入；整合；包含
+
+**Category:** Design Integration
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+The designer must incorporate mechanical and thermal requirements.
+
+設計師必須納入機械與熱要求。
+
+**Example 2**
+
+The panel design should incorporate dedicated bonding points.
+
+板件設計應納入專用 bonding 點。
+
+## 411. compromise
+
+**Pronunciation:** /ˈkɑːmprəmaɪz/
+
+**Chinese meaning:** 妥協；折衷；取捨
+
+**Category:** Design Tradeoff
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+The final design may require a compromise between weight and Electromagnetic Compatibility (EMC) margin.
+
+最終設計可能需要在重量和 EMC 裕度之間取捨。
+
+**Example 2**
+
+Avoid a compromise that weakens the fault-current path.
+
+避免做出會削弱故障電流路徑的妥協。
+
+## 412. especially
+
+**Pronunciation:** /ɪˈspeʃəli/
+
+**Chinese meaning:** 尤其；特別是
+
+**Category:** General English
+
+**Difficulty:** Basic
+
+**Example 1**
+
+Large systems, especially those with EMI concerns, need a dedicated return.
+
+大型系統，尤其是有 EMI 疑慮者，需要專用回流。
+
+**Example 2**
+
+This is especially important near fuel systems.
+
+這在燃料系統附近尤其重要。
+
+## 413. dedicated
+
+**Pronunciation:** /ˈdedɪkeɪtɪd/
+
+**Chinese meaning:** 專用的；專門的
+
+**Category:** Power & Return Path
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Use a dedicated power return instead of relying on structure.
+
+使用專用電源回流，而不是依賴結構。
+
+**Example 2**
+
+A dedicated bonding pad simplifies inspection.
+
+專用 bonding pad 可簡化檢查。
+
+## 414. coordination
+
+**Pronunciation:** /koʊˌɔːrdɪˈneɪʃən/
+
+**Chinese meaning:** 協調；協同作業
+
+**Category:** Team Coordination
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Coordination with the power distribution designer may be required.
+
+可能需要與電源分配設計工程師協調。
+
+**Example 2**
+
+Good coordination between Electromagnetic Compatibility (EMC) and structural teams reduces rework.
+
+EMC 與結構團隊良好協調可減少重工。
+
+## 415. intent of
+
+**Pronunciation:** /ɪnˈtent əv/
+
+**Chinese meaning:** ……的目的；……的意圖
+
+**Category:** Requirements & Process
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+The intent of a Class H bond is to prevent shock hazards.
+
+Class H bond 的目的在於防止電擊危害。
+
+**Example 2**
+
+Understand the intent of the requirement before selecting a method.
+
+選擇方法前，要先理解要求的目的。
+
+## 416. electrical
+
+**Pronunciation:** /ɪˈlektrɪkəl/
+
+**Chinese meaning:** 電氣的；電的
+
+**Category:** Electrical Engineering
+
+**Difficulty:** Basic
+
+**Example 1**
+
+Electrical equipment must be bonded to structure.
+
+電氣設備必須 bond 到結構。
+
+**Example 2**
+
+The electrical path should not depend on paint or adhesive.
+
+電氣路徑不應依賴油漆或膠材。
+
+## 417. shock hazard
+
+**Pronunciation:** /ʃɑːk ˈhæzərd/
+
+**Chinese meaning:** 電擊危害；觸電風險
+
+**Category:** Safety & Fault Protection
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+A floating chassis can become a shock hazard.
+
+浮接 chassis 可能變成電擊危害。
+
+**Example 2**
+
+Class H bonding reduces the shock hazard during a fault.
+
+Class H bonding 可降低故障時的電擊危害。
+
+## 418. historically
+
+**Pronunciation:** /hɪˈstɔːrɪkəli/
+
+**Chinese meaning:** 歷史上；過去以來
+
+**Category:** Technical Writing
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Historically, Class R bonding has been associated with 2.5 milliohms.
+
+歷史上，Class R bonding 通常與 2.5 mΩ 相關。
+
+**Example 2**
+
+Historically, DC resistance was used as a workmanship indicator.
+
+過去以來，DC 電阻常被用作品質指標。
+
+## 419. associated
+
+**Pronunciation:** /əˈsoʊʃieɪtɪd/
+
+**Chinese meaning:** 相關聯的；伴隨的
+
+**Category:** Technical Writing
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Class R bonding is associated with RF suppression performance.
+
+Class R bonding 與 RF 抑制性能相關。
+
+**Example 2**
+
+The risk is associated with high current and fast rise time.
+
+此風險與高電流及快速上升時間相關。
+
+## 420. unfortunately
+
+**Pronunciation:** /ʌnˈfɔːrtʃənətli/
+
+**Chinese meaning:** 不幸的是；可惜的是
+
+**Category:** Technical Writing
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Unfortunately, low DC resistance does not guarantee low RF impedance.
+
+可惜的是，低 DC 電阻不保證低 RF 阻抗。
+
+**Example 2**
+
+Unfortunately, long straps can behave poorly at high frequency.
+
+可惜的是，長 strap 在高頻下表現可能很差。
+
+## 421. relatively easy with
+
+**Pronunciation:** /ˈrelətɪvli ˈiːzi wɪð/
+
+**Chinese meaning:** 使用……相對容易
+
+**Category:** Technical Writing
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Measuring DC resistance is relatively easy with a micro-ohmmeter.
+
+使用 micro-ohmmeter 量測 DC 電阻相對容易。
+
+**Example 2**
+
+Bond inspection is relatively easy with clear drawing notes.
+
+有清楚圖面註記時，bond 檢查相對容易。
+
+## 422. realistically
+
+**Pronunciation:** /ˌriːəˈlɪstɪkli/
+
+**Chinese meaning:** 實際上；務實地
+
+**Category:** Design Feasibility
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+A direct RF bond may not be realistically obtained with shock mounts.
+
+使用 shock mount 時，直接 RF bond 可能實際上無法達成。
+
+**Example 2**
+
+Choose a method that can be realistically manufactured and inspected.
+
+選擇能實際製造與檢查的方法。
+
+## 423. interference
+
+**Pronunciation:** /ˌɪntərˈfɪrəns/
+
+**Chinese meaning:** 干擾
+
+**Category:** Electromagnetic Compatibility (EMC) / EMI
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+High currents can create electromagnetic interference.
+
+高電流可能產生電磁干擾。
+
+**Example 2**
+
+Shielding reduces interference coupled into sensitive equipment.
+
+Shielding 可降低耦合進敏感設備的干擾。
+
+## 424. extremity
+
+**Pronunciation:** /ɪkˈstreməti/
+
+**Chinese meaning:** 端部；末端
+
+**Category:** Lightning & Transients
+
+**Difficulty:** Advanced
+
+**Example 1**
+
+Lightning current may enter one extremity of the vehicle.
+
+雷擊電流可能從載具一端進入。
+
+**Example 2**
+
+Bonding should provide a current path from one extremity to another.
+
+Bonding 應提供從一端到另一端的電流路徑。
+
+## 425. spark
+
+**Pronunciation:** /spɑːrk/
+
+**Chinese meaning:** 火花；產生火花
+
+**Category:** Lightning & Transients
+
+**Difficulty:** Basic
+
+**Example 1**
+
+A poor joint can create a spark during a lightning event.
+
+不良接合可能在雷擊事件中產生火花。
+
+**Example 2**
+
+Sparks must not jump between metallic structures near fuel.
+
+火花不得在燃料附近的金屬結構間跳躍。
+
+## 426. particularly
+
+**Pronunciation:** /pərˈtɪkjələrli/
+
+**Chinese meaning:** 特別地；尤其
+
+**Category:** General English
+
+**Difficulty:** Basic
+
+**Example 1**
+
+This is particularly important around fuel and pyrotechnics.
+
+這在燃料與火工品周圍特別重要。
+
+**Example 2**
+
+Class R bonding is particularly sensitive to strap length.
+
+Class R bonding 對 strap 長度特別敏感。
+
+## 427. around fuel
+
+**Pronunciation:** /əˈraʊnd ˈfjuːəl/
+
+**Chinese meaning:** 在燃料周圍；燃料附近
+
+**Category:** Safety & Hazardous Areas
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Bonding near areas around fuel requires special attention.
+
+燃料周圍區域的 bonding 需要特別注意。
+
+**Example 2**
+
+Avoid sparks around fuel during fault or lightning conditions.
+
+在故障或雷擊條件下，應避免燃料周圍產生火花。
+
+## 428. adequate
+
+**Pronunciation:** /ˈædɪkwət/
+
+**Chinese meaning:** 足夠的；適當的
+
+**Category:** General Engineering
+
+**Difficulty:** Basic
+
+**Example 1**
+
+The design must provide an adequate margin against ignition.
+
+設計必須提供足夠的防點燃裕度。
+
+**Example 2**
+
+The contact area must be adequate for the expected current.
+
+接觸面積必須足以承載預期電流。
+
+## 429. against
+
+**Pronunciation:** /əˈɡenst/
+
+**Chinese meaning:** 防止；對抗；針對
+
+**Category:** General English
+
+**Difficulty:** Basic
+
+**Example 1**
+
+The Faraday cage provides protection against ignition.
+
+Faraday cage 提供防止點燃的保護。
+
+**Example 2**
+
+The bonding path should protect against arcing at joints.
+
+bonding path 應防止接合點電弧。
+
+## 430. soldered terminals
+
+**Pronunciation:** /ˈsɑːdərd ˈtɜːrmɪnəlz/
+
+**Chinese meaning:** 焊接端子
+
+**Category:** Lightning & Transients
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Do not use soldered terminals for lightning current paths.
+
+雷擊電流路徑不要使用焊接端子。
+
+**Example 2**
+
+Soldered terminals may fail under high-current transients.
+
+焊接端子可能在高電流暫態下失效。
+
+## 431. crimped
+
+**Pronunciation:** /krɪmpt/
+
+**Chinese meaning:** 壓接的
+
+**Category:** Manufacturing & Assembly
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Most crimped connectors are satisfactory for bonding jumpers.
+
+大多數壓接式接頭可用於 bonding jumpers。
+
+**Example 2**
+
+Use a qualified crimped terminal for the strap.
+
+strap 應使用合格的壓接端子。
+
+## 432. satisfactory
+
+**Pronunciation:** /ˌsætɪsˈfæktəri/
+
+**Chinese meaning:** 可接受的；令人滿意的
+
+**Category:** Quality & Verification
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Most crimped connectors are satisfactory for this application.
+
+大多數壓接式接頭對此應用是可接受的。
+
+**Example 2**
+
+A low resistance reading is a satisfactory workmanship indicator.
+
+低電阻讀值是可接受的作業品質指標。
+
+## 433. perforation
+
+**Pronunciation:** /ˌpɜːrfəˈreɪʃən/
+
+**Chinese meaning:** 穿孔；孔洞形成
+
+**Category:** Lightning & Damage Effects
+
+**Difficulty:** Advanced
+
+**Example 1**
+
+Sparking between panels may cause perforation of the vehicle skin.
+
+面板間火花可能造成載具外殼穿孔。
+
+**Example 2**
+
+Inspect the panel for perforation after a high-current event.
+
+高電流事件後應檢查面板是否穿孔。
+
+## 434. flammable liquids
+
+**Pronunciation:** /ˈflæməbəl ˈlɪkwɪdz/
+
+**Chinese meaning:** 易燃液體
+
+**Category:** Safety & Hazardous Areas
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Joints near flammable liquids are considered hazardous.
+
+靠近易燃液體的接合處被視為危險。
+
+**Example 2**
+
+Bonding near flammable liquids must be reviewed carefully.
+
+易燃液體附近的 bonding 必須仔細審查。
+
+## 435. vapor
+
+**Pronunciation:** /ˈveɪpər/
+
+**Chinese meaning:** 蒸氣
+
+**Category:** Safety & Hazardous Areas
+
+**Difficulty:** Basic
+
+**Example 1**
+
+Fuel vapors can ignite if sparks occur.
+
+若產生火花，燃料蒸氣可能被點燃。
+
+**Example 2**
+
+Joints near vapors require special attention.
+
+靠近蒸氣的接合處需要特別注意。
+
+## 436. rely on
+
+**Pronunciation:** /rɪˈlaɪ ɑːn/
+
+**Chinese meaning:** 依賴；仰賴
+
+**Category:** Power & Return Path
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Do not rely on the vehicle structure as the primary power return.
+
+不要依賴載具結構作為主要電源回流路徑。
+
+**Example 2**
+
+Bonding jumpers should not rely on adjacent parts for their connection.
+
+Bonding jumper 不應依賴相鄰零件形成連接。
+
+## 437. accidental
+
+**Pronunciation:** /ˌæksɪˈdentəl/
+
+**Chinese meaning:** 意外的；非預期的
+
+**Category:** Safety & Fault Protection
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+An accidental fault may place primary power on the equipment enclosure.
+
+意外故障可能使設備外殼帶有主電源電壓。
+
+**Example 2**
+
+Proper bonding provides a safe path for accidental current.
+
+適當的 bonding 可為意外電流提供安全路徑。
+
+## 438. treated like
+
+**Pronunciation:** /ˈtriːtɪd laɪk/
+
+**Chinese meaning:** 被視同；像……一樣處理
+
+**Category:** Materials & Corrosion
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Faying surfaces of bond straps should be treated like other faying surfaces.
+
+Bond strap 的接合面應像其他接合面一樣處理。
+
+**Example 2**
+
+Graphite-based composites should be treated like dissimilar metal couples.
+
+石墨基複合材料應像異種金屬組合一樣處理。
+
+## 439. ignition
+
+**Pronunciation:** /ɪɡˈnɪʃən/
+
+**Chinese meaning:** 點燃；著火
+
+**Category:** Lightning & Transients
+
+**Difficulty:** Advanced
+
+**Example 1**
+
+Fuel and pyrotechnics should be enclosed by a Faraday cage to provide an adequate margin against ignition.
+
+燃料與火工品應由 Faraday cage 包覆，以提供足夠的防點燃裕度。
+
+**Example 2**
+
+A bond must carry lightning current without heating enough to become an ignition hazard.
+
+Bond 必須能承載雷擊電流，且不得因過熱而形成點燃危害。
+
+## 440. intermittent
+
+**Pronunciation:** /ˌɪntərˈmɪtənt/
+
+**Chinese meaning:** 間歇性的；時有時無的
+
+**Category:** Quality & Verification
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Movement of a loose bond strap can create an intermittent connection and electrical noise.
+
+鬆動 bond strap 的移動可能造成間歇性連接與電氣雜訊。
+
+**Example 2**
+
+An intermittent bond may cause arcing during vibration.
+
+間歇性的 bond 可能在振動期間造成電弧。
+
+## 441. specific
+
+**Pronunciation:** /spəˈsɪfɪk/
+
+**Chinese meaning:** 特定的；明確的
+
+**Category:** Requirements & Process
+
+**Difficulty:** Basic
+
+**Example 1**
+
+The handbook helps determine bonding requirements applicable to specific hardware.
+
+本手冊協助判定適用於特定硬體的 bonding 要求。
+
+**Example 2**
+
+Program documents may include requirements for a specific project.
+
+計畫文件可能包含特定專案的要求。
+
+## 442. weakens
+
+**Pronunciation:** /ˈwiːkənz/
+
+**Chinese meaning:** 削弱；使變弱
+
+**Category:** Lightning & Damage Effects
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Lightning current weakens a fastener when excessive heat develops at the connection.
+
+當連接處產生過多熱量時，雷擊電流會削弱緊固件。
+
+**Example 2**
+
+Corrosion weakens the bond and increases electrical resistance.
+
+腐蝕會削弱 bond 並增加電阻。
+
+## 443. circumferential
+
+**Pronunciation:** /sərˌkʌmfəˈrenʃəl/
+
+**Chinese meaning:** 環向的；沿圓周的
+
+**Category:** Mechanical / Electromagnetic Compatibility (EMC)
+
+**Difficulty:** 4
+
+**Example 1**
+
+A circumferential reference ring is installed along the inner wall.
+
+環向參考環安裝在內壁周圍。
+
+**Example 2**
+
+The circumferential path reduces the return loop area.
+
+環向路徑可降低回流迴路面積。
+
+## 444. continuous
+
+**Pronunciation:** /kənˈtɪnjuəs/
+
+**Chinese meaning:** 連續的
+
+**Category:** Design Requirement
+
+**Difficulty:** 2
+
+**Example 1**
+
+The metal layer should be continuous around the ring.
+
+金屬層應沿著環形結構連續一圈。
+
+**Example 2**
+
+A continuous path is better than several isolated metal strips.
+
+連續路徑比數段孤立金屬條更好。
+
+## 445. open-ended
+
+**Pronunciation:** /ˌoʊpən ˈendɪd/
+
+**Chinese meaning:** 開口的；非封閉的
+
+**Category:** Mechanical Structure
+
+**Difficulty:** 3
+
+**Example 1**
+
+The A1 ring is open-ended at the top and bottom.
+
+A1 航電環上下兩端是開口的。
+
+**Example 2**
+
+An open-ended structure cannot be treated as a fully enclosed shield.
+
+開口結構不能視為完整封閉屏蔽體。
+
+## 446. low-impedance
+
+**Pronunciation:** /loʊ ɪmˈpiːdəns/
+
+**Chinese meaning:** 低阻抗的
+
+**Category:** Electromagnetic Compatibility (EMC) / Electrical
+
+**Difficulty:** 3
+
+**Example 1**
+
+The reference ring should provide a low-impedance path.
+
+參考環應提供低阻抗路徑。
+
+**Example 2**
+
+A low-impedance connection is essential for RF return current.
+
+低阻抗連接對 RF 回流電流很重要。
+
+## 447. low-inductance
+
+**Pronunciation:** /loʊ ɪnˈdʌktəns/
+
+**Chinese meaning:** 低電感的
+
+**Category:** Electromagnetic Compatibility (EMC) / Electrical
+
+**Difficulty:** 4
+
+**Example 1**
+
+Use short and wide conductors to create a low-inductance path.
+
+使用短而寬的導體建立低電感路徑。
+
+**Example 2**
+
+A low-inductance path is more important than DC resistance at high frequency.
+
+在高頻時，低電感路徑比 DC 電阻更重要。
+
+## 448. resonance
+
+**Pronunciation:** /ˈrezənəns/
+
+**Chinese meaning:** 共振
+
+**Category:** Electromagnetic Compatibility (EMC) / RF
+
+**Difficulty:** 4
+
+**Example 1**
+
+The bonding path should avoid unwanted resonance.
+
+搭接路徑應避免不必要的共振。
+
+**Example 2**
+
+A long strap may resonate at certain frequencies.
+
+很長的搭接帶可能在特定頻率產生共振。
+
+## 449. joint
+
+**Pronunciation:** /dʒɔɪnt/
+
+**Chinese meaning:** 接合點；搭接點
+
+**Category:** Mechanical / Verification
+
+**Difficulty:** 3
+
+**Example 1**
+
+Each joint should be inspected and measured.
+
+每個接合點都應檢查與量測。
+
+**Example 2**
+
+A loose joint can increase resistance and noise.
+
+鬆動的接合點會增加電阻與雜訊。
+
+## 450. vehicle structure
+
+**Pronunciation:** /ˈviːəkəl ˈstrʌktʃər/
+
+**Chinese meaning:** 載具結構；火箭結構
+
+**Category:** Avionics Structure
+
+**Difficulty:** 3
+
+**Example 1**
+
+The equipment case should be connected to the vehicle structure.
+
+設備外殼應連接到載具結構。
+
+**Example 2**
+
+In a non-conductive ring, the vehicle structure must be defined carefully.
+
+在非導電航電環中，必須謹慎定義載具結構參考。
+
+## 451. structural element
+
+**Pronunciation:** /ˈstrʌktʃərəl ˈelɪmənt/
+
+**Chinese meaning:** 結構元件
+
+**Category:** Mechanical / Electromagnetic Compatibility (EMC)
+
+**Difficulty:** 3
+
+**Example 1**
+
+Each structural element should be part of the controlled reference network.
+
+每個結構元件都應納入受控參考網路。
+
+**Example 2**
+
+An isolated structural element may become a noise source.
+
+孤立的結構元件可能變成雜訊源。
+
+## 452. interconnected
+
+**Pronunciation:** /ˌɪntərkəˈnektɪd/
+
+**Chinese meaning:** 互相連接的
+
+**Category:** Electromagnetic Compatibility (EMC) / Bonding
+
+**Difficulty:** 3
+
+**Example 1**
+
+The A1 and A4 reference rings should be interconnected.
+
+A1 與 A4 的參考環應互相連接。
+
+**Example 2**
+
+Interconnected metal paths reduce potential differences.
+
+互連的金屬路徑可降低電位差。
+
+## 453. uniform
+
+**Pronunciation:** /ˈjuːnɪfɔːrm/
+
+**Chinese meaning:** 均勻的；一致的
+
+**Category:** Design Requirement
+
+**Difficulty:** 3
+
+**Example 1**
+
+The bonding network should have uniform low impedance.
+
+搭接網路應具有均勻的低阻抗。
+
+**Example 2**
+
+A uniform reference helps reduce unexpected current paths.
+
+一致的參考面有助於降低非預期電流路徑。
+
+## 454. dedicated return
+
+**Pronunciation:** /ˈdedɪkeɪtɪd rɪˈtɜːrn/
+
+**Chinese meaning:** 專用回流線；專用回流路徑
+
+**Category:** Power / Electromagnetic Compatibility (EMC)
+
+**Difficulty:** 4
+
+**Example 1**
+
+The 28 V supply should use a dedicated return conductor.
+
+28 V 電源應使用專用回流導體。
+
+**Example 2**
+
+A dedicated return keeps load current out of the reference ring.
+
+專用回流可避免負載電流流入參考環。
+
+## 455. backbone
+
+**Pronunciation:** /ˈbækboʊn/
+
+**Chinese meaning:** 主幹；骨幹路徑
+
+**Category:** Electromagnetic Compatibility (EMC) / Architecture
+
+**Difficulty:** 3
+
+**Example 1**
+
+A metal cable tray can serve as the bonding backbone.
+
+金屬線槽可作為搭接主幹。
+
+**Example 2**
+
+The backbone should follow the main cable route.
+
+主幹路徑應沿著主要電纜路徑配置。
+
+## 456. cable tray
+
+**Pronunciation:** /ˈkeɪbəl treɪ/
+
+**Chinese meaning:** 電纜托盤；線槽
+
+**Category:** Cable Routing
+
+**Difficulty:** 3
+
+**Example 1**
+
+A metal cable tray can provide a controlled return path.
+
+金屬電纜托盤可提供受控回流路徑。
+
+**Example 2**
+
+The cable tray should be connected to both reference rings.
+
+電纜托盤應連接到兩個參考環。
+
+## 457. conduit
+
+**Pronunciation:** /ˈkɑːnduɪt/
+
+**Chinese meaning:** 導管；線管
+
+**Category:** Cable Routing
+
+**Difficulty:** 3
+
+**Example 1**
+
+A metal conduit can improve shielding along the cable route.
+
+金屬導管可改善電纜路徑上的屏蔽效果。
+
+**Example 2**
+
+The conduit must be electrically connected at both ends.
+
+導管兩端必須做電氣連接。
+
+## 458. parallel path
+
+**Pronunciation:** /ˈpærəlel pæθ/
+
+**Chinese meaning:** 並聯路徑
+
+**Category:** Electromagnetic Compatibility (EMC) / Architecture
+
+**Difficulty:** 3
+
+**Example 1**
+
+Multiple parallel paths reduce the impedance between A1 and A4.
+
+多條並聯路徑可降低 A1 與 A4 之間的阻抗。
+
+**Example 2**
+
+A single path is less robust than several parallel paths.
+
+單一路徑不如多條並聯路徑可靠。
+
+## 459. local chassis
+
+**Pronunciation:** /ˈloʊkəl ˈʃæsi/
+
+**Chinese meaning:** 局部機殼；本地底盤
+
+**Category:** Electromagnetic Compatibility (EMC) / Hardware
+
+**Difficulty:** 3
+
+**Example 1**
+
+The shield should terminate to the local chassis.
+
+屏蔽層應端接到局部機殼。
+
+**Example 2**
+
+Local chassis bonding reduces cable shield current loops.
+
+局部機殼搭接可降低電纜屏蔽層電流迴路。
+
+## 460. fault protection
+
+**Pronunciation:** /fɔːlt prəˈtekʃən/
+
+**Chinese meaning:** 故障保護
+
+**Category:** Safety / Power
+
+**Difficulty:** 3
+
+**Example 1**
+
+Fault protection prevents overheating during a short circuit.
+
+故障保護可避免短路時過熱。
+
+**Example 2**
+
+Bonding for fault protection is different from RF bonding.
+
+故障保護用搭接與 RF 搭接不同。
+
+## 461. overload current
+
+**Pronunciation:** /ˈoʊvərloʊd ˈkɜːrənt/
+
+**Chinese meaning:** 過載電流
+
+**Category:** Safety / Power
+
+**Difficulty:** 4
+
+**Example 1**
+
+The path should survive the specified overload current.
+
+該路徑應能承受規定的過載電流。
+
+**Example 2**
+
+Overload current may heat a narrow conductor quickly.
+
+過載電流可能快速加熱狹窄導體。
+
+## 462. current-carrying capability
+
+**Pronunciation:** /ˈkɜːrənt ˈkæriɪŋ ˌkeɪpəˈbɪləti/
+
+**Chinese meaning:** 載流能力
+
+**Category:** Verification / Power
+
+**Difficulty:** 4
+
+**Example 1**
+
+The current-carrying capability of the bonding path must be verified.
+
+必須驗證搭接路徑的載流能力。
+
+**Example 2**
+
+A wide conductor has better current-carrying capability.
+
+較寬的導體具有較好的載流能力。
+
+## 463. return loop
+
+**Pronunciation:** /rɪˈtɜːrn luːp/
+
+**Chinese meaning:** 回流迴路
+
+**Category:** Electromagnetic Compatibility (EMC) / Layout
+
+**Difficulty:** 4
+
+**Example 1**
+
+The cable and reference path should form a small return loop.
+
+電纜與參考路徑應形成小的回流迴路。
+
+**Example 2**
+
+A large return loop can radiate more noise.
+
+大型回流迴路可能輻射更多雜訊。
+
+## 464. loop area
+
+**Pronunciation:** /luːp ˈeriə/
+
+**Chinese meaning:** 迴路面積
+
+**Category:** Electromagnetic Compatibility (EMC) / Layout
+
+**Difficulty:** 4
+
+**Example 1**
+
+Reducing loop area lowers magnetic coupling.
+
+降低迴路面積可減少磁場耦合。
+
+**Example 2**
+
+Keep the bonding path close to the harness to minimize loop area.
+
+讓搭接路徑靠近線束，以最小化迴路面積。
+
+## 465. termination strategy
+
+**Pronunciation:** /ˌtɜːrmɪˈneɪʃən ˈstrætədʒi/
+
+**Chinese meaning:** 端接策略
+
+**Category:** Electromagnetic Compatibility (EMC) / Cable Design
+
+**Difficulty:** 4
+
+**Example 1**
+
+The shield termination strategy depends on the signal type.
+
+屏蔽端接策略取決於訊號類型。
+
+**Example 2**
+
+A clear termination strategy is required before harness design.
+
+線束設計前需要明確的端接策略。
+
+## 466. controlled interconnection
+
+**Pronunciation:** /kənˈtroʊld ˌɪntərkəˈnekʃən/
+
+**Chinese meaning:** 受控互連
+
+**Category:** Electromagnetic Compatibility (EMC) / Architecture
+
+**Difficulty:** 4
+
+**Example 1**
+
+A1 and A4 need a controlled interconnection between reference rings.
+
+A1 與 A4 的參考環之間需要受控互連。
+
+**Example 2**
+
+Controlled interconnection prevents accidental current paths.
+
+受控互連可避免非預期電流路徑。
+
+## 467. end-to-end resistance
+
+**Pronunciation:** /end tuː end rɪˈzɪstəns/
+
+**Chinese meaning:** 端到端電阻
+
+**Category:** Verification
+
+**Difficulty:** 3
+
+**Example 1**
+
+Measure the end-to-end resistance from the A1 ring to the A4 ring.
+
+量測 A1 參考環到 A4 參考環的端到端電阻。
+
+**Example 2**
+
+End-to-end resistance is different from single-joint resistance.
+
+端到端電阻不同於單一接合點電阻。
+
+## 468. DC resistance
+
+**Pronunciation:** /ˌdiː ˈsiː rɪˈzɪstəns/
+
+**Chinese meaning:** 直流電阻
+
+**Category:** Verification
+
+**Difficulty:** 3
+
+**Example 1**
+
+DC resistance alone does not prove good RF performance.
+
+僅有直流電阻無法證明良好的 RF 性能。
+
+**Example 2**
+
+Use a four-wire meter for low DC resistance measurements.
+
+使用四線式電表量測低直流電阻。
+
+## 469. surface conductivity
+
+**Pronunciation:** /ˈsɜːrfɪs ˌkɑːndʌkˈtɪvəti/
+
+**Chinese meaning:** 表面導電性
+
+**Category:** Material / ESD
+
+**Difficulty:** 4
+
+**Example 1**
+
+Surface conductivity must be verified on the coated composite panel.
+
+必須驗證塗層複材板的表面導電性。
+
+**Example 2**
+
+Poor surface conductivity can create local charge buildup.
+
+表面導電性不佳會造成局部電荷累積。
+
+## 470. conductive coating
+
+**Pronunciation:** /kənˈdʌktɪv ˈkoʊtɪŋ/
+
+**Chinese meaning:** 導電塗層
+
+**Category:** Material / ESD
+
+**Difficulty:** 3
+
+**Example 1**
+
+The conductive coating must not be left floating.
+
+導電塗層不能處於浮接狀態。
+
+**Example 2**
+
+Conductive coating can help control static charge on a composite surface.
+
+導電塗層可協助控制複材表面的靜電荷。
+
+## 471. floating conductor
+
+**Pronunciation:** /ˈfloʊtɪŋ kənˈdʌktər/
+
+**Chinese meaning:** 浮接導體
+
+**Category:** Electromagnetic Compatibility (EMC) / Risk
+
+**Difficulty:** 4
+
+**Example 1**
+
+A floating conductor can behave like an unintended antenna.
+
+浮接導體可能像非預期天線一樣作用。
+
+**Example 2**
+
+Copper pieces on the panel should not become floating conductors.
+
+板上的銅片不應變成浮接導體。
+
+## 472. re-radiator
+
+**Pronunciation:** /ˌriːˈreɪdieɪtər/
+
+**Chinese meaning:** 再輻射體；二次輻射源
+
+**Category:** Electromagnetic Compatibility (EMC) / Risk
+
+**Difficulty:** 4
+
+**Example 1**
+
+An isolated metal plate may become a re-radiator.
+
+孤立金屬板可能變成再輻射體。
+
+**Example 2**
+
+Bonding the panel reduces the chance of re-radiation.
+
+將板件搭接可降低再輻射的機會。
+
+## 473. metallized layer
+
+**Pronunciation:** /ˈmetəlaɪzd ˈleɪər/
+
+**Chinese meaning:** 金屬化層
+
+**Category:** Material / Electromagnetic Compatibility (EMC)
+
+**Difficulty:** 4
+
+**Example 1**
+
+The metallized layer should connect to the reference ring.
+
+金屬化層應連接到參考環。
+
+**Example 2**
+
+A metallized layer can improve shielding if it is properly terminated.
+
+若端接正確，金屬化層可改善屏蔽效果。
+
+## 474. radial bus
+
+**Pronunciation:** /ˈreɪdiəl bʌs/
+
+**Chinese meaning:** 徑向匯流路徑；徑向母線
+
+**Category:** Electromagnetic Compatibility (EMC) / Architecture
+
+**Difficulty:** 3
+
+**Example 1**
+
+A radial bus connects the center hub to the reference ring.
+
+徑向母線將中心集線點連到參考環。
+
+**Example 2**
+
+Three radial buses can match the 120-degree panel layout.
+
+三條徑向母線可配合 120 度的板件配置。
+
+## 475. chassis reference
+
+**Pronunciation:** /ˈʃæsi ˈrefərəns/
+
+**Chinese meaning:** 機殼參考點；底盤參考
+
+**Category:** Electromagnetic Compatibility (EMC) / Architecture
+
+**Difficulty:** 3
+
+**Example 1**
+
+The chassis reference should be defined before cable routing.
+
+在電纜佈線前應先定義機殼參考點。
+
+**Example 2**
+
+A stable chassis reference improves EMI repeatability.
+
+穩定的機殼參考可改善 EMI 測試重複性。
+
+## 476. lightning indirect effect
+
+**Pronunciation:** /ˈlaɪtnɪŋ ˌɪndəˈrekt ɪˈfekt/
+
+**Chinese meaning:** 雷擊間接效應
+
+**Category:** System Electromagnetic Environmental Effects (E3)
+
+**Difficulty:** 4
+
+**Example 1**
+
+Lightning indirect effects can couple into long cables.
+
+雷擊間接效應可能耦合到長電纜中。
+
+**Example 2**
+
+Reference rings help control some lightning indirect effects, but they are not enough alone.
+
+參考環有助於控制部分雷擊間接效應，但單靠它們並不足夠。
 
 ## 477. table
 

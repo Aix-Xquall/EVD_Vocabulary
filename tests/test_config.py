@@ -12,6 +12,10 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(DEFAULT_SETTINGS.google_english_voice, "en-US-Neural2-F")
         self.assertEqual(DEFAULT_SETTINGS.google_chinese_voice, "cmn-TW-Wavenet-A")
 
+    def test_default_tense_annotations_are_outside_vocabulary_folder(self):
+        self.assertEqual(DEFAULT_SETTINGS.tense_annotations_path.name, "tense_annotations.csv")
+        self.assertEqual(DEFAULT_SETTINGS.tense_annotations_path.parent.name, "annotations")
+
 
 if __name__ == "__main__":
     unittest.main()

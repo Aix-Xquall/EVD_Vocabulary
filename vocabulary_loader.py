@@ -27,8 +27,11 @@ HARD_WORDS_FILENAME = "hard_words.csv"
 VocabularyEntry = Dict[str, str]
 
 
-def load_vocabulary(vocabulary_dir: Path | str) -> List[VocabularyEntry]:
-    """Load every CSV file in the vocabulary directory."""
+def load_vocabulary(
+    vocabulary_dir: Path | str,
+    deduplicate_words: bool = True,
+) -> List[VocabularyEntry]:
+    """Load every CSV file, optionally preserving repeated words across chapters."""
     directory = Path(vocabulary_dir)
     if not directory.exists():
         raise FileNotFoundError(f"Vocabulary directory does not exist: {directory}")
@@ -57,7 +60,7 @@ def load_vocabulary(vocabulary_dir: Path | str) -> List[VocabularyEntry]:
                     if word_key in seen_hard_words:
                         continue
                     seen_hard_words.add(word_key)
-                elif word_key in seen_words:
+                elif deduplicate_words and word_key in seen_words:
                     continue
                 if not is_hard_words_file:
                     seen_words.add(word_key)
