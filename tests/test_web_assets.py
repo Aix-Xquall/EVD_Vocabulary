@@ -235,14 +235,14 @@ class WebAssetsTests(unittest.TestCase):
         self.assertNotIn("chapter.chapter_audio", app_js)
         self.assertNotIn('playDirectAudio(chapter.chapter_audio, "mixed")', app_js)
 
-    def test_chapter_playback_waits_three_seconds_between_words(self):
+    def test_chapter_playback_waits_two_seconds_between_words(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn("const WORD_GROUP_DELAY_MS = 3000;", app_js)
+        self.assertIn("const WORD_GROUP_DELAY_MS = 2000;", app_js)
         self.assertIn("wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;", app_js)
         self.assertIn("queue.push(...wordQueue);", app_js)
 
-    def test_single_word_autoplay_waits_three_seconds_before_next_word(self):
+    def test_single_word_autoplay_waits_two_seconds_before_next_word(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn("function playCurrent(startDelayMs = 0)", app_js)
