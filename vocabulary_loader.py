@@ -2,7 +2,10 @@ import csv
 from pathlib import Path
 from typing import Dict, List
 
-from abbreviation_expander import expand_abbreviations_for_display
+from abbreviation_expander import (
+    abbreviate_english_terms_in_chinese,
+    expand_abbreviations_for_display,
+)
 
 
 REQUIRED_COLUMNS = [
@@ -79,7 +82,7 @@ def _validate_columns(csv_file: Path, fieldnames: list[str]) -> None:
 
 def _normalize_cell(column: str, value: str) -> str:
     if column in CHINESE_COLUMNS:
-        return str(value or "").strip()
+        return abbreviate_english_terms_in_chinese(value)
     return expand_abbreviations_for_display(value)
 
 

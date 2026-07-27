@@ -1,6 +1,7 @@
 import csv
 from collections import defaultdict
 from pathlib import Path
+import re
 import unittest
 
 from vocabulary_loader import REQUIRED_COLUMNS
@@ -9,6 +10,8 @@ from vocabulary_loader import REQUIRED_COLUMNS
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 VOCABULARY_DIR = PROJECT_DIR / "vocabulary"
 MSFC_PATH = VOCABULARY_DIR / "MSFC-HDBK-3697.csv"
+CONSULTANT_PATH = VOCABULARY_DIR / "EMC顧問回覆與系統整合詞彙.csv"
+EMC_ONE_PATH = VOCABULARY_DIR / "EMC航電詞彙整合1.csv"
 
 
 def read_rows(path: Path) -> list[dict]:
@@ -17,6 +20,42 @@ def read_rows(path: Path) -> list[dict]:
 
 
 class VocabularyDataTests(unittest.TestCase):
+    def test_daq_word_and_examples_use_full_name_with_abbreviation(self):
+        rows = read_rows(EMC_ONE_PATH)
+        daq_row = next(row for row in rows if "(DAQ)" in row["word"])
+
+        self.assertEqual(daq_row["word"], "Data Acquisition (DAQ)")
+        self.assertIn("Data Acquisition (DAQ)", daq_row["example_1_en"])
+        self.assertIn("Data Acquisition (DAQ)", daq_row["example_2_en"])
+
+        for path in sorted(VOCABULARY_DIR.glob("*.csv")):
+            if path.name == "hard_words.csv":
+                continue
+            for row in read_rows(path):
+                for column in ("word", "example_1_en", "example_2_en"):
+                    if re.search(r"\bDAQ\b", row[column]):
+                        self.assertIn("Data Acquisition (DAQ)", row[column])
+
+    def test_consultant_chapter_contains_requested_new_terms(self):
+        rows = read_rows(CONSULTANT_PATH)
+        words = {row["word"].strip().casefold() for row in rows}
+        expected = {
+            "refer to",
+            "approach",
+            "harsh",
+            "appear",
+            "exposure",
+            "evidence",
+            "disturb",
+            "instead of",
+            "accumulate",
+            "contamination",
+            "establishes",
+        }
+
+        self.assertTrue(expected.issubset(words))
+        self.assertNotIn("distrub", words)
+
     def test_msfc_chapter_has_125_rows_with_preserved_and_appended_ids(self):
         with MSFC_PATH.open("r", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)

@@ -258,15 +258,12 @@ function scrollActiveWordIntoView() {
   container.scrollTop = Math.max(0, targetTop);
 }
 
-function playCurrent(startDelayMs = 0) {
+function playCurrent() {
   const word = currentWord();
   const queue = buildWordQueue(word);
   if (queue.length === 0 && word.audio) {
     playDirectAudio(word.audio, true);
     return;
-  }
-  if (queue.length > 0 && startDelayMs > 0) {
-    queue[0].delayMs = startDelayMs;
   }
   playQueue(queue, false);
 }
@@ -330,33 +327,24 @@ function addRepeatedEnglishWithChinese(
   startDelayMs = 0,
 ) {
   const groupStartIndex = queue.length;
-  addNarration(queue, englishSegment, englishText, "en");
-  addNarration(queue, chineseSegment, chineseText, "zh");
+  addNarration(queue, englishSegment, "en");
+  addNarration(queue, chineseSegment, "zh");
   for (let count = 1; count < repeatCount; count += 1) {
-    addNarration(queue, englishSegment, englishText, "en", ENGLISH_REPEAT_DELAY_MS);
+    addNarration(queue, englishSegment, "en", ENGLISH_REPEAT_DELAY_MS);
   }
   if (queue.length > groupStartIndex) {
     queue[groupStartIndex].delayMs = startDelayMs;
   }
 }
 
-function addNarration(queue, segment, fallbackText, fallbackLanguage, delayMs = 0) {
+function addNarration(queue, segment, fallbackLanguage, delayMs = 0) {
   if (segment?.src) {
     queue.push({
       src: segment.src,
       language: segment.language || fallbackLanguage,
       delayMs,
     });
-    return;
   }
-  if (!fallbackText) {
-    return;
-  }
-  queue.push({
-    text: fallbackText,
-    language: fallbackLanguage,
-    delayMs,
-  });
 }
 
 function playQueue(queue, isChapterPlayback) {
@@ -384,10 +372,6 @@ function playNextQueueSegment() {
   state.queueIndex += 1;
   updateMediaSession();
   const startSegment = () => {
-    if (!segment.src && segment.text) {
-      speakTextSegment(segment);
-      return;
-    }
     elements.audioPlayer.src = resolveAssetPath(segment.src);
     try {
       elements.audioPlayer.currentTime = 0;
@@ -404,45 +388,6 @@ function playNextQueueSegment() {
   } else {
     startSegment();
   }
-}
-
-function speakTextSegment(segment) {
-  if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) {
-    showPlaybackError("瀏覽器不支援線上語音朗讀。");
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language));
-  utterance.lang = segment.language === "zh" ? "zh-TW" : "en-US";
-  utterance.rate = segment.language === "en" ? state.playbackRate : 1;
-  utterance.onend = () => {
-    if (!state.isPaused) {
-      playNextQueueSegment();
-    }
-  };
-  utterance.onerror = () => {
-    if (!state.isPaused) {
-      showPlaybackError("瀏覽器語音朗讀失敗。");
-    }
-  };
-  window.speechSynthesis.speak(utterance);
-}
-
-function speechTextForAudio(text, language) {
-  const value = String(text || "");
-  if (language === "zh") {
-    return value.replaceAll("地", "第");
-  }
-  return expandKnownAbbreviationsForSpeech(value);
-}
-
-function expandKnownAbbreviationsForSpeech(text) {
-  return text
-    .replaceAll(/\bMilitary Standard 461 \(MIL-STD-461\)|\bMIL-STD-461\b/g, "Military Standard 461")
-    .replaceAll(/\bElectromagnetic Compatibility \(EMC\)|\bEMC\b/g, "Electromagnetic Compatibility")
-    .replaceAll(/\bElectromagnetic Susceptibility \(EMS\)|\bEMS\b/g, "Electromagnetic Susceptibility")
-    .replaceAll(/\bElectromagnetic Environmental Effects \(E3\)|\bE3\b/g, "Electromagnetic Environmental Effects")
-    .replaceAll(/\bElectronic Power Distribution System \(EPDS\)|\bEPDS\b/g, "Electronic Power Distribution System");
 }
 
 function updateHardWordControls() {
@@ -753,7 +698,23 @@ function finishQueue() {
     playCurrent();
     return;
   }
-  nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);
+  scheduleNextWord();
+}
+
+function scheduleNextWord() {
+  state.playbackQueue = [];
+  state.queueIndex = 0;
+  state.isPaused = false;
+  state.pausedQueueIndex = 0;
+  state.queueTimer = window.setTimeout(() => {
+    state.queueTimer = null;
+    const autoplay = state.repeatAll;
+    nextWord(autoplay);
+    if (!autoplay) {
+      releaseWakeLock();
+      updateMediaSessionPlaybackState("none");
+    }
+  }, WORD_GROUP_DELAY_MS);
 }
 
 function stopQueue() {
@@ -770,9 +731,6 @@ function stopQueue() {
   releaseWakeLock();
   updateMediaSessionPlaybackState("none");
   elements.audioPlayer.pause();
-  if (window.speechSynthesis) {
-    window.speechSynthesis.cancel();
-  }
 }
 
 function playDirectAudio(src, language) {
@@ -861,14 +819,11 @@ function pausePlayback() {
     state.pausedQueueIndex = Math.max(0, state.queueIndex - 1);
   }
   elements.audioPlayer.pause();
-  if (window.speechSynthesis) {
-    window.speechSynthesis.cancel();
-  }
   releaseWakeLock();
   updateMediaSessionPlaybackState("paused");
 }
 
-function nextWord(autoplay = false, startDelayMs = 0) {
+function nextWord(autoplay = false) {
   const words = currentWords();
   const lastIndex = words.length - 1;
   if (state.currentIndex >= lastIndex) {
@@ -881,7 +836,7 @@ function nextWord(autoplay = false, startDelayMs = 0) {
   }
   render();
   if (autoplay) {
-    playCurrent(startDelayMs);
+    playCurrent();
   }
 }
 
@@ -1121,11 +1076,12 @@ elements.playButton.addEventListener("click", resumeOrPlayCurrent);
 elements.pauseButton.addEventListener("click", pausePlayback);
 elements.nextButton.addEventListener("click", () => {
   stopQueue();
-  nextWord(false);
+  nextWord(true);
 });
 elements.previousButton.addEventListener("click", () => {
   stopQueue();
   previousWord();
+  playCurrent();
 });
 elements.combinedAudioButton.addEventListener("click", playCombinedAudio);
 elements.repeatAllToggle.addEventListener("change", (event) => {

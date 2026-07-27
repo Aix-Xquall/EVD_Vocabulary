@@ -365,6 +365,11 @@ h2 {
     order: 1;
   }
 
+  .current-word h2 {
+    font-size: 2rem;
+    overflow-wrap: anywhere;
+  }
+
   .word-list {
     order: 2;
   }

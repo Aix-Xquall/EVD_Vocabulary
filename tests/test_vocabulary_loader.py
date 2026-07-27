@@ -93,6 +93,25 @@ class VocabularyLoaderTests(unittest.TestCase):
             self.assertEqual(entries[0]["example_1_zh"], "中文 EMS 不展開")
             self.assertEqual(entries[0]["example_2_zh"], "EMC 與 EMS 都保留縮寫")
 
+    def test_load_vocabulary_expands_daq_in_english_and_shortens_chinese_terms(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "daq.csv",
+                "1,DAQ,/daq/,Data Acquisition 數據擷取,"
+                "DAQ records EMC data.,Electromagnetic Compatibility 測試資料,"
+                "The DAQ channel is stable.,Radio Frequency 訊號穩定,DAQ,4,0,\n",
+            )
+
+            entries = load_vocabulary(tmp_path)
+
+            self.assertEqual(entries[0]["word"], "Data Acquisition (DAQ)")
+            self.assertIn("Data Acquisition (DAQ) records", entries[0]["example_1_en"])
+            self.assertIn("Data Acquisition (DAQ) channel", entries[0]["example_2_en"])
+            self.assertEqual(entries[0]["chinese_meaning"], "DAQ 數據擷取")
+            self.assertEqual(entries[0]["example_1_zh"], "EMC 測試資料")
+            self.assertEqual(entries[0]["example_2_zh"], "RF 訊號穩定")
+
     def test_load_vocabulary_allows_hard_words_to_duplicate_normal_chapters(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             tmp_path = Path(temp_dir)

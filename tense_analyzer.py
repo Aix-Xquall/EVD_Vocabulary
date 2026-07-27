@@ -359,16 +359,18 @@ def import_completed_annotations(
     if errors:
         raise ValueError(_format_validation_errors(errors))
 
-    merged = dict(existing.annotations)
-    for key, analysis in imported.annotations.items():
-        merged[key] = analysis
-
     rows = []
+    if annotations_path.exists():
+        for _, row in _read_csv_rows(annotations_path):
+            key = str(row.get("sentence_key") or "").strip()
+            if key in known_examples and key not in imported_keys:
+                rows.append(
+                    {column: str(row.get(column) or "") for column in ANNOTATION_COLUMNS}
+                )
+
     for key, record in known_examples.items():
-        analysis = merged.get(key)
-        if analysis is None:
-            continue
-        rows.append(_annotation_row(record, analysis))
+        if key in imported_keys:
+            rows.append(_annotation_row(record, imported.annotations[key]))
 
     _write_rows(annotations_path, rows)
     return len(imported_keys)

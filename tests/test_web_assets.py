@@ -38,8 +38,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("addRepeatedEnglishWithChinese", app_js)
         self.assertIn("if (state.includeExamples)", app_js)
         self.assertIn('segment.language === "en" ? state.playbackRate : 1', app_js)
-        self.assertIn("speechSynthesis", app_js)
-        self.assertIn("SpeechSynthesisUtterance", app_js)
+        self.assertNotIn("speechSynthesis", app_js)
+        self.assertNotIn("SpeechSynthesisUtterance", app_js)
 
     def test_hard_words_chapter_is_first_and_tabs_show_progress(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -87,20 +87,14 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("container.scrollTop =", app_js)
         self.assertNotIn("activeButton.offsetTop - container.clientHeight / 2", app_js)
 
-    def test_browser_speech_fallback_uses_di_pronunciation_for_ground_character(self):
+    def test_web_player_uses_only_generated_cloud_tts_segments(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn("speechTextForAudio", app_js)
-        self.assertIn('.replaceAll("地", "第")', app_js)
-        self.assertIn("SpeechSynthesisUtterance(speechTextForAudio(segment.text, segment.language))", app_js)
-
-    def test_browser_speech_fallback_expands_known_english_abbreviations(self):
-        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
-
-        self.assertIn("expandKnownAbbreviationsForSpeech", app_js)
-        self.assertIn("Electromagnetic Compatibility", app_js)
-        self.assertIn("Electromagnetic Susceptibility", app_js)
-        self.assertIn("Military Standard 461", app_js)
+        self.assertIn("if (segment?.src)", app_js)
+        self.assertNotIn("fallbackText", app_js)
+        self.assertNotIn("speakTextSegment", app_js)
+        self.assertNotIn("speechTextForAudio", app_js)
+        self.assertNotIn("expandKnownAbbreviationsForSpeech", app_js)
 
     def test_web_player_exposes_hard_words_sync_controls(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
@@ -162,6 +156,8 @@ class WebAssetsTests(unittest.TestCase):
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
         self.assertIn("font-size: clamp(1.6rem, 4vw, 3rem)", styles_css)
+        self.assertIn(".current-word h2 {\n    font-size: 2rem;", styles_css)
+        self.assertIn("overflow-wrap: anywhere", styles_css)
         self.assertNotIn("font-size: clamp(2rem, 6vw, 4rem)", styles_css)
 
     def test_english_examples_highlight_target_word(self):
@@ -253,14 +249,23 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;", app_js)
         self.assertIn("queue.push(...wordQueue);", app_js)
 
-    def test_single_word_autoplay_waits_two_seconds_before_next_word(self):
+    def test_single_word_autoplay_waits_before_switching_to_next_word(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn("function playCurrent(startDelayMs = 0)", app_js)
-        self.assertIn("queue[0].delayMs = startDelayMs;", app_js)
-        self.assertIn("nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);", app_js)
-        self.assertIn("function nextWord(autoplay = false, startDelayMs = 0)", app_js)
-        self.assertIn("playCurrent(startDelayMs);", app_js)
+        self.assertIn("function scheduleNextWord()", app_js)
+        self.assertIn("window.setTimeout(() => {", app_js)
+        self.assertIn("nextWord(autoplay);", app_js)
+        self.assertIn("}, WORD_GROUP_DELAY_MS);", app_js)
+        self.assertIn("function nextWord(autoplay = false)", app_js)
+        self.assertNotIn("nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);", app_js)
+
+    def test_previous_and_next_buttons_start_cloud_audio(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("elements.nextButton.addEventListener", app_js)
+        self.assertIn("nextWord(true);", app_js)
+        self.assertIn("elements.previousButton.addEventListener", app_js)
+        self.assertIn("previousWord();\n  playCurrent();", app_js)
 
     def test_example_two_starts_after_two_second_group_delay(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

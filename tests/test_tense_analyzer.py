@@ -162,6 +162,42 @@ class TenseAnalyzerTests(unittest.TestCase):
             self.assertEqual(analysis[key]["example_1"]["highlights"], ["is monitoring"])
             self.assertEqual(analysis[key]["example_2"]["name_zh"], "現在完成式")
 
+    def test_import_preserves_existing_annotation_order_and_review_date(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            workspace = Path(tmp_dir)
+            completed_path = workspace / "completed.csv"
+            annotations_path = workspace / "annotations.csv"
+            entry = sample_entry()
+            existing_row = _completed_row(
+                entry["example_1_en"],
+                "現在進行式",
+                "S + am / is / are + V-ing",
+                ["is monitoring"],
+                "0.96",
+            )
+            existing_row["reviewed_at"] = "2026-01-02"
+            _write_rows(annotations_path, [existing_row])
+            _write_rows(
+                completed_path,
+                [
+                    _completed_row(
+                        entry["example_2_en"],
+                        "現在完成式",
+                        "S + have / has + p.p.",
+                        ["has completed"],
+                        "0.95",
+                        example_number="2",
+                    )
+                ],
+            )
+
+            import_completed_annotations(completed_path, annotations_path, [entry])
+
+            rows = _read_rows(annotations_path)
+            self.assertEqual(rows[0]["example_en"], entry["example_1_en"])
+            self.assertEqual(rows[0]["reviewed_at"], "2026-01-02")
+            self.assertEqual(rows[1]["example_en"], entry["example_2_en"])
+
     def test_special_modal_uses_only_concrete_modal_display(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
             annotations_path = Path(tmp_dir) / "annotations.csv"
