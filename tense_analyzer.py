@@ -461,8 +461,10 @@ def _analysis_from_row(row: dict, sentence: str, row_number: int) -> tuple[dict,
             value = str(highlight).strip()
             if not value:
                 errors.append(f"row {row_number}: highlights_json contains an empty value")
-            elif value not in sentence:
-                errors.append(f"row {row_number}: highlight {value!r} is not an exact substring")
+            elif not _contains_whole_highlight(sentence, value):
+                errors.append(
+                    f"row {row_number}: highlight {value!r} is not a complete word or phrase"
+                )
             elif value not in highlights:
                 highlights.append(value)
     elif parsed_highlights is not None:
@@ -482,6 +484,34 @@ def _analysis_from_row(row: dict, sentence: str, row_number: int) -> tuple[dict,
         "confidence": confidence,
     }
     return analysis, errors
+
+
+def _contains_whole_highlight(sentence: str, highlight: str) -> bool:
+    start = 0
+    while True:
+        start = sentence.find(highlight, start)
+        if start < 0:
+            return False
+        end = start + len(highlight)
+        starts_inside_word = (
+            bool(highlight)
+            and _is_word_character(highlight[0])
+            and start > 0
+            and _is_word_character(sentence[start - 1])
+        )
+        ends_inside_word = (
+            bool(highlight)
+            and _is_word_character(highlight[-1])
+            and end < len(sentence)
+            and _is_word_character(sentence[end])
+        )
+        if not starts_inside_word and not ends_inside_word:
+            return True
+        start = end or start + 1
+
+
+def _is_word_character(value: str) -> bool:
+    return value.isalnum() or value in {"'", "’"}
 
 
 def _unique_example_records(entries: Iterable[dict]) -> Dict[str, dict]:

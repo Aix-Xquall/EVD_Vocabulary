@@ -70,6 +70,39 @@
     return matches;
   }
 
+  function findLiteralHighlightRanges(text, highlights = []) {
+    const value = String(text || "");
+    const lowerValue = value.toLocaleLowerCase("en-US");
+    const ranges = [];
+
+    highlights.forEach((highlight) => {
+      const literal = String(highlight || "").trim();
+      if (!literal) {
+        return;
+      }
+      const lowerLiteral = literal.toLocaleLowerCase("en-US");
+      let start = 0;
+      while ((start = lowerValue.indexOf(lowerLiteral, start)) !== -1) {
+        const end = start + literal.length;
+        const startsInsideWord = isWordCharacter(literal[0])
+          && start > 0
+          && isWordCharacter(value[start - 1]);
+        const endsInsideWord = isWordCharacter(literal[literal.length - 1])
+          && end < value.length
+          && isWordCharacter(value[end]);
+        if (!startsInsideWord && !endsInsideWord) {
+          ranges.push({ start, end });
+        }
+        start = end || start + 1;
+      }
+    });
+    return ranges;
+  }
+
+  function isWordCharacter(value) {
+    return /[A-Za-z0-9'’]/.test(String(value || ""));
+  }
+
   function buildTargetPhrasePattern(target) {
     const parts = String(target || "").trim().split(/\s+/).filter(Boolean);
     if (parts.length === 0) {
@@ -101,6 +134,7 @@
 
   return {
     buildClozeCandidates,
+    findLiteralHighlightRanges,
     findTargetPhraseMatches,
     isCorrectClozeAnswer,
     normalizeClozeAnswer,

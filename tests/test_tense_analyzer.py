@@ -10,6 +10,7 @@ from tense_analyzer import (
     ANNOTATION_COLUMNS,
     TENSE_DISPLAY_NAMES,
     TENSE_FORMULAS,
+    TENSE_NAMES_ZH,
     extract_modal_structure,
     export_pending_annotations,
     import_completed_annotations,
@@ -300,7 +301,33 @@ class TenseAnalyzerTests(unittest.TestCase):
                 ],
             )
 
-            with self.assertRaisesRegex(ValueError, "not an exact substring"):
+            with self.assertRaisesRegex(ValueError, "not a complete word or phrase"):
+                import_completed_annotations(
+                    completed_path,
+                    Path(tmp_dir) / "annotations.csv",
+                    [entry],
+                )
+
+    def test_import_rejects_highlight_that_only_matches_inside_words(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            completed_path = Path(tmp_dir) / "completed.csv"
+            entry = sample_entry()
+            entry["example_1_en"] = "This issue requires review."
+            entry["example_2_en"] = ""
+            _write_rows(
+                completed_path,
+                [
+                    _completed_row(
+                        entry["example_1_en"],
+                        TENSE_NAMES_ZH[0],
+                        "S + V / V-s",
+                        ["is"],
+                        "0.90",
+                    )
+                ],
+            )
+
+            with self.assertRaisesRegex(ValueError, "not a complete word or phrase"):
                 import_completed_annotations(
                     completed_path,
                     Path(tmp_dir) / "annotations.csv",

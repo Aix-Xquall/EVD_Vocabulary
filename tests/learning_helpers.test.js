@@ -3,6 +3,7 @@ const test = require("node:test");
 
 const {
   buildClozeCandidates,
+  findLiteralHighlightRanges,
   findTargetPhraseMatches,
   isCorrectClozeAnswer,
   repeatCountForWord,
@@ -85,6 +86,20 @@ test("answers ignore case and outer whitespace but require exact spelling", () =
   assert.equal(isCorrectClozeAnswer("  Galvanic Corrosion ", "galvanic corrosion"), true);
   assert.equal(isCorrectClozeAnswer("galvanic  corrosion", "galvanic corrosion"), false);
   assert.equal(isCorrectClozeAnswer("galvanic corrosin", "galvanic corrosion"), false);
+});
+
+test("tense highlights match complete words instead of substrings", () => {
+  assert.deepEqual(
+    findLiteralHighlightRanges(
+      "This is a system-level Electromagnetic Compatibility (EMC) integration issue.",
+      ["is"],
+    ),
+    [{ start: 5, end: 7 }],
+  );
+  assert.deepEqual(
+    findLiteralHighlightRanges("The consultant should review this issue.", ["should review"]),
+    [{ start: 15, end: 28 }],
+  );
 });
 
 test("pronunciation omits the YouGlish suffix", () => {

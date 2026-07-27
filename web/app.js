@@ -5,6 +5,7 @@ const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
 const {
   buildClozeCandidates,
+  findLiteralHighlightRanges,
   findTargetPhraseMatches,
   isCorrectClozeAnswer,
   repeatCountForWord,
@@ -1012,25 +1013,6 @@ function highlightExampleText(text, target, tenseHighlights = []) {
   return renderHighlightedRanges(value, ranges);
 }
 
-function findLiteralHighlightRanges(value, highlights = []) {
-  const ranges = [];
-  highlights.forEach((highlight) => {
-    const text = String(highlight || "").trim();
-    if (!text) {
-      return;
-    }
-    const pattern = new RegExp(escapeRegExp(text), "gi");
-    let match;
-    while ((match = pattern.exec(value)) !== null) {
-      ranges.push({ start: match.index, end: match.index + match[0].length });
-      if (match.index === pattern.lastIndex) {
-        pattern.lastIndex += 1;
-      }
-    }
-  });
-  return ranges;
-}
-
 function renderHighlightedRanges(value, ranges) {
   const boundaries = Array.from(new Set([
     0,
@@ -1066,10 +1048,6 @@ function renderTranslationWithTense(translation, tense) {
     return text;
   }
   return `${text}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
-}
-
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 elements.playButton.addEventListener("click", resumeOrPlayCurrent);
