@@ -7,8 +7,9 @@
     root.EvdLearningHelpers = helpers;
   }
 }(typeof window !== "undefined" ? window : globalThis, () => {
-  function repeatCountForWord(mastered, configuredCount) {
-    return mastered ? 2 : Math.max(1, Number(configuredCount) || 1);
+  function repeatCountForWord(mastered, configuredCount, includeExamples = false) {
+    const repeatCount = Math.max(1, Number(configuredCount) || 1);
+    return mastered && !includeExamples ? 2 : repeatCount;
   }
 
   function sanitizePronunciation(value) {

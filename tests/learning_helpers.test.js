@@ -10,9 +10,10 @@ const {
   sanitizePronunciation,
 } = require("../web/learning_helpers.js");
 
-test("mastered words use two English repetitions", () => {
-  assert.equal(repeatCountForWord(true, 5), 2);
-  assert.equal(repeatCountForWord(false, 5), 5);
+test("mastered words use configured repetitions when examples are included", () => {
+  assert.equal(repeatCountForWord(true, 5, false), 2);
+  assert.equal(repeatCountForWord(true, 5, true), 5);
+  assert.equal(repeatCountForWord(false, 5, true), 5);
 });
 
 test("cloze candidates blank exact target phrases in either example", () => {

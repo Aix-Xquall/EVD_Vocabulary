@@ -309,7 +309,11 @@ function buildChapterQueue() {
 function buildWordQueue(word) {
   const segments = word?.audio_segments || {};
   const queue = [];
-  const repeatCount = repeatCountForWord(isMasteredWord(word), state.englishRepeatCount);
+  const repeatCount = repeatCountForWord(
+    isMasteredWord(word),
+    state.englishRepeatCount,
+    state.includeExamples,
+  );
   addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning, repeatCount);
   if (state.includeExamples) {
     addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh, repeatCount);
@@ -428,7 +432,14 @@ function updateMasteredControls() {
   const word = currentWord();
   elements.masteredWordToggle.checked = isMasteredWord(word);
   elements.masteredWordToggle.disabled = !word.word || !state.hardWordsWriteUrl;
-  elements.masteredWordStatus.textContent = isMasteredWord(word) ? "英文播放兩次" : "";
+  const repeatCount = repeatCountForWord(
+    isMasteredWord(word),
+    state.englishRepeatCount,
+    state.includeExamples,
+  );
+  elements.masteredWordStatus.textContent = isMasteredWord(word)
+    ? `英文播放 ${repeatCount} 次`
+    : "";
 }
 
 function isHardWord(wordKey) {
@@ -1070,6 +1081,7 @@ elements.repeatCurrentToggle.addEventListener("change", (event) => {
 });
 elements.includeExamplesToggle.addEventListener("change", (event) => {
   state.includeExamples = event.target.checked;
+  updateMasteredControls();
   saveProgress();
 });
 elements.playbackRate.addEventListener("input", (event) => {
@@ -1080,6 +1092,7 @@ elements.playbackRate.addEventListener("input", (event) => {
 elements.exampleRepeatCount.addEventListener("input", (event) => {
   state.englishRepeatCount = clampRepeatCount(event.target.value);
   applyPlaybackRate();
+  updateMasteredControls();
   saveProgress();
 });
 elements.toggleMeaningButton.addEventListener("click", () => {

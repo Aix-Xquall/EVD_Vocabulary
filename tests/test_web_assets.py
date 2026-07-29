@@ -75,6 +75,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("@media (max-width: 820px)", styles_css)
         self.assertIn(".study-panel {\n    order: 1;", styles_css)
         self.assertIn(".word-list {\n    order: 2;", styles_css)
+        self.assertIn(".word-items {\n    max-height: 70vh;", styles_css)
+        self.assertIn(".word-item strong {\n    font-size: 1.125rem;", styles_css)
 
     def test_active_word_is_centered_inside_scrollable_word_list(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -124,11 +126,14 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("function toggleMasteredWord", app_js)
         self.assertNotIn("skipMastered", app_js)
         self.assertIn(
-            "repeatCountForWord(isMasteredWord(word), state.englishRepeatCount)",
+            "repeatCountForWord(\n"
+            "    isMasteredWord(word),\n"
+            "    state.englishRepeatCount,\n"
+            "    state.includeExamples,\n"
+            "  )",
             app_js,
         )
-        self.assertIn('"英文播放兩次"', app_js)
-        self.assertNotIn('"英文播放一次"', app_js)
+        self.assertIn("`英文播放 ${repeatCount} 次`", app_js)
         self.assertIn("MASTERED_WORDS_LOCAL_KEY", app_js)
         self.assertIn("word-item mastered", app_js)
         self.assertIn(".word-item.mastered", styles_css)
