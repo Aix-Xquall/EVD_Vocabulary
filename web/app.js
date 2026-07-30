@@ -3,6 +3,7 @@ const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
+const REPEAT_CURRENT_DELAY_MS = 1500;
 const {
   buildClozeCandidates,
   findLiteralHighlightRanges,
@@ -707,10 +708,21 @@ function finishQueue() {
     return;
   }
   if (state.repeatCurrent) {
-    playCurrent();
+    scheduleCurrentWordRepeat();
     return;
   }
   scheduleNextWord();
+}
+
+function scheduleCurrentWordRepeat() {
+  state.playbackQueue = [];
+  state.queueIndex = 0;
+  state.isPaused = false;
+  state.pausedQueueIndex = 0;
+  state.queueTimer = window.setTimeout(() => {
+    state.queueTimer = null;
+    playCurrent();
+  }, REPEAT_CURRENT_DELAY_MS);
 }
 
 function scheduleNextWord() {
@@ -802,6 +814,7 @@ function setupMediaSession() {
 }
 
 function updateMediaSession() {
+  setPlaybackStatus("playing");
   if (!("mediaSession" in navigator) || !("MediaMetadata" in window)) {
     return;
   }
@@ -816,9 +829,19 @@ function updateMediaSession() {
 }
 
 function updateMediaSessionPlaybackState(playbackState) {
+  setPlaybackStatus(playbackState);
   if ("mediaSession" in navigator) {
     navigator.mediaSession.playbackState = playbackState;
   }
+}
+
+function setPlaybackStatus(playbackState) {
+  const isPlaying = playbackState === "playing";
+  const isPaused = playbackState === "paused";
+  elements.playButton.classList.toggle("active", isPlaying);
+  elements.pauseButton.classList.toggle("active", isPaused);
+  elements.playButton.setAttribute("aria-pressed", String(isPlaying));
+  elements.pauseButton.setAttribute("aria-pressed", String(isPaused));
 }
 
 function pausePlayback() {

@@ -50,9 +50,12 @@ class SingaporeVocabularyDataTests(unittest.TestCase):
         self.assertTrue(SINGAPORE_PATH.read_bytes().startswith(b"\xef\xbb\xbf"))
         self.assertEqual(len(rows), 196)
         self.assertEqual(
-            [row["id"] for row in rows],
-            [str(index) for index in range(1, 197)],
+            {row["id"] for row in rows},
+            {str(index) for index in range(1, 197)},
         )
+        words = [row["word"] for row in rows]
+        self.assertLess(words.index("chicken"), words.index("chicken rice"))
+        self.assertLess(words.index("refund"), words.index("tax refund"))
 
     def test_required_values_and_exact_cloze_examples(self):
         for row in self.rows:

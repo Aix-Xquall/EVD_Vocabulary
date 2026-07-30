@@ -76,7 +76,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn(".study-panel {\n    order: 1;", styles_css)
         self.assertIn(".word-list {\n    order: 2;", styles_css)
         self.assertIn(".word-items {\n    max-height: 70vh;", styles_css)
-        self.assertIn(".word-item strong {\n    font-size: 1.125rem;", styles_css)
+        self.assertIn(".word-item strong {\n    font-size: 1.25rem;", styles_css)
 
     def test_active_word_is_centered_inside_scrollable_word_list(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -161,7 +161,7 @@ class WebAssetsTests(unittest.TestCase):
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
         self.assertIn("font-size: clamp(1.6rem, 4vw, 3rem)", styles_css)
-        self.assertIn(".current-word h2 {\n    font-size: 2rem;", styles_css)
+        self.assertIn(".current-word h2 {\n    font-size: 2.25rem;", styles_css)
         self.assertIn("overflow-wrap: anywhere", styles_css)
         self.assertNotIn("font-size: clamp(2rem, 6vw, 4rem)", styles_css)
 
@@ -263,6 +263,28 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("}, WORD_GROUP_DELAY_MS);", app_js)
         self.assertIn("function nextWord(autoplay = false)", app_js)
         self.assertNotIn("nextWord(state.repeatAll, WORD_GROUP_DELAY_MS);", app_js)
+
+    def test_repeat_current_waits_one_and_a_half_seconds_before_restarting(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("const REPEAT_CURRENT_DELAY_MS = 1500;", app_js)
+        self.assertIn("function scheduleCurrentWordRepeat()", app_js)
+        self.assertIn("scheduleCurrentWordRepeat();", app_js)
+        self.assertIn("}, REPEAT_CURRENT_DELAY_MS);", app_js)
+
+    def test_play_and_pause_buttons_reflect_the_current_playback_state(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("function setPlaybackStatus(playbackState)", app_js)
+        self.assertIn('setPlaybackStatus("playing");', app_js)
+        self.assertIn("setPlaybackStatus(playbackState);", app_js)
+        self.assertIn('elements.playButton.setAttribute("aria-pressed", String(isPlaying));', app_js)
+        self.assertIn('elements.pauseButton.setAttribute("aria-pressed", String(isPaused));', app_js)
+        self.assertIn('id="playButton" class="playback-button"', index_html)
+        self.assertIn('id="pauseButton" class="playback-button"', index_html)
+        self.assertIn(".playback-button.active", styles_css)
 
     def test_previous_and_next_buttons_start_cloud_audio(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
