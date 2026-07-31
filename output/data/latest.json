@@ -92288,7 +92288,28 @@
     }
   },
   "practice_stats": {
-    "records": {}
+    "records": {
+      "cable tray": {
+        "word": "cable tray",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-07-31T12:03:03.824Z"
+      },
+      "conduit": {
+        "word": "conduit",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-07-31T12:04:27.092Z"
+      },
+      "local chassis": {
+        "word": "local chassis",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-07-31T12:05:52.292Z"
+      }
+    },
+    "settings": {},
+    "settings_updated_at": ""
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
