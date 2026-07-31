@@ -70,35 +70,46 @@ button.primary {
 }
 
 .topbar {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
-.chapter-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.chapter-picker {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
   margin: 0 0 20px;
-}
-
-.chapter-tab {
-  padding: 0 14px;
+  color: var(--muted);
   font-weight: 700;
 }
 
-.chapter-tab.active {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #ffffff;
+.chapter-picker select {
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
 }
 
-.statistics-panel {
+.chapter-picker select:focus {
+  border-color: var(--blue);
+  outline: 2px solid color-mix(in srgb, var(--blue) 20%, transparent);
+}
+
+.statistics-panel,
+.settings-panel {
   margin: 0 0 20px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
 }
 
-.statistics-panel summary {
+.statistics-panel summary,
+.settings-panel summary {
   min-height: 48px;
   display: flex;
   align-items: center;
@@ -108,14 +119,16 @@ button.primary {
   cursor: pointer;
 }
 
-.statistics-summary {
+.statistics-summary,
+.settings-summary {
   margin-left: auto;
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 600;
 }
 
-.statistics-content {
+.statistics-content,
+.settings-content {
   padding: 0 16px 16px;
   border-top: 1px solid var(--line);
 }
@@ -141,6 +154,38 @@ button.primary {
   background: var(--blue);
   border-color: var(--blue);
   color: #ffffff;
+}
+
+.settings-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 14px;
+  color: var(--muted);
+}
+
+.settings-controls > label:not(.rate-control) {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-controls > button {
+  padding: 0 14px;
+}
+
+.settings-sync {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.settings-sync button {
+  padding: 0 14px;
 }
 
 .statistics-list {
@@ -307,7 +352,6 @@ h2 {
 }
 
 .controls,
-.toggles,
 .cloze-answer {
   display: flex;
   flex-wrap: wrap;
@@ -321,18 +365,6 @@ h2 {
 .controls button {
   min-width: 110px;
   padding: 0 16px;
-}
-
-.toggles {
-  align-items: center;
-  color: var(--muted);
-}
-
-.toggles label {
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .rate-control {
@@ -363,7 +395,7 @@ h2 {
 }
 
 .example-target {
-  color: var(--blue);
+  color: var(--green);
   font-weight: 700;
 }
 
@@ -458,6 +490,27 @@ h2 {
     flex-direction: column;
   }
 
+  .chapter-picker {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .settings-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .settings-controls > label,
+  .settings-controls > button,
+  .settings-sync button {
+    width: 100%;
+  }
+
+  .settings-sync {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   .statistics-modes {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -478,7 +531,7 @@ h2 {
   }
 
   .current-word h2 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     overflow-wrap: anywhere;
   }
 
@@ -490,7 +543,4 @@ h2 {
     max-height: 70vh;
   }
 
-  .word-item strong {
-    font-size: 1.25rem;
-  }
 }

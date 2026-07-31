@@ -9,13 +9,13 @@
   <body>
     <main class="app-shell">
       <section class="topbar">
-        <div>
-          <p class="eyebrow">Aerospace / Avionics / EMC</p>
-          <h1>每日工程英文</h1>
-        </div>
+        <p class="eyebrow">Aerospace / Avionics / EMC</p>
       </section>
 
-      <nav id="chapterTabs" class="chapter-tabs" aria-label="Vocabulary chapters"></nav>
+      <label class="chapter-picker" for="chapterSelect">
+        <span>英文章節</span>
+        <select id="chapterSelect" aria-label="英文章節"></select>
+      </label>
 
       <details class="statistics-panel">
         <summary>
@@ -32,6 +32,33 @@
           </div>
           <p id="statisticsSyncStatus" class="sync-status">統計會自動同步</p>
           <div id="statisticsList" class="statistics-list"></div>
+        </div>
+      </details>
+
+      <details class="settings-panel">
+        <summary>
+          <span>設定</span>
+          <span id="settingsSummary" class="settings-summary">1.0x · 重複 5 次</span>
+        </summary>
+        <div class="settings-content">
+          <div class="settings-controls">
+            <label><input id="repeatAllToggle" type="checkbox" checked> 循環本章節</label>
+            <label><input id="repeatCurrentToggle" type="checkbox"> 重複目前單字</label>
+            <label><input id="includeExamplesToggle" type="checkbox" checked> 播放例句</label>
+            <label class="rate-control" for="playbackRate">
+              英文語速 <output id="playbackRateValue">1.0x</output>
+              <input id="playbackRate" type="range" min="0.5" max="1.5" step="0.1" value="1.0">
+            </label>
+            <label class="rate-control" for="exampleRepeatCount">
+              英文重複 <output id="exampleRepeatCountValue">5</output>
+              <input id="exampleRepeatCount" type="range" min="1" max="5" step="1" value="5">
+            </label>
+            <button id="combinedAudioButton" type="button">播放本章節</button>
+          </div>
+          <div class="settings-sync">
+            <span id="settingsSyncStatus" class="sync-status">設定會自動同步</span>
+            <button id="syncSettingsButton" type="button">同步設定</button>
+          </div>
         </div>
       </details>
 
@@ -67,21 +94,6 @@
             <button id="playButton" class="playback-button" type="button" aria-pressed="false">開始播放</button>
             <button id="pauseButton" class="playback-button" type="button" aria-pressed="false">暫停</button>
             <button id="nextButton" type="button">下一個</button>
-          </div>
-
-          <div class="toggles">
-            <label><input id="repeatAllToggle" type="checkbox" checked> 循環本章節</label>
-            <label><input id="repeatCurrentToggle" type="checkbox"> 重複目前單字</label>
-            <label><input id="includeExamplesToggle" type="checkbox" checked> 播放例句</label>
-            <label class="rate-control" for="playbackRate">
-              英文語速 <output id="playbackRateValue">0.8x</output>
-              <input id="playbackRate" type="range" min="0.5" max="1.5" step="0.1" value="0.8">
-            </label>
-            <label class="rate-control" for="exampleRepeatCount">
-              英文重複 <output id="exampleRepeatCountValue">3</output>
-              <input id="exampleRepeatCount" type="range" min="1" max="5" step="1" value="3">
-            </label>
-            <button id="combinedAudioButton" type="button">播放本章節</button>
           </div>
 
           <div class="examples">

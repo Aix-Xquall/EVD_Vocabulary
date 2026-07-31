@@ -100,11 +100,11 @@ def load_mastered_word_statuses(vocabulary_dir: Path | str) -> dict[str, str]:
         }
 
 
-def load_practice_stats(vocabulary_dir: Path | str) -> dict[str, dict]:
-    """Load the compact practice statistics snapshot stored in the hard-words sheet."""
+def load_practice_state(vocabulary_dir: Path | str) -> dict:
+    """Load practice statistics and synchronized player settings from the sheet snapshot."""
     snapshot_path = Path(vocabulary_dir) / HARD_WORDS_FILENAME
     if not snapshot_path.exists():
-        return {}
+        return {"records": {}, "settings": {}, "settings_updated_at": ""}
 
     with snapshot_path.open("r", encoding="utf-8-sig", newline="") as file:
         for row in csv.DictReader(file):
@@ -112,15 +112,20 @@ def load_practice_stats(vocabulary_dir: Path | str) -> dict[str, dict]:
             status = str(row.get("status") or "").strip().lower()
             if word != PRACTICE_STATS_WORD or status != PRACTICE_STATS_STATUS:
                 continue
-            return _parse_practice_stats_note(str(row.get("note") or ""))
-    return {}
+            return _parse_practice_state_note(str(row.get("note") or ""))
+    return {"records": {}, "settings": {}, "settings_updated_at": ""}
 
 
-def _parse_practice_stats_note(note: str) -> dict[str, dict]:
+def load_practice_stats(vocabulary_dir: Path | str) -> dict[str, dict]:
+    """Load only practice counters for callers that do not need synchronized settings."""
+    return load_practice_state(vocabulary_dir)["records"]
+
+
+def _parse_practice_state_note(note: str) -> dict:
     try:
         payload = json.loads(note)
     except (TypeError, json.JSONDecodeError):
-        return {}
+        return {"records": {}, "settings": {}, "settings_updated_at": ""}
 
     records = payload.get("r", []) if isinstance(payload, dict) else []
     parsed = {}
@@ -141,7 +146,37 @@ def _parse_practice_stats_note(note: str) -> dict[str, dict]:
             "repeat_current_count": repeat_current_count,
             "last_practiced_at": str(record[3] or ""),
         }
-    return parsed
+    settings = _parse_practice_settings(payload.get("s", {}) if isinstance(payload, dict) else {})
+    return {
+        "records": parsed,
+        "settings": settings,
+        "settings_updated_at": str(payload.get("su") or "") if isinstance(payload, dict) else "",
+    }
+
+
+def _parse_practice_settings(value: object) -> dict:
+    if not isinstance(value, dict):
+        return {}
+    settings = {}
+    chapter_id = str(value.get("selected_chapter_id") or "").strip()
+    if chapter_id:
+        settings["selected_chapter_id"] = chapter_id
+    for key in ("repeat_all", "repeat_current", "include_examples"):
+        if isinstance(value.get(key), bool):
+            settings[key] = value[key]
+    try:
+        playback_rate = float(value.get("playback_rate"))
+        if 0.5 <= playback_rate <= 1.5:
+            settings["playback_rate"] = playback_rate
+    except (TypeError, ValueError):
+        pass
+    try:
+        repeat_count = int(value.get("english_repeat_count"))
+        if 1 <= repeat_count <= 5:
+            settings["english_repeat_count"] = repeat_count
+    except (TypeError, ValueError):
+        pass
+    return settings
 
 
 def _deduplicate_hard_word_rows(rows: Iterable[dict]) -> list[dict]:

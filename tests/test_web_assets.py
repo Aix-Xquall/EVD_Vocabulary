@@ -6,13 +6,13 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 
 class WebAssetsTests(unittest.TestCase):
-    def test_web_player_exposes_default_08x_playback_rate_control(self):
+    def test_web_player_exposes_default_10x_playback_rate_control(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn('id="playbackRate"', index_html)
-        self.assertIn('value="0.8"', index_html)
-        self.assertIn("DEFAULT_PLAYBACK_RATE = 0.8", app_js)
+        self.assertIn('value="1.0"', index_html)
+        self.assertIn("DEFAULT_PLAYBACK_RATE = 1.0", app_js)
         self.assertIn("audioPlayer.playbackRate", app_js)
         self.assertIn('audioPlayer.addEventListener("loadedmetadata"', app_js)
 
@@ -20,7 +20,8 @@ class WebAssetsTests(unittest.TestCase):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn('id="chapterTabs"', index_html)
+        self.assertIn('id="chapterSelect"', index_html)
+        self.assertNotIn('id="chapterTabs"', index_html)
         self.assertNotIn('id="courseDate"', index_html)
         self.assertNotIn('id="progressText"', index_html)
         self.assertNotIn("courseDate", app_js)
@@ -29,8 +30,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('id="exampleRepeatCount"', index_html)
         self.assertIn('min="1"', index_html)
         self.assertIn('max="5"', index_html)
-        self.assertIn('value="3"', index_html)
-        self.assertIn("DEFAULT_ENGLISH_REPEAT_COUNT = 3", app_js)
+        self.assertIn('value="5"', index_html)
+        self.assertIn("DEFAULT_ENGLISH_REPEAT_COUNT = 5", app_js)
         self.assertIn("includeExamples: true", app_js)
         self.assertIn("includeExamplesToggle", app_js)
         self.assertIn("buildWordQueue", app_js)
@@ -41,7 +42,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertNotIn("speechSynthesis", app_js)
         self.assertNotIn("SpeechSynthesisUtterance", app_js)
 
-    def test_hard_words_chapter_is_first_and_tabs_show_progress(self):
+    def test_hard_words_chapter_is_first_and_select_shows_progress(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn("function sortHardWordsFirst(chapters)", app_js)
@@ -50,7 +51,9 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("saveCurrentChapterProgress()", app_js)
         self.assertIn("chapterProgress: state.chapterProgress", app_js)
         self.assertIn("state.chapters.unshift(chapter)", app_js)
-        self.assertIn("`${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`", app_js)
+        self.assertIn("function renderChapterSelect()", app_js)
+        self.assertIn("option.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`", app_js)
+        self.assertIn('elements.chapterSelect.addEventListener("change"', app_js)
 
     def test_word_and_examples_share_the_same_repeat_behavior(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -76,7 +79,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn(".study-panel {\n    order: 1;", styles_css)
         self.assertIn(".word-list {\n    order: 2;", styles_css)
         self.assertIn(".word-items {\n    max-height: 70vh;", styles_css)
-        self.assertIn(".word-item strong {\n    font-size: 1.25rem;", styles_css)
+        self.assertNotIn(".word-item strong {\n    font-size: 1.25rem;", styles_css)
 
     def test_active_word_is_centered_inside_scrollable_word_list(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -161,7 +164,7 @@ class WebAssetsTests(unittest.TestCase):
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
         self.assertIn("font-size: clamp(1.6rem, 4vw, 3rem)", styles_css)
-        self.assertIn(".current-word h2 {\n    font-size: 2.25rem;", styles_css)
+        self.assertIn(".current-word h2 {\n    font-size: 2.5rem;", styles_css)
         self.assertIn("overflow-wrap: anywhere", styles_css)
         self.assertNotIn("font-size: clamp(2rem, 6vw, 4rem)", styles_css)
 
@@ -185,7 +188,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn(".tense-note", styles_css)
         self.assertIn('className: "example-target"', app_js)
         self.assertIn(".example-target", styles_css)
-        self.assertIn("color: var(--blue)", styles_css)
+        self.assertIn("color: var(--green)", styles_css)
         self.assertIn("font-weight: 700", styles_css)
 
     def test_pause_then_play_restarts_current_queue_segment(self):
@@ -254,7 +257,27 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("compactPracticeStatsSnapshot", app_js)
         self.assertIn("PRACTICE_STATS_SYNC_DELAY_MS = 60000", app_js)
         self.assertIn("navigator.sendBeacon", app_js)
-        self.assertIn("restorePracticeStatistics(data.practice_stats?.records || {})", app_js)
+        self.assertIn("restorePracticeState(", app_js)
+        self.assertIn("data.practice_stats?.settings || {}", app_js)
+        self.assertIn("currentPracticeSettings", app_js)
+        self.assertIn("settingsUpdatedAt", app_js)
+
+    def test_settings_are_inside_collapsible_panel_and_sync_to_cloud(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn('class="settings-panel"', index_html)
+        self.assertIn('<span>設定</span>', index_html)
+        self.assertIn('id="syncSettingsButton"', index_html)
+        self.assertIn('id="settingsSyncStatus"', index_html)
+        self.assertIn('id="repeatAllToggle"', index_html)
+        self.assertIn('id="repeatCurrentToggle"', index_html)
+        self.assertIn('id="includeExamplesToggle"', index_html)
+        self.assertIn('id="combinedAudioButton"', index_html)
+        self.assertIn("markPracticeSettingsChanged", app_js)
+        self.assertIn("s: currentPracticeSettings()", app_js)
+        self.assertIn("su: state.practiceSettingsUpdatedAt", app_js)
+        self.assertNotIn("<h1>每日工程英文</h1>", index_html)
 
     def test_chapter_playback_uses_segment_queue_with_wake_lock_controls(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

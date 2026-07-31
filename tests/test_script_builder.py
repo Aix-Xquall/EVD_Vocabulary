@@ -215,6 +215,33 @@ class ScriptBuilderTests(unittest.TestCase):
 
         self.assertEqual(payload["practice_stats"]["records"], stats)
 
+    def test_build_chapter_payload_publishes_synchronized_settings(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\chapter-a.csv"
+        entry["_row_number"] = 1
+        settings = {
+            "selected_chapter_id": "chapter-a",
+            "repeat_all": True,
+            "repeat_current": False,
+            "include_examples": True,
+            "playback_rate": 1.0,
+            "english_repeat_count": 5,
+        }
+
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 7, 31),
+            segment_audio={},
+            practice_settings=settings,
+            practice_settings_updated_at="2026-07-31T02:00:00Z",
+        )
+
+        self.assertEqual(payload["practice_stats"]["settings"], settings)
+        self.assertEqual(
+            payload["practice_stats"]["settings_updated_at"],
+            "2026-07-31T02:00:00Z",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

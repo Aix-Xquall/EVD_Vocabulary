@@ -83,9 +83,9 @@ Duplicate entries are skipped by the normalized `word` field inside each normal 
 
 ## Practice statistics
 
-The site records one practice after a word finishes playing with the current example setting. Each additional completed cycle caused by `重複目前單字` also increments that word's repeat count. Open `練習統計` below the chapter tabs to switch between the most-practiced and most-repeated rankings; the player also shows counts for the current word.
+The site records one practice after a word finishes playing with the current example setting. Each additional completed cycle caused by `重複目前單字` also increments that word's repeat count. Open `練習統計` below the chapter selector to switch between the most-practiced and most-repeated rankings; the player also shows counts for the current word.
 
-Statistics are saved locally first, then batch-synced through the existing Google Sheet, Apps Script, and GitHub Actions hard-words channel. On a new device, select `同步統計` once and enter the existing `HARD_WORDS_PASSCODE`. Offline records remain in the browser and are retried later.
+Statistics and player settings are saved locally first, then batch-synced through the existing Google Sheet, Apps Script, and GitHub Actions hard-words channel. The synchronized settings include the selected chapter, chapter loop, current-word repeat, example playback, English playback rate, and English repeat count. On a new device, select `同步統計` or `同步設定` once and enter the existing `HARD_WORDS_PASSCODE`. Offline changes remain in the browser and are retried later.
 
 ## 目前模式
 
@@ -95,8 +95,8 @@ Statistics are saved locally first, then batch-synced through the existing Googl
 - 網頁可在上方切換章節，播放目前單字或整個章節。
 - 音訊不再只依賴單一完整 MP3，而是使用 `output/audio/segments/` 下的分段 MP3。
 - 分段 MP3 以文字內容、語言、voice 與語速產生 hash 檔名，已有相同內容時會重用，降低 Azure Speech Free (F0) 用量。
-- 英文語速可在網頁調整，預設 0.8x；中文播放固定 1.0x。
-- 英文例句預設重複 3 次，可在網頁調整為 1 到 5 次；中文翻譯只播放 1 次。
+- 英文語速可在網頁調整，預設 1.0x；中文播放固定 1.0x。
+- 英文單字與例句預設重複 5 次，可在網頁調整為 1 到 5 次；中文翻譯只播放 1 次。
 - 例句 1（含中文與英文重複）完成後等待 2 秒，再播放例句 2；中文後的英文重複仍間隔 1.5 秒。
 - 章節模式不會自動更新 `review_count` 與 `last_review_date`，避免每日排程把所有章節都標記為已複習。
 

@@ -5,7 +5,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
-from hard_words_sync import load_mastered_word_statuses, load_practice_stats, sync_hard_words
+from hard_words_sync import load_mastered_word_statuses, load_practice_state, sync_hard_words
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
 from tense_analyzer import load_tense_annotations_for_entries
@@ -60,7 +60,7 @@ def run_daily_generation(
 
     entries = load_vocabulary(settings.vocabulary_dir)
     mastered_word_statuses = load_mastered_word_statuses(settings.vocabulary_dir)
-    practice_stats = load_practice_stats(settings.vocabulary_dir)
+    practice_state = load_practice_state(settings.vocabulary_dir)
 
     if settings.generate_audio:
         segment_audio = generate_segment_audio_files(entries, settings)
@@ -76,7 +76,9 @@ def run_daily_generation(
         segment_audio,
         hard_words_write_url=settings.hard_words_write_url,
         mastered_word_statuses=mastered_word_statuses,
-        practice_stats=practice_stats,
+        practice_stats=practice_state["records"],
+        practice_settings=practice_state["settings"],
+        practice_settings_updated_at=practice_state["settings_updated_at"],
         tense_analysis=tense_analysis,
     )
 

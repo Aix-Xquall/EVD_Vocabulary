@@ -1,5 +1,5 @@
-const DEFAULT_PLAYBACK_RATE = 0.8;
-const DEFAULT_ENGLISH_REPEAT_COUNT = 3;
+const DEFAULT_PLAYBACK_RATE = 1.0;
+const DEFAULT_ENGLISH_REPEAT_COUNT = 5;
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
@@ -58,6 +58,7 @@ const state = {
   practiceStatsDirty: false,
   practiceStatsSyncTimer: null,
   practiceStatsLastSyncAt: 0,
+  practiceSettingsUpdatedAt: "",
   directPlayback: null,
   practice: {
     current: null,
@@ -67,7 +68,7 @@ const state = {
 };
 
 const elements = {
-  chapterTabs: document.getElementById("chapterTabs"),
+  chapterSelect: document.getElementById("chapterSelect"),
   wordList: document.getElementById("wordList"),
   categoryText: document.getElementById("categoryText"),
   wordText: document.getElementById("wordText"),
@@ -84,6 +85,9 @@ const elements = {
   frequentStatsButton: document.getElementById("frequentStatsButton"),
   forgottenStatsButton: document.getElementById("forgottenStatsButton"),
   syncStatsButton: document.getElementById("syncStatsButton"),
+  settingsSummary: document.getElementById("settingsSummary"),
+  settingsSyncStatus: document.getElementById("settingsSyncStatus"),
+  syncSettingsButton: document.getElementById("syncSettingsButton"),
   exampleOneEn: document.getElementById("exampleOneEn"),
   exampleOneZh: document.getElementById("exampleOneZh"),
   exampleTwoEn: document.getElementById("exampleTwoEn"),
@@ -180,31 +184,40 @@ function render() {
   elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
-  renderChapterTabs();
+  renderChapterSelect();
   renderWordList();
   updateHardWordControls();
   updateMasteredControls();
   renderPracticeStatistics();
+  updateSettingsControls();
   saveProgress();
 }
 
-function renderChapterTabs() {
-  elements.chapterTabs.innerHTML = "";
+function renderChapterSelect() {
+  elements.chapterSelect.innerHTML = "";
   state.chapters.forEach((chapter, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `chapter-tab${index === state.currentChapterIndex ? " active" : ""}`;
-    button.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`;
-    button.addEventListener("click", () => {
-      stopQueue();
-      saveCurrentChapterProgress();
-      state.currentChapterIndex = index;
-      state.currentIndex = Math.max(0, savedChapterIndex(chapter));
-      render();
-      buildQuestion();
-    });
-    elements.chapterTabs.appendChild(button);
+    const option = document.createElement("option");
+    option.value = chapterKey(chapter);
+    option.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`;
+    option.selected = index === state.currentChapterIndex;
+    elements.chapterSelect.appendChild(option);
   });
+}
+
+function selectChapter(chapterId, synchronize = true) {
+  const index = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
+  if (index < 0 || index === state.currentChapterIndex) {
+    return;
+  }
+  stopQueue();
+  saveCurrentChapterProgress();
+  state.currentChapterIndex = index;
+  state.currentIndex = Math.max(0, savedChapterIndex(state.chapters[index]));
+  if (synchronize) {
+    markPracticeSettingsChanged();
+  }
+  render();
+  buildQuestion();
 }
 
 function chapterWordCount(chapter) {
@@ -761,22 +774,24 @@ function mergePracticeStat(record) {
 function readPracticeStatsLocalState() {
   const raw = localStorage.getItem(PRACTICE_STATS_LOCAL_KEY);
   if (!raw) {
-    return { records: {}, dirty: false, lastSyncAt: 0 };
+    return { records: {}, settings: {}, settingsUpdatedAt: "", dirty: false, lastSyncAt: 0 };
   }
   try {
     const saved = JSON.parse(raw);
     return {
       records: saved?.records && typeof saved.records === "object" ? saved.records : {},
+      settings: saved?.settings && typeof saved.settings === "object" ? saved.settings : {},
+      settingsUpdatedAt: String(saved?.settingsUpdatedAt || ""),
       dirty: saved?.dirty === true,
       lastSyncAt: Number(saved?.lastSyncAt) || 0,
     };
   } catch (error) {
     localStorage.removeItem(PRACTICE_STATS_LOCAL_KEY);
-    return { records: {}, dirty: false, lastSyncAt: 0 };
+    return { records: {}, settings: {}, settingsUpdatedAt: "", dirty: false, lastSyncAt: 0 };
   }
 }
 
-function restorePracticeStatistics(cloudRecords = {}) {
+function restorePracticeState(cloudRecords = {}, cloudSettings = {}, cloudSettingsUpdatedAt = "") {
   state.practiceStats.clear();
   Object.entries(cloudRecords || {}).forEach(([wordKey, record]) => {
     mergePracticeStat(normalizePracticeStat(record, wordKey));
@@ -785,11 +800,72 @@ function restorePracticeStatistics(cloudRecords = {}) {
   Object.entries(local.records).forEach(([wordKey, record]) => {
     mergePracticeStat(normalizePracticeStat(record, wordKey));
   });
+  const cloudTimestamp = String(cloudSettingsUpdatedAt || "");
+  const localTimestamp = String(local.settingsUpdatedAt || "");
+  const hasCloudSettings = Object.keys(cloudSettings || {}).length > 0;
+  const hasLocalSettings = Object.keys(local.settings || {}).length > 0;
+  if (hasLocalSettings && (!hasCloudSettings || localTimestamp > cloudTimestamp)) {
+    applyPracticeSettings(local.settings);
+    state.practiceSettingsUpdatedAt = localTimestamp;
+  } else if (hasCloudSettings) {
+    applyPracticeSettings(cloudSettings);
+    state.practiceSettingsUpdatedAt = cloudTimestamp;
+  } else {
+    state.practiceSettingsUpdatedAt = new Date().toISOString();
+  }
   state.practiceStatsDirty = local.dirty;
+  if (!hasCloudSettings && !hasLocalSettings) {
+    state.practiceStatsDirty = true;
+  }
   state.practiceStatsLastSyncAt = local.lastSyncAt;
+  savePracticeStatistics();
   if (state.practiceStatsDirty) {
     schedulePracticeStatsSync();
   }
+}
+
+function currentPracticeSettings() {
+  return {
+    selected_chapter_id: chapterKey(currentChapter()),
+    repeat_all: state.repeatAll,
+    repeat_current: state.repeatCurrent,
+    include_examples: state.includeExamples,
+    playback_rate: state.playbackRate,
+    english_repeat_count: state.englishRepeatCount,
+  };
+}
+
+function applyPracticeSettings(settings) {
+  if (typeof settings.repeat_all === "boolean") {
+    state.repeatAll = settings.repeat_all;
+  }
+  if (typeof settings.repeat_current === "boolean") {
+    state.repeatCurrent = settings.repeat_current;
+  }
+  if (typeof settings.include_examples === "boolean") {
+    state.includeExamples = settings.include_examples;
+  }
+  const playbackRate = Number(settings.playback_rate);
+  if (playbackRate >= 0.5 && playbackRate <= 1.5) {
+    state.playbackRate = playbackRate;
+  }
+  state.englishRepeatCount = clampRepeatCount(
+    settings.english_repeat_count ?? state.englishRepeatCount,
+  );
+  const chapterId = String(settings.selected_chapter_id || "");
+  const chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
+  if (chapterIndex >= 0) {
+    state.currentChapterIndex = chapterIndex;
+    state.currentIndex = Math.max(0, savedChapterIndex(state.chapters[chapterIndex]));
+  }
+}
+
+function markPracticeSettingsChanged() {
+  state.practiceSettingsUpdatedAt = new Date().toISOString();
+  state.practiceStatsDirty = true;
+  savePracticeStatistics();
+  updateSettingsControls();
+  schedulePracticeStatsSync();
 }
 
 function practiceStatsObject() {
@@ -801,6 +877,8 @@ function practiceStatsObject() {
 function savePracticeStatistics() {
   localStorage.setItem(PRACTICE_STATS_LOCAL_KEY, JSON.stringify({
     records: practiceStatsObject(),
+    settings: currentPracticeSettings(),
+    settingsUpdatedAt: state.practiceSettingsUpdatedAt,
     dirty: state.practiceStatsDirty,
     lastSyncAt: state.practiceStatsLastSyncAt,
   }));
@@ -873,6 +951,17 @@ function setPracticeStatsView(view) {
   renderPracticeStatistics();
 }
 
+function updateSettingsControls() {
+  elements.repeatAllToggle.checked = state.repeatAll;
+  elements.repeatCurrentToggle.checked = state.repeatCurrent;
+  elements.includeExamplesToggle.checked = state.includeExamples;
+  elements.playbackRate.value = String(state.playbackRate);
+  elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
+  elements.exampleRepeatCount.value = String(state.englishRepeatCount);
+  elements.exampleRepeatCountValue.textContent = String(state.englishRepeatCount);
+  elements.settingsSummary.textContent = `${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次`;
+}
+
 function compactPracticeStatsSnapshot() {
   const records = [...state.practiceStats.values()]
     .filter((record) => record.practice_count > 0)
@@ -883,7 +972,13 @@ function compactPracticeStatsSnapshot() {
       record.repeat_current_count,
       record.last_practiced_at,
     ]);
-  return JSON.stringify({ v: 1, u: new Date().toISOString(), r: records });
+  return JSON.stringify({
+    v: 2,
+    u: new Date().toISOString(),
+    r: records,
+    s: currentPracticeSettings(),
+    su: state.practiceSettingsUpdatedAt,
+  });
 }
 
 function practiceStatsPayload(passcode) {
@@ -924,14 +1019,14 @@ function schedulePracticeStatsSync() {
 
 async function syncPracticeStatistics(promptForPasscode = true) {
   if (!state.hardWordsWriteUrl) {
-    elements.statisticsSyncStatus.textContent = "尚未設定雲端同步";
+    setCloudSyncStatus("尚未設定雲端同步");
     return;
   }
   const passcode = promptForPasscode
     ? getHardWordsPasscode()
     : localStorage.getItem(HARD_WORDS_PASSCODE_KEY) || "";
   if (!passcode) {
-    elements.statisticsSyncStatus.textContent = "點選同步統計以設定同步密碼";
+    setCloudSyncStatus("點選同步按鈕以設定同步密碼");
     return;
   }
   if (state.practiceStatsSyncTimer) {
@@ -939,7 +1034,8 @@ async function syncPracticeStatistics(promptForPasscode = true) {
     state.practiceStatsSyncTimer = null;
   }
   elements.syncStatsButton.disabled = true;
-  elements.statisticsSyncStatus.textContent = "同步中...";
+  elements.syncSettingsButton.disabled = true;
+  setCloudSyncStatus("同步中...");
   try {
     const response = await fetch(state.hardWordsWriteUrl, {
       method: "POST",
@@ -953,15 +1049,21 @@ async function syncPracticeStatistics(promptForPasscode = true) {
     state.practiceStatsDirty = false;
     state.practiceStatsLastSyncAt = Date.now();
     savePracticeStatistics();
-    elements.statisticsSyncStatus.textContent = "已送出同步";
+    setCloudSyncStatus("已送出同步");
   } catch (error) {
     state.practiceStatsDirty = true;
     savePracticeStatistics();
-    elements.statisticsSyncStatus.textContent = "同步失敗，將稍後重試";
+    setCloudSyncStatus("同步失敗，將稍後重試");
     schedulePracticeStatsSync();
   } finally {
     elements.syncStatsButton.disabled = false;
+    elements.syncSettingsButton.disabled = false;
   }
+}
+
+function setCloudSyncStatus(message) {
+  elements.statisticsSyncStatus.textContent = message;
+  elements.settingsSyncStatus.textContent = message;
 }
 
 function sendPracticeStatisticsOnPageHide() {
@@ -1276,9 +1378,6 @@ function saveProgress() {
       currentChapterIndex: state.currentChapterIndex,
       currentIndex: state.currentIndex,
       chapterProgress: state.chapterProgress,
-      playbackRate: state.playbackRate,
-      englishRepeatCount: state.englishRepeatCount,
-      includeExamples: state.includeExamples,
       practice: state.practice,
     }),
   );
@@ -1295,9 +1394,6 @@ function restoreProgress() {
     state.currentChapterIndex = Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
     state.currentIndex = Math.max(0, Math.min(saved.currentIndex || 0, currentWords().length - 1));
     state.chapterProgress = saved.chapterProgress || {};
-    state.playbackRate = Number(saved.playbackRate || DEFAULT_PLAYBACK_RATE);
-    state.englishRepeatCount = clampRepeatCount(saved.englishRepeatCount || saved.exampleRepeatCount || DEFAULT_ENGLISH_REPEAT_COUNT);
-    state.includeExamples = saved.includeExamples !== false;
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
@@ -1388,27 +1484,32 @@ elements.previousButton.addEventListener("click", () => {
   playCurrent();
 });
 elements.combinedAudioButton.addEventListener("click", playCombinedAudio);
+elements.chapterSelect.addEventListener("change", (event) => {
+  selectChapter(event.target.value, true);
+});
 elements.repeatAllToggle.addEventListener("change", (event) => {
   state.repeatAll = event.target.checked;
+  markPracticeSettingsChanged();
 });
 elements.repeatCurrentToggle.addEventListener("change", (event) => {
   state.repeatCurrent = event.target.checked;
+  markPracticeSettingsChanged();
 });
 elements.includeExamplesToggle.addEventListener("change", (event) => {
   state.includeExamples = event.target.checked;
   updateMasteredControls();
-  saveProgress();
+  markPracticeSettingsChanged();
 });
 elements.playbackRate.addEventListener("input", (event) => {
   state.playbackRate = Number(event.target.value);
   applyPlaybackRate();
-  saveProgress();
+  markPracticeSettingsChanged();
 });
 elements.exampleRepeatCount.addEventListener("input", (event) => {
   state.englishRepeatCount = clampRepeatCount(event.target.value);
   applyPlaybackRate();
   updateMasteredControls();
-  saveProgress();
+  markPracticeSettingsChanged();
 });
 elements.toggleMeaningButton.addEventListener("click", () => {
   state.hideMeaning = !state.hideMeaning;
@@ -1427,6 +1528,7 @@ elements.masteredWordToggle.addEventListener("change", toggleMasteredWord);
 elements.frequentStatsButton.addEventListener("click", () => setPracticeStatsView("frequent"));
 elements.forgottenStatsButton.addEventListener("click", () => setPracticeStatsView("forgotten"));
 elements.syncStatsButton.addEventListener("click", () => syncPracticeStatistics(true));
+elements.syncSettingsButton.addEventListener("click", () => syncPracticeStatistics(true));
 elements.audioPlayer.addEventListener("ended", handleAudioEnded);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
@@ -1447,10 +1549,14 @@ loadDailyData()
     Object.entries(data.mastery?.statuses || {}).forEach(([wordKey, status]) => {
       state.masteredWordStatuses.set(hardWordKey({ word: wordKey }), status);
     });
-    restorePracticeStatistics(data.practice_stats?.records || {});
     restoreHardWordsLocalState();
     restoreMasteredLocalState();
     restoreProgress();
+    restorePracticeState(
+      data.practice_stats?.records || {},
+      data.practice_stats?.settings || {},
+      data.practice_stats?.settings_updated_at || "",
+    );
     setupMediaSession();
     applyPlaybackRate();
     render();

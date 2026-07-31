@@ -11,6 +11,7 @@ from hard_words_sync import (
     HARD_WORDS_FILENAME,
     PRACTICE_STATS_STATUS,
     PRACTICE_STATS_WORD,
+    load_practice_state,
     load_practice_stats,
     filter_hard_word_rows,
     sync_hard_words,
@@ -147,6 +148,30 @@ class HardWordsSyncTests(unittest.TestCase):
             )
 
             self.assertEqual(load_practice_stats(temp_dir), {})
+
+    def test_load_practice_state_reads_valid_synchronized_settings(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            snapshot = Path(temp_dir) / HARD_WORDS_FILENAME
+            note = (
+                '{"v":2,"r":[],"s":{"selected_chapter_id":"emc-1",'
+                '"repeat_all":false,"repeat_current":true,"include_examples":false,'
+                '"playback_rate":1.2,"english_repeat_count":4},'
+                '"su":"2026-07-31T02:00:00.000Z"}'
+            )
+            snapshot.write_text(
+                HEADER
+                + f'practice_statistics,{PRACTICE_STATS_WORD},,,,,,,system,,0,,practice_statistics,practice_statistics,2026-07-31T02:00:00Z,{PRACTICE_STATS_STATUS},"{note.replace(chr(34), chr(34) * 2)}"\n',
+                encoding="utf-8-sig",
+            )
+
+            practice_state = load_practice_state(temp_dir)
+
+            self.assertEqual(practice_state["settings"]["selected_chapter_id"], "emc-1")
+            self.assertFalse(practice_state["settings"]["repeat_all"])
+            self.assertTrue(practice_state["settings"]["repeat_current"])
+            self.assertEqual(practice_state["settings"]["playback_rate"], 1.2)
+            self.assertEqual(practice_state["settings"]["english_repeat_count"], 4)
+            self.assertEqual(practice_state["settings_updated_at"], "2026-07-31T02:00:00.000Z")
 
     def test_sync_hard_words_from_csv_text_rejects_non_vocabulary_csv(self):
         with tempfile.TemporaryDirectory() as temp_dir:
