@@ -113,8 +113,11 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('fetch(state.hardWordsWriteUrl', app_js)
         self.assertIn('active: "active"', app_js)
         self.assertIn('removed: "removed"', app_js)
-        self.assertIn("加入未熟記單字練習", app_js)
+        self.assertIn("加入未熟記單字", app_js)
         self.assertIn("從未熟記單字移除", app_js)
+        self.assertIn('id="hardWordHelp"', index_html)
+        self.assertIn("已熟記，取消勾選後可加入未熟記練習", index_html)
+        self.assertIn("elements.hardWordHelp.hidden = !mastered", app_js)
         self.assertIn('"status": status', app_js)
 
     def test_web_player_exposes_mastered_word_controls_and_two_repeat_behavior(self):
@@ -200,7 +203,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("state.queueIndex = state.pausedQueueIndex;", app_js)
         self.assertIn("state.pausedQueueIndex = Math.max(0, state.queueIndex - 1);", app_js)
         self.assertIn("elements.audioPlayer.currentTime = 0;", app_js)
-        self.assertIn('elements.playButton.addEventListener("click", resumeOrPlayCurrent);', app_js)
+        self.assertIn("resumeOrPlayCurrent();", app_js)
+        self.assertIn('elements.playButton.addEventListener("click", togglePlayback);', app_js)
 
     def test_hard_words_chapter_count_updates_immediately_after_toggle(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -245,9 +249,13 @@ class WebAssetsTests(unittest.TestCase):
     def test_practice_statistics_are_counted_and_synced_across_devices(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
         self.assertIn('class="statistics-panel"', index_html)
+        self.assertIn('class="current-word-meta"', index_html)
         self.assertIn('id="currentWordStats"', index_html)
+        self.assertIn(".current-word-meta", styles_css)
+        self.assertIn("justify-content: space-between", styles_css)
         self.assertIn('id="syncStatsButton"', index_html)
         self.assertIn("function recordCompletedWordPractice", app_js)
         self.assertIn("segment.completesWord", app_js)
@@ -312,7 +320,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("scheduleCurrentWordRepeat();", app_js)
         self.assertIn("}, REPEAT_CURRENT_DELAY_MS);", app_js)
 
-    def test_play_and_pause_buttons_reflect_the_current_playback_state(self):
+    def test_single_playback_button_toggles_play_and_pause(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
@@ -321,9 +329,13 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('setPlaybackStatus("playing");', app_js)
         self.assertIn("setPlaybackStatus(playbackState);", app_js)
         self.assertIn('elements.playButton.setAttribute("aria-pressed", String(isPlaying));', app_js)
-        self.assertIn('elements.pauseButton.setAttribute("aria-pressed", String(isPaused));', app_js)
+        self.assertIn('elements.playButton.textContent = isPlaying ? "暫停" : "播放";', app_js)
+        self.assertIn("function togglePlayback()", app_js)
+        self.assertIn('elements.playButton.addEventListener("click", togglePlayback);', app_js)
         self.assertIn('id="playButton" class="playback-button"', index_html)
-        self.assertIn('id="pauseButton" class="playback-button"', index_html)
+        self.assertNotIn('id="pauseButton"', index_html)
+        self.assertNotIn("elements.pauseButton", app_js)
+        self.assertIn("grid-template-columns: repeat(3, minmax(0, 1fr))", styles_css)
         self.assertIn(".playback-button.active", styles_css)
 
     def test_previous_and_next_buttons_start_cloud_audio(self):

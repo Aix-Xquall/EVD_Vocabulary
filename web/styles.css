@@ -301,6 +301,18 @@ h2 {
   min-height: 170px;
 }
 
+.current-word-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.current-word-meta .eyebrow {
+  margin-bottom: 0;
+}
+
 .current-word h2 {
   margin: 0;
   font-size: clamp(1.6rem, 4vw, 3rem);
@@ -317,7 +329,7 @@ h2 {
 }
 
 .current-word-stats {
-  margin: 8px 0 0;
+  margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 700;
@@ -333,6 +345,51 @@ h2 {
 
 .hard-word-actions button {
   padding: 0 14px;
+}
+
+.help-tip {
+  position: relative;
+  display: inline-flex;
+}
+
+.help-tip[hidden] {
+  display: none;
+}
+
+.hard-word-actions .help-button {
+  width: 32px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.help-tooltip {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  width: max-content;
+  max-width: min(280px, 80vw);
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--text);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.help-tip:hover .help-tooltip,
+.help-tip:focus-within .help-tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .mastered-control {
@@ -351,7 +408,6 @@ h2 {
   font-weight: 700;
 }
 
-.controls,
 .cloze-answer {
   display: flex;
   flex-wrap: wrap;
@@ -359,11 +415,14 @@ h2 {
 }
 
 .controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
   margin: 18px 0 12px;
 }
 
 .controls button {
-  min-width: 110px;
+  min-width: 0;
   padding: 0 16px;
 }
 

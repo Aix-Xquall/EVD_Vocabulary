@@ -73,13 +73,25 @@
 
         <section class="study-panel">
           <div class="current-word">
-            <p id="categoryText" class="eyebrow">Category</p>
+            <div class="current-word-meta">
+              <p id="categoryText" class="eyebrow">Category</p>
+              <p id="currentWordStats" class="current-word-stats">練習 0 次 · 重複 0 次</p>
+            </div>
             <h2 id="wordText">Loading</h2>
             <p id="pronunciationText" class="pronunciation"></p>
             <p id="meaningText" class="meaning"></p>
-            <p id="currentWordStats" class="current-word-stats">練習 0 次 · 重複 0 次</p>
             <div class="hard-word-actions">
-              <button id="hardWordButton" type="button">加入未熟記單字練習</button>
+              <button id="hardWordButton" type="button">加入未熟記單字</button>
+              <span id="hardWordHelp" class="help-tip" hidden>
+                <button
+                  class="help-button"
+                  type="button"
+                  aria-label="未熟記單字提示"
+                  aria-describedby="hardWordHelpText"
+                  title="已熟記，取消勾選後可加入未熟記練習"
+                >?</button>
+                <span id="hardWordHelpText" class="help-tooltip" role="tooltip">已熟記，取消勾選後可加入未熟記練習</span>
+              </span>
               <span id="hardWordStatus" class="sync-status"></span>
               <label class="mastered-control">
                 <input id="masteredWordToggle" type="checkbox">
@@ -91,8 +103,7 @@
 
           <div class="controls" aria-label="Playback controls">
             <button id="previousButton" type="button">上一個</button>
-            <button id="playButton" class="playback-button" type="button" aria-pressed="false">開始播放</button>
-            <button id="pauseButton" class="playback-button" type="button" aria-pressed="false">暫停</button>
+            <button id="playButton" class="playback-button" type="button" aria-pressed="false">播放</button>
             <button id="nextButton" type="button">下一個</button>
           </div>
 

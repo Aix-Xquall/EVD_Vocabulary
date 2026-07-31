@@ -76,6 +76,7 @@ const elements = {
   meaningText: document.getElementById("meaningText"),
   currentWordStats: document.getElementById("currentWordStats"),
   hardWordButton: document.getElementById("hardWordButton"),
+  hardWordHelp: document.getElementById("hardWordHelp"),
   hardWordStatus: document.getElementById("hardWordStatus"),
   masteredWordToggle: document.getElementById("masteredWordToggle"),
   masteredWordStatus: document.getElementById("masteredWordStatus"),
@@ -93,7 +94,6 @@ const elements = {
   exampleTwoEn: document.getElementById("exampleTwoEn"),
   exampleTwoZh: document.getElementById("exampleTwoZh"),
   playButton: document.getElementById("playButton"),
-  pauseButton: document.getElementById("pauseButton"),
   previousButton: document.getElementById("previousButton"),
   nextButton: document.getElementById("nextButton"),
   repeatAllToggle: document.getElementById("repeatAllToggle"),
@@ -316,6 +316,14 @@ function resumeOrPlayCurrent() {
   playCurrent();
 }
 
+function togglePlayback() {
+  if (elements.playButton.getAttribute("aria-pressed") === "true") {
+    pausePlayback();
+    return;
+  }
+  resumeOrPlayCurrent();
+}
+
 function playCombinedAudio() {
   const chapterQueue = buildChapterQueue();
   if (chapterQueue.length > 0) {
@@ -439,6 +447,7 @@ function updateHardWordControls() {
   }
   if (!state.hardWordsWriteUrl) {
     elements.hardWordButton.hidden = true;
+    elements.hardWordHelp.hidden = true;
     elements.hardWordStatus.textContent = "";
     return;
   }
@@ -448,10 +457,9 @@ function updateHardWordControls() {
   const mastered = isMasteredWord(word);
   elements.hardWordButton.hidden = false;
   elements.hardWordButton.disabled = !word.word || mastered;
-  elements.hardWordButton.textContent = alreadyAdded ? "從未熟記單字移除" : "加入未熟記單字練習";
-  elements.hardWordStatus.textContent = mastered
-    ? "已熟記，取消勾選後可加入未熟記練習"
-    : alreadyAdded ? "目前在未熟記單字練習" : "";
+  elements.hardWordButton.textContent = alreadyAdded ? "從未熟記單字移除" : "加入未熟記單字";
+  elements.hardWordHelp.hidden = !mastered;
+  elements.hardWordStatus.textContent = alreadyAdded ? "目前在未熟記單字練習" : "";
 }
 
 function masteryStatus(word) {
@@ -1231,11 +1239,9 @@ function updateMediaSessionPlaybackState(playbackState) {
 
 function setPlaybackStatus(playbackState) {
   const isPlaying = playbackState === "playing";
-  const isPaused = playbackState === "paused";
   elements.playButton.classList.toggle("active", isPlaying);
-  elements.pauseButton.classList.toggle("active", isPaused);
   elements.playButton.setAttribute("aria-pressed", String(isPlaying));
-  elements.pauseButton.setAttribute("aria-pressed", String(isPaused));
+  elements.playButton.textContent = isPlaying ? "暫停" : "播放";
 }
 
 function pausePlayback() {
@@ -1472,8 +1478,7 @@ function renderTranslationWithTense(translation, tense) {
   return `${text}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
 }
 
-elements.playButton.addEventListener("click", resumeOrPlayCurrent);
-elements.pauseButton.addEventListener("click", pausePlayback);
+elements.playButton.addEventListener("click", togglePlayback);
 elements.nextButton.addEventListener("click", () => {
   stopQueue();
   nextWord(true);
