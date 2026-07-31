@@ -92289,6 +92289,12 @@
   },
   "practice_stats": {
     "records": {
+      "allocated baseline": {
+        "word": "allocated baseline",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-07-31T13:06:44.166Z"
+      },
       "cable tray": {
         "word": "cable tray",
         "practice_count": 1,
@@ -92301,6 +92307,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-07-31T12:04:27.092Z"
       },
+      "functional analysis": {
+        "word": "functional analysis",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-07-31T13:08:23.878Z"
+      },
       "local chassis": {
         "word": "local chassis",
         "practice_count": 1,
@@ -92308,8 +92320,15 @@
         "last_practiced_at": "2026-07-31T12:05:52.292Z"
       }
     },
-    "settings": {},
-    "settings_updated_at": ""
+    "settings": {
+      "selected_chapter_id": "msfc-hdbk-3697",
+      "repeat_all": true,
+      "repeat_current": false,
+      "include_examples": true,
+      "playback_rate": 1.0,
+      "english_repeat_count": 5
+    },
+    "settings_updated_at": "2026-07-31T12:44:38.036Z"
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
