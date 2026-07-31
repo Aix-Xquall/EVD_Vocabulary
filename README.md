@@ -81,6 +81,12 @@ After changing or redeploying the Apps Script Web App, run `Daily Vocabulary` on
 
 Duplicate entries are skipped by the normalized `word` field inside each normal chapter. The hard words chapter can intentionally repeat a word that also exists in a normal chapter, but duplicate words inside `hard_words.csv` are collapsed.
 
+## Practice statistics
+
+The site records one practice after a word finishes playing with the current example setting. Each additional completed cycle caused by `重複目前單字` also increments that word's repeat count. Open `練習統計` below the chapter tabs to switch between the most-practiced and most-repeated rankings; the player also shows counts for the current word.
+
+Statistics are saved locally first, then batch-synced through the existing Google Sheet, Apps Script, and GitHub Actions hard-words channel. On a new device, select `同步統計` once and enter the existing `HARD_WORDS_PASSCODE`. Offline records remain in the browser and are retried later.
+
 ## 目前模式
 
 此專案目前採用「章節化 + 分段音訊 + 前端播放佇列」：

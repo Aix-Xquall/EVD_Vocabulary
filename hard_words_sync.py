@@ -1,5 +1,6 @@
 import csv
 import io
+import json
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
@@ -14,6 +15,8 @@ HARD_WORDS_FILENAME = "hard_words.csv"
 TRACKING_COLUMNS = ["source_chapter", "source_id", "added_at", "status", "note"]
 OUTPUT_COLUMNS = REQUIRED_COLUMNS + TRACKING_COLUMNS
 MASTERED_STATUSES = {"mastered", "mastered_active"}
+PRACTICE_STATS_WORD = "__EVD_PRACTICE_STATS__"
+PRACTICE_STATS_STATUS = "practice_stats"
 
 
 @dataclass(frozen=True)
@@ -95,6 +98,50 @@ def load_mastered_word_statuses(vocabulary_dir: Path | str) -> dict[str, str]:
             if (status := str(row.get("status") or "").strip().lower()) in MASTERED_STATUSES
             and str(row.get("word") or "").strip()
         }
+
+
+def load_practice_stats(vocabulary_dir: Path | str) -> dict[str, dict]:
+    """Load the compact practice statistics snapshot stored in the hard-words sheet."""
+    snapshot_path = Path(vocabulary_dir) / HARD_WORDS_FILENAME
+    if not snapshot_path.exists():
+        return {}
+
+    with snapshot_path.open("r", encoding="utf-8-sig", newline="") as file:
+        for row in csv.DictReader(file):
+            word = str(row.get("word") or "").strip()
+            status = str(row.get("status") or "").strip().lower()
+            if word != PRACTICE_STATS_WORD or status != PRACTICE_STATS_STATUS:
+                continue
+            return _parse_practice_stats_note(str(row.get("note") or ""))
+    return {}
+
+
+def _parse_practice_stats_note(note: str) -> dict[str, dict]:
+    try:
+        payload = json.loads(note)
+    except (TypeError, json.JSONDecodeError):
+        return {}
+
+    records = payload.get("r", []) if isinstance(payload, dict) else []
+    parsed = {}
+    for record in records:
+        if not isinstance(record, list) or len(record) < 4:
+            continue
+        word = str(record[0] or "").strip()
+        if not word:
+            continue
+        try:
+            practice_count = max(0, int(record[1]))
+            repeat_current_count = max(0, int(record[2]))
+        except (TypeError, ValueError):
+            continue
+        parsed[word.casefold()] = {
+            "word": word,
+            "practice_count": practice_count,
+            "repeat_current_count": repeat_current_count,
+            "last_practiced_at": str(record[3] or ""),
+        }
+    return parsed
 
 
 def _deduplicate_hard_word_rows(rows: Iterable[dict]) -> list[dict]:

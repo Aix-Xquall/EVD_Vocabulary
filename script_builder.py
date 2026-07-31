@@ -91,6 +91,7 @@ def build_chapter_payload(
     segment_audio: Dict[str, Dict[str, dict]],
     hard_words_write_url: str = "",
     mastered_word_statuses: Dict[str, str] | None = None,
+    practice_stats: Dict[str, dict] | None = None,
     tense_analysis: Dict[str, Dict[str, dict]] | None = None,
 ) -> dict:
     chapters = []
@@ -144,6 +145,7 @@ def build_chapter_payload(
         "chapters": chapters,
         "words": flat_words,
         "mastery": {"statuses": dict(mastered_word_statuses or {})},
+        "practice_stats": {"records": dict(practice_stats or {})},
     }
     if hard_words_write_url:
         payload["hard_words"] = {"write_url": hard_words_write_url}

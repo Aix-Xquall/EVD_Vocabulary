@@ -17,6 +17,24 @@
 
       <nav id="chapterTabs" class="chapter-tabs" aria-label="Vocabulary chapters"></nav>
 
+      <details class="statistics-panel">
+        <summary>
+          <span>練習統計</span>
+          <span id="statisticsSummary" class="statistics-summary">尚無練習紀錄</span>
+        </summary>
+        <div class="statistics-content">
+          <div class="statistics-toolbar">
+            <div class="statistics-modes" role="group" aria-label="統計排序方式">
+              <button id="frequentStatsButton" class="active" type="button" aria-pressed="true">常練習</button>
+              <button id="forgottenStatsButton" type="button" aria-pressed="false">容易忘記</button>
+            </div>
+            <button id="syncStatsButton" type="button">同步統計</button>
+          </div>
+          <p id="statisticsSyncStatus" class="sync-status">統計會自動同步</p>
+          <div id="statisticsList" class="statistics-list"></div>
+        </div>
+      </details>
+
       <section class="player-layout">
         <aside class="word-list" aria-label="Daily words">
           <div class="list-header">
@@ -32,6 +50,7 @@
             <h2 id="wordText">Loading</h2>
             <p id="pronunciationText" class="pronunciation"></p>
             <p id="meaningText" class="meaning"></p>
+            <p id="currentWordStats" class="current-word-stats">練習 0 次 · 重複 0 次</p>
             <div class="hard-word-actions">
               <button id="hardWordButton" type="button">加入未熟記單字練習</button>
               <span id="hardWordStatus" class="sync-status"></span>

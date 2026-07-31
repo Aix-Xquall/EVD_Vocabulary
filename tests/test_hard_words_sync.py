@@ -9,6 +9,9 @@ import hard_words_sync
 
 from hard_words_sync import (
     HARD_WORDS_FILENAME,
+    PRACTICE_STATS_STATUS,
+    PRACTICE_STATS_WORD,
+    load_practice_stats,
     filter_hard_word_rows,
     sync_hard_words,
     sync_hard_words_from_csv_text,
@@ -117,6 +120,33 @@ class HardWordsSyncTests(unittest.TestCase):
                 statuses,
                 {"ems": "mastered", "emc": "mastered_active"},
             )
+
+    def test_load_practice_stats_reads_compact_cloud_snapshot(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            snapshot = Path(temp_dir) / HARD_WORDS_FILENAME
+            note = '{"v":1,"r":[["impedance",12,3,"2026-07-31T01:00:00.000Z"],["EMC",5,1,"2026-07-31T02:00:00.000Z"]]}'
+            snapshot.write_text(
+                HEADER
+                + f'practice_statistics,{PRACTICE_STATS_WORD},,,,,,,system,,0,,practice_statistics,practice_statistics,2026-07-31T02:00:00Z,{PRACTICE_STATS_STATUS},"{note.replace(chr(34), chr(34) * 2)}"\n',
+                encoding="utf-8-sig",
+            )
+
+            stats = load_practice_stats(temp_dir)
+
+            self.assertEqual(stats["impedance"]["practice_count"], 12)
+            self.assertEqual(stats["impedance"]["repeat_current_count"], 3)
+            self.assertEqual(stats["emc"]["word"], "EMC")
+
+    def test_load_practice_stats_ignores_invalid_snapshot_note(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            snapshot = Path(temp_dir) / HARD_WORDS_FILENAME
+            snapshot.write_text(
+                HEADER
+                + f"practice_statistics,{PRACTICE_STATS_WORD},,,,,,,system,,0,,practice_statistics,practice_statistics,2026-07-31T02:00:00Z,{PRACTICE_STATS_STATUS},not-json\n",
+                encoding="utf-8-sig",
+            )
+
+            self.assertEqual(load_practice_stats(temp_dir), {})
 
     def test_sync_hard_words_from_csv_text_rejects_non_vocabulary_csv(self):
         with tempfile.TemporaryDirectory() as temp_dir:

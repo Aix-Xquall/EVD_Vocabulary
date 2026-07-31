@@ -239,6 +239,23 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('navigator.mediaSession.setActionHandler("nexttrack"', app_js)
         self.assertIn('navigator.mediaSession.setActionHandler("previoustrack"', app_js)
 
+    def test_practice_statistics_are_counted_and_synced_across_devices(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn('class="statistics-panel"', index_html)
+        self.assertIn('id="currentWordStats"', index_html)
+        self.assertIn('id="syncStatsButton"', index_html)
+        self.assertIn("function recordCompletedWordPractice", app_js)
+        self.assertIn("segment.completesWord", app_js)
+        self.assertIn("incrementPracticeRecord", app_js)
+        self.assertIn("playCurrent(true)", app_js)
+        self.assertIn("PRACTICE_STATS_SENTINEL_WORD", app_js)
+        self.assertIn("compactPracticeStatsSnapshot", app_js)
+        self.assertIn("PRACTICE_STATS_SYNC_DELAY_MS = 60000", app_js)
+        self.assertIn("navigator.sendBeacon", app_js)
+        self.assertIn("restorePracticeStatistics(data.practice_stats?.records || {})", app_js)
+
     def test_chapter_playback_uses_segment_queue_with_wake_lock_controls(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 

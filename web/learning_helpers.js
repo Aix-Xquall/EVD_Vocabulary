@@ -16,6 +16,17 @@
     return String(value || "").split("|", 1)[0].trim();
   }
 
+  function incrementPracticeRecord(record, word, isRepeatCycle, practicedAt = new Date().toISOString()) {
+    const current = record || {};
+    return {
+      word: String(word || current.word || "").trim(),
+      practice_count: Math.max(0, Number.parseInt(current.practice_count, 10) || 0) + 1,
+      repeat_current_count: Math.max(0, Number.parseInt(current.repeat_current_count, 10) || 0)
+        + (isRepeatCycle ? 1 : 0),
+      last_practiced_at: practicedAt,
+    };
+  }
+
   function normalizeClozeAnswer(value) {
     return String(value || "").trim().toLocaleLowerCase("en-US");
   }
@@ -137,6 +148,7 @@
     buildClozeCandidates,
     findLiteralHighlightRanges,
     findTargetPhraseMatches,
+    incrementPracticeRecord,
     isCorrectClozeAnswer,
     normalizeClozeAnswer,
     repeatCountForWord,

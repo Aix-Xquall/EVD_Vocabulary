@@ -5,6 +5,7 @@ const {
   buildClozeCandidates,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
+  incrementPracticeRecord,
   isCorrectClozeAnswer,
   repeatCountForWord,
   sanitizePronunciation,
@@ -14,6 +15,24 @@ test("mastered words use configured repetitions when examples are included", () 
   assert.equal(repeatCountForWord(true, 5, false), 2);
   assert.equal(repeatCountForWord(true, 5, true), 5);
   assert.equal(repeatCountForWord(false, 5, true), 5);
+});
+
+test("practice records count completed words and extra repeat-current cycles", () => {
+  const first = incrementPracticeRecord(null, "impedance", false, "2026-07-31T01:00:00Z");
+  const repeated = incrementPracticeRecord(first, "impedance", true, "2026-07-31T01:01:00Z");
+
+  assert.deepEqual(first, {
+    word: "impedance",
+    practice_count: 1,
+    repeat_current_count: 0,
+    last_practiced_at: "2026-07-31T01:00:00Z",
+  });
+  assert.deepEqual(repeated, {
+    word: "impedance",
+    practice_count: 2,
+    repeat_current_count: 1,
+    last_practiced_at: "2026-07-31T01:01:00Z",
+  });
 });
 
 test("cloze candidates blank exact target phrases in either example", () => {

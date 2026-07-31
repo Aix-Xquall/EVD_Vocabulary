@@ -193,6 +193,28 @@ class ScriptBuilderTests(unittest.TestCase):
             {"impedance": "mastered"},
         )
 
+    def test_build_chapter_payload_publishes_practice_statistics(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\chapter-a.csv"
+        entry["_row_number"] = 1
+        stats = {
+            "impedance": {
+                "word": "impedance",
+                "practice_count": 8,
+                "repeat_current_count": 2,
+                "last_practiced_at": "2026-07-31T01:00:00Z",
+            }
+        }
+
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 7, 31),
+            segment_audio={},
+            practice_stats=stats,
+        )
+
+        self.assertEqual(payload["practice_stats"]["records"], stats)
+
 
 if __name__ == "__main__":
     unittest.main()

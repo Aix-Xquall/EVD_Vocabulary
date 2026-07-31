@@ -8,6 +8,7 @@ const {
   buildClozeCandidates,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
+  incrementPracticeRecord,
   isCorrectClozeAnswer,
   repeatCountForWord,
   sanitizePronunciation,
@@ -15,6 +16,10 @@ const {
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
 const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state";
 const MASTERED_WORDS_LOCAL_KEY = "evd-mastered-words-local-state";
+const PRACTICE_STATS_LOCAL_KEY = "evd-practice-stats-v1";
+const PRACTICE_STATS_SENTINEL_WORD = "__EVD_PRACTICE_STATS__";
+const PRACTICE_STATS_SYNC_DELAY_MS = 60000;
+const PRACTICE_STATS_MIN_SYNC_INTERVAL_MS = 300000;
 const HARD_WORD_STATUS = {
   active: "active",
   removed: "removed",
@@ -48,6 +53,12 @@ const state = {
   hardWordsWriteUrl: "",
   hardWordsPending: new Map(),
   masteredWordStatuses: new Map(),
+  practiceStats: new Map(),
+  practiceStatsView: "frequent",
+  practiceStatsDirty: false,
+  practiceStatsSyncTimer: null,
+  practiceStatsLastSyncAt: 0,
+  directPlayback: null,
   practice: {
     current: null,
     attempts: 0,
@@ -62,10 +73,17 @@ const elements = {
   wordText: document.getElementById("wordText"),
   pronunciationText: document.getElementById("pronunciationText"),
   meaningText: document.getElementById("meaningText"),
+  currentWordStats: document.getElementById("currentWordStats"),
   hardWordButton: document.getElementById("hardWordButton"),
   hardWordStatus: document.getElementById("hardWordStatus"),
   masteredWordToggle: document.getElementById("masteredWordToggle"),
   masteredWordStatus: document.getElementById("masteredWordStatus"),
+  statisticsSummary: document.getElementById("statisticsSummary"),
+  statisticsSyncStatus: document.getElementById("statisticsSyncStatus"),
+  statisticsList: document.getElementById("statisticsList"),
+  frequentStatsButton: document.getElementById("frequentStatsButton"),
+  forgottenStatsButton: document.getElementById("forgottenStatsButton"),
+  syncStatsButton: document.getElementById("syncStatsButton"),
   exampleOneEn: document.getElementById("exampleOneEn"),
   exampleOneZh: document.getElementById("exampleOneZh"),
   exampleTwoEn: document.getElementById("exampleTwoEn"),
@@ -166,6 +184,7 @@ function render() {
   renderWordList();
   updateHardWordControls();
   updateMasteredControls();
+  renderPracticeStatistics();
   saveProgress();
 }
 
@@ -260,11 +279,11 @@ function scrollActiveWordIntoView() {
   container.scrollTop = Math.max(0, targetTop);
 }
 
-function playCurrent() {
+function playCurrent(isRepeatCycle = false) {
   const word = currentWord();
-  const queue = buildWordQueue(word);
+  const queue = buildWordQueue(word, isRepeatCycle);
   if (queue.length === 0 && word.audio) {
-    playDirectAudio(word.audio, true);
+    playDirectAudio(word.audio, true, { word, isRepeatCycle });
     return;
   }
   playQueue(queue, false);
@@ -298,7 +317,7 @@ function playCombinedAudio() {
 function buildChapterQueue() {
   const queue = [];
   currentWords().forEach((word) => {
-    const wordQueue = buildWordQueue(word);
+    const wordQueue = buildWordQueue(word, false);
     if (queue.length > 0 && wordQueue.length > 0) {
       wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;
     }
@@ -307,7 +326,7 @@ function buildChapterQueue() {
   return queue;
 }
 
-function buildWordQueue(word) {
+function buildWordQueue(word, isRepeatCycle = false) {
   const segments = word?.audio_segments || {};
   const queue = [];
   const repeatCount = repeatCountForWord(
@@ -319,6 +338,11 @@ function buildWordQueue(word) {
   if (state.includeExamples) {
     addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh, repeatCount);
     addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh, repeatCount, EXAMPLE_GROUP_DELAY_MS);
+  }
+  if (queue.length > 0) {
+    queue[queue.length - 1].completesWord = true;
+    queue[queue.length - 1].practiceWord = word;
+    queue[queue.length - 1].isRepeatCycle = isRepeatCycle;
   }
   return queue;
 }
@@ -700,6 +724,272 @@ async function postHardWord(word, passcode, status) {
   }
 }
 
+function normalizePracticeStat(record, fallbackWord = "") {
+  const word = String(record?.word || fallbackWord || "").trim();
+  if (!word) {
+    return null;
+  }
+  return {
+    word,
+    practice_count: Math.max(0, Number.parseInt(record?.practice_count, 10) || 0),
+    repeat_current_count: Math.max(0, Number.parseInt(record?.repeat_current_count, 10) || 0),
+    last_practiced_at: String(record?.last_practiced_at || ""),
+  };
+}
+
+function mergePracticeStat(record) {
+  const normalized = normalizePracticeStat(record);
+  if (!normalized) {
+    return;
+  }
+  const key = hardWordKey(normalized);
+  const current = state.practiceStats.get(key);
+  if (!current) {
+    state.practiceStats.set(key, normalized);
+    return;
+  }
+  state.practiceStats.set(key, {
+    word: normalized.word || current.word,
+    practice_count: Math.max(current.practice_count, normalized.practice_count),
+    repeat_current_count: Math.max(current.repeat_current_count, normalized.repeat_current_count),
+    last_practiced_at: normalized.last_practiced_at > current.last_practiced_at
+      ? normalized.last_practiced_at
+      : current.last_practiced_at,
+  });
+}
+
+function readPracticeStatsLocalState() {
+  const raw = localStorage.getItem(PRACTICE_STATS_LOCAL_KEY);
+  if (!raw) {
+    return { records: {}, dirty: false, lastSyncAt: 0 };
+  }
+  try {
+    const saved = JSON.parse(raw);
+    return {
+      records: saved?.records && typeof saved.records === "object" ? saved.records : {},
+      dirty: saved?.dirty === true,
+      lastSyncAt: Number(saved?.lastSyncAt) || 0,
+    };
+  } catch (error) {
+    localStorage.removeItem(PRACTICE_STATS_LOCAL_KEY);
+    return { records: {}, dirty: false, lastSyncAt: 0 };
+  }
+}
+
+function restorePracticeStatistics(cloudRecords = {}) {
+  state.practiceStats.clear();
+  Object.entries(cloudRecords || {}).forEach(([wordKey, record]) => {
+    mergePracticeStat(normalizePracticeStat(record, wordKey));
+  });
+  const local = readPracticeStatsLocalState();
+  Object.entries(local.records).forEach(([wordKey, record]) => {
+    mergePracticeStat(normalizePracticeStat(record, wordKey));
+  });
+  state.practiceStatsDirty = local.dirty;
+  state.practiceStatsLastSyncAt = local.lastSyncAt;
+  if (state.practiceStatsDirty) {
+    schedulePracticeStatsSync();
+  }
+}
+
+function practiceStatsObject() {
+  return Object.fromEntries(
+    [...state.practiceStats.entries()].map(([key, record]) => [key, { ...record }]),
+  );
+}
+
+function savePracticeStatistics() {
+  localStorage.setItem(PRACTICE_STATS_LOCAL_KEY, JSON.stringify({
+    records: practiceStatsObject(),
+    dirty: state.practiceStatsDirty,
+    lastSyncAt: state.practiceStatsLastSyncAt,
+  }));
+}
+
+function recordCompletedWordPractice(word, isRepeatCycle = false) {
+  const key = hardWordKey(word);
+  if (!key) {
+    return;
+  }
+  const updated = incrementPracticeRecord(
+    state.practiceStats.get(key),
+    word.word,
+    isRepeatCycle,
+  );
+  state.practiceStats.set(key, updated);
+  state.practiceStatsDirty = true;
+  savePracticeStatistics();
+  renderPracticeStatistics();
+  schedulePracticeStatsSync();
+}
+
+function currentWordPracticeStat() {
+  return state.practiceStats.get(hardWordKey(currentWord())) || {
+    practice_count: 0,
+    repeat_current_count: 0,
+  };
+}
+
+function renderPracticeStatistics() {
+  if (!elements.statisticsList || !elements.currentWordStats) {
+    return;
+  }
+  const current = currentWordPracticeStat();
+  elements.currentWordStats.textContent = `練習 ${current.practice_count} 次 · 重複 ${current.repeat_current_count} 次`;
+
+  const records = [...state.practiceStats.values()].filter((record) => record.practice_count > 0);
+  const totalPractices = records.reduce((total, record) => total + record.practice_count, 0);
+  elements.statisticsSummary.textContent = records.length > 0
+    ? `${records.length} 個單字 · ${totalPractices} 次練習`
+    : "尚無練習紀錄";
+  const sorted = [...records].sort((first, second) => {
+    if (state.practiceStatsView === "forgotten") {
+      return second.repeat_current_count - first.repeat_current_count
+        || second.practice_count - first.practice_count
+        || first.word.localeCompare(second.word, "en");
+    }
+    return second.practice_count - first.practice_count
+      || second.repeat_current_count - first.repeat_current_count
+      || first.word.localeCompare(second.word, "en");
+  });
+  elements.statisticsList.innerHTML = sorted.length > 0
+    ? sorted.map((record) => (
+      `<div class="statistics-item">`
+      + `<strong>${escapeHtml(record.word)}</strong>`
+      + `<span>練習 ${record.practice_count}</span>`
+      + `<span>重複 ${record.repeat_current_count}</span>`
+      + `</div>`
+    )).join("")
+    : '<p class="sync-status">尚無練習紀錄</p>';
+  const frequent = state.practiceStatsView === "frequent";
+  elements.frequentStatsButton.classList.toggle("active", frequent);
+  elements.forgottenStatsButton.classList.toggle("active", !frequent);
+  elements.frequentStatsButton.setAttribute("aria-pressed", String(frequent));
+  elements.forgottenStatsButton.setAttribute("aria-pressed", String(!frequent));
+}
+
+function setPracticeStatsView(view) {
+  state.practiceStatsView = view;
+  renderPracticeStatistics();
+}
+
+function compactPracticeStatsSnapshot() {
+  const records = [...state.practiceStats.values()]
+    .filter((record) => record.practice_count > 0)
+    .sort((first, second) => first.word.localeCompare(second.word, "en"))
+    .map((record) => [
+      record.word,
+      record.practice_count,
+      record.repeat_current_count,
+      record.last_practiced_at,
+    ]);
+  return JSON.stringify({ v: 1, u: new Date().toISOString(), r: records });
+}
+
+function practiceStatsPayload(passcode) {
+  return {
+    passcode,
+    status: "practice_stats",
+    added_at: new Date().toISOString(),
+    source_chapter: "practice_statistics",
+    source_id: "practice_statistics",
+    id: "practice_statistics",
+    word: PRACTICE_STATS_SENTINEL_WORD,
+    pronunciation: "",
+    chinese_meaning: "",
+    example_1_en: "",
+    example_1_zh: "",
+    example_2_en: "",
+    example_2_zh: "",
+    category: "system",
+    difficulty: "",
+    review_count: "0",
+    last_review_date: "",
+    note: compactPracticeStatsSnapshot(),
+  };
+}
+
+function schedulePracticeStatsSync() {
+  if (!state.practiceStatsDirty || state.practiceStatsSyncTimer || !state.hardWordsWriteUrl) {
+    return;
+  }
+  const sinceLastSync = Date.now() - state.practiceStatsLastSyncAt;
+  const waitForThrottle = Math.max(0, PRACTICE_STATS_MIN_SYNC_INTERVAL_MS - sinceLastSync);
+  const delay = Math.max(PRACTICE_STATS_SYNC_DELAY_MS, waitForThrottle);
+  state.practiceStatsSyncTimer = window.setTimeout(() => {
+    state.practiceStatsSyncTimer = null;
+    syncPracticeStatistics(false);
+  }, delay);
+}
+
+async function syncPracticeStatistics(promptForPasscode = true) {
+  if (!state.hardWordsWriteUrl) {
+    elements.statisticsSyncStatus.textContent = "尚未設定雲端同步";
+    return;
+  }
+  const passcode = promptForPasscode
+    ? getHardWordsPasscode()
+    : localStorage.getItem(HARD_WORDS_PASSCODE_KEY) || "";
+  if (!passcode) {
+    elements.statisticsSyncStatus.textContent = "點選同步統計以設定同步密碼";
+    return;
+  }
+  if (state.practiceStatsSyncTimer) {
+    window.clearTimeout(state.practiceStatsSyncTimer);
+    state.practiceStatsSyncTimer = null;
+  }
+  elements.syncStatsButton.disabled = true;
+  elements.statisticsSyncStatus.textContent = "同步中...";
+  try {
+    const response = await fetch(state.hardWordsWriteUrl, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(practiceStatsPayload(passcode)),
+    });
+    if (response.type !== "opaque" && !response.ok) {
+      throw new Error("Practice statistics sync failed.");
+    }
+    state.practiceStatsDirty = false;
+    state.practiceStatsLastSyncAt = Date.now();
+    savePracticeStatistics();
+    elements.statisticsSyncStatus.textContent = "已送出同步";
+  } catch (error) {
+    state.practiceStatsDirty = true;
+    savePracticeStatistics();
+    elements.statisticsSyncStatus.textContent = "同步失敗，將稍後重試";
+    schedulePracticeStatsSync();
+  } finally {
+    elements.syncStatsButton.disabled = false;
+  }
+}
+
+function sendPracticeStatisticsOnPageHide() {
+  const passcode = localStorage.getItem(HARD_WORDS_PASSCODE_KEY) || "";
+  if (!state.practiceStatsDirty || !state.hardWordsWriteUrl || !passcode || !navigator.sendBeacon) {
+    return;
+  }
+  const body = new Blob(
+    [JSON.stringify(practiceStatsPayload(passcode))],
+    { type: "text/plain;charset=utf-8" },
+  );
+  navigator.sendBeacon(state.hardWordsWriteUrl, body);
+}
+
+function handleAudioEnded() {
+  const segment = currentQueueSegment();
+  if (segment.completesWord) {
+    recordCompletedWordPractice(segment.practiceWord, segment.isRepeatCycle);
+  } else if (state.directPlayback?.word) {
+    recordCompletedWordPractice(
+      state.directPlayback.word,
+      state.directPlayback.isRepeatCycle,
+    );
+    state.directPlayback = null;
+  }
+  playNextQueueSegment();
+}
+
 function finishQueue() {
   if (state.isChapterPlayback) {
     state.isChapterPlayback = false;
@@ -721,7 +1011,7 @@ function scheduleCurrentWordRepeat() {
   state.pausedQueueIndex = 0;
   state.queueTimer = window.setTimeout(() => {
     state.queueTimer = null;
-    playCurrent();
+    playCurrent(true);
   }, REPEAT_CURRENT_DELAY_MS);
 }
 
@@ -751,14 +1041,16 @@ function stopQueue() {
   state.isPaused = false;
   state.pausedQueueIndex = 0;
   state.isChapterPlayback = false;
+  state.directPlayback = null;
   state.wantsWakeLock = false;
   releaseWakeLock();
   updateMediaSessionPlaybackState("none");
   elements.audioPlayer.pause();
 }
 
-function playDirectAudio(src, language) {
+function playDirectAudio(src, language, tracking = null) {
   stopQueue();
+  state.directPlayback = tracking;
   const playbackLanguage = language === true ? "en" : language === false ? "zh" : language;
   elements.audioPlayer.src = resolveAssetPath(src);
   applyPlaybackRate({ language: playbackLanguage || "en" });
@@ -1132,14 +1424,20 @@ elements.clozeAnswerInput.addEventListener("keydown", (event) => {
 });
 elements.hardWordButton.addEventListener("click", toggleHardWord);
 elements.masteredWordToggle.addEventListener("change", toggleMasteredWord);
-elements.audioPlayer.addEventListener("ended", playNextQueueSegment);
+elements.frequentStatsButton.addEventListener("click", () => setPracticeStatsView("frequent"));
+elements.forgottenStatsButton.addEventListener("click", () => setPracticeStatsView("forgotten"));
+elements.syncStatsButton.addEventListener("click", () => syncPracticeStatistics(true));
+elements.audioPlayer.addEventListener("ended", handleAudioEnded);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible" && state.wantsWakeLock) {
     requestWakeLock();
+  } else if (document.visibilityState === "hidden") {
+    sendPracticeStatisticsOnPageHide();
   }
 });
+window.addEventListener("pagehide", sendPracticeStatisticsOnPageHide);
 
 loadDailyData()
   .then((data) => {
@@ -1149,6 +1447,7 @@ loadDailyData()
     Object.entries(data.mastery?.statuses || {}).forEach(([wordKey, status]) => {
       state.masteredWordStatuses.set(hardWordKey({ word: wordKey }), status);
     });
+    restorePracticeStatistics(data.practice_stats?.records || {});
     restoreHardWordsLocalState();
     restoreMasteredLocalState();
     restoreProgress();

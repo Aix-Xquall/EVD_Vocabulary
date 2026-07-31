@@ -91,6 +91,86 @@ button.primary {
   color: #ffffff;
 }
 
+.statistics-panel {
+  margin: 0 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.statistics-panel summary {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.statistics-summary {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.statistics-content {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.statistics-toolbar,
+.statistics-modes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statistics-toolbar {
+  justify-content: space-between;
+  padding-top: 14px;
+}
+
+.statistics-modes button,
+#syncStatsButton {
+  padding: 0 14px;
+}
+
+.statistics-modes button.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
+.statistics-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.statistics-item {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.statistics-item strong {
+  overflow-wrap: anywhere;
+}
+
+.statistics-item span {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .eyebrow {
   margin: 0 0 6px;
   color: var(--muted);
@@ -188,6 +268,13 @@ h2 {
 
 .meaning {
   font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.current-word-stats {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -364,6 +451,21 @@ h2 {
 
   .player-layout {
     grid-template-columns: 1fr;
+  }
+
+  .statistics-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .statistics-modes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .statistics-list {
+    grid-template-columns: 1fr;
+    max-height: 350px;
   }
 
   .word-list,
