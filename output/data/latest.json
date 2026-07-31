@@ -1,6 +1,6 @@
 {
-  "date": "2026-07-30",
-  "title": "EVD Vocabulary Chapters - 2026-07-30",
+  "date": "2026-07-31",
+  "title": "EVD Vocabulary Chapters - 2026-07-31",
   "mode": "chapters",
   "chapters": [
     {
@@ -92190,6 +92190,7 @@
   ],
   "mastery": {
     "statuses": {
+      "system requirement": "mastered",
       "traceable": "mastered",
       "flag note": "mastered",
       "local note": "mastered",
@@ -92271,7 +92272,6 @@
       "baseline": "mastered",
       "design scope": "mastered",
       "functional analysis": "mastered",
-      "system requirement": "mastered",
       "mission requirement": "mastered",
       "response": "mastered",
       "power level control": "mastered",
@@ -92286,6 +92286,9 @@
       "interface": "mastered",
       "consultant question": "mastered"
     }
+  },
+  "practice_stats": {
+    "records": {}
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
