@@ -51,12 +51,12 @@ test("cloze candidates blank exact target phrases in either example", () => {
     candidates.map(({ clozeText, hint, answer }) => ({ clozeText, hint, answer })),
     [
       {
-        clozeText: "_____ can damage the joint.",
+        clozeText: "_____ _____ can damage the joint.",
         hint: "電偶腐蝕可能損壞接合處。",
         answer: "galvanic corrosion",
       },
       {
-        clozeText: "The coating limits _____.",
+        clozeText: "The coating limits _____ _____.",
         hint: "塗層可以限制電偶腐蝕。",
         answer: "galvanic corrosion",
       },
@@ -74,12 +74,25 @@ test("cloze candidates match simple plural form of a phrase final word", () => {
   ]);
 
   assert.equal(candidates.length, 1);
-  assert.equal(candidates[0].clozeText, "The review board answered several _____ during the meeting.");
+  assert.equal(candidates[0].clozeText, "The review board answered several _____ _____ during the meeting.");
   assert.equal(candidates[0].answer, "consultant questions");
   assert.deepEqual(
     findTargetPhraseMatches("Several consultant questions remained open.", "consultant question"),
     [{ start: 8, end: 28, text: "consultant questions" }],
   );
+});
+
+test("cloze candidates show one blank for each word in a phrase", () => {
+  const candidates = buildClozeCandidates([
+    {
+      word: "subject to confirmation",
+      example_1_en: "The result is subject to confirmation.",
+      example_1_zh: "結果仍待確認。",
+    },
+  ]);
+
+  assert.equal(candidates.length, 1);
+  assert.equal(candidates[0].clozeText, "The result is _____ _____ _____.");
 });
 
 test("cloze candidates exclude partial word matches and unusable examples", () => {

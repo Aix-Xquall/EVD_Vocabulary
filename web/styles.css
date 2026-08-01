@@ -524,7 +524,7 @@ h2 {
 }
 
 .hidden-meaning .meaning,
-.hidden-meaning .translation,
+.hidden-meaning .translation-text,
 .hidden-meaning .word-item small {
   visibility: hidden;
 }

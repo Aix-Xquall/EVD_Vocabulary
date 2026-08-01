@@ -54,10 +54,12 @@
     if (!match) {
       return null;
     }
+    const answer = normalizeClozeAnswer(match.text) === normalizeClozeAnswer(target) ? target : match.text;
+    const blank = String(answer).trim().split(/\s+/).map(() => "_____").join(" ");
     return {
       word,
-      answer: normalizeClozeAnswer(match.text) === normalizeClozeAnswer(target) ? target : match.text,
-      clozeText: `${exampleText.slice(0, match.start)}_____${exampleText.slice(match.end)}`,
+      answer,
+      clozeText: `${exampleText.slice(0, match.start)}${blank}${exampleText.slice(match.end)}`,
       hint: String(word?.[`example_${exampleIndex}_zh`] || ""),
       exampleIndex,
     };

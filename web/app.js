@@ -1470,12 +1470,13 @@ function renderHighlightedRanges(value, ranges) {
 
 function renderTranslationWithTense(translation, tense) {
   const text = escapeHtml(translation || "");
+  const translationHtml = `<span class="translation-text">${text}</span>`;
   const name = String(tense?.display_name_zh || tense?.name_zh || "").trim();
   const formula = String(tense?.display_formula || tense?.formula || "").trim();
   if (!name || !formula) {
-    return text;
+    return translationHtml;
   }
-  return `${text}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
+  return `${translationHtml}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
 }
 
 elements.playButton.addEventListener("click", togglePlayback);
