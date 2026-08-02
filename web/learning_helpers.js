@@ -83,6 +83,10 @@
     return closest && closest.similarity >= minimumSimilarity ? closest : null;
   }
 
+  function calculateSpellingSimilarity(first, second) {
+    return similarityPercentage(normalizeSimilarityText(first), normalizeSimilarityText(second));
+  }
+
   function buildSuggestionSegments(input, suggestion) {
     const inputChars = Array.from(String(input || "").trim());
     const suggestionChars = Array.from(String(suggestion || "").trim());
@@ -309,6 +313,7 @@
   return {
     buildSuggestionSegments,
     buildClozeCandidates,
+    calculateSpellingSimilarity,
     describePluralAnswerRequirement,
     findClosestVocabularyMatch,
     findLiteralHighlightRanges,

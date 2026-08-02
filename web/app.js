@@ -4,9 +4,11 @@ const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
 const REPEAT_CURRENT_DELAY_MS = 1500;
+const ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD = 60;
 const {
   buildClozeCandidates,
   buildSuggestionSegments,
+  calculateSpellingSimilarity,
   describePluralAnswerRequirement,
   findClosestVocabularyMatch,
   findLiteralHighlightRanges,
@@ -1350,7 +1352,16 @@ function answerQuestion(answer) {
       .flatMap((chapter) => chapter.words || []);
     const closest = findClosestVocabularyMatch(answer, formalWords);
     const pluralExplanation = describePluralAnswerRequirement(answer, current.correctAnswer);
-    renderWrongAnswerFeedback(answer, current.correctAnswer, sourceText, closest, pluralExplanation);
+    const highlightDifferences = calculateSpellingSimilarity(answer, current.correctAnswer)
+      >= ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD;
+    renderWrongAnswerFeedback(
+      answer,
+      current.correctAnswer,
+      sourceText,
+      closest,
+      pluralExplanation,
+      highlightDifferences,
+    );
     elements.answerFeedback.className = "feedback wrong";
   }
   elements.clozeAnswerInput.disabled = true;
@@ -1359,19 +1370,30 @@ function answerQuestion(answer) {
   saveProgress();
 }
 
-function renderWrongAnswerFeedback(input, correctAnswer, sourceText, closest, pluralExplanation) {
+function renderWrongAnswerFeedback(
+  input,
+  correctAnswer,
+  sourceText,
+  closest,
+  pluralExplanation,
+  highlightDifferences,
+) {
   elements.answerFeedback.textContent = "";
   elements.answerFeedback.append(document.createTextNode("答錯，答案是 "));
-  buildSuggestionSegments(input, correctAnswer).forEach((segment) => {
-    if (!segment.changed) {
-      elements.answerFeedback.append(document.createTextNode(segment.text));
-      return;
-    }
-    const difference = document.createElement("strong");
-    difference.className = "suggestion-difference";
-    difference.textContent = segment.text;
-    elements.answerFeedback.append(difference);
-  });
+  if (!highlightDifferences) {
+    elements.answerFeedback.append(document.createTextNode(correctAnswer));
+  } else {
+    buildSuggestionSegments(input, correctAnswer).forEach((segment) => {
+      if (!segment.changed) {
+        elements.answerFeedback.append(document.createTextNode(segment.text));
+        return;
+      }
+      const difference = document.createElement("strong");
+      difference.className = "suggestion-difference";
+      difference.textContent = segment.text;
+      elements.answerFeedback.append(difference);
+    });
+  }
   elements.answerFeedback.append(document.createTextNode(sourceText));
   if (pluralExplanation) {
     const explanationLine = document.createElement("span");

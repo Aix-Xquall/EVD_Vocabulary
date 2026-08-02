@@ -4,6 +4,7 @@ const test = require("node:test");
 const {
   buildSuggestionSegments,
   buildClozeCandidates,
+  calculateSpellingSimilarity,
   describePluralAnswerRequirement,
   findClosestVocabularyMatch,
   findLiteralHighlightRanges,
@@ -150,6 +151,12 @@ test("closest vocabulary match reports spelling similarity and meaning source", 
   assert.equal(closest.word.chinese_meaning, "異種金屬");
   assert.equal(closest.similarity, 94);
   assert.equal(findClosestVocabularyMatch("xyz", [{ word: "impedance" }]), null);
+});
+
+test("spelling similarity controls when answer differences are highlighted", () => {
+  assert.equal(calculateSpellingSimilarity("dissmilar metal", "dissimilar metal"), 94);
+  assert.equal(calculateSpellingSimilarity("box", "boxes"), 60);
+  assert.ok(calculateSpellingSimilarity("wrong", "consultant questions") < 60);
 });
 
 test("suggestion segments mark only inserted or replaced target characters", () => {
