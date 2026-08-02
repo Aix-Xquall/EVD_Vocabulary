@@ -7,6 +7,7 @@ const REPEAT_CURRENT_DELAY_MS = 1500;
 const {
   buildClozeCandidates,
   buildSuggestionSegments,
+  describePluralAnswerRequirement,
   findClosestVocabularyMatch,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
@@ -1336,19 +1337,20 @@ function answerQuestion(answer) {
     return;
   }
   state.practice.attempts += 1;
+  const sourceText = current.source
+    ? `（出處：${current.source.chapterTitle}，第 ${current.source.wordIndex} 個單字）`
+    : "";
   if (isCorrectClozeAnswer(answer, current.correctAnswer)) {
     state.practice.correct += 1;
-    elements.answerFeedback.textContent = "答對";
+    elements.answerFeedback.textContent = `答對${sourceText}`;
     elements.answerFeedback.className = "feedback correct";
   } else {
-    const sourceText = current.source
-      ? `（出處：${current.source.chapterTitle}，第 ${current.source.wordIndex} 個單字）`
-      : "";
     const formalWords = state.chapters
       .filter((chapter) => !chapter.is_hard_words)
       .flatMap((chapter) => chapter.words || []);
     const closest = findClosestVocabularyMatch(answer, formalWords);
-    renderWrongAnswerFeedback(answer, current.correctAnswer, sourceText, closest);
+    const pluralExplanation = describePluralAnswerRequirement(answer, current.correctAnswer);
+    renderWrongAnswerFeedback(answer, current.correctAnswer, sourceText, closest, pluralExplanation);
     elements.answerFeedback.className = "feedback wrong";
   }
   elements.clozeAnswerInput.disabled = true;
@@ -1357,7 +1359,7 @@ function answerQuestion(answer) {
   saveProgress();
 }
 
-function renderWrongAnswerFeedback(input, correctAnswer, sourceText, closest) {
+function renderWrongAnswerFeedback(input, correctAnswer, sourceText, closest, pluralExplanation) {
   elements.answerFeedback.textContent = "";
   elements.answerFeedback.append(document.createTextNode("答錯，答案是 "));
   buildSuggestionSegments(input, correctAnswer).forEach((segment) => {
@@ -1371,6 +1373,13 @@ function renderWrongAnswerFeedback(input, correctAnswer, sourceText, closest) {
     elements.answerFeedback.append(difference);
   });
   elements.answerFeedback.append(document.createTextNode(sourceText));
+  if (pluralExplanation) {
+    const explanationLine = document.createElement("span");
+    explanationLine.className = "plural-explanation";
+    explanationLine.textContent = pluralExplanation;
+    elements.answerFeedback.append(explanationLine);
+    return;
+  }
   if (!closest) {
     return;
   }
@@ -1385,7 +1394,7 @@ function submitCurrentAnswer() {
 }
 
 function updatePracticeScore() {
-  elements.practiceScore.textContent = `${state.practice.correct} / ${state.practice.attempts}`;
+  elements.practiceScore.textContent = `(正確率${state.practice.correct}/${state.practice.attempts})`;
 }
 
 function applyPlaybackRate(segment = currentQueueSegment()) {

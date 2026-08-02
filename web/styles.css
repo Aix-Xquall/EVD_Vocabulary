@@ -529,9 +529,21 @@ h2 {
   font-weight: 400;
 }
 
+.plural-explanation {
+  display: block;
+  color: var(--text);
+  font-weight: 400;
+}
+
 .suggestion-difference {
   color: var(--blue);
   font-weight: 800;
+}
+
+.practice-score {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .hidden-meaning .meaning,

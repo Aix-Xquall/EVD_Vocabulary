@@ -4,6 +4,7 @@ const test = require("node:test");
 const {
   buildSuggestionSegments,
   buildClozeCandidates,
+  describePluralAnswerRequirement,
   findClosestVocabularyMatch,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
@@ -122,6 +123,18 @@ test("answers ignore case and outer whitespace but require exact spelling", () =
   assert.equal(isCorrectClozeAnswer("  Galvanic Corrosion ", "galvanic corrosion"), true);
   assert.equal(isCorrectClozeAnswer("galvanic  corrosion", "galvanic corrosion"), false);
   assert.equal(isCorrectClozeAnswer("galvanic corrosin", "galvanic corrosion"), false);
+});
+
+test("plural answer requirement is explained only for a singular input", () => {
+  assert.equal(
+    describePluralAnswerRequirement("consultant question", "consultant questions"),
+    "因為例句中的目標名詞使用複數型態，所以必須以複數「consultant questions」表示。",
+  );
+  assert.match(describePluralAnswerRequirement("box", "boxes"), /複數/);
+  assert.match(describePluralAnswerRequirement("category", "categories"), /複數/);
+  assert.equal(describePluralAnswerRequirement("consultant questions", "consultant questions"), "");
+  assert.equal(describePluralAnswerRequirement("consultant answer", "consultant questions"), "");
+  assert.equal(describePluralAnswerRequirement("consultant queston", "consultant questions"), "");
 });
 
 test("closest vocabulary match reports spelling similarity and meaning source", () => {

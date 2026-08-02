@@ -35,6 +35,35 @@
     return normalizeClozeAnswer(answer) === normalizeClozeAnswer(expected);
   }
 
+  function describePluralAnswerRequirement(input, expected) {
+    const inputParts = normalizeClozeAnswer(input).split(/\s+/).filter(Boolean);
+    const expectedParts = normalizeClozeAnswer(expected).split(/\s+/).filter(Boolean);
+    if (inputParts.length === 0 || inputParts.length !== expectedParts.length) {
+      return "";
+    }
+    const finalIndex = inputParts.length - 1;
+    const samePrefix = inputParts.slice(0, finalIndex).every(
+      (part, index) => part === expectedParts[index],
+    );
+    if (!samePrefix || !isRegularPluralOf(inputParts[finalIndex], expectedParts[finalIndex])) {
+      return "";
+    }
+    return `因為例句中的目標名詞使用複數型態，所以必須以複數「${String(expected).trim()}」表示。`;
+  }
+
+  function isRegularPluralOf(singular, plural) {
+    if (!singular || !plural || singular === plural) {
+      return false;
+    }
+    if (/[^aeiou]y$/.test(singular)) {
+      return plural === `${singular.slice(0, -1)}ies`;
+    }
+    if (/[sxz]$/.test(singular) || singular.endsWith("ch") || singular.endsWith("sh")) {
+      return plural === `${singular}es`;
+    }
+    return plural === `${singular}s`;
+  }
+
   function findClosestVocabularyMatch(input, words, minimumSimilarity = 60) {
     const normalizedInput = normalizeSimilarityText(input);
     if (!normalizedInput) {
@@ -280,6 +309,7 @@
   return {
     buildSuggestionSegments,
     buildClozeCandidates,
+    describePluralAnswerRequirement,
     findClosestVocabularyMatch,
     findLiteralHighlightRanges,
     findTargetPhraseMatches,
