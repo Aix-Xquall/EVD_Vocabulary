@@ -156,7 +156,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("buildClozeCandidates(currentWords())", app_js)
         self.assertIn("isCorrectClozeAnswer(answer, current.correctAnswer)", app_js)
         self.assertIn("describePluralAnswerRequirement(answer, current.correctAnswer)", app_js)
-        self.assertIn("ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD = 60", app_js)
+        self.assertIn("ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD = 75", app_js)
         self.assertIn("calculateSpellingSimilarity(answer, current.correctAnswer)", app_js)
         self.assertIn("if (!highlightDifferences)", app_js)
         self.assertIn("findVocabularySource(candidate.word, state.chapters)", app_js)
