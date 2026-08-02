@@ -35,6 +35,137 @@
     return normalizeClozeAnswer(answer) === normalizeClozeAnswer(expected);
   }
 
+  function findClosestVocabularyMatch(input, words, minimumSimilarity = 60) {
+    const normalizedInput = normalizeSimilarityText(input);
+    if (!normalizedInput) {
+      return null;
+    }
+    let closest = null;
+    (words || []).forEach((word) => {
+      const candidate = normalizeSimilarityText(word?.word);
+      if (!candidate) {
+        return;
+      }
+      const similarity = similarityPercentage(normalizedInput, candidate);
+      if (!closest || similarity > closest.similarity) {
+        closest = { word, similarity };
+      }
+    });
+    return closest && closest.similarity >= minimumSimilarity ? closest : null;
+  }
+
+  function buildSuggestionSegments(input, suggestion) {
+    const inputChars = Array.from(String(input || "").trim());
+    const suggestionChars = Array.from(String(suggestion || "").trim());
+    const inputLower = inputChars.map((character) => character.toLocaleLowerCase("en-US"));
+    const suggestionLower = suggestionChars.map((character) => character.toLocaleLowerCase("en-US"));
+    const distances = Array.from(
+      { length: inputChars.length + 1 },
+      (_, inputIndex) => Array.from(
+        { length: suggestionChars.length + 1 },
+        (_, suggestionIndex) => inputIndex === 0 ? suggestionIndex : inputIndex,
+      ),
+    );
+
+    for (let inputIndex = 1; inputIndex <= inputChars.length; inputIndex += 1) {
+      for (let suggestionIndex = 1; suggestionIndex <= suggestionChars.length; suggestionIndex += 1) {
+        const substitutionCost = inputLower[inputIndex - 1] === suggestionLower[suggestionIndex - 1] ? 0 : 1;
+        distances[inputIndex][suggestionIndex] = Math.min(
+          distances[inputIndex - 1][suggestionIndex] + 1,
+          distances[inputIndex][suggestionIndex - 1] + 1,
+          distances[inputIndex - 1][suggestionIndex - 1] + substitutionCost,
+        );
+      }
+    }
+
+    const characters = [];
+    let inputIndex = inputChars.length;
+    let suggestionIndex = suggestionChars.length;
+    while (inputIndex > 0 || suggestionIndex > 0) {
+      const sameCharacter = inputIndex > 0 && suggestionIndex > 0
+        && inputLower[inputIndex - 1] === suggestionLower[suggestionIndex - 1];
+      if (sameCharacter
+          && distances[inputIndex][suggestionIndex] === distances[inputIndex - 1][suggestionIndex - 1]) {
+        characters.push({ text: suggestionChars[suggestionIndex - 1], changed: false });
+        inputIndex -= 1;
+        suggestionIndex -= 1;
+      } else if (inputIndex > 0 && suggestionIndex > 0
+          && distances[inputIndex][suggestionIndex] === distances[inputIndex - 1][suggestionIndex - 1] + 1) {
+        characters.push({ text: suggestionChars[suggestionIndex - 1], changed: true });
+        inputIndex -= 1;
+        suggestionIndex -= 1;
+      } else if (suggestionIndex > 0
+          && distances[inputIndex][suggestionIndex] === distances[inputIndex][suggestionIndex - 1] + 1) {
+        characters.push({ text: suggestionChars[suggestionIndex - 1], changed: true });
+        suggestionIndex -= 1;
+      } else {
+        inputIndex -= 1;
+      }
+    }
+
+    return characters.reverse().reduce((segments, character) => {
+      const previous = segments[segments.length - 1];
+      if (previous && previous.changed === character.changed) {
+        previous.text += character.text;
+      } else {
+        segments.push({ ...character });
+      }
+      return segments;
+    }, []);
+  }
+
+  function findVocabularySource(word, chapters) {
+    const target = normalizeClozeAnswer(word?.word);
+    if (!target) {
+      return null;
+    }
+    for (const chapter of chapters || []) {
+      if (chapter?.is_hard_words) {
+        continue;
+      }
+      const wordIndex = (chapter?.words || []).findIndex(
+        (candidate) => normalizeClozeAnswer(candidate?.word) === target,
+      );
+      if (wordIndex >= 0) {
+        return {
+          chapterTitle: chapter.title || chapter.id || "",
+          wordIndex: wordIndex + 1,
+        };
+      }
+    }
+    return null;
+  }
+
+  function normalizeSimilarityText(value) {
+    return normalizeClozeAnswer(value).replace(/\s+/g, " ");
+  }
+
+  function similarityPercentage(first, second) {
+    const longestLength = Math.max(first.length, second.length);
+    if (longestLength === 0) {
+      return 100;
+    }
+    const distance = levenshteinDistance(first, second);
+    return Math.max(0, Math.round((1 - distance / longestLength) * 100));
+  }
+
+  function levenshteinDistance(first, second) {
+    let previous = Array.from({ length: second.length + 1 }, (_, index) => index);
+    for (let firstIndex = 1; firstIndex <= first.length; firstIndex += 1) {
+      const current = [firstIndex];
+      for (let secondIndex = 1; secondIndex <= second.length; secondIndex += 1) {
+        const substitutionCost = first[firstIndex - 1] === second[secondIndex - 1] ? 0 : 1;
+        current[secondIndex] = Math.min(
+          current[secondIndex - 1] + 1,
+          previous[secondIndex] + 1,
+          previous[secondIndex - 1] + substitutionCost,
+        );
+      }
+      previous = current;
+    }
+    return previous[second.length];
+  }
+
   function buildClozeCandidates(words) {
     return (words || []).flatMap((word) => {
       const target = String(word?.word || "").trim();
@@ -147,9 +278,12 @@
   }
 
   return {
+    buildSuggestionSegments,
     buildClozeCandidates,
+    findClosestVocabularyMatch,
     findLiteralHighlightRanges,
     findTargetPhraseMatches,
+    findVocabularySource,
     incrementPracticeRecord,
     isCorrectClozeAnswer,
     normalizeClozeAnswer,

@@ -2,9 +2,12 @@ const assert = require("node:assert/strict");
 const test = require("node:test");
 
 const {
+  buildSuggestionSegments,
   buildClozeCandidates,
+  findClosestVocabularyMatch,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
+  findVocabularySource,
   incrementPracticeRecord,
   isCorrectClozeAnswer,
   repeatCountForWord,
@@ -119,6 +122,53 @@ test("answers ignore case and outer whitespace but require exact spelling", () =
   assert.equal(isCorrectClozeAnswer("  Galvanic Corrosion ", "galvanic corrosion"), true);
   assert.equal(isCorrectClozeAnswer("galvanic  corrosion", "galvanic corrosion"), false);
   assert.equal(isCorrectClozeAnswer("galvanic corrosin", "galvanic corrosion"), false);
+});
+
+test("closest vocabulary match reports spelling similarity and meaning source", () => {
+  const closest = findClosestVocabularyMatch(
+    "dissmilar metal",
+    [
+      { word: "impedance", chinese_meaning: "阻抗" },
+      { word: "dissimilar metal", chinese_meaning: "異種金屬" },
+    ],
+  );
+
+  assert.equal(closest.word.word, "dissimilar metal");
+  assert.equal(closest.word.chinese_meaning, "異種金屬");
+  assert.equal(closest.similarity, 94);
+  assert.equal(findClosestVocabularyMatch("xyz", [{ word: "impedance" }]), null);
+});
+
+test("suggestion segments mark only inserted or replaced target characters", () => {
+  assert.deepEqual(
+    buildSuggestionSegments("dissmilar metal", "dissimilar metal"),
+    [
+      { text: "diss", changed: false },
+      { text: "i", changed: true },
+      { text: "milar metal", changed: false },
+    ],
+  );
+  assert.deepEqual(
+    buildSuggestionSegments("cot", "cat"),
+    [
+      { text: "c", changed: false },
+      { text: "a", changed: true },
+      { text: "t", changed: false },
+    ],
+  );
+});
+
+test("vocabulary source ignores the hard-words copy and reports formal chapter order", () => {
+  const target = { word: "dissimilar metal" };
+  const source = findVocabularySource(target, [
+    { title: "未熟記單字練習", is_hard_words: true, words: [target] },
+    {
+      title: "MSFC-HDBK-3697",
+      words: [{ word: "bonding" }, target],
+    },
+  ]);
+
+  assert.deepEqual(source, { chapterTitle: "MSFC-HDBK-3697", wordIndex: 2 });
 });
 
 test("tense highlights match complete words instead of substrings", () => {

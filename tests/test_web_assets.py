@@ -147,6 +147,7 @@ class WebAssetsTests(unittest.TestCase):
     def test_daily_practice_uses_example_cloze_text_input(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
         self.assertIn('id="questionHint"', index_html)
         self.assertIn('id="clozeAnswerInput"', index_html)
@@ -154,7 +155,39 @@ class WebAssetsTests(unittest.TestCase):
         self.assertNotIn('id="answerOptions"', index_html)
         self.assertIn("buildClozeCandidates(currentWords())", app_js)
         self.assertIn("isCorrectClozeAnswer(answer, current.correctAnswer)", app_js)
+        self.assertIn("findVocabularySource(candidate.word, state.chapters)", app_js)
+        self.assertIn("findClosestVocabularyMatch(answer, formalWords)", app_js)
+        self.assertIn("（出處：${current.source.chapterTitle}，第 ${current.source.wordIndex} 個單字）", app_js)
+        self.assertIn("buildSuggestionSegments(input, correctAnswer)", app_js)
+        self.assertIn('document.createTextNode("答錯，答案是 ")', app_js)
+        self.assertIn('className = "suggestion-difference"', app_js)
+        self.assertNotIn("% 相似度", app_js)
+        self.assertIn(".suggestion-difference", styles_css)
+        self.assertIn(".suggestion-difference {\n  color: var(--blue);", styles_css)
         self.assertIn('"本章節沒有可用的填空例句"', app_js)
+
+    def test_statistics_and_settings_summaries_are_parenthesized_after_titles(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn(
+            '<span>\u7df4\u7fd2\u7d71\u8a08<span id="statisticsSummary" class="statistics-summary">('
+            '\u5c1a\u7121\u7df4\u7fd2\u7d00\u9304)</span></span>',
+            index_html,
+        )
+        self.assertIn(
+            '<span>\u8a2d\u5b9a<span id="settingsSummary" class="settings-summary">'
+            '(1.0x \u00b7 \u91cd\u8907 5 \u6b21)</span></span>',
+            index_html,
+        )
+        self.assertIn(
+            "`(${records.length} \u500b\u55ae\u5b57 \u00b7 ${totalPractices} \u6b21\u7df4\u7fd2)`",
+            app_js,
+        )
+        self.assertIn(
+            "`(${state.playbackRate.toFixed(1)}x \u00b7 \u91cd\u8907 ${state.englishRepeatCount} \u6b21)`",
+            app_js,
+        )
 
     def test_pronunciation_display_omits_external_url(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -278,7 +311,7 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn('class="settings-panel"', index_html)
-        self.assertIn('<span>設定</span>', index_html)
+        self.assertIn('<span>設定<span id="settingsSummary"', index_html)
         self.assertIn('id="syncSettingsButton"', index_html)
         self.assertIn('id="settingsSyncStatus"', index_html)
         self.assertIn('id="repeatAllToggle"', index_html)

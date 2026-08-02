@@ -6,8 +6,11 @@ const WORD_GROUP_DELAY_MS = 2000;
 const REPEAT_CURRENT_DELAY_MS = 1500;
 const {
   buildClozeCandidates,
+  buildSuggestionSegments,
+  findClosestVocabularyMatch,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
+  findVocabularySource,
   incrementPracticeRecord,
   isCorrectClozeAnswer,
   repeatCountForWord,
@@ -926,8 +929,8 @@ function renderPracticeStatistics() {
   const records = [...state.practiceStats.values()].filter((record) => record.practice_count > 0);
   const totalPractices = records.reduce((total, record) => total + record.practice_count, 0);
   elements.statisticsSummary.textContent = records.length > 0
-    ? `${records.length} 個單字 · ${totalPractices} 次練習`
-    : "尚無練習紀錄";
+    ? `(${records.length} 個單字 · ${totalPractices} 次練習)`
+    : "(尚無練習紀錄)";
   const sorted = [...records].sort((first, second) => {
     if (state.practiceStatsView === "forgotten") {
       return second.repeat_current_count - first.repeat_current_count
@@ -967,7 +970,7 @@ function updateSettingsControls() {
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
   elements.exampleRepeatCount.value = String(state.englishRepeatCount);
   elements.exampleRepeatCountValue.textContent = String(state.englishRepeatCount);
-  elements.settingsSummary.textContent = `${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次`;
+  elements.settingsSummary.textContent = `(${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次)`;
 }
 
 function compactPracticeStatsSnapshot() {
@@ -1315,6 +1318,7 @@ function buildQuestion() {
   state.practice.current = {
     word: candidate.word,
     correctAnswer: candidate.answer,
+    source: findVocabularySource(candidate.word, state.chapters),
   };
   elements.questionMode.textContent = "請依中文提示填空";
   elements.questionText.textContent = candidate.clozeText;
@@ -1337,13 +1341,43 @@ function answerQuestion(answer) {
     elements.answerFeedback.textContent = "答對";
     elements.answerFeedback.className = "feedback correct";
   } else {
-    elements.answerFeedback.textContent = `答錯，答案是 ${current.correctAnswer}`;
+    const sourceText = current.source
+      ? `（出處：${current.source.chapterTitle}，第 ${current.source.wordIndex} 個單字）`
+      : "";
+    const formalWords = state.chapters
+      .filter((chapter) => !chapter.is_hard_words)
+      .flatMap((chapter) => chapter.words || []);
+    const closest = findClosestVocabularyMatch(answer, formalWords);
+    renderWrongAnswerFeedback(answer, current.correctAnswer, sourceText, closest);
     elements.answerFeedback.className = "feedback wrong";
   }
   elements.clozeAnswerInput.disabled = true;
   elements.submitAnswerButton.disabled = true;
   updatePracticeScore();
   saveProgress();
+}
+
+function renderWrongAnswerFeedback(input, correctAnswer, sourceText, closest) {
+  elements.answerFeedback.textContent = "";
+  elements.answerFeedback.append(document.createTextNode("答錯，答案是 "));
+  buildSuggestionSegments(input, correctAnswer).forEach((segment) => {
+    if (!segment.changed) {
+      elements.answerFeedback.append(document.createTextNode(segment.text));
+      return;
+    }
+    const difference = document.createElement("strong");
+    difference.className = "suggestion-difference";
+    difference.textContent = segment.text;
+    elements.answerFeedback.append(difference);
+  });
+  elements.answerFeedback.append(document.createTextNode(sourceText));
+  if (!closest) {
+    return;
+  }
+  const suggestionLine = document.createElement("span");
+  suggestionLine.className = "suggestion-line";
+  suggestionLine.textContent = `你輸入的 ${String(input).trim()} 可能是 ${closest.word.word}：${closest.word.chinese_meaning || "無中文意思"}`;
+  elements.answerFeedback.append(suggestionLine);
 }
 
 function submitCurrentAnswer() {
