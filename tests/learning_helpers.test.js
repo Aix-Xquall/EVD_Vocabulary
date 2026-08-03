@@ -6,12 +6,15 @@ const {
   buildClozeCandidates,
   calculateSpellingSimilarity,
   describePluralAnswerRequirement,
+  describeVerbAnswerRequirement,
   findClosestVocabularyMatch,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
   findVocabularySource,
   incrementPracticeRecord,
   isCorrectClozeAnswer,
+  orderedWordsForPlayback,
+  playbackIndex,
   repeatCountForWord,
   sanitizePronunciation,
 } = require("../web/learning_helpers.js");
@@ -126,6 +129,33 @@ test("answers ignore case and outer whitespace but require exact spelling", () =
   assert.equal(isCorrectClozeAnswer("galvanic corrosin", "galvanic corrosion"), false);
 });
 
+test("cloze candidates match inflected verbs at the start of a verb phrase", () => {
+  const candidates = buildClozeCandidates([
+    {
+      word: "refer to",
+      example_1_en: "This section refers to the applicable EMC requirements.",
+      example_1_zh: "本節提到適用的 EMC 要求。",
+    },
+  ]);
+
+  assert.equal(candidates.length, 1);
+  assert.equal(candidates[0].answer, "refers to");
+  assert.equal(candidates[0].clozeText, "This section _____ _____ the applicable EMC requirements.");
+});
+
+test("cloze candidates match regular past-tense targets", () => {
+  const candidates = buildClozeCandidates([
+    {
+      word: "accumulate",
+      example_1_en: "Charge accumulated on the isolated surface.",
+      example_1_zh: "電荷累積在隔離表面上。",
+    },
+  ]);
+
+  assert.equal(candidates.length, 1);
+  assert.equal(candidates[0].answer, "accumulated");
+});
+
 test("plural answer requirement is explained only for a singular input", () => {
   assert.equal(
     describePluralAnswerRequirement("consultant question", "consultant questions"),
@@ -136,6 +166,67 @@ test("plural answer requirement is explained only for a singular input", () => {
   assert.equal(describePluralAnswerRequirement("consultant questions", "consultant questions"), "");
   assert.equal(describePluralAnswerRequirement("consultant answer", "consultant questions"), "");
   assert.equal(describePluralAnswerRequirement("consultant queston", "consultant questions"), "");
+});
+
+test("verb answer requirements explain third-person singular and past forms", () => {
+  assert.equal(
+    describeVerbAnswerRequirement("appear", "appears", {
+      name_zh: "現在簡單式",
+      formula: "S + V1 / V-s(es)",
+      highlights: ["appears"],
+    }),
+    "因為例句主詞為第三人稱單數，現在簡單式的動詞必須使用第三人稱單數型態「appears」。",
+  );
+  assert.equal(
+    describeVerbAnswerRequirement("accumulate", "accumulated", {
+      name_zh: "過去簡單式",
+      formula: "S + V-ed",
+      highlights: ["accumulated"],
+    }),
+    "因為例句描述過去發生的動作，所以必須使用過去式「accumulated」。",
+  );
+  assert.equal(
+    describeVerbAnswerRequirement("require", "required", {
+      name_zh: "現在簡單式",
+      formula: "S + am / is / are + past participle",
+      highlights: ["is required"],
+    }),
+    "因為例句使用被動語態，主要動詞必須使用過去分詞型態「required」。",
+  );
+});
+
+test("verb explanations do not mistake noun plurals or spelling errors for verbs", () => {
+  const tense = {
+    name_zh: "過去簡單式",
+    formula: "S + V-ed",
+    highlights: ["answered"],
+  };
+  assert.equal(describeVerbAnswerRequirement("consultant question", "consultant questions", tense), "");
+  assert.equal(describeVerbAnswerRequirement("accumlate", "accumulated", {
+    ...tense,
+    highlights: ["accumulated"],
+  }), "");
+  assert.equal(describePluralAnswerRequirement("appear", "appears", {
+    name_zh: "特殊句型/需確認",
+    highlights: ["appears"],
+  }), "");
+});
+
+test("playback indexes follow forward and reverse directions with optional wrapping", () => {
+  assert.equal(playbackIndex(1, 4, "forward"), 2);
+  assert.equal(playbackIndex(3, 4, "forward"), 3);
+  assert.equal(playbackIndex(3, 4, "forward", 1, true), 0);
+  assert.equal(playbackIndex(2, 4, "reverse"), 1);
+  assert.equal(playbackIndex(0, 4, "reverse"), 0);
+  assert.equal(playbackIndex(0, 4, "reverse", 1, true), 3);
+  assert.equal(playbackIndex(2, 4, "reverse", -1, true), 3);
+});
+
+test("chapter playback reverses a copy without mutating the visible word list", () => {
+  const words = [{ word: "first" }, { word: "second" }, { word: "third" }];
+  assert.deepEqual(orderedWordsForPlayback(words, "forward"), words);
+  assert.deepEqual(orderedWordsForPlayback(words, "reverse"), [...words].reverse());
+  assert.deepEqual(words.map((word) => word.word), ["first", "second", "third"]);
 });
 
 test("closest vocabulary match reports spelling similarity and meaning source", () => {

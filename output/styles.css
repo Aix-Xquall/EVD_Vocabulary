@@ -175,6 +175,61 @@ button.primary {
   padding: 0 14px;
 }
 
+.playback-direction-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.segmented-control {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.segmented-control label {
+  position: relative;
+  min-height: 38px;
+}
+
+.segmented-control input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.segmented-control span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.segmented-control label + label span {
+  border-left: 1px solid var(--line);
+}
+
+.segmented-control input:checked + span {
+  background: var(--blue);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.segmented-control input:focus-visible + span {
+  outline: 3px solid color-mix(in srgb, var(--blue) 24%, transparent);
+  outline-offset: -3px;
+}
+
 .settings-sync {
   display: flex;
   align-items: center;
@@ -529,7 +584,7 @@ h2 {
   font-weight: 400;
 }
 
-.plural-explanation {
+.grammar-explanation {
   display: block;
   color: var(--text);
   font-weight: 400;
@@ -583,9 +638,14 @@ h2 {
   }
 
   .settings-controls > label,
+  .settings-controls > .playback-direction-control,
   .settings-controls > button,
   .settings-sync button {
     width: 100%;
+  }
+
+  .playback-direction-control {
+    justify-content: space-between;
   }
 
   .settings-sync {

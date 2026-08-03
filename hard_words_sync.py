@@ -164,6 +164,9 @@ def _parse_practice_settings(value: object) -> dict:
     for key in ("repeat_all", "repeat_current", "include_examples"):
         if isinstance(value.get(key), bool):
             settings[key] = value[key]
+    playback_direction = str(value.get("playback_direction") or "").strip().lower()
+    if playback_direction in {"forward", "reverse"}:
+        settings["playback_direction"] = playback_direction
     try:
         playback_rate = float(value.get("playback_rate"))
         if 0.5 <= playback_rate <= 1.5:

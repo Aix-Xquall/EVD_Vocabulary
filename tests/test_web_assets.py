@@ -154,8 +154,18 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('id="submitAnswerButton"', index_html)
         self.assertNotIn('id="answerOptions"', index_html)
         self.assertIn("buildClozeCandidates(currentWords())", app_js)
+        self.assertIn("function buildQuestion(focusInput = false)", app_js)
+        self.assertIn("elements.nextQuestionButton.focus()", app_js)
+        self.assertIn('elements.nextQuestionButton.addEventListener("click", () => buildQuestion(true))', app_js)
+        self.assertIn('event.key === "Enter"', app_js)
+        self.assertIn("event.preventDefault()", app_js)
         self.assertIn("isCorrectClozeAnswer(answer, current.correctAnswer)", app_js)
-        self.assertIn("describePluralAnswerRequirement(answer, current.correctAnswer)", app_js)
+        self.assertIn(
+            "describePluralAnswerRequirement(answer, current.correctAnswer, current.tense)",
+            app_js,
+        )
+        self.assertIn("describeVerbAnswerRequirement(", app_js)
+        self.assertIn("current.tense", app_js)
         self.assertIn("ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD = 75", app_js)
         self.assertIn("calculateSpellingSimilarity(answer, current.correctAnswer)", app_js)
         self.assertIn("if (!highlightDifferences)", app_js)
@@ -165,12 +175,16 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("buildSuggestionSegments(input, correctAnswer)", app_js)
         self.assertIn('document.createTextNode("答錯，答案是 ")', app_js)
         self.assertIn('className = "suggestion-difference"', app_js)
-        self.assertIn('className = "plural-explanation"', app_js)
+        self.assertIn('className = "grammar-explanation"', app_js)
+        self.assertIn("closest.similarity === 100", app_js)
+        self.assertIn('`你輸入的「${inputText}」是：${meaning}`', app_js)
+        self.assertIn('`你輸入的 ${inputText} 可能是 ${closest.word.word}：${meaning}`', app_js)
         self.assertIn("`答對${sourceText}`", app_js)
         self.assertIn('(正確率0/0)', index_html)
         self.assertIn('`(正確率${state.practice.correct}/${state.practice.attempts})`', app_js)
         self.assertNotIn("% 相似度", app_js)
         self.assertIn(".suggestion-difference", styles_css)
+        self.assertIn(".grammar-explanation", styles_css)
         self.assertIn(".suggestion-difference {\n  color: var(--blue);", styles_css)
         self.assertIn('"本章節沒有可用的填空例句"', app_js)
 
@@ -185,7 +199,7 @@ class WebAssetsTests(unittest.TestCase):
         )
         self.assertIn(
             '<span>\u8a2d\u5b9a<span id="settingsSummary" class="settings-summary">'
-            '(1.0x \u00b7 \u91cd\u8907 5 \u6b21)</span></span>',
+            '(1.0x \u00b7 \u91cd\u8907 5 \u6b21 \u00b7 \u6b63\u5411\u64ad\u653e)</span></span>',
             index_html,
         )
         self.assertIn(
@@ -193,9 +207,30 @@ class WebAssetsTests(unittest.TestCase):
             app_js,
         )
         self.assertIn(
-            "`(${state.playbackRate.toFixed(1)}x \u00b7 \u91cd\u8907 ${state.englishRepeatCount} \u6b21)`",
+            "`(${state.playbackRate.toFixed(1)}x \u00b7 \u91cd\u8907 ${state.englishRepeatCount} \u6b21 \u00b7 ${directionLabel})`",
             app_js,
         )
+        self.assertIn(
+            'state.playbackDirection === "reverse" ? "\u53cd\u5411\u64ad\u653e" : "\u6b63\u5411\u64ad\u653e"',
+            app_js,
+        )
+
+    def test_playback_direction_is_selectable_and_cloud_synchronized(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn('name="playbackDirection" value="forward" checked', index_html)
+        self.assertIn('name="playbackDirection" value="reverse"', index_html)
+        self.assertIn('playback_direction: state.playbackDirection', app_js)
+        self.assertIn('settings.playback_direction', app_js)
+        self.assertIn('orderedWordsForPlayback(currentWords(), state.playbackDirection)', app_js)
+        self.assertIn('playbackIndex(', app_js)
+        self.assertNotIn(
+            'state.currentIndex = state.playbackDirection === "reverse"',
+            app_js,
+        )
+        self.assertIn('.segmented-control input:checked + span', styles_css)
 
     def test_pronunciation_display_omits_external_url(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

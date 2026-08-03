@@ -36,13 +36,26 @@
 
       <details class="settings-panel">
         <summary>
-          <span>設定<span id="settingsSummary" class="settings-summary">(1.0x · 重複 5 次)</span></span>
+          <span>設定<span id="settingsSummary" class="settings-summary">(1.0x · 重複 5 次 · 正向播放)</span></span>
         </summary>
         <div class="settings-content">
           <div class="settings-controls">
             <label><input id="repeatAllToggle" type="checkbox" checked> 循環本章節</label>
             <label><input id="repeatCurrentToggle" type="checkbox"> 重複目前單字</label>
             <label><input id="includeExamplesToggle" type="checkbox" checked> 播放例句</label>
+            <div class="playback-direction-control" role="group" aria-labelledby="playbackDirectionLabel">
+              <span id="playbackDirectionLabel">今日單字順序</span>
+              <div class="segmented-control">
+                <label>
+                  <input type="radio" name="playbackDirection" value="forward" checked>
+                  <span>正向播放</span>
+                </label>
+                <label>
+                  <input type="radio" name="playbackDirection" value="reverse">
+                  <span>反向播放</span>
+                </label>
+              </div>
+            </div>
             <label class="rate-control" for="playbackRate">
               英文語速 <output id="playbackRateValue">1.0x</output>
               <input id="playbackRate" type="range" min="0.5" max="1.5" step="0.1" value="1.0">

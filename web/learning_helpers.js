@@ -35,20 +35,76 @@
     return normalizeClozeAnswer(answer) === normalizeClozeAnswer(expected);
   }
 
-  function describePluralAnswerRequirement(input, expected) {
+  function describePluralAnswerRequirement(input, expected, tense = {}) {
     const inputParts = normalizeClozeAnswer(input).split(/\s+/).filter(Boolean);
     const expectedParts = normalizeClozeAnswer(expected).split(/\s+/).filter(Boolean);
     if (inputParts.length === 0 || inputParts.length !== expectedParts.length) {
       return "";
     }
     const finalIndex = inputParts.length - 1;
+    const expectedFinal = expectedParts[finalIndex];
+    const isTenseVerb = (tense.highlights || []).some((highlight) => (
+      englishTokens(highlight).includes(expectedFinal)
+    ));
+    if (isTenseVerb) {
+      return "";
+    }
     const samePrefix = inputParts.slice(0, finalIndex).every(
       (part, index) => part === expectedParts[index],
     );
-    if (!samePrefix || !isRegularPluralOf(inputParts[finalIndex], expectedParts[finalIndex])) {
+    if (!samePrefix || !isRegularPluralOf(inputParts[finalIndex], expectedFinal)) {
       return "";
     }
     return `因為例句中的目標名詞使用複數型態，所以必須以複數「${String(expected).trim()}」表示。`;
+  }
+
+  function describeVerbAnswerRequirement(input, expected, tense = {}) {
+    const inputParts = normalizeClozeAnswer(input).split(/\s+/).filter(Boolean);
+    const expectedParts = normalizeClozeAnswer(expected).split(/\s+/).filter(Boolean);
+    if (inputParts.length === 0 || inputParts.length !== expectedParts.length) {
+      return "";
+    }
+
+    const differences = inputParts
+      .map((part, index) => ({ input: part, expected: expectedParts[index] }))
+      .filter((pair) => pair.input !== pair.expected);
+    if (differences.length !== 1) {
+      return "";
+    }
+
+    const change = differences[0];
+    const matchingHighlight = (tense.highlights || []).find((highlight) => (
+      englishTokens(highlight).includes(change.expected)
+    ));
+    if (!matchingHighlight) {
+      return "";
+    }
+
+    const tenseName = `${tense.display_name_zh || ""} ${tense.name_zh || ""}`;
+    const tenseFormula = `${tense.display_formula || ""} ${tense.formula || ""}`;
+    const answerText = String(expected).trim();
+    if (isThirdPersonSingularOf(change.input, change.expected)
+        && (tenseName.includes("現在簡單") || /V-s/i.test(tenseFormula))) {
+      return `因為例句主詞為第三人稱單數，現在簡單式的動詞必須使用第三人稱單數型態「${answerText}」。`;
+    }
+
+    if (!isPastFormOf(change.input, change.expected)) {
+      return "";
+    }
+    const highlightedTokens = englishTokens(matchingHighlight);
+    const verbIndex = highlightedTokens.indexOf(change.expected);
+    const auxiliaries = highlightedTokens.slice(0, Math.max(0, verbIndex));
+    if (auxiliaries.some((token) => ["am", "is", "are", "was", "were", "be", "been", "being"].includes(token))) {
+      return `因為例句使用被動語態，主要動詞必須使用過去分詞型態「${answerText}」。`;
+    }
+    if (auxiliaries.some((token) => ["have", "has", "had"].includes(token))
+        || tenseName.includes("完成") || /p\.p\.|past participle/i.test(tenseFormula)) {
+      return `因為例句使用完成式，主要動詞必須使用過去分詞型態「${answerText}」。`;
+    }
+    if (tenseName.includes("過去簡單") || /V-ed/i.test(tenseFormula)) {
+      return `因為例句描述過去發生的動作，所以必須使用過去式「${answerText}」。`;
+    }
+    return "";
   }
 
   function isRegularPluralOf(singular, plural) {
@@ -62,6 +118,80 @@
       return plural === `${singular}es`;
     }
     return plural === `${singular}s`;
+  }
+
+  function isThirdPersonSingularOf(base, inflected) {
+    const irregular = { be: "is", do: "does", have: "has" };
+    return irregular[base] === inflected || isRegularPluralOf(base, inflected);
+  }
+
+  function isPastFormOf(base, inflected) {
+    const irregular = {
+      be: ["was", "were"],
+      become: ["became"],
+      begin: ["began"],
+      build: ["built"],
+      come: ["came"],
+      do: ["did", "done"],
+      find: ["found"],
+      get: ["got", "gotten"],
+      give: ["gave", "given"],
+      go: ["went", "gone"],
+      have: ["had"],
+      keep: ["kept"],
+      make: ["made"],
+      meet: ["met"],
+      read: ["read"],
+      run: ["ran", "run"],
+      see: ["saw", "seen"],
+      send: ["sent"],
+      show: ["showed", "shown"],
+      take: ["took", "taken"],
+      write: ["wrote", "written"],
+    };
+    if ((irregular[base] || []).includes(inflected)) {
+      return true;
+    }
+    const forms = new Set([`${base}ed`]);
+    if (base.endsWith("e")) {
+      forms.add(`${base}d`);
+    }
+    if (/[^aeiou]y$/.test(base)) {
+      forms.add(`${base.slice(0, -1)}ied`);
+    }
+    if (/[aeiou][^aeiouwxy]$/.test(base)) {
+      forms.add(`${base}${base.at(-1)}ed`);
+    }
+    return forms.has(inflected);
+  }
+
+  function englishTokens(value) {
+    return normalizeClozeAnswer(value).match(/[a-z]+(?:['’][a-z]+)?/g) || [];
+  }
+
+  function normalizePlaybackDirection(value) {
+    return value === "reverse" ? "reverse" : "forward";
+  }
+
+  function playbackIndex(currentIndex, length, direction, offset = 1, wrap = false) {
+    if (length <= 0) {
+      return -1;
+    }
+    const normalizedCurrent = Math.min(Math.max(0, Number(currentIndex) || 0), length - 1);
+    const directionStep = normalizePlaybackDirection(direction) === "reverse" ? -1 : 1;
+    const candidate = normalizedCurrent + directionStep * offset;
+    if (candidate >= 0 && candidate < length) {
+      return candidate;
+    }
+    if (!wrap) {
+      return normalizedCurrent;
+    }
+    return candidate < 0 ? length - 1 : 0;
+  }
+
+  function orderedWordsForPlayback(words, direction) {
+    const ordered = [...(words || [])];
+    return normalizePlaybackDirection(direction) === "reverse" ? ordered.reverse() : ordered;
   }
 
   function findClosestVocabularyMatch(input, words, minimumSimilarity = 60) {
@@ -286,8 +416,14 @@
     if (parts.length === 0) {
       return null;
     }
+    const verbPhraseFollowers = new Set([
+      "about", "against", "at", "for", "from", "in", "into", "like", "of", "off", "on", "out", "over", "to", "up", "with",
+    ]);
     const phrase = parts.map((part, index) => (
-      index === parts.length - 1 ? finalWordVariantPattern(part) : escapeRegExp(part)
+      index === parts.length - 1
+        || (index === 0 && parts.length > 1 && verbPhraseFollowers.has(parts[1].toLocaleLowerCase("en-US")))
+        ? finalWordVariantPattern(part)
+        : escapeRegExp(part)
     )).join("\\s+");
     return new RegExp(`(^|[^A-Za-z0-9])(${phrase})(?=$|[^A-Za-z0-9])`, "gi");
   }
@@ -298,12 +434,18 @@
     }
     const lower = word.toLocaleLowerCase("en-US");
     if (/[sxz]$/.test(lower) || lower.endsWith("ch") || lower.endsWith("sh")) {
-      return `${escapeRegExp(word)}(?:es)?`;
+      return `${escapeRegExp(word)}(?:es|ed)?`;
     }
     if (/[^aeiou]y$/.test(lower)) {
-      return `${escapeRegExp(word.slice(0, -1))}(?:y|ies)`;
+      return `${escapeRegExp(word.slice(0, -1))}(?:y|ies|ied)`;
     }
-    return `${escapeRegExp(word)}s?`;
+    if (lower.endsWith("e")) {
+      return `${escapeRegExp(word)}(?:s|d)?`;
+    }
+    if (/[aeiou][^aeiouwxy]$/.test(lower)) {
+      return `${escapeRegExp(word)}(?:s|ed|${escapeRegExp(word.at(-1))}ed)?`;
+    }
+    return `${escapeRegExp(word)}(?:s|ed)?`;
   }
 
   function escapeRegExp(value) {
@@ -315,6 +457,7 @@
     buildClozeCandidates,
     calculateSpellingSimilarity,
     describePluralAnswerRequirement,
+    describeVerbAnswerRequirement,
     findClosestVocabularyMatch,
     findLiteralHighlightRanges,
     findTargetPhraseMatches,
@@ -322,6 +465,9 @@
     incrementPracticeRecord,
     isCorrectClozeAnswer,
     normalizeClozeAnswer,
+    normalizePlaybackDirection,
+    orderedWordsForPlayback,
+    playbackIndex,
     repeatCountForWord,
     sanitizePronunciation,
   };

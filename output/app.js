@@ -10,12 +10,15 @@ const {
   buildSuggestionSegments,
   calculateSpellingSimilarity,
   describePluralAnswerRequirement,
+  describeVerbAnswerRequirement,
   findClosestVocabularyMatch,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
   findVocabularySource,
   incrementPracticeRecord,
   isCorrectClozeAnswer,
+  orderedWordsForPlayback,
+  playbackIndex,
   repeatCountForWord,
   sanitizePronunciation,
 } = window.EvdLearningHelpers;
@@ -45,6 +48,7 @@ const state = {
   repeatAll: true,
   repeatCurrent: false,
   includeExamples: true,
+  playbackDirection: "forward",
   playbackRate: DEFAULT_PLAYBACK_RATE,
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
   playbackQueue: [],
@@ -105,6 +109,7 @@ const elements = {
   repeatAllToggle: document.getElementById("repeatAllToggle"),
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
   includeExamplesToggle: document.getElementById("includeExamplesToggle"),
+  playbackDirectionInputs: document.querySelectorAll('input[name="playbackDirection"]'),
   playbackRate: document.getElementById("playbackRate"),
   playbackRateValue: document.getElementById("playbackRateValue"),
   exampleRepeatCount: document.getElementById("exampleRepeatCount"),
@@ -343,7 +348,7 @@ function playCombinedAudio() {
 
 function buildChapterQueue() {
   const queue = [];
-  currentWords().forEach((word) => {
+  orderedWordsForPlayback(currentWords(), state.playbackDirection).forEach((word) => {
     const wordQueue = buildWordQueue(word, false);
     if (queue.length > 0 && wordQueue.length > 0) {
       wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;
@@ -844,6 +849,7 @@ function currentPracticeSettings() {
     repeat_all: state.repeatAll,
     repeat_current: state.repeatCurrent,
     include_examples: state.includeExamples,
+    playback_direction: state.playbackDirection,
     playback_rate: state.playbackRate,
     english_repeat_count: state.englishRepeatCount,
   };
@@ -858,6 +864,9 @@ function applyPracticeSettings(settings) {
   }
   if (typeof settings.include_examples === "boolean") {
     state.includeExamples = settings.include_examples;
+  }
+  if (["forward", "reverse"].includes(settings.playback_direction)) {
+    state.playbackDirection = settings.playback_direction;
   }
   const playbackRate = Number(settings.playback_rate);
   if (playbackRate >= 0.5 && playbackRate <= 1.5) {
@@ -969,11 +978,15 @@ function updateSettingsControls() {
   elements.repeatAllToggle.checked = state.repeatAll;
   elements.repeatCurrentToggle.checked = state.repeatCurrent;
   elements.includeExamplesToggle.checked = state.includeExamples;
+  elements.playbackDirectionInputs.forEach((input) => {
+    input.checked = input.value === state.playbackDirection;
+  });
   elements.playbackRate.value = String(state.playbackRate);
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
   elements.exampleRepeatCount.value = String(state.englishRepeatCount);
   elements.exampleRepeatCountValue.textContent = String(state.englishRepeatCount);
-  elements.settingsSummary.textContent = `(${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次)`;
+  const directionLabel = state.playbackDirection === "reverse" ? "反向播放" : "正向播放";
+  elements.settingsSummary.textContent = `(${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次 · ${directionLabel})`;
 }
 
 function compactPracticeStatsSnapshot() {
@@ -1266,15 +1279,17 @@ function pausePlayback() {
 
 function nextWord(autoplay = false) {
   const words = currentWords();
-  const lastIndex = words.length - 1;
-  if (state.currentIndex >= lastIndex) {
-    if (!state.repeatAll) {
-      return;
-    }
-    state.currentIndex = 0;
-  } else {
-    state.currentIndex += 1;
+  const nextIndex = playbackIndex(
+    state.currentIndex,
+    words.length,
+    state.playbackDirection,
+    1,
+    state.repeatAll,
+  );
+  if (nextIndex < 0 || (nextIndex === state.currentIndex && !state.repeatAll)) {
+    return;
   }
+  state.currentIndex = nextIndex;
   render();
   if (autoplay) {
     playCurrent();
@@ -1282,11 +1297,17 @@ function nextWord(autoplay = false) {
 }
 
 function previousWord() {
-  const lastIndex = currentWords().length - 1;
-  if (lastIndex < 0) {
+  const previousIndex = playbackIndex(
+    state.currentIndex,
+    currentWords().length,
+    state.playbackDirection,
+    -1,
+    true,
+  );
+  if (previousIndex < 0) {
     return;
   }
-  state.currentIndex = state.currentIndex === 0 ? lastIndex : state.currentIndex - 1;
+  state.currentIndex = previousIndex;
   render();
 }
 
@@ -1304,7 +1325,7 @@ function resolveAssetPath(path) {
   return normalized;
 }
 
-function buildQuestion() {
+function buildQuestion(focusInput = false) {
   const candidates = buildClozeCandidates(currentWords());
   if (candidates.length === 0) {
     state.practice.current = null;
@@ -1322,6 +1343,7 @@ function buildQuestion() {
     word: candidate.word,
     correctAnswer: candidate.answer,
     source: findVocabularySource(candidate.word, state.chapters),
+    tense: candidate.word?.[`example_${candidate.exampleIndex}_tense`] || {},
   };
   elements.questionMode.textContent = "請依中文提示填空";
   elements.questionText.textContent = candidate.clozeText;
@@ -1331,6 +1353,9 @@ function buildQuestion() {
   elements.clozeAnswerInput.value = "";
   elements.clozeAnswerInput.disabled = false;
   elements.submitAnswerButton.disabled = false;
+  if (focusInput) {
+    elements.clozeAnswerInput.focus();
+  }
 }
 
 function answerQuestion(answer) {
@@ -1351,7 +1376,11 @@ function answerQuestion(answer) {
       .filter((chapter) => !chapter.is_hard_words)
       .flatMap((chapter) => chapter.words || []);
     const closest = findClosestVocabularyMatch(answer, formalWords);
-    const pluralExplanation = describePluralAnswerRequirement(answer, current.correctAnswer);
+    const grammarExplanation = describeVerbAnswerRequirement(
+      answer,
+      current.correctAnswer,
+      current.tense,
+    ) || describePluralAnswerRequirement(answer, current.correctAnswer, current.tense);
     const highlightDifferences = calculateSpellingSimilarity(answer, current.correctAnswer)
       >= ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD;
     renderWrongAnswerFeedback(
@@ -1359,13 +1388,14 @@ function answerQuestion(answer) {
       current.correctAnswer,
       sourceText,
       closest,
-      pluralExplanation,
+      grammarExplanation,
       highlightDifferences,
     );
     elements.answerFeedback.className = "feedback wrong";
   }
   elements.clozeAnswerInput.disabled = true;
   elements.submitAnswerButton.disabled = true;
+  elements.nextQuestionButton.focus();
   updatePracticeScore();
   saveProgress();
 }
@@ -1375,7 +1405,7 @@ function renderWrongAnswerFeedback(
   correctAnswer,
   sourceText,
   closest,
-  pluralExplanation,
+  grammarExplanation,
   highlightDifferences,
 ) {
   elements.answerFeedback.textContent = "";
@@ -1395,10 +1425,10 @@ function renderWrongAnswerFeedback(
     });
   }
   elements.answerFeedback.append(document.createTextNode(sourceText));
-  if (pluralExplanation) {
+  if (grammarExplanation) {
     const explanationLine = document.createElement("span");
-    explanationLine.className = "plural-explanation";
-    explanationLine.textContent = pluralExplanation;
+    explanationLine.className = "grammar-explanation";
+    explanationLine.textContent = grammarExplanation;
     elements.answerFeedback.append(explanationLine);
     return;
   }
@@ -1407,7 +1437,11 @@ function renderWrongAnswerFeedback(
   }
   const suggestionLine = document.createElement("span");
   suggestionLine.className = "suggestion-line";
-  suggestionLine.textContent = `你輸入的 ${String(input).trim()} 可能是 ${closest.word.word}：${closest.word.chinese_meaning || "無中文意思"}`;
+  const inputText = String(input).trim();
+  const meaning = closest.word.chinese_meaning || "無中文意思";
+  suggestionLine.textContent = closest.similarity === 100
+    ? `你輸入的「${inputText}」是：${meaning}`
+    : `你輸入的 ${inputText} 可能是 ${closest.word.word}：${meaning}`;
   elements.answerFeedback.append(suggestionLine);
 }
 
@@ -1571,6 +1605,17 @@ elements.includeExamplesToggle.addEventListener("change", (event) => {
   updateMasteredControls();
   markPracticeSettingsChanged();
 });
+elements.playbackDirectionInputs.forEach((input) => {
+  input.addEventListener("change", (event) => {
+    if (!event.target.checked) {
+      return;
+    }
+    stopQueue();
+    state.playbackDirection = event.target.value === "reverse" ? "reverse" : "forward";
+    render();
+    markPracticeSettingsChanged();
+  });
+});
 elements.playbackRate.addEventListener("input", (event) => {
   state.playbackRate = Number(event.target.value);
   applyPlaybackRate();
@@ -1587,10 +1632,11 @@ elements.toggleMeaningButton.addEventListener("click", () => {
   elements.toggleMeaningButton.textContent = state.hideMeaning ? "顯示中文" : "隱藏中文";
   render();
 });
-elements.nextQuestionButton.addEventListener("click", buildQuestion);
+elements.nextQuestionButton.addEventListener("click", () => buildQuestion(true));
 elements.submitAnswerButton.addEventListener("click", submitCurrentAnswer);
 elements.clozeAnswerInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && !elements.submitAnswerButton.disabled) {
+    event.preventDefault();
     submitCurrentAnswer();
   }
 });
