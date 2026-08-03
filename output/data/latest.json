@@ -92289,11 +92289,83 @@
   },
   "practice_stats": {
     "records": {
-      "allocated baseline": {
-        "word": "allocated baseline",
+      "abrasive material": {
+        "word": "abrasive material",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:38:50.505Z"
+      },
+      "accidental": {
+        "word": "accidental",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:52:06.177Z"
+      },
+      "achieve": {
+        "word": "achieve",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-07-31T13:06:44.166Z"
+        "last_practiced_at": "2026-08-03T00:11:59.680Z"
+      },
+      "adequate": {
+        "word": "adequate",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:51:13.357Z"
+      },
+      "against": {
+        "word": "against",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:56:11.558Z"
+      },
+      "allocated baseline": {
+        "word": "allocated baseline",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T00:10:18.345Z"
+      },
+      "anode": {
+        "word": "anode",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:42:40.680Z"
+      },
+      "anodize": {
+        "word": "anodize",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:41:11.121Z"
+      },
+      "aperture": {
+        "word": "aperture",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:35:47.607Z"
+      },
+      "arc discharge": {
+        "word": "arc discharge",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:46:54.977Z"
+      },
+      "around fuel": {
+        "word": "around fuel",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:59:27.179Z"
+      },
+      "associated": {
+        "word": "associated",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:57:53.375Z"
+      },
+      "assumption": {
+        "word": "assumption",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:48:40.567Z"
       },
       "cable tray": {
         "word": "cable tray",
@@ -92301,29 +92373,257 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-07-31T12:03:03.824Z"
       },
+      "cathode": {
+        "word": "cathode",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:42:24.857Z"
+      },
+      "characteristics": {
+        "word": "characteristics",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:50:57.562Z"
+      },
+      "chassis": {
+        "word": "chassis",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:36:57.147Z"
+      },
+      "chemical conversion coating": {
+        "word": "chemical conversion coating",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:40:35.387Z"
+      },
+      "cleanliness": {
+        "word": "cleanliness",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:45:01.978Z"
+      },
+      "compromise": {
+        "word": "compromise",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:55:20.970Z"
+      },
+      "conductivity": {
+        "word": "conductivity",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:44:29.080Z"
+      },
       "conduit": {
         "word": "conduit",
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-07-31T12:04:27.092Z"
       },
+      "coordination": {
+        "word": "coordination",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:57:01.957Z"
+      },
+      "corrosion control": {
+        "word": "corrosion control",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:41:47.112Z"
+      },
       "crimped": {
         "word": "crimped",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:00:15.290Z"
+      },
+      "current return path": {
+        "word": "current return path",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-01T11:00:22.124Z"
+        "last_practiced_at": "2026-08-03T09:37:06.706Z"
+      },
+      "dedicated": {
+        "word": "dedicated",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:56:27.809Z"
+      },
+      "delamination": {
+        "word": "delamination",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:43:50.668Z"
+      },
+      "dictate": {
+        "word": "dictate",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T00:11:26.117Z"
+      },
+      "dissimilar metal": {
+        "word": "dissimilar metal",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:43:15.660Z"
+      },
+      "drawing note": {
+        "word": "drawing note",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:47:31.359Z"
+      },
+      "electrical": {
+        "word": "electrical",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:57:17.934Z"
+      },
+      "electrolyte": {
+        "word": "electrolyte",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:42:57.043Z"
+      },
+      "engineering drawing": {
+        "word": "engineering drawing",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:47:14.282Z"
+      },
+      "entail": {
+        "word": "entail",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T00:11:43.369Z"
+      },
+      "equipotential": {
+        "word": "equipotential",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:36:32.040Z"
+      },
+      "especially": {
+        "word": "especially",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:55:37.466Z"
+      },
+      "essential": {
+        "word": "essential",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:50:38.701Z"
+      },
+      "extremity": {
+        "word": "extremity",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:49:30.684Z"
+      },
+      "fault current": {
+        "word": "fault current",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:36:40.598Z"
+      },
+      "flag note": {
+        "word": "flag note",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:47:58.349Z"
+      },
+      "flammable liquids": {
+        "word": "flammable liquids",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:59:46.560Z"
+      },
+      "flowdown": {
+        "word": "flowdown",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T00:09:56.718Z"
+      },
+      "foreign matter": {
+        "word": "foreign matter",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:44:46.139Z"
       },
       "functional analysis": {
         "word": "functional analysis",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T00:10:28.189Z"
+      },
+      "galvanic series": {
+        "word": "galvanic series",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:42:09.245Z"
+      },
+      "general note": {
+        "word": "general note",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:47:39.974Z"
+      },
+      "historically": {
+        "word": "historically",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:57:35.588Z"
+      },
+      "ignition": {
+        "word": "ignition",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:50:21.957Z"
+      },
+      "implementation": {
+        "word": "implementation",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-07-31T13:08:23.878Z"
+        "last_practiced_at": "2026-08-03T00:10:38.976Z"
+      },
+      "inadvertently": {
+        "word": "inadvertently",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:51:31.231Z"
+      },
+      "incorporate": {
+        "word": "incorporate",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:55:03.258Z"
+      },
+      "interface constraint": {
+        "word": "interface constraint",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T00:11:00.809Z"
+      },
+      "interference": {
+        "word": "interference",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:59:07.828Z"
       },
       "intermittent": {
         "word": "intermittent",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:00:51.528Z"
+      },
+      "length-to-width ratio": {
+        "word": "length-to-width ratio",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-02T03:52:31.385Z"
+        "last_practiced_at": "2026-08-03T09:35:56.748Z"
       },
       "local chassis": {
         "word": "local chassis",
@@ -92331,58 +92631,268 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-07-31T12:05:52.292Z"
       },
-      "mission requirement": {
-        "word": "mission requirement",
+      "local note": {
+        "word": "local note",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:47:48.699Z"
+      },
+      "margin": {
+        "word": "margin",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:48:14.394Z"
+      },
+      "micro-ohmmeter": {
+        "word": "micro-ohmmeter",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-01T10:54:26.694Z"
+        "last_practiced_at": "2026-08-03T09:37:23.548Z"
+      },
+      "mission requirement": {
+        "word": "mission requirement",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:01:53.731Z"
+      },
+      "mitigation": {
+        "word": "mitigation",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:48:32.810Z"
+      },
+      "moisture": {
+        "word": "moisture",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:43:32.105Z"
+      },
+      "nickel plating": {
+        "word": "nickel plating",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:40:12.305Z"
+      },
+      "nonconductive coating": {
+        "word": "nonconductive coating",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:38:13.359Z"
+      },
+      "particularly": {
+        "word": "particularly",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:55:54.820Z"
+      },
+      "passivation": {
+        "word": "passivation",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:40:52.449Z"
       },
       "perforation": {
         "word": "perforation",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:01:09.482Z"
+      },
+      "plating": {
+        "word": "plating",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:39:21.323Z"
+      },
+      "plumbing": {
+        "word": "plumbing",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:48:56.311Z"
+      },
+      "pyrotechnics": {
+        "word": "pyrotechnics",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:46:37.012Z"
+      },
+      "quality record": {
+        "word": "quality record",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-02T03:54:00.937Z"
+        "last_practiced_at": "2026-08-03T09:37:32.010Z"
+      },
+      "realistically": {
+        "word": "realistically",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:58:51.076Z"
+      },
+      "reference plane": {
+        "word": "reference plane",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:36:14.484Z"
+      },
+      "relatively easy with": {
+        "word": "relatively easy with",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:58:32.664Z"
+      },
+      "rely on": {
+        "word": "rely on",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:56:44.366Z"
       },
       "satisfactory": {
         "word": "satisfactory",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:00:34.297Z"
+      },
+      "sealant": {
+        "word": "sealant",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:39:05.866Z"
+      },
+      "shock hazard": {
+        "word": "shock hazard",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:51:49.119Z"
+      },
+      "short circuit": {
+        "word": "short circuit",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-02T03:50:52.630Z"
+        "last_practiced_at": "2026-08-03T09:36:48.951Z"
+      },
+      "soldered terminals": {
+        "word": "soldered terminals",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:50:06.011Z"
+      },
+      "solvent": {
+        "word": "solvent",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:45:38.599Z"
+      },
+      "spark": {
+        "word": "spark",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:49:47.082Z"
+      },
+      "strike": {
+        "word": "strike",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:49:13.655Z"
+      },
+      "surface condition": {
+        "word": "surface condition",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:38:31.644Z"
+      },
+      "surface preparation": {
+        "word": "surface preparation",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:45:23.938Z"
       },
       "system requirement": {
         "word": "system requirement",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:02:03.008Z"
+      },
+      "tin plating": {
+        "word": "tin plating",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:39:37.798Z"
+      },
+      "tin whisker": {
+        "word": "tin whisker",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:41:27.923Z"
+      },
+      "traceable": {
+        "word": "traceable",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-01T10:56:03.137Z"
+        "last_practiced_at": "2026-08-03T00:11:08.924Z"
       },
       "treated like": {
         "word": "treated like",
-        "practice_count": 1,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-02T03:57:16.841Z"
+        "last_practiced_at": "2026-08-03T10:01:44.849Z"
+      },
+      "unfortunately": {
+        "word": "unfortunately",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:58:11.857Z"
       },
       "vapor": {
         "word": "vapor",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T10:00:01.021Z"
+      },
+      "verification matrix": {
+        "word": "verification matrix",
         "practice_count": 1,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-01T10:59:01.843Z"
+        "last_practiced_at": "2026-08-03T09:37:53.355Z"
+      },
+      "voltage drop": {
+        "word": "voltage drop",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:37:14.698Z"
+      },
+      "volume resistivity": {
+        "word": "volume resistivity",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:44:10.832Z"
       },
       "weakens": {
         "word": "weakens",
-        "practice_count": 1,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-02T03:55:37.460Z"
+        "last_practiced_at": "2026-08-03T10:01:26.476Z"
+      },
+      "work instruction": {
+        "word": "work instruction",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:46:16.042Z"
+      },
+      "workmanship": {
+        "word": "workmanship",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-03T09:45:56.365Z"
       }
     },
     "settings": {
       "selected_chapter_id": "msfc-hdbk-3697",
       "repeat_all": true,
       "repeat_current": false,
-      "include_examples": true,
+      "include_examples": false,
       "playback_rate": 1.0,
       "english_repeat_count": 5
     },
-    "settings_updated_at": "2026-07-31T12:47:05.940Z"
+    "settings_updated_at": "2026-08-02T23:43:36.594Z"
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
