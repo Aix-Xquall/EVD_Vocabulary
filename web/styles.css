@@ -372,6 +372,10 @@ h2 {
   font-size: clamp(1.6rem, 4vw, 3rem);
 }
 
+.word-vowel {
+  color: var(--green);
+}
+
 .pronunciation {
   color: var(--green);
   font-size: 1.1rem;

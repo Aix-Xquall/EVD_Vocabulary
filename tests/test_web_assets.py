@@ -239,6 +239,25 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("sanitizePronunciation(word.pronunciation)", app_js)
         self.assertIn('<script src="learning_helpers.js"></script>', index_html)
 
+    def test_current_word_highlights_vowels_without_marking_acronyms(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("renderWordWithVowels(word.word || \"Loading\")", app_js)
+        self.assertIn('class="word-vowel"', app_js)
+        self.assertIn("vowelHighlightSegments(value)", app_js)
+        self.assertIn(".word-vowel", styles_css)
+
+    def test_chapter_word_positions_are_saved_and_cloud_synchronized(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("chapterWordPositions: {}", app_js)
+        self.assertIn("chapter_positions: { ...state.chapterWordPositions }", app_js)
+        self.assertIn("settings.chapter_positions", app_js)
+        self.assertIn("state.chapterWordPositions[key] = wordKey", app_js)
+        self.assertIn("chapterWordPositions: state.chapterWordPositions", app_js)
+        self.assertIn("state.chapterWordPositions = saved.chapterWordPositions || {}", app_js)
+
     def test_current_word_title_uses_smaller_type(self):
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 

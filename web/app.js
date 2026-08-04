@@ -20,7 +20,9 @@ const {
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
+  resolveChapterWordIndex,
   sanitizePronunciation,
+  vowelHighlightSegments,
 } = window.EvdLearningHelpers;
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
 const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state";
@@ -44,6 +46,7 @@ const state = {
   currentChapterIndex: 0,
   currentIndex: 0,
   chapterProgress: {},
+  chapterWordPositions: {},
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
@@ -185,7 +188,7 @@ function render() {
   const word = currentWord();
   saveCurrentChapterProgress();
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
-  elements.wordText.textContent = word.word || "Loading";
+  elements.wordText.innerHTML = renderWordWithVowels(word.word || "Loading");
   elements.pronunciationText.textContent = sanitizePronunciation(word.pronunciation);
   elements.meaningText.textContent = word.chinese_meaning || "";
   elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights);
@@ -224,10 +227,10 @@ function selectChapter(chapterId, synchronize = true) {
   saveCurrentChapterProgress();
   state.currentChapterIndex = index;
   state.currentIndex = Math.max(0, savedChapterIndex(state.chapters[index]));
+  render();
   if (synchronize) {
     markPracticeSettingsChanged();
   }
-  render();
   buildQuestion();
 }
 
@@ -257,10 +260,11 @@ function chapterKey(chapter) {
 
 function savedChapterIndex(chapter) {
   const key = chapterKey(chapter);
-  if (!key || state.chapterProgress[key] === undefined) {
-    return -1;
-  }
-  return Math.min(Number(state.chapterProgress[key]) || 0, Math.max(0, chapterWordCount(chapter) - 1));
+  return resolveChapterWordIndex(
+    chapter.words || [],
+    state.chapterWordPositions[key],
+    state.chapterProgress[key],
+  );
 }
 
 function saveCurrentChapterProgress() {
@@ -268,6 +272,10 @@ function saveCurrentChapterProgress() {
   const key = chapterKey(chapter);
   if (key && chapterWordCount(chapter) > 0) {
     state.chapterProgress[key] = state.currentIndex;
+    const wordKey = hardWordKey((chapter.words || [])[state.currentIndex]);
+    if (wordKey) {
+      state.chapterWordPositions[key] = wordKey;
+    }
   }
 }
 
@@ -283,6 +291,7 @@ function renderWordList() {
       stopQueue();
       state.currentIndex = index;
       render();
+      markPracticeSettingsChanged();
       playCurrent();
     });
     elements.wordList.appendChild(button);
@@ -844,8 +853,10 @@ function restorePracticeState(cloudRecords = {}, cloudSettings = {}, cloudSettin
 }
 
 function currentPracticeSettings() {
+  saveCurrentChapterProgress();
   return {
     selected_chapter_id: chapterKey(currentChapter()),
+    chapter_positions: { ...state.chapterWordPositions },
     repeat_all: state.repeatAll,
     repeat_current: state.repeatCurrent,
     include_examples: state.includeExamples,
@@ -867,6 +878,16 @@ function applyPracticeSettings(settings) {
   }
   if (["forward", "reverse"].includes(settings.playback_direction)) {
     state.playbackDirection = settings.playback_direction;
+  }
+  if (settings.chapter_positions && typeof settings.chapter_positions === "object"
+      && !Array.isArray(settings.chapter_positions)) {
+    const positions = Object.fromEntries(
+      Object.entries(settings.chapter_positions)
+        .filter(([, wordKey]) => typeof wordKey === "string")
+        .map(([chapterId, wordKey]) => [String(chapterId).trim(), wordKey.trim().toLowerCase()])
+        .filter(([chapterId, wordKey]) => chapterId && wordKey),
+    );
+    state.chapterWordPositions = { ...state.chapterWordPositions, ...positions };
   }
   const playbackRate = Number(settings.playback_rate);
   if (playbackRate >= 0.5 && playbackRate <= 1.5) {
@@ -1291,6 +1312,7 @@ function nextWord(autoplay = false) {
   }
   state.currentIndex = nextIndex;
   render();
+  markPracticeSettingsChanged();
   if (autoplay) {
     playCurrent();
   }
@@ -1309,6 +1331,7 @@ function previousWord() {
   }
   state.currentIndex = previousIndex;
   render();
+  markPracticeSettingsChanged();
 }
 
 function resolveAssetPath(path) {
@@ -1483,6 +1506,7 @@ function saveProgress() {
       currentChapterIndex: state.currentChapterIndex,
       currentIndex: state.currentIndex,
       chapterProgress: state.chapterProgress,
+      chapterWordPositions: state.chapterWordPositions,
       practice: state.practice,
     }),
   );
@@ -1499,6 +1523,7 @@ function restoreProgress() {
     state.currentChapterIndex = Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
     state.currentIndex = Math.max(0, Math.min(saved.currentIndex || 0, currentWords().length - 1));
     state.chapterProgress = saved.chapterProgress || {};
+    state.chapterWordPositions = saved.chapterWordPositions || {};
     state.practice.attempts = saved.practice?.attempts || 0;
     state.practice.correct = saved.practice?.correct || 0;
   } catch (error) {
@@ -1517,6 +1542,14 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function renderWordWithVowels(value) {
+  return vowelHighlightSegments(value).map((segment) => (
+    segment.isVowel
+      ? `<span class="word-vowel">${escapeHtml(segment.text)}</span>`
+      : escapeHtml(segment.text)
+  )).join("");
 }
 
 function highlightExampleText(text, target, tenseHighlights = []) {

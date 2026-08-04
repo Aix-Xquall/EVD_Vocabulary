@@ -16,7 +16,9 @@ const {
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
+  resolveChapterWordIndex,
   sanitizePronunciation,
+  vowelHighlightSegments,
 } = require("../web/learning_helpers.js");
 
 test("mastered words use configured repetitions when examples are included", () => {
@@ -127,6 +129,38 @@ test("answers ignore case and outer whitespace but require exact spelling", () =
   assert.equal(isCorrectClozeAnswer("  Galvanic Corrosion ", "galvanic corrosion"), true);
   assert.equal(isCorrectClozeAnswer("galvanic  corrosion", "galvanic corrosion"), false);
   assert.equal(isCorrectClozeAnswer("galvanic corrosin", "galvanic corrosion"), false);
+});
+
+test("vowel highlighting marks regular English words", () => {
+  assert.deepEqual(vowelHighlightSegments("dictate"), [
+    { text: "d", isVowel: false },
+    { text: "i", isVowel: true },
+    { text: "ct", isVowel: false },
+    { text: "a", isVowel: true },
+    { text: "t", isVowel: false },
+    { text: "e", isVowel: true },
+  ]);
+});
+
+test("vowel highlighting leaves uppercase abbreviations unchanged", () => {
+  assert.deepEqual(vowelHighlightSegments("EMC E3 MIL-STD-461 DAQ"), [
+    { text: "EMC E3 MIL-STD-461 DAQ", isVowel: false },
+  ]);
+  const segments = vowelHighlightSegments("Electromagnetic Compatibility (EMC)");
+  assert.equal(segments.filter((segment) => segment.isVowel).map((segment) => segment.text).join(""), "Eeoaeioaiii");
+  const acronymSegment = segments.find((segment) => segment.text.includes("EMC"));
+  assert.equal(acronymSegment.isVowel, false);
+});
+
+test("chapter progress follows the saved word after CSV reordering", () => {
+  const reorderedWords = [
+    { word: "low impedance" },
+    { word: "EMC" },
+    { word: "bonding" },
+  ];
+  assert.equal(resolveChapterWordIndex(reorderedWords, "emc", 0), 1);
+  assert.equal(resolveChapterWordIndex(reorderedWords, "removed word", 2), 2);
+  assert.equal(resolveChapterWordIndex(reorderedWords, "", -1), -1);
 });
 
 test("cloze candidates match inflected verbs at the start of a verb phrase", () => {

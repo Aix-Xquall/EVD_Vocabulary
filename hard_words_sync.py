@@ -167,6 +167,18 @@ def _parse_practice_settings(value: object) -> dict:
     playback_direction = str(value.get("playback_direction") or "").strip().lower()
     if playback_direction in {"forward", "reverse"}:
         settings["playback_direction"] = playback_direction
+    chapter_positions = value.get("chapter_positions")
+    if isinstance(chapter_positions, dict):
+        parsed_positions = {
+            chapter_id.strip(): word_key.strip().lower()
+            for chapter_id, word_key in chapter_positions.items()
+            if isinstance(chapter_id, str)
+            and isinstance(word_key, str)
+            and chapter_id.strip()
+            and word_key.strip()
+        }
+        if parsed_positions:
+            settings["chapter_positions"] = parsed_positions
     try:
         playback_rate = float(value.get("playback_rate"))
         if 0.5 <= playback_rate <= 1.5:

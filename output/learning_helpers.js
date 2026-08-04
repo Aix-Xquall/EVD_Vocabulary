@@ -16,6 +16,69 @@
     return String(value || "").split("|", 1)[0].trim();
   }
 
+  function vowelHighlightSegments(value) {
+    const text = String(value || "");
+    const segments = [];
+    const tokenPattern = /[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*/g;
+    let cursor = 0;
+    let match;
+    while ((match = tokenPattern.exec(text)) !== null) {
+      appendVowelSegment(segments, text.slice(cursor, match.index), false);
+      const token = match[0];
+      if (isEnglishAcronym(token)) {
+        appendVowelSegment(segments, token, false);
+      } else {
+        Array.from(token).forEach((character) => {
+          appendVowelSegment(segments, character, /[aeiou]/i.test(character));
+        });
+      }
+      cursor = match.index + token.length;
+    }
+    appendVowelSegment(segments, text.slice(cursor), false);
+    return segments;
+  }
+
+  function isEnglishAcronym(token) {
+    const letters = String(token || "").match(/[A-Za-z]/g) || [];
+    if (letters.length === 0 || letters.some((letter) => letter !== letter.toUpperCase())) {
+      return false;
+    }
+    return letters.length >= 2 || /\d/.test(token);
+  }
+
+  function appendVowelSegment(segments, text, isVowel) {
+    if (!text) {
+      return;
+    }
+    const previous = segments[segments.length - 1];
+    if (previous && previous.isVowel === isVowel) {
+      previous.text += text;
+      return;
+    }
+    segments.push({ text, isVowel });
+  }
+
+  function resolveChapterWordIndex(words, savedWordKey, fallbackIndex = -1) {
+    const wordList = words || [];
+    if (wordList.length === 0) {
+      return -1;
+    }
+    const normalizedWordKey = normalizeClozeAnswer(savedWordKey);
+    if (normalizedWordKey) {
+      const matchedIndex = wordList.findIndex(
+        (word) => normalizeClozeAnswer(word?.word) === normalizedWordKey,
+      );
+      if (matchedIndex >= 0) {
+        return matchedIndex;
+      }
+    }
+    const numericFallback = Number(fallbackIndex);
+    if (!Number.isFinite(numericFallback) || numericFallback < 0) {
+      return -1;
+    }
+    return Math.min(Math.floor(numericFallback), wordList.length - 1);
+  }
+
   function incrementPracticeRecord(record, word, isRepeatCycle, practicedAt = new Date().toISOString()) {
     const current = record || {};
     return {
@@ -469,6 +532,8 @@
     orderedWordsForPlayback,
     playbackIndex,
     repeatCountForWord,
+    resolveChapterWordIndex,
     sanitizePronunciation,
+    vowelHighlightSegments,
   };
 }));

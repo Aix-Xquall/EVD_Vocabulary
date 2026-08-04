@@ -155,7 +155,9 @@ class HardWordsSyncTests(unittest.TestCase):
             note = (
                 '{"v":2,"r":[],"s":{"selected_chapter_id":"emc-1",'
                 '"repeat_all":false,"repeat_current":true,"include_examples":false,'
-                '"playback_direction":"reverse","playback_rate":1.2,"english_repeat_count":4},'
+                '"playback_direction":"reverse",'
+                '"chapter_positions":{"emc-1":"low impedance","hard-words":"EMC"},'
+                '"playback_rate":1.2,"english_repeat_count":4},'
                 '"su":"2026-07-31T02:00:00.000Z"}'
             )
             snapshot.write_text(
@@ -170,6 +172,10 @@ class HardWordsSyncTests(unittest.TestCase):
             self.assertFalse(practice_state["settings"]["repeat_all"])
             self.assertTrue(practice_state["settings"]["repeat_current"])
             self.assertEqual(practice_state["settings"]["playback_direction"], "reverse")
+            self.assertEqual(
+                practice_state["settings"]["chapter_positions"],
+                {"emc-1": "low impedance", "hard-words": "emc"},
+            )
             self.assertEqual(practice_state["settings"]["playback_rate"], 1.2)
             self.assertEqual(practice_state["settings"]["english_repeat_count"], 4)
             self.assertEqual(practice_state["settings_updated_at"], "2026-07-31T02:00:00.000Z")
