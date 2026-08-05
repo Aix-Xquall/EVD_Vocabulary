@@ -8,6 +8,14 @@ DISPLAY_ABBREVIATIONS = [
     (re.compile(r"(?<!\()\bE3\b"), "Electromagnetic Environmental Effects (E3)"),
     (re.compile(r"(?<!\()\bEPDS\b"), "Electronic Power Distribution System (EPDS)"),
     (re.compile(r"(?<!\()\bDAQ\b"), "Data Acquisition (DAQ)"),
+    (re.compile(r"(?<!\()\bHERO\b"), "Hazards of Electromagnetic Radiation to Ordnance (HERO)"),
+    (re.compile(r"(?<!\()\bEEDs\b"), "Electro-Explosive Devices (EEDs)"),
+    (re.compile(r"(?<!\()\bEED\b"), "Electro-Explosive Device (EED)"),
+    (re.compile(r"(?<!\()\bFTS\b"), "Flight Termination System (FTS)"),
+    (re.compile(r"(?<!\()\bGNSS\b"), "Global Navigation Satellite System (GNSS)"),
+    (re.compile(r"(?<!\()\bEME\b"), "Electromagnetic Environment (EME)"),
+    (re.compile(r"(?<!\()\bEMI\b"), "Electromagnetic Interference (EMI)"),
+    (re.compile(r"(?<!\()\bP-static\b", re.IGNORECASE), "Precipitation Static (P-static)"),
 ]
 
 SPEECH_ABBREVIATIONS = [
@@ -17,6 +25,30 @@ SPEECH_ABBREVIATIONS = [
     (re.compile(r"\bElectromagnetic Environmental Effects \(E3\)|\bE3\b"), "Electromagnetic Environmental Effects"),
     (re.compile(r"\bElectronic Power Distribution System \(EPDS\)|\bEPDS\b"), "Electronic Power Distribution System"),
     (re.compile(r"\bData Acquisition \(DAQ\)|\bDAQ\b"), "Data Acquisition"),
+    (
+        re.compile(r"\bHazards of Electromagnetic Radiation to Ordnance \(HERO\)|\bHERO\b"),
+        "Hazards of Electromagnetic Radiation to Ordnance",
+    ),
+    (re.compile(r"\bElectro-Explosive Devices \(EEDs\)|\bEEDs\b"), "Electro-Explosive Devices"),
+    (re.compile(r"\bElectro-Explosive Device \(EED\)|\bEED\b"), "Electro-Explosive Device"),
+    (re.compile(r"\bFlight Termination System \(FTS\)|\bFTS\b"), "Flight Termination System"),
+    (
+        re.compile(r"\bGlobal Navigation Satellite System \(GNSS\)|\bGNSS\b"),
+        "Global Navigation Satellite System",
+    ),
+    (re.compile(r"\bElectromagnetic Effects \(EME\)"), "Electromagnetic Effects"),
+    (
+        re.compile(r"\bElectromagnetic Environment \(EME\)|\bEME\b"),
+        "Electromagnetic Environment",
+    ),
+    (
+        re.compile(r"\bElectromagnetic Interference \(EMI\)|\bEMI\b"),
+        "Electromagnetic Interference",
+    ),
+    (
+        re.compile(r"\bPrecipitation Static \(P-static\)|\bP-static\b", re.IGNORECASE),
+        "Precipitation Static",
+    ),
 ]
 
 CHINESE_FIELD_ABBREVIATIONS = [
@@ -43,6 +75,48 @@ CHINESE_FIELD_ABBREVIATIONS = [
     (
         re.compile(r"\bData Acquisition(?:\s*[\(（]DAQ[\)）])?", re.IGNORECASE),
         "DAQ",
+    ),
+    (
+        re.compile(
+            r"\bHazards of Electromagnetic Radiation to Ordnance(?:\s*[\(（]HERO[\)）])?",
+            re.IGNORECASE,
+        ),
+        "HERO",
+    ),
+    (
+        re.compile(r"\bElectro-Explosive Devices(?:\s*[\(（]EEDs[\)）])?", re.IGNORECASE),
+        "EEDs",
+    ),
+    (
+        re.compile(r"\bElectro-Explosive Device(?:\s*[\(（]EED[\)）])?", re.IGNORECASE),
+        "EED",
+    ),
+    (
+        re.compile(r"\bFlight Termination System(?:\s*[\(（]FTS[\)）])?", re.IGNORECASE),
+        "FTS",
+    ),
+    (
+        re.compile(
+            r"\bGlobal Navigation Satellite System(?:\s*[\(（]GNSS[\)）])?",
+            re.IGNORECASE,
+        ),
+        "GNSS",
+    ),
+    (
+        re.compile(r"\bElectromagnetic Environment(?:\s*[\(（]EME[\)）])?", re.IGNORECASE),
+        "EME",
+    ),
+    (
+        re.compile(r"\bElectromagnetic Effects(?:\s*[\(（]EME[\)）])?", re.IGNORECASE),
+        "EME",
+    ),
+    (
+        re.compile(r"\bElectromagnetic Interference(?:\s*[\(（]EMI[\)）])?", re.IGNORECASE),
+        "EMI",
+    ),
+    (
+        re.compile(r"\bPrecipitation Static(?:\s*[\(（]P-static[\)）])?", re.IGNORECASE),
+        "P-static",
     ),
     (
         re.compile(r"\bRadio Frequency(?:\s*[\(（]RF[\)）])?", re.IGNORECASE),

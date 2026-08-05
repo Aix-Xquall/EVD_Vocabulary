@@ -2,6 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from abbreviation_expander import expand_abbreviations_for_speech
 from vocabulary_loader import REQUIRED_COLUMNS, load_vocabulary
 
 
@@ -111,6 +112,65 @@ class VocabularyLoaderTests(unittest.TestCase):
             self.assertEqual(entries[0]["chinese_meaning"], "DAQ 數據擷取")
             self.assertEqual(entries[0]["example_1_zh"], "EMC 測試資料")
             self.assertEqual(entries[0]["example_2_zh"], "RF 訊號穩定")
+
+    def test_load_vocabulary_expands_requested_aerospace_abbreviations(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "aerospace.csv",
+                "1,HERO,/hero/,HERO 危害,EEDs connect to the FTS and create EMI.,EED、FTS 與 EMI,"
+                "GNSS can be affected by P-static in the external EME.,GNSS、P-static 與 EME,HERO,5,0,\n",
+            )
+
+            entries = load_vocabulary(tmp_path)
+
+            self.assertEqual(
+                entries[0]["word"],
+                "Hazards of Electromagnetic Radiation to Ordnance (HERO)",
+            )
+            self.assertEqual(
+                entries[0]["example_1_en"],
+                "Electro-Explosive Devices (EEDs) connect to the Flight Termination System (FTS) "
+                "and create Electromagnetic Interference (EMI).",
+            )
+            self.assertEqual(
+                entries[0]["example_2_en"],
+                "Global Navigation Satellite System (GNSS) can be affected by Precipitation Static "
+                "(P-static) in the external Electromagnetic Environment (EME).",
+            )
+            self.assertEqual(entries[0]["chinese_meaning"], "HERO 危害")
+            self.assertEqual(entries[0]["example_1_zh"], "EED、FTS 與 EMI")
+            self.assertEqual(entries[0]["example_2_zh"], "GNSS、P-static 與 EME")
+
+    def test_unrequested_abbreviations_remain_compact(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            tmp_path = Path(temp_dir)
+            write_csv(
+                tmp_path / "compact.csv",
+                "1,CAN bus,/can/,CAN 匯流排,RF uses DC power.,RF 使用 DC 電源,"
+                "ESD protection uses a TVS.,ESD 使用 TVS,EMC,4,0,\n",
+            )
+
+            entries = load_vocabulary(tmp_path)
+
+            self.assertEqual(entries[0]["word"], "CAN bus")
+            self.assertEqual(entries[0]["example_1_en"], "RF uses DC power.")
+            self.assertEqual(entries[0]["example_2_en"], "ESD protection uses a TVS.")
+
+    def test_requested_abbreviations_are_spoken_as_full_terms(self):
+        text = (
+            "Hazards of Electromagnetic Radiation to Ordnance (HERO), "
+            "Electro-Explosive Device (EED), Flight Termination System (FTS), "
+            "Global Navigation Satellite System (GNSS), Electromagnetic Environment (EME), "
+            "Electromagnetic Interference (EMI), and Precipitation Static (P-static)."
+        )
+
+        self.assertEqual(
+            expand_abbreviations_for_speech(text),
+            "Hazards of Electromagnetic Radiation to Ordnance, Electro-Explosive Device, "
+            "Flight Termination System, Global Navigation Satellite System, "
+            "Electromagnetic Environment, Electromagnetic Interference, and Precipitation Static.",
+        )
 
     def test_load_vocabulary_allows_hard_words_to_duplicate_normal_chapters(self):
         with tempfile.TemporaryDirectory() as temp_dir:

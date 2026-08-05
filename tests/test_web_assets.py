@@ -48,12 +48,26 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("function sortHardWordsFirst(chapters)", app_js)
         self.assertIn("Number(Boolean(second.is_hard_words))", app_js)
         self.assertIn("function chapterProgressText(chapter, index)", app_js)
+        self.assertIn("`${Math.min(state.currentIndex + 1, total)}/${mastered}/${total}`", app_js)
         self.assertIn("saveCurrentChapterProgress()", app_js)
         self.assertIn("chapterProgress: state.chapterProgress", app_js)
         self.assertIn("state.chapters.unshift(chapter)", app_js)
         self.assertIn("function renderChapterSelect()", app_js)
         self.assertIn("option.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`", app_js)
         self.assertIn('elements.chapterSelect.addEventListener("change"', app_js)
+
+    def test_word_details_use_compact_labels_and_readable_spacing(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn('class="sync-status hard-word-status" hidden', index_html)
+        self.assertIn('alreadyAdded ? "?" : ""', app_js)
+        self.assertIn('alreadyAdded ? "目前在未熟記單字練習" : ""', app_js)
+        self.assertIn('`播放${repeatCount}次`', app_js)
+        self.assertIn("word-spacing: 0.5em", styles_css)
+        self.assertIn("--vowel: #15803d", styles_css)
+        self.assertIn("color: var(--vowel)", styles_css)
 
     def test_word_and_examples_share_the_same_repeat_behavior(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -139,7 +153,7 @@ class WebAssetsTests(unittest.TestCase):
             "  )",
             app_js,
         )
-        self.assertIn("`英文播放 ${repeatCount} 次`", app_js)
+        self.assertIn("`播放${repeatCount}次`", app_js)
         self.assertIn("MASTERED_WORDS_LOCAL_KEY", app_js)
         self.assertIn("word-item mastered", app_js)
         self.assertIn(".word-item.mastered", styles_css)

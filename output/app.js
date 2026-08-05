@@ -213,6 +213,7 @@ function renderChapterSelect() {
     const option = document.createElement("option");
     option.value = chapterKey(chapter);
     option.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`;
+    option.title = "目前練習單字序號 / 已熟記數量 / 總單字數量";
     option.selected = index === state.currentChapterIndex;
     elements.chapterSelect.appendChild(option);
   });
@@ -245,13 +246,15 @@ function chapterWordCount(chapter) {
 function chapterProgressText(chapter, index) {
   const total = chapterWordCount(chapter);
   if (total <= 0) {
-    return "0/0";
+    return "0/0/0";
   }
+  const mastered = (chapter.words || []).filter((word) => isMasteredWord(word)).length;
   if (index === state.currentChapterIndex) {
-    return `${Math.min(state.currentIndex + 1, total)}/${total}`;
+    return `${Math.min(state.currentIndex + 1, total)}/${mastered}/${total}`;
   }
   const savedIndex = savedChapterIndex(chapter);
-  return savedIndex >= 0 ? `${Math.min(savedIndex + 1, total)}/${total}` : `0/${total}`;
+  const position = savedIndex >= 0 ? Math.min(savedIndex + 1, total) : 0;
+  return `${position}/${mastered}/${total}`;
 }
 
 function chapterKey(chapter) {
@@ -468,6 +471,7 @@ function updateHardWordControls() {
   if (!state.hardWordsWriteUrl) {
     elements.hardWordButton.hidden = true;
     elements.hardWordHelp.hidden = true;
+    elements.hardWordStatus.hidden = true;
     elements.hardWordStatus.textContent = "";
     return;
   }
@@ -479,7 +483,14 @@ function updateHardWordControls() {
   elements.hardWordButton.disabled = !word.word || mastered;
   elements.hardWordButton.textContent = alreadyAdded ? "從未熟記單字移除" : "加入未熟記單字";
   elements.hardWordHelp.hidden = !mastered;
-  elements.hardWordStatus.textContent = alreadyAdded ? "目前在未熟記單字練習" : "";
+  elements.hardWordStatus.hidden = !alreadyAdded;
+  elements.hardWordStatus.textContent = alreadyAdded ? "?" : "";
+  elements.hardWordStatus.title = alreadyAdded ? "目前在未熟記單字練習" : "";
+  if (alreadyAdded) {
+    elements.hardWordStatus.setAttribute("aria-label", "目前在未熟記單字練習");
+  } else {
+    elements.hardWordStatus.removeAttribute("aria-label");
+  }
 }
 
 function masteryStatus(word) {
@@ -504,7 +515,7 @@ function updateMasteredControls() {
     state.includeExamples,
   );
   elements.masteredWordStatus.textContent = isMasteredWord(word)
-    ? `英文播放 ${repeatCount} 次`
+    ? `播放${repeatCount}次`
     : "";
 }
 

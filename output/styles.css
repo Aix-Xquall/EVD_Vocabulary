@@ -8,6 +8,7 @@
   --line: #d7dde6;
   --blue: #2563eb;
   --green: #047857;
+  --vowel: #15803d;
   --red: #b42318;
   --amber: #b45309;
 }
@@ -373,12 +374,13 @@ h2 {
 }
 
 .word-vowel {
-  color: var(--green);
+  color: var(--vowel);
 }
 
 .pronunciation {
   color: var(--green);
   font-size: 1.1rem;
+  word-spacing: 0.5em;
 }
 
 .meaning {
@@ -403,6 +405,10 @@ h2 {
 
 .hard-word-actions button {
   padding: 0 14px;
+}
+
+.hard-word-status {
+  cursor: help;
 }
 
 .help-tip {
