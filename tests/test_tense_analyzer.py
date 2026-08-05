@@ -15,6 +15,7 @@ from tense_analyzer import (
     export_pending_annotations,
     import_completed_annotations,
     load_tense_annotations_for_entries,
+    refresh_annotation_text,
     sentence_key,
     validate_annotations_three_passes,
     validate_annotation_coverage,
@@ -198,6 +199,39 @@ class TenseAnalyzerTests(unittest.TestCase):
             self.assertEqual(rows[0]["example_en"], entry["example_1_en"])
             self.assertEqual(rows[0]["reviewed_at"], "2026-01-02")
             self.assertEqual(rows[1]["example_en"], entry["example_2_en"])
+
+    def test_refresh_annotation_text_preserves_reviewed_analysis(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            annotations_path = Path(tmp_dir) / "annotations.csv"
+            original_sentence = "EMI can affect the receiver."
+            current_sentence = "Electromagnetic Interference (EMI) can affect the receiver."
+            original_row = _completed_row(
+                original_sentence,
+                "特殊句型/需確認",
+                "S + modal + V1",
+                ["can affect"],
+                "0.98",
+            )
+            original_row["word"] = "EMI"
+            original_row["reviewed_at"] = "2026-07-26"
+            _write_rows(annotations_path, [original_row])
+            entry = sample_entry()
+            entry["word"] = "Electromagnetic Interference (EMI)"
+            entry["example_1_en"] = current_sentence
+            entry["example_2_en"] = ""
+
+            changed = refresh_annotation_text([entry], annotations_path)
+            rows = _read_rows(annotations_path)
+            validation, missing = validate_annotation_coverage([entry], annotations_path)
+
+            self.assertEqual(changed, 1)
+            self.assertEqual(rows[0]["sentence_key"], sentence_key(current_sentence))
+            self.assertEqual(rows[0]["example_en"], current_sentence)
+            self.assertEqual(rows[0]["word"], entry["word"])
+            self.assertEqual(rows[0]["highlights_json"], '["can affect"]')
+            self.assertEqual(rows[0]["reviewed_at"], "2026-07-26")
+            self.assertEqual(validation.errors, [])
+            self.assertEqual(missing, [])
 
     def test_special_modal_uses_only_concrete_modal_display(self):
         with tempfile.TemporaryDirectory() as tmp_dir:

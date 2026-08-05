@@ -376,6 +376,53 @@ def import_completed_annotations(
     return len(imported_keys)
 
 
+def refresh_annotation_text(
+    entries: Iterable[dict],
+    annotations_path: Path,
+) -> int:
+    """Refresh sentence metadata after display-only vocabulary text changes."""
+    validation = read_tense_annotations(annotations_path)
+    if validation.errors:
+        raise ValueError(_format_validation_errors(validation.errors))
+
+    current_records = _unique_example_records(entries)
+    records_by_identity = {
+        _annotation_identity(record): record
+        for record in current_records.values()
+    }
+    refreshed_rows = []
+    changed_count = 0
+    seen_keys = set()
+
+    for row_number, original in _read_csv_rows(annotations_path):
+        row = {column: str(original.get(column) or "") for column in ANNOTATION_COLUMNS}
+        record = records_by_identity.get(_annotation_identity(row))
+        if record is not None:
+            for column in (
+                "sentence_key",
+                "source_file",
+                "source_id",
+                "word",
+                "example_number",
+                "example_en",
+            ):
+                row[column] = record[column]
+        key = row["sentence_key"]
+        if key in seen_keys:
+            continue
+
+        _, row_errors = _analysis_from_row(row, row["example_en"], row_number)
+        if row_errors:
+            raise ValueError(_format_validation_errors(row_errors))
+        if any(row[column] != str(original.get(column) or "") for column in ANNOTATION_COLUMNS):
+            changed_count += 1
+        refreshed_rows.append(row)
+        seen_keys.add(key)
+
+    _write_rows(annotations_path, refreshed_rows)
+    return changed_count
+
+
 def validate_annotation_coverage(
     entries: Iterable[dict],
     annotations_path: Path,
@@ -593,6 +640,14 @@ def _is_hard_words_entry(entry: dict) -> bool:
     return _source_name(entry).casefold() == "hard_words.csv"
 
 
+def _annotation_identity(value: dict) -> tuple[str, str, str]:
+    return (
+        str(value.get("source_file") or "").strip().casefold(),
+        str(value.get("source_id") or "").strip(),
+        str(value.get("example_number") or "").strip(),
+    )
+
+
 def _format_validation_errors(errors: list[str]) -> str:
     preview = "\n".join(f"- {error}" for error in errors[:20])
     remainder = len(errors) - 20
@@ -627,6 +682,11 @@ def _build_parser() -> argparse.ArgumentParser:
     import_parser = subparsers.add_parser("import", help="Validate and merge completed ChatGPT CSV.")
     import_parser.add_argument("completed_csv", type=Path)
 
+    subparsers.add_parser(
+        "refresh-text",
+        help="Refresh reviewed annotation text after vocabulary display changes.",
+    )
+
     validate_parser = subparsers.add_parser("validate", help="Validate annotation rows and coverage.")
     validate_parser.add_argument("--require-complete", action="store_true")
     return parser
@@ -646,6 +706,11 @@ def main() -> None:
     if args.command == "import":
         count = import_completed_annotations(args.completed_csv, args.annotations, entries)
         print(f"Imported {count} reviewed examples into {args.annotations}")
+        return
+
+    if args.command == "refresh-text":
+        count = refresh_annotation_text(entries, args.annotations)
+        print(f"Refreshed {count} annotation rows in {args.annotations}")
         return
 
     validation, missing = validate_annotation_coverage(entries, args.annotations)
