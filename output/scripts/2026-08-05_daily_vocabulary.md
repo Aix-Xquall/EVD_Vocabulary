@@ -10100,29 +10100,7 @@ Power, RF, and low-level analog wires need proper wire segregation.
 
 電源、RF 與低位準類比線路需要適當線路隔離。
 
-## 460. compliance matrix
-
-**Pronunciation:** /kəmˈplaɪ.əns ˈmeɪ.trɪks/
-
-**Chinese meaning:** 符合性矩陣
-
-**Category:** Requirements / Standards
-
-**Difficulty:** 5
-
-**Example 1**
-
-A compliance matrix tracks every Electromagnetic Compatibility (EMC) requirement.
-
-符合性矩陣追蹤每項 EMC 需求。
-
-**Example 2**
-
-The compliance matrix should identify verification status and evidence.
-
-符合性矩陣應標示驗證狀態與證據。
-
-## 461. susceptibility
+## 460. susceptibility
 
 **Pronunciation:** /səˌsep.təˈbɪl.ə.ti/
 
@@ -10144,7 +10122,7 @@ Poor shielding increases system susceptibility.
 
 屏蔽不良會增加系統敏感度。
 
-## 462. edge lifting
+## 461. edge lifting
 
 **Pronunciation:** /edʒ ˈlɪftɪŋ/ | https://youglish.com/pronounce/edge%20lifting/english
 
@@ -10166,7 +10144,7 @@ Edge lifting can create unreliable electrical contact.
 
 邊緣翹起可能造成不可靠的電氣接觸。
 
-## 463. surface treatment
+## 462. surface treatment
 
 **Pronunciation:** /ˈsɜːrfɪs ˈtriːtmənt/ | https://youglish.com/pronounce/surface%20treatment/english
 
@@ -10188,7 +10166,7 @@ Copper, aluminum, and stainless steel may require different surface treatments.
 
 銅、鋁與不鏽鋼可能需要不同的表面處理。
 
-## 464. adhesive
+## 463. adhesive
 
 **Pronunciation:** /ədˈhiːsɪv/ | https://youglish.com/pronounce/adhesive/english
 
@@ -10210,7 +10188,7 @@ The adhesive process must prevent copper foil edges from lifting.
 
 黏著製程必須避免銅箔邊緣翹起。
 
-## 465. weight estimate
+## 464. weight estimate
 
 **Pronunciation:** /weɪt ˈestɪmət/ | https://youglish.com/pronounce/weight%20estimate/english
 
@@ -10232,7 +10210,7 @@ This weight estimate does not include adhesive or installation loss.
 
 此重量估算不包含黏著劑或施工耗損。
 
-## 466. thickness
+## 465. thickness
 
 **Pronunciation:** /ˈθɪknəs/ | https://youglish.com/pronounce/thickness/english
 
@@ -10254,7 +10232,7 @@ The busbar thickness options are 1 millimeter and 2 millimeters.
 
 銅排厚度選項為 1 毫米與 2 毫米。
 
-## 467. circumference
+## 466. circumference
 
 **Pronunciation:** /sərˈkʌmfərəns/ | https://youglish.com/pronounce/circumference/english
 
@@ -10276,7 +10254,7 @@ The circumference is calculated from the ring diameter.
 
 圓周長由環體直徑計算。
 
-## 468. flight article
+## 467. flight article
 
 **Pronunciation:** /flaɪt ˈɑːrtɪkəl/ | https://youglish.com/pronounce/flight%20article/english
 
@@ -10298,7 +10276,7 @@ Prototype weights may differ from the flight article weight.
 
 原型件重量可能與飛行件重量不同。
 
-## 469. subject to final confirmation
+## 468. subject to final confirmation
 
 **Pronunciation:** /ˈsʌbdʒekt tuː ˈfaɪnəl ˌkɑːnfərˈmeɪʃən/
 
@@ -10320,7 +10298,7 @@ The bonding method is subject to final confirmation by the structural team.
 
 搭接方法仍需由結構團隊做最終確認。
 
-## 470. RF transmit inhibit
+## 469. RF transmit inhibit
 
 **Pronunciation:** /ˌɑːr ˈef trænzˈmɪt ɪnˈhɪbɪt/ | https://youglish.com/pronounce/RF%20transmit%20inhibit/english
 
@@ -10342,7 +10320,7 @@ The test procedure should verify the RF transmit inhibit function.
 
 測試程序應驗證 RF 發射禁止功能。
 
-## 471. functional degradation
+## 470. functional degradation
 
 **Pronunciation:** /ˈfʌŋkʃənl ˌdeɡrəˈdeɪʃn/ | https://youglish.com/pronounce/functional%20degradation/english
 
@@ -10364,7 +10342,7 @@ Mission-critical functions should have no functional degradation during Electrom
 
 任務關鍵功能在 EMC 測試期間不應有功能劣化。
 
-## 472. stitching
+## 471. stitching
 
 **Pronunciation:** /ˈstɪtʃɪŋ/ | https://youglish.com/pronounce/stitching/english
 
@@ -10386,7 +10364,7 @@ RF-sensitive areas should use a shorter stitching interval.
 
 RF 敏感區應使用較短的 stitching 間距。
 
-## 473. preliminary assumption
+## 472. preliminary assumption
 
 **Pronunciation:** /prɪˈlɪməneri əˈsʌmpʃən/
 
@@ -10408,7 +10386,7 @@ This grounding layout is based on a preliminary assumption.
 
 此接地配置是基於初步假設。
 
-## 474. preliminarily
+## 473. preliminarily
 
 **Pronunciation:** /prɪˌlɪməˈnerəli/
 
@@ -10430,7 +10408,7 @@ The acceptance values were preliminarily defined for discussion.
 
 驗收值是為了討論而初步定義的。
 
-## 475. self-compatibility
+## 474. self-compatibility
 
 **Pronunciation:** /self kəmˌpæt̬.əˈbɪl.ə.t̬i/
 
@@ -10452,7 +10430,7 @@ Self-compatibility problems often appear when multiple radios operate together.
 
 多個無線電同時運作時常會出現自相容性問題。
 
-## 476. tinned copper
+## 475. tinned copper
 
 **Pronunciation:** /tɪnd ˈkɑːpər/ | https://youglish.com/pronounce/tinned%20copper/english
 
@@ -10474,7 +10452,7 @@ Tinned copper can improve corrosion resistance compared with bare copper.
 
 相較於裸銅，鍍錫銅可提升耐腐蝕性。
 
-## 477. inspection
+## 476. inspection
 
 **Pronunciation:** /ɪnˈspek.ʃən/
 
@@ -10496,7 +10474,7 @@ Visual inspection alone is not sufficient for bonding verification.
 
 僅靠目視檢查不足以驗證搭接。
 
-## 478. acceptance criteria
+## 477. acceptance criteria
 
 **Pronunciation:** /əkˈsep.təns kraɪˈtɪr.i.ə/
 
@@ -10518,7 +10496,7 @@ Bonding resistance limits should be part of the acceptance criteria.
 
 搭接電阻限制應納入驗收標準。
 
-## 479. coax shield
+## 478. coax shield
 
 **Pronunciation:** /ˈkoʊ.æks ʃiːld/
 
@@ -10540,7 +10518,7 @@ Poor coax shield bonding may cause RF leakage.
 
 同軸屏蔽搭接不良可能造成 RF 洩漏。
 
-## 480. conductive chassis
+## 479. conductive chassis
 
 **Pronunciation:** /kənˈdʌk.tɪv ˈʃæs.i/
 
@@ -10562,7 +10540,7 @@ Without a conductive chassis, shield termination becomes more difficult.
 
 沒有導電機殼時，屏蔽端接會變得更困難。
 
-## 481. enclosure
+## 480. enclosure
 
 **Pronunciation:** /ɪnˈkloʊ.ʒɚ/
 
@@ -10584,7 +10562,7 @@ A floating enclosure may increase radiated emissions.
 
 浮接外殼可能增加輻射發射。
 
-## 482. umbilical transient
+## 481. umbilical transient
 
 **Pronunciation:** /ʌmˈbɪl.ɪ.kəl ˈtræn.zi.ənt/
 
@@ -10606,7 +10584,7 @@ The avionics power input must tolerate umbilical transients.
 
 航電電源輸入必須能承受臍帶纜線暫態。
 
-## 483. applicable standards
+## 482. applicable standards
 
 **Pronunciation:** /ˈæp.lɪ.kə.bəl ˈstæn.dɚdz/
 
@@ -10628,7 +10606,7 @@ Applicable standards should be listed before test planning begins.
 
 在測試規劃開始前應列出適用標準。
 
-## 484. compliance
+## 483. compliance
 
 **Pronunciation:** /kəmˈplaɪ.əns/
 
@@ -10650,7 +10628,7 @@ Box-level compliance does not guarantee system-level compliance.
 
 單機合規不代表系統級一定合規。
 
-## 485. geometry
+## 484. geometry
 
 **Pronunciation:** /dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english
 
@@ -10672,7 +10650,7 @@ Incorrect geometry will lead to an incorrect weight estimate.
 
 幾何尺寸錯誤會導致重量估算錯誤。
 
-## 486. table
+## 485. table
 
 **Pronunciation:** /ˈteɪ.bəl/
 
@@ -10694,7 +10672,7 @@ This table is close to the entrance.
 
 這張桌子靠近入口。
 
-## 487. menu
+## 486. menu
 
 **Pronunciation:** /ˈmen.juː/
 
@@ -10716,7 +10694,7 @@ Does the menu have pictures?
 
 菜單有圖片嗎？
 
-## 488. order
+## 487. order
 
 **Pronunciation:** /ˈɔːr.dɚ/
 
@@ -10738,7 +10716,7 @@ I would like to order chicken rice.
 
 我想點海南雞飯。
 
-## 489. dish
+## 488. dish
 
 **Pronunciation:** /dɪʃ/
 
@@ -10760,7 +10738,7 @@ This dish is good for sharing.
 
 這道菜適合分著吃。
 
-## 490. meal
+## 489. meal
 
 **Pronunciation:** /miːl/
 
@@ -10782,7 +10760,7 @@ We need a quick meal before the show.
 
 表演前我們需要快速吃一餐。
 
-## 491. set meal
+## 490. set meal
 
 **Pronunciation:** /ˈset miːl/
 
@@ -10804,7 +10782,7 @@ The set meal comes with a drink.
 
 這份套餐附一杯飲料。
 
-## 492. kids’ meal
+## 491. kids’ meal
 
 **Pronunciation:** /ˈkɪdz miːl/
 
@@ -10826,7 +10804,7 @@ Does the kids’ meal include fries?
 
 兒童餐有包含薯條嗎？
 
-## 493. portion
+## 492. portion
 
 **Pronunciation:** /ˈpɔːr.ʃən/
 
@@ -10848,7 +10826,7 @@ The portion is too large for one child.
 
 這份量對一個小孩來說太多了。
 
-## 494. share
+## 493. share
 
 **Pronunciation:** /ʃer/
 
@@ -10870,7 +10848,7 @@ Can we have extra plates to share?
 
 我們可以多拿幾個盤子分食嗎？
 
-## 495. spicy
+## 494. spicy
 
 **Pronunciation:** /ˈspaɪ.si/
 
@@ -10892,7 +10870,7 @@ My kids cannot eat spicy food.
 
 我的小孩不能吃辣。
 
-## 496. mild
+## 495. mild
 
 **Pronunciation:** /maɪld/
 
@@ -10914,7 +10892,7 @@ I prefer mild curry.
 
 我比較喜歡不太辣的咖哩。
 
-## 497. less spicy
+## 496. less spicy
 
 **Pronunciation:** /les ˈspaɪ.si/
 
@@ -10936,7 +10914,7 @@ Please make the noodles less spicy.
 
 請把麵做少辣一點。
 
-## 498. not spicy
+## 497. not spicy
 
 **Pronunciation:** /nɑːt ˈspaɪ.si/
 
@@ -10958,7 +10936,7 @@ Is there a not spicy option?
 
 有不辣的選項嗎？
 
-## 499. sauce
+## 498. sauce
 
 **Pronunciation:** /sɔːs/
 
@@ -10980,7 +10958,7 @@ Does this sauce contain peanuts?
 
 這個醬有花生嗎？
 
-## 500. soup
+## 499. soup
 
 **Pronunciation:** /suːp/
 
@@ -11002,7 +10980,7 @@ Could we have one bowl of soup?
 
 可以給我們一碗湯嗎？
 
-## 501. rice
+## 500. rice
 
 **Pronunciation:** /raɪs/
 
@@ -11024,7 +11002,7 @@ Can we have extra rice?
 
 可以多給我們一點飯嗎？
 
-## 502. noodles
+## 501. noodles
 
 **Pronunciation:** /ˈnuː.dəlz/
 
@@ -11046,7 +11024,7 @@ The noodles are for my son.
 
 這碗麵是給我兒子的。
 
-## 503. fried rice
+## 502. fried rice
 
 **Pronunciation:** /fraɪd raɪs/
 
@@ -11068,7 +11046,7 @@ Can you make the fried rice without chili?
 
 炒飯可以不要加辣椒嗎？
 
-## 504. chicken
+## 503. chicken
 
 **Pronunciation:** /ˈtʃɪk.ɪn/
 
@@ -11090,7 +11068,7 @@ Is the chicken steamed or fried?
 
 雞肉是蒸的還是炸的？
 
-## 505. chicken rice
+## 504. chicken rice
 
 **Pronunciation:** /ˈtʃɪk.ɪn raɪs/
 
@@ -11112,7 +11090,7 @@ We would like three plates of chicken rice.
 
 我們想要三盤海南雞飯。
 
-## 506. fishball noodles
+## 505. fishball noodles
 
 **Pronunciation:** /ˈfɪʃ.bɔːl ˈnuː.dəlz/
 
@@ -11134,7 +11112,7 @@ Is the fishball noodles soup or dry?
 
 魚丸麵是湯的還是乾的？
 
-## 507. wonton noodles
+## 506. wonton noodles
 
 **Pronunciation:** /ˈwɑːn.tɑːn ˈnuː.dəlz/
 
@@ -11156,7 +11134,7 @@ Please make the wonton noodles less salty.
 
 雲吞麵請做淡一點。
 
-## 508. laksa
+## 507. laksa
 
 **Pronunciation:** /ˈlɑːk.sə/
 
@@ -11178,7 +11156,7 @@ I would like to try laksa, but not too spicy.
 
 我想試試叻沙，但不要太辣。
 
-## 509. satay
+## 508. satay
 
 **Pronunciation:** /ˈsɑː.teɪ/
 
@@ -11200,7 +11178,7 @@ We would like ten sticks of chicken satay.
 
 我們想要十串雞肉沙嗲。
 
-## 510. bak kut teh
+## 509. bak kut teh
 
 **Pronunciation:** /ˌbɑː kuːt ˈteɪ/
 
@@ -11222,7 +11200,7 @@ Can we have more soup for the bak kut teh?
 
 肉骨茶可以加湯嗎？
 
-## 511. kaya toast
+## 510. kaya toast
 
 **Pronunciation:** /ˈkaɪ.ə toʊst/
 
@@ -11244,7 +11222,7 @@ Does the kaya toast come with eggs?
 
 咖椰吐司有附蛋嗎？
 
-## 512. roti prata
+## 511. roti prata
 
 **Pronunciation:** /ˈroʊ.ti ˈprɑː.tə/
 
@@ -11266,7 +11244,7 @@ My child wants plain roti prata.
 
 我的小孩想要原味印度煎餅。
 
-## 513. dim sum
+## 512. dim sum
 
 **Pronunciation:** /ˌdɪm ˈsʌm/
 
@@ -11288,7 +11266,7 @@ We would like some dim sum to share.
 
 我們想點一些點心分食。
 
-## 514. dumpling
+## 513. dumpling
 
 **Pronunciation:** /ˈdʌmp.lɪŋ/
 
@@ -11310,7 +11288,7 @@ Are the dumplings steamed or fried?
 
 這些餃子是蒸的還是煎的？
 
-## 515. seafood
+## 514. seafood
 
 **Pronunciation:** /ˈsiː.fuːd/
 
@@ -11332,7 +11310,7 @@ We need a non-seafood option.
 
 我們需要非海鮮的選項。
 
-## 516. shrimp
+## 515. shrimp
 
 **Pronunciation:** /ʃrɪmp/
 
@@ -11354,7 +11332,7 @@ Please remove the shrimp from this dish.
 
 請把這道菜裡的蝦子拿掉。
 
-## 517. crab
+## 516. crab
 
 **Pronunciation:** /kræb/
 
@@ -11376,7 +11354,7 @@ We would like to try chilli crab.
 
 我們想試試辣椒螃蟹。
 
-## 518. pork
+## 517. pork
 
 **Pronunciation:** /pɔːrk/
 
@@ -11398,7 +11376,7 @@ We do not want pork in this dish.
 
 這道菜我們不要豬肉。
 
-## 519. beef
+## 518. beef
 
 **Pronunciation:** /biːf/
 
@@ -11420,7 +11398,7 @@ Does this noodle soup have beef?
 
 這碗湯麵有牛肉嗎？
 
-## 520. egg
+## 519. egg
 
 **Pronunciation:** /eɡ/
 
@@ -11442,7 +11420,7 @@ Can we add an egg?
 
 可以加一顆蛋嗎？
 
-## 521. peanut
+## 520. peanut
 
 **Pronunciation:** /ˈpiː.nʌt/
 
@@ -11464,7 +11442,7 @@ My child has a peanut allergy.
 
 我的小孩對花生過敏。
 
-## 522. allergy
+## 521. allergy
 
 **Pronunciation:** /ˈæl.ɚ.dʒi/
 
@@ -11486,7 +11464,7 @@ Is this safe for someone with an allergy?
 
 這個對有過敏的人安全嗎？
 
-## 523. vegetarian
+## 522. vegetarian
 
 **Pronunciation:** /ˌvedʒ.əˈter.i.ən/
 
@@ -11508,7 +11486,7 @@ My wife would like a vegetarian meal.
 
 我太太想要一份素食餐。
 
-## 524. halal
+## 523. halal
 
 **Pronunciation:** /həˈlɑːl/
 
@@ -11530,7 +11508,7 @@ We are looking for halal food near the zoo.
 
 我們在動物園附近找清真食物。
 
-## 525. water
+## 524. water
 
 **Pronunciation:** /ˈwɑː.t̬ɚ/
 
@@ -11552,7 +11530,7 @@ Do you sell bottled water?
 
 你們有賣瓶裝水嗎？
 
-## 526. warm water
+## 525. warm water
 
 **Pronunciation:** /wɔːrm ˈwɑː.t̬ɚ/
 
@@ -11574,7 +11552,7 @@ My child needs warm water for medicine.
 
 我的小孩吃藥需要溫水。
 
-## 527. ice
+## 526. ice
 
 **Pronunciation:** /aɪs/
 
@@ -11596,7 +11574,7 @@ Can we have a cup of ice?
 
 可以給我們一杯冰塊嗎？
 
-## 528. juice
+## 527. juice
 
 **Pronunciation:** /dʒuːs/
 
@@ -11618,7 +11596,7 @@ One orange juice without ice, please.
 
 請給我一杯柳橙汁，不加冰。
 
-## 529. dessert
+## 528. dessert
 
 **Pronunciation:** /dɪˈzɝːt/
 
@@ -11640,7 +11618,7 @@ The kids would like ice cream for dessert.
 
 小孩想吃冰淇淋當甜點。
 
-## 530. spoon
+## 529. spoon
 
 **Pronunciation:** /spuːn/
 
@@ -11662,7 +11640,7 @@ My child dropped the spoon.
 
 我的小孩把湯匙掉了。
 
-## 531. fork
+## 530. fork
 
 **Pronunciation:** /fɔːrk/
 
@@ -11684,7 +11662,7 @@ Could we have one more fork?
 
 可以再給我們一支叉子嗎？
 
-## 532. bowl
+## 531. bowl
 
 **Pronunciation:** /boʊl/
 
@@ -11706,7 +11684,7 @@ This bowl is for sharing soup.
 
 這個碗是用來分湯的。
 
-## 533. takeaway
+## 532. takeaway
 
 **Pronunciation:** /ˈteɪk.ə.weɪ/
 
@@ -11728,7 +11706,7 @@ Please pack the leftovers for takeaway.
 
 請把剩下的食物打包外帶。
 
-## 534. bill
+## 533. bill
 
 **Pronunciation:** /bɪl/
 
@@ -11750,7 +11728,7 @@ Is service charge included in the bill?
 
 帳單有包含服務費嗎？
 
-## 535. receipt
+## 534. receipt
 
 **Pronunciation:** /rɪˈsiːt/
 
@@ -11772,7 +11750,7 @@ Could I have a receipt?
 
 可以給我收據嗎？
 
-## 536. clothes
+## 535. clothes
 
 **Pronunciation:** /kloʊðz/
 
@@ -11794,7 +11772,7 @@ My child needs dry clothes.
 
 我的小孩需要乾衣服。
 
-## 537. shirt
+## 536. shirt
 
 **Pronunciation:** /ʃɝːt/
 
@@ -11816,7 +11794,7 @@ This shirt is too thick for hot weather.
 
 這件上衣對熱天來說太厚了。
 
-## 538. T-shirt
+## 537. T-shirt
 
 **Pronunciation:** /ˈtiː.ʃɝːt/
 
@@ -11838,7 +11816,7 @@ Do you have this T-shirt in blue?
 
 這件 T 恤有藍色嗎？
 
-## 539. pants
+## 538. pants
 
 **Pronunciation:** /pænts/
 
@@ -11860,7 +11838,7 @@ These pants are too long for my child.
 
 這件長褲對我的小孩來說太長了。
 
-## 540. shorts
+## 539. shorts
 
 **Pronunciation:** /ʃɔːrts/
 
@@ -11882,7 +11860,7 @@ Do you sell quick-dry shorts?
 
 你們有賣快乾短褲嗎？
 
-## 541. dress
+## 540. dress
 
 **Pronunciation:** /dres/
 
@@ -11904,7 +11882,7 @@ My daughter wants to try on this dress.
 
 我女兒想試穿這件洋裝。
 
-## 542. skirt
+## 541. skirt
 
 **Pronunciation:** /skɝːt/
 
@@ -11926,7 +11904,7 @@ Is this skirt available in children’s size?
 
 這件裙子有兒童尺寸嗎？
 
-## 543. jacket
+## 542. jacket
 
 **Pronunciation:** /ˈdʒæk.ɪt/
 
@@ -11948,7 +11926,7 @@ Is this jacket good for rain?
 
 這件外套適合下雨穿嗎？
 
-## 544. raincoat
+## 543. raincoat
 
 **Pronunciation:** /ˈreɪn.koʊt/
 
@@ -11970,7 +11948,7 @@ We need a raincoat before going to the zoo.
 
 去動物園前我們需要一件雨衣。
 
-## 545. poncho
+## 544. poncho
 
 **Pronunciation:** /ˈpɑːn.tʃoʊ/
 
@@ -11992,7 +11970,7 @@ Do you have disposable ponchos?
 
 你們有一次性輕便雨衣嗎？
 
-## 546. umbrella
+## 545. umbrella
 
 **Pronunciation:** /ʌmˈbrel.ə/
 
@@ -12014,7 +11992,7 @@ We need a small umbrella for the kids.
 
 我們需要一把給小孩的小雨傘。
 
-## 547. hat
+## 546. hat
 
 **Pronunciation:** /hæt/
 
@@ -12036,7 +12014,7 @@ Is this hat adjustable?
 
 這頂帽子可以調整大小嗎？
 
-## 548. cap
+## 547. cap
 
 **Pronunciation:** /kæp/
 
@@ -12058,7 +12036,7 @@ This cap protects my child from the sun.
 
 這頂鴨舌帽可以幫我的小孩遮太陽。
 
-## 549. sunglasses
+## 548. sunglasses
 
 **Pronunciation:** /ˈsʌnˌɡlæs.ɪz/
 
@@ -12080,7 +12058,7 @@ These sunglasses are too loose.
 
 這副太陽眼鏡太鬆了。
 
-## 550. shoes
+## 549. shoes
 
 **Pronunciation:** /ʃuːz/
 
@@ -12102,7 +12080,7 @@ Do you have comfortable walking shoes?
 
 你們有舒服的走路鞋嗎？
 
-## 551. sandals
+## 550. sandals
 
 **Pronunciation:** /ˈsæn.dəlz/
 
@@ -12124,7 +12102,7 @@ These sandals are good for hot weather.
 
 這雙涼鞋適合熱天。
 
-## 552. sneakers
+## 551. sneakers
 
 **Pronunciation:** /ˈsniː.kɚz/
 
@@ -12146,7 +12124,7 @@ Are these sneakers waterproof?
 
 這雙運動鞋防水嗎？
 
-## 553. socks
+## 552. socks
 
 **Pronunciation:** /sɑːks/
 
@@ -12168,7 +12146,7 @@ My child needs a clean pair of socks.
 
 我的小孩需要一雙乾淨襪子。
 
-## 554. underwear
+## 553. underwear
 
 **Pronunciation:** /ˈʌn.dɚ.wer/
 
@@ -12190,7 +12168,7 @@ Where can I find underwear?
 
 我在哪裡可以找到內衣褲？
 
-## 555. swimsuit
+## 554. swimsuit
 
 **Pronunciation:** /ˈswɪm.suːt/
 
@@ -12212,7 +12190,7 @@ My child forgot his swimsuit.
 
 我的小孩忘了帶泳衣。
 
-## 556. towel
+## 555. towel
 
 **Pronunciation:** /ˈtaʊ.əl/
 
@@ -12234,7 +12212,7 @@ Could we have extra towels?
 
 可以多給我們幾條毛巾嗎？
 
-## 557. backpack
+## 556. backpack
 
 **Pronunciation:** /ˈbæk.pæk/
 
@@ -12256,7 +12234,7 @@ This backpack is light enough for my child.
 
 這個背包夠輕，適合我的小孩。
 
-## 558. bag
+## 557. bag
 
 **Pronunciation:** /bæɡ/
 
@@ -12278,7 +12256,7 @@ This bag is too heavy for my child.
 
 這個袋子對我的小孩來說太重了。
 
-## 559. size
+## 558. size
 
 **Pronunciation:** /saɪz/
 
@@ -12300,7 +12278,7 @@ Do you have this in a larger size?
 
 這個有大一號嗎？
 
-## 560. small
+## 559. small
 
 **Pronunciation:** /smɔːl/
 
@@ -12322,7 +12300,7 @@ This small size fits my child.
 
 這個小號適合我的小孩。
 
-## 561. medium
+## 560. medium
 
 **Pronunciation:** /ˈmiː.di.əm/
 
@@ -12344,7 +12322,7 @@ Medium is too big for my daughter.
 
 中號對我女兒來說太大了。
 
-## 562. large
+## 561. large
 
 **Pronunciation:** /lɑːrdʒ/
 
@@ -12366,7 +12344,7 @@ Do you have large in this color?
 
 這個顏色有大號嗎？
 
-## 563. extra small
+## 562. extra small
 
 **Pronunciation:** /ˌek.strə ˈsmɔːl/
 
@@ -12388,7 +12366,7 @@ Extra small might fit my youngest child.
 
 特小號可能適合我最小的小孩。
 
-## 564. extra large
+## 563. extra large
 
 **Pronunciation:** /ˌek.strə ˈlɑːrdʒ/
 
@@ -12410,7 +12388,7 @@ This extra large shirt is for me.
 
 這件特大號上衣是給我的。
 
-## 565. children’s size
+## 564. children’s size
 
 **Pronunciation:** /ˈtʃɪl.drənz saɪz/
 
@@ -12432,7 +12410,7 @@ I need children’s size for three kids.
 
 我需要三個小孩的兒童尺寸。
 
-## 566. adult size
+## 565. adult size
 
 **Pronunciation:** /əˈdʌlt saɪz/
 
@@ -12454,7 +12432,7 @@ Adult size is too large for my child.
 
 成人尺寸對我的小孩來說太大了。
 
-## 567. too big
+## 566. too big
 
 **Pronunciation:** /tuː bɪɡ/
 
@@ -12476,7 +12454,7 @@ Do you have one size smaller?
 
 你們有小一號嗎？
 
-## 568. too small
+## 567. too small
 
 **Pronunciation:** /tuː smɔːl/
 
@@ -12498,7 +12476,7 @@ This shirt is too small for my son.
 
 這件上衣對我兒子來說太小了。
 
-## 569. fit
+## 568. fit
 
 **Pronunciation:** /fɪt/
 
@@ -12520,7 +12498,7 @@ These shoes do not fit my child.
 
 這雙鞋不適合我的小孩。
 
-## 570. loose
+## 569. loose
 
 **Pronunciation:** /luːs/
 
@@ -12542,7 +12520,7 @@ This hat is too loose.
 
 這頂帽子太鬆了。
 
-## 571. tight
+## 570. tight
 
 **Pronunciation:** /taɪt/
 
@@ -12564,7 +12542,7 @@ The collar feels tight.
 
 領口感覺太緊。
 
-## 572. comfortable
+## 571. comfortable
 
 **Pronunciation:** /ˈkʌmf.tɚ.bəl/
 
@@ -12586,7 +12564,7 @@ We need comfortable clothes for walking.
 
 我們需要適合走路的舒服衣服。
 
-## 573. waterproof
+## 572. waterproof
 
 **Pronunciation:** /ˈwɑː.t̬ɚ.pruːf/
 
@@ -12608,7 +12586,7 @@ We need waterproof shoes for rainy weather.
 
 雨天我們需要防水鞋。
 
-## 574. quick-dry
+## 573. quick-dry
 
 **Pronunciation:** /ˈkwɪk draɪ/
 
@@ -12630,7 +12608,7 @@ Quick-dry shorts are useful in Singapore.
 
 快乾短褲在新加坡很實用。
 
-## 575. cotton
+## 574. cotton
 
 **Pronunciation:** /ˈkɑː.tən/
 
@@ -12652,7 +12630,7 @@ Cotton clothes are comfortable for kids.
 
 棉質衣服對小孩很舒服。
 
-## 576. try on
+## 575. try on
 
 **Pronunciation:** /traɪ ɑːn/
 
@@ -12674,7 +12652,7 @@ I would like to try on these shoes.
 
 我想試穿這雙鞋。
 
-## 577. fitting room
+## 576. fitting room
 
 **Pronunciation:** /ˈfɪt̬.ɪŋ ruːm/
 
@@ -12696,7 +12674,7 @@ Is the fitting room available?
 
 試衣間現在可以用嗎？
 
-## 578. price
+## 577. price
 
 **Pronunciation:** /praɪs/
 
@@ -12718,7 +12696,7 @@ The price is higher than I expected.
 
 價格比我預期高。
 
-## 579. discount
+## 578. discount
 
 **Pronunciation:** /ˈdɪs.kaʊnt/
 
@@ -12740,7 +12718,7 @@ Can I get a discount if I buy three?
 
 如果我買三件可以有折扣嗎？
 
-## 580. sale
+## 579. sale
 
 **Pronunciation:** /seɪl/
 
@@ -12762,7 +12740,7 @@ The store has a summer sale.
 
 這家店有夏季特賣。
 
-## 581. refund
+## 580. refund
 
 **Pronunciation:** /ˈriː.fʌnd/
 
@@ -12784,7 +12762,7 @@ What is your refund policy?
 
 你們的退款規定是什麼？
 
-## 582. tax refund
+## 581. tax refund
 
 **Pronunciation:** /tæks ˈriː.fʌnd/
 
@@ -12806,7 +12784,7 @@ Where can I process the tax refund?
 
 我在哪裡可以辦退稅？
 
-## 583. exchange
+## 582. exchange
 
 **Pronunciation:** /ɪksˈtʃeɪndʒ/
 
@@ -12828,7 +12806,7 @@ I would like to exchange this for a smaller size.
 
 我想把這個換成小一號。
 
-## 584. cashier
+## 583. cashier
 
 **Pronunciation:** /kæˈʃɪr/
 
@@ -12850,7 +12828,7 @@ Please pay at the cashier.
 
 請到收銀台付款。
 
-## 585. shopping mall
+## 584. shopping mall
 
 **Pronunciation:** /ˈʃɑː.pɪŋ mɔːl/
 
@@ -12872,7 +12850,7 @@ We can buy raincoats at the shopping mall.
 
 我們可以在購物中心買雨衣。
 
-## 586. hotel
+## 585. hotel
 
 **Pronunciation:** /hoʊˈtel/
 
@@ -12894,7 +12872,7 @@ Can you show me the way to this hotel?
 
 你可以告訴我怎麼去這間飯店嗎？
 
-## 587. lobby
+## 586. lobby
 
 **Pronunciation:** /ˈlɑː.bi/
 
@@ -12916,7 +12894,7 @@ The hotel lobby is on the first floor.
 
 飯店大廳在一樓。
 
-## 588. front desk
+## 587. front desk
 
 **Pronunciation:** /ˌfrʌnt ˈdesk/
 
@@ -12938,7 +12916,7 @@ Please leave the key card at the front desk.
 
 請把房卡留在櫃台。
 
-## 589. receptionist
+## 588. receptionist
 
 **Pronunciation:** /rɪˈsep.ʃən.ɪst/
 
@@ -12960,7 +12938,7 @@ Could you ask the receptionist about breakfast?
 
 你可以問接待人員早餐的事嗎？
 
-## 590. reservation
+## 589. reservation
 
 **Pronunciation:** /ˌrez.ɚˈveɪ.ʃən/
 
@@ -12982,7 +12960,7 @@ Could you check my reservation?
 
 可以幫我查一下我的訂房嗎？
 
-## 591. booking
+## 590. booking
 
 **Pronunciation:** /ˈbʊk.ɪŋ/
 
@@ -13004,7 +12982,7 @@ The booking is for two adults and three children.
 
 這筆訂房是兩位大人和三位小孩。
 
-## 592. confirmation
+## 591. confirmation
 
 **Pronunciation:** /ˌkɑːn.fɚˈmeɪ.ʃən/
 
@@ -13026,7 +13004,7 @@ I did not receive a confirmation email.
 
 我沒有收到確認信。
 
-## 593. passport
+## 592. passport
 
 **Pronunciation:** /ˈpæs.pɔːrt/
 
@@ -13048,7 +13026,7 @@ Do you need all five passports?
 
 你們需要五本護照嗎？
 
-## 594. check-in
+## 593. check-in
 
 **Pronunciation:** /ˈtʃek.ɪn/
 
@@ -13070,7 +13048,7 @@ What time does check-in start?
 
 幾點可以開始入住？
 
-## 595. check-out
+## 594. check-out
 
 **Pronunciation:** /ˈtʃek.aʊt/
 
@@ -13092,7 +13070,7 @@ We would like to check out now.
 
 我們現在想辦理退房。
 
-## 596. early check-in
+## 595. early check-in
 
 **Pronunciation:** /ˈɝː.li ˈtʃek.ɪn/
 
@@ -13114,7 +13092,7 @@ We arrived early and need early check-in.
 
 我們提早到了，需要提早入住。
 
-## 597. late check-out
+## 596. late check-out
 
 **Pronunciation:** /leɪt ˈtʃek.aʊt/
 
@@ -13136,7 +13114,7 @@ Is there an extra charge for late check-out?
 
 延後退房需要加收費用嗎？
 
-## 598. room
+## 597. room
 
 **Pronunciation:** /ruːm/
 
@@ -13158,7 +13136,7 @@ Our room is too small for five people.
 
 我們的房間對五個人來說太小了。
 
-## 599. family room
+## 598. family room
 
 **Pronunciation:** /ˈfæm.əl.i ruːm/
 
@@ -13180,7 +13158,7 @@ We prefer a family room with two beds.
 
 我們比較想要有兩張床的家庭房。
 
-## 600. connecting room
+## 599. connecting room
 
 **Pronunciation:** /kəˈnek.tɪŋ ruːm/
 
@@ -13202,7 +13180,7 @@ Connecting rooms are better for our family.
 
 連通房對我們家比較方便。
 
-## 601. twin room
+## 600. twin room
 
 **Pronunciation:** /twɪn ruːm/
 
@@ -13224,7 +13202,7 @@ Does the twin room have two single beds?
 
 雙床房有兩張單人床嗎？
 
-## 602. double room
+## 601. double room
 
 **Pronunciation:** /ˈdʌb.əl ruːm/
 
@@ -13246,7 +13224,7 @@ Is the double room suitable for two adults?
 
 雙人房適合兩位大人嗎？
 
-## 603. extra bed
+## 602. extra bed
 
 **Pronunciation:** /ˈek.strə bed/
 
@@ -13268,7 +13246,7 @@ How much is an extra bed per night?
 
 加床一晚多少錢？
 
-## 604. crib
+## 603. crib
 
 **Pronunciation:** /krɪb/
 
@@ -13290,7 +13268,7 @@ We do not need a crib for our children.
 
 我們的小孩不需要嬰兒床。
 
-## 605. key card
+## 604. key card
 
 **Pronunciation:** /ˈkiː kɑːrd/
 
@@ -13312,7 +13290,7 @@ Could you replace my key card?
 
 可以幫我換一張房卡嗎？
 
-## 606. room number
+## 605. room number
 
 **Pronunciation:** /ruːm ˈnʌm.bɚ/
 
@@ -13334,7 +13312,7 @@ Please write down the room number.
 
 請寫下房號。
 
-## 607. floor
+## 606. floor
 
 **Pronunciation:** /flɔːr/
 
@@ -13356,7 +13334,7 @@ The breakfast area is on the third floor.
 
 早餐區在三樓。
 
-## 608. elevator
+## 607. elevator
 
 **Pronunciation:** /ˈel.ə.veɪ.t̬ɚ/
 
@@ -13378,7 +13356,7 @@ The elevator is too crowded for the stroller.
 
 電梯太擠，不方便推車。
 
-## 609. stairs
+## 608. stairs
 
 **Pronunciation:** /sterz/
 
@@ -13400,7 +13378,7 @@ We cannot use the stairs with luggage.
 
 我們帶行李不方便走樓梯。
 
-## 610. luggage
+## 609. luggage
 
 **Pronunciation:** /ˈlʌɡ.ɪdʒ/
 
@@ -13422,7 +13400,7 @@ Where can we collect our luggage?
 
 我們在哪裡領行李？
 
-## 611. luggage storage
+## 610. luggage storage
 
 **Pronunciation:** /ˈlʌɡ.ɪdʒ ˈstɔːr.ɪdʒ/
 
@@ -13444,7 +13422,7 @@ We need luggage storage after check-out.
 
 退房後我們需要寄放行李。
 
-## 612. porter
+## 611. porter
 
 **Pronunciation:** /ˈpɔːr.t̬ɚ/
 
@@ -13466,7 +13444,7 @@ The porter will bring your luggage to the room.
 
 行李員會把你的行李送到房間。
 
-## 613. housekeeping
+## 612. housekeeping
 
 **Pronunciation:** /ˈhaʊsˌkiː.pɪŋ/
 
@@ -13488,7 +13466,7 @@ Housekeeping forgot to replace the towels.
 
 房務忘了更換毛巾。
 
-## 614. cleaning
+## 613. cleaning
 
 **Pronunciation:** /ˈkliː.nɪŋ/
 
@@ -13510,7 +13488,7 @@ We do not need cleaning today.
 
 我們今天不需要清潔。
 
-## 615. blanket
+## 614. blanket
 
 **Pronunciation:** /ˈblæŋ.kɪt/
 
@@ -13532,7 +13510,7 @@ My child feels cold and needs a blanket.
 
 我的小孩覺得冷，需要一條毯子。
 
-## 616. pillow
+## 615. pillow
 
 **Pronunciation:** /ˈpɪl.oʊ/
 
@@ -13554,7 +13532,7 @@ This pillow is too high for my child.
 
 這個枕頭對我的小孩來說太高了。
 
-## 617. toothbrush
+## 616. toothbrush
 
 **Pronunciation:** /ˈtuːθ.brʌʃ/
 
@@ -13576,7 +13554,7 @@ We need five toothbrushes.
 
 我們需要五支牙刷。
 
-## 618. toothpaste
+## 617. toothpaste
 
 **Pronunciation:** /ˈtuːθ.peɪst/
 
@@ -13598,7 +13576,7 @@ We forgot to bring toothpaste.
 
 我們忘了帶牙膏。
 
-## 619. shampoo
+## 618. shampoo
 
 **Pronunciation:** /ʃæmˈpuː/
 
@@ -13620,7 +13598,7 @@ Is the shampoo in the bathroom free?
 
 浴室裡的洗髮精是免費的嗎？
 
-## 620. body wash
+## 619. body wash
 
 **Pronunciation:** /ˈbɑː.di wɑːʃ/
 
@@ -13642,7 +13620,7 @@ The body wash bottle is empty.
 
 沐浴乳瓶子空了。
 
-## 621. hair dryer
+## 620. hair dryer
 
 **Pronunciation:** /ˈher ˌdraɪ.ɚ/
 
@@ -13664,7 +13642,7 @@ The hair dryer is not working.
 
 吹風機不能用。
 
-## 622. air conditioner
+## 621. air conditioner
 
 **Pronunciation:** /ˈer kənˌdɪʃ.ən.ɚ/
 
@@ -13686,7 +13664,7 @@ Could you adjust the air conditioner?
 
 可以幫我們調整冷氣嗎？
 
-## 623. hot water
+## 622. hot water
 
 **Pronunciation:** /hɑːt ˈwɑː.t̬ɚ/
 
@@ -13708,7 +13686,7 @@ The hot water is not warm enough.
 
 熱水不夠熱。
 
-## 624. shower
+## 623. shower
 
 **Pronunciation:** /ˈʃaʊ.ɚ/
 
@@ -13730,7 +13708,7 @@ The shower water pressure is weak.
 
 淋浴水壓很弱。
 
-## 625. toilet
+## 624. toilet
 
 **Pronunciation:** /ˈtɔɪ.lət/
 
@@ -13752,7 +13730,7 @@ Could you send someone to fix the toilet?
 
 可以派人來修馬桶嗎？
 
-## 626. sink
+## 625. sink
 
 **Pronunciation:** /sɪŋk/
 
@@ -13774,7 +13752,7 @@ The sink is leaking under the counter.
 
 洗手台下方在漏水。
 
-## 627. safe
+## 626. safe
 
 **Pronunciation:** /seɪf/
 
@@ -13796,7 +13774,7 @@ I cannot open the safe.
 
 我打不開保險箱。
 
-## 628. Wi-Fi
+## 627. Wi-Fi
 
 **Pronunciation:** /ˈwaɪ faɪ/
 
@@ -13818,7 +13796,7 @@ The Wi-Fi is slow in our room.
 
 我們房間的 Wi-Fi 很慢。
 
-## 629. password
+## 628. password
 
 **Pronunciation:** /ˈpæs.wɝːd/
 
@@ -13840,7 +13818,7 @@ The password does not work.
 
 密碼不能用。
 
-## 630. charger
+## 629. charger
 
 **Pronunciation:** /ˈtʃɑːr.dʒɚ/
 
@@ -13862,7 +13840,7 @@ Do you have a phone charger I can borrow?
 
 你們有手機充電器可以借嗎？
 
-## 631. adapter
+## 630. adapter
 
 **Pronunciation:** /əˈdæp.tɚ/
 
@@ -13884,7 +13862,7 @@ We need an adapter for Singapore outlets.
 
 我們需要新加坡插座用的轉接頭。
 
-## 632. breakfast
+## 631. breakfast
 
 **Pronunciation:** /ˈbrek.fəst/
 
@@ -13906,7 +13884,7 @@ Is breakfast included in our booking?
 
 我們的訂房有包含早餐嗎？
 
-## 633. shuttle bus
+## 632. shuttle bus
 
 **Pronunciation:** /ˈʃʌt̬.əl bʌs/
 
@@ -13928,7 +13906,7 @@ What time does the shuttle bus leave?
 
 接駁車幾點出發？
 
-## 634. taxi
+## 633. taxi
 
 **Pronunciation:** /ˈtæk.si/
 
@@ -13950,7 +13928,7 @@ Where is the taxi stand?
 
 計程車招呼站在哪裡？
 
-## 635. airport
+## 634. airport
 
 **Pronunciation:** /ˈer.pɔːrt/
 
@@ -13972,7 +13950,7 @@ How long does it take to get to the airport?
 
 到機場需要多久？
 
-## 636. terminal
+## 635. terminal
 
 **Pronunciation:** /ˈtɝː.mə.nəl/
 
@@ -13994,7 +13972,7 @@ We need to go to Terminal 3.
 
 我們需要去第三航廈。
 
-## 637. flight
+## 636. flight
 
 **Pronunciation:** /flaɪt/
 
@@ -14016,7 +13994,7 @@ Is our flight on time?
 
 我們的航班準時嗎？
 
-## 638. airline
+## 637. airline
 
 **Pronunciation:** /ˈer.laɪn/
 
@@ -14038,7 +14016,7 @@ Our airline allows online check-in.
 
 我們的航空公司可以線上報到。
 
-## 639. check-in counter
+## 638. check-in counter
 
 **Pronunciation:** /ˈtʃek.ɪn ˈkaʊn.t̬ɚ/
 
@@ -14060,7 +14038,7 @@ The check-in counter is not open yet.
 
 報到櫃台還沒開。
 
-## 640. boarding pass
+## 639. boarding pass
 
 **Pronunciation:** /ˈbɔːr.dɪŋ pæs/
 
@@ -14082,7 +14060,7 @@ I lost my boarding pass.
 
 我弄丟了登機證。
 
-## 641. gate
+## 640. gate
 
 **Pronunciation:** /ɡeɪt/
 
@@ -14104,7 +14082,7 @@ The gate has changed.
 
 登機門改了。
 
-## 642. boarding time
+## 641. boarding time
 
 **Pronunciation:** /ˈbɔːr.dɪŋ taɪm/
 
@@ -14126,7 +14104,7 @@ Please arrive before boarding time.
 
 請在登機時間前抵達。
 
-## 643. departure
+## 642. departure
 
 **Pronunciation:** /dɪˈpɑːr.tʃɚ/
 
@@ -14148,7 +14126,7 @@ Our departure time is 2 p.m.
 
 我們的出發時間是下午兩點。
 
-## 644. arrival
+## 643. arrival
 
 **Pronunciation:** /əˈraɪ.vəl/
 
@@ -14170,7 +14148,7 @@ The arrival area is crowded.
 
 入境區很擁擠。
 
-## 645. baggage claim
+## 644. baggage claim
 
 **Pronunciation:** /ˈbæɡ.ɪdʒ kleɪm/
 
@@ -14192,7 +14170,7 @@ We are waiting at baggage claim.
 
 我們正在行李提領處等待。
 
-## 646. stroller
+## 645. stroller
 
 **Pronunciation:** /ˈstroʊ.lɚ/
 
@@ -14214,7 +14192,7 @@ Where can we rent a stroller?
 
 哪裡可以租推車？
 
-## 647. security check
+## 646. security check
 
 **Pronunciation:** /sɪˈkjʊr.ə.t̬i tʃek/
 
@@ -14236,7 +14214,7 @@ We need to go through security check first.
 
 我們需要先通過安檢。
 
-## 648. immigration
+## 647. immigration
 
 **Pronunciation:** /ˌɪm.əˈɡreɪ.ʃən/
 
@@ -14258,7 +14236,7 @@ Is this the line for immigration?
 
 這是入境審查的隊伍嗎？
 
-## 649. passport control
+## 648. passport control
 
 **Pronunciation:** /ˈpæs.pɔːrt kənˌtroʊl/
 
@@ -14280,7 +14258,7 @@ Please follow the signs to passport control.
 
 請依照指示前往護照查驗。
 
-## 650. taxi stand
+## 649. taxi stand
 
 **Pronunciation:** /ˈtæk.si stænd/
 
@@ -14302,7 +14280,7 @@ The taxi stand is outside the terminal.
 
 計程車招呼站在航廈外面。
 
-## 651. ride-hailing
+## 650. ride-hailing
 
 **Pronunciation:** /ˈraɪd ˌheɪ.lɪŋ/
 
@@ -14324,7 +14302,7 @@ Ride-hailing may be cheaper than a taxi.
 
 叫車服務可能比計程車便宜。
 
-## 652. driver
+## 651. driver
 
 **Pronunciation:** /ˈdraɪ.vɚ/
 
@@ -14346,7 +14324,7 @@ The driver is waiting at the entrance.
 
 司機正在入口等。
 
-## 653. address
+## 652. address
 
 **Pronunciation:** /ˈæd.res/
 
@@ -14368,7 +14346,7 @@ Could you write the address in English?
 
 可以用英文寫下地址嗎？
 
-## 654. fare
+## 653. fare
 
 **Pronunciation:** /fer/
 
@@ -14390,7 +14368,7 @@ Is the child fare cheaper?
 
 兒童票價比較便宜嗎？
 
-## 655. meter
+## 654. meter
 
 **Pronunciation:** /ˈmiː.t̬ɚ/
 
@@ -14412,7 +14390,7 @@ Is the taxi meter running?
 
 計程車跳表有啟動嗎？
 
-## 656. traffic
+## 655. traffic
 
 **Pronunciation:** /ˈtræf.ɪk/
 
@@ -14434,7 +14412,7 @@ Traffic is lighter in the morning.
 
 早上的交通比較順。
 
-## 657. traffic jam
+## 656. traffic jam
 
 **Pronunciation:** /ˈtræf.ɪk dʒæm/
 
@@ -14456,7 +14434,7 @@ We may be late because of a traffic jam.
 
 我們可能因為塞車而遲到。
 
-## 658. MRT
+## 657. MRT
 
 **Pronunciation:** /ˌem ɑːr ˈtiː/
 
@@ -14478,7 +14456,7 @@ Can we use a credit card on the MRT?
 
 我們可以用信用卡搭 MRT 嗎？
 
-## 659. station
+## 658. station
 
 **Pronunciation:** /ˈsteɪ.ʃən/
 
@@ -14500,7 +14478,7 @@ The station is close to our hotel.
 
 車站離我們飯店很近。
 
-## 660. line
+## 659. line
 
 **Pronunciation:** /laɪn/
 
@@ -14522,7 +14500,7 @@ We need to change to the Downtown Line.
 
 我們需要換到 Downtown Line。
 
-## 661. platform
+## 660. platform
 
 **Pronunciation:** /ˈplæt.fɔːrm/
 
@@ -14544,7 +14522,7 @@ The train leaves from platform two.
 
 這班車從二號月台出發。
 
-## 662. train
+## 661. train
 
 **Pronunciation:** /treɪn/
 
@@ -14566,7 +14544,7 @@ The next train arrives in three minutes.
 
 下一班車三分鐘後到。
 
-## 663. public bus
+## 662. public bus
 
 **Pronunciation:** /ˌpʌb.lɪk ˈbʌs/
 
@@ -14588,7 +14566,7 @@ We need to take a public bus after the MRT.
 
 我們搭完 MRT 後需要轉乘公車。
 
-## 664. bus stop
+## 663. bus stop
 
 **Pronunciation:** /ˈbʌs stɑːp/
 
@@ -14610,7 +14588,7 @@ The bus stop is across the street.
 
 公車站在街道對面。
 
-## 665. transfer
+## 664. transfer
 
 **Pronunciation:** /trænsˈfɝː/
 
@@ -14632,7 +14610,7 @@ We need to transfer at Dhoby Ghaut.
 
 我們需要在多美歌轉車。
 
-## 666. direction
+## 665. direction
 
 **Pronunciation:** /dɪˈrek.ʃən/
 
@@ -14654,7 +14632,7 @@ Please point us in the right direction.
 
 請幫我們指出正確方向。
 
-## 667. map
+## 666. map
 
 **Pronunciation:** /mæp/
 
@@ -14676,7 +14654,7 @@ I downloaded the map before the trip.
 
 我出發前下載了地圖。
 
-## 668. route
+## 667. route
 
 **Pronunciation:** /ruːt/
 
@@ -14698,7 +14676,7 @@ This route has fewer transfers.
 
 這條路線轉乘比較少。
 
-## 669. ticket
+## 668. ticket
 
 **Pronunciation:** /ˈtɪk.ɪt/
 
@@ -14720,7 +14698,7 @@ Do children need tickets?
 
 小孩需要買票嗎？
 
-## 670. ticket machine
+## 669. ticket machine
 
 **Pronunciation:** /ˈtɪk.ɪt məˌʃiːn/
 
@@ -14742,7 +14720,7 @@ The ticket machine accepts cards.
 
 這台售票機可以刷卡。
 
-## 671. ticket counter
+## 670. ticket counter
 
 **Pronunciation:** /ˈtɪk.ɪt ˈkaʊn.t̬ɚ/
 
@@ -14764,7 +14742,7 @@ Please buy the zoo tickets at the ticket counter.
 
 請在售票櫃台買動物園門票。
 
-## 672. one-way ticket
+## 671. one-way ticket
 
 **Pronunciation:** /ˌwʌn ˈweɪ ˈtɪk.ɪt/
 
@@ -14786,7 +14764,7 @@ Is a one-way ticket enough for this route?
 
 這條路線買單程票就夠了嗎？
 
-## 673. round-trip ticket
+## 672. round-trip ticket
 
 **Pronunciation:** /ˌraʊnd ˈtrɪp ˈtɪk.ɪt/
 
@@ -14808,7 +14786,7 @@ A round-trip ticket may be cheaper.
 
 來回票可能比較便宜。
 
-## 674. entrance
+## 673. entrance
 
 **Pronunciation:** /ˈen.trəns/
 
@@ -14830,7 +14808,7 @@ The stroller entrance is on the left.
 
 推車入口在左邊。
 
-## 675. exit
+## 674. exit
 
 **Pronunciation:** /ˈek.sɪt/
 
@@ -14852,7 +14830,7 @@ Please meet us near the exit.
 
 請在出口附近跟我們會合。
 
-## 676. restroom
+## 675. restroom
 
 **Pronunciation:** /ˈres.truːm/
 
@@ -14874,7 +14852,7 @@ My child needs the restroom now.
 
 我的小孩現在需要上廁所。
 
-## 677. lift
+## 676. lift
 
 **Pronunciation:** /lɪft/
 
@@ -14896,7 +14874,7 @@ We need an elevator because we have a stroller.
 
 我們有推車，所以需要電梯。
 
-## 678. escalator
+## 677. escalator
 
 **Pronunciation:** /ˈes.kə.leɪ.t̬ɚ/
 
@@ -14918,7 +14896,7 @@ Where is the nearest escalator?
 
 最近的手扶梯在哪裡？
 
-## 679. lost
+## 678. lost
 
 **Pronunciation:** /lɔːst/
 
@@ -14940,7 +14918,7 @@ My child is lost. Please help me.
 
 我的小孩走失了，請幫我。
 
-## 680. emergency
+## 679. emergency
 
 **Pronunciation:** /ɪˈmɝː.dʒən.si/
 
@@ -14962,7 +14940,7 @@ Where is the emergency exit?
 
 緊急出口在哪裡？
 
-## 681. medical help
+## 680. medical help
 
 **Pronunciation:** /ˈmed.ɪ.kəl help/
 
@@ -14984,7 +14962,7 @@ Where can we get medical help nearby?
 
 附近哪裡可以取得醫療協助？
 
-## 682. design scope
+## 681. design scope
 
 **Pronunciation:** /dɪˈzaɪn skoʊp/ | https://youglish.com/pronounce/design%20scope/english
 
@@ -15006,7 +14984,7 @@ Adhesive and protective film are outside the current design scope.
 
 黏著劑與保護膜不在目前設計範圍內。
 
-## 683. baseline
+## 682. baseline
 
 **Pronunciation:** /ˈbeɪslaɪn/ | https://youglish.com/pronounce/baseline/english
 
@@ -15028,7 +15006,7 @@ A clear baseline helps compare weight changes between options.
 
 明確的基準有助於比較各方案的重量變化。
 
-## 684. trade-off
+## 683. trade-off
 
 **Pronunciation:** /ˈtreɪd ɔːf/ | https://youglish.com/pronounce/trade-off/english
 
@@ -15050,7 +15028,7 @@ Every trade-off should be reviewed with the consultant before design freeze.
 
 每個折衷方案都應在設計凍結前與顧問確認。
 
-## 685. flight article
+## 684. flight article
 
 **Pronunciation:** /flaɪt ˈɑːrtɪkəl/ | https://youglish.com/pronounce/flight%20article/english
 
@@ -15072,7 +15050,7 @@ Prototype weights may differ from the flight article weight.
 
 原型件重量可能與飛行件重量不同。
 
-## 686. inner wall
+## 685. inner wall
 
 **Pronunciation:** /ˈɪnər wɔːl/ | https://youglish.com/pronounce/inner%20wall/english
 
@@ -15094,7 +15072,7 @@ The A4 inner wall has a larger foil area than the A1 inner wall.
 
 A4 內壁的銅箔面積比 A1 內壁大。
 
-## 687. geometry
+## 686. geometry
 
 **Pronunciation:** /dʒiˈɑːmətri/ | https://youglish.com/pronounce/geometry/english
 
@@ -15116,7 +15094,7 @@ Incorrect geometry will lead to an incorrect weight estimate.
 
 幾何尺寸錯誤會導致重量估算錯誤。
 
-## 688. circumference
+## 687. circumference
 
 **Pronunciation:** /sərˈkʌmfərəns/ | https://youglish.com/pronounce/circumference/english
 
@@ -15138,7 +15116,7 @@ The circumference is calculated from the ring diameter.
 
 圓周長由環體直徑計算。
 
-## 689. coverage ratio
+## 688. coverage ratio
 
 **Pronunciation:** /ˈkʌvərɪdʒ ˈreɪʃioʊ/ | https://youglish.com/pronounce/coverage%20ratio/english
 
@@ -15160,7 +15138,7 @@ Changing the coverage ratio directly changes the copper foil weight.
 
 改變覆蓋率會直接改變銅箔重量。
 
-## 690. busbar
+## 689. busbar
 
 **Pronunciation:** /ˈbʌsbɑːr/ | https://youglish.com/pronounce/busbar/english
 
@@ -15182,7 +15160,7 @@ A thicker busbar increases weight but can reduce resistance.
 
 較厚的銅排會增加重量，但可以降低電阻。
 
-## 691. braided strap
+## 690. braided strap
 
 **Pronunciation:** /ˈbreɪdɪd stræp/ | https://youglish.com/pronounce/braided%20strap/english
 
@@ -15204,7 +15182,7 @@ A shorter braided strap usually gives lower inductance and better RF performance
 
 較短的編織帶通常有較低電感與較好的 RF 表現。
 
-## 692. tinned copper
+## 691. tinned copper
 
 **Pronunciation:** /tɪnd ˈkɑːpər/ | https://youglish.com/pronounce/tinned%20copper/english
 
@@ -15226,7 +15204,7 @@ Tinned copper can improve corrosion resistance compared with bare copper.
 
 相較於裸銅，鍍錫銅可提升耐腐蝕性。
 
-## 693. solid copper equivalent
+## 692. solid copper equivalent
 
 **Pronunciation:** /ˈsɑːlɪd ˈkɑːpər ɪˈkwɪvələnt/ | https://youglish.com/pronounce/solid%20copper%20equivalent/english
 
@@ -15248,7 +15226,7 @@ The actual braided strap may be lighter because of gaps in the weave.
 
 實際編織帶可能因編織空隙而較輕。
 
-## 694. density
+## 693. density
 
 **Pronunciation:** /ˈdensəti/ | https://youglish.com/pronounce/density/english
 
@@ -15270,7 +15248,7 @@ The report uses stainless-steel density for the screw and washer calculation.
 
 報告使用不鏽鋼密度來計算螺絲與墊片重量。
 
-## 695. thickness
+## 694. thickness
 
 **Pronunciation:** /ˈθɪknəs/ | https://youglish.com/pronounce/thickness/english
 
@@ -15292,7 +15270,7 @@ The busbar thickness options are 1 millimeter and 2 millimeters.
 
 銅排厚度選項為 1 毫米與 2 毫米。
 
-## 696. material consumption
+## 695. material consumption
 
 **Pronunciation:** /məˈtɪriəl kənˈsʌmpʃən/ | https://youglish.com/pronounce/material%20consumption/english
 
@@ -15314,7 +15292,7 @@ The report summarizes material consumption for copper foil and busbars.
 
 報告彙整了銅箔與銅排的材料用量。
 
-## 697. weight estimate
+## 696. weight estimate
 
 **Pronunciation:** /weɪt ˈestɪmət/ | https://youglish.com/pronounce/weight%20estimate/english
 
@@ -15336,7 +15314,7 @@ This weight estimate does not include adhesive or installation loss.
 
 此重量估算不包含黏著劑或施工耗損。
 
-## 698. installation configuration
+## 697. installation configuration
 
 **Pronunciation:** /ˌɪnstəˈleɪʃən kənˌfɪɡjəˈreɪʃən/ | https://youglish.com/pronounce/installation%20configuration/english
 
@@ -15358,7 +15336,7 @@ We compared two installation configurations for the A2 section.
 
 我們比較了 A2 段的兩種安裝配置。
 
-## 699. clearance hole
+## 698. clearance hole
 
 **Pronunciation:** /ˈklɪrəns hoʊl/ | https://youglish.com/pronounce/clearance%20hole/english
 
@@ -15380,7 +15358,7 @@ The copper area removed by each clearance hole is subtracted from the weight cal
 
 每個間隙孔扣除的銅面積會從重量計算中扣除。
 
-## 700. washer
+## 699. washer
 
 **Pronunciation:** /ˈwɑːʃər/ | https://youglish.com/pronounce/washer/english
 
@@ -15402,7 +15380,7 @@ The washer prevents local damage and helps distribute the clamping force.
 
 墊片可避免局部損傷，並幫助分散夾持力。
 
-## 701. hex-head screw
+## 700. hex-head screw
 
 **Pronunciation:** /ˈheks hed skruː/ | https://youglish.com/pronounce/hex-head%20screw/english
 
@@ -15424,7 +15402,7 @@ The mass of each hex-head screw is approximated from its shaft and head geometry
 
 每顆六角頭螺絲的質量由桿身與頭部幾何近似估算。
 
-## 702. hole spacing
+## 701. hole spacing
 
 **Pronunciation:** /hoʊl ˈspeɪsɪŋ/ | https://youglish.com/pronounce/hole%20spacing/english
 
@@ -15446,7 +15424,7 @@ Smaller hole spacing increases the number of fasteners.
 
 較小的孔距會增加固定件數量。
 
-## 703. support bracket
+## 702. support bracket
 
 **Pronunciation:** /səˈpɔːrt ˈbrækɪt/ | https://youglish.com/pronounce/support%20bracket/english
 
@@ -15468,7 +15446,7 @@ Additional support brackets may be needed for vibration robustness.
 
 為提升振動強健性，可能需要額外支架。
 
-## 704. threaded insert
+## 703. threaded insert
 
 **Pronunciation:** /ˈθredɪd ˈɪnsɜːrt/ | https://youglish.com/pronounce/threaded%20insert/english
 
@@ -15490,7 +15468,7 @@ A weak threaded insert may reduce allowable clamp load.
 
 強度不足的螺紋嵌件可能降低允許夾持力。
 
-## 705. torque
+## 704. torque
 
 **Pronunciation:** /tɔːrk/ | https://youglish.com/pronounce/torque/english
 
@@ -15512,7 +15490,7 @@ Final torque should be confirmed based on the insert and locking method.
 
 最終扭矩應依螺紋嵌件與防鬆方式確認。
 
-## 706. anti-loosening method
+## 705. anti-loosening method
 
 **Pronunciation:** /ˌænti ˈluːsənɪŋ ˈmeθəd/ | https://youglish.com/pronounce/anti-loosening%20method/english
 
@@ -15534,7 +15512,7 @@ Thread locker, lock wire, or lock washers are possible anti-loosening methods.
 
 螺絲膠、保險絲或防鬆墊片都是可能的防鬆方式。
 
-## 707. protective film
+## 706. protective film
 
 **Pronunciation:** /prəˈtektɪv fɪlm/ | https://youglish.com/pronounce/protective%20film/english
 
@@ -15556,7 +15534,7 @@ The protective film must not cover the required contact surfaces.
 
 保護膜不可覆蓋必要的接觸面。
 
-## 708. adhesive
+## 707. adhesive
 
 **Pronunciation:** /ədˈhiːsɪv/ | https://youglish.com/pronounce/adhesive/english
 
@@ -15578,7 +15556,7 @@ The adhesive process must prevent copper foil edges from lifting.
 
 黏著製程必須避免銅箔邊緣翹起。
 
-## 709. cutting allowance
+## 708. cutting allowance
 
 **Pronunciation:** /ˈkʌtɪŋ əˈlaʊəns/ | https://youglish.com/pronounce/cutting%20allowance/english
 
@@ -15600,7 +15578,7 @@ The final flight weight should not include unused cutting allowance.
 
 最終飛行重量不應包含未使用的裁切裕量。
 
-## 710. procurement
+## 709. procurement
 
 **Pronunciation:** /prəˈkjʊrmənt/ | https://youglish.com/pronounce/procurement/english
 
@@ -15622,7 +15600,7 @@ The procurement quantity should include expected cutting loss.
 
 採購數量應包含預期裁切損耗。
 
-## 711. overlap
+## 710. overlap
 
 **Pronunciation:** /ˈoʊvərlæp/ | https://youglish.com/pronounce/overlap/english
 
@@ -15644,7 +15622,7 @@ Poor overlap can increase contact resistance.
 
 不良搭接可能增加接觸電阻。
 
-## 712. tolerance
+## 711. tolerance
 
 **Pronunciation:** /ˈtɑːlərəns/ | https://youglish.com/pronounce/tolerance/english
 
@@ -15666,7 +15644,7 @@ Large tolerance can affect hole alignment and assembly quality.
 
 較大的公差可能影響孔位對準與組裝品質。
 
-## 713. surface treatment
+## 712. surface treatment
 
 **Pronunciation:** /ˈsɜːrfɪs ˈtriːtmənt/ | https://youglish.com/pronounce/surface%20treatment/english
 
@@ -15688,7 +15666,7 @@ Copper, aluminum, and stainless steel may require different surface treatments.
 
 銅、鋁與不鏽鋼可能需要不同的表面處理。
 
-## 714. rework
+## 713. rework
 
 **Pronunciation:** /ˌriːˈwɜːrk/ | https://youglish.com/pronounce/rework/english
 
@@ -15710,7 +15688,7 @@ Rework may be required if the copper foil edge is damaged.
 
 若銅箔邊緣受損，可能需要重工。
 
-## 715. edge lifting
+## 714. edge lifting
 
 **Pronunciation:** /edʒ ˈlɪftɪŋ/ | https://youglish.com/pronounce/edge%20lifting/english
 
@@ -15732,7 +15710,7 @@ Edge lifting can create unreliable electrical contact.
 
 邊緣翹起可能造成不可靠的電氣接觸。
 
-## 716. galvanic corrosion
+## 715. galvanic corrosion
 
 **Pronunciation:** /ɡælˈvænɪk kəˈroʊʒən/ | https://youglish.com/pronounce/galvanic%20corrosion/english
 

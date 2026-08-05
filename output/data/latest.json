@@ -8,7 +8,7 @@
       "title": "未熟記單字練習",
       "source_file": "hard_words.csv",
       "is_hard_words": true,
-      "word_count": 50,
+      "word_count": 49,
       "words": [
         {
           "id": "105",
@@ -1544,71 +1544,6 @@
           }
         },
         {
-          "id": "17",
-          "word": "compliance matrix",
-          "pronunciation": "/kəmˈplaɪ.əns ˈmeɪ.trɪks/",
-          "chinese_meaning": "符合性矩陣",
-          "example_1_en": "A compliance matrix tracks every Electromagnetic Compatibility (EMC) requirement.",
-          "example_1_zh": "符合性矩陣追蹤每項 EMC 需求。",
-          "example_2_en": "The compliance matrix should identify verification status and evidence.",
-          "example_2_zh": "符合性矩陣應標示驗證狀態與證據。",
-          "category": "Requirements / Standards",
-          "difficulty": "5",
-          "review_count": "1",
-          "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 25,
-          "audio_segments": {
-            "word": {
-              "src": "audio/segments/en/a80903d8217522e6bf2caa16.mp3",
-              "language": "en"
-            },
-            "meaning": {
-              "src": "audio/segments/zh/714a0ac8c4397631116837c6.mp3",
-              "language": "zh"
-            },
-            "example_1_en": {
-              "src": "audio/segments/en/fa352f767ea6f41dfd7d46be.mp3",
-              "language": "en"
-            },
-            "example_1_zh": {
-              "src": "audio/segments/zh/0679afcf4a319b2b10340038.mp3",
-              "language": "zh"
-            },
-            "example_2_en": {
-              "src": "audio/segments/en/13214d20eae35ff77959d9b0.mp3",
-              "language": "en"
-            },
-            "example_2_zh": {
-              "src": "audio/segments/zh/bd729c80abc26305c88ccb1c.mp3",
-              "language": "zh"
-            }
-          },
-          "example_1_tense": {
-            "name_zh": "現在簡單式",
-            "formula": "S + V1 / V-s(es)",
-            "highlights": [
-              "tracks"
-            ],
-            "confidence": 0.97,
-            "display_name_zh": "現在簡單",
-            "display_formula": "S + V / V-s"
-          },
-          "example_2_tense": {
-            "name_zh": "特殊句型/需確認",
-            "formula": "S + modal + V1",
-            "highlights": [
-              "should identify"
-            ],
-            "confidence": 0.98,
-            "modal_structure": {
-              "modal_verb": "should",
-              "base_verb": "identify"
-            },
-            "display_name_zh": "情態動詞",
-            "display_formula": "should + 原形動詞：identify"
-          }
-        },
-        {
           "id": "73",
           "word": "susceptibility",
           "pronunciation": "/səˌsep.təˈbɪl.ə.ti/",
@@ -1621,7 +1556,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 26,
+          "index": 25,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/3e0a5aaf1fd284b27a48e780.mp3",
@@ -1682,7 +1617,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 27,
+          "index": 26,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/bd6e72844ca96d2dcc3be26a.mp3",
@@ -1751,7 +1686,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 28,
+          "index": 27,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/132311aca085e041f4155fad.mp3",
@@ -1820,7 +1755,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 29,
+          "index": 28,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/60612ce1f5da4a807c07c9c6.mp3",
@@ -1885,7 +1820,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 30,
+          "index": 29,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/daeb95692d2f6f85b01de5c4.mp3",
@@ -1946,7 +1881,7 @@
           "difficulty": "Basic",
           "review_count": "0",
           "last_review_date": "",
-          "index": 31,
+          "index": 30,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/fdd2a5f946659b43f19c0f17.mp3",
@@ -2007,7 +1942,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 32,
+          "index": 31,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/7984c1aa3a3aac79818e651e.mp3",
@@ -2068,7 +2003,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 33,
+          "index": 32,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/eee37724fd8da678fb966804.mp3",
@@ -2137,7 +2072,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 34,
+          "index": 33,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/b161af387540ef858192333d.mp3",
@@ -2198,7 +2133,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 35,
+          "index": 34,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/e181b3925ee8462d78481b38.mp3",
@@ -2267,7 +2202,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 36,
+          "index": 35,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/b54db36deece1945574c449e.mp3",
@@ -2336,7 +2271,7 @@
           "difficulty": "Advanced",
           "review_count": "0",
           "last_review_date": "",
-          "index": 37,
+          "index": 36,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/68507931161c164a1ace579a.mp3",
@@ -2401,7 +2336,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 38,
+          "index": 37,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/80ac56c54d97cf6dc4f0e0d1.mp3",
@@ -2462,7 +2397,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 39,
+          "index": 38,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/32fdb1945607a0eed9bb7bd5.mp3",
@@ -2523,7 +2458,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 40,
+          "index": 39,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/02ee2d98192d44c143d2f61c.mp3",
@@ -2584,7 +2519,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 41,
+          "index": 40,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/9429fd9e86cea2eca7308473.mp3",
@@ -2649,7 +2584,7 @@
           "difficulty": "2",
           "review_count": "0",
           "last_review_date": "",
-          "index": 42,
+          "index": 41,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/acd9993e3edb0dad4cf5b5a2.mp3",
@@ -2714,7 +2649,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 43,
+          "index": 42,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d9ac3067a492dde5215e6e20.mp3",
@@ -2783,7 +2718,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 44,
+          "index": 43,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/f0f720e1852609ef4e64bd3c.mp3",
@@ -2852,7 +2787,7 @@
           "difficulty": "4",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 45,
+          "index": 44,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/2b5a352228e5ba9b53e71330.mp3",
@@ -2913,7 +2848,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 46,
+          "index": 45,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/976e80b7b7b6198a16de87be.mp3",
@@ -2982,7 +2917,7 @@
           "difficulty": "5",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 47,
+          "index": 46,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/645360b79bc557f2daf20d92.mp3",
@@ -3051,7 +2986,7 @@
           "difficulty": "3",
           "review_count": "1",
           "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-          "index": 48,
+          "index": 47,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/844c4f9f3c76c68b9a0d24f7.mp3",
@@ -3116,7 +3051,7 @@
           "difficulty": "3",
           "review_count": "0",
           "last_review_date": "",
-          "index": 49,
+          "index": 48,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/0fa83704c8a49eec45cbfe81.mp3",
@@ -3177,7 +3112,7 @@
           "difficulty": "Intermediate",
           "review_count": "0",
           "last_review_date": "",
-          "index": 50,
+          "index": 49,
           "audio_segments": {
             "word": {
               "src": "audio/segments/en/d26eaf329f09013110100f5c.mp3",
@@ -76178,71 +76113,6 @@
       }
     },
     {
-      "id": "17",
-      "word": "compliance matrix",
-      "pronunciation": "/kəmˈplaɪ.əns ˈmeɪ.trɪks/",
-      "chinese_meaning": "符合性矩陣",
-      "example_1_en": "A compliance matrix tracks every Electromagnetic Compatibility (EMC) requirement.",
-      "example_1_zh": "符合性矩陣追蹤每項 EMC 需求。",
-      "example_2_en": "The compliance matrix should identify verification status and evidence.",
-      "example_2_zh": "符合性矩陣應標示驗證狀態與證據。",
-      "category": "Requirements / Standards",
-      "difficulty": "5",
-      "review_count": "1",
-      "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 25,
-      "audio_segments": {
-        "word": {
-          "src": "audio/segments/en/a80903d8217522e6bf2caa16.mp3",
-          "language": "en"
-        },
-        "meaning": {
-          "src": "audio/segments/zh/714a0ac8c4397631116837c6.mp3",
-          "language": "zh"
-        },
-        "example_1_en": {
-          "src": "audio/segments/en/fa352f767ea6f41dfd7d46be.mp3",
-          "language": "en"
-        },
-        "example_1_zh": {
-          "src": "audio/segments/zh/0679afcf4a319b2b10340038.mp3",
-          "language": "zh"
-        },
-        "example_2_en": {
-          "src": "audio/segments/en/13214d20eae35ff77959d9b0.mp3",
-          "language": "en"
-        },
-        "example_2_zh": {
-          "src": "audio/segments/zh/bd729c80abc26305c88ccb1c.mp3",
-          "language": "zh"
-        }
-      },
-      "example_1_tense": {
-        "name_zh": "現在簡單式",
-        "formula": "S + V1 / V-s(es)",
-        "highlights": [
-          "tracks"
-        ],
-        "confidence": 0.97,
-        "display_name_zh": "現在簡單",
-        "display_formula": "S + V / V-s"
-      },
-      "example_2_tense": {
-        "name_zh": "特殊句型/需確認",
-        "formula": "S + modal + V1",
-        "highlights": [
-          "should identify"
-        ],
-        "confidence": 0.98,
-        "modal_structure": {
-          "modal_verb": "should",
-          "base_verb": "identify"
-        },
-        "display_name_zh": "情態動詞",
-        "display_formula": "should + 原形動詞：identify"
-      }
-    },
-    {
       "id": "73",
       "word": "susceptibility",
       "pronunciation": "/səˌsep.təˈbɪl.ə.ti/",
@@ -76255,7 +76125,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 26,
+      "index": 25,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/3e0a5aaf1fd284b27a48e780.mp3",
@@ -76316,7 +76186,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 27,
+      "index": 26,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/bd6e72844ca96d2dcc3be26a.mp3",
@@ -76385,7 +76255,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 28,
+      "index": 27,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/132311aca085e041f4155fad.mp3",
@@ -76454,7 +76324,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 29,
+      "index": 28,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/60612ce1f5da4a807c07c9c6.mp3",
@@ -76519,7 +76389,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 30,
+      "index": 29,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/daeb95692d2f6f85b01de5c4.mp3",
@@ -76580,7 +76450,7 @@
       "difficulty": "Basic",
       "review_count": "0",
       "last_review_date": "",
-      "index": 31,
+      "index": 30,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/fdd2a5f946659b43f19c0f17.mp3",
@@ -76641,7 +76511,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 32,
+      "index": 31,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/7984c1aa3a3aac79818e651e.mp3",
@@ -76702,7 +76572,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 33,
+      "index": 32,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/eee37724fd8da678fb966804.mp3",
@@ -76771,7 +76641,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 34,
+      "index": 33,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/b161af387540ef858192333d.mp3",
@@ -76832,7 +76702,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 35,
+      "index": 34,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/e181b3925ee8462d78481b38.mp3",
@@ -76901,7 +76771,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 36,
+      "index": 35,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/b54db36deece1945574c449e.mp3",
@@ -76970,7 +76840,7 @@
       "difficulty": "Advanced",
       "review_count": "0",
       "last_review_date": "",
-      "index": 37,
+      "index": 36,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/68507931161c164a1ace579a.mp3",
@@ -77035,7 +76905,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 38,
+      "index": 37,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/80ac56c54d97cf6dc4f0e0d1.mp3",
@@ -77096,7 +76966,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 39,
+      "index": 38,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/32fdb1945607a0eed9bb7bd5.mp3",
@@ -77157,7 +77027,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 40,
+      "index": 39,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/02ee2d98192d44c143d2f61c.mp3",
@@ -77218,7 +77088,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 41,
+      "index": 40,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/9429fd9e86cea2eca7308473.mp3",
@@ -77283,7 +77153,7 @@
       "difficulty": "2",
       "review_count": "0",
       "last_review_date": "",
-      "index": 42,
+      "index": 41,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/acd9993e3edb0dad4cf5b5a2.mp3",
@@ -77348,7 +77218,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 43,
+      "index": 42,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d9ac3067a492dde5215e6e20.mp3",
@@ -77417,7 +77287,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 44,
+      "index": 43,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/f0f720e1852609ef4e64bd3c.mp3",
@@ -77486,7 +77356,7 @@
       "difficulty": "4",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 45,
+      "index": 44,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/2b5a352228e5ba9b53e71330.mp3",
@@ -77547,7 +77417,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 46,
+      "index": 45,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/976e80b7b7b6198a16de87be.mp3",
@@ -77616,7 +77486,7 @@
       "difficulty": "5",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 47,
+      "index": 46,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/645360b79bc557f2daf20d92.mp3",
@@ -77685,7 +77555,7 @@
       "difficulty": "3",
       "review_count": "1",
       "last_review_date": "Wed Jun 17 2026 00:00:00 GMT+0800 (Taiwan Standard Time)",
-      "index": 48,
+      "index": 47,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/844c4f9f3c76c68b9a0d24f7.mp3",
@@ -77750,7 +77620,7 @@
       "difficulty": "3",
       "review_count": "0",
       "last_review_date": "",
-      "index": 49,
+      "index": 48,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/0fa83704c8a49eec45cbfe81.mp3",
@@ -77811,7 +77681,7 @@
       "difficulty": "Intermediate",
       "review_count": "0",
       "last_review_date": "",
-      "index": 50,
+      "index": 49,
       "audio_segments": {
         "word": {
           "src": "audio/segments/en/d26eaf329f09013110100f5c.mp3",
@@ -92450,6 +92320,18 @@
   ],
   "mastery": {
     "statuses": {
+      "noise source": "mastered",
+      "common problem": "mastered",
+      "test report": "mastered",
+      "measurement procedure": "mastered",
+      "test planning": "mastered",
+      "integration-stage verification": "mastered",
+      "antenna coupling": "mastered",
+      "power survey": "mastered",
+      "power quality": "mastered",
+      "shield": "mastered",
+      "compliance matrix": "mastered_active",
+      "range requirements": "mastered",
       "filter integration": "mastered",
       "bonding requirement": "mastered",
       "integration-stage": "mastered",
@@ -92596,7 +92478,7 @@
         "word": "accidental",
         "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T09:59:43.809Z"
+        "last_practiced_at": "2026-08-04T11:34:11.098Z"
       },
       "achieve": {
         "word": "achieve",
@@ -92614,7 +92496,7 @@
         "word": "against",
         "practice_count": 7,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:03:41.795Z"
+        "last_practiced_at": "2026-08-04T11:36:25.099Z"
       },
       "allocated baseline": {
         "word": "allocated baseline",
@@ -92640,6 +92522,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:42:41.229Z"
       },
+      "approximately": {
+        "word": "approximately",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:40:31.402Z"
+      },
       "arc discharge": {
         "word": "arc discharge",
         "practice_count": 4,
@@ -92650,13 +92538,13 @@
         "word": "around fuel",
         "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:47:24.278Z"
+        "last_practiced_at": "2026-08-04T11:40:53.418Z"
       },
       "associated": {
         "word": "associated",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:05:24.420Z"
+        "last_practiced_at": "2026-08-04T11:38:17.978Z"
       },
       "assumption": {
         "word": "assumption",
@@ -92669,6 +92557,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-07-31T12:03:03.824Z"
+      },
+      "category": {
+        "word": "category",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:40:49.369Z"
       },
       "cathode": {
         "word": "cathode",
@@ -92700,6 +92594,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:52:41.864Z"
       },
+      "common problem": {
+        "word": "common problem",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:50:08.652Z"
+      },
       "compression set": {
         "word": "compression set",
         "practice_count": 2,
@@ -92710,7 +92610,7 @@
         "word": "compromise",
         "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:02:51.251Z"
+        "last_practiced_at": "2026-08-04T11:35:29.260Z"
       },
       "conductivity": {
         "word": "conductivity",
@@ -92728,7 +92628,7 @@
         "word": "coordination",
         "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:04:32.338Z"
+        "last_practiced_at": "2026-08-04T11:37:21.586Z"
       },
       "corrosion control": {
         "word": "corrosion control",
@@ -92740,7 +92640,7 @@
         "word": "crimped",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:46:30.251Z"
+        "last_practiced_at": "2026-08-04T11:52:32.838Z"
       },
       "current return path": {
         "word": "current return path",
@@ -92752,7 +92652,7 @@
         "word": "dedicated",
         "practice_count": 7,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:03:58.187Z"
+        "last_practiced_at": "2026-08-04T11:36:43.418Z"
       },
       "delamination": {
         "word": "delamination",
@@ -92762,9 +92662,15 @@
       },
       "dictate": {
         "word": "dictate",
-        "practice_count": 1,
+        "practice_count": 2,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T00:11:26.117Z"
+        "last_practiced_at": "2026-08-04T11:55:20.235Z"
+      },
+      "dimensions": {
+        "word": "dimensions",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:42:14.442Z"
       },
       "dissimilar metal": {
         "word": "dissimilar metal",
@@ -92782,7 +92688,13 @@
         "word": "electrical",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:04:48.692Z"
+        "last_practiced_at": "2026-08-04T11:37:39.626Z"
+      },
+      "electro-explosive device (eed)": {
+        "word": "Electro-Explosive Device (EED)",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:46:18.724Z"
       },
       "electrolyte": {
         "word": "electrolyte",
@@ -92804,9 +92716,9 @@
       },
       "entail": {
         "word": "entail",
-        "practice_count": 1,
+        "practice_count": 2,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T00:11:43.369Z"
+        "last_practiced_at": "2026-08-04T11:55:38.197Z"
       },
       "equipment rack": {
         "word": "equipment rack",
@@ -92824,7 +92736,7 @@
         "word": "especially",
         "practice_count": 7,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:03:07.818Z"
+        "last_practiced_at": "2026-08-04T11:35:47.099Z"
       },
       "essential": {
         "word": "essential",
@@ -92842,7 +92754,7 @@
         "word": "extremity",
         "practice_count": 7,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T09:57:08.236Z"
+        "last_practiced_at": "2026-08-04T11:33:17.901Z"
       },
       "fault current": {
         "word": "fault current",
@@ -92898,11 +92810,17 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:55:19.890Z"
       },
+      "global navigation satellite system (gnss)": {
+        "word": "Global Navigation Satellite System (GNSS)",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:47:14.284Z"
+      },
       "historically": {
         "word": "historically",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:05:06.432Z"
+        "last_practiced_at": "2026-08-04T11:37:58.628Z"
       },
       "ignition": {
         "word": "ignition",
@@ -92926,25 +92844,31 @@
         "word": "incorporate",
         "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:02:33.508Z"
+        "last_practiced_at": "2026-08-04T11:34:30.226Z"
+      },
+      "individual": {
+        "word": "individual",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:49:23.442Z"
       },
       "interface constraint": {
         "word": "interface constraint",
-        "practice_count": 1,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T00:11:00.809Z"
+        "last_practiced_at": "2026-08-04T11:56:11.358Z"
       },
       "interference": {
         "word": "interference",
         "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:47:41.276Z"
+        "last_practiced_at": "2026-08-04T11:40:33.267Z"
       },
       "intermittent": {
         "word": "intermittent",
         "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:45:51.415Z"
+        "last_practiced_at": "2026-08-04T11:53:11.726Z"
       },
       "length-to-width ratio": {
         "word": "length-to-width ratio",
@@ -92982,6 +92906,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:55:52.773Z"
       },
+      "mercedes-star": {
+        "word": "Mercedes-star",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:41:30.684Z"
+      },
       "micro-ohmmeter": {
         "word": "micro-ohmmeter",
         "practice_count": 3,
@@ -92992,7 +92922,7 @@
         "word": "mission requirement",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:44:06.758Z"
+        "last_practiced_at": "2026-08-04T11:54:18.038Z"
       },
       "mitigation": {
         "word": "mitigation",
@@ -93036,11 +92966,17 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:41:44.796Z"
       },
+      "ordnance circuit": {
+        "word": "ordnance circuit",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:45:15.373Z"
+      },
       "particularly": {
         "word": "particularly",
         "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:03:25.108Z"
+        "last_practiced_at": "2026-08-04T11:36:06.344Z"
       },
       "passivation": {
         "word": "passivation",
@@ -93052,7 +92988,7 @@
         "word": "perforation",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:45:15.224Z"
+        "last_practiced_at": "2026-08-04T11:53:30.838Z"
       },
       "plating": {
         "word": "plating",
@@ -93065,6 +93001,12 @@
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:56:35.018Z"
+      },
+      "protection": {
+        "word": "protection",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:47:31.401Z"
       },
       "pyrotechnics": {
         "word": "pyrotechnics",
@@ -93080,9 +93022,9 @@
       },
       "realistically": {
         "word": "realistically",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:06:22.530Z"
+        "last_practiced_at": "2026-08-04T11:40:16.077Z"
       },
       "reference plane": {
         "word": "reference plane",
@@ -93094,13 +93036,13 @@
         "word": "relatively easy with",
         "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:06:03.881Z"
+        "last_practiced_at": "2026-08-04T11:38:59.792Z"
       },
       "rely on": {
         "word": "rely on",
         "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:04:14.735Z"
+        "last_practiced_at": "2026-08-04T11:37:01.938Z"
       },
       "rf impedance": {
         "word": "RF impedance",
@@ -93112,7 +93054,13 @@
         "word": "satisfactory",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:46:15.462Z"
+        "last_practiced_at": "2026-08-04T11:52:53.280Z"
+      },
+      "scope": {
+        "word": "scope",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:35:35.494Z"
       },
       "sealant": {
         "word": "sealant",
@@ -93148,7 +93096,7 @@
         "word": "spark",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T09:57:24.055Z"
+        "last_practiced_at": "2026-08-04T11:33:35.381Z"
       },
       "strike": {
         "word": "strike",
@@ -93188,27 +93136,33 @@
       },
       "traceable": {
         "word": "traceable",
-        "practice_count": 1,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T00:11:08.924Z"
+        "last_practiced_at": "2026-08-04T11:56:19.196Z"
       },
       "treated like": {
         "word": "treated like",
         "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:44:39.872Z"
+        "last_practiced_at": "2026-08-04T11:54:08.201Z"
       },
       "unfortunately": {
         "word": "unfortunately",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-04T10:05:42.906Z"
+        "last_practiced_at": "2026-08-04T11:38:37.699Z"
       },
       "vapor": {
         "word": "vapor",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:46:45.671Z"
+        "last_practiced_at": "2026-08-04T11:52:17.116Z"
+      },
+      "vehicle-level": {
+        "word": "vehicle-level",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-05T12:42:38.812Z"
       },
       "verification matrix": {
         "word": "verification matrix",
@@ -93232,7 +93186,7 @@
         "word": "weakens",
         "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-08-03T23:44:56.772Z"
+        "last_practiced_at": "2026-08-04T11:53:48.957Z"
       },
       "work instruction": {
         "word": "work instruction",
@@ -93248,21 +93202,21 @@
       }
     },
     "settings": {
-      "selected_chapter_id": "emc顧問回覆與系統整合詞彙",
+      "selected_chapter_id": "emc航電詞彙整合2",
       "repeat_all": true,
       "repeat_current": false,
       "include_examples": false,
       "playback_direction": "forward",
       "chapter_positions": {
         "msfc-hdbk-3697": "mission requirement",
-        "emc航電詞彙整合2": "hero",
+        "emc航電詞彙整合2": "introduction",
         "emc航電詞彙整合1": "electromagnetic compatibility (emc)",
         "emc顧問回覆與系統整合詞彙": "consultant question"
       },
       "playback_rate": 1.0,
       "english_repeat_count": 5
     },
-    "settings_updated_at": "2026-08-05T11:58:03.355Z"
+    "settings_updated_at": "2026-08-05T12:51:58.401Z"
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
