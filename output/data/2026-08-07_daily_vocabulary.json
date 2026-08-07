@@ -92442,8 +92442,9 @@
   ],
   "mastery": {
     "statuses": {
-      "central hub": "mastered",
       "packet loss": "mastered",
+      "central hub": "mastered",
+      "reference ring": "mastered",
       "rf transmit inhibit": "mastered_active",
       "common-mode current": "mastered",
       "countdown": "mastered",
@@ -92601,11 +92602,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:45:44.266Z"
       },
+      "acceptance record": {
+        "word": "acceptance record",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:00:11.231Z"
+      },
+      "acceptance value": {
+        "word": "acceptance value",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:59:52.341Z"
+      },
       "accidental": {
         "word": "accidental",
         "practice_count": 5,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T11:34:11.098Z"
+      },
+      "accumulate": {
+        "word": "accumulate",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:50:46.329Z"
       },
       "achieve": {
         "word": "achieve",
@@ -92613,17 +92632,35 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-03T00:11:59.680Z"
       },
+      "actuator worst case": {
+        "word": "actuator worst case",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:07:15.275Z"
+      },
       "adequate": {
         "word": "adequate",
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:58:50.111Z"
       },
+      "aerospace-grade": {
+        "word": "aerospace-grade",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:56:09.810Z"
+      },
       "against": {
         "word": "against",
         "practice_count": 7,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T11:36:25.099Z"
+      },
+      "all-on worst case": {
+        "word": "all-on worst case",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:06:11.923Z"
       },
       "allocated baseline": {
         "word": "allocated baseline",
@@ -92649,11 +92686,23 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:59:47.675Z"
       },
+      "antenna port induced level": {
+        "word": "antenna port induced level",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:48:29.841Z"
+      },
       "aperture": {
         "word": "aperture",
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:42:41.229Z"
+      },
+      "appear": {
+        "word": "appear",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:51:02.229Z"
       },
       "appendices": {
         "word": "appendices",
@@ -92666,6 +92715,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:13:30.183Z"
+      },
+      "approach": {
+        "word": "approach",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:52:42.918Z"
       },
       "approximately": {
         "word": "approximately",
@@ -92709,6 +92764,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:06:16.924Z"
       },
+      "briefing document": {
+        "word": "briefing document",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:08:55.617Z"
+      },
       "bus": {
         "word": "bus",
         "practice_count": 1,
@@ -92726,6 +92787,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-07-31T12:03:03.824Z"
+      },
+      "cable-induced transient": {
+        "word": "cable-induced transient",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:04:05.980Z"
       },
       "can bus": {
         "word": "CAN bus",
@@ -92750,6 +92817,12 @@
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:48:59.959Z"
+      },
+      "central hub": {
+        "word": "central hub",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:05:13.669Z"
       },
       "challenge": {
         "word": "challenge",
@@ -92798,6 +92871,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T12:50:08.652Z"
+      },
+      "common-mode current": {
+        "word": "common-mode current",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:02:00.087Z"
       },
       "compliance": {
         "word": "compliance",
@@ -92877,6 +92956,24 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:12:07.003Z"
       },
+      "consultant question": {
+        "word": "consultant question",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:51:28.178Z"
+      },
+      "contamination": {
+        "word": "contamination",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:50:30.009Z"
+      },
+      "control plan": {
+        "word": "control plan",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:57:36.169Z"
+      },
       "converter noise": {
         "word": "converter noise",
         "practice_count": 1,
@@ -92895,6 +92992,18 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:40:53.146Z"
       },
+      "copper braided strap": {
+        "word": "copper braided strap",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:55:50.629Z"
+      },
+      "copper busbar": {
+        "word": "copper busbar",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:55:39.450Z"
+      },
       "copper foil": {
         "word": "copper foil",
         "practice_count": 1,
@@ -92912,6 +93021,18 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:11:50.563Z"
+      },
+      "counterpoise": {
+        "word": "counterpoise",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:48:06.216Z"
+      },
+      "coupling path": {
+        "word": "coupling path",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:01:00.778Z"
       },
       "crimped": {
         "word": "crimped",
@@ -92936,6 +93057,12 @@
         "practice_count": 5,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:51:31.713Z"
+      },
+      "desense": {
+        "word": "desense",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:47:22.836Z"
       },
       "desensitization": {
         "word": "desensitization",
@@ -92973,6 +93100,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:50:58.253Z"
       },
+      "disturb": {
+        "word": "disturb",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:51:18.779Z"
+      },
       "documentation": {
         "word": "documentation",
         "practice_count": 1,
@@ -92990,6 +93123,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:10:13.274Z"
+      },
+      "edge frame": {
+        "word": "edge frame",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:05:02.929Z"
       },
       "eed": {
         "word": "EED",
@@ -93045,11 +93184,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:41:36.017Z"
       },
+      "electromagnetic environmental effects": {
+        "word": "Electromagnetic Environmental Effects",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:56:57.729Z"
+      },
       "electromagnetic environmental effects (e3)": {
         "word": "Electromagnetic Environmental Effects (E3)",
         "practice_count": 2,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:48:13.263Z"
+      },
+      "electromagnetic environmental effects (e3) control plan": {
+        "word": "Electromagnetic Environmental Effects (E3) Control Plan",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:58:07.729Z"
+      },
+      "engineering design assumption": {
+        "word": "engineering design assumption",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:54:24.667Z"
       },
       "engineering drawing": {
         "word": "engineering drawing",
@@ -93099,6 +93256,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:58:15.618Z"
       },
+      "establishes": {
+        "word": "establishes",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:55:29.400Z"
+      },
       "ethercan": {
         "word": "EtherCAN",
         "practice_count": 1,
@@ -93117,11 +93280,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:07:08.254Z"
       },
+      "evidence": {
+        "word": "evidence",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:52:59.048Z"
+      },
       "experience": {
         "word": "experience",
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:15:11.876Z"
+      },
+      "exposure": {
+        "word": "exposure",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:49:56.399Z"
+      },
+      "external rf electromagnetic environment (eme)": {
+        "word": "external RF Electromagnetic Environment (EME)",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:59:33.462Z"
       },
       "external source": {
         "word": "external source",
@@ -93147,11 +93328,23 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:43:34.693Z"
       },
+      "faying interface": {
+        "word": "faying interface",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:04:27.140Z"
+      },
       "filter integration": {
         "word": "filter integration",
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:56:55.919Z"
+      },
+      "final requirement": {
+        "word": "final requirement",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:54:35.380Z"
       },
       "firing circuit": {
         "word": "firing circuit",
@@ -93171,11 +93364,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-03T23:47:04.976Z"
       },
+      "floating enclosure": {
+        "word": "floating enclosure",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:01:09.999Z"
+      },
+      "floating shield": {
+        "word": "floating shield",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:01:19.149Z"
+      },
       "flowdown": {
         "word": "flowdown",
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-03T00:09:56.718Z"
+      },
+      "for more details": {
+        "word": "for more details",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:09:05.217Z"
       },
       "foreign matter": {
         "word": "foreign matter",
@@ -93194,6 +93405,12 @@
         "practice_count": 3,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T10:36:33.311Z"
+      },
+      "functional degradation": {
+        "word": "functional degradation",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:45:56.484Z"
       },
       "galvanic series": {
         "word": "galvanic series",
@@ -93243,6 +93460,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:54:59.155Z"
       },
+      "harsh": {
+        "word": "harsh",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:50:11.629Z"
+      },
       "hero": {
         "word": "HERO",
         "practice_count": 1,
@@ -93254,6 +93477,18 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:58:30.815Z"
+      },
+      "high di/dt": {
+        "word": "high di/dt",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:02:11.007Z"
+      },
+      "high dv/dt": {
+        "word": "high dv/dt",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:02:22.587Z"
       },
       "high-frequency": {
         "word": "high-frequency",
@@ -93272,6 +93507,12 @@
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:57:58.652Z"
+      },
+      "impedance requirement": {
+        "word": "impedance requirement",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:59:43.272Z"
       },
       "implementation": {
         "word": "implementation",
@@ -93303,11 +93544,23 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:06:52.264Z"
       },
+      "induced level": {
+        "word": "induced level",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:47:03.910Z"
+      },
       "ineffective": {
         "word": "ineffective",
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:09:08.234Z"
+      },
+      "instead of": {
+        "word": "instead of",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:53:16.328Z"
       },
       "integration": {
         "word": "integration",
@@ -93327,6 +93580,18 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:04:45.475Z"
       },
+      "interconnect": {
+        "word": "interconnect",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:56:35.679Z"
+      },
+      "interface": {
+        "word": "interface",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:53:25.068Z"
+      },
       "interface constraint": {
         "word": "interface constraint",
         "practice_count": 3,
@@ -93345,6 +93610,18 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T11:53:11.726Z"
       },
+      "internally": {
+        "word": "internally",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:53:52.628Z"
+      },
+      "intra-system electromagnetic compatibility (emc)": {
+        "word": "intra-system Electromagnetic Compatibility (EMC)",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:59:03.308Z"
+      },
       "introduction": {
         "word": "introduction",
         "practice_count": 1,
@@ -93362,6 +93639,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:09:57.374Z"
+      },
+      "latched fault": {
+        "word": "latched fault",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:45:34.265Z"
       },
       "launch operation": {
         "word": "launch operation",
@@ -93386,6 +93669,18 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:02:29.625Z"
+      },
+      "lightning indirect effects": {
+        "word": "lightning indirect effects",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:03:43.410Z"
+      },
+      "load step": {
+        "word": "load step",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:02:57.893Z"
       },
       "local chassis": {
         "word": "local chassis",
@@ -93453,11 +93748,23 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:44:16.715Z"
       },
+      "mission electromagnetic environment": {
+        "word": "mission electromagnetic environment",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:58:32.558Z"
+      },
       "mission requirement": {
         "word": "mission requirement",
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T11:54:18.038Z"
+      },
+      "mission-critical": {
+        "word": "mission-critical",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:49:21.449Z"
       },
       "mitigation": {
         "word": "mitigation",
@@ -93495,6 +93802,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:46:49.037Z"
       },
+      "noise floor": {
+        "word": "noise floor",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:46:14.660Z"
+      },
       "noise source": {
         "word": "noise source",
         "practice_count": 1,
@@ -93513,11 +93826,23 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:45:06.861Z"
       },
+      "on top of": {
+        "word": "on top of",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:55:11.200Z"
+      },
       "onboard": {
         "word": "onboard",
         "practice_count": 2,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:41:44.796Z"
+      },
+      "operation mode": {
+        "word": "operation mode",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:07:24.294Z"
       },
       "ordnance circuit": {
         "word": "ordnance circuit",
@@ -93530,6 +93855,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:03:41.485Z"
+      },
+      "packet loss": {
+        "word": "packet loss",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:46:23.210Z"
       },
       "pad": {
         "word": "pad",
@@ -93548,6 +93879,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:10:55.583Z"
+      },
+      "parasitic capacitance": {
+        "word": "parasitic capacitance",
+        "practice_count": 4,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:01:40.756Z"
       },
       "particularly": {
         "word": "particularly",
@@ -93579,6 +93916,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:56:35.018Z"
       },
+      "power level control": {
+        "word": "power level control",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:49:03.731Z"
+      },
       "power quality": {
         "word": "power quality",
         "practice_count": 1,
@@ -93603,6 +93946,24 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T01:16:30.404Z"
       },
+      "precipitation static": {
+        "word": "precipitation static",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:03:20.203Z"
+      },
+      "preliminarily": {
+        "word": "preliminarily",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:53:43.807Z"
+      },
+      "preliminary assumption": {
+        "word": "preliminary assumption",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:54:13.417Z"
+      },
       "procedure": {
         "word": "procedure",
         "practice_count": 1,
@@ -93614,6 +93975,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:55:34.159Z"
+      },
+      "property": {
+        "word": "property",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:56:18.080Z"
       },
       "proposed": {
         "word": "proposed",
@@ -93645,6 +94012,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:44:25.388Z"
       },
+      "quiet mode": {
+        "word": "quiet mode",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:06:30.943Z"
+      },
       "radiated emission": {
         "word": "radiated emission",
         "practice_count": 1,
@@ -93669,11 +94042,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:59:55.475Z"
       },
+      "receiver desense": {
+        "word": "receiver desense",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:47:45.995Z"
+      },
+      "refer to": {
+        "word": "refer to",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:08:44.796Z"
+      },
       "reference plane": {
         "word": "reference plane",
         "practice_count": 3,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:43:09.222Z"
+      },
+      "reference ring": {
+        "word": "reference ring",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:05:22.199Z"
       },
       "regarding": {
         "word": "regarding",
@@ -93705,11 +94096,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:50:04.137Z"
       },
+      "response": {
+        "word": "response",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:08:27.896Z"
+      },
       "rf impedance": {
         "word": "RF impedance",
         "practice_count": 2,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:42:22.837Z"
+      },
+      "rf transmit inhibit": {
+        "word": "RF transmit inhibit",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:48:53.491Z"
+      },
+      "rf transmit mode": {
+        "word": "RF transmit mode",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:06:52.345Z"
       },
       "root cause": {
         "word": "root cause",
@@ -93728,6 +94137,12 @@
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:45:03.686Z"
+      },
+      "safety-critical": {
+        "word": "safety-critical",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:49:39.509Z"
       },
       "satisfactory": {
         "word": "satisfactory",
@@ -93807,17 +94222,47 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:53:18.374Z"
       },
+      "source-victim matrix": {
+        "word": "source-victim matrix",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:00:52.248Z"
+      },
       "spark": {
         "word": "spark",
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T11:33:35.381Z"
       },
+      "stitching": {
+        "word": "stitching",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:04:45.229Z"
+      },
       "strike": {
         "word": "strike",
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:56:51.505Z"
+      },
+      "subject to final confirmation": {
+        "word": "subject to final confirmation",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:55:00.770Z"
+      },
+      "subsystem": {
+        "word": "subsystem",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:56:26.440Z"
+      },
+      "supporting explanation": {
+        "word": "supporting explanation",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:52:15.928Z"
       },
       "surface condition": {
         "word": "surface condition",
@@ -93831,11 +94276,29 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:53:03.705Z"
       },
+      "surge protection": {
+        "word": "surge protection",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:02:41.323Z"
+      },
       "susceptibility": {
         "word": "susceptibility",
         "practice_count": 1,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:49:16.723Z"
+      },
+      "system emission map": {
+        "word": "system emission map",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:46:45.870Z"
+      },
+      "system integration": {
+        "word": "system integration",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:56:45.249Z"
       },
       "system requirement": {
         "word": "system requirement",
@@ -93848,6 +94311,12 @@
         "practice_count": 2,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-05T00:48:00.754Z"
+      },
+      "system-level electromagnetic compatibility (emc)": {
+        "word": "system-level Electromagnetic Compatibility (EMC)",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T06:57:27.239Z"
       },
       "table of contents": {
         "word": "table of contents",
@@ -93939,6 +94408,18 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:44:46.693Z"
       },
+      "verification record": {
+        "word": "verification record",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:00:20.841Z"
+      },
+      "victim": {
+        "word": "victim",
+        "practice_count": 2,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:00:30.271Z"
+      },
       "victim circuit": {
         "word": "victim circuit",
         "practice_count": 1,
@@ -93986,6 +94467,12 @@
         "practice_count": 4,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-08-04T09:53:36.238Z"
+      },
+      "worst-case simultaneous operation": {
+        "word": "worst-case simultaneous operation",
+        "practice_count": 3,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-08-07T07:05:49.414Z"
       }
     },
     "settings": {
@@ -93998,12 +94485,12 @@
         "msfc-hdbk-3697": "mission requirement",
         "emc航電詞彙整合2": "integration-stage",
         "emc航電詞彙整合1": "electromagnetic compatibility (emc)",
-        "emc顧問回覆與系統整合詞彙": "consultant question"
+        "emc顧問回覆與系統整合詞彙": "evidence"
       },
       "playback_rate": 1.0,
       "english_repeat_count": 5
     },
-    "settings_updated_at": "2026-08-07T01:15:49.865Z"
+    "settings_updated_at": "2026-08-07T07:09:07.648Z"
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
