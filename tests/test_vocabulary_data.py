@@ -75,6 +75,18 @@ class VocabularyDataTests(unittest.TestCase):
         self.assertTrue(expected.issubset(words))
         self.assertNotIn("distrub", words)
 
+    def test_rf_transmit_terms_use_compact_letter_name_pronunciation(self):
+        rows = {row["word"]: row for row in read_rows(CONSULTANT_PATH)}
+
+        self.assertEqual(
+            rows["RF transmit mode"]["pronunciation"].split("|", 1)[0].strip(),
+            "/ɑːr ef trænzˈmɪt moʊd/",
+        )
+        self.assertEqual(
+            rows["RF transmit inhibit"]["pronunciation"].split("|", 1)[0].strip(),
+            "/ɑːr ef trænzˈmɪt ɪnˈhɪbɪt/",
+        )
+
     def test_msfc_chapter_preserves_ids_after_moving_foundational_terms(self):
         with MSFC_PATH.open("r", encoding="utf-8-sig", newline="") as file:
             reader = csv.DictReader(file)

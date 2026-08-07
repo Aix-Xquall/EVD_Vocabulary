@@ -13,11 +13,13 @@ const {
   findVocabularySource,
   incrementPracticeRecord,
   isCorrectClozeAnswer,
+  ipaVowelHighlightSegments,
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
   resolveChapterWordIndex,
   sanitizePronunciation,
+  shouldHidePronunciation,
   vowelHighlightSegments,
 } = require("../web/learning_helpers.js");
 
@@ -338,4 +340,18 @@ test("pronunciation omits the YouGlish suffix", () => {
     "/ɡælˈvænɪk kəˈroʊʒn/",
   );
   assert.equal(sanitizePronunciation("/ɪmˈpiːdəns/"), "/ɪmˈpiːdəns/");
+});
+
+test("IPA highlighting marks vowel symbols and their length markers", () => {
+  const segments = ipaVowelHighlightSegments("/dɪkˈteɪt iː/");
+  assert.equal(segments.map((segment) => segment.text).join(""), "/dɪkˈteɪt iː/");
+  assert.equal(
+    segments.filter((segment) => segment.isVowel).map((segment) => segment.text).join(""),
+    "ɪeɪiː",
+  );
+});
+
+test("pronunciation is hidden for terms containing Electromagnetic", () => {
+  assert.equal(shouldHidePronunciation("external RF Electromagnetic Environment (EME)"), true);
+  assert.equal(shouldHidePronunciation("RF transmit mode"), false);
 });

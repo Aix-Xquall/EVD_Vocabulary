@@ -17,11 +17,12 @@ const {
   findVocabularySource,
   incrementPracticeRecord,
   isCorrectClozeAnswer,
+  ipaVowelHighlightSegments,
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
   resolveChapterWordIndex,
-  sanitizePronunciation,
+  shouldHidePronunciation,
   vowelHighlightSegments,
 } = window.EvdLearningHelpers;
 const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
@@ -189,7 +190,9 @@ function render() {
   saveCurrentChapterProgress();
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
   elements.wordText.innerHTML = renderWordWithVowels(word.word || "Loading");
-  elements.pronunciationText.textContent = sanitizePronunciation(word.pronunciation);
+  const pronunciationHtml = renderPronunciation(word);
+  elements.pronunciationText.innerHTML = pronunciationHtml;
+  elements.pronunciationText.hidden = !pronunciationHtml;
   elements.meaningText.textContent = word.chinese_meaning || "";
   elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights);
   elements.exampleOneZh.innerHTML = renderTranslationWithTense(word.example_1_zh, word.example_1_tense);
@@ -384,6 +387,7 @@ function buildWordQueue(word, isRepeatCycle = false) {
     addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh, repeatCount, EXAMPLE_GROUP_DELAY_MS);
   }
   if (queue.length > 0) {
+    queue[0].startsWord = word;
     queue[queue.length - 1].completesWord = true;
     queue[queue.length - 1].practiceWord = word;
     queue[queue.length - 1].isRepeatCycle = isRepeatCycle;
@@ -444,8 +448,11 @@ function playNextQueueSegment() {
     return;
   }
   state.queueIndex += 1;
-  updateMediaSession();
   const startSegment = () => {
+    if (segment.startsWord) {
+      showPlaybackWord(segment.startsWord);
+    }
+    updateMediaSession();
     elements.audioPlayer.src = resolveAssetPath(segment.src);
     try {
       elements.audioPlayer.currentTime = 0;
@@ -462,6 +469,16 @@ function playNextQueueSegment() {
   } else {
     startSegment();
   }
+}
+
+function showPlaybackWord(word) {
+  const wordIndex = currentWords().indexOf(word);
+  if (wordIndex < 0 || wordIndex === state.currentIndex) {
+    return;
+  }
+  state.currentIndex = wordIndex;
+  render();
+  markPracticeSettingsChanged();
 }
 
 function updateHardWordControls() {
@@ -1559,6 +1576,17 @@ function renderWordWithVowels(value) {
   return vowelHighlightSegments(value).map((segment) => (
     segment.isVowel
       ? `<span class="word-vowel">${escapeHtml(segment.text)}</span>`
+      : escapeHtml(segment.text)
+  )).join("");
+}
+
+function renderPronunciation(word) {
+  if (shouldHidePronunciation(word?.word)) {
+    return "";
+  }
+  return ipaVowelHighlightSegments(word?.pronunciation).map((segment) => (
+    segment.isVowel
+      ? `<span class="pronunciation-vowel">${escapeHtml(segment.text)}</span>`
       : escapeHtml(segment.text)
   )).join("");
 }

@@ -16,6 +16,25 @@
     return String(value || "").split("|", 1)[0].trim();
   }
 
+  function shouldHidePronunciation(word) {
+    return /\belectromagnetic\b/i.test(String(word || ""));
+  }
+
+  function ipaVowelHighlightSegments(value) {
+    const pronunciation = sanitizePronunciation(value);
+    const segments = [];
+    const ipaVowelPattern = /[iyɨʉɯuɪʏʊeøɘɵɤoəɛœɜɞɚɝʌɔæɐaɶɑɒ]/u;
+    let previousWasVowel = false;
+
+    for (const character of pronunciation) {
+      const isVowel = ipaVowelPattern.test(character)
+        || (previousWasVowel && (character === "ː" || /[\u0300-\u036f]/u.test(character)));
+      appendVowelSegment(segments, character, isVowel);
+      previousWasVowel = isVowel;
+    }
+    return segments;
+  }
+
   function vowelHighlightSegments(value) {
     const text = String(value || "");
     const segments = [];
@@ -533,7 +552,9 @@
     playbackIndex,
     repeatCountForWord,
     resolveChapterWordIndex,
+    ipaVowelHighlightSegments,
     sanitizePronunciation,
+    shouldHidePronunciation,
     vowelHighlightSegments,
   };
 }));

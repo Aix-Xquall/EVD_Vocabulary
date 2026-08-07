@@ -66,7 +66,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('alreadyAdded ? "目前在未熟記單字練習" : ""', app_js)
         self.assertIn('`播放${repeatCount}次`', app_js)
         self.assertIn("word-spacing: 0.5em", styles_css)
-        self.assertIn("--vowel: #15803d", styles_css)
+        self.assertIn("--vowel: #2563eb", styles_css)
         self.assertIn("color: var(--vowel)", styles_css)
 
     def test_word_and_examples_share_the_same_repeat_behavior(self):
@@ -250,8 +250,16 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
 
-        self.assertIn("sanitizePronunciation(word.pronunciation)", app_js)
+        self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn('<script src="learning_helpers.js"></script>', index_html)
+
+    def test_pronunciation_highlights_ipa_vowels_and_hides_electromagnetic_terms(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("shouldHidePronunciation(word?.word)", app_js)
+        self.assertIn('class="pronunciation-vowel"', app_js)
+        self.assertIn(".pronunciation-vowel", styles_css)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -412,6 +420,8 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("const WORD_GROUP_DELAY_MS = 2000;", app_js)
         self.assertIn("wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;", app_js)
+        self.assertIn("queue[0].startsWord = word;", app_js)
+        self.assertIn("showPlaybackWord(segment.startsWord);", app_js)
         self.assertIn("queue.push(...wordQueue);", app_js)
 
     def test_single_word_autoplay_waits_before_switching_to_next_word(self):

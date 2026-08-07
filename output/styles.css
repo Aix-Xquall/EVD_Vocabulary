@@ -8,7 +8,7 @@
   --line: #d7dde6;
   --blue: #2563eb;
   --green: #047857;
-  --vowel: #15803d;
+  --vowel: #2563eb;
   --red: #b42318;
   --amber: #b45309;
 }
@@ -373,7 +373,8 @@ h2 {
   font-size: clamp(1.6rem, 4vw, 3rem);
 }
 
-.word-vowel {
+.word-vowel,
+.pronunciation-vowel {
   color: var(--vowel);
 }
 

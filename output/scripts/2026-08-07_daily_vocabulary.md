@@ -5658,7 +5658,7 @@ Quiet mode 結果會與致動器與 RF 操作模式比較。
 
 ## 258. RF transmit mode
 
-**Pronunciation:** /ˌɑːr ˈef trænzˈmɪt moʊd/ | https://youglish.com/pronounce/RF%20transmit%20mode/english
+**Pronunciation:** /ɑːr ef trænzˈmɪt moʊd/ | https://youglish.com/pronounce/RF%20transmit%20mode/english
 
 **Chinese meaning:** RF 發射模式
 
@@ -5944,7 +5944,7 @@ The receiver may be damaged if the antenna port induced level is too high.
 
 ## 271. RF transmit inhibit
 
-**Pronunciation:** /ˌɑːr ˈef trænzˈmɪt ɪnˈhɪbɪt/ | https://youglish.com/pronounce/RF%20transmit%20inhibit/english
+**Pronunciation:** /ɑːr ef trænzˈmɪt ɪnˈhɪbɪt/ | https://youglish.com/pronounce/RF%20transmit%20inhibit/english
 
 **Chinese meaning:** RF 發射禁止；發射抑制
 
