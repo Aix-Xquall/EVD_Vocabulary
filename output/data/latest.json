@@ -94488,9 +94488,13 @@
         "emc顧問回覆與系統整合詞彙": "evidence"
       },
       "playback_rate": 1.0,
-      "english_repeat_count": 5
+      "english_repeat_count": 5,
+      "word_vowel_color": "#eb2424",
+      "word_consonant_color": "#1f2937",
+      "ipa_vowel_color": "#eb2424",
+      "ipa_consonant_color": "#1f2937"
     },
-    "settings_updated_at": "2026-08-07T07:09:07.648Z"
+    "settings_updated_at": "2026-08-08T14:59:02.816Z"
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
