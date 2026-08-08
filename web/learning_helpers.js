@@ -16,6 +16,11 @@
     return String(value || "").split("|", 1)[0].trim();
   }
 
+  function normalizeHexColor(value, fallback) {
+    const color = String(value || "").trim().toLowerCase();
+    return /^#[0-9a-f]{6}$/.test(color) ? color : fallback;
+  }
+
   function shouldHidePronunciation(word) {
     return /\belectromagnetic\b/i.test(String(word || ""));
   }
@@ -553,6 +558,7 @@
     repeatCountForWord,
     resolveChapterWordIndex,
     ipaVowelHighlightSegments,
+    normalizeHexColor,
     sanitizePronunciation,
     shouldHidePronunciation,
     vowelHighlightSegments,

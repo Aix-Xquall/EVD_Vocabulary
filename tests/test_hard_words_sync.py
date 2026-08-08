@@ -157,7 +157,9 @@ class HardWordsSyncTests(unittest.TestCase):
                 '"repeat_all":false,"repeat_current":true,"include_examples":false,'
                 '"playback_direction":"reverse",'
                 '"chapter_positions":{"emc-1":"low impedance","hard-words":"EMC"},'
-                '"playback_rate":1.2,"english_repeat_count":4},'
+                '"playback_rate":1.2,"english_repeat_count":4,'
+                '"word_vowel_color":"#2563EB","word_consonant_color":"#111827",'
+                '"ipa_vowel_color":"#0891b2","ipa_consonant_color":"invalid"},'
                 '"su":"2026-07-31T02:00:00.000Z"}'
             )
             snapshot.write_text(
@@ -178,6 +180,10 @@ class HardWordsSyncTests(unittest.TestCase):
             )
             self.assertEqual(practice_state["settings"]["playback_rate"], 1.2)
             self.assertEqual(practice_state["settings"]["english_repeat_count"], 4)
+            self.assertEqual(practice_state["settings"]["word_vowel_color"], "#2563eb")
+            self.assertEqual(practice_state["settings"]["word_consonant_color"], "#111827")
+            self.assertEqual(practice_state["settings"]["ipa_vowel_color"], "#0891b2")
+            self.assertNotIn("ipa_consonant_color", practice_state["settings"])
             self.assertEqual(practice_state["settings_updated_at"], "2026-07-31T02:00:00.000Z")
 
     def test_sync_hard_words_from_csv_text_rejects_non_vocabulary_csv(self):

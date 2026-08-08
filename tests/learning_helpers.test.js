@@ -14,6 +14,7 @@ const {
   incrementPracticeRecord,
   isCorrectClozeAnswer,
   ipaVowelHighlightSegments,
+  normalizeHexColor,
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
@@ -354,4 +355,10 @@ test("IPA highlighting marks vowel symbols and their length markers", () => {
 test("pronunciation is hidden for terms containing Electromagnetic", () => {
   assert.equal(shouldHidePronunciation("external RF Electromagnetic Environment (EME)"), true);
   assert.equal(shouldHidePronunciation("RF transmit mode"), false);
+});
+
+test("learning colors accept only six-digit hexadecimal values", () => {
+  assert.equal(normalizeHexColor("#2563EB", "#000000"), "#2563eb");
+  assert.equal(normalizeHexColor("#fff", "#000000"), "#000000");
+  assert.equal(normalizeHexColor("blue", "#000000"), "#000000");
 });

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVD Daily Vocabulary</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260808-palette32c">
   </head>
   <body>
     <main class="app-shell">
@@ -64,6 +64,29 @@
               英文重複 <output id="exampleRepeatCountValue">5</output>
               <input id="exampleRepeatCount" type="range" min="1" max="5" step="1" value="5">
             </label>
+            <fieldset class="color-settings">
+              <legend>單字與音標顏色</legend>
+              <div class="color-control">
+                <span>單字 aeiou</span>
+                <button id="wordVowelColor" class="color-picker-trigger" type="button" aria-label="選擇單字 aeiou 顏色" aria-haspopup="true" aria-expanded="false"></button>
+              </div>
+              <div class="color-control">
+                <span>單字其他字母</span>
+                <button id="wordConsonantColor" class="color-picker-trigger" type="button" aria-label="選擇單字其他字母顏色" aria-haspopup="true" aria-expanded="false"></button>
+              </div>
+              <div class="color-control">
+                <span>音標母音</span>
+                <button id="ipaVowelColor" class="color-picker-trigger" type="button" aria-label="選擇音標母音顏色" aria-haspopup="true" aria-expanded="false"></button>
+              </div>
+              <div class="color-control">
+                <span>音標子音</span>
+                <button id="ipaConsonantColor" class="color-picker-trigger" type="button" aria-label="選擇音標子音顏色" aria-haspopup="true" aria-expanded="false"></button>
+              </div>
+              <div id="colorPalette" class="color-palette" hidden>
+                <p id="colorPaletteTitle"></p>
+                <div id="colorPaletteOptions" class="color-palette-options" role="group" aria-labelledby="colorPaletteTitle"></div>
+              </div>
+            </fieldset>
             <button id="combinedAudioButton" type="button">播放本章節</button>
           </div>
           <div class="settings-sync">
@@ -153,7 +176,7 @@
     </main>
 
     <audio id="audioPlayer" preload="metadata"></audio>
-    <script src="learning_helpers.js"></script>
-    <script src="app.js"></script>
+    <script src="learning_helpers.js?v=20260808-palette32c"></script>
+    <script src="app.js?v=20260808-palette32c"></script>
   </body>
 </html>

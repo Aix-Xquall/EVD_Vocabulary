@@ -5,6 +5,26 @@ const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
 const REPEAT_CURRENT_DELAY_MS = 1500;
 const ANSWER_DIFFERENCE_HIGHLIGHT_THRESHOLD = 75;
+const DEFAULT_WORD_VOWEL_COLOR = "#2563eb";
+const DEFAULT_WORD_CONSONANT_COLOR = "#1f2937";
+const DEFAULT_IPA_VOWEL_COLOR = "#2563eb";
+const DEFAULT_IPA_CONSONANT_COLOR = "#1f2937";
+const LEARNING_COLOR_OPTIONS = Object.freeze([
+  ["黑色", "#111827"], ["深灰", "#1f2937"], ["石板灰", "#334155"], ["灰色", "#4b5563"],
+  ["紅色", "#eb2424"], ["深紅", "#991b1b"], ["橙色", "#c2410c"], ["深橙", "#9a3412"],
+  ["琥珀", "#b45309"], ["棕黃", "#92400e"], ["橄欖綠", "#4d7c0f"], ["深橄欖綠", "#3f6212"],
+  ["綠色", "#15803d"], ["深綠", "#166534"], ["翠綠", "#047857"], ["深翠綠", "#065f46"],
+  ["青綠", "#0f766e"], ["深青綠", "#115e59"], ["青色", "#0e7490"], ["深青", "#155e75"],
+  ["天藍", "#0369a1"], ["深天藍", "#075985"], ["藍色", "#2563eb"], ["深藍", "#1d4ed8"],
+  ["靛藍", "#4338ca"], ["深靛藍", "#3730a3"], ["紫色", "#7e22ce"], ["深紫", "#6b21a8"],
+  ["洋紅", "#a21caf"], ["深洋紅", "#86198f"], ["桃紅", "#be185d"], ["玫瑰紅", "#be123c"],
+]);
+const LEARNING_COLOR_SETTINGS = Object.freeze({
+  wordVowelColor: "單字 aeiou",
+  wordConsonantColor: "單字其他字母",
+  ipaVowelColor: "音標母音",
+  ipaConsonantColor: "音標子音",
+});
 const {
   buildClozeCandidates,
   buildSuggestionSegments,
@@ -18,6 +38,7 @@ const {
   incrementPracticeRecord,
   isCorrectClozeAnswer,
   ipaVowelHighlightSegments,
+  normalizeHexColor,
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
@@ -55,6 +76,10 @@ const state = {
   playbackDirection: "forward",
   playbackRate: DEFAULT_PLAYBACK_RATE,
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
+  wordVowelColor: DEFAULT_WORD_VOWEL_COLOR,
+  wordConsonantColor: DEFAULT_WORD_CONSONANT_COLOR,
+  ipaVowelColor: DEFAULT_IPA_VOWEL_COLOR,
+  ipaConsonantColor: DEFAULT_IPA_CONSONANT_COLOR,
   playbackQueue: [],
   queueIndex: 0,
   isPaused: false,
@@ -118,6 +143,13 @@ const elements = {
   playbackRateValue: document.getElementById("playbackRateValue"),
   exampleRepeatCount: document.getElementById("exampleRepeatCount"),
   exampleRepeatCountValue: document.getElementById("exampleRepeatCountValue"),
+  wordVowelColor: document.getElementById("wordVowelColor"),
+  wordConsonantColor: document.getElementById("wordConsonantColor"),
+  ipaVowelColor: document.getElementById("ipaVowelColor"),
+  ipaConsonantColor: document.getElementById("ipaConsonantColor"),
+  colorPalette: document.getElementById("colorPalette"),
+  colorPaletteTitle: document.getElementById("colorPaletteTitle"),
+  colorPaletteOptions: document.getElementById("colorPaletteOptions"),
   combinedAudioButton: document.getElementById("combinedAudioButton"),
   toggleMeaningButton: document.getElementById("toggleMeaningButton"),
   audioPlayer: document.getElementById("audioPlayer"),
@@ -891,6 +923,10 @@ function currentPracticeSettings() {
     playback_direction: state.playbackDirection,
     playback_rate: state.playbackRate,
     english_repeat_count: state.englishRepeatCount,
+    word_vowel_color: state.wordVowelColor,
+    word_consonant_color: state.wordConsonantColor,
+    ipa_vowel_color: state.ipaVowelColor,
+    ipa_consonant_color: state.ipaConsonantColor,
   };
 }
 
@@ -924,6 +960,23 @@ function applyPracticeSettings(settings) {
   state.englishRepeatCount = clampRepeatCount(
     settings.english_repeat_count ?? state.englishRepeatCount,
   );
+  state.wordVowelColor = normalizeHexColor(
+    settings.word_vowel_color,
+    state.wordVowelColor,
+  );
+  state.wordConsonantColor = normalizeHexColor(
+    settings.word_consonant_color,
+    state.wordConsonantColor,
+  );
+  state.ipaVowelColor = normalizeHexColor(
+    settings.ipa_vowel_color,
+    state.ipaVowelColor,
+  );
+  state.ipaConsonantColor = normalizeHexColor(
+    settings.ipa_consonant_color,
+    state.ipaConsonantColor,
+  );
+  applyLearningColors();
   const chapterId = String(settings.selected_chapter_id || "");
   const chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
   if (chapterIndex >= 0) {
@@ -1034,8 +1087,104 @@ function updateSettingsControls() {
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
   elements.exampleRepeatCount.value = String(state.englishRepeatCount);
   elements.exampleRepeatCountValue.textContent = String(state.englishRepeatCount);
+  updateColorPickerTriggers();
+  applyLearningColors();
   const directionLabel = state.playbackDirection === "reverse" ? "反向播放" : "正向播放";
   elements.settingsSummary.textContent = `(${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次 · ${directionLabel})`;
+}
+
+function applyLearningColors() {
+  const root = document.documentElement;
+  root.style.setProperty("--word-vowel", state.wordVowelColor);
+  root.style.setProperty("--word-consonant", state.wordConsonantColor);
+  root.style.setProperty("--ipa-vowel", state.ipaVowelColor);
+  root.style.setProperty("--ipa-consonant", state.ipaConsonantColor);
+}
+
+let activeColorStateKey = "";
+
+function colorOptionName(value) {
+  return LEARNING_COLOR_OPTIONS.find((option) => option[1] === value)?.[0]
+    || value.toUpperCase();
+}
+
+function updateColorPickerTriggers() {
+  Object.entries(LEARNING_COLOR_SETTINGS).forEach(([stateKey, label]) => {
+    const trigger = elements[stateKey];
+    const color = state[stateKey];
+    const colorName = colorOptionName(color);
+    trigger.style.setProperty("--selected-color", color);
+    trigger.title = `${label}：${colorName}`;
+    trigger.setAttribute("aria-label", `${label}目前為${colorName}，選擇顏色`);
+    trigger.setAttribute(
+      "aria-expanded",
+      String(activeColorStateKey === stateKey && !elements.colorPalette.hidden),
+    );
+  });
+}
+
+function closeColorPalette() {
+  activeColorStateKey = "";
+  elements.colorPalette.hidden = true;
+  updateColorPickerTriggers();
+}
+
+function renderColorPaletteOptions() {
+  elements.colorPaletteOptions.replaceChildren();
+  LEARNING_COLOR_OPTIONS.forEach(([name, value]) => {
+    const swatch = document.createElement("button");
+    const selected = state[activeColorStateKey] === value;
+    swatch.type = "button";
+    swatch.className = `color-option${selected ? " selected" : ""}`;
+    swatch.style.setProperty("--swatch-color", value);
+    swatch.title = `${name} ${value.toUpperCase()}`;
+    swatch.setAttribute("aria-label", name);
+    swatch.setAttribute("aria-pressed", String(selected));
+    swatch.addEventListener("click", () => {
+      const stateKey = activeColorStateKey;
+      if (!stateKey) {
+        return;
+      }
+      state[stateKey] = value;
+      closeColorPalette();
+      applyLearningColors();
+      markPracticeSettingsChanged();
+    });
+    elements.colorPaletteOptions.appendChild(swatch);
+  });
+}
+
+function toggleColorPalette(stateKey) {
+  if (activeColorStateKey === stateKey && !elements.colorPalette.hidden) {
+    closeColorPalette();
+    return;
+  }
+  activeColorStateKey = stateKey;
+  elements.colorPaletteTitle.textContent = `${LEARNING_COLOR_SETTINGS[stateKey]}顏色`;
+  elements.colorPalette.hidden = false;
+  renderColorPaletteOptions();
+  updateColorPickerTriggers();
+}
+
+function initializeColorPalette() {
+  Object.keys(LEARNING_COLOR_SETTINGS).forEach((stateKey) => {
+    elements[stateKey].addEventListener("click", () => toggleColorPalette(stateKey));
+  });
+  document.addEventListener("click", (event) => {
+    if (
+      elements.colorPalette.hidden
+      || elements.colorPalette.contains(event.target)
+      || event.target.closest(".color-picker-trigger")
+    ) {
+      return;
+    }
+    closeColorPalette();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !elements.colorPalette.hidden) {
+      closeColorPalette();
+    }
+  });
 }
 
 function compactPracticeStatsSnapshot() {
@@ -1699,6 +1848,7 @@ elements.exampleRepeatCount.addEventListener("input", (event) => {
   updateMasteredControls();
   markPracticeSettingsChanged();
 });
+initializeColorPalette();
 elements.toggleMeaningButton.addEventListener("click", () => {
   state.hideMeaning = !state.hideMeaning;
   elements.toggleMeaningButton.textContent = state.hideMeaning ? "顯示中文" : "隱藏中文";

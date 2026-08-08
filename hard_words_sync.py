@@ -191,6 +191,17 @@ def _parse_practice_settings(value: object) -> dict:
             settings["english_repeat_count"] = repeat_count
     except (TypeError, ValueError):
         pass
+    for key in (
+        "word_vowel_color",
+        "word_consonant_color",
+        "ipa_vowel_color",
+        "ipa_consonant_color",
+    ):
+        color = str(value.get(key) or "").strip().lower()
+        if len(color) == 7 and color.startswith("#") and all(
+            character in "0123456789abcdef" for character in color[1:]
+        ):
+            settings[key] = color
     return settings
 
 

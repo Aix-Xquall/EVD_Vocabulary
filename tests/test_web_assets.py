@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import unittest
 
 
@@ -66,8 +67,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('alreadyAdded ? "目前在未熟記單字練習" : ""', app_js)
         self.assertIn('`播放${repeatCount}次`', app_js)
         self.assertIn("word-spacing: 0.5em", styles_css)
-        self.assertIn("--vowel: #2563eb", styles_css)
-        self.assertIn("color: var(--vowel)", styles_css)
+        self.assertIn("--word-vowel: #2563eb", styles_css)
+        self.assertIn("color: var(--word-vowel)", styles_css)
 
     def test_word_and_examples_share_the_same_repeat_behavior(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -251,7 +252,10 @@ class WebAssetsTests(unittest.TestCase):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
-        self.assertIn('<script src="learning_helpers.js"></script>', index_html)
+        self.assertIn(
+            '<script src="learning_helpers.js?v=20260808-palette32c"></script>',
+            index_html,
+        )
 
     def test_pronunciation_highlights_ipa_vowels_and_hides_electromagnetic_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -260,6 +264,41 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("shouldHidePronunciation(word?.word)", app_js)
         self.assertIn('class="pronunciation-vowel"', app_js)
         self.assertIn(".pronunciation-vowel", styles_css)
+        self.assertIn(".pronunciation {\n  color: var(--ipa-consonant);", styles_css)
+
+    def test_word_and_ipa_colors_are_selectable_and_cloud_synchronized(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        for control_id in (
+            "wordVowelColor",
+            "wordConsonantColor",
+            "ipaVowelColor",
+            "ipaConsonantColor",
+        ):
+            self.assertIn(f'id="{control_id}" class="color-picker-trigger"', index_html)
+        for setting_key in (
+            "word_vowel_color",
+            "word_consonant_color",
+            "ipa_vowel_color",
+            "ipa_consonant_color",
+        ):
+            self.assertIn(f"{setting_key}:", app_js)
+            self.assertIn(f"settings.{setting_key}", app_js)
+        self.assertIn('root.style.setProperty("--word-vowel"', app_js)
+        self.assertIn('root.style.setProperty("--ipa-consonant"', app_js)
+        self.assertIn("color: var(--word-consonant)", styles_css)
+        self.assertIn("color: var(--ipa-vowel)", styles_css)
+        self.assertIn('id="colorPaletteOptions"', index_html)
+        self.assertIn("initializeColorPalette();", app_js)
+        palette_source = app_js.split("const LEARNING_COLOR_OPTIONS", 1)[1].split("]);", 1)[0]
+        self.assertEqual(
+            32,
+            len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
+        )
+        self.assertIn('href="styles.css?v=20260808-palette32c"', index_html)
+        self.assertIn('src="app.js?v=20260808-palette32c"', index_html)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
