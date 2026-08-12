@@ -297,7 +297,7 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260812-important-examples"', index_html)
+        self.assertIn('href="styles.css?v=20260812-important-checkbox"', index_html)
         self.assertIn('src="app.js?v=20260812-important-examples"', index_html)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
@@ -453,6 +453,8 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn('id="exampleOneImportant" type="checkbox"', index_html)
         self.assertIn('id="exampleTwoImportant" type="checkbox"', index_html)
+        self.assertEqual(index_html.count('aria-label="標記重要例句"'), 2)
+        self.assertNotIn("<span>重要</span>", index_html)
         self.assertIn('id="importantExamplesSyncStatus"', index_html)
         self.assertIn("IMPORTANT_EXAMPLES_LOCAL_KEY", app_js)
         self.assertIn('action: "important_example"', app_js)

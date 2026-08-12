@@ -629,13 +629,11 @@ h2 {
 }
 
 .important-example-toggle {
+  width: 32px;
   min-height: 32px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 0.88rem;
-  font-weight: 700;
+  justify-content: center;
   cursor: pointer;
 }
 
@@ -644,10 +642,6 @@ h2 {
   height: 18px;
   margin: 0;
   accent-color: var(--blue);
-}
-
-.important-example-toggle:has(input:checked) {
-  color: var(--blue);
 }
 
 .example-copy {
