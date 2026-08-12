@@ -50,9 +50,12 @@ const HARD_WORDS_PASSCODE_KEY = "evd-hard-words-passcode";
 const HARD_WORDS_LOCAL_KEY = "evd-hard-words-local-state";
 const MASTERED_WORDS_LOCAL_KEY = "evd-mastered-words-local-state";
 const PRACTICE_STATS_LOCAL_KEY = "evd-practice-stats-v1";
+const IMPORTANT_EXAMPLES_LOCAL_KEY = "evd-important-examples-v1";
 const PRACTICE_STATS_SENTINEL_WORD = "__EVD_PRACTICE_STATS__";
-const PRACTICE_STATS_SYNC_DELAY_MS = 60000;
-const PRACTICE_STATS_MIN_SYNC_INTERVAL_MS = 300000;
+const PRACTICE_STATS_SYNC_DELAY_MS = 5000;
+const PRACTICE_STATS_MIN_SYNC_INTERVAL_MS = 15000;
+const CLOUD_STATE_REFRESH_MIN_INTERVAL_MS = 10000;
+const CLOUD_STATE_TIMEOUT_MS = 15000;
 const HARD_WORD_STATUS = {
   active: "active",
   removed: "removed",
@@ -98,6 +101,11 @@ const state = {
   practiceStatsSyncTimer: null,
   practiceStatsLastSyncAt: 0,
   practiceSettingsUpdatedAt: "",
+  importantExamples: new Map(),
+  importantExamplesPending: new Set(),
+  importantExamplesSyncing: false,
+  cloudStateLastRefreshAt: 0,
+  cloudStateRequest: null,
   directPlayback: null,
   practice: {
     current: null,
@@ -132,6 +140,9 @@ const elements = {
   exampleOneZh: document.getElementById("exampleOneZh"),
   exampleTwoEn: document.getElementById("exampleTwoEn"),
   exampleTwoZh: document.getElementById("exampleTwoZh"),
+  exampleOneImportant: document.getElementById("exampleOneImportant"),
+  exampleTwoImportant: document.getElementById("exampleTwoImportant"),
+  importantExamplesSyncStatus: document.getElementById("importantExamplesSyncStatus"),
   playButton: document.getElementById("playButton"),
   previousButton: document.getElementById("previousButton"),
   nextButton: document.getElementById("nextButton"),
@@ -230,6 +241,7 @@ function render() {
   elements.exampleOneZh.innerHTML = renderTranslationWithTense(word.example_1_zh, word.example_1_tense);
   elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word, word.example_2_tense?.highlights);
   elements.exampleTwoZh.innerHTML = renderTranslationWithTense(word.example_2_zh, word.example_2_tense);
+  updateImportantExampleControls(chapter, word);
   elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
@@ -825,6 +837,280 @@ async function postHardWord(word, passcode, status) {
   }
 }
 
+function importantExampleKey(word, exampleNumber) {
+  const wordKey = hardWordKey(word);
+  return wordKey ? `${wordKey}::${exampleNumber}` : "";
+}
+
+function normalizeImportantExample(record, fallbackKey = "") {
+  const exampleKey = String(record?.example_key || fallbackKey || "").trim();
+  if (!exampleKey) {
+    return null;
+  }
+  return {
+    example_key: exampleKey,
+    source_chapter: String(record?.source_chapter || ""),
+    source_id: String(record?.source_id || ""),
+    example_number: Number(record?.example_number) === 2 ? 2 : 1,
+    word: String(record?.word || ""),
+    example_en: String(record?.example_en || ""),
+    important: record?.important === true || String(record?.important).toLowerCase() === "true",
+    updated_at: String(record?.updated_at || ""),
+  };
+}
+
+function readImportantExamplesLocalState() {
+  const empty = { records: {}, pending: [] };
+  const raw = localStorage.getItem(IMPORTANT_EXAMPLES_LOCAL_KEY);
+  if (!raw) {
+    return empty;
+  }
+  try {
+    const saved = JSON.parse(raw);
+    return {
+      records: saved?.records && typeof saved.records === "object" ? saved.records : {},
+      pending: Array.isArray(saved?.pending) ? saved.pending : [],
+    };
+  } catch (error) {
+    localStorage.removeItem(IMPORTANT_EXAMPLES_LOCAL_KEY);
+    return empty;
+  }
+}
+
+function saveImportantExamplesLocalState() {
+  localStorage.setItem(IMPORTANT_EXAMPLES_LOCAL_KEY, JSON.stringify({
+    records: Object.fromEntries(state.importantExamples),
+    pending: [...state.importantExamplesPending],
+  }));
+}
+
+function restoreImportantExamplesLocalState() {
+  const saved = readImportantExamplesLocalState();
+  Object.entries(saved.records).forEach(([exampleKey, record]) => {
+    const normalized = normalizeImportantExample(record, exampleKey);
+    if (normalized) {
+      state.importantExamples.set(exampleKey, normalized);
+    }
+  });
+  saved.pending.forEach((exampleKey) => {
+    if (state.importantExamples.has(exampleKey)) {
+      state.importantExamplesPending.add(exampleKey);
+    }
+  });
+}
+
+function importantExampleRecord(chapter, word, exampleNumber, important) {
+  return {
+    example_key: importantExampleKey(word, exampleNumber),
+    source_chapter: chapter.title || chapterKey(chapter),
+    source_id: String(word.id || ""),
+    example_number: exampleNumber,
+    word: word.word || "",
+    example_en: word[`example_${exampleNumber}_en`] || "",
+    important,
+    updated_at: new Date().toISOString(),
+  };
+}
+
+function updateImportantExampleControls(chapter, word) {
+  [1, 2].forEach((exampleNumber) => {
+    const checkbox = exampleNumber === 1
+      ? elements.exampleOneImportant
+      : elements.exampleTwoImportant;
+    const exampleText = String(word[`example_${exampleNumber}_en`] || "").trim();
+    const record = state.importantExamples.get(importantExampleKey(word, exampleNumber));
+    checkbox.checked = Boolean(record?.important);
+    checkbox.disabled = !exampleText;
+  });
+  updateImportantExamplesSyncStatus();
+}
+
+function updateImportantExamplesSyncStatus(message = "") {
+  const pendingCount = state.importantExamplesPending.size;
+  const text = message || (pendingCount > 0 ? `有 ${pendingCount} 筆重要例句待同步` : "");
+  elements.importantExamplesSyncStatus.textContent = text;
+  elements.importantExamplesSyncStatus.hidden = !text;
+}
+
+function toggleImportantExample(exampleNumber, important) {
+  const chapter = currentChapter();
+  const word = currentWord();
+  const record = importantExampleRecord(chapter, word, exampleNumber, important);
+  if (!record.example_key || !record.example_en) {
+    return;
+  }
+  state.importantExamples.set(record.example_key, record);
+  state.importantExamplesPending.add(record.example_key);
+  saveImportantExamplesLocalState();
+  updateImportantExamplesSyncStatus();
+  syncPendingImportantExamples(true);
+}
+
+async function postClientPayload(payload) {
+  const response = await fetch(state.hardWordsWriteUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload),
+  });
+  if (response.type !== "opaque" && !response.ok) {
+    throw new Error("Cloud sync failed.");
+  }
+}
+
+async function syncPendingImportantExamples(promptForPasscode = false) {
+  if (
+    state.importantExamplesSyncing
+    || state.importantExamplesPending.size === 0
+    || !state.hardWordsWriteUrl
+    || !navigator.onLine
+  ) {
+    return;
+  }
+  const passcode = promptForPasscode
+    ? getHardWordsPasscode()
+    : localStorage.getItem(HARD_WORDS_PASSCODE_KEY) || "";
+  if (!passcode) {
+    updateImportantExamplesSyncStatus("重要例句已保存在本機，設定同步密碼後將自動同步");
+    return;
+  }
+  state.importantExamplesSyncing = true;
+  let finalStatus = "";
+  updateImportantExamplesSyncStatus("重要例句同步中...");
+  try {
+    const cloudState = await refreshCloudState(false, true);
+    if (!cloudState || Number(cloudState.api_version) < 2) {
+      finalStatus = "請先更新並重新部署 Google Apps Script，重要例句已保存在本機";
+      return;
+    }
+    for (const exampleKey of [...state.importantExamplesPending]) {
+      const record = state.importantExamples.get(exampleKey);
+      if (record) {
+        await postClientPayload({ action: "important_example", passcode, ...record });
+      }
+    }
+    await new Promise((resolve) => window.setTimeout(resolve, 400));
+    await refreshCloudState(false, true);
+  } catch (error) {
+    finalStatus = "重要例句同步失敗，恢復連線後會自動重試";
+  } finally {
+    state.importantExamplesSyncing = false;
+    saveImportantExamplesLocalState();
+    updateImportantExamplesSyncStatus(finalStatus);
+  }
+}
+
+function mergeCloudImportantExamples(records = {}) {
+  Object.entries(records).forEach(([exampleKey, cloudRecord]) => {
+    const normalized = normalizeImportantExample(cloudRecord, exampleKey);
+    if (!normalized) {
+      return;
+    }
+    const local = state.importantExamples.get(exampleKey);
+    const isPending = state.importantExamplesPending.has(exampleKey);
+    if (isPending && local && local.updated_at > normalized.updated_at) {
+      return;
+    }
+    if (!local || normalized.updated_at >= local.updated_at) {
+      state.importantExamples.set(exampleKey, normalized);
+    }
+    if (
+      isPending
+      && local
+      && normalized.important === local.important
+      && normalized.updated_at >= local.updated_at
+    ) {
+      state.importantExamplesPending.delete(exampleKey);
+    }
+  });
+  saveImportantExamplesLocalState();
+}
+
+function fetchCloudState(passcode) {
+  return new Promise((resolve, reject) => {
+    const callbackName = `__evdCloudState${Date.now()}${Math.floor(Math.random() * 100000)}`;
+    const script = document.createElement("script");
+    const timeout = window.setTimeout(() => {
+      cleanup();
+      reject(new Error("Cloud state request timed out."));
+    }, CLOUD_STATE_TIMEOUT_MS);
+    const cleanup = () => {
+      window.clearTimeout(timeout);
+      script.remove();
+      delete window[callbackName];
+    };
+    window[callbackName] = (payload) => {
+      cleanup();
+      if (!payload?.ok) {
+        reject(new Error(payload?.error || "Cloud state request failed."));
+        return;
+      }
+      resolve(payload);
+    };
+    const url = new URL(state.hardWordsWriteUrl);
+    url.searchParams.set("action", "client_state");
+    url.searchParams.set("passcode", passcode);
+    url.searchParams.set("callback", callbackName);
+    url.searchParams.set("_", String(Date.now()));
+    script.onerror = () => {
+      cleanup();
+      reject(new Error("Cloud state request failed."));
+    };
+    script.src = url.toString();
+    document.head.appendChild(script);
+  });
+}
+
+function applyCloudPracticeState(snapshot = {}) {
+  (Array.isArray(snapshot.r) ? snapshot.r : []).forEach((record) => {
+    if (!Array.isArray(record) || record.length < 4) {
+      return;
+    }
+    mergePracticeStat({
+      word: record[0],
+      practice_count: record[1],
+      repeat_current_count: record[2],
+      last_practiced_at: record[3],
+    });
+  });
+  const cloudSettingsUpdatedAt = String(snapshot.su || "");
+  if (cloudSettingsUpdatedAt > state.practiceSettingsUpdatedAt && snapshot.s) {
+    applyPracticeSettings(snapshot.s);
+    state.practiceSettingsUpdatedAt = cloudSettingsUpdatedAt;
+  }
+  savePracticeStatistics();
+}
+
+async function refreshCloudState(promptForPasscode = false, force = false) {
+  if (!state.hardWordsWriteUrl || !navigator.onLine) {
+    return null;
+  }
+  const passcode = promptForPasscode
+    ? getHardWordsPasscode()
+    : localStorage.getItem(HARD_WORDS_PASSCODE_KEY) || "";
+  if (!passcode) {
+    return null;
+  }
+  if (state.cloudStateRequest) {
+    return state.cloudStateRequest;
+  }
+  if (!force && Date.now() - state.cloudStateLastRefreshAt < CLOUD_STATE_REFRESH_MIN_INTERVAL_MS) {
+    return null;
+  }
+  state.cloudStateRequest = fetchCloudState(passcode)
+    .then((payload) => {
+      state.cloudStateLastRefreshAt = Date.now();
+      mergeCloudImportantExamples(payload.important_examples || {});
+      applyCloudPracticeState(payload.practice_state || {});
+      render();
+      return payload;
+    })
+    .finally(() => {
+      state.cloudStateRequest = null;
+    });
+  return state.cloudStateRequest;
+}
+
 function normalizePracticeStat(record, fallbackWord = "") {
   const word = String(record?.word || fallbackWord || "").trim();
   if (!word) {
@@ -1262,19 +1548,17 @@ async function syncPracticeStatistics(promptForPasscode = true) {
   elements.syncSettingsButton.disabled = true;
   setCloudSyncStatus("同步中...");
   try {
-    const response = await fetch(state.hardWordsWriteUrl, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(practiceStatsPayload(passcode)),
-    });
-    if (response.type !== "opaque" && !response.ok) {
-      throw new Error("Practice statistics sync failed.");
+    if (promptForPasscode) {
+      await refreshCloudState(false, true).catch(() => null);
     }
+    await postClientPayload(practiceStatsPayload(passcode));
     state.practiceStatsDirty = false;
     state.practiceStatsLastSyncAt = Date.now();
     savePracticeStatistics();
-    setCloudSyncStatus("已送出同步");
+    await new Promise((resolve) => window.setTimeout(resolve, 400));
+    await refreshCloudState(false, true).catch(() => null);
+    await syncPendingImportantExamples(false);
+    setCloudSyncStatus("已同步最新資料");
   } catch (error) {
     state.practiceStatsDirty = true;
     savePracticeStatistics();
@@ -1868,17 +2152,37 @@ elements.frequentStatsButton.addEventListener("click", () => setPracticeStatsVie
 elements.forgottenStatsButton.addEventListener("click", () => setPracticeStatsView("forgotten"));
 elements.syncStatsButton.addEventListener("click", () => syncPracticeStatistics(true));
 elements.syncSettingsButton.addEventListener("click", () => syncPracticeStatistics(true));
+elements.exampleOneImportant.addEventListener("change", (event) => {
+  toggleImportantExample(1, event.target.checked);
+});
+elements.exampleTwoImportant.addEventListener("change", (event) => {
+  toggleImportantExample(2, event.target.checked);
+});
 elements.audioPlayer.addEventListener("ended", handleAudioEnded);
 elements.audioPlayer.addEventListener("loadedmetadata", () => applyPlaybackRate());
 elements.audioPlayer.addEventListener("play", () => applyPlaybackRate());
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible" && state.wantsWakeLock) {
     requestWakeLock();
-  } else if (document.visibilityState === "hidden") {
+  }
+  if (document.visibilityState === "visible") {
+    refreshCloudState(false, true).catch(() => {});
+    syncPendingImportantExamples(false);
+    if (state.practiceStatsDirty) {
+      syncPracticeStatistics(false);
+    }
+  } else {
     sendPracticeStatisticsOnPageHide();
   }
 });
 window.addEventListener("pagehide", sendPracticeStatisticsOnPageHide);
+window.addEventListener("online", () => {
+  refreshCloudState(false, true).catch(() => {});
+  syncPendingImportantExamples(false);
+  if (state.practiceStatsDirty) {
+    syncPracticeStatistics(false);
+  }
+});
 
 loadDailyData()
   .then((data) => {
@@ -1890,6 +2194,7 @@ loadDailyData()
     });
     restoreHardWordsLocalState();
     restoreMasteredLocalState();
+    restoreImportantExamplesLocalState();
     restoreProgress();
     restorePracticeState(
       data.practice_stats?.records || {},
@@ -1901,6 +2206,8 @@ loadDailyData()
     render();
     buildQuestion();
     updatePracticeScore();
+    refreshCloudState(false, true).catch(() => {});
+    syncPendingImportantExamples(false);
   })
   .catch((error) => {
     elements.wordText.textContent = "無法載入單字資料";

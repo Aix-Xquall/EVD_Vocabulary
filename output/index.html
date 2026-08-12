@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVD Daily Vocabulary</title>
-    <link rel="stylesheet" href="styles.css?v=20260808-palette32c">
+    <link rel="stylesheet" href="styles.css?v=20260812-important-examples">
   </head>
   <body>
     <main class="app-shell">
@@ -143,10 +143,27 @@
 
           <div class="examples">
             <h3>Examples</h3>
-            <p id="exampleOneEn"></p>
-            <p id="exampleOneZh" class="translation"></p>
-            <p id="exampleTwoEn"></p>
-            <p id="exampleTwoZh" class="translation"></p>
+            <div class="example-item">
+              <label class="important-example-toggle" for="exampleOneImportant">
+                <input id="exampleOneImportant" type="checkbox">
+                <span>重要</span>
+              </label>
+              <div class="example-copy">
+                <p id="exampleOneEn"></p>
+                <p id="exampleOneZh" class="translation"></p>
+              </div>
+            </div>
+            <div class="example-item">
+              <label class="important-example-toggle" for="exampleTwoImportant">
+                <input id="exampleTwoImportant" type="checkbox">
+                <span>重要</span>
+              </label>
+              <div class="example-copy">
+                <p id="exampleTwoEn"></p>
+                <p id="exampleTwoZh" class="translation"></p>
+              </div>
+            </div>
+            <p id="importantExamplesSyncStatus" class="sync-status" hidden></p>
           </div>
         </section>
       </section>
@@ -176,7 +193,7 @@
     </main>
 
     <audio id="audioPlayer" preload="metadata"></audio>
-    <script src="learning_helpers.js?v=20260808-palette32c"></script>
-    <script src="app.js?v=20260808-palette32c"></script>
+    <script src="learning_helpers.js?v=20260812-important-examples"></script>
+    <script src="app.js?v=20260812-important-examples"></script>
   </body>
 </html>

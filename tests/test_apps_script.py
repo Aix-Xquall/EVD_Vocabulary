@@ -35,6 +35,22 @@ class AppsScriptTests(unittest.TestCase):
         self.assertIn('GITHUB_WORKFLOW_FILE', script)
         self.assertIn('GITHUB_REF', script)
 
+    def test_apps_script_supports_direct_important_example_and_state_sync(self):
+        script = (PROJECT_DIR / "apps_script" / "hard_words_web_app.gs").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn('IMPORTANT_EXAMPLES_SHEET_NAME = "ImportantExamples"', script)
+        self.assertIn('payload.action === "important_example"', script)
+        self.assertIn('action === "client_state"', script)
+        self.assertIn("function upsertImportantExample(payload)", script)
+        self.assertIn("LockService.getScriptLock()", script)
+        self.assertIn("function buildClientState()", script)
+        self.assertIn("api_version: 2", script)
+        self.assertIn("function javascriptResponse(value, callback)", script)
+        self.assertIn("function mergePracticeStateNote", script)
+        self.assertIn('payload.status !== PRACTICE_STATS_STATUS', script)
+
     def test_readme_documents_github_actions_trigger_properties(self):
         readme = (PROJECT_DIR / "README.md").read_text(encoding="utf-8")
 

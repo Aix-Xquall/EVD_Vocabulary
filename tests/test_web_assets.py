@@ -253,7 +253,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260808-palette32c"></script>',
+            '<script src="learning_helpers.js?v=20260812-important-examples"></script>',
             index_html,
         )
 
@@ -297,8 +297,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260808-palette32c"', index_html)
-        self.assertIn('src="app.js?v=20260808-palette32c"', index_html)
+        self.assertIn('href="styles.css?v=20260812-important-examples"', index_html)
+        self.assertIn('src="app.js?v=20260812-important-examples"', index_html)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -422,7 +422,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("playCurrent(true)", app_js)
         self.assertIn("PRACTICE_STATS_SENTINEL_WORD", app_js)
         self.assertIn("compactPracticeStatsSnapshot", app_js)
-        self.assertIn("PRACTICE_STATS_SYNC_DELAY_MS = 60000", app_js)
+        self.assertIn("PRACTICE_STATS_SYNC_DELAY_MS = 5000", app_js)
         self.assertIn("navigator.sendBeacon", app_js)
         self.assertIn("restorePracticeState(", app_js)
         self.assertIn("data.practice_stats?.settings || {}", app_js)
@@ -445,6 +445,31 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("s: currentPracticeSettings()", app_js)
         self.assertIn("su: state.practiceSettingsUpdatedAt", app_js)
         self.assertNotIn("<h1>每日工程英文</h1>", index_html)
+
+    def test_important_examples_are_checked_and_directly_synchronized(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn('id="exampleOneImportant" type="checkbox"', index_html)
+        self.assertIn('id="exampleTwoImportant" type="checkbox"', index_html)
+        self.assertIn('id="importantExamplesSyncStatus"', index_html)
+        self.assertIn("IMPORTANT_EXAMPLES_LOCAL_KEY", app_js)
+        self.assertIn('action: "important_example"', app_js)
+        self.assertIn('url.searchParams.set("action", "client_state")', app_js)
+        self.assertIn("state.importantExamplesPending", app_js)
+        self.assertIn('window.addEventListener("online"', app_js)
+        self.assertIn('document.visibilityState === "visible"', app_js)
+        self.assertIn("api_version", app_js)
+        self.assertIn(".important-example-toggle", styles_css)
+        self.assertIn(".example-item", styles_css)
+
+    def test_practice_cloud_sync_uses_short_delay_and_direct_refresh(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn("PRACTICE_STATS_SYNC_DELAY_MS = 5000", app_js)
+        self.assertIn("PRACTICE_STATS_MIN_SYNC_INTERVAL_MS = 15000", app_js)
+        self.assertIn("await refreshCloudState(false, true);", app_js)
 
     def test_chapter_playback_uses_segment_queue_with_wake_lock_controls(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

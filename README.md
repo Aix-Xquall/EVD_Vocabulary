@@ -85,7 +85,17 @@ Duplicate entries are skipped by the normalized `word` field inside each normal 
 
 The site records one practice after a word finishes playing with the current example setting. Each additional completed cycle caused by `重複目前單字` also increments that word's repeat count. Open `練習統計` below the chapter selector to switch between the most-practiced and most-repeated rankings; the player also shows counts for the current word.
 
-Statistics and player settings are saved locally first, then batch-synced through the existing Google Sheet, Apps Script, and GitHub Actions hard-words channel. The synchronized settings include the selected chapter, chapter loop, current-word repeat, example playback, English playback rate, and English repeat count. On a new device, select `同步統計` or `同步設定` once and enter the existing `HARD_WORDS_PASSCODE`. Offline changes remain in the browser and are retried later.
+Statistics and player settings are saved locally first, then synchronized directly through the existing Google Sheet and Apps Script channel. The synchronized settings include the selected chapter, chapter loop, current-word repeat, example playback, English playback rate, English repeat count, and learning colors. On a new device, select `同步統計` or `同步設定` once and enter the existing `HARD_WORDS_PASSCODE`. Offline changes remain in the browser and are retried later.
+
+## Important examples and direct synchronization
+
+Each English example has an `重要` checkbox. Important-example records use the word and example number as a stable key, are saved locally immediately, and are written to an `ImportantExamples` Google Sheet tab. The Apps Script creates that tab and its headers automatically on the first write.
+
+The browser reads current important examples, practice statistics, and player settings directly from Apps Script when the page opens, returns to the foreground, reconnects to the network, or performs a manual sync. Each important-example row has its own `updated_at` timestamp, so a newer change on one device does not overwrite a newer change from another device. Offline changes remain queued in `localStorage` and retry when connectivity returns.
+
+After pulling this version, update the existing Apps Script project with the complete contents of `apps_script/hard_words_web_app.gs`, save it, and deploy a new Web App version. Keep the existing deployment URL and Script Properties. Until that deployment is updated, important-example changes stay safely on the current device and the page displays a reminder instead of writing an incompatible row to `HardWords`.
+
+Practice statistics and settings now retry after 5 seconds with a 15-second minimum interval. Apps Script merges counters using the larger value and keeps the settings with the newer timestamp. These direct state writes no longer trigger GitHub Actions; Actions remain responsible for vocabulary, audio, and static-site deployment.
 
 ## 目前模式
 

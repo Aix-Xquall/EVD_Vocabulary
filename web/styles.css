@@ -616,6 +616,52 @@ h2 {
   margin: 0 0 12px;
 }
 
+.example-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.example-item + .example-item {
+  border-top: 1px solid var(--line);
+}
+
+.important-example-toggle {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.important-example-toggle input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--blue);
+}
+
+.important-example-toggle:has(input:checked) {
+  color: var(--blue);
+}
+
+.example-copy {
+  min-width: 0;
+}
+
+.example-copy p {
+  margin-top: 0;
+}
+
+.example-copy p:last-child {
+  margin-bottom: 0;
+}
+
 .example-target {
   color: var(--green);
   font-weight: 700;
