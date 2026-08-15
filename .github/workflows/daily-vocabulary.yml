@@ -152,6 +152,8 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.force_line_notification }}" == "true" ]]; then
             python main.py --force-line
+          elif [[ "${{ github.event_name }}" == "push" && "${{ github.event.head_commit.message }}" == *"[force-line]"* ]]; then
+            python main.py --force-line
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             python main.py
           elif [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.skip_line_notification }}" != "true" ]]; then

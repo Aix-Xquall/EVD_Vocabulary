@@ -114,6 +114,15 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("cp web/app.js output/app.js", workflow)
         self.assertIn("cp web/styles.css output/styles.css", workflow)
 
+    def test_push_commit_can_explicitly_force_line_notification(self):
+        workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn('github.event.head_commit.message', workflow)
+        self.assertIn('*"[force-line]"*', workflow)
+        self.assertIn('python main.py --force-line', workflow)
+
     def test_push_scope_detection_preserves_unicode_file_paths(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
             encoding="utf-8"
