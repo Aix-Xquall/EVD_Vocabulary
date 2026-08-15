@@ -74,7 +74,7 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn(
-            'addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning, repeatCount)',
+            'addRepeatedEnglishWithChinese(queue, segments.word, segments.meaning, repeatCount)',
             app_js,
         )
         self.assertIn("for (let count = 1; count < repeatCount; count += 1)", app_js)
@@ -110,7 +110,8 @@ class WebAssetsTests(unittest.TestCase):
     def test_web_player_uses_only_generated_cloud_tts_segments(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn("if (segment?.src)", app_js)
+        self.assertIn("if (selectedSegment?.src)", app_js)
+        self.assertIn('segment.voices[state.englishVoice]', app_js)
         self.assertNotIn("fallbackText", app_js)
         self.assertNotIn("speakTextSegment", app_js)
         self.assertNotIn("speechTextForAudio", app_js)
@@ -222,7 +223,7 @@ class WebAssetsTests(unittest.TestCase):
             app_js,
         )
         self.assertIn(
-            "`(${state.playbackRate.toFixed(1)}x \u00b7 \u91cd\u8907 ${state.englishRepeatCount} \u6b21 \u00b7 ${directionLabel})`",
+            "`(${voiceLabel} \u00b7 ${state.playbackRate.toFixed(1)}x \u00b7 \u91cd\u8907 ${state.englishRepeatCount} \u6b21 \u00b7 ${directionLabel})`",
             app_js,
         )
         self.assertIn(
@@ -253,7 +254,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260812-important-examples"></script>',
+            '<script src="learning_helpers.js?v=20260815-voice-settings"></script>',
             index_html,
         )
 
@@ -297,8 +298,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260812-important-checkbox"', index_html)
-        self.assertIn('src="app.js?v=20260812-important-examples"', index_html)
+        self.assertIn('href="styles.css?v=20260815-voice-settings"', index_html)
+        self.assertIn('src="app.js?v=20260815-voice-settings"', index_html)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -440,10 +441,18 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('id="repeatAllToggle"', index_html)
         self.assertIn('id="repeatCurrentToggle"', index_html)
         self.assertIn('id="includeExamplesToggle"', index_html)
+        self.assertIn('id="englishVoice"', index_html)
+        self.assertIn('en-US-Neural2-J（男）', index_html)
+        self.assertIn('en-US-Wavenet-H（女）', index_html)
         self.assertIn('id="combinedAudioButton"', index_html)
         self.assertIn("markPracticeSettingsChanged", app_js)
         self.assertIn("s: currentPracticeSettings()", app_js)
+        self.assertIn("english_voice: state.englishVoice", app_js)
+        self.assertIn('segment.voices[state.englishVoice]', app_js)
         self.assertIn("su: state.practiceSettingsUpdatedAt", app_js)
+        self.assertLess(index_html.index('class="settings-panel"'), index_html.index('class="player-layout"'))
+        self.assertGreater(index_html.index('class="statistics-panel"'), index_html.index('class="practice-panel"'))
+        self.assertNotIn("speechSynthesis", app_js)
         self.assertNotIn("<h1>每日工程英文</h1>", index_html)
 
     def test_important_examples_are_checked_and_directly_synchronized(self):
@@ -541,14 +550,12 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("const EXAMPLE_GROUP_DELAY_MS = 2000;", app_js)
         self.assertIn(
             "addRepeatedEnglishWithChinese(queue, segments.example_1_en, "
-            "word?.example_1_en, segments.example_1_zh, word?.example_1_zh, "
-            "repeatCount);",
+            "segments.example_1_zh, repeatCount);",
             app_js,
         )
         self.assertIn(
             "addRepeatedEnglishWithChinese(queue, segments.example_2_en, "
-            "word?.example_2_en, segments.example_2_zh, word?.example_2_zh, "
-            "repeatCount, EXAMPLE_GROUP_DELAY_MS);",
+            "segments.example_2_zh, repeatCount, EXAMPLE_GROUP_DELAY_MS);",
             app_js,
         )
         self.assertIn("const groupStartIndex = queue.length;", app_js)

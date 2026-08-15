@@ -4,6 +4,7 @@ import os
 import re
 import urllib.error
 import urllib.request
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -107,9 +108,98 @@ def expected_segment_audio_paths(
             entry_segments[role] = {
                 "src": relative_path,
                 "language": language,
+                "voice": _voice_name_for_language(settings, language),
             }
         paths[audio_key_for_entry(entry)] = entry_segments
     return paths
+
+
+def expected_selectable_segment_audio_paths(
+    entries: List[VocabularyEntry],
+    settings: Settings,
+) -> Dict[str, Dict[str, dict]]:
+    return _selectable_segment_audio_paths(entries, settings, generate=False)
+
+
+def generate_selectable_segment_audio_files(
+    entries: List[VocabularyEntry],
+    settings: Settings,
+) -> Dict[str, Dict[str, dict]]:
+    return _selectable_segment_audio_paths(entries, settings, generate=True)
+
+
+def _selectable_segment_audio_paths(
+    entries: List[VocabularyEntry],
+    settings: Settings,
+    generate: bool,
+) -> Dict[str, Dict[str, dict]]:
+    if _tts_provider(settings) != "google":
+        return (
+            generate_segment_audio_files(entries, settings)
+            if generate
+            else expected_segment_audio_paths(entries, settings)
+        )
+
+    voice_maps = {}
+    for voice in dict.fromkeys((settings.google_male_voice, settings.google_female_voice)):
+        if not voice:
+            continue
+        voice_settings = replace(
+            settings,
+            generate_audio=generate,
+            google_english_voice=voice,
+        )
+        voice_maps[voice] = (
+            generate_segment_audio_files(entries, voice_settings)
+            if generate
+            else expected_segment_audio_paths(entries, voice_settings)
+        )
+    return _merge_selectable_voice_segments(
+        voice_maps,
+        preferred_voice=settings.google_male_voice,
+    )
+
+
+def _merge_selectable_voice_segments(
+    voice_maps: Dict[str, Dict[str, Dict[str, dict]]],
+    preferred_voice: str,
+) -> Dict[str, Dict[str, dict]]:
+    merged: Dict[str, Dict[str, dict]] = {}
+    entry_keys = {
+        entry_key
+        for segment_map in voice_maps.values()
+        for entry_key in segment_map
+    }
+    for entry_key in entry_keys:
+        merged_segments = {}
+        roles = {
+            role
+            for segment_map in voice_maps.values()
+            for role in segment_map.get(entry_key, {})
+        }
+        for role in roles:
+            candidates = {
+                voice: segment_map.get(entry_key, {}).get(role)
+                for voice, segment_map in voice_maps.items()
+            }
+            candidates = {voice: segment for voice, segment in candidates.items() if segment}
+            if not candidates:
+                continue
+            first_segment = next(iter(candidates.values()))
+            if first_segment.get("language") != "en":
+                merged_segments[role] = first_segment
+                continue
+            voices = {
+                voice: segment
+                for voice, segment in candidates.items()
+            }
+            preferred_segment = voices.get(preferred_voice) or first_segment
+            merged_segments[role] = {
+                **preferred_segment,
+                "voices": voices,
+            }
+        merged[entry_key] = merged_segments
+    return merged
 
 
 def generate_segment_audio_files(

@@ -167,6 +167,9 @@ def _parse_practice_settings(value: object) -> dict:
     playback_direction = str(value.get("playback_direction") or "").strip().lower()
     if playback_direction in {"forward", "reverse"}:
         settings["playback_direction"] = playback_direction
+    english_voice = str(value.get("english_voice") or "").strip()
+    if english_voice in {"en-US-Neural2-J", "en-US-Wavenet-H"}:
+        settings["english_voice"] = english_voice
     chapter_positions = value.get("chapter_positions")
     if isinstance(chapter_positions, dict):
         parsed_positions = {

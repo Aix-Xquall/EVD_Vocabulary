@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVD Daily Vocabulary</title>
-    <link rel="stylesheet" href="styles.css?v=20260812-important-checkbox">
+    <link rel="stylesheet" href="styles.css?v=20260815-voice-settings">
   </head>
   <body>
     <main class="app-shell">
@@ -16,23 +16,6 @@
         <span>英文章節</span>
         <select id="chapterSelect" aria-label="英文章節"></select>
       </label>
-
-      <details class="statistics-panel">
-        <summary>
-          <span>練習統計<span id="statisticsSummary" class="statistics-summary">(尚無練習紀錄)</span></span>
-        </summary>
-        <div class="statistics-content">
-          <div class="statistics-toolbar">
-            <div class="statistics-modes" role="group" aria-label="統計排序方式">
-              <button id="frequentStatsButton" class="active" type="button" aria-pressed="true">常練習</button>
-              <button id="forgottenStatsButton" type="button" aria-pressed="false">容易忘記</button>
-            </div>
-            <button id="syncStatsButton" type="button">同步統計</button>
-          </div>
-          <p id="statisticsSyncStatus" class="sync-status">統計會自動同步</p>
-          <div id="statisticsList" class="statistics-list"></div>
-        </div>
-      </details>
 
       <details class="settings-panel">
         <summary>
@@ -56,6 +39,13 @@
                 </label>
               </div>
             </div>
+            <label class="voice-control" for="englishVoice">
+              英文發音
+              <select id="englishVoice">
+                <option value="en-US-Neural2-J">en-US-Neural2-J（男）</option>
+                <option value="en-US-Wavenet-H">en-US-Wavenet-H（女）</option>
+              </select>
+            </label>
             <label class="rate-control" for="playbackRate">
               英文語速 <output id="playbackRateValue">1.0x</output>
               <input id="playbackRate" type="range" min="0.5" max="1.5" step="0.1" value="1.0">
@@ -188,10 +178,27 @@
           <button id="nextQuestionButton" type="button">下一題</button>
         </div>
       </section>
+
+      <details class="statistics-panel">
+        <summary>
+          <span>練習統計<span id="statisticsSummary" class="statistics-summary">(尚無練習紀錄)</span></span>
+        </summary>
+        <div class="statistics-content">
+          <div class="statistics-toolbar">
+            <div class="statistics-modes" role="group" aria-label="統計排序方式">
+              <button id="frequentStatsButton" class="active" type="button" aria-pressed="true">常練習</button>
+              <button id="forgottenStatsButton" type="button" aria-pressed="false">容易忘記</button>
+            </div>
+            <button id="syncStatsButton" type="button">同步統計</button>
+          </div>
+          <p id="statisticsSyncStatus" class="sync-status">統計會自動同步</p>
+          <div id="statisticsList" class="statistics-list"></div>
+        </div>
+      </details>
     </main>
 
     <audio id="audioPlayer" preload="metadata"></audio>
-    <script src="learning_helpers.js?v=20260812-important-examples"></script>
-    <script src="app.js?v=20260812-important-examples"></script>
+    <script src="learning_helpers.js?v=20260815-voice-settings"></script>
+    <script src="app.js?v=20260815-voice-settings"></script>
   </body>
 </html>

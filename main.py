@@ -9,7 +9,10 @@ from hard_words_sync import load_mastered_word_statuses, load_practice_state, sy
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
 from tense_analyzer import load_tense_annotations_for_entries
-from tts_generator import expected_segment_audio_paths, generate_segment_audio_files
+from tts_generator import (
+    expected_selectable_segment_audio_paths,
+    generate_selectable_segment_audio_files,
+)
 from vocabulary_loader import load_vocabulary
 
 
@@ -63,9 +66,9 @@ def run_daily_generation(
     practice_state = load_practice_state(settings.vocabulary_dir)
 
     if settings.generate_audio:
-        segment_audio = generate_segment_audio_files(entries, settings)
+        segment_audio = generate_selectable_segment_audio_files(entries, settings)
     else:
-        segment_audio = expected_segment_audio_paths(entries, settings)
+        segment_audio = expected_selectable_segment_audio_paths(entries, settings)
 
     tense_analysis = load_tense_annotations_for_entries(entries, settings)
     previous_payload = _read_latest_payload(settings.output_dir)

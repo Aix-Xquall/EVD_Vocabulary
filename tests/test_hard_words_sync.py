@@ -156,6 +156,7 @@ class HardWordsSyncTests(unittest.TestCase):
                 '{"v":2,"r":[],"s":{"selected_chapter_id":"emc-1",'
                 '"repeat_all":false,"repeat_current":true,"include_examples":false,'
                 '"playback_direction":"reverse",'
+                '"english_voice":"en-US-Wavenet-H",'
                 '"chapter_positions":{"emc-1":"low impedance","hard-words":"EMC"},'
                 '"playback_rate":1.2,"english_repeat_count":4,'
                 '"word_vowel_color":"#2563EB","word_consonant_color":"#111827",'
@@ -174,6 +175,7 @@ class HardWordsSyncTests(unittest.TestCase):
             self.assertFalse(practice_state["settings"]["repeat_all"])
             self.assertTrue(practice_state["settings"]["repeat_current"])
             self.assertEqual(practice_state["settings"]["playback_direction"], "reverse")
+            self.assertEqual(practice_state["settings"]["english_voice"], "en-US-Wavenet-H")
             self.assertEqual(
                 practice_state["settings"]["chapter_positions"],
                 {"emc-1": "low impedance", "hard-words": "emc"},

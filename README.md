@@ -83,9 +83,9 @@ Duplicate entries are skipped by the normalized `word` field inside each normal 
 
 ## Practice statistics
 
-The site records one practice after a word finishes playing with the current example setting. Each additional completed cycle caused by `重複目前單字` also increments that word's repeat count. Open `練習統計` below the chapter selector to switch between the most-practiced and most-repeated rankings; the player also shows counts for the current word.
+The site records one practice after a word finishes playing with the current example setting. Each additional completed cycle caused by `重複目前單字` also increments that word's repeat count. Open `練習統計` after `每日練習` to switch between the most-practiced and most-repeated rankings; the player also shows counts for the current word.
 
-Statistics and player settings are saved locally first, then synchronized directly through the existing Google Sheet and Apps Script channel. The synchronized settings include the selected chapter, chapter loop, current-word repeat, example playback, English playback rate, English repeat count, and learning colors. On a new device, select `同步統計` or `同步設定` once and enter the existing `HARD_WORDS_PASSCODE`. Offline changes remain in the browser and are retried later.
+Statistics and player settings are saved locally first, then synchronized directly through the existing Google Sheet and Apps Script channel. The synchronized settings include the selected chapter, chapter loop, current-word repeat, example playback, English voice, English playback rate, English repeat count, and learning colors. On a new device, select `同步統計` or `同步設定` once and enter the existing `HARD_WORDS_PASSCODE`. Later changes synchronize automatically. Offline changes remain in the browser and are retried later.
 
 ## Important examples and direct synchronization
 
@@ -228,7 +228,9 @@ Local environment example:
 $env:EVD_TTS_PROVIDER="google"
 $env:GOOGLE_APPLICATION_CREDENTIALS="D:\secure\google-tts-key.json"
 $env:GOOGLE_CLOUD_PROJECT_ID="your-google-cloud-project-id"
-$env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-F"
+$env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-J"
+$env:GOOGLE_MALE_VOICE="en-US-Neural2-J"
+$env:GOOGLE_FEMALE_VOICE="en-US-Wavenet-H"
 $env:GOOGLE_CHINESE_VOICE="cmn-TW-Wavenet-A"
 $env:EVD_SPEECH_RATE="-20%"
 python main.py --skip-line --no-update-review
@@ -246,12 +248,14 @@ Add these Repository Variables:
 
 ```text
 EVD_TTS_PROVIDER=google
-GOOGLE_ENGLISH_VOICE=en-US-Neural2-F
+GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
+GOOGLE_MALE_VOICE=en-US-Neural2-J
+GOOGLE_FEMALE_VOICE=en-US-Wavenet-H
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
 GOOGLE_CLOUD_PROJECT_ID=your-google-cloud-project-id
 ```
 
-If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS with `en-US-Neural2-F`. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
+If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS. The published site provides `en-US-Neural2-J` (male) and `en-US-Wavenet-H` (female), while Chinese uses one shared `cmn-TW-Wavenet-A` file. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
 
 ## Manual ChatGPT tense analysis
 

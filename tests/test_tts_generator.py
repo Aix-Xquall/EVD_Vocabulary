@@ -17,7 +17,9 @@ from tts_generator import (
     _should_synthesize_segment,
     _voice_name_for_language,
     expected_audio_paths,
+    expected_selectable_segment_audio_paths,
     expected_segment_audio_paths,
+    generate_selectable_segment_audio_files,
     generate_segment_audio_files,
 )
 
@@ -73,6 +75,54 @@ class TtsGeneratorTests(unittest.TestCase):
 
         self.assertNotEqual(azure_paths["1"]["word"]["src"], google_paths["1"]["word"]["src"])
         self.assertNotEqual(azure_paths["1"]["meaning"]["src"], google_paths["1"]["meaning"]["src"])
+
+    def test_selectable_google_voices_publish_two_english_files_and_one_chinese_file(self):
+        entry = {
+            "id": "1",
+            "word": "impedance",
+            "chinese_meaning": "阻抗",
+        }
+
+        paths = expected_selectable_segment_audio_paths(
+            [entry],
+            Settings(generate_audio=False),
+        )
+
+        word_segment = paths["1"]["word"]
+        self.assertEqual(
+            set(word_segment["voices"]),
+            {"en-US-Neural2-J", "en-US-Wavenet-H"},
+        )
+        self.assertNotEqual(
+            word_segment["voices"]["en-US-Neural2-J"]["src"],
+            word_segment["voices"]["en-US-Wavenet-H"]["src"],
+        )
+        self.assertNotIn("voices", paths["1"]["meaning"])
+
+    def test_selectable_voice_generation_reuses_chinese_audio_between_voices(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            settings = Settings(
+                output_dir=Path(temp_dir),
+                generate_audio=True,
+                tts_provider="google",
+            )
+            entry = {"id": "1", "word": "impedance", "chinese_meaning": "阻抗"}
+            calls = []
+            original_synthesize = tts_generator._synthesize_google_text
+
+            def fake_synthesize(_settings, text, language, output_file):
+                calls.append((text, language, output_file))
+                output_file.write_bytes(b"google-mp3")
+
+            try:
+                tts_generator._synthesize_google_text = fake_synthesize
+                available = generate_selectable_segment_audio_files([entry], settings)
+            finally:
+                tts_generator._synthesize_google_text = original_synthesize
+
+            self.assertEqual(sum(language == "en" for _, language, _ in calls), 2)
+            self.assertEqual(sum(language == "zh" for _, language, _ in calls), 1)
+            self.assertEqual(len(available["1"]["word"]["voices"]), 2)
 
     def test_google_provider_uses_google_voices_and_converts_azure_style_rate(self):
         settings = Settings(

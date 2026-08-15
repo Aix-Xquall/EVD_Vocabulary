@@ -1,5 +1,10 @@
 const DEFAULT_PLAYBACK_RATE = 1.0;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 5;
+const DEFAULT_ENGLISH_VOICE = "en-US-Neural2-J";
+const ENGLISH_VOICE_OPTIONS = Object.freeze({
+  "en-US-Neural2-J": "男",
+  "en-US-Wavenet-H": "女",
+});
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
 const WORD_GROUP_DELAY_MS = 2000;
@@ -79,6 +84,7 @@ const state = {
   playbackDirection: "forward",
   playbackRate: DEFAULT_PLAYBACK_RATE,
   englishRepeatCount: DEFAULT_ENGLISH_REPEAT_COUNT,
+  englishVoice: DEFAULT_ENGLISH_VOICE,
   wordVowelColor: DEFAULT_WORD_VOWEL_COLOR,
   wordConsonantColor: DEFAULT_WORD_CONSONANT_COLOR,
   ipaVowelColor: DEFAULT_IPA_VOWEL_COLOR,
@@ -150,6 +156,7 @@ const elements = {
   repeatCurrentToggle: document.getElementById("repeatCurrentToggle"),
   includeExamplesToggle: document.getElementById("includeExamplesToggle"),
   playbackDirectionInputs: document.querySelectorAll('input[name="playbackDirection"]'),
+  englishVoice: document.getElementById("englishVoice"),
   playbackRate: document.getElementById("playbackRate"),
   playbackRateValue: document.getElementById("playbackRateValue"),
   exampleRepeatCount: document.getElementById("exampleRepeatCount"),
@@ -365,10 +372,6 @@ function scrollActiveWordIntoView() {
 function playCurrent(isRepeatCycle = false) {
   const word = currentWord();
   const queue = buildWordQueue(word, isRepeatCycle);
-  if (queue.length === 0 && word.audio) {
-    playDirectAudio(word.audio, true, { word, isRepeatCycle });
-    return;
-  }
   playQueue(queue, false);
 }
 
@@ -396,13 +399,7 @@ function togglePlayback() {
 
 function playCombinedAudio() {
   const chapterQueue = buildChapterQueue();
-  if (chapterQueue.length > 0) {
-    playQueue(chapterQueue, true);
-    return;
-  }
-  if (state.data.combined_audio) {
-    playDirectAudio(state.data.combined_audio, true);
-  }
+  playQueue(chapterQueue, true);
 }
 
 function buildChapterQueue() {
@@ -425,10 +422,31 @@ function buildWordQueue(word, isRepeatCycle = false) {
     state.englishRepeatCount,
     state.includeExamples,
   );
-  addRepeatedEnglishWithChinese(queue, segments.word, word?.word, segments.meaning, word?.chinese_meaning, repeatCount);
+  const requiredGroups = [
+    [segments.word, word?.word, segments.meaning, word?.chinese_meaning],
+  ];
   if (state.includeExamples) {
-    addRepeatedEnglishWithChinese(queue, segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh, repeatCount);
-    addRepeatedEnglishWithChinese(queue, segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh, repeatCount, EXAMPLE_GROUP_DELAY_MS);
+    requiredGroups.push(
+      [segments.example_1_en, word?.example_1_en, segments.example_1_zh, word?.example_1_zh],
+      [segments.example_2_en, word?.example_2_en, segments.example_2_zh, word?.example_2_zh],
+    );
+  }
+  const hasMissingAudio = requiredGroups.some(([
+    englishSegment,
+    englishText,
+    chineseSegment,
+    chineseText,
+  ]) => (
+    (englishText && !selectedNarrationSegment(englishSegment, "en"))
+    || (chineseText && !selectedNarrationSegment(chineseSegment, "zh"))
+  ));
+  if (hasMissingAudio) {
+    return [];
+  }
+  addRepeatedEnglishWithChinese(queue, segments.word, segments.meaning, repeatCount);
+  if (state.includeExamples) {
+    addRepeatedEnglishWithChinese(queue, segments.example_1_en, segments.example_1_zh, repeatCount);
+    addRepeatedEnglishWithChinese(queue, segments.example_2_en, segments.example_2_zh, repeatCount, EXAMPLE_GROUP_DELAY_MS);
   }
   if (queue.length > 0) {
     queue[0].startsWord = word;
@@ -442,9 +460,7 @@ function buildWordQueue(word, isRepeatCycle = false) {
 function addRepeatedEnglishWithChinese(
   queue,
   englishSegment,
-  englishText,
   chineseSegment,
-  chineseText,
   repeatCount,
   startDelayMs = 0,
 ) {
@@ -460,13 +476,30 @@ function addRepeatedEnglishWithChinese(
 }
 
 function addNarration(queue, segment, fallbackLanguage, delayMs = 0) {
-  if (segment?.src) {
+  const selectedSegment = selectedNarrationSegment(segment, fallbackLanguage);
+  if (selectedSegment?.src) {
     queue.push({
-      src: segment.src,
-      language: segment.language || fallbackLanguage,
+      src: selectedSegment.src,
+      language: selectedSegment.language || fallbackLanguage,
       delayMs,
     });
   }
+}
+
+function selectedNarrationSegment(segment, language) {
+  if (!segment || typeof segment !== "object") {
+    return null;
+  }
+  if (language !== "en") {
+    return segment.src ? segment : null;
+  }
+  if (segment.voices && typeof segment.voices === "object") {
+    return segment.voices[state.englishVoice] || null;
+  }
+  if (segment.voice && segment.voice !== state.englishVoice) {
+    return null;
+  }
+  return state.englishVoice === DEFAULT_ENGLISH_VOICE && segment.src ? segment : null;
 }
 
 function playQueue(queue, isChapterPlayback) {
@@ -1209,6 +1242,7 @@ function currentPracticeSettings() {
     playback_direction: state.playbackDirection,
     playback_rate: state.playbackRate,
     english_repeat_count: state.englishRepeatCount,
+    english_voice: state.englishVoice,
     word_vowel_color: state.wordVowelColor,
     word_consonant_color: state.wordConsonantColor,
     ipa_vowel_color: state.ipaVowelColor,
@@ -1246,6 +1280,9 @@ function applyPracticeSettings(settings) {
   state.englishRepeatCount = clampRepeatCount(
     settings.english_repeat_count ?? state.englishRepeatCount,
   );
+  if (Object.hasOwn(ENGLISH_VOICE_OPTIONS, settings.english_voice)) {
+    state.englishVoice = settings.english_voice;
+  }
   state.wordVowelColor = normalizeHexColor(
     settings.word_vowel_color,
     state.wordVowelColor,
@@ -1373,10 +1410,12 @@ function updateSettingsControls() {
   elements.playbackRateValue.textContent = `${state.playbackRate.toFixed(1)}x`;
   elements.exampleRepeatCount.value = String(state.englishRepeatCount);
   elements.exampleRepeatCountValue.textContent = String(state.englishRepeatCount);
+  elements.englishVoice.value = state.englishVoice;
   updateColorPickerTriggers();
   applyLearningColors();
   const directionLabel = state.playbackDirection === "reverse" ? "反向播放" : "正向播放";
-  elements.settingsSummary.textContent = `(${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次 · ${directionLabel})`;
+  const voiceLabel = ENGLISH_VOICE_OPTIONS[state.englishVoice] || "男";
+  elements.settingsSummary.textContent = `(${voiceLabel} · ${state.playbackRate.toFixed(1)}x · 重複 ${state.englishRepeatCount} 次 · ${directionLabel})`;
 }
 
 function applyLearningColors() {
@@ -2120,6 +2159,16 @@ elements.playbackDirectionInputs.forEach((input) => {
     render();
     markPracticeSettingsChanged();
   });
+});
+elements.englishVoice.addEventListener("change", (event) => {
+  const selectedVoice = String(event.target.value || "");
+  if (!Object.hasOwn(ENGLISH_VOICE_OPTIONS, selectedVoice)) {
+    return;
+  }
+  stopQueue();
+  state.englishVoice = selectedVoice;
+  render();
+  markPracticeSettingsChanged();
 });
 elements.playbackRate.addEventListener("input", (event) => {
   state.playbackRate = Number(event.target.value);
