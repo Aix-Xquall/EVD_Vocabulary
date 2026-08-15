@@ -19,6 +19,11 @@ def read_rows(path: Path) -> list[dict]:
         return list(csv.DictReader(file))
 
 
+def normalized_word_key(word: str) -> str:
+    """Ignore case, spaces, and punctuation when checking duplicate terms."""
+    return re.sub(r"[^a-z0-9]+", "", str(word or "").strip().casefold())
+
+
 class VocabularyDataTests(unittest.TestCase):
     def test_formal_chapters_have_no_duplicate_words(self):
         seen = {}
@@ -30,13 +35,13 @@ class VocabularyDataTests(unittest.TestCase):
                 continue
             for row in read_rows(path):
                 row_count += 1
-                word_key = str(row.get("word") or "").strip().casefold()
+                word_key = normalized_word_key(row.get("word") or "")
                 if word_key in seen:
                     duplicates.append((row["word"], seen[word_key], path.name))
                 else:
                     seen[word_key] = path.name
 
-        self.assertEqual(row_count, 666)
+        self.assertEqual(row_count, 663)
         self.assertEqual(duplicates, [])
 
     def test_daq_word_and_examples_use_full_name_with_abbreviation(self):
@@ -93,8 +98,8 @@ class VocabularyDataTests(unittest.TestCase):
             rows = list(reader)
 
         self.assertEqual(reader.fieldnames, REQUIRED_COLUMNS)
-        self.assertEqual(len(rows), 121)
-        missing_existing_ids = {2, 31, 32, 35, 57, 67, 68, 69, 74, 81, 82, 90}
+        self.assertEqual(len(rows), 118)
+        missing_existing_ids = {2, 3, 17, 18, 31, 32, 35, 57, 67, 68, 69, 74, 81, 82, 90}
         moved_ids = {19, 20, 21, 22}
         expected_ids = {
             str(index)
