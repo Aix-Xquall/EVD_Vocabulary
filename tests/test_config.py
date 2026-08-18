@@ -18,6 +18,10 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(DEFAULT_SETTINGS.tense_annotations_path.name, "tense_annotations.csv")
         self.assertEqual(DEFAULT_SETTINGS.tense_annotations_path.parent.name, "annotations")
 
+    def test_default_example_sources_are_outside_vocabulary_folder(self):
+        self.assertEqual(DEFAULT_SETTINGS.example_sources_path.name, "example_sources.csv")
+        self.assertEqual(DEFAULT_SETTINGS.example_sources_path.parent.name, "annotations")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -25,6 +25,17 @@ REQUIRED_COLUMNS = [
 
 CHINESE_COLUMNS = {"chinese_meaning", "example_1_zh", "example_2_zh"}
 HARD_WORDS_FILENAME = "hard_words.csv"
+CANONICAL_CONTENT_COLUMNS = [
+    "word",
+    "pronunciation",
+    "chinese_meaning",
+    "example_1_en",
+    "example_1_zh",
+    "example_2_en",
+    "example_2_zh",
+    "category",
+    "difficulty",
+]
 
 
 VocabularyEntry = Dict[str, str]
@@ -69,8 +80,28 @@ def load_vocabulary(
                     seen_words.add(word_key)
                 normalized["_source_file"] = str(csv_file)
                 normalized["_row_number"] = row_number
+                if is_hard_words_file:
+                    normalized["_source_chapter"] = str(row.get("source_chapter") or "").strip()
+                    normalized["_source_id"] = str(row.get("source_id") or "").strip()
                 entries.append(normalized)
+    _refresh_hard_word_content(entries)
     return entries
+
+
+def _refresh_hard_word_content(entries: List[VocabularyEntry]) -> None:
+    """Use formal chapter text when the Google Sheet snapshot contains an older copy."""
+    formal_entries = {
+        entry["word"].casefold(): entry
+        for entry in entries
+        if Path(entry.get("_source_file", "")).name.lower() != HARD_WORDS_FILENAME
+    }
+    for entry in entries:
+        if Path(entry.get("_source_file", "")).name.lower() != HARD_WORDS_FILENAME:
+            continue
+        canonical = formal_entries.get(entry["word"].casefold())
+        if canonical:
+            for column in CANONICAL_CONTENT_COLUMNS:
+                entry[column] = canonical[column]
 
 
 def _validate_columns(csv_file: Path, fieldnames: list[str]) -> None:

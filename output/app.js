@@ -144,8 +144,10 @@ const elements = {
   syncSettingsButton: document.getElementById("syncSettingsButton"),
   exampleOneEn: document.getElementById("exampleOneEn"),
   exampleOneZh: document.getElementById("exampleOneZh"),
+  exampleOneSource: document.getElementById("exampleOneSource"),
   exampleTwoEn: document.getElementById("exampleTwoEn"),
   exampleTwoZh: document.getElementById("exampleTwoZh"),
+  exampleTwoSource: document.getElementById("exampleTwoSource"),
   exampleOneImportant: document.getElementById("exampleOneImportant"),
   exampleTwoImportant: document.getElementById("exampleTwoImportant"),
   importantExamplesSyncStatus: document.getElementById("importantExamplesSyncStatus"),
@@ -246,8 +248,12 @@ function render() {
   elements.meaningText.textContent = word.chinese_meaning || "";
   elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights);
   elements.exampleOneZh.innerHTML = renderTranslationWithTense(word.example_1_zh, word.example_1_tense);
+  elements.exampleOneSource.textContent = formatExampleSource(word.example_1_source);
+  elements.exampleOneSource.hidden = !elements.exampleOneSource.textContent;
   elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word, word.example_2_tense?.highlights);
   elements.exampleTwoZh.innerHTML = renderTranslationWithTense(word.example_2_zh, word.example_2_tense);
+  elements.exampleTwoSource.textContent = formatExampleSource(word.example_2_source);
+  elements.exampleTwoSource.hidden = !elements.exampleTwoSource.textContent;
   updateImportantExampleControls(chapter, word);
   elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
@@ -2120,6 +2126,18 @@ function renderTranslationWithTense(translation, tense) {
     return translationHtml;
   }
   return `${translationHtml}<br><span class="tense-note">(${escapeHtml(name)}&#65306;${escapeHtml(formula)})</span>`;
+}
+
+function formatExampleSource(source) {
+  if (!source) {
+    return "來源待確認";
+  }
+  const attribution = String(source.attribution || "來源").trim();
+  const documentName = String(source.document || "").replace(/\.(?:pdf|docx)$/i, "").trim();
+  const section = String(source.section || "").trim();
+  const page = String(source.page || "").trim();
+  const location = [documentName, section].filter(Boolean).join(" · ");
+  return `${attribution}｜${location}${page ? ` · p. ${page}` : ""}`;
 }
 
 elements.playButton.addEventListener("click", togglePlayback);

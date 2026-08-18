@@ -87,6 +87,23 @@ The site records one practice after a word finishes playing with the current exa
 
 Statistics and player settings are saved locally first, then synchronized directly through the existing Google Sheet and Apps Script channel. The synchronized settings include the selected chapter, chapter loop, current-word repeat, example playback, English voice, English playback rate, English repeat count, and learning colors. On a new device, select `同步統計` or `同步設定` once and enter the existing `HARD_WORDS_PASSCODE`. Later changes synchronize automatically. Offline changes remain in the browser and are retried later.
 
+## Example references
+
+Every English example has a source annotation in `annotations/example_sources.csv`. The generated Markdown and website show the reference document, section, page, and one of these attribution labels:
+
+- `原文摘錄`: the example matches document text.
+- `改寫自`: the sentence is adapted from the cited section.
+- `主題參考`: the section supports the engineering term or concept, but is not the sentence source.
+- `自編例句`: no sufficiently relevant reference section was found; this also applies to travel conversation examples.
+
+Validate complete coverage without generating audio or sending LINE:
+
+```powershell
+python example_source_analyzer.py validate
+```
+
+`hard_words.csv` remains a Google Sheet snapshot. When a hard word still exists in a formal chapter, the generated site uses the formal chapter's current wording, Chinese translation, examples, and references so an older snapshot does not restore stale text.
+
 ## Important examples and direct synchronization
 
 Each English example has an `重要` checkbox. Important-example records use the word and example number as a stable key, are saved locally immediately, and are written to an `ImportantExamples` Google Sheet tab. The Apps Script creates that tab and its headers automatically on the first write.

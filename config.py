@@ -82,6 +82,12 @@ class Settings:
             str(BASE_DIR / "annotations" / "tense_annotations.csv"),
         )
     )
+    example_sources_path: Path = Path(
+        _text_env(
+            "EVD_EXAMPLE_SOURCES_PATH",
+            str(BASE_DIR / "annotations" / "example_sources.csv"),
+        )
+    )
 
 
 DEFAULT_SETTINGS = Settings()

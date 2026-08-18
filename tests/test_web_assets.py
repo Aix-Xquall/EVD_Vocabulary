@@ -331,6 +331,7 @@ class WebAssetsTests(unittest.TestCase):
     def test_english_examples_highlight_target_word(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
 
         self.assertIn("highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights)", app_js)
         self.assertIn("highlightExampleText(word.example_2_en, word.word, word.example_2_tense?.highlights)", app_js)
@@ -347,6 +348,12 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("tense-note", app_js)
         self.assertIn(".tense-target", styles_css)
         self.assertIn(".tense-note", styles_css)
+        self.assertIn('id="exampleOneSource"', index_html)
+        self.assertIn('id="exampleTwoSource"', index_html)
+        self.assertIn("formatExampleSource(word.example_1_source)", app_js)
+        self.assertIn("formatExampleSource(word.example_2_source)", app_js)
+        self.assertIn("function formatExampleSource(source)", app_js)
+        self.assertIn(".example-source", styles_css)
         self.assertIn(".hidden-meaning .translation-text", styles_css)
         self.assertNotIn(".hidden-meaning .translation,", styles_css)
         self.assertIn('className: "example-target"', app_js)

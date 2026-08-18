@@ -24,7 +24,11 @@ PUBLIC_COLUMNS = [
 ]
 
 
-def build_markdown(entries: List[VocabularyEntry], target_date: date) -> str:
+def build_markdown(
+    entries: List[VocabularyEntry],
+    target_date: date,
+    example_sources: Dict[str, Dict[str, dict]] | None = None,
+) -> str:
     lines = [
         f"# Daily Vocabulary - {target_date.isoformat()}",
         "",
@@ -32,6 +36,7 @@ def build_markdown(entries: List[VocabularyEntry], target_date: date) -> str:
         "",
     ]
     for index, entry in enumerate(entries, start=1):
+        entry_sources = (example_sources or {}).get(audio_key_for_entry(entry), {})
         lines.extend(
             [
                 f"## {index}. {entry.get('word', '')}",
@@ -50,11 +55,15 @@ def build_markdown(entries: List[VocabularyEntry], target_date: date) -> str:
                 "",
                 entry.get("example_1_zh", ""),
                 "",
+                _markdown_source(entry_sources.get("example_1")),
+                "",
                 "**Example 2**",
                 "",
                 entry.get("example_2_en", ""),
                 "",
                 entry.get("example_2_zh", ""),
+                "",
+                _markdown_source(entry_sources.get("example_2")),
                 "",
             ]
         )
@@ -95,6 +104,7 @@ def build_chapter_payload(
     practice_settings: dict | None = None,
     practice_settings_updated_at: str = "",
     tense_analysis: Dict[str, Dict[str, dict]] | None = None,
+    example_sources: Dict[str, Dict[str, dict]] | None = None,
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
@@ -121,6 +131,7 @@ def build_chapter_payload(
         public_entry["index"] = len(chapter["words"]) + 1
         public_entry["audio_segments"] = segment_audio.get(entry_audio_key, {})
         _apply_tense_analysis(public_entry, (tense_analysis or {}).get(entry_audio_key, {}))
+        _apply_example_sources(public_entry, (example_sources or {}).get(entry_audio_key, {}))
         chapter["words"].append(public_entry)
         chapter["word_count"] = len(chapter["words"])
         flat_words.append(public_entry)
@@ -165,6 +176,25 @@ def _apply_tense_analysis(public_entry: dict, entry_tense_analysis: Dict[str, di
         analysis = entry_tense_analysis.get(f"example_{example_index}")
         if analysis:
             public_entry[f"example_{example_index}_tense"] = analysis
+
+
+def _apply_example_sources(public_entry: dict, entry_example_sources: Dict[str, dict]) -> None:
+    for example_index in (1, 2):
+        source = entry_example_sources.get(f"example_{example_index}")
+        if source:
+            public_entry[f"example_{example_index}_source"] = source
+
+
+def _markdown_source(source: dict | None) -> str:
+    if not source:
+        return "**Source:** 來源待確認"
+    attribution = str(source.get("attribution") or "來源").strip()
+    document = str(source.get("document") or "").strip()
+    section = str(source.get("section") or "").strip()
+    page = str(source.get("page") or "").strip()
+    location = "，".join(part for part in (document, section) if part)
+    page_text = f"，p. {page}" if page else ""
+    return f"**Source:** {attribution}｜{location}{page_text}"
 
 
 def audio_key_for_entry(entry: VocabularyEntry) -> str:

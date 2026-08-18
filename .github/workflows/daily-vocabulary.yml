@@ -91,6 +91,9 @@ jobs:
       - name: Validate tense annotations
         run: python tense_analyzer.py validate --require-complete
 
+      - name: Validate example source annotations
+        run: python example_source_analyzer.py validate
+
       - name: Configure Google Cloud credentials
         env:
           GOOGLE_TTS_CREDENTIALS_JSON: ${{ secrets.GOOGLE_TTS_CREDENTIALS_JSON }}

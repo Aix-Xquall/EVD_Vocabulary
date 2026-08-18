@@ -5,6 +5,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
+from example_source_analyzer import load_example_sources_for_entries
 from hard_words_sync import load_mastered_word_statuses, load_practice_state, sync_hard_words
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
@@ -71,8 +72,9 @@ def run_daily_generation(
         segment_audio = expected_selectable_segment_audio_paths(entries, settings)
 
     tense_analysis = load_tense_annotations_for_entries(entries, settings)
+    example_sources = load_example_sources_for_entries(entries, settings)
     previous_payload = _read_latest_payload(settings.output_dir)
-    markdown = build_markdown(entries, target_date)
+    markdown = build_markdown(entries, target_date, example_sources)
     payload = build_chapter_payload(
         entries,
         target_date,
@@ -83,6 +85,7 @@ def run_daily_generation(
         practice_settings=practice_state["settings"],
         practice_settings_updated_at=practice_state["settings_updated_at"],
         tense_analysis=tense_analysis,
+        example_sources=example_sources,
     )
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)

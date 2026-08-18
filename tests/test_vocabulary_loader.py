@@ -33,6 +33,31 @@ class VocabularyLoaderTests(unittest.TestCase):
 
             self.assertEqual([entry["word"] for entry in entries], ["impedance", "coupling"])
             self.assertTrue(all(entry["_source_file"].endswith(".csv") for entry in entries))
+
+    def test_hard_word_uses_latest_formal_translation_and_examples(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            directory = Path(temp_dir)
+            write_csv(
+                directory / "chapter.csv",
+                "1,bonding,/bond/,搭接,Formal example one,正式翻譯一,"
+                "Formal example two,正式翻譯二,EMC,4,0,\n",
+            )
+            (directory / "hard_words.csv").write_text(
+                "id,word,pronunciation,chinese_meaning,example_1_en,example_1_zh,"
+                "example_2_en,example_2_zh,category,difficulty,review_count,last_review_date,status\n"
+                "1,bonding,/old/,old meaning,Old example one,old translation one,"
+                "Old example two,old translation two,EMC,2,0,,active\n",
+                encoding="utf-8",
+            )
+
+            entries = load_vocabulary(directory)
+
+            hard_word = next(
+                entry for entry in entries if Path(entry["_source_file"]).name == "hard_words.csv"
+            )
+            self.assertEqual(hard_word["chinese_meaning"], "搭接")
+            self.assertEqual(hard_word["example_1_zh"], "正式翻譯一")
+            self.assertEqual(hard_word["example_2_zh"], "正式翻譯二")
             self.assertTrue(all(entry["_row_number"] == 1 for entry in entries))
 
     def test_load_vocabulary_expands_known_abbreviations_and_skips_duplicate_words(self):

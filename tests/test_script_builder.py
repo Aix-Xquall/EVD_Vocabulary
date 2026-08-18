@@ -36,6 +36,30 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertIn("The impedance must be controlled.", markdown)
         self.assertIn("阻抗必須被控制。", markdown)
 
+    def test_build_markdown_contains_example_reference_section(self):
+        entry = sample_entry()
+        entry["_source_file"] = "chapter-a.csv"
+        entry["_row_number"] = 1
+        markdown = build_markdown(
+            [entry],
+            date(2026, 8, 17),
+            {
+                audio_key_for_entry(entry): {
+                    "example_1": {
+                        "document": "NASA-STD-4003A.pdf",
+                        "section": "4.1 Electrical Bonding",
+                        "page": "14",
+                        "attribution": "改寫自",
+                    }
+                }
+            },
+        )
+
+        self.assertIn(
+            "**Source:** 改寫自｜NASA-STD-4003A.pdf，4.1 Electrical Bonding，p. 14",
+            markdown,
+        )
+
     def test_build_daily_payload_contains_audio_paths_and_words(self):
         payload = build_daily_payload(
             [sample_entry()],
@@ -129,6 +153,30 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertEqual(word["example_1_tense"]["name_zh"], "現在簡單式")
         self.assertEqual(word["example_1_tense"]["highlights"], ["affects"])
         self.assertNotIn("example_2_tense", word)
+
+    def test_build_chapter_payload_publishes_example_sources(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\chapter-a.csv"
+        entry["_row_number"] = 1
+        source = {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "5.4.6 SHOCK MOUNTS",
+            "page": "35",
+            "attribution": "改寫自",
+        }
+
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 8, 17),
+            segment_audio={},
+            example_sources={
+                audio_key_for_entry(entry): {"example_1": source},
+            },
+        )
+
+        word = payload["chapters"][1]["words"][0]
+        self.assertEqual(word["example_1_source"], source)
+        self.assertNotIn("example_2_source", word)
     def test_build_chapter_payload_does_not_publish_complete_chapter_audio(self):
         entry = sample_entry()
         entry["_source_file"] = r"C:\workspace\chapter-a.csv"

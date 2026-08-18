@@ -44,6 +44,37 @@ class VocabularyDataTests(unittest.TestCase):
         self.assertEqual(row_count, 663)
         self.assertEqual(duplicates, [])
 
+    def test_all_formal_examples_have_chinese_translations(self):
+        missing = []
+        untranslated_terms = []
+        target_pattern = re.compile(
+            r"\b(?:bond|bonding|shock mounts?|shield|shielding)\b",
+            re.IGNORECASE,
+        )
+        for path in sorted(VOCABULARY_DIR.glob("*.csv")):
+            if path.name == "hard_words.csv":
+                continue
+            for row in read_rows(path):
+                for example_number in (1, 2):
+                    translation = str(row.get(f"example_{example_number}_zh") or "").strip()
+                    if not translation:
+                        missing.append((path.name, row["id"], example_number))
+                    if target_pattern.search(translation):
+                        untranslated_terms.append(
+                            (path.name, row["id"], example_number, translation)
+                        )
+
+        self.assertEqual(missing, [])
+        self.assertEqual(untranslated_terms, [])
+
+    def test_shock_mount_example_uses_aerospace_chinese_translation(self):
+        rows = read_rows(MSFC_PATH)
+        row = next(row for row in rows if row["word"] == "realistically")
+
+        self.assertIn("shock mounts", row["example_1_en"])
+        self.assertIn("隔振座", row["example_1_zh"])
+        self.assertIn("RF 搭接", row["example_1_zh"])
+
     def test_daq_word_and_examples_use_full_name_with_abbreviation(self):
         rows = read_rows(EMC_ONE_PATH)
         daq_row = next(row for row in rows if "(DAQ)" in row["word"])
