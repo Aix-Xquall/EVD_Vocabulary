@@ -2,11 +2,14 @@ import hashlib
 import html
 import os
 import re
+import time
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
+from threading import local
 from typing import Dict, List, Tuple
 
 from abbreviation_expander import expand_abbreviations_for_speech
@@ -45,6 +48,7 @@ class AzureSpeechQuotaExceeded(AzureSpeechSynthesisError):
 
 
 SUPPORTED_TTS_PROVIDERS = {"azure", "google"}
+_GOOGLE_CLIENT_LOCAL = local()
 
 
 def expected_audio_paths(
@@ -141,7 +145,14 @@ def _selectable_segment_audio_paths(
         )
 
     voice_maps = {}
-    for voice in dict.fromkeys((settings.google_male_voice, settings.google_female_voice)):
+    selectable_voices = dict.fromkeys(
+        (
+            *settings.google_selectable_voices,
+            settings.google_male_voice,
+            settings.google_female_voice,
+        )
+    )
+    for voice in selectable_voices:
         if not voice:
             continue
         voice_settings = replace(
@@ -230,6 +241,14 @@ def generate_segment_audio_files(
         pending_segments = pending_segments[: settings.max_audio_segments_per_run]
 
     total_segments = len(pending_segments)
+    if (
+        _tts_provider(settings) == "google"
+        and settings.google_tts_parallel_workers > 1
+        and total_segments > 1
+    ):
+        _generate_google_segments_parallel(pending_segments, settings)
+        return _available_segment_audio_paths(segment_paths, settings)
+
     for index, (role, field_name, language, entry, output_file) in enumerate(pending_segments, start=1):
         output_file.parent.mkdir(parents=True, exist_ok=True)
         print(
@@ -247,6 +266,24 @@ def generate_segment_audio_files(
             )
             break
     return _available_segment_audio_paths(segment_paths, settings)
+
+
+def _generate_google_segments_parallel(pending_segments: list[tuple], settings: Settings) -> None:
+    workers = max(1, min(int(settings.google_tts_parallel_workers), 16))
+    total_segments = len(pending_segments)
+    print(f"Synthesizing {total_segments} Google segments with {workers} workers.", flush=True)
+
+    def synthesize(item: tuple) -> None:
+        _role, field_name, language, entry, output_file = item
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        _synthesize_segment(settings, entry.get(field_name, ""), language, output_file)
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = [executor.submit(synthesize, item) for item in pending_segments]
+        for completed, future in enumerate(as_completed(futures), start=1):
+            future.result()
+            if completed == 1 or completed % 100 == 0 or completed == total_segments:
+                print(f"Synthesized {completed}/{total_segments} Google segments.", flush=True)
 
 
 def _should_synthesize_segment(output_file: Path) -> bool:
@@ -380,24 +417,46 @@ def _synthesize_google_input(
         audio_encoding=texttospeech.AudioEncoding.MP3,
         speaking_rate=rate,
     )
-    try:
+    client = _google_text_to_speech_client(texttospeech)
+    for attempt in range(6):
+        try:
+            response = client.synthesize_speech(
+                input=synthesis_input,
+                voice=voice,
+                audio_config=audio_config,
+                timeout=settings.google_request_timeout_seconds,
+            )
+            output_file.write_bytes(response.audio_content)
+            record_tts_synthesis_usage(settings, "google", len(text), date.today())
+            return
+        except Exception as exc:
+            if _is_google_rate_limit(exc) and attempt < 5:
+                delay_seconds = min(5 * (2 ** attempt), 60)
+                print(
+                    f"Google TTS rate limit reached; retrying in {delay_seconds}s.",
+                    flush=True,
+                )
+                time.sleep(delay_seconds)
+                continue
+            credential_hint = ""
+            if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
+                credential_hint = " Set GOOGLE_APPLICATION_CREDENTIALS or configure ADC first."
+            raise RuntimeError(
+                f"Google Cloud Text-to-Speech request failed for {output_file}: {exc}."
+                f"{credential_hint}"
+            ) from exc
+
+
+def _google_text_to_speech_client(texttospeech):
+    client = getattr(_GOOGLE_CLIENT_LOCAL, "client", None)
+    if client is None:
         client = texttospeech.TextToSpeechClient()
-        response = client.synthesize_speech(
-            input=synthesis_input,
-            voice=voice,
-            audio_config=audio_config,
-            timeout=settings.google_request_timeout_seconds,
-        )
-        output_file.write_bytes(response.audio_content)
-        record_tts_synthesis_usage(settings, "google", len(text), date.today())
-    except Exception as exc:
-        credential_hint = ""
-        if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
-            credential_hint = " Set GOOGLE_APPLICATION_CREDENTIALS or configure ADC first."
-        raise RuntimeError(
-            f"Google Cloud Text-to-Speech request failed for {output_file}: {exc}."
-            f"{credential_hint}"
-        ) from exc
+        _GOOGLE_CLIENT_LOCAL.client = client
+    return client
+
+
+def _is_google_rate_limit(exc: Exception) -> bool:
+    return exc.__class__.__name__ == "ResourceExhausted" or "429" in str(exc)
 
 
 def _combined_ssml(entries: List[VocabularyEntry], settings: Settings) -> str:

@@ -254,7 +254,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260815-voice-settings"></script>',
+            '<script src="learning_helpers.js?v=20260818-voice-clarity"></script>',
             index_html,
         )
 
@@ -298,8 +298,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260815-voice-settings"', index_html)
-        self.assertIn('src="app.js?v=20260815-voice-settings"', index_html)
+        self.assertIn('href="styles.css?v=20260818-voice-clarity"', index_html)
+        self.assertIn('src="app.js?v=20260818-voice-clarity"', index_html)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -449,8 +449,14 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('id="repeatCurrentToggle"', index_html)
         self.assertIn('id="includeExamplesToggle"', index_html)
         self.assertIn('id="englishVoice"', index_html)
-        self.assertIn('en-US-Neural2-J（男）', index_html)
+        self.assertIn('en-US-Neural2-J（男，目前最清楚）', index_html)
+        self.assertIn('en-US-Neural2-A（男）', index_html)
+        self.assertIn('en-US-Neural2-D（男）', index_html)
         self.assertIn('en-US-Wavenet-H（女）', index_html)
+        self.assertIn('en-US-Neural2-C（女）', index_html)
+        self.assertIn('en-US-Neural2-E（女，目前最清楚）', index_html)
+        self.assertIn('en-US-Neural2-F（女）', index_html)
+        self.assertIn('en-US-Neural2-H（女）', index_html)
         self.assertIn('id="combinedAudioButton"', index_html)
         self.assertIn("markPracticeSettingsChanged", app_js)
         self.assertIn("s: currentPracticeSettings()", app_js)

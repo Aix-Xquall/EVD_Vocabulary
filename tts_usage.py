@@ -4,6 +4,7 @@ import urllib.parse
 import urllib.request
 from datetime import date, timedelta
 from pathlib import Path
+from threading import Lock
 
 from config import Settings
 
@@ -13,6 +14,7 @@ AZURE_TOKEN_SCOPE = "https://management.azure.com/.default"
 AZURE_MANAGEMENT_ENDPOINT = "https://management.azure.com"
 GOOGLE_CLOUD_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
 GOOGLE_MONITORING_ENDPOINT = "https://monitoring.googleapis.com"
+_USAGE_FILE_LOCK = Lock()
 
 
 def record_tts_synthesis_usage(
@@ -32,17 +34,18 @@ def record_tts_synthesis_usage(
         return
 
     path = _usage_file_path(settings.output_dir)
-    payload = _read_usage_payload(path)
-    month = payload.setdefault("months", {}).setdefault(month_key, {"providers": {}})
-    provider_payload = month.setdefault("providers", {}).setdefault(
-        provider_key,
-        {"characters": 0},
-    )
-    provider_payload["characters"] = int(provider_payload.get("characters") or 0) + int(
-        character_count
-    )
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with _USAGE_FILE_LOCK:
+        payload = _read_usage_payload(path)
+        month = payload.setdefault("months", {}).setdefault(month_key, {"providers": {}})
+        provider_payload = month.setdefault("providers", {}).setdefault(
+            provider_key,
+            {"characters": 0},
+        )
+        provider_payload["characters"] = int(provider_payload.get("characters") or 0) + int(
+            character_count
+        )
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def build_google_tts_quota_summary(settings: Settings, target_date: date | None = None) -> str:

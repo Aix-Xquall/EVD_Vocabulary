@@ -2,8 +2,14 @@ const DEFAULT_PLAYBACK_RATE = 1.0;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 5;
 const DEFAULT_ENGLISH_VOICE = "en-US-Neural2-J";
 const ENGLISH_VOICE_OPTIONS = Object.freeze({
-  "en-US-Neural2-J": "男",
+  "en-US-Neural2-J": "男，目前最清楚",
+  "en-US-Neural2-A": "男",
+  "en-US-Neural2-D": "男",
   "en-US-Wavenet-H": "女",
+  "en-US-Neural2-C": "女",
+  "en-US-Neural2-E": "女，目前最清楚",
+  "en-US-Neural2-F": "女",
+  "en-US-Neural2-H": "女",
 });
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;

@@ -248,7 +248,9 @@ $env:GOOGLE_CLOUD_PROJECT_ID="your-google-cloud-project-id"
 $env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-J"
 $env:GOOGLE_MALE_VOICE="en-US-Neural2-J"
 $env:GOOGLE_FEMALE_VOICE="en-US-Wavenet-H"
+$env:GOOGLE_SELECTABLE_VOICES="en-US-Neural2-J,en-US-Neural2-A,en-US-Neural2-D,en-US-Wavenet-H,en-US-Neural2-C,en-US-Neural2-E,en-US-Neural2-F,en-US-Neural2-H"
 $env:GOOGLE_CHINESE_VOICE="cmn-TW-Wavenet-A"
+$env:EVD_GOOGLE_TTS_PARALLEL_WORKERS="4"
 $env:EVD_SPEECH_RATE="-20%"
 python main.py --skip-line --no-update-review
 ```
@@ -268,11 +270,14 @@ EVD_TTS_PROVIDER=google
 GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
 GOOGLE_MALE_VOICE=en-US-Neural2-J
 GOOGLE_FEMALE_VOICE=en-US-Wavenet-H
+GOOGLE_SELECTABLE_VOICES=en-US-Neural2-J,en-US-Neural2-A,en-US-Neural2-D,en-US-Wavenet-H,en-US-Neural2-C,en-US-Neural2-E,en-US-Neural2-F,en-US-Neural2-H
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
 GOOGLE_CLOUD_PROJECT_ID=your-google-cloud-project-id
 ```
 
-If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS. The published site provides `en-US-Neural2-J` (male) and `en-US-Wavenet-H` (female), while Chinese uses one shared `cmn-TW-Wavenet-A` file. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
+If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS. `en-US-Neural2-J` and `en-US-Neural2-E` are marked as the clearest current voices. The published site also provides male `Neural2-A` and `Neural2-D`, plus female `Wavenet-H`, `Neural2-C`, `Neural2-E`, `Neural2-F`, and `Neural2-H`. Chinese uses one shared `cmn-TW-Wavenet-A` file. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
+
+Before adding the six voices on 2026-08-18, the project tracked 83,240 Google TTS characters for the month. Missing formal audio was estimated at 444,562 characters, for a projected total of 527,802 / 1,000,000 and 472,198 characters remaining. Existing content-addressed MP3 files are reused, so later runs only synthesize missing text.
 
 ## Manual ChatGPT tense analysis
 

@@ -4,6 +4,16 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent
+DEFAULT_GOOGLE_SELECTABLE_VOICES = (
+    "en-US-Neural2-J",
+    "en-US-Neural2-A",
+    "en-US-Neural2-D",
+    "en-US-Wavenet-H",
+    "en-US-Neural2-C",
+    "en-US-Neural2-E",
+    "en-US-Neural2-F",
+    "en-US-Neural2-H",
+)
 
 
 def _bool_env(name: str, default: bool) -> bool:
@@ -27,6 +37,14 @@ def _text_env(name: str, default: str = "") -> str:
     return value.strip()
 
 
+def _tuple_env(name: str, default: tuple[str, ...]) -> tuple[str, ...]:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    voices = tuple(item.strip() for item in value.split(",") if item.strip())
+    return voices or default
+
+
 @dataclass(frozen=True)
 class Settings:
     vocabulary_dir: Path = Path(_text_env("EVD_VOCABULARY_DIR", str(BASE_DIR / "vocabulary")))
@@ -47,8 +65,13 @@ class Settings:
     google_english_voice: str = _text_env("GOOGLE_ENGLISH_VOICE", "en-US-Neural2-J")
     google_male_voice: str = _text_env("GOOGLE_MALE_VOICE", "en-US-Neural2-J")
     google_female_voice: str = _text_env("GOOGLE_FEMALE_VOICE", "en-US-Wavenet-H")
+    google_selectable_voices: tuple[str, ...] = _tuple_env(
+        "GOOGLE_SELECTABLE_VOICES",
+        DEFAULT_GOOGLE_SELECTABLE_VOICES,
+    )
     google_chinese_voice: str = _text_env("GOOGLE_CHINESE_VOICE", "cmn-TW-Wavenet-A")
     google_request_timeout_seconds: int = _int_env("EVD_GOOGLE_REQUEST_TIMEOUT_SECONDS", 60)
+    google_tts_parallel_workers: int = _int_env("EVD_GOOGLE_TTS_PARALLEL_WORKERS", 4)
     google_tts_free_limit: int = _int_env("EVD_GOOGLE_TTS_FREE_LIMIT", 1000000)
     google_cloud_project_id: str = _text_env(
         "GOOGLE_CLOUD_PROJECT_ID",

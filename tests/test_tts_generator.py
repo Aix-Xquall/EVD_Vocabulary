@@ -12,6 +12,7 @@ from tts_generator import (
     _combine_audio_files,
     _entry_ssml,
     _google_speaking_rate,
+    _is_google_rate_limit,
     _segment_ssml,
     _speech_text_for_audio,
     _should_synthesize_segment,
@@ -25,6 +26,13 @@ from tts_generator import (
 
 
 class TtsGeneratorTests(unittest.TestCase):
+    def test_google_rate_limit_detection_handles_google_class_and_http_text(self):
+        resource_exhausted = type("ResourceExhausted", (Exception,), {})()
+
+        self.assertTrue(_is_google_rate_limit(resource_exhausted))
+        self.assertTrue(_is_google_rate_limit(RuntimeError("429 quota rate exceeded")))
+        self.assertFalse(_is_google_rate_limit(RuntimeError("invalid voice")))
+
     def test_combine_audio_files_concatenates_per_word_mp3_outputs(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)
@@ -76,7 +84,7 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertNotEqual(azure_paths["1"]["word"]["src"], google_paths["1"]["word"]["src"])
         self.assertNotEqual(azure_paths["1"]["meaning"]["src"], google_paths["1"]["meaning"]["src"])
 
-    def test_selectable_google_voices_publish_two_english_files_and_one_chinese_file(self):
+    def test_selectable_google_voices_publish_all_english_files_and_one_chinese_file(self):
         entry = {
             "id": "1",
             "word": "impedance",
@@ -91,7 +99,16 @@ class TtsGeneratorTests(unittest.TestCase):
         word_segment = paths["1"]["word"]
         self.assertEqual(
             set(word_segment["voices"]),
-            {"en-US-Neural2-J", "en-US-Wavenet-H"},
+            {
+                "en-US-Neural2-J",
+                "en-US-Neural2-A",
+                "en-US-Neural2-D",
+                "en-US-Wavenet-H",
+                "en-US-Neural2-C",
+                "en-US-Neural2-E",
+                "en-US-Neural2-F",
+                "en-US-Neural2-H",
+            },
         )
         self.assertNotEqual(
             word_segment["voices"]["en-US-Neural2-J"]["src"],
@@ -120,9 +137,9 @@ class TtsGeneratorTests(unittest.TestCase):
             finally:
                 tts_generator._synthesize_google_text = original_synthesize
 
-            self.assertEqual(sum(language == "en" for _, language, _ in calls), 2)
+            self.assertEqual(sum(language == "en" for _, language, _ in calls), 8)
             self.assertEqual(sum(language == "zh" for _, language, _ in calls), 1)
-            self.assertEqual(len(available["1"]["word"]["voices"]), 2)
+            self.assertEqual(len(available["1"]["word"]["voices"]), 8)
 
     def test_google_provider_uses_google_voices_and_converts_azure_style_rate(self):
         settings = Settings(
@@ -167,10 +184,14 @@ class TtsGeneratorTests(unittest.TestCase):
             finally:
                 tts_generator._synthesize_google_text = original_synthesize
 
-            self.assertEqual(calls[0][0], "Electromagnetic Compatibility")
-            self.assertEqual(calls[0][1], "en")
-            self.assertEqual(calls[1][0], "EMC 測試")
-            self.assertEqual(calls[1][1], "zh")
+            spoken_segments = {(text, language) for text, language, _ in calls}
+            self.assertEqual(
+                spoken_segments,
+                {
+                    ("Electromagnetic Compatibility", "en"),
+                    ("EMC 測試", "zh"),
+                },
+            )
             self.assertIn("word", available["1"])
             self.assertIn("meaning", available["1"])
 

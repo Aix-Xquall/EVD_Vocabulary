@@ -20,6 +20,7 @@ class WorkflowScheduleTests(unittest.TestCase):
 
         self.assertIn('EVD_SPEECH_RATE: "-20%"', workflow)
         self.assertIn('EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "0"', workflow)
+        self.assertIn('EVD_GOOGLE_TTS_PARALLEL_WORKERS: "4"', workflow)
 
     def test_daily_workflow_can_configure_google_tts_provider(self):
         workflow = (PROJECT_DIR / ".github" / "workflows" / "daily-vocabulary.yml").read_text(
@@ -32,6 +33,7 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn("GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-J' }}", workflow)
         self.assertIn("GOOGLE_MALE_VOICE: ${{ vars.GOOGLE_MALE_VOICE || 'en-US-Neural2-J' }}", workflow)
         self.assertIn("GOOGLE_FEMALE_VOICE: ${{ vars.GOOGLE_FEMALE_VOICE || 'en-US-Wavenet-H' }}", workflow)
+        self.assertIn("GOOGLE_SELECTABLE_VOICES: ${{ vars.GOOGLE_SELECTABLE_VOICES || 'en-US-Neural2-J,en-US-Neural2-A,en-US-Neural2-D,en-US-Wavenet-H,en-US-Neural2-C,en-US-Neural2-E,en-US-Neural2-F,en-US-Neural2-H' }}", workflow)
         self.assertIn("GOOGLE_CHINESE_VOICE: ${{ vars.GOOGLE_CHINESE_VOICE || 'cmn-TW-Wavenet-A' }}", workflow)
         self.assertIn("GOOGLE_CLOUD_PROJECT_ID: ${{ vars.GOOGLE_CLOUD_PROJECT_ID || vars.GOOGLE_CLOUD_PROJECT }}", workflow)
         self.assertIn("GOOGLE_TTS_QUOTA_METRIC: ${{ vars.GOOGLE_TTS_QUOTA_METRIC || 'texttospeech.googleapis.com/characters' }}", workflow)
