@@ -67,6 +67,8 @@ const PRACTICE_STATS_SYNC_DELAY_MS = 5000;
 const PRACTICE_STATS_MIN_SYNC_INTERVAL_MS = 15000;
 const CLOUD_STATE_REFRESH_MIN_INTERVAL_MS = 10000;
 const CLOUD_STATE_TIMEOUT_MS = 15000;
+const AUTO_IMPORTANT_EXAMPLE_ATTRIBUTIONS = new Set(["原文摘錄", "改寫自"]);
+const IMPORTANT_EXAMPLES_BASELINE_AT = "2026-09-04T12:45:04.376Z";
 const HARD_WORD_STATUS = {
   active: "active",
   removed: "removed",
@@ -938,6 +940,19 @@ function importantExampleRecord(chapter, word, exampleNumber, important) {
   };
 }
 
+function shouldMarkImportantExample(word, exampleNumber, record) {
+  const attribution = String(
+    word?.[`example_${exampleNumber}_source`]?.attribution || "",
+  ).trim();
+  if (!AUTO_IMPORTANT_EXAMPLE_ATTRIBUTIONS.has(attribution)) {
+    return Boolean(record?.important);
+  }
+  if (!record || record.important) {
+    return true;
+  }
+  return String(record.updated_at || "") <= IMPORTANT_EXAMPLES_BASELINE_AT;
+}
+
 function updateImportantExampleControls(chapter, word) {
   [1, 2].forEach((exampleNumber) => {
     const checkbox = exampleNumber === 1
@@ -945,7 +960,7 @@ function updateImportantExampleControls(chapter, word) {
       : elements.exampleTwoImportant;
     const exampleText = String(word[`example_${exampleNumber}_en`] || "").trim();
     const record = state.importantExamples.get(importantExampleKey(word, exampleNumber));
-    checkbox.checked = Boolean(record?.important);
+    checkbox.checked = shouldMarkImportantExample(word, exampleNumber, record);
     checkbox.disabled = !exampleText;
   });
   updateImportantExamplesSyncStatus();

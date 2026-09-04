@@ -253,7 +253,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260819-source-help"></script>',
+            '<script src="learning_helpers.js?v=20260904-important-sources"></script>',
             index_html,
         )
 
@@ -297,8 +297,25 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260819-source-help"', index_html)
-        self.assertIn('src="app.js?v=20260819-source-help"', index_html)
+        self.assertIn('href="styles.css?v=20260904-important-sources"', index_html)
+        self.assertIn('src="app.js?v=20260904-important-sources"', index_html)
+
+    def test_verified_source_examples_are_checked_by_default(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+
+        self.assertIn(
+            'new Set(["原文摘錄", "改寫自"])',
+            app_js,
+        )
+        self.assertIn("function shouldMarkImportantExample", app_js)
+        self.assertIn(
+            "String(record.updated_at || \"\") <= IMPORTANT_EXAMPLES_BASELINE_AT",
+            app_js,
+        )
+        self.assertIn(
+            "checkbox.checked = shouldMarkImportantExample(word, exampleNumber, record)",
+            app_js,
+        )
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
