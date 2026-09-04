@@ -105,7 +105,8 @@ button.primary {
 }
 
 .statistics-panel,
-.settings-panel {
+.settings-panel,
+.help-panel {
   margin: 0 0 20px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -113,7 +114,8 @@ button.primary {
 }
 
 .statistics-panel summary,
-.settings-panel summary {
+.settings-panel summary,
+.help-panel summary {
   min-height: 48px;
   display: flex;
   align-items: center;
@@ -131,9 +133,28 @@ button.primary {
 }
 
 .statistics-content,
-.settings-content {
+.settings-content,
+.help-content {
   padding: 0 16px 16px;
   border-top: 1px solid var(--line);
+}
+
+.help-content {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.help-content p {
+  margin: 14px 0 8px;
+}
+
+.help-content ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.help-content li + li {
+  margin-top: 6px;
 }
 
 .statistics-toolbar,

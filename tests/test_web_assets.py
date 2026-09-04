@@ -36,7 +36,6 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("includeExamples: true", app_js)
         self.assertIn("includeExamplesToggle", app_js)
         self.assertIn("buildWordQueue", app_js)
-        self.assertIn("buildChapterQueue", app_js)
         self.assertIn("addRepeatedEnglishWithChinese", app_js)
         self.assertIn("if (state.includeExamples)", app_js)
         self.assertIn('segment.language === "en" ? state.playbackRate : 1', app_js)
@@ -240,8 +239,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('name="playbackDirection" value="reverse"', index_html)
         self.assertIn('playback_direction: state.playbackDirection', app_js)
         self.assertIn('settings.playback_direction', app_js)
-        self.assertIn('orderedWordsForPlayback(currentWords(), state.playbackDirection)', app_js)
         self.assertIn('playbackIndex(', app_js)
+        self.assertIn('state.playbackDirection,\n    1,', app_js)
         self.assertNotIn(
             'state.currentIndex = state.playbackDirection === "reverse"',
             app_js,
@@ -254,7 +253,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260818-voice-clarity"></script>',
+            '<script src="learning_helpers.js?v=20260819-source-help"></script>',
             index_html,
         )
 
@@ -298,8 +297,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260818-voice-clarity"', index_html)
-        self.assertIn('src="app.js?v=20260818-voice-clarity"', index_html)
+        self.assertIn('href="styles.css?v=20260819-source-help"', index_html)
+        self.assertIn('src="app.js?v=20260819-source-help"', index_html)
 
     def test_current_word_highlights_vowels_without_marking_acronyms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -452,12 +451,12 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('en-US-Neural2-J（男，目前最清楚）', index_html)
         self.assertIn('en-US-Neural2-A（男）', index_html)
         self.assertIn('en-US-Neural2-D（男）', index_html)
-        self.assertIn('en-US-Wavenet-H（女）', index_html)
-        self.assertIn('en-US-Neural2-C（女）', index_html)
-        self.assertIn('en-US-Neural2-E（女，目前最清楚）', index_html)
-        self.assertIn('en-US-Neural2-F（女）', index_html)
-        self.assertIn('en-US-Neural2-H（女）', index_html)
-        self.assertIn('id="combinedAudioButton"', index_html)
+        self.assertIn('en-US-Wavenet-H（女聲）', index_html)
+        self.assertIn('en-US-Neural2-C（女聲）', index_html)
+        self.assertIn('en-US-Neural2-E（女聲，目前最清楚）', index_html)
+        self.assertIn('en-US-Neural2-F（女聲）', index_html)
+        self.assertIn('en-US-Neural2-H（女聲）', index_html)
+        self.assertNotIn('id="combinedAudioButton"', index_html)
         self.assertIn("markPracticeSettingsChanged", app_js)
         self.assertIn("s: currentPracticeSettings()", app_js)
         self.assertIn("english_voice: state.englishVoice", app_js)
@@ -495,11 +494,14 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("PRACTICE_STATS_MIN_SYNC_INTERVAL_MS = 15000", app_js)
         self.assertIn("await refreshCloudState(false, true);", app_js)
 
-    def test_chapter_playback_uses_segment_queue_with_wake_lock_controls(self):
+    def test_unused_combined_chapter_playback_is_removed(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
 
-        self.assertIn("const chapterQueue = buildChapterQueue()", app_js)
-        self.assertIn("playQueue(chapterQueue, true)", app_js)
+        self.assertNotIn("combinedAudioButton", app_js)
+        self.assertNotIn("playCombinedAudio", app_js)
+        self.assertNotIn("buildChapterQueue", app_js)
+        self.assertNotIn("播放本章節", index_html)
         self.assertNotIn("chapter.chapter_audio", app_js)
         self.assertNotIn('playDirectAudio(chapter.chapter_audio, "mixed")', app_js)
 
@@ -507,10 +509,24 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
         self.assertIn("const WORD_GROUP_DELAY_MS = 2000;", app_js)
-        self.assertIn("wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;", app_js)
         self.assertIn("queue[0].startsWord = word;", app_js)
         self.assertIn("showPlaybackWord(segment.startsWord);", app_js)
-        self.assertIn("queue.push(...wordQueue);", app_js)
+        self.assertIn("}, WORD_GROUP_DELAY_MS);", app_js)
+
+    def test_help_panel_explains_example_source_attributions(self):
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn('class="help-panel"', index_html)
+        self.assertIn("<summary>說明</summary>", index_html)
+        self.assertIn("原文摘錄 &gt; 改寫自 &gt; 主題參考 &gt; 自編例句", index_html)
+        self.assertIn("不適合當作該句完整敘述的直接證據", index_html)
+        self.assertIn("例句可在參考文件找到相同內容", index_html)
+        self.assertIn("文件確實支持該句內容", index_html)
+        self.assertIn("文件只談到相同工程主題或術語", index_html)
+        self.assertIn("為學習用途自行編寫", index_html)
+        self.assertIn(".help-panel", styles_css)
+        self.assertIn(".help-content", styles_css)
 
     def test_single_word_autoplay_waits_before_switching_to_next_word(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

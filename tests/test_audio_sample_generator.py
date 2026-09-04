@@ -134,6 +134,7 @@ class AudioSampleGeneratorTests(unittest.TestCase):
 
             html = (output_dir / "index.html").read_text(encoding="utf-8")
             self.assertEqual(len(result["voices"]), 5)
+            self.assertIn("Google English voice comparison", html)
             self.assertIn("en-US-Neural2-C", html)
             self.assertIn("en-US-Neural2-E", html)
             self.assertIn("en-US-Neural2-F", html)

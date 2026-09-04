@@ -5,11 +5,11 @@ const ENGLISH_VOICE_OPTIONS = Object.freeze({
   "en-US-Neural2-J": "男，目前最清楚",
   "en-US-Neural2-A": "男",
   "en-US-Neural2-D": "男",
-  "en-US-Wavenet-H": "女",
-  "en-US-Neural2-C": "女",
-  "en-US-Neural2-E": "女，目前最清楚",
-  "en-US-Neural2-F": "女",
-  "en-US-Neural2-H": "女",
+  "en-US-Wavenet-H": "女聲",
+  "en-US-Neural2-C": "女聲",
+  "en-US-Neural2-E": "女聲，目前最清楚",
+  "en-US-Neural2-F": "女聲",
+  "en-US-Neural2-H": "女聲",
 });
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
@@ -176,7 +176,6 @@ const elements = {
   colorPalette: document.getElementById("colorPalette"),
   colorPaletteTitle: document.getElementById("colorPaletteTitle"),
   colorPaletteOptions: document.getElementById("colorPaletteOptions"),
-  combinedAudioButton: document.getElementById("combinedAudioButton"),
   toggleMeaningButton: document.getElementById("toggleMeaningButton"),
   audioPlayer: document.getElementById("audioPlayer"),
   practiceScore: document.getElementById("practiceScore"),
@@ -261,7 +260,6 @@ function render() {
   elements.exampleTwoSource.textContent = formatExampleSource(word.example_2_source);
   elements.exampleTwoSource.hidden = !elements.exampleTwoSource.textContent;
   updateImportantExampleControls(chapter, word);
-  elements.combinedAudioButton.textContent = `播放 ${chapter.title || "本章節"}`;
 
   document.body.classList.toggle("hidden-meaning", state.hideMeaning);
   renderChapterSelect();
@@ -407,23 +405,6 @@ function togglePlayback() {
     return;
   }
   resumeOrPlayCurrent();
-}
-
-function playCombinedAudio() {
-  const chapterQueue = buildChapterQueue();
-  playQueue(chapterQueue, true);
-}
-
-function buildChapterQueue() {
-  const queue = [];
-  orderedWordsForPlayback(currentWords(), state.playbackDirection).forEach((word) => {
-    const wordQueue = buildWordQueue(word, false);
-    if (queue.length > 0 && wordQueue.length > 0) {
-      wordQueue[0].delayMs = WORD_GROUP_DELAY_MS;
-    }
-    queue.push(...wordQueue);
-  });
-  return queue;
 }
 
 function buildWordQueue(word, isRepeatCycle = false) {
@@ -2156,7 +2137,6 @@ elements.previousButton.addEventListener("click", () => {
   previousWord();
   playCurrent();
 });
-elements.combinedAudioButton.addEventListener("click", playCombinedAudio);
 elements.chapterSelect.addEventListener("change", (event) => {
   selectChapter(event.target.value, true);
 });

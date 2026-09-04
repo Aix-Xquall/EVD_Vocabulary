@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVD Daily Vocabulary</title>
-    <link rel="stylesheet" href="styles.css?v=20260818-voice-clarity">
+    <link rel="stylesheet" href="styles.css?v=20260819-source-help">
   </head>
   <body>
     <main class="app-shell">
@@ -45,11 +45,11 @@
                 <option value="en-US-Neural2-J">en-US-Neural2-J（男，目前最清楚）</option>
                 <option value="en-US-Neural2-A">en-US-Neural2-A（男）</option>
                 <option value="en-US-Neural2-D">en-US-Neural2-D（男）</option>
-                <option value="en-US-Wavenet-H">en-US-Wavenet-H（女）</option>
-                <option value="en-US-Neural2-C">en-US-Neural2-C（女）</option>
-                <option value="en-US-Neural2-E">en-US-Neural2-E（女，目前最清楚）</option>
-                <option value="en-US-Neural2-F">en-US-Neural2-F（女）</option>
-                <option value="en-US-Neural2-H">en-US-Neural2-H（女）</option>
+                <option value="en-US-Wavenet-H">en-US-Wavenet-H（女聲）</option>
+                <option value="en-US-Neural2-C">en-US-Neural2-C（女聲）</option>
+                <option value="en-US-Neural2-E">en-US-Neural2-E（女聲，目前最清楚）</option>
+                <option value="en-US-Neural2-F">en-US-Neural2-F（女聲）</option>
+                <option value="en-US-Neural2-H">en-US-Neural2-H（女聲）</option>
               </select>
             </label>
             <label class="rate-control" for="playbackRate">
@@ -83,7 +83,6 @@
                 <div id="colorPaletteOptions" class="color-palette-options" role="group" aria-labelledby="colorPaletteTitle"></div>
               </div>
             </fieldset>
-            <button id="combinedAudioButton" type="button">播放本章節</button>
           </div>
           <div class="settings-sync">
             <span id="settingsSyncStatus" class="sync-status">設定會自動同步</span>
@@ -203,10 +202,23 @@
           <div id="statisticsList" class="statistics-list"></div>
         </div>
       </details>
+
+      <details class="help-panel">
+        <summary>說明</summary>
+        <div class="help-content">
+          <p><strong>出處標記可信度：</strong>原文摘錄 &gt; 改寫自 &gt; 主題參考 &gt; 自編例句。其中「主題參考」不適合當作該句完整敘述的直接證據。</p>
+          <ul>
+            <li><strong>原文摘錄：</strong>例句可在參考文件找到相同內容，僅可能忽略大小寫、空格或標點差異。</li>
+            <li><strong>改寫自：</strong>文件確實支持該句內容，但例句為了學習而簡化、換字或重組。</li>
+            <li><strong>主題參考：</strong>文件只談到相同工程主題或術語，不能表示例句內容直接來自該章節。</li>
+            <li><strong>自編例句：</strong>為學習用途自行編寫，沒有找到足以支持此句的文件章節；旅遊會話通常屬於此類。</li>
+          </ul>
+        </div>
+      </details>
     </main>
 
     <audio id="audioPlayer" preload="metadata"></audio>
-    <script src="learning_helpers.js?v=20260818-voice-clarity"></script>
-    <script src="app.js?v=20260818-voice-clarity"></script>
+    <script src="learning_helpers.js?v=20260819-source-help"></script>
+    <script src="app.js?v=20260819-source-help"></script>
   </body>
 </html>

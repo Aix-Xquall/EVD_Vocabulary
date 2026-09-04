@@ -305,7 +305,7 @@ def _write_comparison_page(
   </head>
   <body>
     <h1>{html.escape(title)}</h1>
-    <p>Google English female voice comparison. Repeat count: {repeat_count}. Voices: {html.escape(voice_text)}.</p>
+    <p>Google English voice comparison. Repeat count: {repeat_count}. Voices: {html.escape(voice_text)}.</p>
     {players}
     <h2>Words</h2>
     <ol>{items}</ol>
