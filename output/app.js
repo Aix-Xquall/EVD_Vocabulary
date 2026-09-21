@@ -2,14 +2,8 @@ const DEFAULT_PLAYBACK_RATE = 1.0;
 const DEFAULT_ENGLISH_REPEAT_COUNT = 5;
 const DEFAULT_ENGLISH_VOICE = "en-US-Neural2-J";
 const ENGLISH_VOICE_OPTIONS = Object.freeze({
-  "en-US-Neural2-J": "男，目前最清楚",
-  "en-US-Neural2-A": "男",
-  "en-US-Neural2-D": "男",
-  "en-US-Wavenet-H": "女聲",
-  "en-US-Neural2-C": "女聲",
+  "en-US-Neural2-J": "男聲，目前最清楚",
   "en-US-Neural2-E": "女聲，目前最清楚",
-  "en-US-Neural2-F": "女聲",
-  "en-US-Neural2-H": "女聲",
 });
 const ENGLISH_REPEAT_DELAY_MS = 1500;
 const EXAMPLE_GROUP_DELAY_MS = 2000;
@@ -1309,11 +1303,36 @@ function applyPracticeSettings(settings) {
   );
   applyLearningColors();
   const chapterId = String(settings.selected_chapter_id || "");
-  const chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
+  let chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
+  if (chapterIndex < 0 && chapterId === "msfc-hdbk-3697") {
+    chapterIndex = migrateLegacyMsfcChapterPosition(settings.chapter_positions);
+  }
   if (chapterIndex >= 0) {
     state.currentChapterIndex = chapterIndex;
     state.currentIndex = Math.max(0, savedChapterIndex(state.chapters[chapterIndex]));
   }
+}
+
+function migrateLegacyMsfcChapterPosition(chapterPositions) {
+  const legacyWordKey = String(chapterPositions?.["msfc-hdbk-3697"] || "")
+    .trim()
+    .toLowerCase();
+  let chapterIndex = -1;
+  if (legacyWordKey) {
+    chapterIndex = state.chapters.findIndex((chapter) => (
+      String(chapter.source_file || "").startsWith("MSFC-HDBK-3697_")
+      && (chapter.words || []).some((word) => hardWordKey(word) === legacyWordKey)
+    ));
+  }
+  if (chapterIndex < 0) {
+    chapterIndex = state.chapters.findIndex((chapter) => (
+      String(chapter.source_file || "").startsWith("MSFC-HDBK-3697_")
+    ));
+  }
+  if (chapterIndex >= 0 && legacyWordKey) {
+    state.chapterWordPositions[chapterKey(state.chapters[chapterIndex])] = legacyWordKey;
+  }
+  return chapterIndex;
 }
 
 function markPracticeSettingsChanged() {
