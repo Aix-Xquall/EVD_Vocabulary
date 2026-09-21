@@ -4,6 +4,25 @@
 
 Put vocabulary CSV files in `vocabulary/`. GitHub Actions watches this folder, so future CSV additions or edits there will be included in the daily site update.
 
+### MSFC-HDBK-3697 daily curriculum
+
+The MSFC handbook vocabulary is split into eight ordered chapter CSV files named
+`MSFC-HDBK-3697_01_...csv` through `MSFC-HDBK-3697_08_...csv`. Existing words stay
+published, while newly added words in these files are released in file and row order at
+10 words per day. Release progress is committed in
+`output/data/msfc_daily_release_state.json`, so rerunning the workflow on the same date
+does not release or notify a second batch.
+
+The curriculum contains 310 planned new words: 39 in each of chapters 1-6 and 38 in
+each of chapters 7-8. At 10 words per day, the complete planned release takes 31 days.
+Together with the 118 previously published MSFC words, the eight chapter files contain
+428 words. The planned 310-word curriculum is estimated at about 126,692 Google TTS
+characters for two English voices and one Chinese voice; existing content-addressed
+audio is reused, so only missing segments are synthesized.
+
+Each scheduled daily release sends one LINE message when at least one new word is
+actually released. When the curriculum pool is exhausted, no empty LINE update is sent.
+
 The loader expands these engineering abbreviations for display:
 
 - `MIL-STD-461` -> `Military Standard 461 (MIL-STD-461)`
@@ -75,7 +94,7 @@ HARD_WORDS_READ_TOKEN=YOUR_READ_TOKEN
 
 After each successful hard-word or mastered-word write, the Apps Script template calls the GitHub Actions API to run `Daily Vocabulary`. That workflow refreshes `vocabulary/hard_words.csv`, regenerates `latest.json`, and deploys GitHub Pages.
 
-Hard-word and mastered-word refreshes pass `skip_line_notification=true`, so they update the site without sending a LINE message. Scheduled runs send LINE only when new vocabulary is detected. For a one-time test or completion message, manually run `Daily Vocabulary` with `force_line_notification=true`.
+Hard-word and mastered-word refreshes pass `skip_line_notification=true`, so they update the site without releasing a curriculum batch or sending a LINE message. Scheduled runs release the next batch and send LINE only when new vocabulary is detected. For a one-time test or completion message, manually run `Daily Vocabulary` with `force_line_notification=true`.
 
 After changing or redeploying the Apps Script Web App, run `Daily Vocabulary` once from GitHub Actions or push a normal repo change so the published site picks up the latest hard-words settings and snapshot.
 
@@ -212,7 +231,7 @@ $env:AZURE_SPEECH_REGION="你的 Azure region"
 可選設定：
 
 ```powershell
-$env:EVD_DAILY_WORD_COUNT="20"
+$env:EVD_DAILY_WORD_COUNT="10"
 $env:EVD_SPEECH_RATE="0%"
 $env:EVD_INCLUDE_CHINESE_AUDIO="true"
 $env:EVD_REPEAT_EACH_WORD="true"
@@ -247,8 +266,8 @@ $env:GOOGLE_APPLICATION_CREDENTIALS="D:\secure\google-tts-key.json"
 $env:GOOGLE_CLOUD_PROJECT_ID="your-google-cloud-project-id"
 $env:GOOGLE_ENGLISH_VOICE="en-US-Neural2-J"
 $env:GOOGLE_MALE_VOICE="en-US-Neural2-J"
-$env:GOOGLE_FEMALE_VOICE="en-US-Wavenet-H"
-$env:GOOGLE_SELECTABLE_VOICES="en-US-Neural2-J,en-US-Neural2-A,en-US-Neural2-D,en-US-Wavenet-H,en-US-Neural2-C,en-US-Neural2-E,en-US-Neural2-F,en-US-Neural2-H"
+$env:GOOGLE_FEMALE_VOICE="en-US-Neural2-E"
+$env:GOOGLE_SELECTABLE_VOICES="en-US-Neural2-J,en-US-Neural2-E"
 $env:GOOGLE_CHINESE_VOICE="cmn-TW-Wavenet-A"
 $env:EVD_GOOGLE_TTS_PARALLEL_WORKERS="4"
 $env:EVD_SPEECH_RATE="-20%"
@@ -269,13 +288,13 @@ Add these Repository Variables:
 EVD_TTS_PROVIDER=google
 GOOGLE_ENGLISH_VOICE=en-US-Neural2-J
 GOOGLE_MALE_VOICE=en-US-Neural2-J
-GOOGLE_FEMALE_VOICE=en-US-Wavenet-H
-GOOGLE_SELECTABLE_VOICES=en-US-Neural2-J,en-US-Neural2-A,en-US-Neural2-D,en-US-Wavenet-H,en-US-Neural2-C,en-US-Neural2-E,en-US-Neural2-F,en-US-Neural2-H
+GOOGLE_FEMALE_VOICE=en-US-Neural2-E
+GOOGLE_SELECTABLE_VOICES=en-US-Neural2-J,en-US-Neural2-E
 GOOGLE_CHINESE_VOICE=cmn-TW-Wavenet-A
 GOOGLE_CLOUD_PROJECT_ID=your-google-cloud-project-id
 ```
 
-If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS. `en-US-Neural2-J` and `en-US-Neural2-E` are marked as the clearest current voices. The published site also provides male `Neural2-A` and `Neural2-D`, plus female `Wavenet-H`, `Neural2-C`, `Neural2-E`, `Neural2-F`, and `Neural2-H`. Chinese uses one shared `cmn-TW-Wavenet-A` file. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
+If `EVD_TTS_PROVIDER` is not set, the project defaults to Google TTS. The published site provides the reviewed `en-US-Neural2-J` male voice and `en-US-Neural2-E` female voice. Chinese uses one shared `cmn-TW-Wavenet-A` file. English speed is still controlled by `EVD_SPEECH_RATE=-20%`, which maps to 0.8x for Google. Chinese speed stays at 1.0x. To switch back to Azure Free F0, set `EVD_TTS_PROVIDER=azure`.
 
 Before adding the six voices on 2026-08-18, the project tracked 83,240 Google TTS characters for the month. Missing formal audio was estimated at 444,562 characters, for a projected total of 527,802 / 1,000,000 and 472,198 characters remaining. Existing content-addressed MP3 files are reused, so later runs only synthesize missing text.
 

@@ -324,6 +324,8 @@ def source_name(value: str) -> str:
 
 
 def matching_chapter_name(entry: dict, source_file: str) -> str:
+    if source_file.startswith("MSFC-HDBK-3697_"):
+        return "MSFC-HDBK-3697.csv"
     if source_file != "hard_words.csv":
         return source_file
     chapter = str(entry.get("_source_chapter") or "").strip()

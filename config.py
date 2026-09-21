@@ -6,13 +6,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_GOOGLE_SELECTABLE_VOICES = (
     "en-US-Neural2-J",
-    "en-US-Neural2-A",
-    "en-US-Neural2-D",
-    "en-US-Wavenet-H",
-    "en-US-Neural2-C",
     "en-US-Neural2-E",
-    "en-US-Neural2-F",
-    "en-US-Neural2-H",
 )
 
 
@@ -49,7 +43,7 @@ def _tuple_env(name: str, default: tuple[str, ...]) -> tuple[str, ...]:
 class Settings:
     vocabulary_dir: Path = Path(_text_env("EVD_VOCABULARY_DIR", str(BASE_DIR / "vocabulary")))
     output_dir: Path = Path(_text_env("EVD_OUTPUT_DIR", str(BASE_DIR / "output")))
-    daily_word_count: int = _int_env("EVD_DAILY_WORD_COUNT", 20)
+    daily_word_count: int = _int_env("EVD_DAILY_WORD_COUNT", 10)
     speech_rate: str = _text_env("EVD_SPEECH_RATE", "0%")
     include_chinese_in_audio: bool = _bool_env("EVD_INCLUDE_CHINESE_AUDIO", True)
     repeat_each_word: bool = _bool_env("EVD_REPEAT_EACH_WORD", True)
@@ -64,7 +58,7 @@ class Settings:
     chinese_voice: str = _text_env("EVD_CHINESE_VOICE", "zh-TW-HsiaoChenNeural")
     google_english_voice: str = _text_env("GOOGLE_ENGLISH_VOICE", "en-US-Neural2-J")
     google_male_voice: str = _text_env("GOOGLE_MALE_VOICE", "en-US-Neural2-J")
-    google_female_voice: str = _text_env("GOOGLE_FEMALE_VOICE", "en-US-Wavenet-H")
+    google_female_voice: str = _text_env("GOOGLE_FEMALE_VOICE", "en-US-Neural2-E")
     google_selectable_voices: tuple[str, ...] = _tuple_env(
         "GOOGLE_SELECTABLE_VOICES",
         DEFAULT_GOOGLE_SELECTABLE_VOICES,

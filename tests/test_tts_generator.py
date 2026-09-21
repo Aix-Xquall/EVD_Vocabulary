@@ -101,18 +101,12 @@ class TtsGeneratorTests(unittest.TestCase):
             set(word_segment["voices"]),
             {
                 "en-US-Neural2-J",
-                "en-US-Neural2-A",
-                "en-US-Neural2-D",
-                "en-US-Wavenet-H",
-                "en-US-Neural2-C",
                 "en-US-Neural2-E",
-                "en-US-Neural2-F",
-                "en-US-Neural2-H",
             },
         )
         self.assertNotEqual(
             word_segment["voices"]["en-US-Neural2-J"]["src"],
-            word_segment["voices"]["en-US-Wavenet-H"]["src"],
+            word_segment["voices"]["en-US-Neural2-E"]["src"],
         )
         self.assertNotIn("voices", paths["1"]["meaning"])
 
@@ -137,9 +131,9 @@ class TtsGeneratorTests(unittest.TestCase):
             finally:
                 tts_generator._synthesize_google_text = original_synthesize
 
-            self.assertEqual(sum(language == "en" for _, language, _ in calls), 8)
+            self.assertEqual(sum(language == "en" for _, language, _ in calls), 2)
             self.assertEqual(sum(language == "zh" for _, language, _ in calls), 1)
-            self.assertEqual(len(available["1"]["word"]["voices"]), 8)
+            self.assertEqual(len(available["1"]["word"]["voices"]), 2)
 
     def test_google_provider_uses_google_voices_and_converts_azure_style_rate(self):
         settings = Settings(

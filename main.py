@@ -5,6 +5,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from config import DEFAULT_SETTINGS, Settings
+from daily_release import apply_daily_release, normalize_word
 from example_source_analyzer import load_example_sources_for_entries
 from hard_words_sync import load_mastered_word_statuses, load_practice_state, sync_hard_words
 from line_notifier import send_daily_line_notification
@@ -22,6 +23,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--date", help="Target date in YYYY-MM-DD format. Defaults to today.")
     parser.add_argument("--skip-audio", action="store_true", help="Skip Azure Speech MP3 generation.")
     parser.add_argument("--skip-line", action="store_true", help="Skip LINE notification.")
+    parser.add_argument(
+        "--skip-daily-release",
+        action="store_true",
+        help="Refresh synchronized state without releasing a new curriculum batch.",
+    )
     parser.add_argument(
         "--force-line",
         action="store_true",
@@ -44,6 +50,7 @@ def main() -> None:
         update_review=not args.no_update_review,
         notify_line=not args.skip_line,
         force_line_notification=args.force_line,
+        release_new_words=not args.skip_daily_release,
     )
     print(f"Generated {result['word_count']} words for {result['date']}")
     print(f"Markdown: {result['markdown_path']}")
@@ -56,15 +63,28 @@ def run_daily_generation(
     update_review: bool = True,
     notify_line: bool = True,
     force_line_notification: bool = False,
+    release_new_words: bool = True,
 ) -> dict:
     sync_result = sync_hard_words(settings)
     if sync_result:
         source = "remote" if sync_result.used_remote else "local"
         print(f"Hard words snapshot: {sync_result.row_count} rows from {source}")
 
-    entries = load_vocabulary(settings.vocabulary_dir)
+    all_entries = load_vocabulary(settings.vocabulary_dir)
     mastered_word_statuses = load_mastered_word_statuses(settings.vocabulary_dir)
     practice_state = load_practice_state(settings.vocabulary_dir)
+    previous_payload = _read_latest_payload(settings.output_dir)
+    release_result = apply_daily_release(
+        all_entries,
+        previous_payload,
+        settings.output_dir,
+        target_date,
+        settings.daily_word_count,
+        release_new_words=release_new_words,
+    )
+    entries = release_result.entries
+    if release_result.released_today:
+        print(f"Daily MSFC release: {len(release_result.released_today)} words")
 
     if settings.generate_audio:
         segment_audio = generate_selectable_segment_audio_files(entries, settings)
@@ -73,7 +93,6 @@ def run_daily_generation(
 
     tense_analysis = load_tense_annotations_for_entries(entries, settings)
     example_sources = load_example_sources_for_entries(entries, settings)
-    previous_payload = _read_latest_payload(settings.output_dir)
     markdown = build_markdown(entries, target_date, example_sources)
     payload = build_chapter_payload(
         entries,
@@ -115,6 +134,7 @@ def run_daily_generation(
         "word_count": len(entries),
         "markdown_path": str(output_paths["markdown"]),
         "json_path": str(output_paths["json"]),
+        "released_word_count": len(release_result.released_today),
     }
 
 
@@ -141,7 +161,7 @@ def build_notification_report(previous_payload: dict | None, current_payload: di
         keys = current_keys.get(title, set())
         new_keys = keys - previous_all
         new_word_count += len(new_keys)
-        if title and title not in previous_keys and keys:
+        if title and new_keys:
             new_chapter_names.append(title)
 
     return {
@@ -154,10 +174,11 @@ def _word_keys_by_chapter(payload: dict) -> dict[str, set[str]]:
     chapters = {}
     for chapter in payload.get("chapters", []):
         title = chapter.get("title", "")
-        source_file = chapter.get("source_file", "")
         words = set()
         for word in chapter.get("words", []):
-            words.add("|".join([source_file, str(word.get("id", "")), word.get("word", "")]))
+            key = normalize_word(word.get("word", ""))
+            if key:
+                words.add(key)
         chapters[title] = words
     return chapters
 

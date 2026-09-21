@@ -110,7 +110,7 @@ class MainWorkflowTests(unittest.TestCase):
         report = build_notification_report(previous_payload, current_payload)
 
         self.assertEqual(report["new_word_count"], 2)
-        self.assertEqual(report["new_chapter_names"], ["chapter-b"])
+        self.assertEqual(report["new_chapter_names"], ["chapter-a", "chapter-b"])
 
     def test_daily_generation_skips_line_when_there_are_no_new_words(self):
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -145,12 +145,9 @@ def _selectable_segment_audio_paths(
         )
 
     voice_maps = {}
+    # Daily curriculum audio is intentionally limited to the two reviewed voices.
     selectable_voices = dict.fromkeys(
-        (
-            *settings.google_selectable_voices,
-            settings.google_male_voice,
-            settings.google_female_voice,
-        )
+        (settings.google_male_voice, settings.google_female_voice)
     )
     for voice in selectable_voices:
         if not voice:

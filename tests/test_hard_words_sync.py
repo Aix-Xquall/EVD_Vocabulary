@@ -175,7 +175,7 @@ class HardWordsSyncTests(unittest.TestCase):
             self.assertFalse(practice_state["settings"]["repeat_all"])
             self.assertTrue(practice_state["settings"]["repeat_current"])
             self.assertEqual(practice_state["settings"]["playback_direction"], "reverse")
-            self.assertEqual(practice_state["settings"]["english_voice"], "en-US-Wavenet-H")
+            self.assertEqual(practice_state["settings"]["english_voice"], "en-US-Neural2-E")
             self.assertEqual(
                 practice_state["settings"]["chapter_positions"],
                 {"emc-1": "low impedance", "hard-words": "emc"},

@@ -9,7 +9,7 @@ from vocabulary_loader import REQUIRED_COLUMNS
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 VOCABULARY_DIR = PROJECT_DIR / "vocabulary"
-MSFC_PATH = VOCABULARY_DIR / "MSFC-HDBK-3697.csv"
+MSFC_PATHS = sorted(VOCABULARY_DIR.glob("MSFC-HDBK-3697_*.csv"))
 CONSULTANT_PATH = VOCABULARY_DIR / "EMC顧問回覆與系統整合詞彙.csv"
 EMC_ONE_PATH = VOCABULARY_DIR / "EMC航電詞彙整合1.csv"
 
@@ -17,6 +17,10 @@ EMC_ONE_PATH = VOCABULARY_DIR / "EMC航電詞彙整合1.csv"
 def read_rows(path: Path) -> list[dict]:
     with path.open("r", encoding="utf-8-sig", newline="") as file:
         return list(csv.DictReader(file))
+
+
+def read_msfc_rows() -> list[dict]:
+    return [row for path in MSFC_PATHS for row in read_rows(path)]
 
 
 def normalized_word_key(word: str) -> str:
@@ -41,7 +45,7 @@ class VocabularyDataTests(unittest.TestCase):
                 else:
                     seen[word_key] = path.name
 
-        self.assertEqual(row_count, 663)
+        self.assertEqual(row_count, 973)
         self.assertEqual(duplicates, [])
 
     def test_all_formal_examples_have_chinese_translations(self):
@@ -68,7 +72,7 @@ class VocabularyDataTests(unittest.TestCase):
         self.assertEqual(untranslated_terms, [])
 
     def test_shock_mount_example_uses_aerospace_chinese_translation(self):
-        rows = read_rows(MSFC_PATH)
+        rows = read_msfc_rows()
         row = next(row for row in rows if row["word"] == "realistically")
 
         self.assertIn("shock mounts", row["example_1_en"])
@@ -124,12 +128,15 @@ class VocabularyDataTests(unittest.TestCase):
         )
 
     def test_msfc_chapter_preserves_ids_after_moving_foundational_terms(self):
-        with MSFC_PATH.open("r", encoding="utf-8-sig", newline="") as file:
-            reader = csv.DictReader(file)
-            rows = list(reader)
+        rows = read_msfc_rows()
+        self.assertEqual(len(MSFC_PATHS), 8)
+        for path in MSFC_PATHS:
+            with path.open("r", encoding="utf-8-sig", newline="") as file:
+                reader = csv.DictReader(file)
+                self.assertEqual(reader.fieldnames, REQUIRED_COLUMNS)
+            self.assertTrue(path.read_bytes().startswith(b"\xef\xbb\xbf"))
 
-        self.assertEqual(reader.fieldnames, REQUIRED_COLUMNS)
-        self.assertEqual(len(rows), 118)
+        self.assertEqual(len(rows), 428)
         missing_existing_ids = {2, 3, 17, 18, 31, 32, 35, 57, 67, 68, 69, 74, 81, 82, 90}
         moved_ids = {19, 20, 21, 22}
         expected_ids = {
@@ -137,12 +144,21 @@ class VocabularyDataTests(unittest.TestCase):
             for index in range(1, 138)
             if index not in missing_existing_ids | moved_ids
         }
+        expected_ids.update(str(index) for index in range(201, 511))
         self.assertEqual({row["id"] for row in rows}, expected_ids)
         self.assertEqual(len({row["id"] for row in rows}), len(rows))
-        self.assertTrue(MSFC_PATH.read_bytes().startswith(b"\xef\xbb\xbf"))
+
+    def test_each_msfc_chapter_has_planned_curriculum_words(self):
+        new_word_counts = [
+            sum(int(row["id"]) >= 201 for row in read_rows(path))
+            for path in MSFC_PATHS
+        ]
+
+        self.assertEqual(new_word_counts, [39, 39, 39, 39, 39, 39, 38, 38])
+        self.assertEqual(sum(new_word_counts), 310)
 
     def test_latest_msfc_rows_contain_requested_words_and_usable_examples(self):
-        rows = read_rows(MSFC_PATH)
+        rows = read_msfc_rows()
         expected_words = [
             "rely on",
             "accidental",
@@ -168,12 +184,12 @@ class VocabularyDataTests(unittest.TestCase):
             )
 
     def test_appended_msfc_rows_add_no_cross_chapter_duplicates(self):
-        msfc_rows = read_rows(MSFC_PATH)
-        appended_rows = [row for row in msfc_rows if int(row["id"]) >= 97]
+        msfc_rows = read_msfc_rows()
+        appended_rows = [row for row in msfc_rows if 97 <= int(row["id"]) < 200]
         other_sources = defaultdict(list)
 
         for path in sorted(VOCABULARY_DIR.glob("*.csv")):
-            if path.name in {"hard_words.csv", MSFC_PATH.name}:
+            if path.name == "hard_words.csv" or path in MSFC_PATHS:
                 continue
             for row in read_rows(path):
                 word_key = str(row.get("word") or "").strip().casefold()
@@ -194,7 +210,7 @@ class VocabularyDataTests(unittest.TestCase):
     def test_electrical_foundations_precede_derived_terms(self):
         emc_rows = read_rows(EMC_ONE_PATH)
         emc_words = [row["word"] for row in emc_rows]
-        msfc_words = {row["word"] for row in read_rows(MSFC_PATH)}
+        msfc_words = {row["word"] for row in read_msfc_rows()}
         foundational_words = {
             "resistance",
             "inductance",
