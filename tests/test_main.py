@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from config import Settings
-from main import build_notification_report, run_daily_generation
+from main import _new_formal_word_keys, build_notification_report, run_daily_generation
 
 
 class MainWorkflowTests(unittest.TestCase):
@@ -111,6 +111,25 @@ class MainWorkflowTests(unittest.TestCase):
 
         self.assertEqual(report["new_word_count"], 2)
         self.assertEqual(report["new_chapter_names"], ["chapter-a", "chapter-b"])
+
+    def test_new_word_markers_persist_across_updates_and_ignore_hard_word_copies(self):
+        previous = {"chapters": [
+            {"is_hard_words": False, "words": [
+                {"word": "impedance"}, {"word": "coupling", "is_new": True},
+            ]},
+            {"is_hard_words": True, "words": [{"word": "hard only"}]},
+        ]}
+        entries = [
+            {"word": "impedance", "_source_file": "chapter-a.csv"},
+            {"word": "coupling", "_source_file": "chapter-a.csv"},
+            {"word": "shielding", "_source_file": "chapter-b.csv"},
+            {"word": "hard only", "_source_file": "vocabulary/hard_words.csv"},
+        ]
+
+        self.assertEqual(
+            _new_formal_word_keys(previous, entries), {"coupling", "shielding"}
+        )
+        self.assertEqual(_new_formal_word_keys(None, entries), set())
 
     def test_daily_generation_skips_line_when_there_are_no_new_words(self):
         with tempfile.TemporaryDirectory() as temp_dir:

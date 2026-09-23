@@ -14,6 +14,7 @@ class DailyReleaseResult:
     entries: list[dict]
     released_today: list[dict]
     state_path: Path
+    new_word_keys: set[str]
 
 
 def apply_daily_release(
@@ -28,11 +29,25 @@ def apply_daily_release(
     entry_list = list(entries)
     curriculum_entries = [entry for entry in entry_list if is_msfc_curriculum_entry(entry)]
     if not curriculum_entries:
-        return DailyReleaseResult(entry_list, [], output_dir / "data" / STATE_FILENAME)
+        return DailyReleaseResult(entry_list, [], output_dir / "data" / STATE_FILENAME, set())
 
     state_path = output_dir / "data" / STATE_FILENAME
     state = _read_state(state_path)
     released_words = set(state.get("released_words", []))
+    released_at = {
+        normalize_word(word): str(released_date)
+        for word, released_date in (state.get("released_at", {}) or {}).items()
+        if normalize_word(word) and str(released_date)
+    }
+
+    # Version 1 stored only the latest batch. Preserve that batch as unread-capable
+    # without marking every previously published handbook word as new.
+    legacy_release_date = str(state.get("last_release_date") or "")
+    if legacy_release_date:
+        for word in state.get("released_today", []):
+            key = normalize_word(word)
+            if key:
+                released_at.setdefault(key, legacy_release_date)
 
     if not state:
         released_words.update(_previous_formal_words(previous_payload or {}))
@@ -49,6 +64,7 @@ def apply_daily_release(
             if not key or key in released_words:
                 continue
             released_words.add(key)
+            released_at[key] = target_date_text
             released_today.append(entry)
             if len(released_today) >= daily_word_count:
                 break
@@ -61,15 +77,16 @@ def apply_daily_release(
     ]
 
     next_state = {
-        "version": 1,
+        "version": 2,
         "last_release_date": (
             target_date_text if release_new_words else state.get("last_release_date", "")
         ),
         "released_words": sorted(released_words),
         "released_today": [normalize_word(entry.get("word", "")) for entry in released_today],
+        "released_at": dict(sorted(released_at.items())),
     }
     _write_state(state_path, next_state)
-    return DailyReleaseResult(visible_entries, released_today, state_path)
+    return DailyReleaseResult(visible_entries, released_today, state_path, set(released_at))
 
 
 def is_msfc_curriculum_entry(entry: dict) -> bool:

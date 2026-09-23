@@ -116,6 +116,7 @@ class ScriptBuilderTests(unittest.TestCase):
                     "word": {"src": "audio/segments/en/coupling.mp3", "language": "en"},
                 },
             },
+            new_word_keys={"coupling"},
         )
 
         self.assertEqual(payload["mode"], "chapters")
@@ -127,6 +128,8 @@ class ScriptBuilderTests(unittest.TestCase):
         self.assertEqual(payload["chapters"][1]["word_count"], 1)
         self.assertEqual(payload["chapters"][1]["words"][0]["audio_segments"]["meaning"]["language"], "zh")
         self.assertEqual(payload["chapters"][2]["words"][0]["audio_segments"]["word"]["src"], "audio/segments/en/coupling.mp3")
+        self.assertNotIn("is_new", payload["chapters"][1]["words"][0])
+        self.assertTrue(payload["chapters"][2]["words"][0]["is_new"])
 
     def test_build_chapter_payload_publishes_example_tense_analysis(self):
         entry = sample_entry()
@@ -200,11 +203,13 @@ class ScriptBuilderTests(unittest.TestCase):
             date(2026, 6, 24),
             segment_audio={},
             hard_words_write_url="https://script.google.com/macros/s/example/exec",
+            new_word_keys={entry["word"]},
         )
 
         self.assertEqual(payload["chapters"][0]["id"], "hard-words")
         self.assertEqual(payload["chapters"][0]["title"], "\u672a\u719f\u8a18\u55ae\u5b57\u7df4\u7fd2")
         self.assertTrue(payload["chapters"][0]["is_hard_words"])
+        self.assertNotIn("is_new", payload["chapters"][0]["words"][0])
         self.assertEqual(payload["hard_words"]["write_url"], "https://script.google.com/macros/s/example/exec")
 
     def test_build_chapter_payload_always_includes_empty_hard_words_chapter(self):

@@ -6,17 +6,25 @@ Put vocabulary CSV files in `vocabulary/`. GitHub Actions watches this folder, s
 
 ### MSFC-HDBK-3697 daily curriculum
 
-The MSFC handbook vocabulary is split into eight ordered chapter CSV files named
-`MSFC-HDBK-3697_01_...csv` through `MSFC-HDBK-3697_08_...csv`. Existing words stay
-published, while newly added words in these files are released in file and row order at
-10 words per day. Release progress is committed in
+The MSFC handbook vocabulary follows the source document's chapter structure instead
+of forcing equal-sized learning groups. Vocabulary chapters currently correspond to
+Chapter 1, Chapters 4-7, Appendix A, and Appendix B. Chapter 5 is divided into four
+smaller learning units: bonding methods, surfaces and corrosion, special equipment and
+composite materials, and verification. Chapter 2 only points to reference documents and
+Chapter 3 points to the glossary, so they do not create artificial or empty practice
+chapters. Existing words stay published, while newly added words are released in source
+chapter and row order at 10 words per day. If the current chapter has fewer than 10
+unreleased words remaining, the same daily batch continues into the next chapter.
+Release progress is committed in
 `output/data/msfc_daily_release_state.json`, so rerunning the workflow on the same date
 does not release or notify a second batch.
 
-The curriculum contains 310 planned new words: 39 in each of chapters 1-6 and 38 in
-each of chapters 7-8. At 10 words per day, the complete planned release takes 31 days.
-Together with the 118 previously published MSFC words, the eight chapter files contain
-428 words. The planned 310-word curriculum is estimated at about 126,692 Google TTS
+The source-aligned learning-unit sizes are 58, 78, 53, 59, 52, 15, 36, 38, 15, and 24
+words. They are intentionally different because each source section contains a different
+amount of material. The curriculum still contains 310 planned new words. At 10 words per
+day, the complete planned release takes 31 days. Together with the 118 previously
+published MSFC words, the chapter files contain 428 words. The planned 310-word
+curriculum is estimated at about 126,692 Google TTS
 characters for two English voices and one Chinese voice; existing content-addressed
 audio is reused, so only missing segments are synthesized.
 

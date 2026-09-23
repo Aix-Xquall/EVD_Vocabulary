@@ -49,6 +49,9 @@ class AppsScriptTests(unittest.TestCase):
         self.assertIn("api_version: 2", script)
         self.assertIn("function javascriptResponse(value, callback)", script)
         self.assertIn("function mergePracticeStateNote", script)
+        self.assertIn("read_new_word_keys", script)
+        self.assertIn("const mergedReadKeys = new Set(existingReadKeys)", script)
+        self.assertIn("readStateChanged", script)
         self.assertIn('payload.status !== PRACTICE_STATS_STATUS', script)
 
     def test_readme_documents_github_actions_trigger_properties(self):

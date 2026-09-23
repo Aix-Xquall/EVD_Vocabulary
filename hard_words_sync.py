@@ -184,6 +184,15 @@ def _parse_practice_settings(value: object) -> dict:
         }
         if parsed_positions:
             settings["chapter_positions"] = parsed_positions
+    read_new_word_keys = value.get("read_new_word_keys")
+    if isinstance(read_new_word_keys, list):
+        parsed_read_keys = sorted({
+            " ".join(str(word_key or "").strip().casefold().split())
+            for word_key in read_new_word_keys
+            if isinstance(word_key, str) and word_key.strip()
+        })
+        if parsed_read_keys:
+            settings["read_new_word_keys"] = parsed_read_keys
     try:
         playback_rate = float(value.get("playback_rate"))
         if 0.5 <= playback_rate <= 1.5:

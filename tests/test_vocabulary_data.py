@@ -129,7 +129,22 @@ class VocabularyDataTests(unittest.TestCase):
 
     def test_msfc_chapter_preserves_ids_after_moving_foundational_terms(self):
         rows = read_msfc_rows()
-        self.assertEqual(len(MSFC_PATHS), 8)
+        self.assertEqual(len(MSFC_PATHS), 10)
+        self.assertEqual(
+            [path.name for path in MSFC_PATHS],
+            [
+                "MSFC-HDBK-3697_01_範圍與需求發展.csv",
+                "MSFC-HDBK-3697_04_接合設計.csv",
+                "MSFC-HDBK-3697_05-1_接合方法.csv",
+                "MSFC-HDBK-3697_05-2_表面與腐蝕.csv",
+                "MSFC-HDBK-3697_05-3_特殊設備與複合材料.csv",
+                "MSFC-HDBK-3697_05-4_驗證.csv",
+                "MSFC-HDBK-3697_06_工程圖面.csv",
+                "MSFC-HDBK-3697_07_電氣接合檢查表.csv",
+                "MSFC-HDBK-3697_08_附錄A_術語表.csv",
+                "MSFC-HDBK-3697_09_附錄B_清潔方法.csv",
+            ],
+        )
         for path in MSFC_PATHS:
             with path.open("r", encoding="utf-8-sig", newline="") as file:
                 reader = csv.DictReader(file)
@@ -154,8 +169,22 @@ class VocabularyDataTests(unittest.TestCase):
             for path in MSFC_PATHS
         ]
 
-        self.assertEqual(new_word_counts, [39, 39, 39, 39, 39, 39, 38, 38])
+        self.assertEqual(new_word_counts, [39, 38, 40, 40, 39, 12, 26, 38, 14, 24])
         self.assertEqual(sum(new_word_counts), 310)
+
+    def test_msfc_words_follow_their_handbook_chapters(self):
+        rows_by_file = {
+            path.name: {row["word"] for row in read_rows(path)}
+            for path in MSFC_PATHS
+        }
+
+        self.assertIn("adequate", rows_by_file["MSFC-HDBK-3697_04_接合設計.csv"])
+        self.assertNotIn("adequate", rows_by_file["MSFC-HDBK-3697_07_電氣接合檢查表.csv"])
+        self.assertIn("threaded fastener", rows_by_file["MSFC-HDBK-3697_05-1_接合方法.csv"])
+        self.assertIn("galvanic couple", rows_by_file["MSFC-HDBK-3697_05-2_表面與腐蝕.csv"])
+        self.assertIn("shock mount", rows_by_file["MSFC-HDBK-3697_05-3_特殊設備與複合材料.csv"])
+        self.assertIn("verification matrix", rows_by_file["MSFC-HDBK-3697_05-4_驗證.csv"])
+        self.assertIn("reference plane", rows_by_file["MSFC-HDBK-3697_08_附錄A_術語表.csv"])
 
     def test_latest_msfc_rows_contain_requested_words_and_usable_examples(self):
         rows = read_msfc_rows()

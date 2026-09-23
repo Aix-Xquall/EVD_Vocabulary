@@ -209,12 +209,30 @@ function mergePracticeStateNote(sheet, headers, incomingNote) {
   const existingSettingsAt = String(existing.su || "");
   const incomingSettingsAt = String(incoming.su || "");
   const useIncomingSettings = incomingSettingsAt >= existingSettingsAt;
+  const existingSettings = existing.s && typeof existing.s === "object" ? existing.s : {};
+  const incomingSettings = incoming.s && typeof incoming.s === "object" ? incoming.s : {};
+  const selectedSettings = { ...(useIncomingSettings ? incomingSettings : existingSettings) };
+  const existingReadKeys = new Set(
+    (Array.isArray(existingSettings.read_new_word_keys)
+      ? existingSettings.read_new_word_keys
+      : []).map(normalizeWord).filter(Boolean),
+  );
+  const mergedReadKeys = new Set(existingReadKeys);
+  (Array.isArray(incomingSettings.read_new_word_keys)
+    ? incomingSettings.read_new_word_keys
+    : []).map(normalizeWord).filter(Boolean).forEach((key) => mergedReadKeys.add(key));
+  const readStateChanged = [...mergedReadKeys].some((key) => !existingReadKeys.has(key));
+  if (mergedReadKeys.size > 0) {
+    selectedSettings.read_new_word_keys = [...mergedReadKeys].sort();
+  }
   return JSON.stringify({
     v: 2,
     u: new Date().toISOString(),
     r: Object.keys(records).sort().map((key) => records[key]),
-    s: useIncomingSettings ? (incoming.s || {}) : (existing.s || {}),
-    su: useIncomingSettings ? incomingSettingsAt : existingSettingsAt,
+    s: selectedSettings,
+    su: readStateChanged
+      ? new Date().toISOString()
+      : (useIncomingSettings ? incomingSettingsAt : existingSettingsAt),
   });
 }
 

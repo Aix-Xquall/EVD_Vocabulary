@@ -105,11 +105,15 @@ def build_chapter_payload(
     practice_settings_updated_at: str = "",
     tense_analysis: Dict[str, Dict[str, dict]] | None = None,
     example_sources: Dict[str, Dict[str, dict]] | None = None,
+    new_word_keys: set[str] | None = None,
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
     flat_words = []
 
+    normalized_new_word_keys = {
+        _normalize_word(word) for word in (new_word_keys or set()) if _normalize_word(word)
+    }
     for entry in entries:
         source_file = entry.get("_source_file", "")
         chapter_key = source_file or "vocabulary.csv"
@@ -129,6 +133,11 @@ def build_chapter_payload(
         entry_audio_key = audio_key_for_entry(entry)
         public_entry = {column: entry.get(column, "") for column in PUBLIC_COLUMNS}
         public_entry["index"] = len(chapter["words"]) + 1
+        if (
+            not chapter["is_hard_words"]
+            and _normalize_word(public_entry.get("word", "")) in normalized_new_word_keys
+        ):
+            public_entry["is_new"] = True
         public_entry["audio_segments"] = segment_audio.get(entry_audio_key, {})
         _apply_tense_analysis(public_entry, (tense_analysis or {}).get(entry_audio_key, {}))
         _apply_example_sources(public_entry, (example_sources or {}).get(entry_audio_key, {}))
@@ -167,6 +176,10 @@ def build_chapter_payload(
     if hard_words_write_url:
         payload["hard_words"] = {"write_url": hard_words_write_url}
     return payload
+
+
+def _normalize_word(value: str) -> str:
+    return " ".join(str(value or "").strip().casefold().split())
 
 
 

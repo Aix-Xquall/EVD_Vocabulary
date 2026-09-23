@@ -79,6 +79,7 @@ const state = {
   currentIndex: 0,
   chapterProgress: {},
   chapterWordPositions: {},
+  readNewWordKeys: new Set(),
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
@@ -240,6 +241,7 @@ function render() {
   const chapter = currentChapter();
   const words = currentWords();
   const word = currentWord();
+  const readStateChanged = markCurrentNewWordRead();
   saveCurrentChapterProgress();
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
   elements.wordText.innerHTML = renderWordWithVowels(word.word || "Loading");
@@ -265,6 +267,9 @@ function render() {
   renderPracticeStatistics();
   updateSettingsControls();
   saveProgress();
+  if (readStateChanged) {
+    markPracticeSettingsChanged();
+  }
 }
 
 function renderChapterSelect() {
@@ -272,7 +277,8 @@ function renderChapterSelect() {
   state.chapters.forEach((chapter, index) => {
     const option = document.createElement("option");
     option.value = chapterKey(chapter);
-    option.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`;
+    const unreadMarker = chapterHasUnreadNewWords(chapter) ? "● " : "";
+    option.textContent = `${unreadMarker}${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`;
     option.title = "目前練習單字序號 / 已熟記數量 / 總單字數量";
     option.selected = index === state.currentChapterIndex;
     elements.chapterSelect.appendChild(option);
@@ -321,6 +327,24 @@ function chapterKey(chapter) {
   return chapter.id || chapter.source_file || chapter.title || "";
 }
 
+function isUnreadNewWord(word) {
+  const key = hardWordKey(word);
+  return word?.is_new === true && Boolean(key) && !state.readNewWordKeys.has(key);
+}
+
+function chapterHasUnreadNewWords(chapter) {
+  return (chapter.words || []).some((word) => isUnreadNewWord(word));
+}
+
+function markCurrentNewWordRead() {
+  const word = currentWord();
+  if (!isUnreadNewWord(word)) {
+    return false;
+  }
+  state.readNewWordKeys.add(hardWordKey(word));
+  return true;
+}
+
 function savedChapterIndex(chapter) {
   const key = chapterKey(chapter);
   return resolveChapterWordIndex(
@@ -349,7 +373,10 @@ function renderWordList() {
     button.type = "button";
     const masteredClass = isMasteredWord(word) ? "word-item mastered" : "word-item";
     button.className = `${masteredClass}${index === state.currentIndex ? " active" : ""}`;
-    button.innerHTML = `<strong>${index + 1}. ${escapeHtml(word.word)}</strong><small>${escapeHtml(word.chinese_meaning)}</small>`;
+    const unreadMarker = isUnreadNewWord(word)
+      ? '<span class="new-word-dot" role="img" aria-label="新單字" title="新單字"></span>'
+      : "";
+    button.innerHTML = `<strong>${unreadMarker}${index + 1}. ${escapeHtml(word.word)}</strong><small>${escapeHtml(word.chinese_meaning)}</small>`;
     button.addEventListener("click", () => {
       stopQueue();
       state.currentIndex = index;
@@ -1109,6 +1136,7 @@ function applyCloudPracticeState(snapshot = {}) {
     });
   });
   const cloudSettingsUpdatedAt = String(snapshot.su || "");
+  mergeReadNewWordKeys(snapshot.s?.read_new_word_keys);
   if (cloudSettingsUpdatedAt > state.practiceSettingsUpdatedAt && snapshot.s) {
     applyPracticeSettings(snapshot.s);
     state.practiceSettingsUpdatedAt = cloudSettingsUpdatedAt;
@@ -1213,6 +1241,8 @@ function restorePracticeState(cloudRecords = {}, cloudSettings = {}, cloudSettin
   const localTimestamp = String(local.settingsUpdatedAt || "");
   const hasCloudSettings = Object.keys(cloudSettings || {}).length > 0;
   const hasLocalSettings = Object.keys(local.settings || {}).length > 0;
+  mergeReadNewWordKeys(cloudSettings?.read_new_word_keys);
+  mergeReadNewWordKeys(local.settings?.read_new_word_keys);
   if (hasLocalSettings && (!hasCloudSettings || localTimestamp > cloudTimestamp)) {
     applyPracticeSettings(local.settings);
     state.practiceSettingsUpdatedAt = localTimestamp;
@@ -1238,6 +1268,7 @@ function currentPracticeSettings() {
   return {
     selected_chapter_id: chapterKey(currentChapter()),
     chapter_positions: { ...state.chapterWordPositions },
+    read_new_word_keys: [...state.readNewWordKeys].sort(),
     repeat_all: state.repeatAll,
     repeat_current: state.repeatCurrent,
     include_examples: state.includeExamples,
@@ -1275,6 +1306,7 @@ function applyPracticeSettings(settings) {
     );
     state.chapterWordPositions = { ...state.chapterWordPositions, ...positions };
   }
+  mergeReadNewWordKeys(settings.read_new_word_keys);
   const playbackRate = Number(settings.playback_rate);
   if (playbackRate >= 0.5 && playbackRate <= 1.5) {
     state.playbackRate = playbackRate;
@@ -1304,8 +1336,8 @@ function applyPracticeSettings(settings) {
   applyLearningColors();
   const chapterId = String(settings.selected_chapter_id || "");
   let chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
-  if (chapterIndex < 0 && chapterId === "msfc-hdbk-3697") {
-    chapterIndex = migrateLegacyMsfcChapterPosition(settings.chapter_positions);
+  if (chapterIndex < 0 && chapterId.startsWith("msfc-hdbk-3697")) {
+    chapterIndex = migrateLegacyMsfcChapterPosition(settings.chapter_positions, chapterId);
   }
   if (chapterIndex >= 0) {
     state.currentChapterIndex = chapterIndex;
@@ -1313,10 +1345,29 @@ function applyPracticeSettings(settings) {
   }
 }
 
-function migrateLegacyMsfcChapterPosition(chapterPositions) {
-  const legacyWordKey = String(chapterPositions?.["msfc-hdbk-3697"] || "")
-    .trim()
-    .toLowerCase();
+function mergeReadNewWordKeys(values) {
+  if (!Array.isArray(values)) {
+    return false;
+  }
+  let changed = false;
+  values.forEach((value) => {
+    const key = hardWordKey({ word: value });
+    if (key && !state.readNewWordKeys.has(key)) {
+      state.readNewWordKeys.add(key);
+      changed = true;
+    }
+  });
+  return changed;
+}
+
+function migrateLegacyMsfcChapterPosition(chapterPositions, preferredChapterId = "msfc-hdbk-3697") {
+  const positionEntries = Object.entries(chapterPositions || {});
+  const legacyPosition = [
+    [preferredChapterId, chapterPositions?.[preferredChapterId]],
+    ["msfc-hdbk-3697", chapterPositions?.["msfc-hdbk-3697"]],
+    ...positionEntries.filter(([key]) => key.startsWith("msfc-hdbk-3697")),
+  ].find(([, wordKey]) => String(wordKey || "").trim());
+  const legacyWordKey = String(legacyPosition?.[1] || "").trim().toLowerCase();
   let chapterIndex = -1;
   if (legacyWordKey) {
     chapterIndex = state.chapters.findIndex((chapter) => (

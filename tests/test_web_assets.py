@@ -53,8 +53,22 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("chapterProgress: state.chapterProgress", app_js)
         self.assertIn("state.chapters.unshift(chapter)", app_js)
         self.assertIn("function renderChapterSelect()", app_js)
-        self.assertIn("option.textContent = `${chapter.title || `Chapter ${index + 1}`} (${chapterProgressText(chapter, index)})`", app_js)
+        self.assertIn('const unreadMarker = chapterHasUnreadNewWords(chapter) ? "● " : ""', app_js)
+        self.assertIn("option.textContent = `${unreadMarker}${chapter.title", app_js)
         self.assertIn('elements.chapterSelect.addEventListener("change"', app_js)
+
+    def test_new_words_and_chapters_show_synced_unread_dots(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
+
+        self.assertIn("readNewWordKeys: new Set()", app_js)
+        self.assertIn("function isUnreadNewWord(word)", app_js)
+        self.assertIn("function chapterHasUnreadNewWords(chapter)", app_js)
+        self.assertIn("function markCurrentNewWordRead()", app_js)
+        self.assertIn("read_new_word_keys: [...state.readNewWordKeys].sort()", app_js)
+        self.assertIn("mergeReadNewWordKeys(settings.read_new_word_keys)", app_js)
+        self.assertIn('class="new-word-dot"', app_js)
+        self.assertIn(".new-word-dot", styles_css)
 
     def test_word_details_use_compact_labels_and_readable_spacing(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
@@ -253,7 +267,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260904-important-sources"></script>',
+            '<script src="learning_helpers.js?v=20260923-new-word-dots"></script>',
             index_html,
         )
 
@@ -297,8 +311,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260904-important-sources"', index_html)
-        self.assertIn('src="app.js?v=20260904-important-sources"', index_html)
+        self.assertIn('href="styles.css?v=20260923-new-word-dots"', index_html)
+        self.assertIn('src="app.js?v=20260923-new-word-dots"', index_html)
 
     def test_verified_source_examples_are_checked_by_default(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -336,8 +350,9 @@ class WebAssetsTests(unittest.TestCase):
     def test_legacy_msfc_chapter_position_moves_to_the_split_chapter(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
 
-        self.assertIn('chapterId === "msfc-hdbk-3697"', app_js)
+        self.assertIn('chapterId.startsWith("msfc-hdbk-3697")', app_js)
         self.assertIn("migrateLegacyMsfcChapterPosition", app_js)
+        self.assertIn("preferredChapterId", app_js)
         self.assertIn('startsWith("MSFC-HDBK-3697_")', app_js)
         self.assertIn("state.chapterWordPositions[key] = wordKey", app_js)
         self.assertIn("chapterWordPositions: state.chapterWordPositions", app_js)

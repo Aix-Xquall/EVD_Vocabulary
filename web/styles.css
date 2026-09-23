@@ -474,6 +474,16 @@ h2 {
   color: var(--muted);
 }
 
+.new-word-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 8px 1px 0;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--blue) 14%, transparent);
+}
+
 .word-item.mastered {
   opacity: 0.58;
 }

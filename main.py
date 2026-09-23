@@ -105,6 +105,7 @@ def run_daily_generation(
         practice_settings_updated_at=practice_state["settings_updated_at"],
         tense_analysis=tense_analysis,
         example_sources=example_sources,
+        new_word_keys=release_result.new_word_keys | _new_formal_word_keys(previous_payload, entries),
     )
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)
@@ -147,6 +148,29 @@ def _read_latest_payload(output_dir: Path) -> dict | None:
     except (OSError, json.JSONDecodeError) as exc:
         print(f"Previous latest.json warning: {exc}")
         return None
+
+
+def _new_formal_word_keys(previous_payload: dict | None, entries: list[dict]) -> set[str]:
+    if previous_payload is None:
+        return set()
+    previous_keys = set()
+    retained_new_keys = set()
+    for chapter in previous_payload.get("chapters", []):
+        if chapter.get("is_hard_words"):
+            continue
+        for word in chapter.get("words", []):
+            key = normalize_word(word.get("word", ""))
+            if key:
+                previous_keys.add(key)
+                if word.get("is_new") is True:
+                    retained_new_keys.add(key)
+    current_keys = {
+        normalize_word(entry.get("word", ""))
+        for entry in entries
+        if Path(str(entry.get("_source_file", "")).replace("\\", "/")).name != "hard_words.csv"
+    }
+    current_keys.discard("")
+    return (retained_new_keys | (current_keys - previous_keys)) & current_keys
 
 
 def build_notification_report(previous_payload: dict | None, current_payload: dict) -> dict:
