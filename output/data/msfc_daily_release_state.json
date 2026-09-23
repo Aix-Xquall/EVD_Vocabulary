@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "last_release_date": "2026-09-23",
   "released_words": [
     "360-degree termination",
@@ -696,16 +696,17 @@
     "workmanship",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "functional architecture",
-    "product technical requirement",
-    "technical constraint",
-    "mission objective",
-    "design team",
-    "subcontractor",
-    "component development",
-    "requirement validation",
-    "requirements analysis",
-    "allocation process"
-  ]
+  "released_today": [],
+  "released_at": {
+    "allocation process": "2026-09-23",
+    "component development": "2026-09-23",
+    "design team": "2026-09-23",
+    "functional architecture": "2026-09-23",
+    "mission objective": "2026-09-23",
+    "product technical requirement": "2026-09-23",
+    "requirement validation": "2026-09-23",
+    "requirements analysis": "2026-09-23",
+    "subcontractor": "2026-09-23",
+    "technical constraint": "2026-09-23"
+  }
 }
