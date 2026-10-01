@@ -776,18 +776,7 @@
     "workmanship",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "electric-field interference",
-    "indirect bonding",
-    "cross-sectional area",
-    "fabrication tolerance",
-    "installation tolerance",
-    "resonant frequency",
-    "adjacent part",
-    "secure attachment",
-    "flexible connection",
-    "round strap"
-  ],
+  "released_today": [],
   "released_at": {
     "active antenna element": "2026-09-28",
     "adjacent part": "2026-10-01",
