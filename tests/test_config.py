@@ -19,7 +19,7 @@ class ConfigTests(unittest.TestCase):
                 "en-US-Neural2-E",
             ),
         )
-        self.assertEqual(DEFAULT_SETTINGS.daily_word_count, 10)
+        self.assertEqual(DEFAULT_SETTINGS.daily_word_count, 7)
         self.assertEqual(DEFAULT_SETTINGS.google_chinese_voice, "cmn-TW-Wavenet-A")
         self.assertEqual(DEFAULT_SETTINGS.google_tts_parallel_workers, 4)
 

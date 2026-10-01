@@ -43,7 +43,7 @@ def _tuple_env(name: str, default: tuple[str, ...]) -> tuple[str, ...]:
 class Settings:
     vocabulary_dir: Path = Path(_text_env("EVD_VOCABULARY_DIR", str(BASE_DIR / "vocabulary")))
     output_dir: Path = Path(_text_env("EVD_OUTPUT_DIR", str(BASE_DIR / "output")))
-    daily_word_count: int = _int_env("EVD_DAILY_WORD_COUNT", 10)
+    daily_word_count: int = _int_env("EVD_DAILY_WORD_COUNT", 7)
     speech_rate: str = _text_env("EVD_SPEECH_RATE", "0%")
     include_chinese_in_audio: bool = _bool_env("EVD_INCLUDE_CHINESE_AUDIO", True)
     repeat_each_word: bool = _bool_env("EVD_REPEAT_EACH_WORD", True)

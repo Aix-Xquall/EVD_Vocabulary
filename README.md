@@ -13,7 +13,7 @@ smaller learning units: bonding methods, surfaces and corrosion, special equipme
 composite materials, and verification. Chapter 2 only points to reference documents and
 Chapter 3 points to the glossary, so they do not create artificial or empty practice
 chapters. Existing words stay published, while newly added words are released in source
-chapter and row order at 10 words per day. If the current chapter has fewer than 10
+chapter and row order at 7 words per day. If the current chapter has fewer than 7
 unreleased words remaining, the same daily batch continues into the next chapter.
 Release progress is committed in
 `output/data/msfc_daily_release_state.json`, so rerunning the workflow on the same date
@@ -21,8 +21,9 @@ does not release or notify a second batch.
 
 The source-aligned learning-unit sizes are 58, 78, 53, 59, 52, 15, 36, 38, 15, and 24
 words. They are intentionally different because each source section contains a different
-amount of material. The curriculum still contains 310 planned new words. At 10 words per
-day, the complete planned release takes 31 days. Together with the 118 previously
+amount of material. The curriculum still contains 310 planned new words. At 7 words per
+day, a full release from scratch takes at least 45 daily batches; previously released
+words remain published and are not released again. Together with the 118 previously
 published MSFC words, the chapter files contain 428 words. The planned 310-word
 curriculum is estimated at about 126,692 Google TTS
 characters for two English voices and one Chinese voice; existing content-addressed
@@ -239,7 +240,7 @@ $env:AZURE_SPEECH_REGION="你的 Azure region"
 可選設定：
 
 ```powershell
-$env:EVD_DAILY_WORD_COUNT="10"
+$env:EVD_DAILY_WORD_COUNT="7"
 $env:EVD_SPEECH_RATE="0%"
 $env:EVD_INCLUDE_CHINESE_AUDIO="true"
 $env:EVD_REPEAT_EACH_WORD="true"

@@ -104,17 +104,17 @@ class DailyReleaseTests(unittest.TestCase):
         ]
         with tempfile.TemporaryDirectory() as temp_dir:
             result = apply_daily_release(
-                entries, None, Path(temp_dir), date(2026, 9, 21), 10
+                entries, None, Path(temp_dir), date(2026, 9, 21), 7
             )
 
-            self.assertEqual(len(result.released_today), 10)
+            self.assertEqual(len(result.released_today), 7)
             self.assertEqual(
                 [item["word"] for item in result.released_today[:4]],
                 [f"chapter one {index}" for index in range(1, 5)],
             )
             self.assertEqual(
                 [item["word"] for item in result.released_today[4:]],
-                [f"chapter four {index}" for index in range(1, 7)],
+                [f"chapter four {index}" for index in range(1, 4)],
             )
 
     def test_hard_word_snapshot_does_not_seed_formal_release(self):

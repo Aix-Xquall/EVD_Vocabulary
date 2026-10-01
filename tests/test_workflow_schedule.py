@@ -19,7 +19,7 @@ class WorkflowScheduleTests(unittest.TestCase):
         )
 
         self.assertIn('EVD_SPEECH_RATE: "-20%"', workflow)
-        self.assertIn('EVD_DAILY_WORD_COUNT: "10"', workflow)
+        self.assertIn('EVD_DAILY_WORD_COUNT: "7"', workflow)
         self.assertIn('EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "0"', workflow)
         self.assertIn('EVD_GOOGLE_TTS_PARALLEL_WORKERS: "4"', workflow)
 

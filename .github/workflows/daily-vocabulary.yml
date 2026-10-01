@@ -134,7 +134,7 @@ jobs:
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
           EVD_SITE_URL: https://aix-xquall.github.io/EVD_Vocabulary/
           EVD_SPEECH_RATE: "-20%"
-          EVD_DAILY_WORD_COUNT: "10"
+          EVD_DAILY_WORD_COUNT: "7"
           EVD_MAX_AUDIO_SEGMENTS_PER_RUN: "0"
           EVD_GOOGLE_TTS_PARALLEL_WORKERS: "4"
           GOOGLE_ENGLISH_VOICE: ${{ vars.GOOGLE_ENGLISH_VOICE || 'en-US-Neural2-J' }}
