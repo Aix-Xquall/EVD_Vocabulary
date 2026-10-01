@@ -27,6 +27,13 @@
           "characters": 42240
         }
       }
+    },
+    "2026-10": {
+      "providers": {
+        "google": {
+          "characters": 4122
+        }
+      }
     }
   }
 }
