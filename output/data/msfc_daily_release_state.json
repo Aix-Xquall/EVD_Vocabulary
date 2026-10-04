@@ -797,15 +797,7 @@
     "workmanship",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "plastic deformation",
-    "surface hardness",
-    "finishing process",
-    "contaminant removal",
-    "dust removal",
-    "grease removal",
-    "oil removal"
-  ],
+  "released_today": [],
   "released_at": {
     "active antenna element": "2026-09-28",
     "adjacent part": "2026-10-01",
