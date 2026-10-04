@@ -10,6 +10,7 @@ from example_source_analyzer import load_example_sources_for_entries
 from hard_words_sync import load_mastered_word_statuses, load_practice_state, sync_hard_words
 from line_notifier import send_daily_line_notification
 from script_builder import build_chapter_payload, build_markdown
+from study_calendar import today_in_taipei
 from tense_analyzer import load_tense_annotations_for_entries
 from tts_generator import (
     expected_selectable_segment_audio_paths,
@@ -39,7 +40,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    target_date = _parse_date(args.date) if args.date else date.today()
+    target_date = _parse_date(args.date) if args.date else today_in_taipei()
     settings = DEFAULT_SETTINGS
     if args.skip_audio:
         settings = _replace_setting(settings, generate_audio=False)

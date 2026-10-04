@@ -150,6 +150,27 @@ class MainWorkflowTests(unittest.TestCase):
 
             send_line.assert_not_called()
 
+    def test_holiday_delays_msfc_word_and_line_until_next_study_day(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace = Path(temp_dir)
+            output_dir = workspace / "output"
+            _write_vocabulary(workspace / "MSFC-HDBK-3697_01_scope.csv")
+            settings = Settings(
+                vocabulary_dir=workspace,
+                output_dir=output_dir,
+                daily_word_count=1,
+                generate_audio=False,
+            )
+
+            with patch("main.send_daily_line_notification") as send_line:
+                holiday = run_daily_generation(settings, date(2026, 10, 9), False, True)
+                next_day = run_daily_generation(settings, date(2026, 10, 12), False, True)
+
+            self.assertEqual(holiday["word_count"], 0)
+            self.assertEqual(next_day["word_count"], 1)
+            send_line.assert_called_once()
+            self.assertEqual(send_line.call_args.args[2]["new_word_count"], 1)
+
     def test_daily_generation_sends_line_when_new_words_exist(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace = Path(temp_dir)

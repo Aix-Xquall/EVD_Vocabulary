@@ -15,6 +15,14 @@ Chapter 3 points to the glossary, so they do not create artificial or empty prac
 chapters. Existing words stay published, while newly added words are released in source
 chapter and row order at 7 words per day. If the current chapter has fewer than 7
 unreleased words remaining, the same daily batch continues into the next chapter.
+New words are released only on Taiwan weekdays that are working days in the
+[official government office calendar](https://data.gov.tw/dataset/14718).
+Saturdays, Sundays, national holidays, and observed days off do not consume a batch;
+the next study day continues from the same word. The checked-in
+`holidays/taiwan_YYYY.csv` files cover 2026 and 2027. Before each later year, add its
+official weekday holidays from that year's calendar. A missing year stops release
+rather than treating an unknown holiday as a study day. The existing site and
+cross-device sync remain available on days without new words.
 Release progress is committed in
 `output/data/msfc_daily_release_state.json`, so rerunning the workflow on the same date
 does not release or notify a second batch.
@@ -22,7 +30,7 @@ does not release or notify a second batch.
 The source-aligned learning-unit sizes are 58, 78, 53, 59, 52, 15, 36, 38, 15, and 24
 words. They are intentionally different because each source section contains a different
 amount of material. The curriculum still contains 310 planned new words. At 7 words per
-day, a full release from scratch takes at least 45 daily batches; previously released
+study day, a full release from scratch takes at least 45 daily batches; previously released
 words remain published and are not released again. Together with the 118 previously
 published MSFC words, the chapter files contain 428 words. The planned 310-word
 curriculum is estimated at about 126,692 Google TTS

@@ -4,6 +4,8 @@ from datetime import date
 from pathlib import Path, PureWindowsPath
 from typing import Iterable
 
+from study_calendar import is_study_day
+
 
 MSFC_CHAPTER_PREFIX = "MSFC-HDBK-3697_"
 STATE_FILENAME = "msfc_daily_release_state.json"
@@ -52,10 +54,11 @@ def apply_daily_release(
     if not state:
         released_words.update(_previous_formal_words(previous_payload or {}))
 
+    release_today = release_new_words and is_study_day(target_date)
     released_today = []
     target_date_text = target_date.isoformat()
     if (
-        release_new_words
+        release_today
         and state.get("last_release_date") != target_date_text
         and daily_word_count > 0
     ):
@@ -79,7 +82,7 @@ def apply_daily_release(
     next_state = {
         "version": 2,
         "last_release_date": (
-            target_date_text if release_new_words else state.get("last_release_date", "")
+            target_date_text if release_today else state.get("last_release_date", "")
         ),
         "released_words": sorted(released_words),
         "released_today": [normalize_word(entry.get("word", "")) for entry in released_today],

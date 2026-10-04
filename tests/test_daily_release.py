@@ -117,6 +117,39 @@ class DailyReleaseTests(unittest.TestCase):
                 [f"chapter four {index}" for index in range(1, 4)],
             )
 
+    def test_weekend_and_holiday_do_not_consume_release_progress(self):
+        entries = [
+            entry(f"word {index}", "MSFC-HDBK-3697_01_scope.csv")
+            for index in range(1, 10)
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            friday = apply_daily_release(entries, None, output_dir, date(2026, 10, 2), 7)
+            saturday = apply_daily_release(entries, None, output_dir, date(2026, 10, 3), 7)
+            sunday = apply_daily_release(entries, None, output_dir, date(2026, 10, 4), 7)
+            monday = apply_daily_release(entries, None, output_dir, date(2026, 10, 5), 7)
+
+            self.assertEqual(len(friday.released_today), 7)
+            self.assertEqual(saturday.released_today, [])
+            self.assertEqual(sunday.released_today, [])
+            self.assertEqual([item["word"] for item in monday.released_today], ["word 8", "word 9"])
+
+    def test_holiday_keeps_last_release_date_for_next_workday(self):
+        entries = [
+            entry("first", "MSFC-HDBK-3697_01_scope.csv"),
+            entry("second", "MSFC-HDBK-3697_01_scope.csv"),
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            apply_daily_release(entries, None, output_dir, date(2026, 10, 8), 1)
+            holiday = apply_daily_release(entries, None, output_dir, date(2026, 10, 9), 1)
+            state = json.loads((output_dir / "data" / STATE_FILENAME).read_text())
+            monday = apply_daily_release(entries, None, output_dir, date(2026, 10, 12), 1)
+
+            self.assertEqual(holiday.released_today, [])
+            self.assertEqual(state["last_release_date"], "2026-10-08")
+            self.assertEqual([item["word"] for item in monday.released_today], ["second"])
+
     def test_hard_word_snapshot_does_not_seed_formal_release(self):
         entries = [entry("hard only", "MSFC-HDBK-3697_01_scope.csv")]
         previous = {
