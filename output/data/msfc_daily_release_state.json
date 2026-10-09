@@ -825,15 +825,7 @@
     "workmanship",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "conductive finish",
-    "nonconductive film",
-    "protective finish",
-    "refinishing",
-    "thin paint",
-    "enclosure shielding integrity",
-    "enclosure seam"
-  ],
+  "released_today": [],
   "released_at": {
     "acid fluoride": "2026-10-05",
     "acidic material": "2026-10-05",
