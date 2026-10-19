@@ -7372,11 +7372,11 @@ The preferred method is noted on the design when one option is better.
 
 **Example 1**
 
-The handbook discusses the term "mechanical designer" during requirements development and flowdown.
+The design team considers the mechanical designer during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「機械設計人員」。
+設計團隊在需求開發期間會考量機械設計人員。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7398,11 +7398,11 @@ The design team reviews "mechanical designer" before the bonding requirement is 
 
 **Example 1**
 
-The handbook discusses the term "electrical bonding requirement" during requirements development and flowdown.
+The design team considers the electrical bonding requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「電氣接合要求」。
+設計團隊在需求開發期間會考量電氣接合要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7424,11 +7424,11 @@ The design team reviews "electrical bonding requirement" before the bonding requ
 
 **Example 1**
 
-The handbook discusses the term "space vehicle" during requirements development and flowdown.
+The design team considers the space vehicle during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「太空載具」。
+設計團隊在需求開發期間會考量太空載具。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7450,11 +7450,11 @@ The design team reviews "space vehicle" before the bonding requirement is releas
 
 **Example 1**
 
-The handbook discusses the term "manufacturing organization" during requirements development and flowdown.
+The design team considers the manufacturing organization during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「製造組織」。
+設計團隊在需求開發期間會考量製造組織。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7476,11 +7476,11 @@ The design team reviews "manufacturing organization" before the bonding requirem
 
 **Example 1**
 
-The handbook discusses the term "design preference" during requirements development and flowdown.
+The design team considers the design preference during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「設計偏好」。
+設計團隊在需求開發期間會考量設計偏好。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7502,11 +7502,11 @@ The design team reviews "design preference" before the bonding requirement is re
 
 **Example 1**
 
-The handbook discusses the term "design option" during requirements development and flowdown.
+The design team considers the design option during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「設計選項」。
+設計團隊在需求開發期間會考量設計選項。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7528,11 +7528,11 @@ The design team reviews "design option" before the bonding requirement is releas
 
 **Example 1**
 
-The handbook discusses the term "applicable requirement" during requirements development and flowdown.
+The design team considers the applicable requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「適用要求」。
+設計團隊在需求開發期間會考量適用要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.1 PURPOSE，p. 7
 
 **Example 2**
 
@@ -7554,11 +7554,11 @@ The design team reviews "applicable requirement" before the bonding requirement 
 
 **Example 1**
 
-The handbook discusses the term "bonding road map" during requirements development and flowdown.
+The design team considers the bonding road map during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「接合設計路線圖」。
+設計團隊在需求開發期間會考量接合設計路線圖。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.2 ORGANIZATION，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.2 ORGANIZATION，p. 7
 
 **Example 2**
 
@@ -7580,11 +7580,11 @@ The design team reviews "bonding road map" before the bonding requirement is rel
 
 **Example 1**
 
-The handbook discusses the term "mechanical design" during requirements development and flowdown.
+The design team considers the mechanical design during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「機械設計」。
+設計團隊在需求開發期間會考量機械設計。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.2 ORGANIZATION，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.2 ORGANIZATION，p. 7
 
 **Example 2**
 
@@ -7658,11 +7658,11 @@ Clear requirements flowdown is important for every design team.
 
 **Example 1**
 
-The handbook discusses the term "iterative process" during requirements development and flowdown.
+The design team considers the iterative process during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「反覆迭代流程」。
+設計團隊在需求開發期間會考量反覆迭代流程。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
 
 **Example 2**
 
@@ -7684,11 +7684,11 @@ The design team reviews "iterative process" before the bonding requirement is re
 
 **Example 1**
 
-The handbook discusses the term "requirement validation" during requirements development and flowdown.
+The design team considers the requirement validation during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「需求驗證」。
+設計團隊在需求開發期間會考量需求驗證。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
 
 **Example 2**
 
@@ -7710,11 +7710,11 @@ The design team reviews "requirement validation" before the bonding requirement 
 
 **Example 1**
 
-The handbook discusses the term "requirements analysis" during requirements development and flowdown.
+The design team considers the requirements analysis during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「需求分析」。
+設計團隊在需求開發期間會考量需求分析。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
 
 **Example 2**
 
@@ -7736,11 +7736,11 @@ The design team reviews "requirements analysis" before the bonding requirement i
 
 **Example 1**
 
-The handbook discusses the term "requirement adjustment" during requirements development and flowdown.
+The design team considers the requirement adjustment during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「需求調整」。
+設計團隊在需求開發期間會考量需求調整。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
 
 **Example 2**
 
@@ -7762,11 +7762,11 @@ The design team reviews "requirement adjustment" before the bonding requirement 
 
 **Example 1**
 
-The handbook discusses the term "design progress" during requirements development and flowdown.
+The design team considers the design progress during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「設計進展」。
+設計團隊在需求開發期間會考量設計進展。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3 REQUIREMENTS DEVELOPMENT AND FLOWDOWN，p. 7
 
 **Example 2**
 
@@ -7814,11 +7814,11 @@ The mission requirement drives the system-level Electromagnetic Compatibility (E
 
 **Example 1**
 
-The handbook discusses the term "mission objective" during requirements development and flowdown.
+The design team considers the mission objective during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「任務目標」。
+設計團隊在需求開發期間會考量任務目標。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.1 MISSION REQUIREMENTS，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.1 MISSION REQUIREMENTS，p. 7
 
 **Example 2**
 
@@ -7866,11 +7866,11 @@ A clear system requirement prevents different teams from using different assumpt
 
 **Example 1**
 
-The handbook discusses the term "system requirements review" during requirements development and flowdown.
+The design team considers the system requirements review during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「系統需求審查」。
+設計團隊在需求開發期間會考量系統需求審查。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.2 SYSTEM REQUIREMENTS，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.2 SYSTEM REQUIREMENTS，p. 7
 
 **Example 2**
 
@@ -7892,11 +7892,11 @@ The design team reviews "system requirements review" before the bonding requirem
 
 **Example 1**
 
-The handbook discusses the term "requirements baseline" during requirements development and flowdown.
+The design team considers the requirements baseline during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「需求基準」。
+設計團隊在需求開發期間會考量需求基準。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.2 SYSTEM REQUIREMENTS，p. 7
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.2 SYSTEM REQUIREMENTS，p. 7
 
 **Example 2**
 
@@ -8230,11 +8230,11 @@ Requirements should be traceable from system level to design drawings.
 
 **Example 1**
 
-The handbook discusses the term "system technical requirement" during requirements development and flowdown.
+The design team considers the system technical requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「系統技術要求」。
+設計團隊在需求開發期間會考量系統技術要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8256,11 +8256,11 @@ The design team reviews "system technical requirement" before the bonding requir
 
 **Example 1**
 
-The handbook discusses the term "functional architecture" during requirements development and flowdown.
+The design team considers the functional architecture during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「功能架構」。
+設計團隊在需求開發期間會考量功能架構。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8282,11 +8282,11 @@ The design team reviews "functional architecture" before the bonding requirement
 
 **Example 1**
 
-The handbook discusses the term "product technical requirement" during requirements development and flowdown.
+The design team considers the product technical requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「產品技術要求」。
+設計團隊在需求開發期間會考量產品技術要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8308,11 +8308,11 @@ The design team reviews "product technical requirement" before the bonding requi
 
 **Example 1**
 
-The handbook discusses the term "technical constraint" during requirements development and flowdown.
+The design team considers the technical constraint during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「技術限制條件」。
+設計團隊在需求開發期間會考量技術限制條件。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8334,11 +8334,11 @@ The design team reviews "technical constraint" before the bonding requirement is
 
 **Example 1**
 
-The handbook discusses the term "design team" during requirements development and flowdown.
+The design team considers the design team during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「設計團隊」。
+設計團隊在需求開發期間會考量設計團隊。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8360,11 +8360,11 @@ The design team reviews "design team" before the bonding requirement is released
 
 **Example 1**
 
-The handbook discusses the term "subcontractor" during requirements development and flowdown.
+The design team considers the subcontractor during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「分包商」。
+設計團隊在需求開發期間會考量分包商。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8386,11 +8386,11 @@ The design team reviews "subcontractor" before the bonding requirement is releas
 
 **Example 1**
 
-The handbook discusses the term "component development" during requirements development and flowdown.
+The design team considers the component development during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「元件開發」。
+設計團隊在需求開發期間會考量元件開發。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8412,11 +8412,11 @@ The design team reviews "component development" before the bonding requirement i
 
 **Example 1**
 
-The handbook discusses the term "allocation process" during requirements development and flowdown.
+The design team considers the allocation process during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「分配流程」。
+設計團隊在需求開發期間會考量分配流程。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8438,11 +8438,11 @@ The design team reviews "allocation process" before the bonding requirement is r
 
 **Example 1**
 
-The handbook discusses the term "system element" during requirements development and flowdown.
+The design team considers the system element during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「系統元素」。
+設計團隊在需求開發期間會考量系統元素。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.3.3 REQUIREMENTS FOR THE ELEMENT AND SUBELEMENT DESIGNER，p. 8
 
 **Example 2**
 
@@ -8698,11 +8698,11 @@ The fuel plumbing must be reviewed for bonding continuity.
 
 **Example 1**
 
-The handbook discusses the term "program requirement" during requirements development and flowdown.
+The design team considers the program requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「計畫要求」。
+設計團隊在需求開發期間會考量計畫要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.5 GENERAL REQUIREMENTS，p. 9
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.5 GENERAL REQUIREMENTS，p. 9
 
 **Example 2**
 
@@ -8724,11 +8724,11 @@ The design team reviews "program requirement" before the bonding requirement is 
 
 **Example 1**
 
-The handbook discusses the term "project requirement" during requirements development and flowdown.
+The design team considers the project requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「專案要求」。
+設計團隊在需求開發期間會考量專案要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.5 GENERAL REQUIREMENTS，p. 9
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.5 GENERAL REQUIREMENTS，p. 9
 
 **Example 2**
 
@@ -8750,11 +8750,11 @@ The design team reviews "project requirement" before the bonding requirement is 
 
 **Example 1**
 
-The handbook discusses the term "generic requirement" during requirements development and flowdown.
+The design team considers the generic requirement during requirements development.
 
-本手冊在需求發展與傳遞流程中說明「通用要求」。
+設計團隊在需求開發期間會考量通用要求。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，1.5 GENERAL REQUIREMENTS，p. 9
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，1.5 GENERAL REQUIREMENTS，p. 9
 
 **Example 2**
 
@@ -8776,11 +8776,11 @@ The design team reviews "generic requirement" before the bonding requirement is 
 
 **Example 1**
 
-The handbook helps determine bonding requirements applicable to specific hardware.
+Specific bonding requirements apply to each hardware item.
 
-本手冊協助判定適用於特定硬體的 搭接 要求。
+每項硬體都適用特定的接合要求。
 
-**Source:** 改寫自｜MIL-STD-464C.pdf，A.5.11.3 Mechanical interfaces，p. 145
+**Source:** 主題參考｜MIL-STD-464C.pdf，A.5.11.3 Mechanical interfaces，p. 145
 
 **Example 2**
 
@@ -9088,11 +9088,11 @@ Bonding jumpers should not rely on adjacent parts for their connection.
 
 **Example 1**
 
-The handbook uses "power current return" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the power current return while designing the bond path.
 
-「電源電流回流」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估電源電流回流。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.1 POWER CURRENT RETURN PATH BONDING，p. 12
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.1 POWER CURRENT RETURN PATH BONDING，p. 12
 
 **Example 2**
 
@@ -9114,11 +9114,11 @@ The designer reviews "power current return" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "intentional current" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the intentional current while designing the bond path.
 
-「預期電流」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估預期電流。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.1 POWER CURRENT RETURN PATH BONDING，p. 12
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.1 POWER CURRENT RETURN PATH BONDING，p. 12
 
 **Example 2**
 
@@ -9140,11 +9140,11 @@ The designer reviews "intentional current" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "dedicated power return" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the dedicated power return while designing the bond path.
 
-「專用電源回流」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估專用電源回流。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.1 POWER CURRENT RETURN PATH BONDING，p. 12
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.1 POWER CURRENT RETURN PATH BONDING，p. 12
 
 **Example 2**
 
@@ -9388,111 +9388,7 @@ Proper bonding provides a safe path for accidental current.
 
 **Source:** 改寫自｜MIL-STD-464C.pdf，A.5.9.3 Hazards of electromagnetic radiation to ordnance (HERO)，p. 129
 
-## 362. upstream protective device
-
-**Pronunciation:** /ˈəpˈstrim prəˈtɛktɪv dɪˈvaɪs/
-
-**Chinese meaning:** 上游保護裝置
-
-**Category:** Bonding Classes
-
-**Difficulty:** 4
-
-**Example 1**
-
-The handbook uses "upstream protective device" when it explains the purpose or performance of an electrical bond.
-
-「上游保護裝置」會影響電氣接合的目的或性能。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-**Example 2**
-
-The designer reviews "upstream protective device" before selecting a bonding class.
-
-設計人員會在選擇接合等級前評估「上游保護裝置」。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-## 363. exposed case
-
-**Pronunciation:** /ɪkˈspoʊzd keɪs/
-
-**Chinese meaning:** 外露機殼
-
-**Category:** Bonding Classes
-
-**Difficulty:** 4
-
-**Example 1**
-
-The handbook uses "exposed case" when it explains the purpose or performance of an electrical bond.
-
-「外露機殼」會影響電氣接合的目的或性能。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-**Example 2**
-
-The designer reviews "exposed case" before selecting a bonding class.
-
-設計人員會在選擇接合等級前評估「外露機殼」。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-## 364. fire hazard
-
-**Pronunciation:** /faɪər ˈhæzərd/
-
-**Chinese meaning:** 火災危害
-
-**Category:** Bonding Classes
-
-**Difficulty:** 4
-
-**Example 1**
-
-The handbook uses "fire hazard" when it explains the purpose or performance of an electrical bond.
-
-「火災危害」會影響電氣接合的目的或性能。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-**Example 2**
-
-The designer reviews "fire hazard" before selecting a bonding class.
-
-設計人員會在選擇接合等級前評估「火災危害」。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-## 365. shock protection
-
-**Pronunciation:** /ʃɑk prəˈtɛkʃən/
-
-**Chinese meaning:** 電擊防護
-
-**Category:** Bonding Classes
-
-**Difficulty:** 4
-
-**Example 1**
-
-The handbook uses "shock protection" when it explains the purpose or performance of an electrical bond.
-
-「電擊防護」會影響電氣接合的目的或性能。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-**Example 2**
-
-The designer reviews "shock protection" before selecting a bonding class.
-
-設計人員會在選擇接合等級前評估「電擊防護」。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
-
-## 366. protective device
+## 362. protective device
 
 **Pronunciation:** /prəˈtɛktɪv dɪˈvaɪs/
 
@@ -9504,17 +9400,121 @@ The designer reviews "shock protection" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "protective device" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the protective device while designing the bond path.
 
-「保護裝置」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估保護裝置。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
 
 **Example 2**
 
 The designer reviews "protective device" before selecting a bonding class.
 
 設計人員會在選擇接合等級前評估「保護裝置」。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+## 363. upstream protective device
+
+**Pronunciation:** /ˈəpˈstrim prəˈtɛktɪv dɪˈvaɪs/
+
+**Chinese meaning:** 上游保護裝置
+
+**Category:** Bonding Classes
+
+**Difficulty:** 4
+
+**Example 1**
+
+The electrical engineer evaluates the upstream protective device while designing the bond path.
+
+電氣工程師在設計接合路徑時會評估上游保護裝置。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+**Example 2**
+
+The designer reviews "upstream protective device" before selecting a bonding class.
+
+設計人員會在選擇接合等級前評估「上游保護裝置」。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+## 364. exposed case
+
+**Pronunciation:** /ɪkˈspoʊzd keɪs/
+
+**Chinese meaning:** 外露機殼
+
+**Category:** Bonding Classes
+
+**Difficulty:** 4
+
+**Example 1**
+
+The electrical engineer evaluates the exposed case while designing the bond path.
+
+電氣工程師在設計接合路徑時會評估外露機殼。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+**Example 2**
+
+The designer reviews "exposed case" before selecting a bonding class.
+
+設計人員會在選擇接合等級前評估「外露機殼」。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+## 365. fire hazard
+
+**Pronunciation:** /faɪər ˈhæzərd/
+
+**Chinese meaning:** 火災危害
+
+**Category:** Bonding Classes
+
+**Difficulty:** 4
+
+**Example 1**
+
+The electrical engineer evaluates the fire hazard while designing the bond path.
+
+電氣工程師在設計接合路徑時會評估火災危害。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+**Example 2**
+
+The designer reviews "fire hazard" before selecting a bonding class.
+
+設計人員會在選擇接合等級前評估「火災危害」。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+## 366. shock protection
+
+**Pronunciation:** /ʃɑk prəˈtɛkʃən/
+
+**Chinese meaning:** 電擊防護
+
+**Category:** Bonding Classes
+
+**Difficulty:** 4
+
+**Example 1**
+
+The electrical engineer evaluates the shock protection while designing the bond path.
+
+電氣工程師在設計接合路徑時會評估電擊防護。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
+
+**Example 2**
+
+The designer reviews "shock protection" before selecting a bonding class.
+
+設計人員會在選擇接合等級前評估「電擊防護」。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.2 SHOCK AND FAULT PROTECTION BONDING，p. 13
 
@@ -9816,11 +9816,11 @@ Choose a method that can be realistically manufactured and inspected.
 
 **Example 1**
 
-The handbook uses "radio frequency current" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the radio frequency current while designing the bond path.
 
-「射頻電流」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估射頻電流。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.3 RADIO FREQUENCY BONDING，p. 13
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.3 RADIO FREQUENCY BONDING，p. 13
 
 **Example 2**
 
@@ -9842,11 +9842,11 @@ The designer reviews "radio frequency current" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "shielding effectiveness" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the shielding effectiveness while designing the bond path.
 
-「屏蔽效能」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估屏蔽效能。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.3 RADIO FREQUENCY BONDING，p. 13
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.3 RADIO FREQUENCY BONDING，p. 13
 
 **Example 2**
 
@@ -9868,11 +9868,11 @@ The designer reviews "shielding effectiveness" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "frequency of interest" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the frequency of interest while designing the bond path.
 
-「關注頻率」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估關注頻率。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.3 RADIO FREQUENCY BONDING，p. 13
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.3 RADIO FREQUENCY BONDING，p. 13
 
 **Example 2**
 
@@ -9946,11 +9946,11 @@ Bonding should provide a current path from one extremity to another.
 
 **Example 1**
 
-The handbook uses "lightning current" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the lightning current while designing the bond path.
 
-「雷擊電流」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估雷擊電流。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 13
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 13
 
 **Example 2**
 
@@ -10362,11 +10362,11 @@ Sparks must not jump between metallic structures near fuel.
 
 **Example 1**
 
-The handbook uses "fast rise time" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the fast rise time while designing the bond path.
 
-「快速上升時間」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估快速上升時間。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10388,11 +10388,11 @@ The designer reviews "fast rise time" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "magnetic force" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the magnetic force while designing the bond path.
 
-「磁力」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估磁力。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10414,11 +10414,11 @@ The designer reviews "magnetic force" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "vehicle skin" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the vehicle skin while designing the bond path.
 
-「載具外殼蒙皮」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估載具外殼蒙皮。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10440,11 +10440,11 @@ The designer reviews "vehicle skin" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "conductive material" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the conductive material while designing the bond path.
 
-「導電材料」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估導電材料。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10466,11 +10466,11 @@ The designer reviews "conductive material" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "ignition hazard" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the ignition hazard while designing the bond path.
 
-「點火危害」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估點火危害。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10492,11 +10492,11 @@ The designer reviews "ignition hazard" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "series inductance" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the series inductance while designing the bond path.
 
-「串聯電感」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估串聯電感。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10518,11 +10518,11 @@ The designer reviews "series inductance" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "bond discontinuity" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the bond discontinuity while designing the bond path.
 
-「接合不連續處」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估接合不連續處。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10544,11 +10544,11 @@ The designer reviews "bond discontinuity" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "large-current capacity" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the large-current capacity while designing the bond path.
 
-「大電流承載能力」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估大電流承載能力。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.4 LIGHTNING PROTECTION BONDING，p. 14
 
 **Example 2**
 
@@ -10570,11 +10570,11 @@ The designer reviews "large-current capacity" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "electrostatic discharge prevention" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the electrostatic discharge prevention while designing the bond path.
 
-「靜電放電預防」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估靜電放電預防。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -10596,11 +10596,11 @@ The designer reviews "electrostatic discharge prevention" before selecting a bon
 
 **Example 1**
 
-The handbook uses "charge imbalance" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the charge imbalance while designing the bond path.
 
-「電荷不平衡」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估電荷不平衡。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -10622,11 +10622,11 @@ The designer reviews "charge imbalance" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "potential difference" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the potential difference while designing the bond path.
 
-「電位差」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估電位差。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -10648,11 +10648,11 @@ The designer reviews "potential difference" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "dielectric breakdown" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the dielectric breakdown while designing the bond path.
 
-「介電崩潰」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估介電崩潰。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -10674,11 +10674,11 @@ The designer reviews "dielectric breakdown" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "static charge buildup" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the static charge buildup while designing the bond path.
 
-「靜電荷累積」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估靜電荷累積。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -10752,11 +10752,11 @@ The allowed bond resistance is dependent on the stored energy of the item.
 
 **Example 1**
 
-The handbook uses "conductive item" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the conductive item while designing the bond path.
 
-「導電物件」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估導電物件。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 15
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 15
 
 **Example 2**
 
@@ -10778,11 +10778,11 @@ The designer reviews "conductive item" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "active antenna element" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the active antenna element while designing the bond path.
 
-「主動天線元件」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估主動天線元件。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 15
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 15
 
 **Example 2**
 
@@ -10804,11 +10804,11 @@ The designer reviews "active antenna element" before selecting a bonding class.
 
 **Example 1**
 
-The handbook uses "performance analysis" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the performance analysis while designing the bond path.
 
-「性能分析」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估性能分析。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 15
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 15
 
 **Example 2**
 
@@ -11090,11 +11090,11 @@ The use of multiple fasteners is analyzed as part of the bond path.
 
 **Example 1**
 
-The handbook uses "high-strength steel bolt" when it explains how to assemble a reliable bond connection.
+The installer checks the high-strength steel bolt before completing the bond joint.
 
-組裝可靠的接合連接時會考量「高強度鋼螺栓」。
+安裝人員在完成接合處前會檢查高強度鋼螺栓。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11116,11 +11116,11 @@ The installer reviews "high-strength steel bolt" before completing the joint.
 
 **Example 1**
 
-The handbook uses "alloying material" when it explains how to assemble a reliable bond connection.
+The installer checks the alloying material before completing the bond joint.
 
-組裝可靠的接合連接時會考量「合金材料」。
+安裝人員在完成接合處前會檢查合金材料。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11142,11 +11142,11 @@ The installer reviews "alloying material" before completing the joint.
 
 **Example 1**
 
-The handbook uses "mating flange" when it explains how to assemble a reliable bond connection.
+The installer checks the mating flange before completing the bond joint.
 
-組裝可靠的接合連接時會考量「配合凸緣」。
+安裝人員在完成接合處前會檢查配合凸緣。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11168,11 +11168,11 @@ The installer reviews "mating flange" before completing the joint.
 
 **Example 1**
 
-The handbook uses "spring nut" when it explains how to assemble a reliable bond connection.
+The installer checks the spring nut before completing the bond joint.
 
-組裝可靠的接合連接時會考量「彈簧螺帽」。
+安裝人員在完成接合處前會檢查彈簧螺帽。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11194,11 +11194,11 @@ The installer reviews "spring nut" before completing the joint.
 
 **Example 1**
 
-The handbook uses "self-tapping screw" when it explains how to assemble a reliable bond connection.
+The installer checks the self-tapping screw before completing the bond joint.
 
-組裝可靠的接合連接時會考量「自攻螺絲」。
+安裝人員在完成接合處前會檢查自攻螺絲。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11220,11 +11220,11 @@ The installer reviews "self-tapping screw" before completing the joint.
 
 **Example 1**
 
-The handbook uses "locking feature" when it explains how to assemble a reliable bond connection.
+The installer checks the locking feature before completing the bond joint.
 
-組裝可靠的接合連接時會考量「防鬆特徵」。
+安裝人員在完成接合處前會檢查防鬆特徵。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11246,11 +11246,11 @@ The installer reviews "locking feature" before completing the joint.
 
 **Example 1**
 
-The handbook uses "preload-critical joint" when it explains how to assemble a reliable bond connection.
+The installer checks the preload-critical joint before completing the bond joint.
 
-組裝可靠的接合連接時會考量「預緊力關鍵接頭」。
+安裝人員在完成接合處前會檢查預緊力關鍵接頭。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
 **Example 2**
 
@@ -11298,11 +11298,11 @@ Vibration and shock are part of the dynamic environment.
 
 **Example 1**
 
-The handbook uses "flat washer" when it explains how to assemble a reliable bond connection.
+The installer checks the flat washer before completing the bond joint.
 
-組裝可靠的接合連接時會考量「平墊圈」。
+安裝人員在完成接合處前會檢查平墊圈。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
 
 **Example 2**
 
@@ -11324,11 +11324,11 @@ The installer reviews "flat washer" before completing the joint.
 
 **Example 1**
 
-The handbook uses "conical washer" when it explains how to assemble a reliable bond connection.
+The installer checks the conical washer before completing the bond joint.
 
-組裝可靠的接合連接時會考量「錐形墊圈」。
+安裝人員在完成接合處前會檢查錐形墊圈。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
 
 **Example 2**
 
@@ -11350,11 +11350,11 @@ The installer reviews "conical washer" before completing the joint.
 
 **Example 1**
 
-The handbook uses "helical-spring washer" when it explains how to assemble a reliable bond connection.
+The installer checks the helical-spring washer before completing the bond joint.
 
-組裝可靠的接合連接時會考量「螺旋彈簧墊圈」。
+安裝人員在完成接合處前會檢查螺旋彈簧墊圈。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
 
 **Example 2**
 
@@ -11376,11 +11376,11 @@ The installer reviews "helical-spring washer" before completing the joint.
 
 **Example 1**
 
-The handbook uses "lock washer" when it explains how to assemble a reliable bond connection.
+The installer checks the lock washer before completing the bond joint.
 
-組裝可靠的接合連接時會考量「防鬆墊圈」。
+安裝人員在完成接合處前會檢查防鬆墊圈。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
 
 **Example 2**
 
@@ -11402,11 +11402,11 @@ The installer reviews "lock washer" before completing the joint.
 
 **Example 1**
 
-The handbook uses "foreign object debris" when it explains how to assemble a reliable bond connection.
+The installer checks the foreign object debris before completing the bond joint.
 
-組裝可靠的接合連接時會考量「外來物碎屑」。
+安裝人員在完成接合處前會檢查外來物碎屑。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1.1 WASHERS，p. 16
 
 **Example 2**
 
@@ -11454,11 +11454,11 @@ At least three rivets are often recommended for one junction.
 
 **Example 1**
 
-The handbook uses "match-drilled hole" when it explains how to assemble a reliable bond connection.
+The installer checks the match-drilled hole before completing the bond joint.
 
-組裝可靠的接合連接時會考量「配鑽孔」。
+安裝人員在完成接合處前會檢查配鑽孔。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
 
 **Example 2**
 
@@ -11480,11 +11480,11 @@ The installer reviews "match-drilled hole" before completing the joint.
 
 **Example 1**
 
-The handbook uses "countersinking" when it explains how to assemble a reliable bond connection.
+The installer checks the countersinking before completing the bond joint.
 
-組裝可靠的接合連接時會考量「埋頭孔加工」。
+安裝人員在完成接合處前會檢查埋頭孔加工。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
 
 **Example 2**
 
@@ -11506,11 +11506,11 @@ The installer reviews "countersinking" before completing the joint.
 
 **Example 1**
 
-The handbook uses "dimpling" when it explains how to assemble a reliable bond connection.
+The installer checks the dimpling before completing the bond joint.
 
-組裝可靠的接合連接時會考量「壓窩成形」。
+安裝人員在完成接合處前會檢查壓窩成形。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
 
 **Example 2**
 
@@ -11532,11 +11532,11 @@ The installer reviews "dimpling" before completing the joint.
 
 **Example 1**
 
-The handbook uses "blind structural rivet" when it explains how to assemble a reliable bond connection.
+The installer checks the blind structural rivet before completing the bond joint.
 
-組裝可靠的接合連接時會考量「盲孔結構鉚釘」。
+安裝人員在完成接合處前會檢查盲孔結構鉚釘。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
 
 **Example 2**
 
@@ -11558,11 +11558,11 @@ The installer reviews "blind structural rivet" before completing the joint.
 
 **Example 1**
 
-The handbook uses "blind nonstructural rivet" when it explains how to assemble a reliable bond connection.
+The installer checks the blind nonstructural rivet before completing the bond joint.
 
-組裝可靠的接合連接時會考量「盲孔非結構鉚釘」。
+安裝人員在完成接合處前會檢查盲孔非結構鉚釘。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.2 RIVETS，p. 17
 
 **Example 2**
 
@@ -11688,11 +11688,11 @@ Arc discharge near fuel or pyrotechnics is dangerous.
 
 **Example 1**
 
-The handbook uses "electric-field interference" when it explains the purpose or performance of an electrical bond.
+The installer checks the electric-field interference before completing the bond joint.
 
-「電場干擾」會影響電氣接合的目的或性能。
+安裝人員在完成接合處前會檢查電場干擾。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11792,11 +11792,11 @@ Adequate cross-sectional area is necessary for lightning bonding straps.
 
 **Example 1**
 
-The handbook uses "fabrication tolerance" when it explains how to assemble a reliable bond connection.
+The installer checks the fabrication tolerance before completing the bond joint.
 
-組裝可靠的接合連接時會考量「製造公差」。
+安裝人員在完成接合處前會檢查製造公差。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11818,11 +11818,11 @@ The installer reviews "fabrication tolerance" before completing the joint.
 
 **Example 1**
 
-The handbook uses "installation tolerance" when it explains how to assemble a reliable bond connection.
+The installer checks the installation tolerance before completing the bond joint.
 
-組裝可靠的接合連接時會考量「安裝公差」。
+安裝人員在完成接合處前會檢查安裝公差。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11844,11 +11844,11 @@ The installer reviews "installation tolerance" before completing the joint.
 
 **Example 1**
 
-The handbook uses "resonant frequency" when it explains how to assemble a reliable bond connection.
+The installer checks the resonant frequency before completing the bond joint.
 
-組裝可靠的接合連接時會考量「共振頻率」。
+安裝人員在完成接合處前會檢查共振頻率。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11870,11 +11870,11 @@ The installer reviews "resonant frequency" before completing the joint.
 
 **Example 1**
 
-The handbook uses "adjacent part" when it explains how to assemble a reliable bond connection.
+The installer checks the adjacent part before completing the bond joint.
 
-組裝可靠的接合連接時會考量「相鄰零件」。
+安裝人員在完成接合處前會檢查相鄰零件。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11896,11 +11896,11 @@ The installer reviews "adjacent part" before completing the joint.
 
 **Example 1**
 
-The handbook uses "secure attachment" when it explains how to assemble a reliable bond connection.
+The installer checks the secure attachment before completing the bond joint.
 
-組裝可靠的接合連接時會考量「牢固固定」。
+安裝人員在完成接合處前會檢查牢固固定。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11922,11 +11922,11 @@ The installer reviews "secure attachment" before completing the joint.
 
 **Example 1**
 
-The handbook uses "flexible connection" when it explains how to assemble a reliable bond connection.
+The installer checks the flexible connection before completing the bond joint.
 
-組裝可靠的接合連接時會考量「可撓連接」。
+安裝人員在完成接合處前會檢查可撓連接。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2 INDIRECT BONDING，p. 18
 
 **Example 2**
 
@@ -11974,11 +11974,11 @@ An intermittent bond may cause arcing during vibration.
 
 **Example 1**
 
-The handbook uses "round strap" when it explains how to assemble a reliable bond connection.
+The installer checks the round strap before completing the bond joint.
 
-組裝可靠的接合連接時會考量「圓形接合帶」。
+安裝人員在完成接合處前會檢查圓形接合帶。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2.1 BOND STRAP SHAPE，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2.1 BOND STRAP SHAPE，p. 18
 
 **Example 2**
 
@@ -12000,11 +12000,11 @@ The installer reviews "round strap" before completing the joint.
 
 **Example 1**
 
-The handbook uses "flat strap" when it explains how to assemble a reliable bond connection.
+The installer checks the flat strap before completing the bond joint.
 
-組裝可靠的接合連接時會考量「扁平接合帶」。
+安裝人員在完成接合處前會檢查扁平接合帶。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2.1 BOND STRAP SHAPE，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2.1 BOND STRAP SHAPE，p. 18
 
 **Example 2**
 
@@ -12026,11 +12026,11 @@ The installer reviews "flat strap" before completing the joint.
 
 **Example 1**
 
-The handbook uses "bond strap terminal" when it explains how to assemble a reliable bond connection.
+The installer checks the bond strap terminal before completing the bond joint.
 
-組裝可靠的接合連接時會考量「接合帶端子」。
+安裝人員在完成接合處前會檢查接合帶端子。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 18
 
 **Example 2**
 
@@ -12052,11 +12052,11 @@ The installer reviews "bond strap terminal" before completing the joint.
 
 **Example 1**
 
-The handbook uses "terminal stack" when it explains how to assemble a reliable bond connection.
+The installer checks the terminal stack before completing the bond joint.
 
-組裝可靠的接合連接時會考量「端子堆疊」。
+安裝人員在完成接合處前會檢查端子堆疊。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 18
 
 **Example 2**
 
@@ -12078,11 +12078,11 @@ The installer reviews "terminal stack" before completing the joint.
 
 **Example 1**
 
-The handbook uses "Belleville washer" when it explains how to assemble a reliable bond connection.
+The installer checks the Belleville washer before completing the bond joint.
 
-組裝可靠的接合連接時會考量「碟形彈簧墊圈」。
+安裝人員在完成接合處前會檢查碟形彈簧墊圈。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 18
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 18
 
 **Example 2**
 
@@ -12182,11 +12182,11 @@ Adequate strain relief is important when a strap moves during service.
 
 **Example 1**
 
-The handbook uses "galvanic compatibility" when it explains how to assemble a reliable bond connection.
+The installer checks the galvanic compatibility before completing the bond joint.
 
-組裝可靠的接合連接時會考量「電偶相容性」。
+安裝人員在完成接合處前會檢查電偶相容性。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 20
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.2.2 BOND STRAP INSTALLATION，p. 20
 
 **Example 2**
 
@@ -12286,11 +12286,11 @@ Roughness and hardness are part of surface condition.
 
 **Example 1**
 
-The handbook uses "surface roughness" when it explains surface preparation or corrosion protection.
+The technician evaluates the surface roughness before preparing the bond surface.
 
-「表面粗糙度」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估表面粗糙度。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
 
 **Example 2**
 
@@ -12312,11 +12312,11 @@ The team reviews "surface roughness" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "real contact area" when it explains surface preparation or corrosion protection.
+The technician evaluates the real contact area before preparing the bond surface.
 
-「實際接觸面積」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估實際接觸面積。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
 
 **Example 2**
 
@@ -12338,11 +12338,11 @@ The team reviews "real contact area" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "apparent contact area" when it explains surface preparation or corrosion protection.
+The technician evaluates the apparent contact area before preparing the bond surface.
 
-「表觀接觸面積」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估表觀接觸面積。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
 
 **Example 2**
 
@@ -12364,11 +12364,11 @@ The team reviews "apparent contact area" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "microscopic peak" when it explains surface preparation or corrosion protection.
+The technician evaluates the microscopic peak before preparing the bond surface.
 
-「微觀凸峰」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估微觀凸峰。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
 
 **Example 2**
 
@@ -12390,11 +12390,11 @@ The team reviews "microscopic peak" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "elastic deformation" when it explains surface preparation or corrosion protection.
+The technician evaluates the elastic deformation before preparing the bond surface.
 
-「彈性變形」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估彈性變形。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
 
 **Example 2**
 
@@ -12416,11 +12416,11 @@ The team reviews "elastic deformation" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "plastic deformation" when it explains surface preparation or corrosion protection.
+The technician evaluates the plastic deformation before preparing the bond surface.
 
-「塑性變形」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估塑性變形。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.1 SURFACE SMOOTHNESS AND ROUGHNESS，p. 22
 
 **Example 2**
 
@@ -12442,11 +12442,11 @@ The team reviews "plastic deformation" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "surface hardness" when it explains surface preparation or corrosion protection.
+The technician evaluates the surface hardness before preparing the bond surface.
 
-「表面硬度」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估表面硬度。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.4.2 SURFACE HARDNESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.4.2 SURFACE HARDNESS，p. 22
 
 **Example 2**
 
@@ -12478,7 +12478,7 @@ Both mating surfaces must be free of nonconductive films.
 
 The connector flange and panel mating surface require preparation.
 
-接頭法蘭與面板配合面需要進行表面準備。
+連接器法蘭與面板配合面需要進行表面準備。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 33
 
@@ -12494,11 +12494,11 @@ The connector flange and panel mating surface require preparation.
 
 **Example 1**
 
-The handbook uses "finishing process" when it explains surface preparation or corrosion protection.
+The technician evaluates the finishing process before preparing the bond surface.
 
-「表面處理製程」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估表面處理製程。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
 
 **Example 2**
 
@@ -12520,11 +12520,11 @@ The team reviews "finishing process" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "contaminant removal" when it explains surface preparation or corrosion protection.
+The technician evaluates the contaminant removal before preparing the bond surface.
 
-「污染物去除」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估污染物去除。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
 
 **Example 2**
 
@@ -12546,11 +12546,11 @@ The team reviews "contaminant removal" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "dust removal" when it explains surface preparation or corrosion protection.
+The technician evaluates the dust removal before preparing the bond surface.
 
-「灰塵去除」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估灰塵去除。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
 
 **Example 2**
 
@@ -12572,11 +12572,11 @@ The team reviews "dust removal" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "grease removal" when it explains surface preparation or corrosion protection.
+The technician evaluates the grease removal before preparing the bond surface.
 
-「油脂去除」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估油脂去除。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
 
 **Example 2**
 
@@ -12598,11 +12598,11 @@ The team reviews "grease removal" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "oil removal" when it explains surface preparation or corrosion protection.
+The technician evaluates the oil removal before preparing the bond surface.
 
-「油污去除」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估油污去除。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
 
 **Example 2**
 
@@ -12624,11 +12624,11 @@ The team reviews "oil removal" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "corrosion product" when it explains surface preparation or corrosion protection.
+The technician evaluates the corrosion product before preparing the bond surface.
 
-「腐蝕產物」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估腐蝕產物。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5 SURFACE CLEANLINESS，p. 22
 
 **Example 2**
 
@@ -12650,11 +12650,11 @@ The team reviews "corrosion product" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "alkaline solution" when it explains surface preparation or corrosion protection.
+The technician evaluates the alkaline solution before preparing the bond surface.
 
-「鹼性溶液」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估鹼性溶液。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
 
 **Example 2**
 
@@ -12676,11 +12676,11 @@ The team reviews "alkaline solution" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "acidic material" when it explains surface preparation or corrosion protection.
+The technician evaluates the acidic material before preparing the bond surface.
 
-「酸性材料」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估酸性材料。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
 
 **Example 2**
 
@@ -12702,11 +12702,11 @@ The team reviews "acidic material" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "oxidizing acid" when it explains surface preparation or corrosion protection.
+The technician evaluates the oxidizing acid before preparing the bond surface.
 
-「氧化性酸」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估氧化性酸。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
 
 **Example 2**
 
@@ -12728,11 +12728,11 @@ The team reviews "oxidizing acid" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "acid fluoride" when it explains surface preparation or corrosion protection.
+The technician evaluates the acid fluoride before preparing the bond surface.
 
-「氟化酸」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估氟化酸。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
 
 **Example 2**
 
@@ -12742,59 +12742,7 @@ The team reviews "acid fluoride" before sealing the bond joint.
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 22
 
-## 491. chlorinated solvent
-
-**Pronunciation:** /ˈklɔrəˌneɪtəd ˈsɑlvənt/
-
-**Chinese meaning:** 含氯溶劑
-
-**Category:** Surface & Corrosion
-
-**Difficulty:** 4
-
-**Example 1**
-
-The handbook uses "chlorinated solvent" when it explains surface preparation or corrosion protection.
-
-「含氯溶劑」會影響表面處理或腐蝕防護。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
-
-**Example 2**
-
-The team reviews "chlorinated solvent" before sealing the bond joint.
-
-團隊會在密封接合處前評估「含氯溶劑」。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
-
-## 492. corrosion prevention and control plan
-
-**Pronunciation:** /kərˈoʊʒən priˈvɛnʃən ənd kənˈtroʊl plæn/
-
-**Chinese meaning:** 腐蝕預防與控制計畫
-
-**Category:** Surface & Corrosion
-
-**Difficulty:** 4
-
-**Example 1**
-
-The handbook uses "corrosion prevention and control plan" when it explains surface preparation or corrosion protection.
-
-「腐蝕預防與控制計畫」會影響表面處理或腐蝕防護。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
-
-**Example 2**
-
-The team reviews "corrosion prevention and control plan" before sealing the bond joint.
-
-團隊會在密封接合處前評估「腐蝕預防與控制計畫」。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
-
-## 493. solvent
+## 491. solvent
 
 **Pronunciation:** /ˈsɑːlvənt/
 
@@ -12820,6 +12768,58 @@ The solvent must be compatible with the hardware.
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，6.2.1 GENERAL NOTES，p. 45
 
+## 492. chlorinated solvent
+
+**Pronunciation:** /ˈklɔrəˌneɪtəd ˈsɑlvənt/
+
+**Chinese meaning:** 含氯溶劑
+
+**Category:** Surface & Corrosion
+
+**Difficulty:** 4
+
+**Example 1**
+
+The technician evaluates the chlorinated solvent before preparing the bond surface.
+
+技術人員在處理接合表面前會評估含氯溶劑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
+
+**Example 2**
+
+The team reviews "chlorinated solvent" before sealing the bond joint.
+
+團隊會在密封接合處前評估「含氯溶劑」。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
+
+## 493. corrosion prevention and control plan
+
+**Pronunciation:** /kərˈoʊʒən priˈvɛnʃən ənd kənˈtroʊl plæn/
+
+**Chinese meaning:** 腐蝕預防與控制計畫
+
+**Category:** Surface & Corrosion
+
+**Difficulty:** 4
+
+**Example 1**
+
+The technician evaluates the corrosion prevention and control plan before preparing the bond surface.
+
+技術人員在處理接合表面前會評估腐蝕預防與控制計畫。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
+
+**Example 2**
+
+The team reviews "corrosion prevention and control plan" before sealing the bond joint.
+
+團隊會在密封接合處前評估「腐蝕預防與控制計畫」。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.1 CLEANING PRECAUTIONS，p. 23
+
 ## 494. cleaning fluid
 
 **Pronunciation:** /ˈklinɪŋ fluɪd/
@@ -12832,11 +12832,11 @@ The solvent must be compatible with the hardware.
 
 **Example 1**
 
-The handbook uses "cleaning fluid" when it explains surface preparation or corrosion protection.
+The technician evaluates the cleaning fluid before preparing the bond surface.
 
-「清潔液」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估清潔液。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.2 CHEMICAL CLEANERS AND SOLVENTS，p. 23
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.2 CHEMICAL CLEANERS AND SOLVENTS，p. 23
 
 **Example 2**
 
@@ -12858,11 +12858,11 @@ The team reviews "cleaning fluid" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "metallic wool" when it explains surface preparation or corrosion protection.
+The technician evaluates the metallic wool before preparing the bond surface.
 
-「金屬棉」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估金屬棉。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.4 METALLIC WOOL，p. 23
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.4 METALLIC WOOL，p. 23
 
 **Example 2**
 
@@ -12884,11 +12884,11 @@ The team reviews "metallic wool" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "wire brush" when it explains surface preparation or corrosion protection.
+The technician evaluates the wire brush before preparing the bond surface.
 
-「鋼絲刷」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估鋼絲刷。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.5 WIRE BRUSHES，p. 23
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.5 WIRE BRUSHES，p. 23
 
 **Example 2**
 
@@ -12910,11 +12910,11 @@ The team reviews "wire brush" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "fiber wool" when it explains surface preparation or corrosion protection.
+The technician evaluates the fiber wool before preparing the bond surface.
 
-「纖維棉」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估纖維棉。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.6 OTHER ABRASIVE MATERIALS，p. 23
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.6 OTHER ABRASIVE MATERIALS，p. 23
 
 **Example 2**
 
@@ -12936,11 +12936,11 @@ The team reviews "fiber wool" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "aluminum oxide abrasive" when it explains surface preparation or corrosion protection.
+The technician evaluates the aluminum oxide abrasive before preparing the bond surface.
 
-「氧化鋁磨料」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估氧化鋁磨料。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.5.6 OTHER ABRASIVE MATERIALS，p. 23
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.5.6 OTHER ABRASIVE MATERIALS，p. 23
 
 **Example 2**
 
@@ -13378,11 +13378,11 @@ Lead-alloyed tin may be used to reduce tin whisker risk.
 
 **Example 1**
 
-The handbook uses "effective chromium" when it explains surface preparation or corrosion protection.
+The technician evaluates the effective chromium before preparing the bond surface.
 
-「有效鉻含量」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估有效鉻含量。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.2 SURFACE TREATMENT，p. 28
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.6.2 SURFACE TREATMENT，p. 28
 
 **Example 2**
 
@@ -13404,11 +13404,11 @@ The team reviews "effective chromium" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "hexavalent chromium" when it explains surface preparation or corrosion protection.
+The technician evaluates the hexavalent chromium before preparing the bond surface.
 
-「六價鉻」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估六價鉻。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.2 SURFACE TREATMENT，p. 28
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.6.2 SURFACE TREATMENT，p. 28
 
 **Example 2**
 
@@ -13430,11 +13430,11 @@ The team reviews "hexavalent chromium" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "trivalent chromium" when it explains surface preparation or corrosion protection.
+The technician evaluates the trivalent chromium before preparing the bond surface.
 
-「三價鉻」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估三價鉻。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.2 SURFACE TREATMENT，p. 28
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.6.2 SURFACE TREATMENT，p. 28
 
 **Example 2**
 
@@ -13456,11 +13456,11 @@ The team reviews "trivalent chromium" before sealing the bond joint.
 
 **Example 1**
 
-The handbook uses "wet faying surface sealing" when it explains surface preparation or corrosion protection.
+The technician evaluates the wet faying surface sealing before preparing the bond surface.
 
-「濕式配合面密封」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估濕式配合面密封。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.3 SEALING OF BOND JOINTS，p. 28
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.6.3 SEALING OF BOND JOINTS，p. 28
 
 **Example 2**
 
@@ -13534,11 +13534,11 @@ Protect the anode when dissimilar metals cannot be avoided.
 
 **Example 1**
 
-The handbook uses "corrosion preventive compound" when it explains surface preparation or corrosion protection.
+The technician evaluates the corrosion preventive compound before preparing the bond surface.
 
-「防蝕化合物」會影響表面處理或腐蝕防護。
+技術人員在處理接合表面前會評估防蝕化合物。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.3 SEALING OF BOND JOINTS，p. 29
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.6.3 SEALING OF BOND JOINTS，p. 29
 
 **Example 2**
 
@@ -13716,11 +13716,11 @@ Refinishing is completed soon after the original coating is removed.
 
 **Example 1**
 
-The term "thin paint" supports communication or verification of the bonding requirement.
+The technician evaluates the thin paint before preparing the bond surface.
 
-「薄漆層」有助於傳達或驗證接合要求。
+技術人員在處理接合表面前會評估薄漆層。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.6 REFINISHING，p. 31
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.3.6.6 REFINISHING，p. 31
 
 **Example 2**
 
@@ -13794,19 +13794,19 @@ Good enclosure shielding integrity is dependent on low-impedance joints.
 
 **Example 1**
 
-The term "enclosure seam" identifies a special consideration in the bonding design.
+The enclosure design accounts for the enclosure seam.
 
-「機箱接縫」在接合設計中需要特別注意。
+機箱設計會考量機箱接縫。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 31
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 31
 
 **Example 2**
 
-The handbook discusses "enclosure seam" in its special bonding guidance.
+The integration team checks the enclosure seam during assembly.
 
-本手冊將「機箱接縫」列為特殊接合考量。
+整合團隊在組裝期間會檢查機箱接縫。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 31
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 31
 
 ## 532. moisture
 
@@ -13924,19 +13924,19 @@ A conductive gasket is selected for compression and shielding effectiveness.
 
 **Example 1**
 
-The term "resilient conductive gasket" identifies a special consideration in the bonding design.
+The enclosure design accounts for the resilient conductive gasket.
 
-「彈性導電墊片」在接合設計中需要特別注意。
+機箱設計會考量彈性導電墊片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "resilient conductive gasket" in its special bonding guidance.
+The integration team checks the resilient conductive gasket during assembly.
 
-本手冊將「彈性導電墊片」列為特殊接合考量。
+整合團隊在組裝期間會檢查彈性導電墊片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 537. threat frequency
 
@@ -13950,19 +13950,19 @@ The handbook discusses "resilient conductive gasket" in its special bonding guid
 
 **Example 1**
 
-The term "threat frequency" identifies a special consideration in the bonding design.
+The enclosure design accounts for the threat frequency.
 
-「威脅頻率」在接合設計中需要特別注意。
+機箱設計會考量威脅頻率。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "threat frequency" in its special bonding guidance.
+The integration team checks the threat frequency during assembly.
 
-本手冊將「威脅頻率」列為特殊接合考量。
+整合團隊在組裝期間會檢查威脅頻率。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 538. emission frequency
 
@@ -13976,19 +13976,19 @@ The handbook discusses "threat frequency" in its special bonding guidance.
 
 **Example 1**
 
-The term "emission frequency" identifies a special consideration in the bonding design.
+The enclosure design accounts for the emission frequency.
 
-「發射頻率」在接合設計中需要特別注意。
+機箱設計會考量發射頻率。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "emission frequency" in its special bonding guidance.
+The integration team checks the emission frequency during assembly.
 
-本手冊將「發射頻率」列為特殊接合考量。
+整合團隊在組裝期間會檢查發射頻率。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 539. environmental seal
 
@@ -14002,19 +14002,19 @@ The handbook discusses "emission frequency" in its special bonding guidance.
 
 **Example 1**
 
-The term "environmental seal" identifies a special consideration in the bonding design.
+The enclosure design accounts for the environmental seal.
 
-「環境密封」在接合設計中需要特別注意。
+機箱設計會考量環境密封。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "environmental seal" in its special bonding guidance.
+The integration team checks the environmental seal during assembly.
 
-本手冊將「環境密封」列為特殊接合考量。
+整合團隊在組裝期間會檢查環境密封。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 540. compression-deflection capability
 
@@ -14028,19 +14028,19 @@ The handbook discusses "environmental seal" in its special bonding guidance.
 
 **Example 1**
 
-The term "compression-deflection capability" identifies a special consideration in the bonding design.
+The enclosure design accounts for the compression-deflection capability.
 
-「壓縮變形能力」在接合設計中需要特別注意。
+機箱設計會考量壓縮變形能力。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "compression-deflection capability" in its special bonding guidance.
+The integration team checks the compression-deflection capability during assembly.
 
-本手冊將「壓縮變形能力」列為特殊接合考量。
+整合團隊在組裝期間會檢查壓縮變形能力。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 541. knitted wire mesh gasket
 
@@ -14054,19 +14054,19 @@ The handbook discusses "compression-deflection capability" in its special bondin
 
 **Example 1**
 
-The term "knitted wire mesh gasket" identifies a special consideration in the bonding design.
+The enclosure design accounts for the knitted wire mesh gasket.
 
-「針織金屬網墊片」在接合設計中需要特別注意。
+機箱設計會考量針織金屬網墊片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "knitted wire mesh gasket" in its special bonding guidance.
+The integration team checks the knitted wire mesh gasket during assembly.
 
-本手冊將「針織金屬網墊片」列為特殊接合考量。
+整合團隊在組裝期間會檢查針織金屬網墊片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 542. elastomeric gasket
 
@@ -14080,19 +14080,19 @@ The handbook discusses "knitted wire mesh gasket" in its special bonding guidanc
 
 **Example 1**
 
-The term "elastomeric gasket" identifies a special consideration in the bonding design.
+The enclosure design accounts for the elastomeric gasket.
 
-「彈性體墊片」在接合設計中需要特別注意。
+機箱設計會考量彈性體墊片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "elastomeric gasket" in its special bonding guidance.
+The integration team checks the elastomeric gasket during assembly.
 
-本手冊將「彈性體墊片」列為特殊接合考量。
+整合團隊在組裝期間會檢查彈性體墊片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 543. removable cover plate
 
@@ -14106,19 +14106,19 @@ The handbook discusses "elastomeric gasket" in its special bonding guidance.
 
 **Example 1**
 
-The term "removable cover plate" identifies a special consideration in the bonding design.
+The enclosure design accounts for the removable cover plate.
 
-「可拆式蓋板」在接合設計中需要特別注意。
+機箱設計會考量可拆式蓋板。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 **Example 2**
 
-The handbook discusses "removable cover plate" in its special bonding guidance.
+The integration team checks the removable cover plate during assembly.
 
-本手冊將「可拆式蓋板」列為特殊接合考量。
+整合團隊在組裝期間會檢查可拆式蓋板。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.1 BONDING FOR ENCLOSURE SHIELDING INTEGRITY，p. 32
 
 ## 544. mounting surface
 
@@ -14158,19 +14158,19 @@ A painted mounting surface may isolate the chassis.
 
 **Example 1**
 
-The term "connector shell" identifies a special consideration in the bonding design.
+The enclosure design accounts for the connector shell.
 
-「連接器外殼」在接合設計中需要特別注意。
+機箱設計會考量連接器外殼。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 32
 
 **Example 2**
 
-The handbook discusses "connector shell" in its special bonding guidance.
+The integration team checks the connector shell during assembly.
 
-本手冊將「連接器外殼」列為特殊接合考量。
+整合團隊在組裝期間會檢查連接器外殼。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 32
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 32
 
 ## 546. connector backshell
 
@@ -14228,7 +14228,7 @@ A complete cable shield termination is necessary for effective shielding.
 
 **Pronunciation:** /kəˈnɛktər flænʤ/
 
-**Chinese meaning:** 連接器凸緣
+**Chinese meaning:** 連接器法蘭
 
 **Category:** Special Applications
 
@@ -14236,19 +14236,19 @@ A complete cable shield termination is necessary for effective shielding.
 
 **Example 1**
 
-The term "connector flange" identifies a special consideration in the bonding design.
+The enclosure design accounts for the connector flange.
 
-「連接器凸緣」在接合設計中需要特別注意。
+機箱設計會考量連接器法蘭。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 33
 
 **Example 2**
 
-The handbook discusses "connector flange" in its special bonding guidance.
+The integration team checks the connector flange during assembly.
 
-本手冊將「連接器凸緣」列為特殊接合考量。
+整合團隊在組裝期間會檢查連接器法蘭。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.2 CONNECTORS，p. 33
 
 ## 549. fluid flow
 
@@ -14262,19 +14262,19 @@ The handbook discusses "connector flange" in its special bonding guidance.
 
 **Example 1**
 
-The term "fluid flow" identifies a special consideration in the bonding design.
+The enclosure design accounts for the fluid flow.
 
-「流體流動」在接合設計中需要特別注意。
+機箱設計會考量流體流動。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
 
 **Example 2**
 
-The handbook discusses "fluid flow" in its special bonding guidance.
+The integration team checks the fluid flow during assembly.
 
-本手冊將「流體流動」列為特殊接合考量。
+整合團隊在組裝期間會檢查流體流動。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
 
 ## 550. nonconductive fluid
 
@@ -14288,19 +14288,19 @@ The handbook discusses "fluid flow" in its special bonding guidance.
 
 **Example 1**
 
-The term "nonconductive fluid" identifies a special consideration in the bonding design.
+The enclosure design accounts for the nonconductive fluid.
 
-「非導電流體」在接合設計中需要特別注意。
+機箱設計會考量非導電流體。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
 
 **Example 2**
 
-The handbook discusses "nonconductive fluid" in its special bonding guidance.
+The integration team checks the nonconductive fluid during assembly.
 
-本手冊將「非導電流體」列為特殊接合考量。
+整合團隊在組裝期間會檢查非導電流體。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
 
 ## 551. conductive pipe
 
@@ -14314,19 +14314,19 @@ The handbook discusses "nonconductive fluid" in its special bonding guidance.
 
 **Example 1**
 
-The term "conductive pipe" identifies a special consideration in the bonding design.
+The enclosure design accounts for the conductive pipe.
 
-「導電管路」在接合設計中需要特別注意。
+機箱設計會考量導電管路。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
 
 **Example 2**
 
-The handbook discusses "conductive pipe" in its special bonding guidance.
+The integration team checks the conductive pipe during assembly.
 
-本手冊將「導電管路」列為特殊接合考量。
+整合團隊在組裝期間會檢查導電管路。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 33
 
 ## 552. volume resistivity
 
@@ -14366,19 +14366,19 @@ Nonmetallic tubing may need a volume resistivity limit.
 
 **Example 1**
 
-The term "nonmetallic tubing" identifies a special consideration in the bonding design.
+The enclosure design accounts for the nonmetallic tubing.
 
-「非金屬管路」在接合設計中需要特別注意。
+機箱設計會考量非金屬管路。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 34
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 34
 
 **Example 2**
 
-The handbook discusses "nonmetallic tubing" in its special bonding guidance.
+The integration team checks the nonmetallic tubing during assembly.
 
-本手冊將「非金屬管路」列為特殊接合考量。
+整合團隊在組裝期間會檢查非金屬管路。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 34
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.3 TUBES AND HOSES，p. 34
 
 ## 554. bonding clamp
 
@@ -14418,19 +14418,19 @@ A bonding clamp is attached to a clean metal contact area.
 
 **Example 1**
 
-The term "plain bonding clamp" identifies a special consideration in the bonding design.
+The enclosure design accounts for the plain bonding clamp.
 
-「無襯墊接合夾具」在接合設計中需要特別注意。
+機箱設計會考量無襯墊接合夾具。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
 
 **Example 2**
 
-The handbook discusses "plain bonding clamp" in its special bonding guidance.
+The integration team checks the plain bonding clamp during assembly.
 
-本手冊將「無襯墊接合夾具」列為特殊接合考量。
+整合團隊在組裝期間會檢查無襯墊接合夾具。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
 
 ## 556. cushion clamp
 
@@ -14444,19 +14444,19 @@ The handbook discusses "plain bonding clamp" in its special bonding guidance.
 
 **Example 1**
 
-The term "cushion clamp" identifies a special consideration in the bonding design.
+The enclosure design accounts for the cushion clamp.
 
-「緩衝夾具」在接合設計中需要特別注意。
+機箱設計會考量緩衝夾具。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
 
 **Example 2**
 
-The handbook discusses "cushion clamp" in its special bonding guidance.
+The integration team checks the cushion clamp during assembly.
 
-本手冊將「緩衝夾具」列為特殊接合考量。
+整合團隊在組裝期間會檢查緩衝夾具。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.4 BONDING CLAMPS，p. 35
 
 ## 557. rotating joint
 
@@ -14522,19 +14522,19 @@ A slip ring is paired with a brush to provide a bonding path.
 
 **Example 1**
 
-The term "phosphor-bronze finger" identifies a special consideration in the bonding design.
+The enclosure design accounts for the phosphor-bronze finger.
 
-「磷青銅接觸片」在接合設計中需要特別注意。
+機箱設計會考量磷青銅接觸片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.5 ROTATING JOINTS，p. 35
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.5 ROTATING JOINTS，p. 35
 
 **Example 2**
 
-The handbook discusses "phosphor-bronze finger" in its special bonding guidance.
+The integration team checks the phosphor-bronze finger during assembly.
 
-本手冊將「磷青銅接觸片」列為特殊接合考量。
+整合團隊在組裝期間會檢查磷青銅接觸片。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.5 ROTATING JOINTS，p. 35
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.5 ROTATING JOINTS，p. 35
 
 ## 560. shock mount
 
@@ -14588,449 +14588,7 @@ A flexible strap across a piano hinge is an alternate electrical path.
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.7 HINGES，p. 36
 
-## 562. alternate electrical path
-
-**Pronunciation:** /ˈɔltərˌneɪt ɪˈlɛktrɪkəl pæθ/
-
-**Chinese meaning:** 替代電氣路徑
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "alternate electrical path" identifies a special consideration in the bonding design.
-
-「替代電氣路徑」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.7 HINGES，p. 37
-
-**Example 2**
-
-The handbook discusses "alternate electrical path" in its special bonding guidance.
-
-本手冊將「替代電氣路徑」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.7 HINGES，p. 37
-
-## 563. tray-to-tray bond
-
-**Pronunciation:** /treɪ tɪ treɪ bɑnd/
-
-**Chinese meaning:** 托盤間接合
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "tray-to-tray bond" identifies a special consideration in the bonding design.
-
-「托盤間接合」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
-
-**Example 2**
-
-The handbook discusses "tray-to-tray bond" in its special bonding guidance.
-
-本手冊將「托盤間接合」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
-
-## 564. continuous path
-
-**Pronunciation:** /kənˈtɪnjuəs pæθ/
-
-**Chinese meaning:** 連續路徑
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "continuous path" identifies a special consideration in the bonding design.
-
-「連續路徑」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
-
-**Example 2**
-
-The handbook discusses "continuous path" in its special bonding guidance.
-
-本手冊將「連續路徑」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
-
-## 565. graphite epoxy
-
-**Pronunciation:** /ˈgræˌfaɪt ɪˈpɑksi/
-
-**Chinese meaning:** 石墨環氧樹脂
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "graphite epoxy" identifies a special consideration in the bonding design.
-
-「石墨環氧樹脂」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
-
-**Example 2**
-
-The handbook discusses "graphite epoxy" in its special bonding guidance.
-
-本手冊將「石墨環氧樹脂」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
-
-## 566. graphite filament reinforced plastic
-
-**Pronunciation:** /ˈgræˌfaɪt ˈfɪləmənt ˌriɪnˈfɔrst ˈplæstɪk/
-
-**Chinese meaning:** 石墨纖維強化塑膠
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "graphite filament reinforced plastic" identifies a special consideration in the bonding design.
-
-「石墨纖維強化塑膠」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
-
-**Example 2**
-
-The handbook discusses "graphite filament reinforced plastic" in its special bonding guidance.
-
-本手冊將「石墨纖維強化塑膠」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
-
-## 567. short circuit
-
-**Pronunciation:** /ˌʃɔːrt ˈsɜːrkɪt/
-
-**Chinese meaning:** 短路
-
-**Category:** Electrical Safety
-
-**Difficulty:** 3
-
-**Example 1**
-
-A short circuit to the chassis can create a shock hazard.
-
-短路到機殼可能造成觸電危害。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 Conductivity，p. 37
-
-**Example 2**
-
-The design should prevent a short circuit from entering the composite structure.
-
-設計應避免短路電流進入複材結構。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 Conductivity，p. 37
-
-## 568. conductivity
-
-**Pronunciation:** /ˌkɑːndʌkˈtɪvəti/
-
-**Chinese meaning:** 導電率；導電性
-
-**Category:** Materials & Surface
-
-**Difficulty:** 3
-
-**Example 1**
-
-Graphite epoxy has much lower conductivity than aluminum.
-
-石墨環氧材料的導電性遠低於鋁。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 Conductivity，p. 37
-
-**Example 2**
-
-Additional metal paths can improve overall conductivity.
-
-額外金屬路徑可改善整體導電性。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.2 Bond Implementation，p. 38
-
-## 569. conductive adhesive
-
-**Pronunciation:** /kənˈdəktɪv əˈdhisɪv/
-
-**Chinese meaning:** 導電膠黏劑
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "conductive adhesive" identifies a special consideration in the bonding design.
-
-「導電膠黏劑」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.2 BOND IMPLEMENTATION，p. 38
-
-**Example 2**
-
-The handbook discusses "conductive adhesive" in its special bonding guidance.
-
-本手冊將「導電膠黏劑」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.2 BOND IMPLEMENTATION，p. 38
-
-## 570. weakens
-
-**Pronunciation:** /ˈwiːkənz/
-
-**Chinese meaning:** 削弱；使變弱
-
-**Category:** Lightning & Damage Effects
-
-**Difficulty:** Intermediate
-
-**Example 1**
-
-Lightning current weakens a fastener when excessive heat develops at the connection.
-
-當連接處產生過多熱量時，雷擊電流會削弱緊固件。
-
-**Source:** 改寫自｜NASA-STD-4003A_w-Change 1 - Revalidated 03-13-2026.pdf，5.3 Galvanic Corrosion of Dissimilar Materials，p. 27
-
-**Example 2**
-
-Corrosion weakens the bond and increases electrical resistance.
-
-腐蝕會削弱 搭接 並增加電阻。
-
-**Source:** 改寫自｜NASA-STD-4003A_w-Change 1 - Revalidated 03-13-2026.pdf，5.3 Galvanic Corrosion of Dissimilar Materials，p. 27
-
-## 571. lightning strike zone
-
-**Pronunciation:** /ˈlaɪtnɪŋ straɪk zoʊn/
-
-**Chinese meaning:** 雷擊區域
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "lightning strike zone" identifies a special consideration in the bonding design.
-
-「雷擊區域」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
-
-**Example 2**
-
-The handbook discusses "lightning strike zone" in its special bonding guidance.
-
-本手冊將「雷擊區域」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
-
-## 572. metallic pathway
-
-**Pronunciation:** /məˈtælɪk ˈpæθˌweɪ/
-
-**Chinese meaning:** 金屬導電路徑
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "metallic pathway" identifies a special consideration in the bonding design.
-
-「金屬導電路徑」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
-
-**Example 2**
-
-The handbook discusses "metallic pathway" in its special bonding guidance.
-
-本手冊將「金屬導電路徑」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
-
-## 573. delamination
-
-**Pronunciation:** /diːˌlæməˈneɪʃən/
-
-**Chinese meaning:** 分層；剝離
-
-**Category:** Materials & Surface
-
-**Difficulty:** 4
-
-**Example 1**
-
-High current at a fastener can cause local heating and delamination.
-
-緊固件處的高電流可能造成局部發熱與分層。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 Lightning and Fault Currents，p. 38
-
-**Example 2**
-
-Composite delamination is a serious structural concern.
-
-複材分層是嚴重的結構問題。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 Lightning and Fault Currents，p. 38
-
-## 574. conductive metal strip
-
-**Pronunciation:** /kənˈdəktɪv ˈmɛtəl strɪp/
-
-**Chinese meaning:** 導電金屬帶
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "conductive metal strip" identifies a special consideration in the bonding design.
-
-「導電金屬帶」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 39
-
-**Example 2**
-
-The handbook discusses "conductive metal strip" in its special bonding guidance.
-
-本手冊將「導電金屬帶」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 39
-
-## 575. multilayer insulation
-
-**Pronunciation:** /ˌmʌltiˈleɪər ˌɪnsəˈleɪʃən/
-
-**Chinese meaning:** 多層絕熱材料
-
-**Category:** Special Bonding
-
-**Difficulty:** 5
-
-**Example 1**
-
-Multilayer insulation is a thermal blanket made from several thin layers.
-
-多層絕熱材料是由多層薄膜構成的熱控毯。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 40
-
-**Example 2**
-
-Conductive multilayer insulation is bonded to prevent static-charge buildup.
-
-導電多層絕熱材料會進行接合，以防止靜電荷累積。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 40
-
-## 576. honeycomb panel
-
-**Pronunciation:** /ˈhəniˌkoʊm ˈpænəl/
-
-**Chinese meaning:** 蜂巢板
-
-**Category:** Special Applications
-
-**Difficulty:** 4
-
-**Example 1**
-
-The term "honeycomb panel" identifies a special consideration in the bonding design.
-
-「蜂巢板」在接合設計中需要特別注意。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.11 METAL HONEYCOMB PANELS，p. 40
-
-**Example 2**
-
-The handbook discusses "honeycomb panel" in its special bonding guidance.
-
-本手冊將「蜂巢板」列為特殊接合考量。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.11 METAL HONEYCOMB PANELS，p. 40
-
-## 577. equipment rack
-
-**Pronunciation:** /ɪˈkwɪpmənt ræk/
-
-**Chinese meaning:** 設備機架；設備架
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-The avionics panel can be treated like a small equipment rack.
-
-航電板可視為小型設備機架。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
-
-**Example 2**
-
-An equipment rack should provide defined mounting and bonding points.
-
-設備機架應提供明確的安裝與接合點。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
-
-## 578. mounting bracket
-
-**Pronunciation:** /ˈmaʊntɪŋ ˈbrækɪt/
-
-**Chinese meaning:** 安裝支架
-
-**Category:** Mechanical Integration
-
-**Difficulty:** 3
-
-**Example 1**
-
-The mounting bracket must have a defined electrical path.
-
-安裝支架必須有明確的電氣路徑。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
-
-**Example 2**
-
-Do not rely on a painted mounting bracket for RF return.
-
-不要依賴有塗裝的安裝支架作為 RF 回流。
-
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
-
-## 579. electrical
+## 562. electrical
 
 **Pronunciation:** /ɪˈlektrɪkəl/
 
@@ -15056,6 +14614,448 @@ The electrical path should not depend on paint or adhesive.
 
 **Source:** 改寫自｜MIL-STD-464C.pdf，A.5.8.2 Precipitation static (P-static)，p. 121
 
+## 563. alternate electrical path
+
+**Pronunciation:** /ˈɔltərˌneɪt ɪˈlɛktrɪkəl pæθ/
+
+**Chinese meaning:** 替代電氣路徑
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the alternate electrical path.
+
+機箱設計會考量替代電氣路徑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.7 HINGES，p. 37
+
+**Example 2**
+
+The integration team checks the alternate electrical path during assembly.
+
+整合團隊在組裝期間會檢查替代電氣路徑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.7 HINGES，p. 37
+
+## 564. tray-to-tray bond
+
+**Pronunciation:** /treɪ tɪ treɪ bɑnd/
+
+**Chinese meaning:** 托盤間接合
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the tray-to-tray bond.
+
+機箱設計會考量托盤間接合。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
+
+**Example 2**
+
+The integration team checks the tray-to-tray bond during assembly.
+
+整合團隊在組裝期間會檢查托盤間接合。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
+
+## 565. continuous path
+
+**Pronunciation:** /kənˈtɪnjuəs pæθ/
+
+**Chinese meaning:** 連續路徑
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the continuous path.
+
+機箱設計會考量連續路徑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
+
+**Example 2**
+
+The integration team checks the continuous path during assembly.
+
+整合團隊在組裝期間會檢查連續路徑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.8 CABLE TRAYS，p. 37
+
+## 566. graphite epoxy
+
+**Pronunciation:** /ˈgræˌfaɪt ɪˈpɑksi/
+
+**Chinese meaning:** 石墨環氧樹脂
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the graphite epoxy.
+
+機箱設計會考量石墨環氧樹脂。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
+
+**Example 2**
+
+The integration team checks the graphite epoxy during assembly.
+
+整合團隊在組裝期間會檢查石墨環氧樹脂。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
+
+## 567. graphite filament reinforced plastic
+
+**Pronunciation:** /ˈgræˌfaɪt ˈfɪləmənt ˌriɪnˈfɔrst ˈplæstɪk/
+
+**Chinese meaning:** 石墨纖維強化塑膠
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the graphite filament reinforced plastic.
+
+機箱設計會考量石墨纖維強化塑膠。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
+
+**Example 2**
+
+The integration team checks the graphite filament reinforced plastic during assembly.
+
+整合團隊在組裝期間會檢查石墨纖維強化塑膠。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.1 CONDUCTIVITY，p. 37
+
+## 568. short circuit
+
+**Pronunciation:** /ˌʃɔːrt ˈsɜːrkɪt/
+
+**Chinese meaning:** 短路
+
+**Category:** Electrical Safety
+
+**Difficulty:** 3
+
+**Example 1**
+
+A short circuit to the chassis can create a shock hazard.
+
+短路到機殼可能造成觸電危害。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 Conductivity，p. 37
+
+**Example 2**
+
+The design should prevent a short circuit from entering the composite structure.
+
+設計應避免短路電流進入複材結構。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 Conductivity，p. 37
+
+## 569. conductivity
+
+**Pronunciation:** /ˌkɑːndʌkˈtɪvəti/
+
+**Chinese meaning:** 導電率；導電性
+
+**Category:** Materials & Surface
+
+**Difficulty:** 3
+
+**Example 1**
+
+Graphite epoxy has much lower conductivity than aluminum.
+
+石墨環氧材料的導電性遠低於鋁。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.1 Conductivity，p. 37
+
+**Example 2**
+
+Additional metal paths can improve overall conductivity.
+
+額外金屬路徑可改善整體導電性。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.2 Bond Implementation，p. 38
+
+## 570. conductive adhesive
+
+**Pronunciation:** /kənˈdəktɪv əˈdhisɪv/
+
+**Chinese meaning:** 導電膠黏劑
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the conductive adhesive.
+
+機箱設計會考量導電膠黏劑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.2 BOND IMPLEMENTATION，p. 38
+
+**Example 2**
+
+The integration team checks the conductive adhesive during assembly.
+
+整合團隊在組裝期間會檢查導電膠黏劑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.2 BOND IMPLEMENTATION，p. 38
+
+## 571. weakens
+
+**Pronunciation:** /ˈwiːkənz/
+
+**Chinese meaning:** 削弱；使變弱
+
+**Category:** Lightning & Damage Effects
+
+**Difficulty:** Intermediate
+
+**Example 1**
+
+Lightning current weakens a fastener when excessive heat develops at the connection.
+
+當連接處產生過多熱量時，雷擊電流會削弱緊固件。
+
+**Source:** 改寫自｜NASA-STD-4003A_w-Change 1 - Revalidated 03-13-2026.pdf，5.3 Galvanic Corrosion of Dissimilar Materials，p. 27
+
+**Example 2**
+
+Corrosion weakens the bond and increases electrical resistance.
+
+腐蝕會削弱 搭接 並增加電阻。
+
+**Source:** 改寫自｜NASA-STD-4003A_w-Change 1 - Revalidated 03-13-2026.pdf，5.3 Galvanic Corrosion of Dissimilar Materials，p. 27
+
+## 572. lightning strike zone
+
+**Pronunciation:** /ˈlaɪtnɪŋ straɪk zoʊn/
+
+**Chinese meaning:** 雷擊區域
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the lightning strike zone.
+
+機箱設計會考量雷擊區域。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
+
+**Example 2**
+
+The integration team checks the lightning strike zone during assembly.
+
+整合團隊在組裝期間會檢查雷擊區域。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
+
+## 573. metallic pathway
+
+**Pronunciation:** /məˈtælɪk ˈpæθˌweɪ/
+
+**Chinese meaning:** 金屬導電路徑
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the metallic pathway.
+
+機箱設計會考量金屬導電路徑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
+
+**Example 2**
+
+The integration team checks the metallic pathway during assembly.
+
+整合團隊在組裝期間會檢查金屬導電路徑。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.9.3 LIGHTNING AND FAULT CURRENTS，p. 38
+
+## 574. delamination
+
+**Pronunciation:** /diːˌlæməˈneɪʃən/
+
+**Chinese meaning:** 分層；剝離
+
+**Category:** Materials & Surface
+
+**Difficulty:** 4
+
+**Example 1**
+
+High current at a fastener can cause local heating and delamination.
+
+緊固件處的高電流可能造成局部發熱與分層。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 Lightning and Fault Currents，p. 38
+
+**Example 2**
+
+Composite delamination is a serious structural concern.
+
+複材分層是嚴重的結構問題。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.9.3 Lightning and Fault Currents，p. 38
+
+## 575. conductive metal strip
+
+**Pronunciation:** /kənˈdəktɪv ˈmɛtəl strɪp/
+
+**Chinese meaning:** 導電金屬帶
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the conductive metal strip.
+
+機箱設計會考量導電金屬帶。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 39
+
+**Example 2**
+
+The integration team checks the conductive metal strip during assembly.
+
+整合團隊在組裝期間會檢查導電金屬帶。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 39
+
+## 576. multilayer insulation
+
+**Pronunciation:** /ˌmʌltiˈleɪər ˌɪnsəˈleɪʃən/
+
+**Chinese meaning:** 多層絕熱材料
+
+**Category:** Special Bonding
+
+**Difficulty:** 5
+
+**Example 1**
+
+Multilayer insulation is a thermal blanket made from several thin layers.
+
+多層絕熱材料是由多層薄膜構成的熱控毯。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 40
+
+**Example 2**
+
+Conductive multilayer insulation is bonded to prevent static-charge buildup.
+
+導電多層絕熱材料會進行接合，以防止靜電荷累積。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.10 MULTILAYER INSULATION，p. 40
+
+## 577. honeycomb panel
+
+**Pronunciation:** /ˈhəniˌkoʊm ˈpænəl/
+
+**Chinese meaning:** 蜂巢板
+
+**Category:** Special Applications
+
+**Difficulty:** 4
+
+**Example 1**
+
+The enclosure design accounts for the honeycomb panel.
+
+機箱設計會考量蜂巢板。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.11 METAL HONEYCOMB PANELS，p. 40
+
+**Example 2**
+
+The integration team checks the honeycomb panel during assembly.
+
+整合團隊在組裝期間會檢查蜂巢板。
+
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.11 METAL HONEYCOMB PANELS，p. 40
+
+## 578. equipment rack
+
+**Pronunciation:** /ɪˈkwɪpmənt ræk/
+
+**Chinese meaning:** 設備機架；設備架
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+The avionics panel can be treated like a small equipment rack.
+
+航電板可視為小型設備機架。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
+
+**Example 2**
+
+An equipment rack should provide defined mounting and bonding points.
+
+設備機架應提供明確的安裝與接合點。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
+
+## 579. mounting bracket
+
+**Pronunciation:** /ˈmaʊntɪŋ ˈbrækɪt/
+
+**Chinese meaning:** 安裝支架
+
+**Category:** Mechanical Integration
+
+**Difficulty:** 3
+
+**Example 1**
+
+The mounting bracket must have a defined electrical path.
+
+安裝支架必須有明確的電氣路徑。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
+
+**Example 2**
+
+Do not rely on a painted mounting bracket for RF return.
+
+不要依賴有塗裝的安裝支架作為 RF 回流。
+
+**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 41
+
 ## 580. facility ground
 
 **Pronunciation:** /fəˈsɪlɪti graʊnd/
@@ -15068,19 +15068,19 @@ The electrical path should not depend on paint or adhesive.
 
 **Example 1**
 
-The term "facility ground" identifies a special consideration in the bonding design.
+The enclosure design accounts for the facility ground.
 
-「設施接地」在接合設計中需要特別注意。
+機箱設計會考量設施接地。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 42
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 42
 
 **Example 2**
 
-The handbook discusses "facility ground" in its special bonding guidance.
+The integration team checks the facility ground during assembly.
 
-本手冊將「設施接地」列為特殊接合考量。
+整合團隊在組裝期間會檢查設施接地。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 42
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.4.12 EQUIPMENT RACKS，p. 42
 
 ## 581. quality record
 
@@ -16472,11 +16472,11 @@ Reference rings help control some lightning indirect effects, but they are not e
 
 **Example 1**
 
-The handbook uses "electrostatic discharge prevention" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the electrostatic discharge prevention while designing the bond path.
 
-「靜電放電預防」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估靜電放電預防。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -16498,11 +16498,11 @@ The designer reviews "electrostatic discharge prevention" before selecting a bon
 
 **Example 1**
 
-The handbook uses "dielectric breakdown" when it explains the purpose or performance of an electrical bond.
+The electrical engineer evaluates the dielectric breakdown while designing the bond path.
 
-「介電崩潰」會影響電氣接合的目的或性能。
+電氣工程師在設計接合路徑時會評估介電崩潰。
 
-**Source:** 改寫自｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
+**Source:** 主題參考｜MSFC-HDBK-3697.pdf，4.5 ELECTROSTATIC DISCHARGE PREVENTION BONDING，p. 14
 
 **Example 2**
 
@@ -16706,11 +16706,11 @@ A supporting explanation is provided for the proposed bonding method.
 
 **Example 1**
 
-The handbook helps determine bonding requirements applicable to specific hardware.
+Specific bonding requirements apply to each hardware item.
 
-本手冊協助判定適用於特定硬體的 搭接 要求。
+每項硬體都適用特定的接合要求。
 
-**Source:** 改寫自｜MIL-STD-464C.pdf，A.5.11.3 Mechanical interfaces，p. 145
+**Source:** 主題參考｜MIL-STD-464C.pdf，A.5.11.3 Mechanical interfaces，p. 145
 
 **Example 2**
 
