@@ -107,6 +107,7 @@ def run_daily_generation(
         tense_analysis=tense_analysis,
         example_sources=example_sources,
         new_word_keys=release_result.new_word_keys | _new_formal_word_keys(previous_payload, entries),
+        msfc_release_dates=release_result.released_at,
     )
 
     output_paths = _write_outputs(settings.output_dir, target_date, markdown, payload)
@@ -233,6 +234,9 @@ def _copy_web_files(output_dir: Path) -> None:
     for source in source_dir.iterdir():
         if source.is_file():
             shutil.copy2(source, output_dir / source.name)
+    image_dir = source_dir / "images"
+    if image_dir.exists():
+        shutil.copytree(image_dir, output_dir / "images", dirs_exist_ok=True)
 
 
 def _parse_date(value: str) -> date:

@@ -36,11 +36,20 @@ function doPost(e) {
   }
 
   const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-  if (payload.status === PRACTICE_STATS_STATUS && payload.word === PRACTICE_STATS_WORD) {
-    payload.note = mergePracticeStateNote(sheet, headers, payload.note);
+  const isPracticeState = payload.status === PRACTICE_STATS_STATUS
+    && payload.word === PRACTICE_STATS_WORD;
+  const lock = isPracticeState ? LockService.getScriptLock() : null;
+  if (lock) lock.waitLock(10000);
+  let rowNumber;
+  try {
+    if (isPracticeState) {
+      payload.note = mergePracticeStateNote(sheet, headers, payload.note);
+    }
+    const row = headers.map((header) => payload[header] || "");
+    rowNumber = upsertHardWordRow(sheet, headers, row, payload.word);
+  } finally {
+    if (lock) lock.releaseLock();
   }
-  const row = headers.map((header) => payload[header] || "");
-  const rowNumber = upsertHardWordRow(sheet, headers, row, payload.word);
   let workflow = { ok: false };
   if (payload.status !== PRACTICE_STATS_STATUS) {
     try {
@@ -212,25 +221,24 @@ function mergePracticeStateNote(sheet, headers, incomingNote) {
   const existingSettings = existing.s && typeof existing.s === "object" ? existing.s : {};
   const incomingSettings = incoming.s && typeof incoming.s === "object" ? incoming.s : {};
   const selectedSettings = { ...(useIncomingSettings ? incomingSettings : existingSettings) };
-  const existingReadKeys = new Set(
-    (Array.isArray(existingSettings.read_new_word_keys)
-      ? existingSettings.read_new_word_keys
-      : []).map(normalizeWord).filter(Boolean),
-  );
-  const mergedReadKeys = new Set(existingReadKeys);
-  (Array.isArray(incomingSettings.read_new_word_keys)
-    ? incomingSettings.read_new_word_keys
-    : []).map(normalizeWord).filter(Boolean).forEach((key) => mergedReadKeys.add(key));
-  const readStateChanged = [...mergedReadKeys].some((key) => !existingReadKeys.has(key));
-  if (mergedReadKeys.size > 0) {
-    selectedSettings.read_new_word_keys = [...mergedReadKeys].sort();
-  }
+  let unionStateChanged = false;
+  ["read_new_word_keys", "familiar_msfc_word_keys"].forEach((field) => {
+    const existingKeys = new Set(
+      (Array.isArray(existingSettings[field]) ? existingSettings[field] : [])
+        .map(normalizeWord).filter(Boolean),
+    );
+    const mergedKeys = new Set(existingKeys);
+    (Array.isArray(incomingSettings[field]) ? incomingSettings[field] : [])
+      .map(normalizeWord).filter(Boolean).forEach((key) => mergedKeys.add(key));
+    if ([...mergedKeys].some((key) => !existingKeys.has(key))) unionStateChanged = true;
+    if (mergedKeys.size > 0) selectedSettings[field] = [...mergedKeys].sort();
+  });
   return JSON.stringify({
     v: 2,
     u: new Date().toISOString(),
     r: Object.keys(records).sort().map((key) => records[key]),
     s: selectedSettings,
-    su: readStateChanged
+    su: unionStateChanged
       ? new Date().toISOString()
       : (useIncomingSettings ? incomingSettingsAt : existingSettingsAt),
   });

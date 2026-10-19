@@ -29,16 +29,28 @@ does not release or notify a second batch.
 
 The source-aligned learning-unit sizes are 58, 78, 53, 59, 52, 15, 36, 38, 15, and 24
 words. They are intentionally different because each source section contains a different
-amount of material. The curriculum still contains 310 planned new words. At 7 words per
-study day, a full release from scratch takes at least 45 daily batches; previously released
+amount of material. The curriculum still contains 310 planned new words. At 5 words per
+study day, a full release from scratch takes at least 62 daily batches; previously released
 words remain published and are not released again. Together with the 118 previously
-published MSFC words, the chapter files contain 428 words. The planned 310-word
-curriculum is estimated at about 126,692 Google TTS
-characters for two English voices and one Chinese voice; existing content-addressed
-audio is reused, so only missing segments are synthesized.
+published MSFC words, the chapter files contain 428 words. Existing content-addressed
+audio is reused; editing an example creates new audio segments for that text.
 
 Each scheduled daily release sends one LINE message when at least one new word is
 actually released. When the curriculum pool is exhausted, no empty LINE update is sent.
+
+All released MSFC words marked as new appear in `MSFC新單字(5單字/每日)` until `已熟悉`
+is pressed. That action returns the word to its source chapter; it does not change the
+separate `已熟記` playback setting. Familiarity is saved locally and merged through the
+existing Google Sheet practice-state channel. Update and redeploy the Apps Script Web
+App from `apps_script/hard_words_web_app.gs` to preserve the union across devices.
+The desktop Space key toggles playback except while focus is in a form control,
+button, or link.
+
+Small generated object illustrations and external product links are available for
+`knitted wire mesh gasket` and `piano hinge`. They represent the same object categories
+described in MSFC-HDBK-3697 sections 5.4.1 and 5.4.7, respectively, but are not
+figures from the handbook or exact part specifications. The links are for recognizing
+the item, not citations for the learning examples.
 
 The loader expands these engineering abbreviations for display:
 
@@ -248,7 +260,7 @@ $env:AZURE_SPEECH_REGION="你的 Azure region"
 可選設定：
 
 ```powershell
-$env:EVD_DAILY_WORD_COUNT="7"
+$env:EVD_DAILY_WORD_COUNT="5"
 $env:EVD_SPEECH_RATE="0%"
 $env:EVD_INCLUDE_CHINESE_AUDIO="true"
 $env:EVD_REPEAT_EACH_WORD="true"

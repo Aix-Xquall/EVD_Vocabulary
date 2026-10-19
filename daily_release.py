@@ -17,6 +17,7 @@ class DailyReleaseResult:
     released_today: list[dict]
     state_path: Path
     new_word_keys: set[str]
+    released_at: dict[str, str]
 
 
 def apply_daily_release(
@@ -31,7 +32,7 @@ def apply_daily_release(
     entry_list = list(entries)
     curriculum_entries = [entry for entry in entry_list if is_msfc_curriculum_entry(entry)]
     if not curriculum_entries:
-        return DailyReleaseResult(entry_list, [], output_dir / "data" / STATE_FILENAME, set())
+        return DailyReleaseResult(entry_list, [], output_dir / "data" / STATE_FILENAME, set(), {})
 
     state_path = output_dir / "data" / STATE_FILENAME
     state = _read_state(state_path)
@@ -89,7 +90,7 @@ def apply_daily_release(
         "released_at": dict(sorted(released_at.items())),
     }
     _write_state(state_path, next_state)
-    return DailyReleaseResult(visible_entries, released_today, state_path, set(released_at))
+    return DailyReleaseResult(visible_entries, released_today, state_path, set(released_at), released_at)
 
 
 def is_msfc_curriculum_entry(entry: dict) -> bool:

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVD Daily Vocabulary</title>
-    <link rel="stylesheet" href="styles.css?v=20260923-new-word-dots">
+    <link rel="stylesheet" href="styles.css?v=20261019-msfc-new-words">
   </head>
   <body>
     <main class="app-shell">
@@ -100,10 +100,16 @@
               <p id="categoryText" class="eyebrow">Category</p>
               <p id="currentWordStats" class="current-word-stats">練習 0 次 · 重複 0 次</p>
             </div>
+            <div id="objectReference" class="object-reference" hidden>
+              <img id="objectReferenceImage" alt="" loading="lazy">
+              <a id="objectReferenceLink" target="_blank" rel="noopener noreferrer">查看同類實物</a>
+              <span class="object-reference-note">外觀示意，非手冊原圖</span>
+            </div>
             <h2 id="wordText">Loading</h2>
             <p id="pronunciationText" class="pronunciation"></p>
             <p id="meaningText" class="meaning"></p>
             <div class="hard-word-actions">
+              <button id="familiarMsfcButton" type="button" hidden>已熟悉</button>
               <button id="hardWordButton" type="button">加入未熟記單字</button>
               <span id="hardWordHelp" class="help-tip" hidden>
                 <button
@@ -212,7 +218,7 @@
     </main>
 
     <audio id="audioPlayer" preload="metadata"></audio>
-    <script src="learning_helpers.js?v=20260923-new-word-dots"></script>
-    <script src="app.js?v=20260923-new-word-dots"></script>
+    <script src="learning_helpers.js?v=20261019-msfc-new-words"></script>
+    <script src="app.js?v=20261019-msfc-new-words"></script>
   </body>
 </html>

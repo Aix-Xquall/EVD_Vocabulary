@@ -12,6 +12,25 @@
     return mastered && !includeExamples ? 2 : repeatCount;
   }
 
+  function routeMsfcNewChapters(chapters, familiarKeys) {
+    const pending = [];
+    const routed = chapters.map((chapter) => {
+      if (!String(chapter.source_file || "").startsWith("MSFC-HDBK-3697_")) {
+        return chapter;
+      }
+      const words = (chapter.words || []).filter((word) => {
+        const key = String(word.word || "").trim().toLowerCase();
+        if (!word.is_new || familiarKeys.has(key)) {
+          return true;
+        }
+        pending.push({ ...word, source_chapter: chapter.title, source_file: chapter.source_file });
+        return false;
+      });
+      return { ...chapter, words, word_count: words.length };
+    });
+    return { pending, chapters: routed };
+  }
+
   function sanitizePronunciation(value) {
     return String(value || "").split("|", 1)[0].trim();
   }
@@ -556,6 +575,7 @@
     orderedWordsForPlayback,
     playbackIndex,
     repeatCountForWord,
+    routeMsfcNewChapters,
     resolveChapterWordIndex,
     ipaVowelHighlightSegments,
     normalizeHexColor,

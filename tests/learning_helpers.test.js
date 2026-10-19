@@ -18,11 +18,36 @@ const {
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
+  routeMsfcNewChapters,
   resolveChapterWordIndex,
   sanitizePronunciation,
   shouldHidePronunciation,
   vowelHighlightSegments,
 } = require("../web/learning_helpers.js");
+
+test("all new MSFC words move temporarily and return after familiarity", () => {
+  const source = {
+    id: "msfc-05",
+    title: "接合方法",
+    source_file: "MSFC-HDBK-3697_05-1_接合方法.csv",
+    words: [
+      { word: "old", is_new: true, msfc_released_at: "2026-10-04" },
+      { word: "fresh", is_new: true, msfc_released_at: "2026-10-19" },
+      { word: "known", is_new: true, msfc_released_at: "2026-10-19" },
+      { word: "undated", is_new: true },
+      { word: "original", is_new: false },
+    ],
+  };
+  const result = routeMsfcNewChapters([source], new Set(["known"]));
+  assert.deepEqual(result.pending.map((word) => word.word), ["old", "fresh", "undated"]);
+  assert.equal(result.pending[0].source_chapter, "接合方法");
+  assert.deepEqual(result.chapters[0].words.map((word) => word.word), ["known", "original"]);
+  assert.deepEqual(source.words.map((word) => word.word), ["old", "fresh", "known", "undated", "original"]);
+
+  const familiar = routeMsfcNewChapters([source], new Set(["known", "old", "fresh", "undated"]));
+  assert.equal(familiar.pending.length, 0);
+  assert.equal(familiar.chapters[0].word_count, 5);
+});
 
 test("mastered words use configured repetitions when examples are included", () => {
   assert.equal(repeatCountForWord(true, 5, false), 2);

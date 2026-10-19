@@ -35,6 +35,7 @@ class DailyReleaseTests(unittest.TestCase):
                 ["existing", "new one", "other"],
             )
             self.assertEqual(result.new_word_keys, {"new one"})
+            self.assertEqual(result.released_at, {"new one": "2026-09-21"})
             state = json.loads((Path(temp_dir) / "data" / STATE_FILENAME).read_text())
             self.assertEqual(state["version"], 2)
             self.assertEqual(state["released_at"], {"new one": "2026-09-21"})

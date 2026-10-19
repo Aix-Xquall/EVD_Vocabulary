@@ -106,6 +106,7 @@ def build_chapter_payload(
     tense_analysis: Dict[str, Dict[str, dict]] | None = None,
     example_sources: Dict[str, Dict[str, dict]] | None = None,
     new_word_keys: set[str] | None = None,
+    msfc_release_dates: Dict[str, str] | None = None,
 ) -> dict:
     chapters = []
     chapters_by_source: Dict[str, dict] = {}
@@ -138,6 +139,9 @@ def build_chapter_payload(
             and _normalize_word(public_entry.get("word", "")) in normalized_new_word_keys
         ):
             public_entry["is_new"] = True
+        release_date = (msfc_release_dates or {}).get(_normalize_word(public_entry.get("word", "")))
+        if _source_name(source_file).startswith("MSFC-HDBK-3697_") and release_date:
+            public_entry["msfc_released_at"] = release_date
         public_entry["audio_segments"] = segment_audio.get(entry_audio_key, {})
         _apply_tense_analysis(public_entry, (tense_analysis or {}).get(entry_audio_key, {}))
         _apply_example_sources(public_entry, (example_sources or {}).get(entry_audio_key, {}))

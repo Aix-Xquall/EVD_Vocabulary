@@ -70,6 +70,17 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn('class="new-word-dot"', app_js)
         self.assertIn(".new-word-dot", styles_css)
 
+    def test_msfc_new_chapter_requires_explicit_familiar_action(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+
+        self.assertIn('title: "MSFC新單字(5單字/每日)"', app_js)
+        self.assertIn("function markCurrentMsfcWordFamiliar()", app_js)
+        self.assertIn("familiar_msfc_word_keys: [...state.familiarMsfcWordKeys].sort()", app_js)
+        self.assertIn('id="familiarMsfcButton"', index_html)
+        self.assertIn('event.code !== "Space"', app_js)
+        self.assertIn('target.closest("input, textarea, select, button, a, [contenteditable]")', app_js)
+
     def test_word_details_use_compact_labels_and_readable_spacing(self):
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -267,7 +278,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20260923-new-word-dots"></script>',
+            '<script src="learning_helpers.js?v=20261019-msfc-new-words"></script>',
             index_html,
         )
 
@@ -311,8 +322,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20260923-new-word-dots"', index_html)
-        self.assertIn('src="app.js?v=20260923-new-word-dots"', index_html)
+        self.assertIn('href="styles.css?v=20261019-msfc-new-words"', index_html)
+        self.assertIn('src="app.js?v=20261019-msfc-new-words"', index_html)
 
     def test_verified_source_examples_are_checked_by_default(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -335,7 +346,7 @@ class WebAssetsTests(unittest.TestCase):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         styles_css = (PROJECT_DIR / "web" / "styles.css").read_text(encoding="utf-8")
 
-        self.assertIn("renderWordWithVowels(word.word || \"Loading\")", app_js)
+        self.assertIn("renderWordWithVowels(word.word)", app_js)
         self.assertIn('class="word-vowel"', app_js)
         self.assertIn("vowelHighlightSegments(value)", app_js)
         self.assertIn(".word-vowel", styles_css)

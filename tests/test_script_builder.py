@@ -296,5 +296,21 @@ class ScriptBuilderTests(unittest.TestCase):
         )
 
 
+    def test_msfc_release_date_is_published_for_new_chapter_routing(self):
+        entry = sample_entry()
+        entry["_source_file"] = r"C:\workspace\MSFC-HDBK-3697_05-3_special.csv"
+        payload = build_chapter_payload(
+            [entry],
+            date(2026, 10, 19),
+            segment_audio={},
+            new_word_keys={entry["word"]},
+            msfc_release_dates={entry["word"].casefold(): "2026-10-19"},
+        )
+
+        word = payload["chapters"][1]["words"][0]
+        self.assertTrue(word["is_new"])
+        self.assertEqual(word["msfc_released_at"], "2026-10-19")
+
+
 if __name__ == "__main__":
     unittest.main()

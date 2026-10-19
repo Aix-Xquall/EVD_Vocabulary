@@ -556,6 +556,37 @@ h2 {
   margin-top: 14px;
 }
 
+.object-reference {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.object-reference[hidden] {
+  display: none;
+}
+
+.object-reference img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.object-reference a {
+  color: var(--blue);
+  font-size: 0.9rem;
+}
+
+.object-reference-note {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 .hard-word-actions button {
   padding: 0 14px;
 }

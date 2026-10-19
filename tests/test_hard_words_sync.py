@@ -159,6 +159,7 @@ class HardWordsSyncTests(unittest.TestCase):
                 '"english_voice":"en-US-Wavenet-H",'
                 '"chapter_positions":{"emc-1":"low impedance","hard-words":"EMC"},'
                 '"read_new_word_keys":["Galvanic Couple","shock mount","galvanic couple"],'
+                '"familiar_msfc_word_keys":["Piano Hinge","piano hinge"],'
                 '"playback_rate":1.2,"english_repeat_count":4,'
                 '"word_vowel_color":"#2563EB","word_consonant_color":"#111827",'
                 '"ipa_vowel_color":"#0891b2","ipa_consonant_color":"invalid"},'
@@ -184,6 +185,10 @@ class HardWordsSyncTests(unittest.TestCase):
             self.assertEqual(
                 practice_state["settings"]["read_new_word_keys"],
                 ["galvanic couple", "shock mount"],
+            )
+            self.assertEqual(
+                practice_state["settings"]["familiar_msfc_word_keys"],
+                ["piano hinge"],
             )
             self.assertEqual(practice_state["settings"]["playback_rate"], 1.2)
             self.assertEqual(practice_state["settings"]["english_repeat_count"], 4)

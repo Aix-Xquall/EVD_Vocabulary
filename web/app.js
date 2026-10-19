@@ -47,6 +47,7 @@ const {
   orderedWordsForPlayback,
   playbackIndex,
   repeatCountForWord,
+  routeMsfcNewChapters,
   resolveChapterWordIndex,
   shouldHidePronunciation,
   vowelHighlightSegments,
@@ -74,12 +75,14 @@ const MASTERY_STATUS = {
 
 const state = {
   data: null,
+  baseChapters: [],
   chapters: [],
   currentChapterIndex: 0,
   currentIndex: 0,
   chapterProgress: {},
   chapterWordPositions: {},
   readNewWordKeys: new Set(),
+  familiarMsfcWordKeys: new Set(),
   hideMeaning: false,
   repeatAll: true,
   repeatCurrent: false,
@@ -131,6 +134,10 @@ const elements = {
   pronunciationText: document.getElementById("pronunciationText"),
   meaningText: document.getElementById("meaningText"),
   currentWordStats: document.getElementById("currentWordStats"),
+  familiarMsfcButton: document.getElementById("familiarMsfcButton"),
+  objectReference: document.getElementById("objectReference"),
+  objectReferenceImage: document.getElementById("objectReferenceImage"),
+  objectReferenceLink: document.getElementById("objectReferenceLink"),
   hardWordButton: document.getElementById("hardWordButton"),
   hardWordHelp: document.getElementById("hardWordHelp"),
   hardWordStatus: document.getElementById("hardWordStatus"),
@@ -225,6 +232,48 @@ function sortHardWordsFirst(chapters) {
   ));
 }
 
+const MSFC_NEW_CHAPTER_ID = "msfc-new-words";
+const OBJECT_REFERENCES = Object.freeze({
+  "knitted wire mesh gasket": {
+    image: "images/knitted-wire-mesh-gasket.png",
+    url: "https://shielding-solutions.com/product/knitted-wire-mesh-gaskets/",
+    label: "查看同類墊片實物",
+  },
+  "piano hinge": {
+    image: "images/piano-hinge.png",
+    url: "https://twcn.rs-online.com/web/p/hinges/3289666",
+    label: "查看同類鉸鏈實物",
+  },
+});
+
+function rebuildStudyChapters() {
+  const oldChapter = currentChapter();
+  const oldChapterId = chapterKey(oldChapter);
+  const oldWordKey = hardWordKey(currentWord());
+  const { pending, chapters } = routeMsfcNewChapters(
+    state.baseChapters,
+    state.familiarMsfcWordKeys,
+  );
+  state.chapters = [{
+    id: MSFC_NEW_CHAPTER_ID,
+    title: "MSFC新單字(5單字/每日)",
+    source_file: "msfc_new_words",
+    word_count: pending.length,
+    words: pending,
+  }, ...chapters];
+  let chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === oldChapterId);
+  if (chapterIndex < 0) {
+    chapterIndex = pending.length > 0 ? 0 : state.chapters.findIndex((chapter) => chapter.words?.length > 0);
+  }
+  if (chapterIndex < 0) chapterIndex = 0;
+  state.currentChapterIndex = chapterIndex;
+  const words = currentWords();
+  const previousWordIndex = words.findIndex((word) => hardWordKey(word) === oldWordKey);
+  state.currentIndex = previousWordIndex >= 0
+    ? previousWordIndex
+    : Math.min(state.currentIndex, Math.max(words.length - 1, 0));
+}
+
 function currentChapter() {
   return state.chapters[state.currentChapterIndex] || { words: [] };
 }
@@ -244,18 +293,29 @@ function render() {
   const readStateChanged = markCurrentNewWordRead();
   saveCurrentChapterProgress();
   elements.categoryText.textContent = `${word.category || "Category"} · Difficulty ${word.difficulty || "-"}`;
-  elements.wordText.innerHTML = renderWordWithVowels(word.word || "Loading");
+  elements.wordText.innerHTML = word.word
+    ? renderWordWithVowels(word.word)
+    : (chapterKey(chapter) === MSFC_NEW_CHAPTER_ID ? "目前沒有待熟悉單字" : "請選擇章節");
   const pronunciationHtml = renderPronunciation(word);
   elements.pronunciationText.innerHTML = pronunciationHtml;
   elements.pronunciationText.hidden = !pronunciationHtml;
   elements.meaningText.textContent = word.chinese_meaning || "";
+  const objectReference = OBJECT_REFERENCES[hardWordKey(word)];
+  elements.objectReference.hidden = !objectReference;
+  if (objectReference) {
+    elements.objectReferenceImage.src = objectReference.image;
+    elements.objectReferenceImage.alt = `${word.word || "實物"}外觀示意圖，非手冊原圖`;
+    elements.objectReferenceLink.href = objectReference.url;
+    elements.objectReferenceLink.textContent = objectReference.label;
+  }
+  elements.familiarMsfcButton.hidden = chapterKey(chapter) !== MSFC_NEW_CHAPTER_ID || !word.word;
   elements.exampleOneEn.innerHTML = highlightExampleText(word.example_1_en, word.word, word.example_1_tense?.highlights);
   elements.exampleOneZh.innerHTML = renderTranslationWithTense(word.example_1_zh, word.example_1_tense);
-  elements.exampleOneSource.textContent = formatExampleSource(word.example_1_source);
+  elements.exampleOneSource.textContent = word.word ? formatExampleSource(word.example_1_source) : "";
   elements.exampleOneSource.hidden = !elements.exampleOneSource.textContent;
   elements.exampleTwoEn.innerHTML = highlightExampleText(word.example_2_en, word.word, word.example_2_tense?.highlights);
   elements.exampleTwoZh.innerHTML = renderTranslationWithTense(word.example_2_zh, word.example_2_tense);
-  elements.exampleTwoSource.textContent = formatExampleSource(word.example_2_source);
+  elements.exampleTwoSource.textContent = word.word ? formatExampleSource(word.example_2_source) : "";
   elements.exampleTwoSource.hidden = !elements.exampleTwoSource.textContent;
   updateImportantExampleControls(chapter, word);
 
@@ -951,7 +1011,7 @@ function restoreImportantExamplesLocalState() {
 function importantExampleRecord(chapter, word, exampleNumber, important) {
   return {
     example_key: importantExampleKey(word, exampleNumber),
-    source_chapter: chapter.title || chapterKey(chapter),
+    source_chapter: word.source_chapter || chapter.title || chapterKey(chapter),
     source_id: String(word.id || ""),
     example_number: exampleNumber,
     word: word.word || "",
@@ -1137,9 +1197,17 @@ function applyCloudPracticeState(snapshot = {}) {
   });
   const cloudSettingsUpdatedAt = String(snapshot.su || "");
   mergeReadNewWordKeys(snapshot.s?.read_new_word_keys);
+  if (mergeFamiliarMsfcWordKeys(snapshot.s?.familiar_msfc_word_keys)) {
+    rebuildStudyChapters();
+  }
   if (cloudSettingsUpdatedAt > state.practiceSettingsUpdatedAt && snapshot.s) {
     applyPracticeSettings(snapshot.s);
     state.practiceSettingsUpdatedAt = cloudSettingsUpdatedAt;
+  }
+  const cloudFamiliarKeys = new Set(snapshot.s?.familiar_msfc_word_keys || []);
+  if ([...state.familiarMsfcWordKeys].some((key) => !cloudFamiliarKeys.has(key))) {
+    state.practiceStatsDirty = true;
+    schedulePracticeStatsSync();
   }
   savePracticeStatistics();
 }
@@ -1241,8 +1309,12 @@ function restorePracticeState(cloudRecords = {}, cloudSettings = {}, cloudSettin
   const localTimestamp = String(local.settingsUpdatedAt || "");
   const hasCloudSettings = Object.keys(cloudSettings || {}).length > 0;
   const hasLocalSettings = Object.keys(local.settings || {}).length > 0;
+  const cloudFamiliarKeys = new Set(cloudSettings?.familiar_msfc_word_keys || []);
   mergeReadNewWordKeys(cloudSettings?.read_new_word_keys);
   mergeReadNewWordKeys(local.settings?.read_new_word_keys);
+  mergeFamiliarMsfcWordKeys(cloudSettings?.familiar_msfc_word_keys);
+  mergeFamiliarMsfcWordKeys(local.settings?.familiar_msfc_word_keys);
+  rebuildStudyChapters();
   if (hasLocalSettings && (!hasCloudSettings || localTimestamp > cloudTimestamp)) {
     applyPracticeSettings(local.settings);
     state.practiceSettingsUpdatedAt = localTimestamp;
@@ -1253,6 +1325,9 @@ function restorePracticeState(cloudRecords = {}, cloudSettings = {}, cloudSettin
     state.practiceSettingsUpdatedAt = new Date().toISOString();
   }
   state.practiceStatsDirty = local.dirty;
+  if ([...state.familiarMsfcWordKeys].some((key) => !cloudFamiliarKeys.has(key))) {
+    state.practiceStatsDirty = true;
+  }
   if (!hasCloudSettings && !hasLocalSettings) {
     state.practiceStatsDirty = true;
   }
@@ -1269,6 +1344,7 @@ function currentPracticeSettings() {
     selected_chapter_id: chapterKey(currentChapter()),
     chapter_positions: { ...state.chapterWordPositions },
     read_new_word_keys: [...state.readNewWordKeys].sort(),
+    familiar_msfc_word_keys: [...state.familiarMsfcWordKeys].sort(),
     repeat_all: state.repeatAll,
     repeat_current: state.repeatCurrent,
     include_examples: state.includeExamples,
@@ -1307,6 +1383,9 @@ function applyPracticeSettings(settings) {
     state.chapterWordPositions = { ...state.chapterWordPositions, ...positions };
   }
   mergeReadNewWordKeys(settings.read_new_word_keys);
+  if (mergeFamiliarMsfcWordKeys(settings.familiar_msfc_word_keys)) {
+    rebuildStudyChapters();
+  }
   const playbackRate = Number(settings.playback_rate);
   if (playbackRate >= 0.5 && playbackRate <= 1.5) {
     state.playbackRate = playbackRate;
@@ -1336,6 +1415,12 @@ function applyPracticeSettings(settings) {
   applyLearningColors();
   const chapterId = String(settings.selected_chapter_id || "");
   let chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === chapterId);
+  const selectedWordKey = state.chapterWordPositions[chapterId];
+  if (chapterIndex >= 0 && selectedWordKey && state.chapters[0]?.id === MSFC_NEW_CHAPTER_ID
+      && state.chapters[0].words.some((word) => hardWordKey(word) === selectedWordKey)) {
+    state.chapterWordPositions[MSFC_NEW_CHAPTER_ID] = selectedWordKey;
+    chapterIndex = 0;
+  }
   if (chapterIndex < 0 && chapterId.startsWith("msfc-hdbk-3697")) {
     chapterIndex = migrateLegacyMsfcChapterPosition(settings.chapter_positions, chapterId);
   }
@@ -1358,6 +1443,40 @@ function mergeReadNewWordKeys(values) {
     }
   });
   return changed;
+}
+
+function mergeFamiliarMsfcWordKeys(values) {
+  if (!Array.isArray(values)) return false;
+  let changed = false;
+  values.forEach((value) => {
+    const key = hardWordKey({ word: value });
+    if (key && !state.familiarMsfcWordKeys.has(key)) {
+      state.familiarMsfcWordKeys.add(key);
+      changed = true;
+    }
+  });
+  return changed;
+}
+
+function markCurrentMsfcWordFamiliar() {
+  if (chapterKey(currentChapter()) !== MSFC_NEW_CHAPTER_ID) return;
+  const word = currentWord();
+  const key = hardWordKey(word);
+  if (!key) return;
+  stopQueue();
+  state.familiarMsfcWordKeys.add(key);
+  state.readNewWordKeys.add(key);
+  const nextIndex = state.currentIndex;
+  rebuildStudyChapters();
+  if (currentWords().length > 0) {
+    state.currentIndex = Math.min(nextIndex, currentWords().length - 1);
+  } else {
+    state.currentChapterIndex = state.chapters.findIndex((chapter) => chapter.source_file === word.source_file);
+    state.currentIndex = Math.max(0, currentWords().findIndex((entry) => hardWordKey(entry) === key));
+  }
+  render();
+  buildQuestion();
+  markPracticeSettingsChanged();
 }
 
 function migrateLegacyMsfcChapterPosition(chapterPositions, preferredChapterId = "msfc-hdbk-3697") {
@@ -2081,6 +2200,8 @@ function saveProgress() {
   localStorage.setItem(
     key,
     JSON.stringify({
+      currentChapterId: chapterKey(currentChapter()),
+      currentWordKey: hardWordKey(currentWord()),
       currentChapterIndex: state.currentChapterIndex,
       currentIndex: state.currentIndex,
       chapterProgress: state.chapterProgress,
@@ -2098,8 +2219,15 @@ function restoreProgress() {
   }
   try {
     const saved = JSON.parse(raw);
-    state.currentChapterIndex = Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
-    state.currentIndex = Math.max(0, Math.min(saved.currentIndex || 0, currentWords().length - 1));
+    const savedChapterId = String(saved.currentChapterId || "");
+    const chapterIndex = state.chapters.findIndex((chapter) => chapterKey(chapter) === savedChapterId);
+    state.currentChapterIndex = chapterIndex >= 0
+      ? chapterIndex
+      : Math.min(saved.currentChapterIndex || 0, state.chapters.length - 1);
+    const wordIndex = currentWords().findIndex((word) => hardWordKey(word) === saved.currentWordKey);
+    state.currentIndex = wordIndex >= 0
+      ? wordIndex
+      : Math.max(0, Math.min(saved.currentIndex || 0, currentWords().length - 1));
     state.chapterProgress = saved.chapterProgress || {};
     state.chapterWordPositions = saved.chapterWordPositions || {};
     state.practice.attempts = saved.practice?.attempts || 0;
@@ -2284,7 +2412,15 @@ elements.clozeAnswerInput.addEventListener("keydown", (event) => {
     submitCurrentAnswer();
   }
 });
+document.addEventListener("keydown", (event) => {
+  if (event.code !== "Space" || event.repeat || event.ctrlKey || event.altKey || event.metaKey) return;
+  const target = event.target;
+  if (target instanceof Element && target.closest("input, textarea, select, button, a, [contenteditable]")) return;
+  event.preventDefault();
+  togglePlayback();
+});
 elements.hardWordButton.addEventListener("click", toggleHardWord);
+elements.familiarMsfcButton.addEventListener("click", markCurrentMsfcWordFamiliar);
 elements.masteredWordToggle.addEventListener("change", toggleMasteredWord);
 elements.frequentStatsButton.addEventListener("click", () => setPracticeStatsView("frequent"));
 elements.forgottenStatsButton.addEventListener("click", () => setPracticeStatsView("forgotten"));
@@ -2325,7 +2461,8 @@ window.addEventListener("online", () => {
 loadDailyData()
   .then((data) => {
     state.data = data;
-    state.chapters = normalizeData(data);
+    state.baseChapters = normalizeData(data);
+    rebuildStudyChapters();
     state.hardWordsWriteUrl = data.hard_words?.write_url || "";
     Object.entries(data.mastery?.statuses || {}).forEach(([wordKey, status]) => {
       state.masteredWordStatuses.set(hardWordKey({ word: wordKey }), status);
