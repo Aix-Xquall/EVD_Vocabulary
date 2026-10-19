@@ -469,35 +469,6 @@ h2 {
   text-align: left;
 }
 
-.word-item-row {
-  display: grid;
-  grid-template-columns: 40px 26px minmax(0, 1fr);
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.word-item-image {
-  display: block;
-  width: 40px;
-  height: 40px;
-}
-
-.word-item-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: #fff;
-}
-
-.word-item-row .word-item {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 .word-item small {
   display: block;
   color: var(--muted);
@@ -533,11 +504,15 @@ h2 {
   min-height: 170px;
 }
 
-.word-heading {
+.word-details {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  min-width: 0;
+}
+
+.word-details-text {
+  flex: 1;
   min-width: 0;
 }
 
@@ -597,6 +572,7 @@ h2 {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex: none;
 }
 
 .object-reference[hidden] {
@@ -634,7 +610,6 @@ h2 {
 
 .object-help-button:hover,
 .object-help-button:focus-visible,
-.word-item-image:focus-visible,
 .object-reference a:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
@@ -670,6 +645,11 @@ h2 {
 .object-reference-dialog a {
   color: var(--blue);
   font-weight: 700;
+}
+
+.object-reference-dialog > a:not([hidden]) {
+  display: block;
+  margin-top: 10px;
 }
 
 .object-reference-dialog p {
@@ -1022,6 +1002,19 @@ h2 {
   .current-word h2 {
     font-size: 2.5rem;
     overflow-wrap: anywhere;
+  }
+
+  .word-details {
+    gap: 8px;
+  }
+
+  .object-reference img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .object-reference a {
+    height: 56px;
   }
 
   .word-list {

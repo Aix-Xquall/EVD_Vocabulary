@@ -141,6 +141,9 @@ const elements = {
   objectReferenceHelp: document.getElementById("objectReferenceHelp"),
   objectReferenceDialog: document.getElementById("objectReferenceDialog"),
   objectReferenceDialogLink: document.getElementById("objectReferenceDialogLink"),
+  objectReferenceCredit: document.getElementById("objectReferenceCredit"),
+  objectReferenceLicense: document.getElementById("objectReferenceLicense"),
+  objectReferenceProductLink: document.getElementById("objectReferenceProductLink"),
   closeObjectReferenceDialog: document.getElementById("closeObjectReferenceDialog"),
   hardWordButton: document.getElementById("hardWordButton"),
   hardWordHelp: document.getElementById("hardWordHelp"),
@@ -239,61 +242,81 @@ function sortHardWordsFirst(chapters) {
 const MSFC_NEW_CHAPTER_ID = "msfc-new-words";
 const OBJECT_PRODUCT_REFERENCES = Object.freeze({
   "knitted wire mesh gasket": {
-    image: "images/knitted-wire-mesh-gasket.png",
     url: "https://shielding-solutions.com/product/knitted-wire-mesh-gaskets/",
     label: "查看同類墊片實物",
   },
   "piano hinge": {
-    image: "images/piano-hinge.png",
     url: "https://twcn.rs-online.com/web/p/hinges/3289666",
     label: "查看同類鉸鏈實物",
   },
 });
 
-const OBJECT_ILLUSTRATIONS = Object.freeze({
-  vehicle: '<path d="M40 8 46 30 69 43v7L45 45l-2 20-3 7-3-7-2-20-24 5v-7l23-13z"/>',
-  pipe: '<path d="M12 20h34a14 14 0 0 1 14 14v28H49V34a3 3 0 0 0-3-3H12z"/><path d="M10 17v17m53 25H46"/>',
-  chassis: '<rect x="10" y="22" width="60" height="38" rx="3"/><path d="M16 29h48M20 37h18m-18 8h27m-27 8h14"/><circle cx="61" cy="46" r="4"/>',
-  breaker: '<rect x="23" y="12" width="34" height="56" rx="3"/><rect x="32" y="26" width="16" height="23" rx="2"/><path d="M40 20v-7m0 46v9m-6-32h12"/>',
-  meter: '<rect x="11" y="17" width="58" height="46" rx="5"/><rect x="20" y="25" width="40" height="22" rx="2"/><path d="M27 40h8l5-9 5 9h8"/><circle cx="28" cy="55" r="2"/><circle cx="52" cy="55" r="2"/>',
-  terminal: '<path d="M12 41h34l13-12h8v22h-8L46 39H12z"/><circle cx="59" cy="40" r="5"/><path d="M12 34v12"/>',
-  "terminal-stack": '<path d="M15 55h50M22 48h36M26 41h30M30 34h22M40 25v38"/><circle cx="40" cy="21" r="5"/>',
-  panel: '<path d="M16 17 64 21l-4 42-48-4z"/><path d="M22 29h32m-31 9h31"/><circle cx="22" cy="51" r="2"/><circle cx="52" cy="53" r="2"/>',
-  antenna: '<path d="M16 27q24 28 48 0M40 41v24m-16 0h32M40 41l11-17"/><circle cx="53" cy="22" r="3"/>',
-  joint: '<path d="M8 27h47v15H8zM25 39h47v15H25z"/><path d="M38 19v43m20-43v43"/><circle cx="38" cy="31" r="4"/><circle cx="58" cy="48" r="4"/>',
-  bolt: '<path d="M25 14h30v11H25zM36 25v38h8V25zM31 63h18"/><path d="M36 31h8m-8 8h8m-8 8h8m-8 8h8"/>',
-  flange: '<circle cx="40" cy="40" r="27"/><circle cx="40" cy="40" r="13"/><circle cx="40" cy="18" r="3"/><circle cx="62" cy="40" r="3"/><circle cx="40" cy="62" r="3"/><circle cx="18" cy="40" r="3"/>',
-  nut: '<path d="m25 22 30 0 14 18-14 18H25L11 40z"/><circle cx="40" cy="40" r="12"/>',
-  screw: '<path d="M22 20h36v10H22zM36 30v35l4 6 4-6V30z"/><path d="M40 20v10m-4 8h8m-8 8h8m-8 8h8"/>',
-  washer: '<circle cx="40" cy="40" r="27"/><circle cx="40" cy="40" r="12"/>',
-  "conical-washer": '<path d="M13 52 31 27h18l18 25H13z"/><path d="M24 52 35 38h10l11 14"/>',
-  "spring-washer": '<path d="M14 49c4-23 46-35 52-11M66 38c-5 22-45 34-52 11"/><path d="M14 49l9 4m43-15-8-5"/>',
-  "split-washer": '<path d="M52 17a26 26 0 1 0 13 25M40 52a12 12 0 1 1 9-20"/><path d="m57 14-8 13m19 12-15 3"/>',
-  rivet: '<path d="M22 28q18-23 36 0v8H22zM35 36v30h10V36z"/><path d="M30 66h20"/>',
-  strap: '<path d="M13 24h54v15H13z"/><circle cx="21" cy="31" r="4"/><circle cx="59" cy="31" r="4"/><path d="M22 39q18 24 36 0"/>',
-  "round-strap": '<path d="M14 25q7-9 14 0l24 25q7 9 14 0"/><circle cx="14" cy="25" r="5"/><circle cx="66" cy="50" r="5"/>',
-  mesh: '<path d="M14 20h52v40H14z"/><path d="m15 50 26-29m-22 39 35-39M32 60l33-35M45 60l20-22M14 33l27 27m-18-39 36 39M37 20l28 30"/>',
-  brush: '<path d="M12 26h35v12H12zM47 29h13v6H47zM60 23v25M64 23v25M68 23v25"/><path d="M15 32h21"/>',
-  gasket: '<path d="M16 22h48v36H16zM27 31h26v18H27z"/><circle cx="21" cy="27" r="2"/><circle cx="59" cy="27" r="2"/><circle cx="21" cy="53" r="2"/><circle cx="59" cy="53" r="2"/>',
-  cover: '<path d="M14 19h52v42H14z"/><circle cx="20" cy="25" r="2"/><circle cx="60" cy="25" r="2"/><circle cx="20" cy="55" r="2"/><circle cx="60" cy="55" r="2"/><path d="M25 35h30v10H25z"/>',
-  connector: '<path d="M14 28h17v24H14zM31 22h27v36H31zM58 29h9v22h-9z"/><path d="M38 27v26m8-26v26m8-26v26"/>',
-  tube: '<path d="M11 26h43a14 14 0 0 1 14 14v16H56V40a2 2 0 0 0-2-2H11z"/><path d="M13 20v24m52 7H53"/>',
-  clamp: '<path d="M17 46a23 23 0 0 1 46 0v6H17z"/><path d="M22 52v10h12v-9m12 0v9h12V52"/><circle cx="28" cy="57" r="2"/><circle cx="52" cy="57" r="2"/>',
-  "cushioned-clamp": '<path d="M15 45a25 25 0 0 1 50 0M21 45a19 19 0 0 1 38 0M15 45v13h14m36-13v13H51"/><path d="M22 57h36"/>',
-  rotary: '<circle cx="40" cy="40" r="24"/><circle cx="40" cy="40" r="8"/><path d="M40 16v12m24 12H52M40 52v12M16 40h12"/>',
-  "slip-ring": '<circle cx="40" cy="40" r="25"/><circle cx="40" cy="40" r="17"/><path d="M10 32h12m36 16h12M11 27v10m58 6v10"/>',
-  "contact-finger": '<path d="M13 58h55M20 55V27q5-11 10 0v17q5 11 10 0V25q5-11 10 0v19q5 11 10 0V28"/>',
-  "shock-mount": '<path d="M10 61h60M19 27h42M25 27v13l8 10h14l8-10V27M20 61v-9m40 9v-9"/><circle cx="40" cy="20" r="5"/>',
-  strip: '<path d="m8 49 53-25 11 10-53 25z"/><circle cx="19" cy="49" r="3"/><circle cx="62" cy="31" r="3"/>',
-  blanket: '<path d="M12 25h51l7 8v33H19l-7-8z"/><path d="M12 25v33h51V25m-44 8h44m-44 8h44m-44 8h44"/>',
-  honeycomb: '<path d="m25 15 12 7v14l-12 7-12-7V22zm25 0 12 7v14l-12 7-12-7V22zM37 36l12 7v14l-12 7-12-7V43z"/>',
-  rack: '<path d="M15 12h50v56H15zM22 12v56m36-56v56M22 33h36M22 51h36"/><path d="m24 15 32 16m0-16L24 31"/>',
-  bracket: '<path d="M18 16h14v33h32v14H18z"/><circle cx="25" cy="26" r="3"/><circle cx="53" cy="56" r="3"/>',
-  "test-lead": '<path d="M13 15v18q0 12 14 12h23q12 0 12 12v10"/><path d="M8 15h10m39 52h10"/><circle cx="13" cy="15" r="3"/><circle cx="62" cy="67" r="3"/>',
-  cloth: '<path d="M18 13h42v55H18zM18 25q21-11 42 0M18 40q21-11 42 0M18 55q21-11 42 0"/>',
-  cable: '<path d="M10 40h32m0-10v20m0-20h13v20H42m13-15h14v10H55"/><path d="M10 34h25m-25 12h25"/>',
-  tray: '<path d="M8 26h29v28H8zM43 26h29v28H43z"/><path d="M12 33h21m14 0h21M29 54q11 15 22 0"/>',
+function commonsPhoto(filename, author, license) {
+  const file = encodeURIComponent(filename.replaceAll(" ", "_"));
+  const match = /^CC (BY(?:-SA)?) (\d\.\d)$/.exec(license);
+  const licenseUrl = match
+    ? `https://creativecommons.org/licenses/${match[1].toLowerCase()}/${match[2]}/`
+    : (license === "CC0"
+      ? "https://creativecommons.org/publicdomain/zero/1.0/"
+      : "https://creativecommons.org/publicdomain/mark/1.0/");
+  return Object.freeze({
+    image: `https://commons.wikimedia.org/wiki/Special:Redirect/file/${file}?width=320`,
+    source: `https://commons.wikimedia.org/wiki/File:${file}`,
+    author,
+    license,
+    licenseUrl,
+  });
+}
+
+const OBJECT_PHOTOS = Object.freeze({
+  vehicle: commonsPhoto("STS-133 Space Shuttle Discovery after undocking 3 (cropped).jpg", "NASA", "Public domain"),
+  pipe: commonsPhoto("Cast-iron plumbing pipe.jpg", "Joe Mabel", "CC BY-SA 3.0"),
+  chassis: commonsPhoto("Chassis of Vacuum Tube Radio.JPG", "TeWeBs", "CC BY-SA 4.0"),
+  breaker: commonsPhoto("Circuit breaker 2 pole on DIN rail.JPG", "Kae", "CC BY-SA 3.0"),
+  meter: commonsPhoto("Microohmmeter.jpg", "FearChild", "Public domain"),
+  terminal: commonsPhoto("Solder lug terminals.jpg", "しまでん", "CC BY-SA 3.0"),
+  panel: commonsPhoto("Gemini XII Mission Image - Spacecraft Skin - DPLA - 2caddf6928aff93ecd0e7d10e0ae129b.jpg", "NASA", "Public domain"),
+  antenna: commonsPhoto("Collinear folded dipole antenna array.jpg", "Milonica / Chetvorno", "CC BY-SA 3.0"),
+  joint: commonsPhoto("Bolt, Plain washer and Spring lock washer.jpg", "andersen_mrjh", "CC BY-SA 2.0"),
+  bolt: commonsPhoto("Bolt, Plain washer and Spring lock washer.jpg", "andersen_mrjh", "CC BY-SA 2.0"),
+  flange: commonsPhoto("Pump flanges from New Pump House.jpg", "VTDoubleE", "CC BY 4.0"),
+  nut: commonsPhoto("Spring Nut.jpg", "Bob Blaylock", "CC BY-SA 4.0"),
+  screw: commonsPhoto("Selftap.jpg", "在原ヶ谷戸", "CC BY-SA 3.0"),
+  washer: commonsPhoto("Many washers of different sizes.png", "Taylor 49", "CC BY-SA 4.0"),
+  "conical-washer": commonsPhoto("Belleville washer with rubber back.tif", "Susan Wright", "Public domain"),
+  "spring-washer": commonsPhoto("Grower01.jpg", "Tiesse / Xoristzatziki", "Public domain"),
+  "split-washer": commonsPhoto("Grower01.jpg", "Tiesse / Xoristzatziki", "Public domain"),
+  rivet: commonsPhoto("A stack of blind rivets 2017.jpg", "Fructibus", "CC0"),
+  strap: commonsPhoto("Tekapo A Power Station - Bonding Strap on light fixture.jpg", "David Palmer", "CC BY-SA 4.0"),
+  mesh: commonsPhoto("2008-08-28 Metal mesh.jpg", "Ildar Sagdejev", "CC BY-SA 4.0"),
+  brush: commonsPhoto("Fileboerste.jpg", "Hans Christophersen", "Public domain"),
+  gasket: commonsPhoto("Asian Sealing Product - Industrial Gasket.png", "Asian sealing product", "CC BY-SA 4.0"),
+  cover: commonsPhoto("Expansion Slot Blanking plate.jpg", "tony_duell", "CC BY 2.0"),
+  connector: commonsPhoto("38999 connector nickel-teflon.jpg", "Abaillieul", "CC BY-SA 3.0"),
+  tube: commonsPhoto("Plastic tubing.jpg", "Paul Goyette", "CC BY-SA 2.0"),
+  rotary: commonsPhoto("Exxelia-slip-ring.jpg", "Exxelia Groupe", "CC BY-SA 4.0"),
+  "slip-ring": commonsPhoto("Exxelia-slip-ring.jpg", "Exxelia Groupe", "CC BY-SA 4.0"),
+  "shock-mount": commonsPhoto("Vibration isolator (1).JPG", "S.J. de Waard", "CC BY 2.5"),
+  strip: commonsPhoto("Radio antenna mast bonding strips.JPG", "Chetvorno", "CC0"),
+  blanket: commonsPhoto("Huygens thermal multilayer insulation.jpg", "ESA / NASA", "Public domain"),
+  honeycomb: commonsPhoto("HONEYCOMB PANEL ON HONEYCOMB SIDE - NARA - 17419922.jpg", "U.S. National Archives", "Public domain"),
+  rack: commonsPhoto("EFTA00002522 - Cluttered server rack filled with colorful cables and networking equipment.jpg", "FBI", "Public domain"),
+  bracket: commonsPhoto("23 0053504 Convair Negative Image - Mounting bracket test setup - bracket closeup 05-06-1964 (53919064215).jpg", "San Diego Air & Space Museum", "Public domain"),
+  "test-lead": commonsPhoto("Mastech test leads.JPG", "Dmitry G", "Public domain"),
+  cloth: commonsPhoto("Microfiber cloth.jpg", "BeVegan22", "CC BY-SA 4.0"),
+  tray: commonsPhoto("Wire cable tray01.jpg", "Leotard", "Public domain"),
 });
+
+const OBJECT_PHOTO_OVERRIDES = Object.freeze({
+  "plumbing": commonsPhoto("STS053-246-005 - STS-053 - Engineering view of the plumbing in the WCS for the FARE experiment. - DPLA - 3e1ab80880e208f24aa372f1206966cc.jpg", "NASA", "Public domain"),
+  "brazed joint": commonsPhoto("BRAZED SPECIMENS - NARA - 17448677.jpg", "U.S. National Archives", "Public domain"),
+  "connector flange": commonsPhoto("EIA parts.jpg", "LUNDAVRA", "CC BY 2.5"),
+  "metallic wool": commonsPhoto("Steel-wool.jpg", "Johan", "CC BY-SA 3.0"),
+  "elastomeric gasket": commonsPhoto("Phone with rubber gasket.JPG", "Givememyusername", "CC BY-SA 3.0"),
+  "piano hinge": commonsPhoto("Teardrop plastic piano hinge.jpg", "Wikiwerks", "Public domain"),
+  "permanent joint": commonsPhoto("BRAZED SPECIMENS - NARA - 17448677.jpg", "U.S. National Archives", "Public domain"),
+});
+
 
 const OBJECT_SPECS = [
   ["space vehicle", "vehicle"], ["plumbing", "pipe"], ["chassis", "chassis"],
@@ -331,19 +354,24 @@ const OBJECT_SPECS = [
   ["cable shield termination", "cable"], ["tray-to-tray bond", "tray"],
 ];
 
-function objectIllustration(kind) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" stroke="#27576b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="1" width="78" height="78" rx="5" fill="#f2f8fa" stroke="none"/>${OBJECT_ILLUSTRATIONS[kind]}</svg>`;
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
-}
+const OBJECT_WITHOUT_VERIFIED_PHOTO = new Set([
+  "active antenna element", "conductive gasket", "resilient conductive gasket",
+  "knitted wire mesh gasket", "fiber wool", "connector backshell",
+  "round strap", "tray-to-tray bond",
+]);
 
-const OBJECT_REFERENCES = Object.freeze(Object.fromEntries(OBJECT_SPECS.map(([term, kind]) => {
-  const product = OBJECT_PRODUCT_REFERENCES[term.toLowerCase()];
-  const url = product?.url || `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(`${term} electrical bonding hardware`)}`;
-  return [term.toLowerCase(), {
-    image: product?.image || objectIllustration(kind),
-    url,
-    label: product?.label || `搜尋 ${term} 同類實物`,
-  }];
+const OBJECT_REFERENCES = Object.freeze(Object.fromEntries(OBJECT_SPECS.flatMap(([term, kind]) => {
+  if (OBJECT_WITHOUT_VERIFIED_PHOTO.has(term)) return [];
+  const photo = OBJECT_PHOTO_OVERRIDES[term] || OBJECT_PHOTOS[kind];
+  if (!photo) return [];
+  const product = OBJECT_PRODUCT_REFERENCES[term];
+  return [[term, {
+    ...photo,
+    url: photo.source,
+    label: `查看 ${term} 同類實物照片來源`,
+    productUrl: product?.url,
+    productLabel: product?.label,
+  }]];
 })));
 
 function rebuildStudyChapters() {
@@ -404,7 +432,7 @@ function render() {
   elements.objectReference.hidden = !objectReference;
   if (objectReference) {
     elements.objectReferenceImage.src = objectReference.image;
-    elements.objectReferenceImage.alt = `${word.word || "實物"}外觀示意圖，非手冊原圖`;
+    elements.objectReferenceImage.alt = `${word.word || "實物"}同類實物照片，非手冊原圖`;
     elements.objectReferenceLink.href = objectReference.url;
     elements.objectReferenceLink.setAttribute("aria-label", objectReference.label);
   }
@@ -529,7 +557,6 @@ function saveCurrentChapterProgress() {
 function renderWordList() {
   elements.wordList.innerHTML = "";
   currentWords().forEach((word, index) => {
-    const objectReference = OBJECT_REFERENCES[hardWordKey(word)];
     const button = document.createElement("button");
     button.type = "button";
     const masteredClass = isMasteredWord(word) ? "word-item mastered" : "word-item";
@@ -545,39 +572,22 @@ function renderWordList() {
       markPracticeSettingsChanged();
       playCurrent();
     });
-    if (!objectReference) {
-      elements.wordList.appendChild(button);
-      return;
-    }
-    const row = document.createElement("div");
-    row.className = "word-item-row";
-    const imageLink = document.createElement("a");
-    imageLink.className = "word-item-image";
-    imageLink.href = objectReference.url;
-    imageLink.target = "_blank";
-    imageLink.rel = "noopener noreferrer";
-    imageLink.setAttribute("aria-label", objectReference.label);
-    const image = document.createElement("img");
-    image.src = objectReference.image;
-    image.alt = `${word.word}外觀示意圖`;
-    image.loading = "lazy";
-    imageLink.appendChild(image);
-    const help = document.createElement("button");
-    help.type = "button";
-    help.className = "object-help-button";
-    help.textContent = "?";
-    help.title = "查看物品示意說明";
-    help.setAttribute("aria-label", `${word.word}物品示意說明`);
-    help.addEventListener("click", () => showObjectReference(objectReference));
-    row.append(imageLink, help, button);
-    elements.wordList.appendChild(row);
+    elements.wordList.appendChild(button);
   });
   scrollActiveWordIntoView();
 }
 
 function showObjectReference(reference) {
-  elements.objectReferenceDialogLink.href = reference.url;
-  elements.objectReferenceDialogLink.textContent = reference.label;
+  elements.objectReferenceDialogLink.href = reference.source;
+  elements.objectReferenceDialogLink.textContent = "查看照片來源";
+  elements.objectReferenceCredit.textContent = `攝影／來源：${reference.author} · `;
+  elements.objectReferenceLicense.href = reference.licenseUrl;
+  elements.objectReferenceLicense.textContent = reference.license;
+  elements.objectReferenceProductLink.hidden = !reference.productUrl;
+  if (reference.productUrl) {
+    elements.objectReferenceProductLink.href = reference.productUrl;
+    elements.objectReferenceProductLink.textContent = reference.productLabel;
+  }
   elements.objectReferenceDialog.showModal();
 }
 

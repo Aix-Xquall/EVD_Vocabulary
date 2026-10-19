@@ -11066,7 +11066,7 @@ Adequate contact pressure is maintained by fasteners on the faying surfaces.
 
 Multiple fasteners are useful on large mating flanges.
 
-多個緊固件適用於大型配合凸緣。
+多個緊固件適用於大型配合法蘭。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
@@ -11134,7 +11134,7 @@ The installer reviews "alloying material" before completing the joint.
 
 **Pronunciation:** /ˈmeɪtɪŋ flænʤ/
 
-**Chinese meaning:** 配合凸緣
+**Chinese meaning:** 配合法蘭
 
 **Category:** Bonding Methods
 
@@ -11144,7 +11144,7 @@ The installer reviews "alloying material" before completing the joint.
 
 The installer checks the mating flange before completing the bond joint.
 
-安裝人員在完成接合處前會檢查配合凸緣。
+安裝人員在完成接合處前會檢查配合法蘭。
 
 **Source:** 主題參考｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 
@@ -11152,7 +11152,7 @@ The installer checks the mating flange before completing the bond joint.
 
 The installer reviews "mating flange" before completing the joint.
 
-安裝人員會在完成接頭前檢查「配合凸緣」。
+安裝人員會在完成接頭前檢查「配合法蘭」。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.1.1 THREADED FASTENERS，p. 16
 

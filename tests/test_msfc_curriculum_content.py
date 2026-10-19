@@ -8,6 +8,17 @@ VOCABULARY_DIR = Path(__file__).resolve().parents[1] / "vocabulary"
 
 
 class MsfcCurriculumContentTests(unittest.TestCase):
+    def test_mating_flange_uses_flange_translation(self):
+        path = VOCABULARY_DIR / "MSFC-HDBK-3697_05-1_接合方法.csv"
+        with path.open(encoding="utf-8-sig", newline="") as file:
+            rows = list(csv.DictReader(file))
+        mating_flange = next(row for row in rows if row["word"] == "mating flange")
+        self.assertEqual("配合法蘭", mating_flange["chinese_meaning"])
+        self.assertIn("配合法蘭", mating_flange["example_1_zh"])
+        self.assertIn("配合法蘭", mating_flange["example_2_zh"])
+        fasteners = next(row for row in rows if row["word"] == "multiple fasteners")
+        self.assertIn("配合法蘭", fasteners["example_1_zh"])
+
     def test_connector_flange_translation_is_consistent(self):
         translations = []
         for path in VOCABULARY_DIR.glob("MSFC-HDBK-3697*.csv"):

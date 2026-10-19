@@ -323,19 +323,27 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261019-msfc-object-images"', index_html)
-        self.assertIn('src="app.js?v=20261019-msfc-object-images"', index_html)
+        self.assertIn('href="styles.css?v=20261019-msfc-photo-placement"', index_html)
+        self.assertIn('src="app.js?v=20261019-msfc-photo-placement"', index_html)
 
-    def test_msfc_object_illustrations_cover_69_unique_csv_terms(self):
+    def test_msfc_object_photos_use_licensed_sources_for_verified_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         specs = app_js.split("const OBJECT_SPECS = [", 1)[1].split("];", 1)[0]
         pairs = re.findall(r'\["([^"]+)", "([^"]+)"\]', specs)
         terms = [term for term, _ in pairs]
-        illustration_source = app_js.split("const OBJECT_ILLUSTRATIONS = Object.freeze({", 1)[1].split("});", 1)[0]
-        illustration_kinds = {
+        photo_source = app_js.split("const OBJECT_PHOTOS = Object.freeze({", 1)[1].split("});", 1)[0]
+        photo_kinds = {
             quoted or plain
-            for quoted, plain in re.findall(r'^\s+(?:"([^"]+)"|([a-z]+)):', illustration_source, re.M)
+            for quoted, plain in re.findall(r'^\s+(?:"([^"]+)"|([a-z]+)):', photo_source, re.M)
+        }
+        override_source = app_js.split("const OBJECT_PHOTO_OVERRIDES = Object.freeze({", 1)[1].split("});", 1)[0]
+        override_terms = set(re.findall(r'^\s+"([^"]+)": commonsPhoto', override_source, re.M))
+        excluded_source = app_js.split("const OBJECT_WITHOUT_VERIFIED_PHOTO = new Set([", 1)[1].split("]);", 1)[0]
+        excluded_terms = set(re.findall(r'"([^"]+)"', excluded_source))
+        photographed = {
+            term for term, kind in pairs
+            if term not in excluded_terms and (kind in photo_kinds or term in override_terms)
         }
         csv_terms = set()
         for path in (PROJECT_DIR / "vocabulary").glob("MSFC-HDBK-3697_*.csv"):
@@ -345,11 +353,20 @@ class WebAssetsTests(unittest.TestCase):
         self.assertEqual(69, len(terms))
         self.assertEqual(69, len({term.lower() for term in terms}))
         self.assertTrue({term.lower() for term in terms} <= csv_terms)
-        self.assertTrue({kind for _, kind in pairs} <= illustration_kinds)
+        self.assertGreaterEqual(len(photographed), 50)
+        self.assertNotIn("objectIllustration", app_js)
+        self.assertNotIn("data:image/svg+xml", app_js)
+        self.assertIn("Special:Redirect/file/", app_js)
         self.assertIn('id="objectReferenceDialog"', index_html)
         self.assertIn('id="objectReferenceHelp"', index_html)
-        self.assertIn("row.append(imageLink, help, button)", app_js)
-        self.assertIn("if (!objectReference) {", app_js)
+        self.assertIn('id="objectReferenceCredit"', index_html)
+        self.assertIn('id="objectReferenceLicense"', index_html)
+        self.assertIn('class="word-details"', index_html)
+        self.assertLess(index_html.index('id="pronunciationText"'), index_html.index('id="objectReference"'))
+        self.assertLess(index_html.index('id="meaningText"'), index_html.index('id="objectReference"'))
+        word_list_source = app_js.split("function renderWordList() {", 1)[1].split("function showObjectReference", 1)[0]
+        self.assertNotIn("OBJECT_REFERENCES", word_list_source)
+        self.assertIn("elements.wordList.appendChild(button)", word_list_source)
 
     def test_verified_source_examples_are_checked_by_default(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

@@ -57716,7 +57716,7 @@
           "pronunciation": "/ˈmʌltəpəl ˈfæsənərz/",
           "chinese_meaning": "多個緊固件",
           "example_1_en": "Multiple fasteners are useful on large mating flanges.",
-          "example_1_zh": "多個緊固件適用於大型配合凸緣。",
+          "example_1_zh": "多個緊固件適用於大型配合法蘭。",
           "example_2_en": "The use of multiple fasteners is analyzed as part of the bond path.",
           "example_2_zh": "多個緊固件的使用會作為接合路徑的一部分進行分析。",
           "category": "Bonding Methods",
@@ -57767,7 +57767,7 @@
               "voice": "cmn-TW-Wavenet-A"
             },
             "example_1_zh": {
-              "src": "audio/segments/zh/6ffba5638d70130677602a44.mp3",
+              "src": "audio/segments/zh/577cc83a0ed0b081ab256b38.mp3",
               "language": "zh",
               "voice": "cmn-TW-Wavenet-A"
             },
@@ -58065,11 +58065,11 @@
           "id": "341",
           "word": "mating flange",
           "pronunciation": "/ˈmeɪtɪŋ flænʤ/",
-          "chinese_meaning": "配合凸緣",
+          "chinese_meaning": "配合法蘭",
           "example_1_en": "The installer checks the mating flange before completing the bond joint.",
-          "example_1_zh": "安裝人員在完成接合處前會檢查配合凸緣。",
+          "example_1_zh": "安裝人員在完成接合處前會檢查配合法蘭。",
           "example_2_en": "The installer reviews \"mating flange\" before completing the joint.",
-          "example_2_zh": "安裝人員會在完成接頭前檢查「配合凸緣」。",
+          "example_2_zh": "安裝人員會在完成接頭前檢查「配合法蘭」。",
           "category": "Bonding Methods",
           "difficulty": "4",
           "review_count": "0",
@@ -58113,17 +58113,17 @@
               }
             },
             "example_2_zh": {
-              "src": "audio/segments/zh/8983ebc749bc0f9552f2bbec.mp3",
+              "src": "audio/segments/zh/a179cd396d51e3526497982a.mp3",
               "language": "zh",
               "voice": "cmn-TW-Wavenet-A"
             },
             "example_1_zh": {
-              "src": "audio/segments/zh/36a0a26ab1a10bd5c9d2a02a.mp3",
+              "src": "audio/segments/zh/6c4874185621294c06a8d202.mp3",
               "language": "zh",
               "voice": "cmn-TW-Wavenet-A"
             },
             "meaning": {
-              "src": "audio/segments/zh/0d1bab1339ddcec6ee763a82.mp3",
+              "src": "audio/segments/zh/cada6302de31ef973c6cae7a.mp3",
               "language": "zh",
               "voice": "cmn-TW-Wavenet-A"
             },

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVD Daily Vocabulary</title>
-    <link rel="stylesheet" href="styles.css?v=20261019-msfc-object-images">
+    <link rel="stylesheet" href="styles.css?v=20261019-msfc-photo-placement">
   </head>
   <body>
     <main class="app-shell">
@@ -100,17 +100,19 @@
               <p id="categoryText" class="eyebrow">Category</p>
               <p id="currentWordStats" class="current-word-stats">練習 0 次 · 重複 0 次</p>
             </div>
-            <div class="word-heading">
+            <h2 id="wordText">Loading</h2>
+            <div class="word-details">
+              <div class="word-details-text">
+                <p id="pronunciationText" class="pronunciation"></p>
+                <p id="meaningText" class="meaning"></p>
+              </div>
               <div id="objectReference" class="object-reference" hidden>
                 <a id="objectReferenceLink" target="_blank" rel="noopener noreferrer">
                   <img id="objectReferenceImage" alt="" loading="lazy">
                 </a>
                 <button id="objectReferenceHelp" class="object-help-button" type="button" aria-label="查看物品示意說明" title="查看物品示意說明">?</button>
               </div>
-              <h2 id="wordText">Loading</h2>
             </div>
-            <p id="pronunciationText" class="pronunciation"></p>
-            <p id="meaningText" class="meaning"></p>
             <div class="hard-word-actions">
               <button id="familiarMsfcButton" type="button" hidden>已熟悉</button>
               <button id="hardWordButton" type="button">加入未熟記單字</button>
@@ -220,16 +222,18 @@
       </details>
     </main>
 
-    <dialog id="objectReferenceDialog" class="object-reference-dialog" aria-label="物品示意說明">
+    <dialog id="objectReferenceDialog" class="object-reference-dialog" aria-label="實物照片說明">
       <div class="object-reference-dialog-header">
-        <strong>物品示意</strong>
+        <strong>同類實物照片</strong>
         <button id="closeObjectReferenceDialog" type="button" aria-label="關閉">×</button>
       </div>
       <a id="objectReferenceDialogLink" target="_blank" rel="noopener noreferrer"></a>
-      <p>外觀示意，非手冊原圖。連結內容請核對實際規格。</p>
+      <p><span id="objectReferenceCredit"></span><a id="objectReferenceLicense" target="_blank" rel="noopener noreferrer"></a></p>
+      <a id="objectReferenceProductLink" target="_blank" rel="noopener noreferrer" hidden></a>
+      <p>同類實物照片，非手冊原圖。外觀與規格仍應以實際產品為準。</p>
     </dialog>
     <audio id="audioPlayer" preload="metadata"></audio>
     <script src="learning_helpers.js?v=20261019-msfc-new-words"></script>
-    <script src="app.js?v=20261019-msfc-object-images"></script>
+    <script src="app.js?v=20261019-msfc-photo-placement"></script>
   </body>
 </html>
