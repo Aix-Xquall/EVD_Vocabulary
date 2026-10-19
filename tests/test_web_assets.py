@@ -1,4 +1,5 @@
 from pathlib import Path
+import csv
 import re
 import unittest
 
@@ -322,8 +323,33 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261019-msfc-new-words"', index_html)
-        self.assertIn('src="app.js?v=20261019-msfc-new-words"', index_html)
+        self.assertIn('href="styles.css?v=20261019-msfc-object-images"', index_html)
+        self.assertIn('src="app.js?v=20261019-msfc-object-images"', index_html)
+
+    def test_msfc_object_illustrations_cover_69_unique_csv_terms(self):
+        app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
+        index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
+        specs = app_js.split("const OBJECT_SPECS = [", 1)[1].split("];", 1)[0]
+        pairs = re.findall(r'\["([^"]+)", "([^"]+)"\]', specs)
+        terms = [term for term, _ in pairs]
+        illustration_source = app_js.split("const OBJECT_ILLUSTRATIONS = Object.freeze({", 1)[1].split("});", 1)[0]
+        illustration_kinds = {
+            quoted or plain
+            for quoted, plain in re.findall(r'^\s+(?:"([^"]+)"|([a-z]+)):', illustration_source, re.M)
+        }
+        csv_terms = set()
+        for path in (PROJECT_DIR / "vocabulary").glob("MSFC-HDBK-3697_*.csv"):
+            with path.open(encoding="utf-8-sig", newline="") as stream:
+                csv_terms.update(row["word"].strip().lower() for row in csv.DictReader(stream))
+
+        self.assertEqual(69, len(terms))
+        self.assertEqual(69, len({term.lower() for term in terms}))
+        self.assertTrue({term.lower() for term in terms} <= csv_terms)
+        self.assertTrue({kind for _, kind in pairs} <= illustration_kinds)
+        self.assertIn('id="objectReferenceDialog"', index_html)
+        self.assertIn('id="objectReferenceHelp"', index_html)
+        self.assertIn("row.append(imageLink, help, button)", app_js)
+        self.assertIn("if (!objectReference) {", app_js)
 
     def test_verified_source_examples_are_checked_by_default(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")

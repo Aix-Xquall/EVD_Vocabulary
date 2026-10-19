@@ -469,6 +469,35 @@ h2 {
   text-align: left;
 }
 
+.word-item-row {
+  display: grid;
+  grid-template-columns: 40px 26px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.word-item-image {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.word-item-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.word-item-row .word-item {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .word-item small {
   display: block;
   color: var(--muted);
@@ -502,6 +531,14 @@ h2 {
 
 .current-word {
   min-height: 170px;
+}
+
+.word-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
 }
 
 .current-word-meta {
@@ -559,9 +596,7 @@ h2 {
 .object-reference {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 6px;
 }
 
 .object-reference[hidden] {
@@ -578,13 +613,69 @@ h2 {
 }
 
 .object-reference a {
-  color: var(--blue);
-  font-size: 0.9rem;
+  display: block;
+  height: 64px;
 }
 
-.object-reference-note {
+.object-help-button {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--blue);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.object-help-button:hover,
+.object-help-button:focus-visible,
+.word-item-image:focus-visible,
+.object-reference a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.object-reference-dialog {
+  width: min(360px, calc(100vw - 32px));
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.object-reference-dialog::backdrop {
+  background: rgb(20 39 50 / 45%);
+}
+
+.object-reference-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.object-reference-dialog-header button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 1.25rem;
+}
+
+.object-reference-dialog a {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.object-reference-dialog p {
+  margin-bottom: 0;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .hard-word-actions button {
