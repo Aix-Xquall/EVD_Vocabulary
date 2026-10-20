@@ -323,8 +323,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261019-msfc-photo-placement"', index_html)
-        self.assertIn('src="app.js?v=20261019-msfc-photo-placement"', index_html)
+        self.assertIn('href="styles.css?v=20261020-msfc-object-audit"', index_html)
+        self.assertIn('src="app.js?v=20261020-msfc-object-audit"', index_html)
 
     def test_msfc_object_photos_use_licensed_sources_for_verified_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -353,7 +353,20 @@ class WebAssetsTests(unittest.TestCase):
         self.assertEqual(69, len(terms))
         self.assertEqual(69, len({term.lower() for term in terms}))
         self.assertTrue({term.lower() for term in terms} <= csv_terms)
-        self.assertGreaterEqual(len(photographed), 50)
+        self.assertGreaterEqual(len(photographed), 45)
+        self.assertIn("brazed joint", photographed)
+        self.assertIn("permanent joint", photographed)
+        self.assertIn("semi-permanent joint", photographed)
+        self.assertIn("BRAZED TRANSITION JOINTS", override_source)
+        self.assertIn("Roostevabaterase keevisõmblus.jpg", override_source)
+        self.assertIn("Bolted joint.jpg", override_source)
+        self.assertNotIn("BRAZED SPECIMENS", override_source)
+        self.assertNotIn('joint: commonsPhoto("Bolt, Plain washer', photo_source)
+        self.assertTrue({
+            "soldered terminals", "bond strap terminal", "high-strength steel bolt",
+            "blind structural rivet", "blind nonstructural rivet", "milliohm meter",
+            "preload-critical joint", "piano hinge",
+        } <= excluded_terms)
         self.assertNotIn("objectIllustration", app_js)
         self.assertNotIn("data:image/svg+xml", app_js)
         self.assertIn("Special:Redirect/file/", app_js)

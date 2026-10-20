@@ -277,7 +277,6 @@ const OBJECT_PHOTOS = Object.freeze({
   terminal: commonsPhoto("Solder lug terminals.jpg", "しまでん", "CC BY-SA 3.0"),
   panel: commonsPhoto("Gemini XII Mission Image - Spacecraft Skin - DPLA - 2caddf6928aff93ecd0e7d10e0ae129b.jpg", "NASA", "Public domain"),
   antenna: commonsPhoto("Collinear folded dipole antenna array.jpg", "Milonica / Chetvorno", "CC BY-SA 3.0"),
-  joint: commonsPhoto("Bolt, Plain washer and Spring lock washer.jpg", "andersen_mrjh", "CC BY-SA 2.0"),
   bolt: commonsPhoto("Bolt, Plain washer and Spring lock washer.jpg", "andersen_mrjh", "CC BY-SA 2.0"),
   flange: commonsPhoto("Pump flanges from New Pump House.jpg", "VTDoubleE", "CC BY 4.0"),
   nut: commonsPhoto("Spring Nut.jpg", "Bob Blaylock", "CC BY-SA 4.0"),
@@ -309,12 +308,14 @@ const OBJECT_PHOTOS = Object.freeze({
 
 const OBJECT_PHOTO_OVERRIDES = Object.freeze({
   "plumbing": commonsPhoto("STS053-246-005 - STS-053 - Engineering view of the plumbing in the WCS for the FARE experiment. - DPLA - 3e1ab80880e208f24aa372f1206966cc.jpg", "NASA", "Public domain"),
-  "brazed joint": commonsPhoto("BRAZED SPECIMENS - NARA - 17448677.jpg", "U.S. National Archives", "Public domain"),
+  "brazed joint": commonsPhoto("BRAZED TRANSITION JOINTS - 1 UNBRAZED ASSEMBLY - 2 BRAZED PIPE JOINTS - NARA - 17443720.jpg", "NASA / U.S. National Archives", "Public domain"),
   "connector flange": commonsPhoto("EIA parts.jpg", "LUNDAVRA", "CC BY 2.5"),
   "metallic wool": commonsPhoto("Steel-wool.jpg", "Johan", "CC BY-SA 3.0"),
   "elastomeric gasket": commonsPhoto("Phone with rubber gasket.JPG", "Givememyusername", "CC BY-SA 3.0"),
   "piano hinge": commonsPhoto("Teardrop plastic piano hinge.jpg", "Wikiwerks", "Public domain"),
-  "permanent joint": commonsPhoto("BRAZED SPECIMENS - NARA - 17448677.jpg", "U.S. National Archives", "Public domain"),
+  "permanent joint": commonsPhoto("Roostevabaterase keevisõmblus.jpg", "Tanel Eensoo", "CC BY-SA 3.0"),
+  "semi-permanent joint": commonsPhoto("Bolted joint.jpg", "NASA", "Public domain"),
+  "structural joint": commonsPhoto("Bolted joint.jpg", "NASA", "Public domain"),
 });
 
 
@@ -358,6 +359,9 @@ const OBJECT_WITHOUT_VERIFIED_PHOTO = new Set([
   "active antenna element", "conductive gasket", "resilient conductive gasket",
   "knitted wire mesh gasket", "fiber wool", "connector backshell",
   "round strap", "tray-to-tray bond",
+  "soldered terminals", "bond strap terminal", "high-strength steel bolt",
+  "blind structural rivet", "blind nonstructural rivet", "milliohm meter",
+  "preload-critical joint", "piano hinge",
 ]);
 
 const OBJECT_REFERENCES = Object.freeze(Object.fromEntries(OBJECT_SPECS.flatMap(([term, kind]) => {
