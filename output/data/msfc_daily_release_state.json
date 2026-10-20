@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_release_date": "2026-10-19",
+  "last_release_date": "2026-10-20",
   "released_words": [
     "360-degree termination",
     "abrasive material",
@@ -380,6 +380,7 @@
     "ground loop",
     "ground plane",
     "ground reference",
+    "ground strap measurement",
     "grounding",
     "grounding philosophy",
     "hair dryer",
@@ -518,7 +519,9 @@
     "mission requirement",
     "mission-critical",
     "mitigation",
+    "mli attach point",
     "moisture",
+    "mounted equipment",
     "mounting bracket",
     "mounting panel",
     "mounting surface",
@@ -749,6 +752,7 @@
     "strike",
     "stroller",
     "structural element",
+    "structural joint",
     "subassembly",
     "subcontractor",
     "subject to final confirmation",
@@ -865,9 +869,16 @@
     "wonton noodles",
     "work instruction",
     "workmanship",
+    "workmanship resistance measurement",
     "worst-case simultaneous operation"
   ],
-  "released_today": [],
+  "released_today": [
+    "workmanship resistance measurement",
+    "mounted equipment",
+    "structural joint",
+    "ground strap measurement",
+    "mli attach point"
+  ],
   "released_at": {
     "acid fluoride": "2026-10-05",
     "acidic material": "2026-10-05",
@@ -960,6 +971,7 @@
     "graphite epoxy": "2026-10-16",
     "graphite filament reinforced plastic": "2026-10-16",
     "grease removal": "2026-10-04",
+    "ground strap measurement": "2026-10-20",
     "helical-spring washer": "2026-09-30",
     "hexavalent chromium": "2026-10-07",
     "high-strength steel bolt": "2026-09-29",
@@ -986,6 +998,8 @@
     "microscopic peak": "2026-10-03",
     "milliohm meter": "2026-10-19",
     "mission objective": "2026-09-23",
+    "mli attach point": "2026-10-20",
+    "mounted equipment": "2026-10-20",
     "multilayer insulation": "2026-10-16",
     "multiple fasteners": "2026-09-29",
     "nonconductive film": "2026-10-08",
@@ -1033,6 +1047,7 @@
     "static charge buildup": "2026-09-28",
     "stored energy": "2026-09-28",
     "strain relief": "2026-10-02",
+    "structural joint": "2026-10-20",
     "subcontractor": "2026-09-23",
     "surface cleanliness": "2026-10-06",
     "surface hardness": "2026-10-04",
@@ -1049,6 +1064,7 @@
     "vehicle skin": "2026-09-27",
     "verification requirement": "2026-10-19",
     "wet faying surface sealing": "2026-10-07",
-    "wire brush": "2026-10-06"
+    "wire brush": "2026-10-06",
+    "workmanship resistance measurement": "2026-10-20"
   }
 }
