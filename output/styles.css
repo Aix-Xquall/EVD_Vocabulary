@@ -250,9 +250,10 @@ button.primary {
 }
 
 .color-picker-trigger {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
+  width: 25px;
+  height: 25px;
+  min-height: 25px;
+  flex: 0 0 25px;
   padding: 0;
   border: 3px solid var(--surface);
   border-radius: 50%;
@@ -291,13 +292,14 @@ button.primary {
 
 .color-palette-options {
   display: grid;
-  grid-template-columns: repeat(8, 34px);
+  grid-template-columns: repeat(8, 24px);
   gap: 8px;
 }
 
 .color-option {
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
   padding: 0;
   border: 3px solid var(--surface);
   border-radius: 50%;
@@ -599,9 +601,8 @@ h2 {
   width: 26px;
   height: 26px;
   padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--surface);
+  border: 0;
+  background: transparent;
   color: var(--blue);
   font-size: 0.85rem;
   font-weight: 800;
@@ -679,7 +680,8 @@ h2 {
   width: 32px;
   min-height: 32px;
   padding: 0;
-  border-radius: 50%;
+  border: 0;
+  background: transparent;
   color: var(--blue);
   font-weight: 800;
 }
@@ -970,9 +972,10 @@ h2 {
   }
 
   .color-option {
-    width: 100%;
-    max-width: 34px;
+    width: 24px;
+    height: 24px;
     aspect-ratio: 1;
+    justify-self: center;
   }
 
   .settings-sync {

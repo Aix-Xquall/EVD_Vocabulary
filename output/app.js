@@ -316,6 +316,29 @@ const OBJECT_PHOTO_OVERRIDES = Object.freeze({
   "permanent joint": commonsPhoto("Roostevabaterase keevisõmblus.jpg", "Tanel Eensoo", "CC BY-SA 3.0"),
   "semi-permanent joint": commonsPhoto("Bolted joint.jpg", "NASA", "Public domain"),
   "structural joint": commonsPhoto("Bolted joint.jpg", "NASA", "Public domain"),
+  "mating flange": Object.freeze({
+    ...commonsPhoto("Waveguide-flange-with-threaded-collar.jpg", "Catslash", "Public domain"),
+    image: "images/mating-flange-photo.jpg",
+    photoEdit: "網站截圖裁切",
+  }),
+  "shock mount": Object.freeze({
+    ...commonsPhoto("Vibration isolator (1).JPG", "S.J. de Waard", "CC BY 2.5"),
+    image: "images/shock-mount-photo.jpg",
+    photoEdit: "網站截圖裁切",
+  }),
+  "equipment rack": Object.freeze({
+    ...commonsPhoto("Apollo Telescope Mount Rack 7025632.jpg", "NASA", "Public domain"),
+    image: "images/equipment-rack-photo.jpg",
+    photoEdit: "網站截圖裁切",
+  }),
+  "countersinking": Object.freeze({
+    image: "images/countersinking-photo.jpg",
+    source: "https://workforce.libretexts.org/Sandboxes/a072766d-16cb-4dbc-9dd2-2f3c784c59e6/Introduction_to_Machining/08:_Drill_Presses/8.13:_8.13_Countersinking",
+    author: "Micky R. Jennings, Wenatchee Valley College / WA Open ProfTech / SBCTC",
+    license: "CC BY 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/",
+    photoEdit: "網站截圖裁切",
+  }),
 });
 
 
@@ -327,7 +350,7 @@ const OBJECT_SPECS = [
   ["active antenna element", "antenna"], ["brazed joint", "joint"],
   ["threaded fastener", "bolt"], ["high-strength steel bolt", "bolt"],
   ["mating flange", "flange"], ["spring nut", "nut"],
-  ["self-tapping screw", "screw"], ["flat washer", "washer"],
+  ["self-tapping screw", "screw"], ["countersinking", "countersink"], ["flat washer", "washer"],
   ["conical washer", "conical-washer"], ["helical-spring washer", "spring-washer"],
   ["lock washer", "split-washer"], ["rivet", "rivet"],
   ["blind structural rivet", "rivet"], ["blind nonstructural rivet", "rivet"],
@@ -358,12 +381,12 @@ const OBJECT_SPECS = [
 // Show only photos whose visible object directly matches the vocabulary term.
 const OBJECT_VERIFIED_PHOTOS = new Set([
   "space vehicle", "plumbing", "chassis", "micro-ohmmeter", "vehicle skin",
-  "brazed joint", "threaded fastener", "spring nut", "self-tapping screw",
+  "brazed joint", "threaded fastener", "mating flange", "spring nut", "self-tapping screw", "countersinking",
   "flat washer", "conical washer", "helical-spring washer", "lock washer",
   "rivet", "strap", "Belleville washer", "metallic wool", "wire brush",
   "gasket", "elastomeric gasket", "connector flange", "conductive pipe",
   "nonmetallic tubing", "slip ring", "conductive metal strip",
-  "multilayer insulation", "honeycomb panel", "mounting bracket", "test lead",
+  "shock mount", "multilayer insulation", "honeycomb panel", "equipment rack", "mounting bracket", "test lead",
   "permanent joint", "semi-permanent joint",
 ]);
 
@@ -587,7 +610,7 @@ function renderWordList() {
 function showObjectReference(reference) {
   elements.objectReferenceDialogLink.href = reference.source;
   elements.objectReferenceDialogLink.textContent = "查看照片來源";
-  elements.objectReferenceCredit.textContent = `攝影／來源：${reference.author} · `;
+  elements.objectReferenceCredit.textContent = `攝影／來源：${reference.author}${reference.photoEdit ? `（${reference.photoEdit}）` : ""} · `;
   elements.objectReferenceLicense.href = reference.licenseUrl;
   elements.objectReferenceLicense.textContent = reference.license;
   elements.objectReferenceProductLink.hidden = !reference.productUrl;

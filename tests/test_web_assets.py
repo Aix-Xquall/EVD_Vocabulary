@@ -323,8 +323,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261022-msfc-verified-photos"', index_html)
-        self.assertIn('src="app.js?v=20261022-msfc-verified-photos"', index_html)
+        self.assertIn('href="styles.css?v=20261022-msfc-ui-tweaks"', index_html)
+        self.assertIn('src="app.js?v=20261022-msfc-object-photos"', index_html)
 
     def test_msfc_object_photos_use_licensed_sources_for_verified_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -338,7 +338,7 @@ class WebAssetsTests(unittest.TestCase):
             for quoted, plain in re.findall(r'^\s+(?:"([^"]+)"|([a-z]+)):', photo_source, re.M)
         }
         override_source = app_js.split("const OBJECT_PHOTO_OVERRIDES = Object.freeze({", 1)[1].split("});", 1)[0]
-        override_terms = set(re.findall(r'^\s+"([^"]+)": commonsPhoto', override_source, re.M))
+        override_terms = set(re.findall(r'^\s+"([^"]+)": (?:commonsPhoto|Object\.freeze)', override_source, re.M))
         verified_source = app_js.split("const OBJECT_VERIFIED_PHOTOS = new Set([", 1)[1].split("]);", 1)[0]
         verified_terms = set(re.findall(r'"([^"]+)"', verified_source))
         photographed = {
@@ -350,23 +350,48 @@ class WebAssetsTests(unittest.TestCase):
             with path.open(encoding="utf-8-sig", newline="") as stream:
                 csv_terms.update(row["word"].strip().lower() for row in csv.DictReader(stream))
 
-        self.assertEqual(69, len(terms))
-        self.assertEqual(69, len({term.lower() for term in terms}))
+        self.assertEqual(70, len(terms))
+        self.assertEqual(70, len({term.lower() for term in terms}))
         self.assertTrue({term.lower() for term in terms} <= csv_terms)
-        self.assertEqual(31, len(photographed))
+        self.assertEqual(35, len(photographed))
         self.assertEqual(verified_terms, photographed)
         self.assertIn("brazed joint", photographed)
         self.assertIn("permanent joint", photographed)
         self.assertIn("semi-permanent joint", photographed)
+        self.assertIn("countersinking", photographed)
+        for term, filename, source in (
+            ("mating flange", "mating-flange-photo.jpg", "Waveguide-flange-with-threaded-collar.jpg"),
+            ("shock mount", "shock-mount-photo.jpg", "Vibration isolator (1).JPG"),
+            ("equipment rack", "equipment-rack-photo.jpg", "Apollo Telescope Mount Rack 7025632.jpg"),
+        ):
+            self.assertIn(term, photographed)
+            self.assertIn(f'image: "images/{filename}"', override_source)
+            self.assertIn(source, override_source)
+            screenshot = (PROJECT_DIR / "web" / "images" / filename).read_bytes()
+            self.assertTrue(screenshot.startswith(b"\xff\xd8\xff"))
+            self.assertEqual(
+                screenshot,
+                (PROJECT_DIR / "output" / "images" / filename).read_bytes(),
+            )
+        self.assertIn('image: "images/countersinking-photo.jpg"', override_source)
+        screenshot = (PROJECT_DIR / "web" / "images" / "countersinking-photo.jpg").read_bytes()
+        self.assertTrue(screenshot.startswith(b"\xff\xd8\xff"))
+        self.assertEqual(
+            screenshot,
+            (PROJECT_DIR / "output" / "images" / "countersinking-photo.jpg").read_bytes(),
+        )
+        self.assertIn("Micky R. Jennings, Wenatchee Valley College / WA Open ProfTech / SBCTC", override_source)
+        self.assertIn("https://creativecommons.org/licenses/by/4.0/", override_source)
+        self.assertIn('photoEdit: "網站截圖裁切"', override_source)
         self.assertIn("BRAZED TRANSITION JOINTS", override_source)
         self.assertIn("Roostevabaterase keevisõmblus.jpg", override_source)
         self.assertIn("Bolted joint.jpg", override_source)
         self.assertNotIn("BRAZED SPECIMENS", override_source)
         self.assertNotIn('joint: commonsPhoto("Bolt, Plain washer', photo_source)
         self.assertTrue({
-            "upstream protective device", "exposed case", "mating flange", "jumper",
+            "upstream protective device", "exposed case", "jumper",
             "flat strap", "removable cover plate", "connector shell", "rotating joint",
-            "shock mount", "equipment rack", "connector body", "lint-free cloth",
+            "connector body", "lint-free cloth",
             "structural joint", "protective device", "preload-critical joint",
         }.isdisjoint(photographed))
         self.assertNotIn("objectIllustration", app_js)
