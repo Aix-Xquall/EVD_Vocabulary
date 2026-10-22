@@ -355,17 +355,20 @@ const OBJECT_SPECS = [
   ["cable shield termination", "cable"], ["tray-to-tray bond", "tray"],
 ];
 
-const OBJECT_WITHOUT_VERIFIED_PHOTO = new Set([
-  "active antenna element", "conductive gasket", "resilient conductive gasket",
-  "knitted wire mesh gasket", "fiber wool", "connector backshell",
-  "round strap", "tray-to-tray bond",
-  "soldered terminals", "bond strap terminal", "high-strength steel bolt",
-  "blind structural rivet", "blind nonstructural rivet", "milliohm meter",
-  "preload-critical joint", "piano hinge",
+// Show only photos whose visible object directly matches the vocabulary term.
+const OBJECT_VERIFIED_PHOTOS = new Set([
+  "space vehicle", "plumbing", "chassis", "micro-ohmmeter", "vehicle skin",
+  "brazed joint", "threaded fastener", "spring nut", "self-tapping screw",
+  "flat washer", "conical washer", "helical-spring washer", "lock washer",
+  "rivet", "strap", "Belleville washer", "metallic wool", "wire brush",
+  "gasket", "elastomeric gasket", "connector flange", "conductive pipe",
+  "nonmetallic tubing", "slip ring", "conductive metal strip",
+  "multilayer insulation", "honeycomb panel", "mounting bracket", "test lead",
+  "permanent joint", "semi-permanent joint",
 ]);
 
 const OBJECT_REFERENCES = Object.freeze(Object.fromEntries(OBJECT_SPECS.flatMap(([term, kind]) => {
-  if (OBJECT_WITHOUT_VERIFIED_PHOTO.has(term)) return [];
+  if (!OBJECT_VERIFIED_PHOTOS.has(term)) return [];
   const photo = OBJECT_PHOTO_OVERRIDES[term] || OBJECT_PHOTOS[kind];
   if (!photo) return [];
   const product = OBJECT_PRODUCT_REFERENCES[term];

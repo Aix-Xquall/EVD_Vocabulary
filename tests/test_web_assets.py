@@ -323,8 +323,8 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261020-msfc-object-audit"', index_html)
-        self.assertIn('src="app.js?v=20261020-msfc-object-audit"', index_html)
+        self.assertIn('href="styles.css?v=20261022-msfc-verified-photos"', index_html)
+        self.assertIn('src="app.js?v=20261022-msfc-verified-photos"', index_html)
 
     def test_msfc_object_photos_use_licensed_sources_for_verified_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
@@ -339,11 +339,11 @@ class WebAssetsTests(unittest.TestCase):
         }
         override_source = app_js.split("const OBJECT_PHOTO_OVERRIDES = Object.freeze({", 1)[1].split("});", 1)[0]
         override_terms = set(re.findall(r'^\s+"([^"]+)": commonsPhoto', override_source, re.M))
-        excluded_source = app_js.split("const OBJECT_WITHOUT_VERIFIED_PHOTO = new Set([", 1)[1].split("]);", 1)[0]
-        excluded_terms = set(re.findall(r'"([^"]+)"', excluded_source))
+        verified_source = app_js.split("const OBJECT_VERIFIED_PHOTOS = new Set([", 1)[1].split("]);", 1)[0]
+        verified_terms = set(re.findall(r'"([^"]+)"', verified_source))
         photographed = {
             term for term, kind in pairs
-            if term not in excluded_terms and (kind in photo_kinds or term in override_terms)
+            if term in verified_terms and (kind in photo_kinds or term in override_terms)
         }
         csv_terms = set()
         for path in (PROJECT_DIR / "vocabulary").glob("MSFC-HDBK-3697_*.csv"):
@@ -353,7 +353,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertEqual(69, len(terms))
         self.assertEqual(69, len({term.lower() for term in terms}))
         self.assertTrue({term.lower() for term in terms} <= csv_terms)
-        self.assertGreaterEqual(len(photographed), 45)
+        self.assertEqual(31, len(photographed))
+        self.assertEqual(verified_terms, photographed)
         self.assertIn("brazed joint", photographed)
         self.assertIn("permanent joint", photographed)
         self.assertIn("semi-permanent joint", photographed)
@@ -363,10 +364,11 @@ class WebAssetsTests(unittest.TestCase):
         self.assertNotIn("BRAZED SPECIMENS", override_source)
         self.assertNotIn('joint: commonsPhoto("Bolt, Plain washer', photo_source)
         self.assertTrue({
-            "soldered terminals", "bond strap terminal", "high-strength steel bolt",
-            "blind structural rivet", "blind nonstructural rivet", "milliohm meter",
-            "preload-critical joint", "piano hinge",
-        } <= excluded_terms)
+            "upstream protective device", "exposed case", "mating flange", "jumper",
+            "flat strap", "removable cover plate", "connector shell", "rotating joint",
+            "shock mount", "equipment rack", "connector body", "lint-free cloth",
+            "structural joint", "protective device", "preload-critical joint",
+        }.isdisjoint(photographed))
         self.assertNotIn("objectIllustration", app_js)
         self.assertNotIn("data:image/svg+xml", app_js)
         self.assertIn("Special:Redirect/file/", app_js)
