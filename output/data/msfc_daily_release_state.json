@@ -887,13 +887,7 @@
     "workmanship resistance measurement",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "fastener torque",
-    "critical bond path",
-    "drawing release",
-    "bonding note",
-    "title block"
-  ],
+  "released_today": [],
   "released_at": {
     "acid fluoride": "2026-10-05",
     "acidic material": "2026-10-05",

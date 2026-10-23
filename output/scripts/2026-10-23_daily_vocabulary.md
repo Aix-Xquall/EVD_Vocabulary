@@ -13578,7 +13578,7 @@ Aluminum may be nickel-plated before mating with stainless steel.
 
 **Pronunciation:** /kənˈdʌktɪv ˈfɪnɪʃ/
 
-**Chinese meaning:** 導電表面處理
+**Chinese meaning:** 導電塗層；導電表面處理
 
 **Category:** Bond Factors
 
@@ -13588,7 +13588,7 @@ Aluminum may be nickel-plated before mating with stainless steel.
 
 A conductive finish is retained on a prepared bonding surface.
 
-導電表面處理會保留在已處理的接合表面上。
+導電塗層會保留在已處理的接合表面上。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.5 REMOVAL OF NONCONDUCTIVE FILMS OR FINISHES，p. 31
 
@@ -13596,7 +13596,7 @@ A conductive finish is retained on a prepared bonding surface.
 
 A conductive finish is cleaned rather than removed before assembly.
 
-組裝前會清潔導電表面處理，而不是將其移除。
+組裝前會清潔導電塗層，而不是將其移除。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，5.3.6.5 REMOVAL OF NONCONDUCTIVE FILMS OR FINISHES，p. 31
 
