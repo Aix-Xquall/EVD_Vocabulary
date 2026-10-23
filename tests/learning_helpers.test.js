@@ -8,6 +8,7 @@ const {
   describePluralAnswerRequirement,
   describeVerbAnswerRequirement,
   findClosestVocabularyMatch,
+  findChineseVerbHighlightRanges,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
   findVocabularySource,
@@ -356,6 +357,29 @@ test("tense highlights match complete words instead of substrings", () => {
     findLiteralHighlightRanges("The consultant should review this issue.", ["should review"]),
     [{ start: 15, end: 28 }],
   );
+});
+
+test("Chinese translations bold only a matching English verb equivalent", () => {
+  const design = "機箱設計會考量針織金屬網墊片。";
+  const inspection = "整合團隊在組裝期間會檢查彈性體墊片。";
+  assert.deepEqual(
+    findChineseVerbHighlightRanges(design, ["accounts"]).map(({ start, end }) => design.slice(start, end)),
+    ["考量"],
+  );
+  assert.deepEqual(
+    findChineseVerbHighlightRanges(inspection, ["checks"]).map(({ start, end }) => inspection.slice(start, end)),
+    ["檢查"],
+  );
+  assert.deepEqual(
+    findChineseVerbHighlightRanges("安裝人員會在完成接頭前檢查壓窩成形。", ["reviews"])
+      .map(({ start, end }) => "安裝人員會在完成接頭前檢查壓窩成形。".slice(start, end)),
+    ["檢查"],
+  );
+  assert.deepEqual(
+    findChineseVerbHighlightRanges("導電塗層會保留在接合表面上。", ["is"]),
+    [],
+  );
+  assert.deepEqual(findChineseVerbHighlightRanges(inspection, ["accounts"]), []);
 });
 
 test("pronunciation omits the YouGlish suffix", () => {

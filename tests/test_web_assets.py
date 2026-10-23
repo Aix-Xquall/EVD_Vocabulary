@@ -279,7 +279,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20261019-msfc-new-words"></script>',
+            '<script src="learning_helpers.js?v=20261023-gasket-verb"></script>',
             index_html,
         )
 
@@ -323,10 +323,10 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261022-msfc-ui-tweaks"', index_html)
-        self.assertIn('src="app.js?v=20261022-msfc-object-photos"', index_html)
+        self.assertIn('href="styles.css?v=20261023-gasket-verb"', index_html)
+        self.assertIn('src="app.js?v=20261023-gasket-verb"', index_html)
 
-    def test_msfc_object_photos_use_licensed_sources_for_verified_terms(self):
+    def test_msfc_object_photos_use_attributed_sources_for_verified_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         specs = app_js.split("const OBJECT_SPECS = [", 1)[1].split("];", 1)[0]
@@ -353,12 +353,21 @@ class WebAssetsTests(unittest.TestCase):
         self.assertEqual(70, len(terms))
         self.assertEqual(70, len({term.lower() for term in terms}))
         self.assertTrue({term.lower() for term in terms} <= csv_terms)
-        self.assertEqual(35, len(photographed))
+        self.assertEqual(36, len(photographed))
         self.assertEqual(verified_terms, photographed)
         self.assertIn("brazed joint", photographed)
         self.assertIn("permanent joint", photographed)
         self.assertIn("semi-permanent joint", photographed)
         self.assertIn("countersinking", photographed)
+        for term, filename, source in (
+            ("knitted wire mesh gasket", "knittedmesh_large.jpg", "knitted-wire-mesh-gaskets/"),
+            ("elastomeric gasket", "elecconduct_large.jpg", "conductive-elastomer/"),
+        ):
+            self.assertIn(term, photographed)
+            self.assertIn(f'"{term}": Object.freeze({{', override_source)
+            self.assertIn(filename, override_source)
+            self.assertIn(source, override_source)
+        self.assertIn("© Shielding Solutions Ltd，非開放授權", override_source)
         for term, filename, source in (
             ("mating flange", "mating-flange-photo.jpg", "Waveguide-flange-with-threaded-collar.jpg"),
             ("shock mount", "shock-mount-photo.jpg", "Vibration isolator (1).JPG"),
@@ -477,8 +486,11 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("tense?.display_formula || tense?.formula", app_js)
         self.assertNotIn("modalNote", app_js)
         self.assertIn("tense-target", app_js)
+        self.assertIn("findChineseVerbHighlightRanges(value, tense?.highlights)", app_js)
+        self.assertIn('className: "translation-verb"', app_js)
         self.assertIn("tense-note", app_js)
         self.assertIn(".tense-target", styles_css)
+        self.assertIn(".translation-verb", styles_css)
         self.assertIn(".tense-note", styles_css)
         self.assertIn('id="exampleOneSource"', index_html)
         self.assertIn('id="exampleTwoSource"', index_html)

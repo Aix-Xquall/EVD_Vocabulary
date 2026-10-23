@@ -37,6 +37,7 @@ const {
   describePluralAnswerRequirement,
   describeVerbAnswerRequirement,
   findClosestVocabularyMatch,
+  findChineseVerbHighlightRanges,
   findLiteralHighlightRanges,
   findTargetPhraseMatches,
   findVocabularySource,
@@ -311,7 +312,20 @@ const OBJECT_PHOTO_OVERRIDES = Object.freeze({
   "brazed joint": commonsPhoto("BRAZED TRANSITION JOINTS - 1 UNBRAZED ASSEMBLY - 2 BRAZED PIPE JOINTS - NARA - 17443720.jpg", "NASA / U.S. National Archives", "Public domain"),
   "connector flange": commonsPhoto("EIA parts.jpg", "LUNDAVRA", "CC BY 2.5"),
   "metallic wool": commonsPhoto("Steel-wool.jpg", "Johan", "CC BY-SA 3.0"),
-  "elastomeric gasket": commonsPhoto("Phone with rubber gasket.JPG", "Givememyusername", "CC BY-SA 3.0"),
+  "elastomeric gasket": Object.freeze({
+    image: "https://shielding-solutions.com/wp-content/uploads/2015/05/elecconduct_large.jpg",
+    source: "https://shielding-solutions.com/product/conductive-elastomer/",
+    author: "Shielding Solutions Ltd",
+    license: "© Shielding Solutions Ltd，非開放授權",
+    licenseUrl: "https://shielding-solutions.com/product/conductive-elastomer/",
+  }),
+  "knitted wire mesh gasket": Object.freeze({
+    image: "https://shielding-solutions.com/wp-content/uploads/2015/05/knittedmesh_large.jpg",
+    source: "https://shielding-solutions.com/product/knitted-wire-mesh-gaskets/",
+    author: "Shielding Solutions Ltd",
+    license: "© Shielding Solutions Ltd，非開放授權",
+    licenseUrl: "https://shielding-solutions.com/product/knitted-wire-mesh-gaskets/",
+  }),
   "piano hinge": commonsPhoto("Teardrop plastic piano hinge.jpg", "Wikiwerks", "Public domain"),
   "permanent joint": commonsPhoto("Roostevabaterase keevisõmblus.jpg", "Tanel Eensoo", "CC BY-SA 3.0"),
   "semi-permanent joint": commonsPhoto("Bolted joint.jpg", "NASA", "Public domain"),
@@ -384,7 +398,7 @@ const OBJECT_VERIFIED_PHOTOS = new Set([
   "brazed joint", "threaded fastener", "mating flange", "spring nut", "self-tapping screw", "countersinking",
   "flat washer", "conical washer", "helical-spring washer", "lock washer",
   "rivet", "strap", "Belleville washer", "metallic wool", "wire brush",
-  "gasket", "elastomeric gasket", "connector flange", "conductive pipe",
+  "gasket", "elastomeric gasket", "knitted wire mesh gasket", "connector flange", "conductive pipe",
   "nonmetallic tubing", "slip ring", "conductive metal strip",
   "shock mount", "multilayer insulation", "honeycomb panel", "equipment rack", "mounting bracket", "test lead",
   "permanent joint", "semi-permanent joint",
@@ -2490,7 +2504,11 @@ function renderHighlightedRanges(value, ranges) {
 }
 
 function renderTranslationWithTense(translation, tense) {
-  const text = escapeHtml(translation || "");
+  const value = String(translation || "");
+  const verbRanges = findChineseVerbHighlightRanges(value, tense?.highlights);
+  const text = verbRanges.length > 0
+    ? renderHighlightedRanges(value, verbRanges.map((range) => ({ ...range, className: "translation-verb" })))
+    : escapeHtml(value);
   const translationHtml = `<span class="translation-text">${text}</span>`;
   const name = String(tense?.display_name_zh || tense?.name_zh || "").trim();
   const formula = String(tense?.display_formula || tense?.formula || "").trim();

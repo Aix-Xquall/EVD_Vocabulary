@@ -823,6 +823,10 @@ h2 {
   font-weight: 700;
 }
 
+.translation-verb {
+  font-weight: 700;
+}
+
 .tense-note {
   display: inline-block;
   margin-top: 0.35rem;

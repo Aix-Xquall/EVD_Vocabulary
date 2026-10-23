@@ -79,6 +79,13 @@ class VocabularyDataTests(unittest.TestCase):
         self.assertIn("隔振座", row["example_1_zh"])
         self.assertIn("RF 搭接", row["example_1_zh"])
 
+    def test_conductive_finish_mentions_coating_and_broader_surface_finish(self):
+        row = next(row for row in read_msfc_rows() if row["word"] == "conductive finish")
+
+        self.assertEqual(row["chinese_meaning"], "導電塗層；導電表面處理")
+        self.assertIn("導電塗層", row["example_1_zh"])
+        self.assertIn("導電塗層", row["example_2_zh"])
+
     def test_daq_word_and_examples_use_full_name_with_abbreviation(self):
         rows = read_rows(EMC_ONE_PATH)
         daq_row = next(row for row in rows if "(DAQ)" in row["word"])

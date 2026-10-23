@@ -7,6 +7,52 @@
     root.EvdLearningHelpers = helpers;
   }
 }(typeof window !== "undefined" ? window : globalThis, () => {
+  const chineseVerbEquivalents = [
+    [/\baccount(?:s|ed|ing)?\b/i, ["考量", "考慮"]],
+    [/\bcheck(?:s|ed|ing)?\b/i, ["檢查", "確認"]],
+    [/\breview(?:s|ed|ing)?\b/i, ["審查", "檢視", "複習", "檢查"]],
+    [/\bevaluat(?:e|es|ed|ing)\b/i, ["評估"]],
+    [/\bconsider(?:s|ed|ing)?\b/i, ["考慮", "考量"]],
+    [/\bexamin(?:e|es|ed|ing)\b/i, ["檢視", "檢查"]],
+    [/\brecord(?:s|ed|ing)?\b/i, ["記錄", "紀錄"]],
+    [/\binclud(?:e|es|ed|ing)\b/i, ["包含", "包括", "納入"]],
+    [/\bhelp(?:s|ed|ing)?\b/i, ["協助", "幫助", "有助於"]],
+    [/\breduc(?:e|es|ed|ing)\b/i, ["降低", "減少"]],
+    [/\bprovid(?:e|es|ed|ing)\b/i, ["提供"]],
+    [/\bincreas(?:e|es|ed|ing)\b/i, ["增加", "提高"]],
+    [/\bimprov(?:e|es|ed|ing)\b/i, ["改善", "提升"]],
+    [/\bprevent(?:s|ed|ing)?\b/i, ["防止", "避免"]],
+    [/\bsupport(?:s|ed|ing)?\b/i, ["支援", "支持"]],
+    [/\bdefin(?:e|es|ed|ing)\b/i, ["定義", "界定"]],
+    [/\brequir(?:e|es|ed|ing)\b/i, ["需要", "要求"]],
+    [/\bneed(?:s|ed|ing)?\b/i, ["需要"]],
+    [/\bus(?:e|es|ed|ing)\b/i, ["使用", "採用"]],
+    [/\bcreat(?:e|es|ed|ing)\b/i, ["建立", "產生", "造成"]],
+    [/\baffect(?:s|ed|ing)?\b/i, ["影響"]],
+    [/\bconnect(?:s|ed|ing)?\b/i, ["連接", "連結"]],
+    [/\bfollow(?:s|ed|ing)?\b/i, ["遵循", "依照"]],
+    [/\bidentif(?:y|ies|ied|ying)\b/i, ["識別", "辨識", "找出"]],
+    [/\binspect(?:s|ed|ing)?\b/i, ["檢查", "檢驗"]],
+    [/\bmeasur(?:e|es|ed|ing)\b/i, ["量測", "測量"]],
+    [/\bverif(?:y|ies|ied|ying)\b/i, ["驗證", "確認"]],
+    [/\bclean(?:s|ed|ing)?\b/i, ["清潔", "清理"]],
+    [/\bremov(?:e|es|ed|ing)\b/i, ["移除", "去除"]],
+    [/\bretain(?:s|ed|ing)?\b/i, ["保留"]],
+    [/\binstall(?:s|ed|ing)?\b/i, ["安裝"]],
+    [/\bconfirm(?:s|ed|ing)?\b/i, ["確認"]],
+    [/\btest(?:s|ed|ing)?\b/i, ["測試"]],
+    [/\bcompar(?:e|es|ed|ing)\b/i, ["比較"]],
+    [/\bensur(?:e|es|ed|ing)\b/i, ["確保"]],
+    [/\bprotect(?:s|ed|ing)?\b/i, ["保護"]],
+    [/\ballow(?:s|ed|ing)?\b/i, ["允許", "讓"]],
+    [/\bselect(?:s|ed|ing)?\b/i, ["選擇"]],
+    [/\bcontrol(?:s|led|ling)?\b/i, ["控制"]],
+    [/\bmaintain(?:s|ed|ing)?\b/i, ["維持", "保持"]],
+    [/\bdevelop(?:s|ed|ing)?\b/i, ["開發", "發展"]],
+    [/\bestablish(?:es|ed|ing)?\b/i, ["建立"]],
+    [/\b(?:am|is|are|was|were|be|been|being)\b/i, ["是"]],
+  ];
+
   function repeatCountForWord(mastered, configuredCount, includeExamples = false) {
     const repeatCount = Math.max(1, Number(configuredCount) || 1);
     return mastered && !includeExamples ? 2 : repeatCount;
@@ -513,6 +559,20 @@
     return ranges;
   }
 
+  function findChineseVerbHighlightRanges(translation, englishHighlights = []) {
+    const text = String(translation || "");
+    const ranges = [];
+    if (!Array.isArray(englishHighlights)) return ranges;
+    englishHighlights.forEach((highlight) => {
+      chineseVerbEquivalents.forEach(([pattern, equivalents]) => {
+        if (!pattern.test(String(highlight || ""))) return;
+        const equivalent = equivalents.find((candidate) => text.includes(candidate));
+        if (equivalent) ranges.push(...findLiteralHighlightRanges(text, [equivalent]));
+      });
+    });
+    return ranges;
+  }
+
   function isWordCharacter(value) {
     return /[A-Za-z0-9'’]/.test(String(value || ""));
   }
@@ -565,6 +625,7 @@
     describePluralAnswerRequirement,
     describeVerbAnswerRequirement,
     findClosestVocabularyMatch,
+    findChineseVerbHighlightRanges,
     findLiteralHighlightRanges,
     findTargetPhraseMatches,
     findVocabularySource,
