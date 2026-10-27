@@ -279,7 +279,7 @@ class WebAssetsTests(unittest.TestCase):
 
         self.assertIn("ipaVowelHighlightSegments(word?.pronunciation)", app_js)
         self.assertIn(
-            '<script src="learning_helpers.js?v=20261023-gasket-verb"></script>',
+            '<script src="learning_helpers.js?v=20261027-washer-images"></script>',
             index_html,
         )
 
@@ -323,10 +323,10 @@ class WebAssetsTests(unittest.TestCase):
             32,
             len(re.findall(r'\["[^"]+", "#[0-9a-f]{6}"\]', palette_source)),
         )
-        self.assertIn('href="styles.css?v=20261023-gasket-verb"', index_html)
-        self.assertIn('src="app.js?v=20261023-gasket-verb"', index_html)
+        self.assertIn('href="styles.css?v=20261027-washer-images"', index_html)
+        self.assertIn('src="app.js?v=20261027-washer-images"', index_html)
 
-    def test_msfc_object_photos_use_attributed_sources_for_verified_terms(self):
+    def test_object_photos_use_attributed_sources_for_verified_terms(self):
         app_js = (PROJECT_DIR / "web" / "app.js").read_text(encoding="utf-8")
         index_html = (PROJECT_DIR / "web" / "index.html").read_text(encoding="utf-8")
         specs = app_js.split("const OBJECT_SPECS = [", 1)[1].split("];", 1)[0]
@@ -346,15 +346,19 @@ class WebAssetsTests(unittest.TestCase):
             if term in verified_terms and (kind in photo_kinds or term in override_terms)
         }
         csv_terms = set()
-        for path in (PROJECT_DIR / "vocabulary").glob("MSFC-HDBK-3697_*.csv"):
+        for path in (PROJECT_DIR / "vocabulary").glob("*.csv"):
+            if path.name == "hard_words.csv":
+                continue
             with path.open(encoding="utf-8-sig", newline="") as stream:
                 csv_terms.update(row["word"].strip().lower() for row in csv.DictReader(stream))
 
-        self.assertEqual(70, len(terms))
-        self.assertEqual(70, len({term.lower() for term in terms}))
+        self.assertEqual(72, len(terms))
+        self.assertEqual(72, len({term.lower() for term in terms}))
         self.assertTrue({term.lower() for term in terms} <= csv_terms)
-        self.assertEqual(36, len(photographed))
+        self.assertEqual(42, len(photographed))
         self.assertEqual(verified_terms, photographed)
+        self.assertTrue({term for term in csv_terms if "washer" in term} <= {term.lower() for term in photographed})
+        self.assertIn('"star-washer": commonsPhoto("1990s external tooth lock washers stored on a machine bolt.jpg", "R. Henrik Nilsson", "CC BY 4.0")', photo_source)
         self.assertIn("brazed joint", photographed)
         self.assertIn("permanent joint", photographed)
         self.assertIn("semi-permanent joint", photographed)
@@ -362,12 +366,19 @@ class WebAssetsTests(unittest.TestCase):
         for term, filename, source in (
             ("knitted wire mesh gasket", "knittedmesh_large.jpg", "knitted-wire-mesh-gaskets/"),
             ("elastomeric gasket", "elecconduct_large.jpg", "conductive-elastomer/"),
+            ("bonding clamp", "an735d34__85548.1402513769.jpg", "an735d34-loop-type-bonding-clamp/"),
+            ("plain bonding clamp", "an735d34__85548.1402513769.jpg", "an735d34-loop-type-bonding-clamp/"),
+            ("cushion clamp", "MS21919-DG8.jpg", "ms21919clamps.php"),
+            ("rotating joint", "shaft-earthing-device1.jpg", "shaft-earthing-device"),
+            ("slip ring", "AW6018-helicopter-slip-rings-grey-bkgrd.jpg", "helicopter-slip-rings.html"),
         ):
             self.assertIn(term, photographed)
             self.assertIn(f'"{term}": Object.freeze({{', override_source)
             self.assertIn(filename, override_source)
             self.assertIn(source, override_source)
         self.assertIn("© Shielding Solutions Ltd，非開放授權", override_source)
+        self.assertIn("slip ring", photographed)
+        self.assertNotIn("paint bonding clamp", terms)
         for term, filename, source in (
             ("mating flange", "mating-flange-photo.jpg", "Waveguide-flange-with-threaded-collar.jpg"),
             ("shock mount", "shock-mount-photo.jpg", "Vibration isolator (1).JPG"),
@@ -399,7 +410,7 @@ class WebAssetsTests(unittest.TestCase):
         self.assertNotIn('joint: commonsPhoto("Bolt, Plain washer', photo_source)
         self.assertTrue({
             "upstream protective device", "exposed case", "jumper",
-            "flat strap", "removable cover plate", "connector shell", "rotating joint",
+            "flat strap", "removable cover plate", "connector shell",
             "connector body", "lint-free cloth",
             "structural joint", "protective device", "preload-critical joint",
         }.isdisjoint(photographed))
@@ -601,7 +612,8 @@ class WebAssetsTests(unittest.TestCase):
         self.assertIn("english_voice: state.englishVoice", app_js)
         self.assertIn('segment.voices[state.englishVoice]', app_js)
         self.assertIn("su: state.practiceSettingsUpdatedAt", app_js)
-        self.assertLess(index_html.index('class="settings-panel"'), index_html.index('class="player-layout"'))
+        self.assertLess(index_html.index('class="settings-panel"'), index_html.index('class="chapter-picker"'))
+        self.assertLess(index_html.index('class="chapter-picker"'), index_html.index('class="player-layout"'))
         self.assertGreater(index_html.index('class="statistics-panel"'), index_html.index('class="practice-panel"'))
         self.assertNotIn("speechSynthesis", app_js)
         self.assertNotIn("<h1>每日工程英文</h1>", index_html)
