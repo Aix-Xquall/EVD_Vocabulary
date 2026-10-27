@@ -892,13 +892,7 @@
     "workmanship resistance measurement",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "drawing leader",
-    "surface finish callout",
-    "electrically conductive surface",
-    "masking requirement",
-    "chemical film treatment"
-  ],
+  "released_today": [],
   "released_at": {
     "acid fluoride": "2026-10-05",
     "acidic material": "2026-10-05",
