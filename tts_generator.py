@@ -328,12 +328,18 @@ def _tts_provider(settings: Settings) -> str:
 
 def _synthesize_segment(settings: Settings, text: str, language: str, output_file: Path) -> None:
     if _tts_provider(settings) == "google":
-        _synthesize_google_text(
-            settings,
-            _speech_text_for_audio(text, language),
-            language,
-            output_file,
-        )
+        pronunciation_markup = _chinese_pronunciation_markup(text, "google") if language == "zh" else None
+        if pronunciation_markup:
+            _synthesize_google_input(
+                settings, f"<speak>{pronunciation_markup}</speak>", language, output_file, use_ssml=True
+            )
+        else:
+            _synthesize_google_text(
+                settings,
+                _speech_text_for_audio(text, language),
+                language,
+                output_file,
+            )
         return
     _synthesize_ssml(settings, _segment_ssml(text, language, settings), output_file)
 
@@ -469,7 +475,10 @@ def _entry_ssml(entry: VocabularyEntry, settings: Settings) -> str:
 
 def _segment_ssml(text: str, language: str, settings: Settings) -> str:
     if language == "zh":
-        return _wrap_ssml(_voice_segment(text, _voice_name_for_language(settings, "zh"), "0%", language="zh-TW"))
+        return _wrap_ssml(_voice_segment(
+            text, _voice_name_for_language(settings, "zh"), "0%", language="zh-TW",
+            provider=_tts_provider(settings),
+        ))
     return _wrap_ssml(_voice_segment(text, _voice_name_for_language(settings, "en"), settings.speech_rate))
 
 
@@ -494,6 +503,7 @@ def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
                     rate,
                     "500ms",
                     "zh-TW",
+                    provider=_tts_provider(settings),
                 ),
             ]
         )
@@ -512,6 +522,7 @@ def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
                     rate,
                     "500ms",
                     "zh-TW",
+                    provider=_tts_provider(settings),
                 ),
             ]
         )
@@ -530,6 +541,7 @@ def _entry_content(entry: VocabularyEntry, settings: Settings) -> str:
                     rate,
                     "600ms",
                     "zh-TW",
+                    provider=_tts_provider(settings),
                 ),
             ]
         )
@@ -549,11 +561,15 @@ def _voice_segment(
     rate: str,
     break_time: str | None = None,
     language: str | None = None,
+    provider: str = "azure",
 ) -> str:
     escaped_rate = html.escape(rate)
     escaped_voice = html.escape(voice)
     audio_language = "zh" if language else "en"
-    escaped_text = _escape(_speech_text_for_audio(text, audio_language))
+    escaped_text = (
+        _chinese_pronunciation_markup(text, provider)
+        if language else None
+    ) or _escape(_speech_text_for_audio(text, audio_language))
     if language:
         content = (
             f'<lang xml:lang="{html.escape(language)}">'
@@ -591,7 +607,10 @@ def _segment_relative_path(text: str, language: str, settings: Settings) -> str:
     voice = _voice_name_for_language(settings, language)
     rate = "0%" if language == "zh" else settings.speech_rate
     provider_prefix = "" if provider == "azure" else f"{provider}|"
-    key = f"{provider_prefix}{language}|{voice}|{rate}|{_speech_text_for_audio(text, language)}"
+    spoken = (
+        _chinese_pronunciation_markup(text, provider) if language == "zh" else None
+    ) or _speech_text_for_audio(text, language)
+    key = f"{provider_prefix}{language}|{voice}|{rate}|{spoken}"
     digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:24]
     return f"audio/segments/{language}/{digest}.mp3"
 
@@ -622,5 +641,24 @@ def _speech_text_for_audio(text: str, language: str) -> str:
     if language == "zh":
         return value.replace("地", "第")
     return expand_abbreviations_for_speech(value)
+
+
+def _chinese_pronunciation_markup(text: str, provider: str) -> str | None:
+    spoken = _speech_text_for_audio(text, "zh")
+    if "量測" not in spoken and "夾具" not in spoken:
+        return None
+    pronunciations = (
+        ("量測", "量", "測", "liang2", "ㄌㄧㄤˊ"),
+        ("夾具", "夾", "具", "jia2", "ㄐㄧㄚˊ"),
+    )
+    alphabet = "pinyin" if provider == "google" else "sapi"
+    markup = html.escape(spoken)
+    for phrase, character, suffix, pinyin, bopomofo in pronunciations:
+        phoneme = pinyin if provider == "google" else bopomofo
+        markup = markup.replace(
+            phrase,
+            f'<phoneme alphabet="{alphabet}" ph="{phoneme}">{character}</phoneme>{suffix}',
+        )
+    return markup
 
 

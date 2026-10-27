@@ -1,4 +1,6 @@
+import hashlib
 import unittest
+from unittest.mock import patch
 from datetime import date
 from pathlib import Path
 import tempfile
@@ -301,6 +303,39 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertIn("第面接第點", ssml)
         self.assertNotIn("地面接地點", ssml)
         self.assertEqual(display_path, spoken_path)
+
+    def test_chinese_measurement_and_clamp_use_requested_pronunciations(self):
+        text = "進行夾具量測。"
+        google_settings = Settings(generate_audio=False, tts_provider="google")
+        azure_settings = Settings(generate_audio=False, tts_provider="azure")
+        google_markup = tts_generator._chinese_pronunciation_markup(text, "google")
+        azure_ssml = _segment_ssml(text, "zh", azure_settings)
+
+        self.assertIn('<phoneme alphabet="pinyin" ph="jia2">夾</phoneme>具', google_markup)
+        self.assertIn('<phoneme alphabet="pinyin" ph="liang2">量</phoneme>測', google_markup)
+        self.assertIn('<phoneme alphabet="sapi" ph="ㄐㄧㄚˊ">夾</phoneme>具', azure_ssml)
+        self.assertIn('<phoneme alphabet="sapi" ph="ㄌㄧㄤˊ">量</phoneme>測', azure_ssml)
+        ElementTree.fromstring(f"<speak>{google_markup}</speak>")
+        ElementTree.fromstring(azure_ssml)
+        self.assertIsNone(tts_generator._chinese_pronunciation_markup("測量角度", "google"))
+
+        original_path = expected_segment_audio_paths(
+            [{"id": "1", "chinese_meaning": "進行夾具量測。"}], google_settings
+        )["1"]["meaning"]["src"]
+        unchanged_path = expected_segment_audio_paths(
+            [{"id": "1", "chinese_meaning": "測量角度"}], google_settings
+        )["1"]["meaning"]["src"]
+        old_key = f"google|zh|{google_settings.google_chinese_voice}|0%|{text}"
+        old_digest = hashlib.sha256(old_key.encode("utf-8")).hexdigest()[:24]
+        self.assertNotEqual(original_path, f"audio/segments/zh/{old_digest}.mp3")
+        unchanged_key = f"google|zh|{google_settings.google_chinese_voice}|0%|測量角度"
+        unchanged_digest = hashlib.sha256(unchanged_key.encode("utf-8")).hexdigest()[:24]
+        self.assertEqual(unchanged_path, f"audio/segments/zh/{unchanged_digest}.mp3")
+
+        with patch.object(tts_generator, "_synthesize_google_input") as synthesize:
+            tts_generator._synthesize_segment(google_settings, text, "zh", Path("test.mp3"))
+        self.assertTrue(synthesize.call_args.kwargs["use_ssml"])
+        self.assertIn(google_markup, synthesize.call_args.args[1])
 
     def test_english_audio_expands_known_engineering_abbreviations(self):
         spoken = _speech_text_for_audio(
