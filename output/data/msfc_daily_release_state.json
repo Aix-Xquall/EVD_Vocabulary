@@ -897,13 +897,7 @@
     "workmanship resistance measurement",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "electroless nickel plate",
-    "free iron contamination",
-    "corrosion inhibiting compound",
-    "strippable plastic coating",
-    "exposed surface"
-  ],
+  "released_today": [],
   "released_at": {
     "acid fluoride": "2026-10-05",
     "acidic material": "2026-10-05",
