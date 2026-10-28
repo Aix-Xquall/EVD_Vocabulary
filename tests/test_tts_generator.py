@@ -337,6 +337,26 @@ class TtsGeneratorTests(unittest.TestCase):
         self.assertTrue(synthesize.call_args.kwargs["use_ssml"])
         self.assertIn(google_markup, synthesize.call_args.args[1])
 
+    def test_chinese_tolerance_pronounces_cha_with_first_tone(self):
+        text = "檢查施工公差。"
+        google_settings = Settings(generate_audio=False, tts_provider="google")
+        azure_settings = Settings(generate_audio=False, tts_provider="azure")
+        google_markup = tts_generator._chinese_pronunciation_markup(text, "google")
+        azure_ssml = _segment_ssml(text, "zh", azure_settings)
+
+        self.assertIn('公<phoneme alphabet="pinyin" ph="cha1">差</phoneme>', google_markup)
+        self.assertIn('公<phoneme alphabet="sapi" ph="ㄔㄚ">差</phoneme>', azure_ssml)
+        ElementTree.fromstring(f"<speak>{google_markup}</speak>")
+        ElementTree.fromstring(azure_ssml)
+        self.assertIsNone(tts_generator._chinese_pronunciation_markup("分析差異", "google"))
+
+        path = expected_segment_audio_paths(
+            [{"id": "1", "chinese_meaning": text}], google_settings
+        )["1"]["meaning"]["src"]
+        old_key = f"google|zh|{google_settings.google_chinese_voice}|0%|{text}"
+        old_digest = hashlib.sha256(old_key.encode("utf-8")).hexdigest()[:24]
+        self.assertNotEqual(path, f"audio/segments/zh/{old_digest}.mp3")
+
     def test_english_audio_expands_known_engineering_abbreviations(self):
         spoken = _speech_text_for_audio(
             "EMC, E3, EPDS, MIL-STD-461, and Data Acquisition (DAQ)",

@@ -645,20 +645,21 @@ def _speech_text_for_audio(text: str, language: str) -> str:
 
 def _chinese_pronunciation_markup(text: str, provider: str) -> str | None:
     spoken = _speech_text_for_audio(text, "zh")
-    if "量測" not in spoken and "夾具" not in spoken:
+    if not any(phrase in spoken for phrase in ("量測", "夾具", "公差")):
         return None
     pronunciations = (
-        ("量測", "量", "測", "liang2", "ㄌㄧㄤˊ"),
-        ("夾具", "夾", "具", "jia2", "ㄐㄧㄚˊ"),
+        ("量測", "量", "liang2", "ㄌㄧㄤˊ"),
+        ("夾具", "夾", "jia2", "ㄐㄧㄚˊ"),
+        ("公差", "差", "cha1", "ㄔㄚ"),
     )
     alphabet = "pinyin" if provider == "google" else "sapi"
     markup = html.escape(spoken)
-    for phrase, character, suffix, pinyin, bopomofo in pronunciations:
+    for phrase, character, pinyin, bopomofo in pronunciations:
         phoneme = pinyin if provider == "google" else bopomofo
-        markup = markup.replace(
-            phrase,
-            f'<phoneme alphabet="{alphabet}" ph="{phoneme}">{character}</phoneme>{suffix}',
+        marked = phrase.replace(
+            character, f'<phoneme alphabet="{alphabet}" ph="{phoneme}">{character}</phoneme>'
         )
+        markup = markup.replace(phrase, marked)
     return markup
 
 
