@@ -16256,7 +16256,7 @@ The engineering team reviews "free iron contamination" before releasing the draw
 
 **Pronunciation:** /kərˈoʊʒən ˌɪnˈhɪbətɪŋ ˈkɑmpaʊnd/
 
-**Chinese meaning:** 腐蝕抑制劑
+**Chinese meaning:** 防蝕保護劑
 
 **Category:** Verification & Drawings
 
@@ -16266,7 +16266,7 @@ The engineering team reviews "free iron contamination" before releasing the draw
 
 The reviewer checks the corrosion inhibiting compound before releasing the drawing.
 
-圖面發行前，審查人員會檢查腐蝕抑制劑。
+圖面發行前，審查人員會檢查防蝕保護劑。
 
 **Source:** 主題參考｜MSFC-HDBK-3697.pdf，6.4.4 PROTECTION OF EXPOSED SURFACES，p. 48
 
@@ -16274,7 +16274,7 @@ The reviewer checks the corrosion inhibiting compound before releasing the drawi
 
 The engineering team reviews "corrosion inhibiting compound" before releasing the drawing.
 
-工程團隊會在圖面發行前審查「腐蝕抑制劑」。
+工程團隊會在圖面發行前審查「防蝕保護劑」。
 
 **Source:** 改寫自｜MSFC-HDBK-3697.pdf，6.4.4 PROTECTION OF EXPOSED SURFACES，p. 48
 
