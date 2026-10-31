@@ -907,13 +907,7 @@
     "workmanship resistance measurement",
     "worst-case simultaneous operation"
   ],
-  "released_today": [
-    "installation sequence",
-    "environmental exposure",
-    "checklist item",
-    "designated bond area",
-    "clean mating surface"
-  ],
+  "released_today": [],
   "released_at": {
     "acid fluoride": "2026-10-05",
     "acidic material": "2026-10-05",
