@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_release_date": "2026-11-11",
+  "last_release_date": "2026-11-12",
   "released_words": [
     "360-degree termination",
     "abrasive material",
@@ -661,6 +661,7 @@
     "preload",
     "preload-critical joint",
     "price",
+    "primary structure",
     "procedure",
     "process control",
     "procurement",
@@ -757,6 +758,7 @@
     "seafood",
     "sealant",
     "seam",
+    "secondary structure",
     "secure attachment",
     "security check",
     "self-compatibility",
@@ -867,6 +869,7 @@
     "terminal",
     "terminal stack",
     "termination strategy",
+    "tertiary structure",
     "test data sheet",
     "test lead",
     "test plan",
@@ -886,6 +889,7 @@
     "tin whisker",
     "tinned copper",
     "title block",
+    "to fay",
     "toilet",
     "tolerance",
     "too big",
@@ -945,14 +949,15 @@
     "work instruction",
     "workmanship",
     "workmanship resistance measurement",
-    "worst-case simultaneous operation"
+    "worst-case simultaneous operation",
+    "zero reference potential"
   ],
   "released_today": [
-    "complex quantity",
-    "imaginary part",
-    "surface resistance",
-    "bulk resistivity",
-    "electrostatic charge"
+    "zero reference potential",
+    "primary structure",
+    "secondary structure",
+    "tertiary structure",
+    "to fay"
   ],
   "released_at": {
     "acceptance criterion": "2026-11-05",
@@ -1155,6 +1160,7 @@
     "power current return": "2026-09-25",
     "power return bond": "2026-09-25",
     "preload-critical joint": "2026-09-29",
+    "primary structure": "2026-11-12",
     "process control": "2026-11-05",
     "product technical requirement": "2026-09-23",
     "production inspection": "2026-10-22",
@@ -1175,6 +1181,7 @@
     "resonant frequency": "2026-10-01",
     "rotating joint": "2026-10-14",
     "round strap": "2026-10-01",
+    "secondary structure": "2026-11-12",
     "secure attachment": "2026-10-01",
     "self-tapping screw": "2026-09-29",
     "semi-permanent joint": "2026-09-28",
@@ -1203,11 +1210,13 @@
     "system element": "2026-09-24",
     "technical constraint": "2026-09-23",
     "terminal stack": "2026-10-02",
+    "tertiary structure": "2026-11-12",
     "test data sheet": "2026-10-19",
     "test lead": "2026-11-06",
     "thin paint": "2026-10-08",
     "threat frequency": "2026-10-12",
     "title block": "2026-10-23",
+    "to fay": "2026-11-12",
     "tray-to-tray bond": "2026-10-15",
     "trivalent chromium": "2026-10-07",
     "upstream protective device": "2026-09-25",
@@ -1215,6 +1224,7 @@
     "verification requirement": "2026-10-19",
     "wet faying surface sealing": "2026-10-07",
     "wire brush": "2026-10-06",
-    "workmanship resistance measurement": "2026-10-20"
+    "workmanship resistance measurement": "2026-10-20",
+    "zero reference potential": "2026-11-12"
   }
 }
