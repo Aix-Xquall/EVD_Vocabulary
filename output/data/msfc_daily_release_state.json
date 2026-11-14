@@ -957,13 +957,7 @@
     "worst-case simultaneous operation",
     "zero reference potential"
   ],
-  "released_today": [
-    "degreasing",
-    "solvent cleaning",
-    "alkaline cleaning",
-    "electrolytic cleaning",
-    "anodic cleaning"
-  ],
+  "released_today": [],
   "released_at": {
     "acceptance criterion": "2026-11-05",
     "accessible location": "2026-11-04",
