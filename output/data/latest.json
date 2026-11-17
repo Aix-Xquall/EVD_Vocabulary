@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-16",
-  "title": "EVD Vocabulary Chapters - 2026-11-16",
+  "date": "2026-11-17",
+  "title": "EVD Vocabulary Chapters - 2026-11-17",
   "mode": "chapters",
   "chapters": [
     {
@@ -87998,7 +87998,7 @@
       "title": "MSFC-HDBK-3697_09_附錄B_清潔方法",
       "source_file": "MSFC-HDBK-3697_09_附錄B_清潔方法.csv",
       "is_hard_words": false,
-      "word_count": 10,
+      "word_count": 15,
       "words": [
         {
           "id": "263",
@@ -89167,6 +89167,591 @@
             "document": "MSFC-HDBK-3697.pdf",
             "section": "APPENDIX B CLEANING METHODS",
             "page": "59",
+            "attribution": "改寫自"
+          }
+        },
+        {
+          "id": "280",
+          "word": "oxide film",
+          "pronunciation": "/ˈɑːksaɪd fɪlm/",
+          "chinese_meaning": "氧化膜",
+          "example_1_en": "An oxide film is a surface layer formed by reaction with oxygen.",
+          "example_1_zh": "氧化膜是與氧反應後形成的表面層。",
+          "example_2_en": "An excessive oxide film is removed before an electrical bond is assembled.",
+          "example_2_zh": "組裝電氣接合前會移除過厚的氧化膜。",
+          "category": "Cleaning Methods",
+          "difficulty": "4",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 11,
+          "is_new": true,
+          "msfc_released_at": "2026-11-17",
+          "audio_segments": {
+            "meaning": {
+              "src": "audio/segments/zh/db6e35ce39ef0519fde5c6d6.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/a4582818ab006f736ab4ef42.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "word": {
+              "src": "audio/segments/en/cc1daefc4881bb3f737f2650.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/cc1daefc4881bb3f737f2650.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/13e8192580120ab962052363.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/3c92d89bfe43e68987872973.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/3c92d89bfe43e68987872973.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/691c39386915920903723187.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/fcb5a5dcb296300735dbf8df.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/fcb5a5dcb296300735dbf8df.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/9d2a96b988a46bd25861ca46.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/f776a3f94a2fc56f4e8a24ba.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            }
+          },
+          "example_1_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + am / is / are + complement",
+            "highlights": [
+              "is"
+            ],
+            "confidence": 0.99,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_2_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + am / is / are + complement",
+            "highlights": [
+              "is"
+            ],
+            "confidence": 0.99,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_1_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "改寫自"
+          },
+          "example_2_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "改寫自"
+          }
+        },
+        {
+          "id": "499",
+          "word": "mineral acid",
+          "pronunciation": "/ˈmɪnərəl ˈæsəd/",
+          "chinese_meaning": "無機酸",
+          "example_1_en": "The technician evaluates mineral acid before cleaning the bond surface.",
+          "example_1_zh": "技術人員在清潔接合表面前會評估無機酸。",
+          "example_2_en": "The technician reviews \"mineral acid\" when preparing a bonding surface.",
+          "example_2_zh": "技術人員在準備接合表面時會考量「無機酸」。",
+          "category": "Glossary & Cleaning",
+          "difficulty": "4",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 12,
+          "is_new": true,
+          "msfc_released_at": "2026-11-17",
+          "audio_segments": {
+            "meaning": {
+              "src": "audio/segments/zh/09e2ff6af3064110a8367397.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/87256da398d36031dee2eb5d.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "word": {
+              "src": "audio/segments/en/5ed84fde6c4bb1b7e2f64ab3.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/5ed84fde6c4bb1b7e2f64ab3.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/a9a4b5ad49cebed54385e91e.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/902d94c6ecafcefbd1c9a767.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/902d94c6ecafcefbd1c9a767.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/27e0f574a890307b1fe6b0de.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/cefb4a221d08d0df3cb93687.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/cefb4a221d08d0df3cb93687.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/fa42becc5f9caf367718b06b.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/b366d6a2f0d1969ecb0ac9f0.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            }
+          },
+          "example_1_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "evaluates"
+            ],
+            "confidence": 0.9,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_2_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "reviews"
+            ],
+            "confidence": 0.99,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_1_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "主題參考"
+          },
+          "example_2_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "改寫自"
+          }
+        },
+        {
+          "id": "500",
+          "word": "organic acid",
+          "pronunciation": "/ɔrˈgænɪk ˈæsəd/",
+          "chinese_meaning": "有機酸",
+          "example_1_en": "The technician evaluates organic acid before cleaning the bond surface.",
+          "example_1_zh": "技術人員在清潔接合表面前會評估有機酸。",
+          "example_2_en": "The technician reviews \"organic acid\" when preparing a bonding surface.",
+          "example_2_zh": "技術人員在準備接合表面時會考量「有機酸」。",
+          "category": "Glossary & Cleaning",
+          "difficulty": "4",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 13,
+          "is_new": true,
+          "msfc_released_at": "2026-11-17",
+          "audio_segments": {
+            "meaning": {
+              "src": "audio/segments/zh/e497f64d194eac985978d3e8.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/e16e67964e31ec5cd5e7dd9b.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "word": {
+              "src": "audio/segments/en/362af478062a7feb7dae24ab.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/362af478062a7feb7dae24ab.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/722bc1cf249d0bc3cd0790f7.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/f4f05d30820447e29d1e4604.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/f4f05d30820447e29d1e4604.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/22f8c2f2efaa2e2135899611.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/0c03ccd0c394e5ea4fc4b8c9.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/0c03ccd0c394e5ea4fc4b8c9.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/c2bc5b0fa74f9524210ec060.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/d5ae016628c2ba961c5165ac.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            }
+          },
+          "example_1_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "evaluates"
+            ],
+            "confidence": 0.9,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_2_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "reviews"
+            ],
+            "confidence": 0.99,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_1_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "主題參考"
+          },
+          "example_2_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "改寫自"
+          }
+        },
+        {
+          "id": "501",
+          "word": "pickling",
+          "pronunciation": "/ˈpɪklɪŋ/",
+          "chinese_meaning": "酸浸處理",
+          "example_1_en": "The technician evaluates pickling before cleaning the bond surface.",
+          "example_1_zh": "技術人員在清潔接合表面前會評估酸浸處理。",
+          "example_2_en": "The technician reviews \"pickling\" when preparing a bonding surface.",
+          "example_2_zh": "技術人員在準備接合表面時會考量「酸浸處理」。",
+          "category": "Glossary & Cleaning",
+          "difficulty": "4",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 14,
+          "is_new": true,
+          "msfc_released_at": "2026-11-17",
+          "audio_segments": {
+            "meaning": {
+              "src": "audio/segments/zh/46886cdce3de82ec87842f54.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/4fa984ad67f5fb539fb3c966.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "word": {
+              "src": "audio/segments/en/df07458c67aa149bb6e4d995.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/df07458c67aa149bb6e4d995.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/2c3bcece3610d5d2afd246a2.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/8d512e1121946134a29550d8.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/8d512e1121946134a29550d8.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/17fe0928ab3021acc8b87b17.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/5d21544a3b8066a26ef3501a.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/5d21544a3b8066a26ef3501a.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/9ad5321860402d7c354cb1f6.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/11e63b07de42c62b2d61044b.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            }
+          },
+          "example_1_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "evaluates"
+            ],
+            "confidence": 0.9,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_2_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "reviews"
+            ],
+            "confidence": 0.99,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_1_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "主題參考"
+          },
+          "example_2_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "改寫自"
+          }
+        },
+        {
+          "id": "502",
+          "word": "scale removal",
+          "pronunciation": "/skeɪl rɪˈmuvəl/",
+          "chinese_meaning": "氧化皮去除",
+          "example_1_en": "The technician evaluates scale removal before cleaning the bond surface.",
+          "example_1_zh": "技術人員在清潔接合表面前會評估氧化皮去除。",
+          "example_2_en": "The technician reviews \"scale removal\" when preparing a bonding surface.",
+          "example_2_zh": "技術人員在準備接合表面時會考量「氧化皮去除」。",
+          "category": "Glossary & Cleaning",
+          "difficulty": "4",
+          "review_count": "0",
+          "last_review_date": "",
+          "index": 15,
+          "is_new": true,
+          "msfc_released_at": "2026-11-17",
+          "audio_segments": {
+            "meaning": {
+              "src": "audio/segments/zh/a70e2cdfb2d7888877e5e117.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "example_2_zh": {
+              "src": "audio/segments/zh/bf54fea475d4787cb79be79f.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            },
+            "word": {
+              "src": "audio/segments/en/60096f2f9bf0d89870edeeca.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/60096f2f9bf0d89870edeeca.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/3132fc4285caac394e8afc66.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_en": {
+              "src": "audio/segments/en/bb443f1abdc37265ab38ac76.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/bb443f1abdc37265ab38ac76.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/3420d9ed87295542afa21151.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_2_en": {
+              "src": "audio/segments/en/dd4019fd0723507a56caec40.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J",
+              "voices": {
+                "en-US-Neural2-J": {
+                  "src": "audio/segments/en/dd4019fd0723507a56caec40.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-J"
+                },
+                "en-US-Neural2-E": {
+                  "src": "audio/segments/en/d1537e4f47912bdd549bc59b.mp3",
+                  "language": "en",
+                  "voice": "en-US-Neural2-E"
+                }
+              }
+            },
+            "example_1_zh": {
+              "src": "audio/segments/zh/ed78a6fa149310d4161d8072.mp3",
+              "language": "zh",
+              "voice": "cmn-TW-Wavenet-A"
+            }
+          },
+          "example_1_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "evaluates"
+            ],
+            "confidence": 0.9,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_2_tense": {
+            "name_zh": "現在簡單式",
+            "formula": "S + V / V-s",
+            "highlights": [
+              "reviews"
+            ],
+            "confidence": 0.99,
+            "display_name_zh": "現在簡單",
+            "display_formula": "S + V / V-s"
+          },
+          "example_1_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
+            "attribution": "主題參考"
+          },
+          "example_2_source": {
+            "document": "MSFC-HDBK-3697.pdf",
+            "section": "APPENDIX B CLEANING METHODS",
+            "page": "60",
             "attribution": "改寫自"
           }
         }
@@ -202379,6 +202964,591 @@
       }
     },
     {
+      "id": "280",
+      "word": "oxide film",
+      "pronunciation": "/ˈɑːksaɪd fɪlm/",
+      "chinese_meaning": "氧化膜",
+      "example_1_en": "An oxide film is a surface layer formed by reaction with oxygen.",
+      "example_1_zh": "氧化膜是與氧反應後形成的表面層。",
+      "example_2_en": "An excessive oxide film is removed before an electrical bond is assembled.",
+      "example_2_zh": "組裝電氣接合前會移除過厚的氧化膜。",
+      "category": "Cleaning Methods",
+      "difficulty": "4",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 11,
+      "is_new": true,
+      "msfc_released_at": "2026-11-17",
+      "audio_segments": {
+        "meaning": {
+          "src": "audio/segments/zh/db6e35ce39ef0519fde5c6d6.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/a4582818ab006f736ab4ef42.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "word": {
+          "src": "audio/segments/en/cc1daefc4881bb3f737f2650.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/cc1daefc4881bb3f737f2650.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/13e8192580120ab962052363.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/3c92d89bfe43e68987872973.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/3c92d89bfe43e68987872973.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/691c39386915920903723187.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/fcb5a5dcb296300735dbf8df.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/fcb5a5dcb296300735dbf8df.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/9d2a96b988a46bd25861ca46.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/f776a3f94a2fc56f4e8a24ba.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        }
+      },
+      "example_1_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + am / is / are + complement",
+        "highlights": [
+          "is"
+        ],
+        "confidence": 0.99,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_2_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + am / is / are + complement",
+        "highlights": [
+          "is"
+        ],
+        "confidence": 0.99,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_1_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "改寫自"
+      },
+      "example_2_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "改寫自"
+      }
+    },
+    {
+      "id": "499",
+      "word": "mineral acid",
+      "pronunciation": "/ˈmɪnərəl ˈæsəd/",
+      "chinese_meaning": "無機酸",
+      "example_1_en": "The technician evaluates mineral acid before cleaning the bond surface.",
+      "example_1_zh": "技術人員在清潔接合表面前會評估無機酸。",
+      "example_2_en": "The technician reviews \"mineral acid\" when preparing a bonding surface.",
+      "example_2_zh": "技術人員在準備接合表面時會考量「無機酸」。",
+      "category": "Glossary & Cleaning",
+      "difficulty": "4",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 12,
+      "is_new": true,
+      "msfc_released_at": "2026-11-17",
+      "audio_segments": {
+        "meaning": {
+          "src": "audio/segments/zh/09e2ff6af3064110a8367397.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/87256da398d36031dee2eb5d.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "word": {
+          "src": "audio/segments/en/5ed84fde6c4bb1b7e2f64ab3.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/5ed84fde6c4bb1b7e2f64ab3.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/a9a4b5ad49cebed54385e91e.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/902d94c6ecafcefbd1c9a767.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/902d94c6ecafcefbd1c9a767.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/27e0f574a890307b1fe6b0de.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/cefb4a221d08d0df3cb93687.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/cefb4a221d08d0df3cb93687.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/fa42becc5f9caf367718b06b.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/b366d6a2f0d1969ecb0ac9f0.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        }
+      },
+      "example_1_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "evaluates"
+        ],
+        "confidence": 0.9,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_2_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "reviews"
+        ],
+        "confidence": 0.99,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_1_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "主題參考"
+      },
+      "example_2_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "改寫自"
+      }
+    },
+    {
+      "id": "500",
+      "word": "organic acid",
+      "pronunciation": "/ɔrˈgænɪk ˈæsəd/",
+      "chinese_meaning": "有機酸",
+      "example_1_en": "The technician evaluates organic acid before cleaning the bond surface.",
+      "example_1_zh": "技術人員在清潔接合表面前會評估有機酸。",
+      "example_2_en": "The technician reviews \"organic acid\" when preparing a bonding surface.",
+      "example_2_zh": "技術人員在準備接合表面時會考量「有機酸」。",
+      "category": "Glossary & Cleaning",
+      "difficulty": "4",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 13,
+      "is_new": true,
+      "msfc_released_at": "2026-11-17",
+      "audio_segments": {
+        "meaning": {
+          "src": "audio/segments/zh/e497f64d194eac985978d3e8.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/e16e67964e31ec5cd5e7dd9b.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "word": {
+          "src": "audio/segments/en/362af478062a7feb7dae24ab.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/362af478062a7feb7dae24ab.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/722bc1cf249d0bc3cd0790f7.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/f4f05d30820447e29d1e4604.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/f4f05d30820447e29d1e4604.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/22f8c2f2efaa2e2135899611.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/0c03ccd0c394e5ea4fc4b8c9.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/0c03ccd0c394e5ea4fc4b8c9.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/c2bc5b0fa74f9524210ec060.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/d5ae016628c2ba961c5165ac.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        }
+      },
+      "example_1_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "evaluates"
+        ],
+        "confidence": 0.9,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_2_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "reviews"
+        ],
+        "confidence": 0.99,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_1_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "主題參考"
+      },
+      "example_2_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "改寫自"
+      }
+    },
+    {
+      "id": "501",
+      "word": "pickling",
+      "pronunciation": "/ˈpɪklɪŋ/",
+      "chinese_meaning": "酸浸處理",
+      "example_1_en": "The technician evaluates pickling before cleaning the bond surface.",
+      "example_1_zh": "技術人員在清潔接合表面前會評估酸浸處理。",
+      "example_2_en": "The technician reviews \"pickling\" when preparing a bonding surface.",
+      "example_2_zh": "技術人員在準備接合表面時會考量「酸浸處理」。",
+      "category": "Glossary & Cleaning",
+      "difficulty": "4",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 14,
+      "is_new": true,
+      "msfc_released_at": "2026-11-17",
+      "audio_segments": {
+        "meaning": {
+          "src": "audio/segments/zh/46886cdce3de82ec87842f54.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/4fa984ad67f5fb539fb3c966.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "word": {
+          "src": "audio/segments/en/df07458c67aa149bb6e4d995.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/df07458c67aa149bb6e4d995.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/2c3bcece3610d5d2afd246a2.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/8d512e1121946134a29550d8.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/8d512e1121946134a29550d8.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/17fe0928ab3021acc8b87b17.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/5d21544a3b8066a26ef3501a.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/5d21544a3b8066a26ef3501a.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/9ad5321860402d7c354cb1f6.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/11e63b07de42c62b2d61044b.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        }
+      },
+      "example_1_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "evaluates"
+        ],
+        "confidence": 0.9,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_2_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "reviews"
+        ],
+        "confidence": 0.99,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_1_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "主題參考"
+      },
+      "example_2_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "改寫自"
+      }
+    },
+    {
+      "id": "502",
+      "word": "scale removal",
+      "pronunciation": "/skeɪl rɪˈmuvəl/",
+      "chinese_meaning": "氧化皮去除",
+      "example_1_en": "The technician evaluates scale removal before cleaning the bond surface.",
+      "example_1_zh": "技術人員在清潔接合表面前會評估氧化皮去除。",
+      "example_2_en": "The technician reviews \"scale removal\" when preparing a bonding surface.",
+      "example_2_zh": "技術人員在準備接合表面時會考量「氧化皮去除」。",
+      "category": "Glossary & Cleaning",
+      "difficulty": "4",
+      "review_count": "0",
+      "last_review_date": "",
+      "index": 15,
+      "is_new": true,
+      "msfc_released_at": "2026-11-17",
+      "audio_segments": {
+        "meaning": {
+          "src": "audio/segments/zh/a70e2cdfb2d7888877e5e117.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "example_2_zh": {
+          "src": "audio/segments/zh/bf54fea475d4787cb79be79f.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        },
+        "word": {
+          "src": "audio/segments/en/60096f2f9bf0d89870edeeca.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/60096f2f9bf0d89870edeeca.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/3132fc4285caac394e8afc66.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_en": {
+          "src": "audio/segments/en/bb443f1abdc37265ab38ac76.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/bb443f1abdc37265ab38ac76.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/3420d9ed87295542afa21151.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_2_en": {
+          "src": "audio/segments/en/dd4019fd0723507a56caec40.mp3",
+          "language": "en",
+          "voice": "en-US-Neural2-J",
+          "voices": {
+            "en-US-Neural2-J": {
+              "src": "audio/segments/en/dd4019fd0723507a56caec40.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-J"
+            },
+            "en-US-Neural2-E": {
+              "src": "audio/segments/en/d1537e4f47912bdd549bc59b.mp3",
+              "language": "en",
+              "voice": "en-US-Neural2-E"
+            }
+          }
+        },
+        "example_1_zh": {
+          "src": "audio/segments/zh/ed78a6fa149310d4161d8072.mp3",
+          "language": "zh",
+          "voice": "cmn-TW-Wavenet-A"
+        }
+      },
+      "example_1_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "evaluates"
+        ],
+        "confidence": 0.9,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_2_tense": {
+        "name_zh": "現在簡單式",
+        "formula": "S + V / V-s",
+        "highlights": [
+          "reviews"
+        ],
+        "confidence": 0.99,
+        "display_name_zh": "現在簡單",
+        "display_formula": "S + V / V-s"
+      },
+      "example_1_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "主題參考"
+      },
+      "example_2_source": {
+        "document": "MSFC-HDBK-3697.pdf",
+        "section": "APPENDIX B CLEANING METHODS",
+        "page": "60",
+        "attribution": "改寫自"
+      }
+    },
+    {
       "id": "3",
       "word": "circumferential",
       "pronunciation": "/sərˌkʌmfəˈrenʃəl/",
@@ -240487,6 +241657,8 @@
   ],
   "mastery": {
     "statuses": {
+      "surface resistance": "mastered",
+      "low-resistance interface": "mastered",
       "exposed surface": "mastered",
       "checklist item": "mastered",
       "installation sequence": "mastered",
@@ -240873,9 +242045,9 @@
       },
       "acceptance criterion": {
         "word": "acceptance criterion",
-        "practice_count": 5,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:41:40.119Z"
+        "last_practiced_at": "2026-11-16T23:46:37.762Z"
       },
       "acceptance record": {
         "word": "acceptance record",
@@ -240891,9 +242063,9 @@
       },
       "accessible location": {
         "word": "accessible location",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:46:11.665Z"
+        "last_practiced_at": "2026-11-16T23:44:34.411Z"
       },
       "accidental": {
         "word": "accidental",
@@ -240913,6 +242085,12 @@
         "repeat_current_count": 0,
         "last_practiced_at": "2026-09-29T00:08:10.212Z"
       },
+      "acid cleaning": {
+        "word": "acid cleaning",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-11-16T23:58:55.425Z"
+      },
       "acid fluoride": {
         "word": "acid fluoride",
         "practice_count": 32,
@@ -240927,9 +242105,9 @@
       },
       "active antenna element": {
         "word": "active antenna element",
-        "practice_count": 27,
+        "practice_count": 28,
         "repeat_current_count": 9,
-        "last_practiced_at": "2026-11-12T23:38:28.408Z"
+        "last_practiced_at": "2026-11-17T00:01:31.653Z"
       },
       "actuator worst case": {
         "word": "actuator worst case",
@@ -240951,9 +242129,9 @@
       },
       "adjacent finish": {
         "word": "adjacent finish",
-        "practice_count": 8,
+        "practice_count": 9,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:45:11.928Z"
+        "last_practiced_at": "2026-11-16T23:45:34.568Z"
       },
       "adjacent metal part": {
         "word": "adjacent metal part",
@@ -240981,9 +242159,9 @@
       },
       "alkaline cleaning": {
         "word": "alkaline cleaning",
-        "practice_count": 2,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:22:37.514Z"
+        "last_practiced_at": "2026-11-16T23:56:41.870Z"
       },
       "alkaline solution": {
         "word": "alkaline solution",
@@ -241017,9 +242195,9 @@
       },
       "alloying material": {
         "word": "alloying material",
-        "practice_count": 45,
+        "practice_count": 46,
         "repeat_current_count": 5,
-        "last_practiced_at": "2026-11-12T23:38:55.738Z"
+        "last_practiced_at": "2026-11-17T00:01:59.778Z"
       },
       "alternate electrical path": {
         "word": "alternate electrical path",
@@ -241047,9 +242225,9 @@
       },
       "anodic cleaning": {
         "word": "anodic cleaning",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:22:00.658Z"
+        "last_practiced_at": "2026-11-16T23:57:20.460Z"
       },
       "anodize": {
         "word": "anodize",
@@ -241245,15 +242423,15 @@
       },
       "bond integrity": {
         "word": "bond integrity",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:40:01.363Z"
+        "last_practiced_at": "2026-11-16T23:47:55.522Z"
       },
       "bond resistance limit": {
         "word": "bond resistance limit",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:34:32.695Z"
+        "last_practiced_at": "2026-11-16T23:48:51.950Z"
       },
       "bond strap installation": {
         "word": "bond strap installation",
@@ -241287,9 +242465,9 @@
       },
       "bonding checklist": {
         "word": "bonding checklist",
-        "practice_count": 11,
+        "practice_count": 12,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:51:40.383Z"
+        "last_practiced_at": "2026-11-16T23:40:17.479Z"
       },
       "bonding clamp": {
         "word": "bonding clamp",
@@ -241305,9 +242483,9 @@
       },
       "bonding note": {
         "word": "bonding note",
-        "practice_count": 8,
+        "practice_count": 10,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-13T06:50:45.036Z"
+        "last_practiced_at": "2026-11-16T23:35:24.598Z"
       },
       "bonding requirement": {
         "word": "bonding requirement",
@@ -241359,9 +242537,9 @@
       },
       "brazed joint": {
         "word": "brazed joint",
-        "practice_count": 66,
+        "practice_count": 67,
         "repeat_current_count": 25,
-        "last_practiced_at": "2026-11-12T23:38:46.317Z"
+        "last_practiced_at": "2026-11-17T00:01:50.410Z"
       },
       "bridge excitation": {
         "word": "bridge excitation",
@@ -241377,9 +242555,9 @@
       },
       "bulk resistivity": {
         "word": "bulk resistivity",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:25:27.895Z"
+        "last_practiced_at": "2026-11-16T23:53:41.605Z"
       },
       "bus": {
         "word": "bus",
@@ -241437,9 +242615,9 @@
       },
       "capacitive reactance": {
         "word": "capacitive reactance",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:31:16.038Z"
+        "last_practiced_at": "2026-11-16T23:51:48.409Z"
       },
       "category": {
         "word": "category",
@@ -241452,6 +242630,12 @@
         "practice_count": 44,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-10-14T23:35:18.804Z"
+      },
+      "cathodic cleaning": {
+        "word": "cathodic cleaning",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-11-16T23:57:39.123Z"
       },
       "central hub": {
         "word": "central hub",
@@ -241473,9 +242657,9 @@
       },
       "charge imbalance": {
         "word": "charge imbalance",
-        "practice_count": 41,
+        "practice_count": 42,
         "repeat_current_count": 12,
-        "last_practiced_at": "2026-11-12T23:36:30.615Z"
+        "last_practiced_at": "2026-11-17T00:00:29.309Z"
       },
       "chassis": {
         "word": "chassis",
@@ -241503,9 +242687,9 @@
       },
       "checklist closure": {
         "word": "checklist closure",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:31:36.687Z"
+        "last_practiced_at": "2026-11-16T23:51:26.392Z"
       },
       "checklist item": {
         "word": "checklist item",
@@ -241521,9 +242705,9 @@
       },
       "chemical film treatment": {
         "word": "chemical film treatment",
-        "practice_count": 16,
+        "practice_count": 18,
         "repeat_current_count": 2,
-        "last_practiced_at": "2026-11-13T06:52:40.625Z"
+        "last_practiced_at": "2026-11-16T23:37:11.087Z"
       },
       "chlorinated solvent": {
         "word": "chlorinated solvent",
@@ -241545,9 +242729,9 @@
       },
       "clamp tang": {
         "word": "clamp tang",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:32:33.766Z"
+        "last_practiced_at": "2026-11-16T23:50:47.929Z"
       },
       "class of bond": {
         "word": "class of bond",
@@ -241557,9 +242741,9 @@
       },
       "clean mating surface": {
         "word": "clean mating surface",
-        "practice_count": 11,
+        "practice_count": 12,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:50:27.508Z"
+        "last_practiced_at": "2026-11-16T23:41:31.615Z"
       },
       "cleaning fluid": {
         "word": "cleaning fluid",
@@ -241617,9 +242801,9 @@
       },
       "complex quantity": {
         "word": "complex quantity",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:30:00.629Z"
+        "last_practiced_at": "2026-11-16T23:52:50.044Z"
       },
       "compliance": {
         "word": "compliance",
@@ -241629,9 +242813,9 @@
       },
       "compliance evidence": {
         "word": "compliance evidence",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:34:11.513Z"
+        "last_practiced_at": "2026-11-16T23:49:12.248Z"
       },
       "compliance matrix": {
         "word": "compliance matrix",
@@ -241683,9 +242867,9 @@
       },
       "conductance": {
         "word": "conductance",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:30:34.630Z"
+        "last_practiced_at": "2026-11-16T23:52:26.146Z"
       },
       "conducted emission": {
         "word": "conducted emission",
@@ -241707,9 +242891,9 @@
       },
       "conductive clamp": {
         "word": "conductive clamp",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:32:52.691Z"
+        "last_practiced_at": "2026-11-16T23:50:29.728Z"
       },
       "conductive coating": {
         "word": "conductive coating",
@@ -241821,9 +243005,9 @@
       },
       "connector panel drawing": {
         "word": "connector panel drawing",
-        "practice_count": 12,
+        "practice_count": 13,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:52:24.709Z"
+        "last_practiced_at": "2026-11-16T23:39:33.979Z"
       },
       "connector shell": {
         "word": "connector shell",
@@ -241941,9 +243125,9 @@
       },
       "corrective action": {
         "word": "corrective action",
-        "practice_count": 4,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:33:50.909Z"
+        "last_practiced_at": "2026-11-16T23:49:51.081Z"
       },
       "corrosion control": {
         "word": "corrosion control",
@@ -241953,9 +243137,9 @@
       },
       "corrosion inhibiting compound": {
         "word": "corrosion inhibiting compound",
-        "practice_count": 11,
+        "practice_count": 12,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:53:41.607Z"
+        "last_practiced_at": "2026-11-16T23:38:18.478Z"
       },
       "corrosion prevention and control plan": {
         "word": "corrosion prevention and control plan",
@@ -241983,9 +243167,9 @@
       },
       "corrosive agent": {
         "word": "corrosive agent",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:49:24.642Z"
+        "last_practiced_at": "2026-11-16T23:42:32.688Z"
       },
       "countdown": {
         "word": "countdown",
@@ -242031,9 +243215,9 @@
       },
       "critical bond path": {
         "word": "critical bond path",
-        "practice_count": 8,
+        "practice_count": 10,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-13T06:50:26.632Z"
+        "last_practiced_at": "2026-11-16T23:35:08.403Z"
       },
       "cross-sectional area": {
         "word": "cross-sectional area",
@@ -242103,9 +243287,9 @@
       },
       "degreasing": {
         "word": "degreasing",
-        "practice_count": 2,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:23:10.782Z"
+        "last_practiced_at": "2026-11-16T23:56:03.756Z"
       },
       "delamination": {
         "word": "delamination",
@@ -242187,9 +243371,9 @@
       },
       "designated bond area": {
         "word": "designated bond area",
-        "practice_count": 10,
+        "practice_count": 11,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:50:49.186Z"
+        "last_practiced_at": "2026-11-16T23:41:10.448Z"
       },
       "diagram": {
         "word": "diagram",
@@ -242205,9 +243389,9 @@
       },
       "dielectric breakdown": {
         "word": "dielectric breakdown",
-        "practice_count": 42,
+        "practice_count": 43,
         "repeat_current_count": 17,
-        "last_practiced_at": "2026-11-12T23:37:39.311Z"
+        "last_practiced_at": "2026-11-17T00:00:40.064Z"
       },
       "dimensions": {
         "word": "dimensions",
@@ -242229,9 +243413,9 @@
       },
       "direct joining": {
         "word": "direct joining",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:45:30.029Z"
+        "last_practiced_at": "2026-11-16T23:45:14.779Z"
       },
       "discharge path": {
         "word": "discharge path",
@@ -242259,15 +243443,15 @@
       },
       "drawing designation": {
         "word": "drawing designation",
-        "practice_count": 9,
+        "practice_count": 10,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:44:53.627Z"
+        "last_practiced_at": "2026-11-16T23:45:55.050Z"
       },
       "drawing leader": {
         "word": "drawing leader",
-        "practice_count": 13,
+        "practice_count": 15,
         "repeat_current_count": 4,
-        "last_practiced_at": "2026-11-13T06:51:13.322Z"
+        "last_practiced_at": "2026-11-16T23:35:49.709Z"
       },
       "drawing note": {
         "word": "drawing note",
@@ -242277,9 +243461,9 @@
       },
       "drawing release": {
         "word": "drawing release",
-        "practice_count": 8,
+        "practice_count": 10,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-13T06:50:36.349Z"
+        "last_practiced_at": "2026-11-16T23:35:17.003Z"
       },
       "due to": {
         "word": "due to",
@@ -242373,9 +243557,9 @@
       },
       "electrically conductive surface": {
         "word": "electrically conductive surface",
-        "practice_count": 12,
+        "practice_count": 14,
         "repeat_current_count": 1,
-        "last_practiced_at": "2026-11-13T06:51:59.373Z"
+        "last_practiced_at": "2026-11-16T23:36:32.270Z"
       },
       "electro-explosive device (eed)": {
         "word": "Electro-Explosive Device (EED)",
@@ -242391,9 +243575,9 @@
       },
       "electroless nickel plate": {
         "word": "electroless nickel plate",
-        "practice_count": 27,
+        "practice_count": 29,
         "repeat_current_count": 16,
-        "last_practiced_at": "2026-11-13T06:53:02.420Z"
+        "last_practiced_at": "2026-11-16T23:37:31.988Z"
       },
       "electrolyte": {
         "word": "electrolyte",
@@ -242403,15 +243587,15 @@
       },
       "electrolytic cleaning": {
         "word": "electrolytic cleaning",
-        "practice_count": 2,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:22:19.672Z"
+        "last_practiced_at": "2026-11-16T23:57:02.117Z"
       },
       "electrolytic path": {
         "word": "electrolytic path",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:49:05.153Z"
+        "last_practiced_at": "2026-11-16T23:42:52.283Z"
       },
       "electromagnetic compatibility (emc)": {
         "word": "Electromagnetic Compatibility (EMC)",
@@ -242463,27 +243647,33 @@
       },
       "electrostatic charge": {
         "word": "electrostatic charge",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:25:08.352Z"
+        "last_practiced_at": "2026-11-16T23:54:02.978Z"
       },
       "electrostatic discharge prevention": {
         "word": "electrostatic discharge prevention",
-        "practice_count": 81,
+        "practice_count": 82,
         "repeat_current_count": 54,
-        "last_practiced_at": "2026-11-15T02:20:38.872Z"
+        "last_practiced_at": "2026-11-17T00:00:19.464Z"
       },
       "electrostatic-charge bond": {
         "word": "electrostatic-charge bond",
-        "practice_count": 29,
+        "practice_count": 30,
         "repeat_current_count": 9,
-        "last_practiced_at": "2026-11-12T23:38:00.853Z"
+        "last_practiced_at": "2026-11-17T00:01:01.847Z"
       },
       "emission frequency": {
         "word": "emission frequency",
         "practice_count": 12,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-10-19T12:40:54.277Z"
+      },
+      "emulsion cleaning": {
+        "word": "emulsion cleaning",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-11-16T23:57:58.023Z"
       },
       "enclosure": {
         "word": "enclosure",
@@ -242529,9 +243719,9 @@
       },
       "environmental exposure": {
         "word": "environmental exposure",
-        "practice_count": 10,
+        "practice_count": 11,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:51:10.182Z"
+        "last_practiced_at": "2026-11-16T23:40:48.397Z"
       },
       "environmental seal": {
         "word": "environmental seal",
@@ -242541,9 +243731,9 @@
       },
       "equipment installation drawing": {
         "word": "equipment installation drawing",
-        "practice_count": 11,
+        "practice_count": 12,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:52:03.482Z"
+        "last_practiced_at": "2026-11-16T23:39:57.339Z"
       },
       "equipment rack": {
         "word": "equipment rack",
@@ -242619,15 +243809,15 @@
       },
       "exposed case": {
         "word": "exposed case",
-        "practice_count": 26,
+        "practice_count": 27,
         "repeat_current_count": 2,
-        "last_practiced_at": "2026-11-15T02:21:16.592Z"
+        "last_practiced_at": "2026-11-16T23:59:34.467Z"
       },
       "exposed surface": {
         "word": "exposed surface",
-        "practice_count": 12,
+        "practice_count": 13,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:52:55.462Z"
+        "last_practiced_at": "2026-11-16T23:38:51.295Z"
       },
       "exposure": {
         "word": "exposure",
@@ -242703,9 +243893,9 @@
       },
       "fastener torque": {
         "word": "fastener torque",
-        "practice_count": 15,
+        "practice_count": 16,
         "repeat_current_count": 6,
-        "last_practiced_at": "2026-11-13T06:50:06.340Z"
+        "last_practiced_at": "2026-11-16T23:34:49.391Z"
       },
       "fault current": {
         "word": "fault current",
@@ -242763,9 +243953,9 @@
       },
       "finish restoration": {
         "word": "finish restoration",
-        "practice_count": 9,
+        "practice_count": 10,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:48:05.529Z"
+        "last_practiced_at": "2026-11-16T23:43:54.735Z"
       },
       "finishing process": {
         "word": "finishing process",
@@ -242883,15 +244073,15 @@
       },
       "free iron contamination": {
         "word": "free iron contamination",
-        "practice_count": 15,
+        "practice_count": 16,
         "repeat_current_count": 4,
-        "last_practiced_at": "2026-11-15T02:54:03.962Z"
+        "last_practiced_at": "2026-11-16T23:37:54.547Z"
       },
       "frequency of interest": {
         "word": "frequency of interest",
-        "practice_count": 41,
+        "practice_count": 42,
         "repeat_current_count": 14,
-        "last_practiced_at": "2026-11-15T02:21:08.144Z"
+        "last_practiced_at": "2026-11-16T23:59:44.838Z"
       },
       "fts": {
         "word": "FTS",
@@ -243153,9 +244343,15 @@
       },
       "hostile environment": {
         "word": "hostile environment",
-        "practice_count": 8,
+        "practice_count": 9,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:46:30.804Z"
+        "last_practiced_at": "2026-11-16T23:44:13.790Z"
+      },
+      "hydrocarbon solvent": {
+        "word": "hydrocarbon solvent",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-11-16T23:58:18.216Z"
       },
       "iepe sensor": {
         "word": "IEPE sensor",
@@ -243177,9 +244373,9 @@
       },
       "imaginary part": {
         "word": "imaginary part",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:28:44.675Z"
+        "last_practiced_at": "2026-11-16T23:53:09.368Z"
       },
       "impedance": {
         "word": "impedance",
@@ -243243,9 +244439,9 @@
       },
       "inductive reactance": {
         "word": "inductive reactance",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:30:54.908Z"
+        "last_practiced_at": "2026-11-16T23:52:09.092Z"
       },
       "ineffective": {
         "word": "ineffective",
@@ -243273,15 +244469,15 @@
       },
       "inspection criterion": {
         "word": "inspection criterion",
-        "practice_count": 5,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:42:01.217Z"
+        "last_practiced_at": "2026-11-16T23:46:16.542Z"
       },
       "inspection finding": {
         "word": "inspection finding",
-        "practice_count": 5,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:40:39.826Z"
+        "last_practiced_at": "2026-11-16T23:47:17.419Z"
       },
       "installation configuration": {
         "word": "installation configuration",
@@ -243291,9 +244487,9 @@
       },
       "installation sequence": {
         "word": "installation sequence",
-        "practice_count": 12,
+        "practice_count": 13,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:51:20.303Z"
+        "last_practiced_at": "2026-11-16T23:40:27.470Z"
       },
       "installation tolerance": {
         "word": "installation tolerance",
@@ -243333,9 +244529,9 @@
       },
       "intentional current": {
         "word": "intentional current",
-        "practice_count": 43,
+        "practice_count": 44,
         "repeat_current_count": 19,
-        "last_practiced_at": "2026-11-15T02:21:35.263Z"
+        "last_practiced_at": "2026-11-16T23:59:14.051Z"
       },
       "inter-ring harness": {
         "word": "inter-ring harness",
@@ -243585,15 +244781,15 @@
       },
       "low-resistance interface": {
         "word": "low-resistance interface",
-        "practice_count": 8,
+        "practice_count": 9,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:48:27.430Z"
+        "last_practiced_at": "2026-11-16T23:43:34.349Z"
       },
       "magnetic force": {
         "word": "magnetic force",
-        "practice_count": 77,
+        "practice_count": 78,
         "repeat_current_count": 48,
-        "last_practiced_at": "2026-11-15T02:20:47.180Z"
+        "last_practiced_at": "2026-11-16T23:59:53.699Z"
       },
       "manufacturing organization": {
         "word": "manufacturing organization",
@@ -243609,9 +244805,9 @@
       },
       "masking requirement": {
         "word": "masking requirement",
-        "practice_count": 9,
+        "practice_count": 11,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-13T06:52:19.288Z"
+        "last_practiced_at": "2026-11-16T23:36:51.157Z"
       },
       "match-drilled hole": {
         "word": "match-drilled hole",
@@ -243627,9 +244823,9 @@
       },
       "mating flange": {
         "word": "mating flange",
-        "practice_count": 47,
+        "practice_count": 48,
         "repeat_current_count": 8,
-        "last_practiced_at": "2026-11-12T23:39:04.648Z"
+        "last_practiced_at": "2026-11-17T00:02:09.086Z"
       },
       "mating surface": {
         "word": "mating surface",
@@ -243651,9 +244847,9 @@
       },
       "measurement point": {
         "word": "measurement point",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:39:42.218Z"
+        "last_practiced_at": "2026-11-16T23:48:13.540Z"
       },
       "measurement procedure": {
         "word": "measurement procedure",
@@ -243789,9 +244985,9 @@
       },
       "movement allowance": {
         "word": "movement allowance",
-        "practice_count": 5,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:32:16.197Z"
+        "last_practiced_at": "2026-11-16T23:51:07.062Z"
       },
       "multi-point bonding": {
         "word": "multi-point bonding",
@@ -243855,9 +245051,9 @@
       },
       "nonconformance": {
         "word": "nonconformance",
-        "practice_count": 6,
+        "practice_count": 7,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:41:20.273Z"
+        "last_practiced_at": "2026-11-16T23:46:57.821Z"
       },
       "nonmetallic tubing": {
         "word": "nonmetallic tubing",
@@ -243873,9 +245069,9 @@
       },
       "oil-free surface": {
         "word": "oil-free surface",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:50:06.586Z"
+        "last_practiced_at": "2026-11-16T23:41:51.601Z"
       },
       "on top of": {
         "word": "on top of",
@@ -243921,15 +245117,15 @@
       },
       "oxidation prevention": {
         "word": "oxidation prevention",
-        "practice_count": 12,
+        "practice_count": 13,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:52:45.783Z"
+        "last_practiced_at": "2026-11-16T23:39:12.187Z"
       },
       "oxide-free surface": {
         "word": "oxide-free surface",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:49:46.473Z"
+        "last_practiced_at": "2026-11-16T23:42:13.472Z"
       },
       "oxidizing acid": {
         "word": "oxidizing acid",
@@ -244005,9 +245201,9 @@
       },
       "permanent joint": {
         "word": "permanent joint",
-        "practice_count": 118,
+        "practice_count": 119,
         "repeat_current_count": 69,
-        "last_practiced_at": "2026-11-12T23:38:37.257Z"
+        "last_practiced_at": "2026-11-17T00:01:41.078Z"
       },
       "phase angle": {
         "word": "phase angle",
@@ -244167,9 +245363,9 @@
       },
       "primary structure": {
         "word": "primary structure",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:24:25.579Z"
+        "last_practiced_at": "2026-11-16T23:54:44.151Z"
       },
       "procedure": {
         "word": "procedure",
@@ -244179,9 +245375,9 @@
       },
       "process control": {
         "word": "process control",
-        "practice_count": 5,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:40:20.219Z"
+        "last_practiced_at": "2026-11-16T23:47:36.309Z"
       },
       "procurement": {
         "word": "procurement",
@@ -244425,9 +245621,9 @@
       },
       "replacement access": {
         "word": "replacement access",
-        "practice_count": 7,
+        "practice_count": 8,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:45:51.023Z"
+        "last_practiced_at": "2026-11-16T23:44:55.378Z"
       },
       "requirement": {
         "word": "requirement",
@@ -244623,9 +245819,9 @@
       },
       "secondary structure": {
         "word": "secondary structure",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:24:06.534Z"
+        "last_practiced_at": "2026-11-16T23:55:05.011Z"
       },
       "secure attachment": {
         "word": "secure attachment",
@@ -244761,9 +245957,9 @@
       },
       "solid contaminant": {
         "word": "solid contaminant",
-        "practice_count": 8,
+        "practice_count": 9,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:48:45.831Z"
+        "last_practiced_at": "2026-11-16T23:43:11.572Z"
       },
       "solid copper equivalent": {
         "word": "solid copper equivalent",
@@ -244779,9 +245975,9 @@
       },
       "solvent cleaning": {
         "word": "solvent cleaning",
-        "practice_count": 2,
+        "practice_count": 3,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:22:55.057Z"
+        "last_practiced_at": "2026-11-16T23:56:22.544Z"
       },
       "source-victim matrix": {
         "word": "source-victim matrix",
@@ -244809,9 +246005,9 @@
       },
       "spring nut": {
         "word": "spring nut",
-        "practice_count": 40,
+        "practice_count": 41,
         "repeat_current_count": 3,
-        "last_practiced_at": "2026-11-12T23:39:13.159Z"
+        "last_practiced_at": "2026-11-17T00:02:17.114Z"
       },
       "star washer": {
         "word": "star washer",
@@ -244821,9 +246017,9 @@
       },
       "static charge buildup": {
         "word": "static charge buildup",
-        "practice_count": 33,
+        "practice_count": 34,
         "repeat_current_count": 12,
-        "last_practiced_at": "2026-11-12T23:37:49.510Z"
+        "last_practiced_at": "2026-11-17T00:00:50.482Z"
       },
       "stitching": {
         "word": "stitching",
@@ -244869,9 +246065,9 @@
       },
       "strap sizing": {
         "word": "strap sizing",
-        "practice_count": 5,
+        "practice_count": 6,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:33:32.554Z"
+        "last_practiced_at": "2026-11-16T23:50:10.238Z"
       },
       "strike": {
         "word": "strike",
@@ -244881,9 +246077,9 @@
       },
       "strippable plastic coating": {
         "word": "strippable plastic coating",
-        "practice_count": 14,
+        "practice_count": 15,
         "repeat_current_count": 2,
-        "last_practiced_at": "2026-11-15T02:53:18.090Z"
+        "last_practiced_at": "2026-11-16T23:38:41.406Z"
       },
       "structural element": {
         "word": "structural element",
@@ -244905,9 +246101,9 @@
       },
       "subcontractor": {
         "word": "subcontractor",
-        "practice_count": 56,
+        "practice_count": 57,
         "repeat_current_count": 28,
-        "last_practiced_at": "2026-11-15T02:21:43.117Z"
+        "last_practiced_at": "2026-11-16T23:59:04.683Z"
       },
       "subject to final confirmation": {
         "word": "subject to final confirmation",
@@ -244977,9 +246173,9 @@
       },
       "surface finish callout": {
         "word": "surface finish callout",
-        "practice_count": 13,
+        "practice_count": 15,
         "repeat_current_count": 2,
-        "last_practiced_at": "2026-11-13T06:51:35.170Z"
+        "last_practiced_at": "2026-11-16T23:36:09.828Z"
       },
       "surface hardness": {
         "word": "surface hardness",
@@ -245115,9 +246311,9 @@
       },
       "test lead": {
         "word": "test lead",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-13T07:04:00.550Z"
+        "last_practiced_at": "2026-11-16T23:48:30.478Z"
       },
       "test plan": {
         "word": "test plan",
@@ -245193,15 +246389,15 @@
       },
       "title block": {
         "word": "title block",
-        "practice_count": 8,
+        "practice_count": 10,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-13T06:50:54.814Z"
+        "last_practiced_at": "2026-11-16T23:35:32.501Z"
       },
       "to fay": {
         "word": "to fay",
-        "practice_count": 4,
+        "practice_count": 5,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:23:26.342Z"
+        "last_practiced_at": "2026-11-16T23:55:47.394Z"
       },
       "tolerance": {
         "word": "tolerance",
@@ -245295,15 +246491,21 @@
       },
       "upstream protective device": {
         "word": "upstream protective device",
-        "practice_count": 45,
+        "practice_count": 46,
         "repeat_current_count": 18,
-        "last_practiced_at": "2026-11-15T02:21:26.919Z"
+        "last_practiced_at": "2026-11-16T23:59:25.295Z"
       },
       "vapor": {
         "word": "vapor",
         "practice_count": 32,
         "repeat_current_count": 0,
         "last_practiced_at": "2026-09-29T00:08:37.912Z"
+      },
+      "vapor degreasing": {
+        "word": "vapor degreasing",
+        "practice_count": 1,
+        "repeat_current_count": 0,
+        "last_practiced_at": "2026-11-16T23:58:37.646Z"
       },
       "vehicle skin": {
         "word": "vehicle skin",
@@ -245439,9 +246641,9 @@
       },
       "zero reference potential": {
         "word": "zero reference potential",
-        "practice_count": 3,
+        "practice_count": 4,
         "repeat_current_count": 0,
-        "last_practiced_at": "2026-11-15T02:24:47.253Z"
+        "last_practiced_at": "2026-11-16T23:54:24.890Z"
       }
     },
     "settings": {
@@ -245449,7 +246651,7 @@
       "repeat_all": true,
       "repeat_current": false,
       "include_examples": false,
-      "playback_direction": "reverse",
+      "playback_direction": "forward",
       "english_voice": "en-US-Neural2-J",
       "chapter_positions": {
         "msfc-hdbk-3697": "jumper",
@@ -245473,12 +246675,13 @@
         "msfc-hdbk-3697-05-4-驗證": "workmanship",
         "msfc-hdbk-3697-01-範圍與需求發展": "product technical requirement",
         "msfc-hdbk-3697-05-3-特殊設備與複合材料": "electrical",
-        "msfc-new-words": "electroless nickel plate",
+        "msfc-new-words": "self-tapping screw",
         "msfc-hdbk-3697-06-工程圖面": "surface preparation"
       },
       "read_new_word_keys": [
         "acceptance criterion",
         "accessible location",
+        "acid cleaning",
         "acid fluoride",
         "acidic material",
         "active antenna element",
@@ -245515,6 +246718,7 @@
         "bulk resistivity",
         "cable shield termination",
         "capacitive reactance",
+        "cathodic cleaning",
         "charge imbalance",
         "checklist closure",
         "checklist item",
@@ -245587,6 +246791,7 @@
         "electrostatic discharge prevention",
         "electrostatic-charge bond",
         "emission frequency",
+        "emulsion cleaning",
         "enclosure seam",
         "enclosure shielding integrity",
         "environmental exposure",
@@ -245625,6 +246830,7 @@
         "high-strength steel bolt",
         "honeycomb panel",
         "hostile environment",
+        "hydrocarbon solvent",
         "ignition hazard",
         "imaginary part",
         "indirect bonding",
@@ -245742,6 +246948,7 @@
         "tray-to-tray bond",
         "trivalent chromium",
         "upstream protective device",
+        "vapor degreasing",
         "vehicle skin",
         "verification requirement",
         "wet faying surface sealing",
@@ -245761,7 +246968,9 @@
         "checklist item",
         "compatible material",
         "component development",
+        "conductance",
         "conductive gasket",
+        "conductive item",
         "conductive material",
         "conductive metal strip",
         "connector backshell",
@@ -245796,9 +247005,11 @@
         "mission objective",
         "multiple fasteners",
         "performance analysis",
+        "phase angle",
         "potential difference",
         "power current return",
         "power return bond",
+        "primary structure",
         "product technical requirement",
         "program requirement",
         "project requirement",
@@ -245808,14 +247019,18 @@
         "requirement adjustment",
         "requirement validation",
         "requirements analysis",
+        "secondary structure",
         "semi-permanent joint",
         "series inductance",
         "shielding effectiveness",
         "shock protection",
         "shock-hazard bond",
+        "stored energy",
         "surface cleanliness",
+        "surface resistance",
         "system element",
         "technical constraint",
+        "tertiary structure",
         "test data sheet",
         "vehicle skin",
         "verification requirement"
@@ -245827,7 +247042,7 @@
       "ipa_vowel_color": "#eb2424",
       "ipa_consonant_color": "#1f2937"
     },
-    "settings_updated_at": "2026-11-15T02:54:06.015Z"
+    "settings_updated_at": "2026-11-17T00:02:19.189Z"
   },
   "hard_words": {
     "write_url": "https://script.google.com/macros/s/AKfycbzhjdxIqVtHBlDOk-kbKQzRyK95zsXvAG4VNxCzWpwPn0i47CnFBq20Na5VPMI_vwx2/exec"
