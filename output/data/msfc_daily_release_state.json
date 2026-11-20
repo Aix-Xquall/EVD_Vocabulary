@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "last_release_date": "2026-11-19",
+  "last_release_date": "2026-11-20",
   "released_words": [
     "360-degree termination",
     "abrasive blasting",
@@ -976,12 +976,7 @@
     "worst-case simultaneous operation",
     "zero reference potential"
   ],
-  "released_today": [
-    "ultrasonic cleaning",
-    "abrasive blasting",
-    "hand cleaning",
-    "lint-free cloth"
-  ],
+  "released_today": [],
   "released_at": {
     "abrasive blasting": "2026-11-19",
     "abrasive medium": "2026-11-18",
